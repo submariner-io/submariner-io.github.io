@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Submariner k8s project documentation website :: Submariner k8s project documentation website</title>
+    <title>Cross-Cluster Network Connectivity for Kubernetes :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1582119303" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1582119303" rel="stylesheet">
-    <link href="/css/hybrid.css?1582119303" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1582119303" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1582119303" rel="stylesheet">
-    <link href="/css/auto-complete.css?1582119303" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1582119303" rel="stylesheet">
-    <link href="/css/theme.css?1582119303" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1582119303" rel="stylesheet">
+    <link href="/css/nucleus.css?1582119343" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1582119343" rel="stylesheet">
+    <link href="/css/hybrid.css?1582119343" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1582119343" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1582119343" rel="stylesheet">
+    <link href="/css/auto-complete.css?1582119343" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1582119343" rel="stylesheet">
+    <link href="/css/theme.css?1582119343" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1582119343" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1582119303" rel="stylesheet">
+      <link href="/css/theme-blue.css?1582119343" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1582119303"></script>
+    <script src="/js/jquery-3.3.1.min.js?1582119343"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1582119303"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1582119303"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1582119343"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1582119343"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/en";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1582119303"></script>
+<script type="text/javascript" src="/js/search.js?1582119343"></script>
 
     
   </div>
@@ -180,17 +180,24 @@
 <a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
 </span>
 
-           
-	
-		<h1>Customize your own home page</h1>
-		<p>
-		  The site is working. Don't forget to customize this homepage with your own. You typically have 3 choices :
-		</p>
-		<ul>
-			<li><b>1. </b> Create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
-			<li><b>2. </b> Create an <b>index.html</b> file in the <b>static</b> folder and fill the file with HTML content</li>
-		  <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
-		</ul>
+ 
+<h1 id="cross-cluster-network-for-kubernetes">Cross-Cluster Network for Kubernetes</h1>
+<p>Submariner enables direct networking between pods and services in different Kubernetes clusters, on premises or in the cloud.</p>
+<p>Submariner is completely opensource, and it&rsquo;s designed to be network-plugin agnostic and works with most plugins based on kube-proxy (<a href="#">see compatibility matrix</a>).</p>
+
+<div class="notices info" ><p>Submariner routes <strong>L3 traffic</strong> in the kernel, <em>no traffic is handled at user level</em>, and inter-cluster traffic is encrypted with IPSEC, although more options are being added.</p>
+</div>
+
+<p>** add simpler diagram here **</p>
+<p>Joining a cluster to an existing submariner broker is as simple as running:</p>
+<p><code>subctl join --kubeconfig /path/to/your/config broker-info.subm</code></p>
+<p>Creating a broker is as simple as running:</p>
+<p><code>subctl deploy-broker --kubeconfig /path/to/your/config</code>
+`</p>
+
+<div class="notices tip" ><p>See the deployment section for more detailed deployment instructions.</p>
+</div>
+
 	
   
         
@@ -237,19 +244,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1582119303"></script>
-    <script src="/js/perfect-scrollbar.min.js?1582119303"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1582119303"></script>
-    <script src="/js/jquery.sticky.js?1582119303"></script>
-    <script src="/js/featherlight.min.js?1582119303"></script>
-    <script src="/js/highlight.pack.js?1582119303"></script>
+    <script src="/js/clipboard.min.js?1582119343"></script>
+    <script src="/js/perfect-scrollbar.min.js?1582119343"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1582119343"></script>
+    <script src="/js/jquery.sticky.js?1582119343"></script>
+    <script src="/js/featherlight.min.js?1582119343"></script>
+    <script src="/js/highlight.pack.js?1582119343"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1582119303"></script>
-    <script src="/js/learn.js?1582119303"></script>
-    <script src="/js/hugo-learn.js?1582119303"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1582119343"></script>
+    <script src="/js/learn.js?1582119343"></script>
+    <script src="/js/hugo-learn.js?1582119343"></script>
 
-    <link href="/mermaid/mermaid.css?1582119303" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1582119303"></script>
+    <link href="/mermaid/mermaid.css?1582119343" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1582119343"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

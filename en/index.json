@@ -8,10 +8,10 @@
 },
 {
 	"uri": "/en/",
-	"title": "Submariner k8s project documentation website",
+	"title": "Cross-Cluster Network Connectivity for Kubernetes",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "Cross-Cluster Network for Kubernetes Submariner enables direct networking between pods and services in different Kubernetes clusters, on premises or in the cloud.\nSubmariner is completely opensource, and it\u0026rsquo;s designed to be network-plugin agnostic and works with most plugins based on kube-proxy (see compatibility matrix).\nSubmariner routes L3 traffic in the kernel, no traffic is handled at user level, and inter-cluster traffic is encrypted with IPSEC, although more options are being added.\n ** add simpler diagram here **\nJoining a cluster to an existing submariner broker is as simple as running:\nsubctl join --kubeconfig /path/to/your/config broker-info.subm\nCreating a broker is as simple as running:\nsubctl deploy-broker --kubeconfig /path/to/your/config `\nSee the deployment section for more detailed deployment instructions.\n "
 },
 {
 	"uri": "/en/tags/",
