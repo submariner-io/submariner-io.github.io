@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Submariner :: Submariner k8s project documentation website</title>
+    <title>Contributing to the website :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1582148064" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/">
+  <body class="" data-url="/en/contributing/website/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -300,7 +300,7 @@
   
     
     <li data-nav-id="/en/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -329,8 +329,8 @@
   
     
     <li data-nav-id="/en/contributing/website/" title="Contributing to the website" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/contributing/website/">
@@ -432,22 +432,10 @@
                   
                     
                     
-                      <option id="en" value="/en/" selected>English</option>
+                      <option id="en" value="/en/contributing/website/" selected>English</option>
                     
                   
               
-                  
-              
-          
-              
-              
-                  
-              
-                  
-                    
-                    
-                      <option id="es" value="/es/">Spanish</option>
-                    
                   
               
           
@@ -498,40 +486,122 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/website/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/contributing/'>Contributing</a> > Contributing to the website
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Contributing to the website
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="cross-cluster-network-for-kubernetes">Cross-Cluster Network for Kubernetes</h1>
-<h2 id="submariner">Submariner</h2>
-<p>Submariner enables direct networking between pods and services in different Kubernetes clusters, on premises or in the cloud.</p>
-<p>Submariner is completely opensource, and it&rsquo;s designed to be network-plugin agnostic and works with most plugins based on kube-proxy (<a href="#">see compatibility matrix</a>).</p>
 
-<div class="notices info" ><p>Submariner routes <strong>L3 traffic</strong> in the kernel, <em>no traffic is handled at user level</em>, and inter-cluster traffic is encrypted with IPSEC, although more options are being added.</p>
-</div>
+	<p>The Submariner documentation website is based on hugo, grav, and the
+hugo-learn-theme and written in markdown format.</p>
+<p>If you want to contribute I recommend reading the
+<a href="https://themes.gohugo.io//theme/hugo-theme-learn/en/cont/pages/">hugo-learn-theme documentation</a></p>
+<p>You can always click the &ldquo;Edit this page link&rdquo; at the top right of each page, but
+if you want to test your changes locally before submitting you can:</p>
+<ol>
+<li>
+<p>Download and install a <a href="https://gohugo.io/getting-started/quick-start/#step-1-install-hugo">recent version of hugo</a></p>
+</li>
+<li>
+<p>Fork the <a href="https://github.com/submariner-io/website/fork">submariner-io/website</a> on github</p>
+</li>
+<li>
+<p>Checkout your copy locally</p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone ssh://git@github.com/&lt;your-user&gt;/website.git submariner-website
+$ cd submariner-website
+$ ./scripts/server
+</code></pre></div><ol start="4">
+<li>
+<p>Open your browser on <a href="http://localhost:1313">http://localhost:1313</a></p>
+</li>
+<li>
+<p>Edit files in src, the browser should automatically reload changes.</p>
+</li>
+<li>
+<p>Eventually commit, push, and pull-request your changes. You can find a good guide about the github workflow here: <a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project">contributing to a github project</a></p>
+</li>
+</ol>
 
-<p>** add simpler diagram here **</p>
-<p>Joining a cluster to an existing submariner broker is as simple as running:</p>
-<p><code>subctl join --kubeconfig /path/to/your/config broker-info.subm</code></p>
-<p>Creating a broker is as simple as running:</p>
-<p><code>subctl deploy-broker --kubeconfig /path/to/your/config</code></p>
 
-<div class="notices tip" ><p>See the deployment section for more detailed deployment instructions.</p>
-</div>
 
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div> 
         
@@ -698,6 +768,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -712,6 +783,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -728,6 +800,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -752,8 +827,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/en/contributing/" title="Contributing"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/en/quickstart/" title="Quickstart" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/en/contributing/code-of-conduct/" title="Code of Conduct" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -783,4 +860,3 @@
 
   </body>
 </html>
-

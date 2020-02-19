@@ -1,5 +1,82 @@
 [
 {
+	"uri": "/en/architecture/network/",
+	"title": "Network",
+	"tags": [],
+	"description": "",
+	"content": "Lorem Ipsum.\n"
+},
+{
+	"uri": "/en/quickstart/",
+	"title": "Quickstart",
+	"tags": [],
+	"description": "",
+	"content": "Quickstart guide Installing Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nRequirements Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
+},
+{
+	"uri": "/en/contributing/website/",
+	"title": "Contributing to the website",
+	"tags": [],
+	"description": "",
+	"content": "The Submariner documentation website is based on hugo, grav, and the hugo-learn-theme and written in markdown format.\nIf you want to contribute I recommend reading the hugo-learn-theme documentation\nYou can always click the \u0026ldquo;Edit this page link\u0026rdquo; at the top right of each page, but if you want to test your changes locally before submitting you can:\n  Download and install a recent version of hugo\n  Fork the submariner-io/website on github\n  Checkout your copy locally\n  $ git clone ssh://git@github.com/\u0026lt;your-user\u0026gt;/website.git submariner-website $ cd submariner-website $ ./scripts/server  Open your browser on http://localhost:1313\n  Edit files in src, the browser should automatically reload changes.\n  Eventually commit, push, and pull-request your changes. You can find a good guide about the github workflow here: contributing to a github project\n  "
+},
+{
+	"uri": "/en/deployment/subctl/",
+	"title": "subctl",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/en/deployment/",
+	"title": "Deployment",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/en/architecture/components/",
+	"title": "Submariner components",
+	"tags": [],
+	"description": "",
+	"content": "Lorem Ipsum.\n"
+},
+{
+	"uri": "/en/architecture/",
+	"title": "Architecture",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/en/releases/",
+	"title": "Releases",
+	"tags": [],
+	"description": "",
+	"content": "v0.1.0 Submariner with some light  This release has focused on stability, bugfixes and making https://github.com/submariner.io/lighthouse available as developer preview via subctl deployments.\n  Several bugfixes and enhancements around HA failover (#346, #348, #332) Migrated to Daemonsets for submariner gateway deployment Added support for hostNetwork to remote pod/service connectivity (#288) Auto detection and configuration of MTU for vx-submariner, jumbo frames support (#301) Support for updated strongswan (#288) Better iptables detection for some hosts (#227)   subctl and the submariner operator have the following improvements\n  support to verify-connectivity between two connected clusters deployment of submariner gateways based in daemonsets instead of deployments renaming submariner pods to \u0026ldquo;submariner-gateway\u0026rdquo; pods for clarity print version details on crash (subctl) stop storing IPSEC key on broker during deploy-broker, now it\u0026rsquo;s only contained into the .subm file version command for subctl nicer spinners during deployment (thanks to kind)  v0.0.3 \u0026ndash; KubeCon NA 2019  Submariner has been greatly enhanced to allow operators to deploy into Kubernetes clusters without the necessity for layer-2 adjacency for nodes. Submariner now allows for VXLAN interconnectivity between nodes (facilitated by the route agent). Subctl was created to make deployment of submariner easier.\n v0.0.1 Second Submariner release v0.0.1 First Submariner release "
+},
+{
+	"uri": "/en/contributing/code-of-conduct/",
+	"title": "Code of Conduct",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/en/deployment/helm/",
+	"title": "helm",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/en/contributing/",
+	"title": "Contributing",
+	"tags": [],
+	"description": "",
+	"content": "Getting in touch with the community  Join the developer mailing list. Join our weekly meetings and feel free to propose topics for discussion.  Pick up an issue to work on Or propose an enhancement via github issues Setting up a development environment Testing your code Proposing a pull request Once your code is ready to be reviewed, you can propose a pull request.\nYou can find a good guide about the github workflow here: contributing to a github project\n"
+},
+{
 	"uri": "/en/categories/",
 	"title": "Categories",
 	"tags": [],
@@ -11,7 +88,7 @@
 	"title": "Submariner",
 	"tags": [],
 	"description": "",
-	"content": "Cross-Cluster Network for Kubernetes Submariner Submariner enables direct networking between pods and services in different Kubernetes clusters, on premises or in the cloud.\nSubmariner is completely opensource, and it\u0026rsquo;s designed to be network-plugin agnostic and works with most plugins based on kube-proxy (see compatibility matrix).\nSubmariner routes L3 traffic in the kernel, no traffic is handled at user level, and inter-cluster traffic is encrypted with IPSEC, although more options are being added.\n ** add simpler diagram here **\nJoining a cluster to an existing submariner broker is as simple as running:\nsubctl join --kubeconfig /path/to/your/config broker-info.subm\nCreating a broker is as simple as running:\nsubctl deploy-broker --kubeconfig /path/to/your/config `\nSee the deployment section for more detailed deployment instructions.\n "
+	"content": "Cross-Cluster Network for Kubernetes Submariner Submariner enables direct networking between pods and services in different Kubernetes clusters, on premises or in the cloud.\nSubmariner is completely opensource, and it\u0026rsquo;s designed to be network-plugin agnostic and works with most plugins based on kube-proxy (see compatibility matrix).\nSubmariner routes L3 traffic in the kernel, no traffic is handled at user level, and inter-cluster traffic is encrypted with IPSEC, although more options are being added.\n ** add simpler diagram here **\nJoining a cluster to an existing submariner broker is as simple as running:\nsubctl join --kubeconfig /path/to/your/config broker-info.subm\nCreating a broker is as simple as running:\nsubctl deploy-broker --kubeconfig /path/to/your/config\nSee the deployment section for more detailed deployment instructions.\n "
 },
 {
 	"uri": "/en/tags/",
