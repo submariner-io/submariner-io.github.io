@@ -18,7 +18,7 @@
 	"title": "Contributing to the website",
 	"tags": [],
 	"description": "",
-	"content": "The Submariner documentation website is based on hugo, grav, and the hugo-learn-theme and written in markdown format.\nIf you want to contribute I recommend reading the hugo-learn-theme documentation\nYou can always click the \u0026ldquo;Edit this page link\u0026rdquo; at the top right of each page, but if you want to test your changes locally before submitting you can:\n  Download and install a recent version of hugo\n  Fork the submariner-io/website on github\n  Checkout your copy locally\n  $ git clone ssh://git@github.com/\u0026lt;your-user\u0026gt;/website.git submariner-website $ cd submariner-website $ ./scripts/server  Open your browser on http://localhost:1313\n  Edit files in src, the browser should automatically reload changes.\n  Eventually commit, push, and pull-request your changes. You can find a good guide about the github workflow here: contributing to a github project\n  "
+	"content": "The Submariner documentation website is based on hugo, grav, and the hugo-learn-theme and written in markdown format.\nIf you want to contribute I recommend reading the hugo-learn-theme documentation\nYou can always click the \u0026ldquo;Edit this page link\u0026rdquo; at the top right of each page, but if you want to test your changes locally before submitting you can:\n  Fork the submariner-io/submariner-website on github\n  Checkout your copy locally\n  $ git clone ssh://git@github.com/\u0026lt;your-user\u0026gt;/submariner-website.git $ cd submariner-website $ make server  Open your browser on http://localhost:1313\n  Edit files in src, the browser should automatically reload changes.\n  Eventually commit, push, and pull-request your changes. You can find a good guide about the github workflow here: contributing to a github project\n  "
 },
 {
 	"uri": "/en/deployment/subctl/",
@@ -77,18 +77,18 @@
 	"content": "Getting in touch with the community  Join the developer mailing list. Join our weekly meetings and feel free to propose topics for discussion.  Pick up an issue to work on Or propose an enhancement via github issues Setting up a development environment Testing your code Proposing a pull request Once your code is ready to be reviewed, you can propose a pull request.\nYou can find a good guide about the github workflow here: contributing to a github project\n"
 },
 {
-	"uri": "/en/categories/",
-	"title": "Categories",
-	"tags": [],
-	"description": "",
-	"content": ""
-},
-{
 	"uri": "/en/",
 	"title": "Submariner",
 	"tags": [],
 	"description": "",
 	"content": "Cross-Cluster Network for Kubernetes Submariner Submariner enables direct networking between pods and services in different Kubernetes clusters, on premises or in the cloud.\nSubmariner is completely opensource, and it\u0026rsquo;s designed to be network-plugin agnostic and works with most plugins based on kube-proxy (see compatibility matrix).\nSubmariner routes L3 traffic in the kernel, no traffic is handled at user level, and inter-cluster traffic is encrypted with IPSEC, although more options are being added.\n ** add simpler diagram here **\nJoining a cluster to an existing submariner broker is as simple as running:\nsubctl join --kubeconfig /path/to/your/config broker-info.subm\nCreating a broker is as simple as running:\nsubctl deploy-broker --kubeconfig /path/to/your/config\nSee the deployment section for more detailed deployment instructions.\n "
+},
+{
+	"uri": "/en/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
 },
 {
 	"uri": "/en/tags/",
