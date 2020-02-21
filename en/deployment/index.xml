@@ -11,5 +11,17 @@
 	<atom:link href="/en/deployment/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>With Discovery (experimental)</title>
+      <link>/en/deployment/with-discovery/</link>
+      <pubDate>Thu, 20 Feb 2020 16:40:57 +0100</pubDate>
+      
+      <guid>/en/deployment/with-discovery/</guid>
+      <description>Deployment with discovery will include the (lighthouse components.
+Project status: The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster may disable some of the operator features.
+ The Lighthouse project helps in cross-cluster service discovery. It has the below additional dependencies
+ kubefedctl installed (0.1.0-rc3). kubectl installed.  Deploying Submariner with Lighthouse Deploy Broker subctl deploy-broker --kubeconfig &amp;lt;PATH-TO-KUBECONFIG-BROKER&amp;gt; --service-discovery --broker-cluster-context &amp;lt;BROKER-CONTEXT-NAME&amp;gt; kubefed will be installed in the broker cluster, as lighthouse currently depends on it for resource distribution.</description>
+    </item>
+    
   </channel>
 </rss>

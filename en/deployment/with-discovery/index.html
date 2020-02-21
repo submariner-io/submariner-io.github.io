@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Deployment :: Submariner k8s project documentation website</title>
+    <title>With Discovery (experimental) :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1582294373" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/deployment/">
+  <body class="" data-url="/en/deployment/with-discovery/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -101,7 +101,7 @@
     
     <li data-nav-id="/en/deployment/" title="Deployment" class="dd-item 
         parent
-        active
+        
         
         ">
       <a href="/en/deployment/">
@@ -180,7 +180,7 @@
  
   
     
-      <li data-nav-id="/en/deployment/with-discovery/" title="With Discovery (experimental)" class="dd-item ">
+      <li data-nav-id="/en/deployment/with-discovery/" title="With Discovery (experimental)" class="dd-item active">
         <a href="/en/deployment/with-discovery/">
         With Discovery (experimental)
         <i class="fas fa-check read-icon"></i>
@@ -451,7 +451,7 @@
                   
                     
                     
-                      <option id="en" value="/en/deployment/" selected>English</option>
+                      <option id="en" value="/en/deployment/with-discovery/" selected>English</option>
                     
                   
               
@@ -512,7 +512,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/with-discovery.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -539,7 +539,13 @@
             
           
           
-            <a href='/en/'>Submariner</a> > Deployment
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/deployment/'>Deployment</a> > With Discovery (experimental)
+          
+         
           
          
           
@@ -552,10 +558,11 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#installing-subctl">Installing subctl</a></li>
-    <li><a href="#deployment-of-broker">Deployment of broker</a></li>
-    <li><a href="#joining-clusters">Joining clusters</a></li>
-    <li><a href="#discovery">Discovery</a></li>
+    <li>
+      <ul>
+        <li><a href="#deploying-submariner-with-lighthouse">Deploying Submariner with Lighthouse</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -573,7 +580,7 @@
           
             <h1>
               
-              Deployment
+              With Discovery (experimental)
             </h1>
           
 
@@ -581,48 +588,34 @@
 
 
 
+<p>Deployment with discovery will include the (<a href="https://github.com/submariner-io/lighthouse">lighthouse</a> components.</p>
 
-	<p>The inner details of deploying a broker and connecting clusters to the broker are complicated, subctl automates and simplifies most of those details eliminating human error as much as possible. This is why <strong>subctl</strong> is the recommended deployment method, you can find a complete guide to the subctl tool here: <a href="subctl">subctl in detail</a>. If you still believe <em>helm</em> works better for you, please go <a href="helm">here</a>.</p>
-<h2 id="installing-subctl">Installing subctl</h2>
-<p>Download the subctl binary and make it available on your PATH.</p>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p ~/.local/bin
-curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.0/subctl-v0.1.0-linux-amd64
-chmod a+x ~/.local/bin/subctl
-export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
-echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:~/.local/bin &gt;&gt; ~/.profile
-</code></pre></div><h2 id="deployment-of-broker">Deployment of broker</h2>
-<p>Please remember, this cluster&rsquo;s API should be accessible from all other clusters:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; 
-</code></pre></div><p>this will create:</p>
-<ul>
-<li>The submariner-k8s-broker namespace</li>
-<li>The Cluster and Endpoint (.submariner.io) CRDs in the cluster</li>
-<li>A service account in the namespace for subsequent subctl access.</li>
-<li>A random IPSEC PSK which will be stored only in the <code>broker-info.subm</code> file.</li>
-</ul>
-<p>And generate a broker-info.subm file which contains the following elements:</p>
-<ul>
-<li>The API endpoint</li>
-<li>A CA certificate to for the API endpoint</li>
-<li>The service account token for accessing the API endpoint / submariner-k8s-broker namespace.</li>
-</ul>
-
-<div class="notices info" ><p>This cluster can also participate in the dataplane connectivity with the other clusters, but it will need to be joined (see following step)</p>
+<div class="notices warning" ><p><strong>Project status</strong>: The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster may disable some of the operator features.</p>
 </div>
 
-<h2 id="joining-clusters">Joining clusters</h2>
-<p>For each cluster you want to join:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig &lt;PATH-TO-JOINING-CLUSTER&gt; broker-info.subm
-</code></pre></div><p>subctl will discover as much as it can, and ask you for any necessary detail it can&rsquo;t figure out like the cluster ID which has to be different between all clusters.</p>
-<h2 id="discovery">Discovery</h2>
-<p>Service discovery (via DNS and lighthouse project) is an experimental feature (developer preview), and the instructions to deploy with discovery can be found <a href="with-discovery/">here</a></p>
+<p>The <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> project helps in cross-cluster service discovery. It has the below <strong>additional dependencies</strong></p>
+<ul>
+<li>kubefedctl installed (<a href="https://github.com/kubernetes-sigs/kubefed/releases/tag/v0.1.0-rc3">0.1.0-rc3</a>).</li>
+<li>kubectl installed.</li>
+</ul>
+<h3 id="deploying-submariner-with-lighthouse">Deploying Submariner with Lighthouse</h3>
+<h4 id="deploy-broker">Deploy Broker</h4>
+<pre><code>subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; --service-discovery --broker-cluster-context &lt;BROKER-CONTEXT-NAME&gt;
+</code></pre><p>kubefed will be installed in the broker cluster, as lighthouse currently depends on it for resource distribution. This dependency will be eliminated in the future.</p>
+<h4 id="join-clusters">Join Clusters</h4>
+<p>To join all the other clusters with the broker cluster, run subctl using the broker-info.subm generated in the folder from which the previous step was run.</p>
+
+<div class="notices info" ><p>You will need a kubeconfig file with multiple contexts, a default admin context pointing to
+the cluster you&rsquo;re trying to join, and another context which provides access to the broker
+cluster from the previous step. This is a requirement from kubefedctl.</p>
+</div>
+
+<pre><code>subctl join --kubeconfig &lt;PATH-TO-KUBECONFIG-DATA-CLUSTER&gt; broker-info.subm  --broker-cluster-context &lt;BROKER-CONTEXT-NAME&gt;
+</code></pre><p>As for a normal deployment, subctl will try to figure out all necessary information and will
+ask for anything it can&rsquo;t figure out.</p>
 
 
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -727,6 +720,7 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
                 
                     
+                    
                 
                 
 
@@ -745,6 +739,9 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -866,10 +863,10 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/quickstart/" title="Quickstart guide"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/deployment/helm/" title="helm"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/deployment/subctl/" title="subctl" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/architecture/" title="Architecture" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -899,3 +896,4 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
 
   </body>
 </html>
+
