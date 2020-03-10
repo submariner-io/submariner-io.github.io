@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Submariner :: Submariner k8s project documentation website</title>
+    <title>Roadmap :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1583876305" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/">
+  <body class="" data-url="/en/roadmap/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -357,8 +357,8 @@
   
     
     <li data-nav-id="/en/roadmap/" title="Roadmap" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/roadmap/">
@@ -513,22 +513,10 @@
                   
                     
                     
-                      <option id="en" value="/en/" selected>English</option>
+                      <option id="en" value="/en/roadmap/" selected>English</option>
                     
                   
               
-                  
-              
-          
-              
-              
-                  
-              
-                  
-                    
-                    
-                      <option id="es" value="/es/">Spanish</option>
-                    
                   
               
           
@@ -579,40 +567,133 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/roadmap/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > Roadmap
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#v011">v0.1.1</a></li>
+        <li><a href="#v020">v0.2.0</a></li>
+        <li><a href="#v030">v0.3.0</a></li>
+        <li><a href="#v040">v0.4.0</a></li>
+        <li><a href="#v050">v0.5.0</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Roadmap
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="cross-cluster-network-for-kubernetes">Cross-Cluster Network for Kubernetes</h1>
-<h2 id="submariner">Submariner</h2>
-<p>Submariner enables direct networking between pods and services in different Kubernetes clusters, on premises or in the cloud.</p>
-<p>Submariner is completely opensource, and it&rsquo;s designed to be network-plugin agnostic and works with most plugins based on kube-proxy (<a href="#">see compatibility matrix</a>).</p>
 
-<div class="notices info" ><p>Submariner routes <strong>L3 traffic</strong> in the kernel, <em>no traffic is handled at user level</em>, and inter-cluster traffic is encrypted with IPSEC, although more options are being added.</p>
-</div>
+	<p>This is a preliminary community roadmap, it&rsquo;s not written in stone, but it can serve
+as a guideline about what&rsquo;s ahead.</p>
+<p>Please see details of previous releases <a href="../releases">here</a></p>
+<h3 id="v011">v0.1.1</h3>
+<ul>
+<li>Stabilization of new lighthouse related features and deployment</li>
+<li>Bugfixes</li>
+<li>Working with the OpenShift CoreDNS distribution to make lighthouse compiled in their container</li>
+</ul>
+<h3 id="v020">v0.2.0</h3>
+<ul>
+<li>Support for Overlapping CIDRs</li>
+<li>Improve documentation and website</li>
+<li>(internal) start using Armada to deploy multiple clusters in CI</li>
+<li>Support for multiple cable engines, including wireguard</li>
+</ul>
+<h3 id="v030">v0.3.0</h3>
+<ul>
+<li>Auto detecting NAT vs non-NAT scenarios.</li>
+<li>Supporting different ports for IPSEC for each cluster</li>
+<li>Removing the kubefed dependency from Lighthouse service discovery</li>
+<li>Measuring and improving A/P HA (different scenarios)</li>
+<li>Libreswan support</li>
+</ul>
+<h3 id="v040">v0.4.0</h3>
+<ul>
+<li>Support for network policies via coastguard</li>
+<li>Monitoring and reporting of tunnel endpoints (status of connection, bandwidth, pps, etc..)</li>
+<li>Monitoring connectivity over port 4800 between routeagent nodes.</li>
+<li>Support for non-kubeproxy / iptables based implementations, starting with OVN</li>
+</ul>
+<h3 id="v050">v0.5.0</h3>
+<ul>
+<li>HA Active/Active gateway support (ECMP?) (keep in mind non-iptables-kubeproxy based implementations)</li>
+<li>Testing with Istio</li>
+</ul>
 
-<p>** add simpler diagram here **</p>
-<p>Joining a cluster to an existing submariner broker is as simple as running:</p>
-<p><code>subctl join --kubeconfig /path/to/your/config broker-info.subm</code></p>
-<p>Creating a broker is as simple as running:</p>
-<p><code>subctl deploy-broker --kubeconfig /path/to/your/config</code></p>
 
-<div class="notices tip" ><p>See the deployment section for more detailed deployment instructions.</p>
-</div>
 
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div> 
         
@@ -813,6 +894,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -828,6 +910,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -883,8 +968,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/en/releases/" title="Releases"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/en/quickstart/" title="Quickstart guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/en/contributing/" title="Contributing" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -914,4 +1001,3 @@
 
   </body>
 </html>
-

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Roadmap on Submariner k8s project documentation website</title>
+    <link>/en/roadmap/</link>
+    <description>Recent content in Roadmap on Submariner k8s project documentation website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 19 Feb 2020 20:24:34 +0100</lastBuildDate>
+    
+	<atom:link href="/en/roadmap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
