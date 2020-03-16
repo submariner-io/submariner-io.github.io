@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Categories :: Submariner k8s project documentation website</title>
+    <title>Lighthouse :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1584351864" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/categories/">
+  <body class="" data-url="/en/architecture/components/lighthouse/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -245,7 +245,7 @@
   
     
     <li data-nav-id="/en/architecture/" title="Architecture" class="dd-item 
-        
+        parent
         
         
         ">
@@ -300,7 +300,7 @@
   
     
     <li data-nav-id="/en/architecture/components/" title="Submariner components" class="dd-item 
-        
+        parent
         
         
         ">
@@ -329,8 +329,8 @@
   
     
     <li data-nav-id="/en/architecture/components/lighthouse/" title="Lighthouse" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/architecture/components/lighthouse/">
@@ -551,22 +551,10 @@
                   
                     
                     
-                      <option id="en" value="/en/categories/" selected>English</option>
+                      <option id="en" value="/en/architecture/components/lighthouse/" selected>English</option>
                     
                   
               
-                  
-              
-          
-              
-              
-                  
-              
-                  
-                    
-                    
-                      <option id="es" value="/es/categories/">Spanish</option>
-                    
                   
               
           
@@ -620,6 +608,17 @@
               <div>
                 <div id="top-bar">
                 
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/architecture/components/lighthouse/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
                 
                 <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
                     <span id="sidebar-toggle-span">
@@ -640,7 +639,19 @@
             
           
           
-            <a href='/en/'>Submariner</a> > Categories
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/architecture/'>Architecture</a> > <a href='/en/architecture/components/'>Submariner components</a> > Lighthouse
+          
+         
+          
+         
           
          
           
@@ -651,7 +662,16 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#architecture">Architecture</a>
+      <ul>
+        <li><a href="#lighthouse-controller">Lighthouse Controller</a></li>
+        <li><a href="#lighthouse-plugin">Lighthouse Plugin</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -667,7 +687,7 @@
           
             <h1>
               
-              Categories
+              Lighthouse
             </h1>
           
 
@@ -676,11 +696,39 @@
 
 
 
-
-
+	<p>Lighthouse provides DNS discovery for Kubernetes clusters connected by <a href="https://github.com/submariner-io/submariner">Submariner</a> in multi-cluster environments. The solution is compatible with any CNI (Container Network Interfaces) plugin.</p>
+<h2 id="architecture">Architecture</h2>
+<p>The below digram shows the basic Lighthouse architecture.</p>
+<p><img src="/images/lighthouse/architecture.png" alt="Lighthouse Architecture"></p>
+<h3 id="lighthouse-controller">Lighthouse Controller</h3>
+<p>This is the central discovery controller that gathers the information from the clusters, decides what information is to be shared and distributes the information as newly defined CRDs (Kubernetes custom resources).</p>
+<p>The Lighthouse controller uses <a href="https://github.com/kubernetes-sigs/kubefed">kubefed</a> to discover clusters and to extract and distribute aggregated Service information used to perform DNS resolution.</p>
+<h4 id="workflow">WorkFlow</h4>
+<p>The workflow is as follows.</p>
 <ul>
-	
+<li>Lighthouse controller registers to be notified when clusters join and unjoin the kubefed control plane.</li>
+<li>When notified about a join event, it retrieves the credentials from kubefed and registers a watch for Service creation and removal on that cluster.</li>
+<li>When notified of a new Service created, it creates a MultiClusterService resource with the Service info and distributes it to all the clusters that are connected to the kubefed  control plane.</li>
+<li>When notified of a Service deleted, its info is removed from the MultiClusterService resource and re-distributed.</li>
 </ul>
+<p><img src="/images/lighthouse/controllerWorkFlow.png" alt="Lighthouse Controller WorkFlow"></p>
+<!-- raw HTML omitted -->
+<h3 id="lighthouse-plugin">Lighthouse Plugin</h3>
+<p>Lighthouse plugin can be installed as an external plugin for CoreDNS, and will work along with the default Kubernetes plugin. It uses the MultiClusterService resources that are distributed by the controller for DNS resolution. The below diagram indicates a high-level architecture.</p>
+<p><img src="/images/lighthouse/lighthousePluginArchitecture.png" alt="Lighthouse Plugin Architecture"></p>
+<h4 id="workflow-1">WorkFlow</h4>
+<p>The workflow is as follows.</p>
+<ul>
+<li>A pod tries to resolve a Service name.</li>
+<li>The Kubernetes plugin in CoreDNS will first try to resolve the request. If no records are present the request will be sent to Lighthouse plugin.</li>
+<li>The Lighthouse plugin will use its MultiClusterService cache to try to resolve the request.</li>
+<li>If a record exists it will be returned, otherwise the plugin will pass the request to the next plugin registered in CoreDNS.</li>
+</ul>
+<p><img src="/images/lighthouse/coreDNSWorkFlow.png" alt="Lighthouse CoreDNS WorkFlow"></p>
+<!-- raw HTML omitted -->
+
+
+
 
 
 <footer class=" footline" >
@@ -821,6 +869,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -835,6 +884,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -852,6 +904,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -866,6 +919,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -888,6 +942,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -975,8 +1032,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/en/architecture/components/" title="Submariner components"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/en/quickstart/" title="Quickstart guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/en/releases/" title="Releases" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
