@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Categories :: Submariner k8s project documentation website</title>
+    <title>Release process :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1584712201" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/categories/">
+  <body class="" data-url="/en/contributing/release-process/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -499,7 +499,7 @@
   
     
     <li data-nav-id="/en/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -558,8 +558,8 @@
   
     
     <li data-nav-id="/en/contributing/release-process/" title="Release process" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/contributing/release-process/">
@@ -663,22 +663,10 @@
                   
                     
                     
-                      <option id="en" value="/en/categories/" selected>English</option>
+                      <option id="en" value="/en/contributing/release-process/" selected>English</option>
                     
                   
               
-                  
-              
-          
-              
-              
-                  
-              
-                  
-                    
-                    
-                      <option id="es" value="/es/categories/">Spanish</option>
-                    
                   
               
           
@@ -731,6 +719,17 @@
               <div>
                 <div id="top-bar">
                 
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/release-process/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
                 
                 <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
                     <span id="sidebar-toggle-span">
@@ -751,7 +750,13 @@
             
           
           
-            <a href='/en/'>Submariner</a> > Categories
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/contributing/'>Contributing</a> > Release process
+          
+         
           
          
           
@@ -762,7 +767,18 @@
                 
                     <div class="progress">
     <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#change-referenced-versions">Change referenced versions</a></li>
+    <li><a href="#create-a-submariner-operator-release">Create a submariner-operator release</a></li>
+    <li><a href="#create-the-subctl-binaries-release">Create the subctl binaries release</a></li>
+  </ul>
 
+  <ul>
+    <li><a href="#email">email</a></li>
+    <li><a href="#twitter">twitter</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -778,7 +794,7 @@
           
             <h1>
               
-              Categories
+              Release process
             </h1>
           
 
@@ -787,11 +803,106 @@
 
 
 
-
-
+	<p>This section explains the necessary steps to make a submariner release.
+It is assumed that you are familiar with the submariner project and the various repositories.</p>
+<h1 id="step-1-create-a-submariner-release">Step 1: create a submariner release</h1>
+<p>Assuming that you have an existing submariner git directory, the following steps create a release named &ldquo;Globalnet Overlapping IP support RC0&rdquo; with version v0.2.0-rc0 based on the master branch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner
+git remote add upstream ssh://git@github.com/submariner-io/submariner
+git fetch -a -v -t
+git checkout remotes/upstream/master -B master
+git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
+git push upstream v0.2.0-rc0
+</code></pre></div><p>A tagged release should appear <a href="https://github.com/submariner-io/submariner/tags">here</a>.</p>
+<blockquote>
+<p><a href="https://github.com/submariner-io/submariner/tags">https://github.com/submariner-io/submariner/tags</a></p>
+</blockquote>
+<p>A build for v0.2.0-rc0 should start and appear under the &ldquo;Active branches&rdquo; section <a href="https://travis-ci.com/github/submariner-io/submariner/branches">here</a>.</p>
+<blockquote>
+<p><a href="https://travis-ci.com/github/submariner-io/submariner/branches">https://travis-ci.com/github/submariner-io/submariner/branches</a></p>
+</blockquote>
+<p>Verify that the build successfully completes as indicated by a green checkmark at the right. At this point the images tagged with 0.2.0-rc0 will be available <a href="https://quay.io/repository/submariner/submariner?tab=tags">here</a>.</p>
+<blockquote>
+<p><a href="https://quay.io/repository/submariner/submariner?tab=tags">https://quay.io/repository/submariner/submariner?tab=tags</a></p>
+</blockquote>
+<!-- raw HTML omitted -->
+<h1 id="step-2-create-a-lighthouse-release">Step 2: create a lighthouse release</h1>
+<p>Assuming that you have an existing lighthouse git directory, run the following steps .</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd lighthouse
+git remote add upstream ssh://git@github.com/submariner-io/lighthouse
+git fetch -a -v -t
+git checkout remotes/upstream/master -B master
+git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
+git push upstream v0.2.0-rc0
+</code></pre></div><p>A tagged release should appear <a href="https://github.com/submariner-io/lighthouse/tags">here</a></p>
+<blockquote>
+<p><a href="https://github.com/submariner-io/lighthouse/tags">https://github.com/submariner-io/lighthouse/tags</a></p>
+</blockquote>
+<p>A build for v0.2.0-rc0 should start and appear under the &ldquo;Active branches&rdquo; section <a href="https://travis-ci.com/github/submariner-io/lighthouse/branches">here</a></p>
+<blockquote>
+<p><a href="https://travis-ci.com/github/submariner-io/lighthouse/branches">https://travis-ci.com/github/submariner-io/lighthouse/branches</a></p>
+</blockquote>
+<p>For this example the build can be found <a href="https://travis-ci.com/github/submariner-io/lighthouse/builds/153946391">here</a>.</p>
+<p>Verify that the build successfully completes as indicated by a green checkmark at the right. At this point the images tagged with 0.2.0-rc0 will be available on quay.io at:</p>
+<blockquote>
+<p><a href="https://quay.io/repository/submariner/lighthouse-controller?tab=tags">https://quay.io/repository/submariner/lighthouse-controller?tab=tags</a>
+<a href="https://quay.io/repository/submariner/lighthouse-coredns?tab=tags">https://quay.io/repository/submariner/lighthouse-coredns?tab=tags</a></p>
+</blockquote>
+<!-- raw HTML omitted -->
+<h1 id="step-3-update-the-operator-version-references-and-create-a-release">Step 3: update the operator version references and create a release</h1>
+<p>Once the other builds have finished and you have 0.2.0-rc0 release tags for the submariner and lighthouse projects, you can proceed with changes to the operator.</p>
+<h2 id="change-referenced-versions">Change referenced versions</h2>
+<p>Edit the operator <a href="https://github.com/submariner-io/submariner-operator/edit/master/pkg/versions/versions.go">versions</a> file and change the project version constants to reference the new release, &ldquo;0.2.0-rc0&rdquo;.</p>
+<blockquote>
+<p><a href="https://github.com/submariner-io/submariner-operator/edit/master/pkg/versions/versions.go">https://github.com/submariner-io/submariner-operator/edit/master/pkg/versions/versions.go</a></p>
+</blockquote>
+<p>Create a pull request, wait for the CI job to pass, and get approval/merge. See an example PR <a href="https://github.com/submariner-io/submariner-operator/pull/276">here</a></p>
+<h2 id="create-a-submariner-operator-release">Create a submariner-operator release</h2>
+<p>Assuming you have an existing submariner-operator git directory, run the following steps:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner-operator
+git remote add upstream ssh://git@github.com/submariner-io/submariner-operator
+git fetch -a -v -t
+git checkout remotes/upstream/master -B master
+git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
+git push upstream v0.2.0-rc0
+</code></pre></div><p>A tagged release should appear <a href="https://github.com/submariner-io/submariner-operator/tags">here</a>.</p>
+<blockquote>
+<p><a href="https://github.com/submariner-io/submariner-operator/tags">https://github.com/submariner-io/submariner-operator/tags</a></p>
+</blockquote>
+<p>A build for v0.2.0-rc0 should start and appear under the under the &ldquo;Active branches&rdquo; section <a href="https://travis-ci.com/github/submariner-io/submariner-operator/branches">here</a>.</p>
+<blockquote>
+<p><a href="https://travis-ci.com/github/submariner-io/submariner-operator/branches">https://travis-ci.com/github/submariner-io/submariner-operator/branches</a></p>
+</blockquote>
+<p>Verify that the build successfully completes as indicated by a green checkmark at the right.
+At this point the images tagged with 0.2.0-rc0 will be available <a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">here</a>.</p>
+<blockquote>
+<p><a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">https://quay.io/repository/submariner/submariner-operator?tab=tags</a></p>
+</blockquote>
+<h2 id="create-the-subctl-binaries-release">Create the subctl binaries release</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner-operator
+git fetch -a -v -t
+git checkout v0.2.0-rc0
+rm bin/subctl*
+make build-cross
+ls -la bin/subctl*
+</code></pre></div><p>At this point, you should see subctl binaries generated and listed for the various platforms under bin.
+Go to <a href="https://github.com/submariner-io/submariner-operator/tags,">https://github.com/submariner-io/submariner-operator/tags,</a> find the tag for v0.2.0-rc0 and select &ldquo;Edit release&rdquo; to the right. Then upload the generated subctl binaries.</p>
+<p>If this is a pre-release, mark the checkbox &ldquo;This is a pre-release&rdquo;.</p>
+<h1 id="announce">Announce</h1>
+<h2 id="email">email</h2>
+<p>to:</p>
 <ul>
-	
+<li>bit.ly/submariner-dev</li>
+<li>bit.ly/submariner-users</li>
 </ul>
+<h2 id="twitter">twitter</h2>
+<p>under:</p>
+<ul>
+<li>twitter.com/submarinerio</li>
+</ul>
+
+
+
 
 
 <footer class=" footline" >
@@ -1064,6 +1175,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1078,6 +1190,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1095,6 +1210,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1110,6 +1226,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1134,8 +1253,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/en/contributing/website/" title="Contributing to the website"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/en/quickstart/" title="Quickstart guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/en/contributing/code-of-conduct/" title="Code of Conduct" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1145,19 +1266,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1584712202"></script>
-    <script src="/js/perfect-scrollbar.min.js?1584712202"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1584712202"></script>
-    <script src="/js/jquery.sticky.js?1584712202"></script>
-    <script src="/js/featherlight.min.js?1584712202"></script>
-    <script src="/js/highlight.pack.js?1584712202"></script>
+    <script src="/js/clipboard.min.js?1584712201"></script>
+    <script src="/js/perfect-scrollbar.min.js?1584712201"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1584712201"></script>
+    <script src="/js/jquery.sticky.js?1584712201"></script>
+    <script src="/js/featherlight.min.js?1584712201"></script>
+    <script src="/js/highlight.pack.js?1584712201"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1584712202"></script>
-    <script src="/js/learn.js?1584712202"></script>
-    <script src="/js/hugo-learn.js?1584712202"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1584712201"></script>
+    <script src="/js/learn.js?1584712201"></script>
+    <script src="/js/hugo-learn.js?1584712201"></script>
 
-    <link href="/mermaid/mermaid.css?1584712202" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1584712202"></script>
+    <link href="/mermaid/mermaid.css?1584712201" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1584712201"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
