@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>OpenShift (AWS) :: Submariner k8s project documentation website</title>
+    <title>KIND :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1584714881" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/quickstart/openshift/">
+  <body class="" data-url="/en/quickstart/kind/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -137,8 +137,8 @@
   
     
     <li data-nav-id="/en/quickstart/kind/" title="KIND" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/quickstart/kind/">
@@ -165,8 +165,8 @@
   
     
     <li data-nav-id="/en/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/en/quickstart/openshift/">
@@ -691,7 +691,7 @@
                   
                     
                     
-                      <option id="en" value="/en/quickstart/openshift/" selected>English</option>
+                      <option id="en" value="/en/quickstart/kind/" selected>English</option>
                     
                   
               
@@ -751,7 +751,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshift/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/kind/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -782,7 +782,7 @@
             
           
           
-            <a href='/en/'>Submariner</a> > <a href='/en/quickstart/'>Quickstart guide</a> > OpenShift (AWS)
+            <a href='/en/'>Submariner</a> > <a href='/en/quickstart/'>Quickstart guide</a> > KIND
           
          
           
@@ -797,19 +797,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#aws">AWS</a>
-      <ul>
-        <li><a href="#openshift-install-and-pull-secret">openshift-install and pull-secret</a></li>
-        <li><a href="#make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</a></li>
-        <li><a href="#create-and-deploy-cluster-a">Create and deploy cluster A</a></li>
-        <li><a href="#create-and-deploy-cluster-b">Create and deploy cluster B</a></li>
-        <li><a href="#make-your-clusters-ready-for-submariner">Make your clusters ready for submariner</a></li>
-        <li><a href="#install-subctl">Install subctl</a></li>
-        <li><a href="#use-cluster-a-as-broker">Use cluster-a as broker</a></li>
-        <li><a href="#join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the broker</a></li>
-        <li><a href="#verify-connectivity">Verify connectivity</a></li>
-      </ul>
-    </li>
+    <li><a href="#kind">KIND</a></li>
   </ul>
 </nav>
     </div>
@@ -827,7 +815,7 @@
           
             <h1>
               
-              OpenShift (AWS)
+              KIND
             </h1>
           
 
@@ -836,119 +824,15 @@
 
 
 
-	<h2 id="aws">AWS</h2>
-<h3 id="openshift-install-and-pull-secret">openshift-install and pull-secret</h3>
-<p>Download the <strong>openshift-install</strong> and <em>oc</em> tools, and copy your <em>pull secret</em> from:</p>
-<blockquote>
-<p><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">https://cloud.redhat.com/openshift/install/aws/installer-provisioned</a></p>
-</blockquote>
-<p>Find more detailed instructions here:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html</a></p>
-</blockquote>
-<h3 id="make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</h3>
-<p>Installation instructions</p>
-<blockquote>
-<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html</a></p>
-</blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
-AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
-</code></pre></div><p>See also for more details:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html</a></p>
-</blockquote>
-<h3 id="create-and-deploy-cluster-a">Create and deploy cluster A</h3>
-<p>In this step you will deploy cluster A, with the default IP CIDRs</p>
-<table>
-<thead>
-<tr>
-<th>Pod CIDR</th>
-<th>Service CIDR</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10.128.0.0/14</td>
-<td>172.30.0.0/16</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-a
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-a
-</code></pre></div><p>The create cluster step will take some time, you can create Cluster B in parallel if you wish.</p>
-<h3 id="create-and-deploy-cluster-b">Create and deploy cluster B</h3>
-<p>In this step you will deploy cluster B, modifying the default IP CIDRs</p>
-<table>
-<thead>
-<tr>
-<th>Pod CIDR</th>
-<th>Service CIDR</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10.132.0.0/14</td>
-<td>172.31.0.0/16</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
-</code></pre></div><p>Change the POD IP network, please note it’s a /14 range by default so you need to use
-+4 increments for “128”, for example: 10.132.0.0, 10.136.0.0, 10.140.0.0, &hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>Change the service IP network, this is a /16 range by default, so just use +1 increments
-for “30”: for example: 172.31.0.0, 172.32.0.0, 172.33.0.0, &hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>And finally deploy</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
-</code></pre></div><h3 id="make-your-clusters-ready-for-submariner">Make your clusters ready for submariner</h3>
-<p>Submariner gateway nodes need to be able to accept traffic over ports 4500/UDP and 500/UDP
-when using IPSEC. In addition we use port 4800/UDP to encapsulate traffic from the worker nodes
-to the gateway nodes and ensuring that Pod IP addresses are preserved.</p>
-<p>Additionally, the default Openshift deployments don&rsquo;t allow assigning an elastic public IP
-to existing worker nodes, something that it&rsquo;s necessary at least on one end of the IPSEC connections.</p>
-<p>To handle all those details we provide a script that will prepare your AWS OpenShift deployment
-for submariner, and will create an additional gateway node with an external IP.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
-chmod a+x ./prep_for_subm.sh
+	<h2 id="kind">KIND</h2>
+<p><a href="https://github.com/kubernetes-sigs/kind">KIND</a> is a tool to run local Kubernetes clusters inside Docker container nodes.</p>
+<p>Submariner provides scripts that deploy 3 Kubernetes clusters locally, 1 broker and 2 data clusters with the Submariner dataplane components deployed on all the clusters.</p>
+<p>Please note that docker must be installed and running on your computer.
+To deploy the setup, clone <a href="https://github.com/submariner-io/submariner">submariner repo</a> and run</p>
+<p><code>make ci e2e status=keep</code></p>
+<p>This will deploy 3 Kubernetes clusters and run basic <a href="https://github.com/submariner-io/submariner/tree/master/test/e2e">end-to-end tests</a>. The <code>status=keep</code> option retains the cluster setup after the tests complete.</p>
+<p>More details can be found <a href="https://github.com/submariner-io/submariner/tree/master/scripts/kind-e2e">here.</a></p>
 
-./prep_for_subm.sh cluster-a     <span style="color:#75715e"># respond yes when terraform asks</span>
-./prep_for_subm.sh cluster-b      <span style="color:#75715e"># respond yes when terraform asks</span>
-
-</code></pre></div>
-<div class="notices info" ><p>Please note that the prep_for_subm.sh script has a few pre-requirements, you will need to install: <strong>oc, aws-cli, terraform, and unzip</strong>.</p>
-</div>
-
-<h3 id="install-subctl">Install subctl</h3>
-Download the subctl binary and make it available on your PATH.
-
-
-
-<div class="highlight">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<code class="language-bash" data-lang="bash">
-mkdir -p ~/.local/bin
-curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.1/subctl-v0.1.1-linux-amd64
-chmod a+x ~/.local/bin/subctl
-export PATH=$PATH:~/.local/bin
-echo export PATH=$PATH:~/.local/bin >> ~/.profile
-</code>
-</pre>
-</div>
-
-<h3 id="use-cluster-a-as-broker">Use cluster-a as broker</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig cluster-a/auth/kubeconfig 
-</code></pre></div><h3 id="join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the broker</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --clusterid cluster-a
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --clusterid cluster-b
-</code></pre></div><h3 id="verify-connectivity">Verify connectivity</h3>
-<p>This will run a series of E2E tests to verify proper connectivity between the cluster pods and services</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify-connectivity cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig --verbose
-</code></pre></div>
 
 
 
@@ -1023,22 +907,6 @@ echo export PATH=$PATH:~/.local/bin >> ~/.profile
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                     
                 
                 
@@ -1051,9 +919,6 @@ echo export PATH=$PATH:~/.local/bin >> ~/.profile
             
         
                     
-            
-        
-                    
                         
             
             
@@ -1061,6 +926,25 @@ echo export PATH=$PATH:~/.local/bin >> ~/.profile
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1314,10 +1198,10 @@ echo export PATH=$PATH:~/.local/bin >> ~/.profile
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/quickstart/kind/" title="KIND"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/quickstart/openshiftsd/" title="OpenShift with Service Discovery (AWS)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/deployment/" title="Deployment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/quickstart/openshift/" title="OpenShift (AWS)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
