@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>With Discovery (experimental) :: Submariner k8s project documentation website</title>
+    <title>OpenShift with Service Discovery and Globalnet (AWS) :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1584956580" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/deployment/with-discovery/">
+  <body class="" data-url="/en/quickstart/openshiftgn/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -78,7 +78,7 @@
   
     
     <li data-nav-id="/en/quickstart/" title="Quickstart guide" class="dd-item 
-        
+        parent
         
         
         ">
@@ -137,8 +137,8 @@
   
     
     <li data-nav-id="/en/quickstart/openshiftgn/" title="OpenShift with Service Discovery and Globalnet (AWS)" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/quickstart/openshiftgn/">
@@ -193,7 +193,7 @@
   
     
     <li data-nav-id="/en/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
-        
+        parent
         
         
         ">
@@ -228,7 +228,7 @@
   
     
     <li data-nav-id="/en/deployment/" title="Deployment" class="dd-item 
-        parent
+        
         
         
         ">
@@ -314,7 +314,7 @@
  
   
     
-      <li data-nav-id="/en/deployment/with-discovery/" title="With Discovery (experimental)" class="dd-item active">
+      <li data-nav-id="/en/deployment/with-discovery/" title="With Discovery (experimental)" class="dd-item ">
         <a href="/en/deployment/with-discovery/">
         With Discovery (experimental)
         <i class="fas fa-check read-icon"></i>
@@ -719,7 +719,7 @@
                   
                     
                     
-                      <option id="en" value="/en/deployment/with-discovery/" selected>English</option>
+                      <option id="en" value="/en/quickstart/openshiftgn/" selected>English</option>
                     
                   
               
@@ -779,7 +779,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/with-discovery.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshiftgn/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -810,7 +810,7 @@
             
           
           
-            <a href='/en/'>Submariner</a> > <a href='/en/deployment/'>Deployment</a> > With Discovery (experimental)
+            <a href='/en/'>Submariner</a> > <a href='/en/quickstart/'>Quickstart guide</a> > OpenShift with Service Discovery and Globalnet (AWS)
           
          
           
@@ -825,9 +825,15 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#aws">AWS</a>
       <ul>
-        <li><a href="#deploying-submariner-with-lighthouse">Deploying Submariner with Lighthouse</a></li>
+        <li><a href="#openshift-install-and-pull-secret">openshift-install and pull-secret</a></li>
+        <li><a href="#make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</a></li>
+        <li><a href="#create-cluster-a">Create cluster A</a></li>
+        <li><a href="#create-cluster-b">Create cluster B</a></li>
+        <li><a href="#make-your-clusters-ready-for-submariner">Make your clusters ready for submariner</a></li>
+        <li><a href="#install-subctl">Install subctl</a></li>
+        <li><a href="#install-submariner-with-service-discovery-and-globalnet">Install Submariner with Service Discovery and Globalnet</a></li>
       </ul>
     </li>
   </ul>
@@ -847,7 +853,7 @@
           
             <h1>
               
-              With Discovery (experimental)
+              OpenShift with Service Discovery and Globalnet (AWS)
             </h1>
           
 
@@ -855,34 +861,133 @@
 
 
 
-<p>Deployment with discovery will include the (<a href="https://github.com/submariner-io/lighthouse">lighthouse</a> components.</p>
 
-<div class="notices warning" ><p><strong>Project status</strong>: The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster may disable some of the operator features.</p>
+	<h2 id="aws">AWS</h2>
+<h3 id="openshift-install-and-pull-secret">openshift-install and pull-secret</h3>
+<p>Download the <strong>openshift-install</strong> and <em>oc</em> tools, and copy your <em>pull secret</em> from:</p>
+<blockquote>
+<p><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">https://cloud.redhat.com/openshift/install/aws/installer-provisioned</a></p>
+</blockquote>
+<p>Find more detailed instructions here:</p>
+<blockquote>
+<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html</a></p>
+</blockquote>
+<h3 id="make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</h3>
+<p>Installation instructions</p>
+<blockquote>
+<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
+AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
+</code></pre></div><p>See also for more details:</p>
+<blockquote>
+<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html</a></p>
+</blockquote>
+<h3 id="create-cluster-a">Create cluster A</h3>
+<p>This step will create a cluster named &ldquo;cluster-a&rdquo; with the default IP CIDRs.</p>
+<table>
+<thead>
+<tr>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.128.0.0/14</td>
+<td>172.30.0.0/16</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-a
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-a
+</code></pre></div><p>This may take some time to complete so you can move on to the next section in parallel if you wish.</p>
+<h3 id="create-cluster-b">Create cluster B</h3>
+<p>This step will create a cluster named &ldquo;cluster-b&rdquo; with the default IP CIDRs.</p>
+<table>
+<thead>
+<tr>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.128.0.0/14</td>
+<td>172.30.0.0/16</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
+</code></pre></div><p>And finally deploy</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
+</code></pre></div><h3 id="make-your-clusters-ready-for-submariner">Make your clusters ready for submariner</h3>
+<p>Submariner gateway nodes need to be able to accept traffic over ports 4500/UDP and 500/UDP
+when using IPSEC. In addition we use port 4800/UDP to encapsulate traffic from the worker nodes
+to the gateway nodes and ensure that Pod IP addresses are preserved.</p>
+<p>Additionally, the default Openshift deployments don&rsquo;t allow assigning an elastic public IP
+to existing worker nodes which is necessary on at least one end of the IPSEC connections.</p>
+<p>To handle these requirements, a script is provided that will prepare your AWS OpenShift deployment
+for submariner, and will create an additional gateway node with an external IP.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
+chmod a+x ./prep_for_subm.sh
+
+./prep_for_subm.sh cluster-a     <span style="color:#75715e"># respond yes when terraform asks</span>
+./prep_for_subm.sh cluster-b      <span style="color:#75715e"># respond yes when terraform asks</span>
+
+</code></pre></div>
+<div class="notices info" ><p>Please note that the prep_for_subm.sh script requires that you first have the following installed: <strong>oc, aws-cli, terraform, and unzip</strong>.</p>
 </div>
 
-<p>The <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> project helps in cross-cluster service discovery. It has the below <strong>additional dependencies</strong></p>
-<ul>
-<li>kubefedctl installed (<a href="https://github.com/kubernetes-sigs/kubefed/releases/tag/v0.1.0-rc3">0.1.0-rc3</a>).</li>
-<li>kubectl installed.</li>
-</ul>
-<h3 id="deploying-submariner-with-lighthouse">Deploying Submariner with Lighthouse</h3>
-<h4 id="deploy-broker">Deploy Broker</h4>
-<pre><code>subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; --service-discovery --broker-cluster-context &lt;BROKER-CONTEXT-NAME&gt;
-</code></pre><p>kubefed will be installed in the broker cluster, as lighthouse currently depends on it for resource distribution. This dependency will be eliminated in the future.</p>
-<h4 id="join-clusters">Join Clusters</h4>
-<p>To join all the other clusters with the broker cluster, run subctl using the broker-info.subm generated in the folder from which the previous step was run.</p>
+<h3 id="install-subctl">Install subctl</h3>
+Download the subctl binary and make it available on your PATH.
 
-<div class="notices info" ><p>You will need a kubeconfig file with multiple contexts, a default admin context pointing to
-the cluster you&rsquo;re trying to join, and another context which provides access to the broker
-cluster from the previous step. This is a requirement from kubefedctl.</p>
+
+
+<div class="highlight">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<code class="language-bash" data-lang="bash">
+mkdir -p ~/.local/bin
+curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.1/subctl-v0.1.1-linux-amd64
+chmod a+x ~/.local/bin/subctl
+export PATH=$PATH:~/.local/bin
+echo export PATH=$PATH:~/.local/bin >> ~/.profile
+</code>
+</pre>
 </div>
 
-<pre><code>subctl join --kubeconfig &lt;PATH-TO-KUBECONFIG-DATA-CLUSTER&gt; broker-info.subm  --broker-cluster-context &lt;BROKER-CONTEXT-NAME&gt;
-</code></pre><p>As for a normal deployment, subctl will try to figure out all necessary information and will
-ask for anything it can&rsquo;t figure out.</p>
+<h3 id="install-submariner-with-service-discovery-and-globalnet">Install Submariner with Service Discovery and Globalnet</h3>
+
+<div class="notices info" ><p>The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster will disable Openshift CVO.</p>
+</div>
+
+<p>To install Submariner with multi-cluster service discovery and support for overlapping CIDRs follow the steps below.</p>
+<h4 id="create-a-merged-kubeconfig">Create a merged kubeconfig</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>$PWD/cluster-a/auth/kubeconfig:$PWD/cluster-b/auth/kubeconfig
+sed -i <span style="color:#e6db74">&#39;s/admin/east/&#39;</span> cluster-a/auth/kubeconfig
+sed -i <span style="color:#e6db74">&#39;s/admin/west/&#39;</span> cluster-b/auth/kubeconfig
+kubectl config view --flatten &gt; ./merged_kubeconfig
+</code></pre></div><h4 id="use-cluster-a-as-broker-with-service-discovery-and-globalnet-enabled">Use cluster-a as broker with service discovery and globalnet enabled</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker  --kubecontext west --kubeconfig ./merged_kubeconfig --service-discovery --globalnet
+</code></pre></div><h4 id="join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the broker</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext west --kubeconfig ./merged_kubeconfig broker-info.subm --clusterid west --broker-cluster-context west
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext east --kubeconfig ./merged_kubeconfig broker-info.subm --clusterid east --broker-cluster-context west
+</code></pre></div><h4 id="verify-deployment">Verify Deployment</h4>
+<p>To verify the deployment follow the steps below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --context east create deployment ngnix --image<span style="color:#f92672">=</span>nginx
+kubectl --context east expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
+kubectl --context west run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image nicolaka/netshoot -- /bin/bash
+curl nginx
+</code></pre></div>
 
 
-<footer class="footline">
+
+
+<footer class=" footline" >
 	
 </footer>
 
@@ -917,8 +1022,95 @@ ask for anything it can&rsquo;t figure out.</p>
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -978,22 +1170,6 @@ ask for anything it can&rsquo;t figure out.</p>
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -1001,80 +1177,6 @@ ask for anything it can&rsquo;t figure out.</p>
             
             
                 
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1262,10 +1364,10 @@ ask for anything it can&rsquo;t figure out.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/deployment/helm/" title="helm"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/quickstart/openshiftsd/" title="OpenShift with Service Discovery (AWS)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/architecture/" title="Architecture" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/quickstart/kind/" title="KIND" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1295,4 +1397,3 @@ ask for anything it can&rsquo;t figure out.</p>
 
   </body>
 </html>
-
