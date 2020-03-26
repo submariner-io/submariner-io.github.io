@@ -12,20 +12,20 @@
     <title>Release process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1585165976" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1585165976" rel="stylesheet">
-    <link href="/css/hybrid.css?1585165976" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1585165976" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1585165976" rel="stylesheet">
-    <link href="/css/auto-complete.css?1585165976" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1585165976" rel="stylesheet">
-    <link href="/css/theme.css?1585165976" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1585165976" rel="stylesheet">
+    <link href="/css/nucleus.css?1585225768" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1585225768" rel="stylesheet">
+    <link href="/css/hybrid.css?1585225768" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1585225768" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1585225768" rel="stylesheet">
+    <link href="/css/auto-complete.css?1585225768" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1585225768" rel="stylesheet">
+    <link href="/css/theme.css?1585225768" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1585225768" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1585165976" rel="stylesheet">
+      <link href="/css/theme-blue.css?1585225768" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1585165976"></script>
+    <script src="/js/jquery-3.3.1.min.js?1585225768"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1585165976"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1585165976"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1585225768"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1585225768"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/en";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1585165976"></script>
+<script type="text/javascript" src="/js/search.js?1585225768"></script>
 
     
   </div>
@@ -864,8 +864,9 @@ It is assumed that you are familiar with the submariner project and the various 
 <h1 id="step-1-create-a-submariner-release">Step 1: create a submariner release</h1>
 <p>Assuming that you have an existing submariner git directory, the following steps create a release named &ldquo;Globalnet Overlapping IP support RC0&rdquo; with version v0.2.0-rc0 based on the master branch.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner
+git stash
 git remote add upstream ssh://git@github.com/submariner-io/submariner
-git fetch -a -v -t
+git fetch -a -v -t upstream
 git checkout remotes/upstream/master -B master
 git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
 git push upstream v0.2.0-rc0
@@ -885,8 +886,9 @@ git push upstream v0.2.0-rc0
 <h1 id="step-2-create-a-lighthouse-release">Step 2: create a lighthouse release</h1>
 <p>Assuming that you have an existing lighthouse git directory, run the following steps .</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd lighthouse
+git stash
 git remote add upstream ssh://git@github.com/submariner-io/lighthouse
-git fetch -a -v -t
+git fetch -a -v -t upstream
 git checkout remotes/upstream/master -B master
 git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
 git push upstream v0.2.0-rc0
@@ -916,8 +918,9 @@ git push upstream v0.2.0-rc0
 <h2 id="create-a-submariner-operator-release">Create a submariner-operator release</h2>
 <p>Assuming you have an existing submariner-operator git directory, run the following steps:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner-operator
+git stash
 git remote add upstream ssh://git@github.com/submariner-io/submariner-operator
-git fetch -a -v -t
+git fetch -a -v -t upstream
 git checkout remotes/upstream/master -B master
 git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
 git push upstream v0.2.0-rc0
@@ -935,8 +938,9 @@ At this point the images tagged with 0.2.0-rc0 will be available <a href="https:
 <p><a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">https://quay.io/repository/submariner/submariner-operator?tab=tags</a></p>
 </blockquote>
 <h2 id="create-the-subctl-binaries-release">Create the subctl binaries release</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner-operator
-git fetch -a -v -t
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git stash
+cd submariner-operator
+git fetch -a -v -t upstream
 git checkout v0.2.0-rc0
 rm bin/subctl*
 make build-cross
@@ -944,6 +948,8 @@ ls -la bin/subctl*
 </code></pre></div><p>At this point, you should see subctl binaries generated and listed for the various platforms under bin.
 Go to <a href="https://github.com/submariner-io/submariner-operator/tags,">https://github.com/submariner-io/submariner-operator/tags,</a> find the tag for v0.2.0-rc0 and select &ldquo;Edit release&rdquo; to the right. Then upload the generated subctl binaries.</p>
 <p>If this is a pre-release, mark the checkbox &ldquo;This is a pre-release&rdquo;.</p>
+<h1 id="verify-the-version">Verify the version</h1>
+<p>You can follow any of our quickstarts, for example <a href="https://submariner-io.github.io/en/quickstart/openshiftgn/">this</a></p>
 <h1 id="announce">Announce</h1>
 <h2 id="email">email</h2>
 <p>to:</p>
@@ -1354,19 +1360,19 @@ Go to <a href="https://github.com/submariner-io/submariner-operator/tags,">https
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1585165977"></script>
-    <script src="/js/perfect-scrollbar.min.js?1585165977"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1585165977"></script>
-    <script src="/js/jquery.sticky.js?1585165977"></script>
-    <script src="/js/featherlight.min.js?1585165977"></script>
-    <script src="/js/highlight.pack.js?1585165977"></script>
+    <script src="/js/clipboard.min.js?1585225768"></script>
+    <script src="/js/perfect-scrollbar.min.js?1585225768"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1585225768"></script>
+    <script src="/js/jquery.sticky.js?1585225768"></script>
+    <script src="/js/featherlight.min.js?1585225768"></script>
+    <script src="/js/highlight.pack.js?1585225768"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1585165977"></script>
-    <script src="/js/learn.js?1585165977"></script>
-    <script src="/js/hugo-learn.js?1585165977"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1585225768"></script>
+    <script src="/js/learn.js?1585225768"></script>
+    <script src="/js/hugo-learn.js?1585225768"></script>
 
-    <link href="/mermaid/mermaid.css?1585165977" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1585165977"></script>
+    <link href="/mermaid/mermaid.css?1585225768" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1585225768"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
