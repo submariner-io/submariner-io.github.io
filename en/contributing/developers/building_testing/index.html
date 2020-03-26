@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Deployment :: Submariner k8s project documentation website</title>
+    <title>Building and Testing :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1585237045" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/deployment/">
+  <body class="" data-url="/en/contributing/developers/building_testing/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -228,8 +228,8 @@
   
     
     <li data-nav-id="/en/deployment/" title="Deployment" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/en/deployment/">
@@ -639,7 +639,7 @@
   
     
     <li data-nav-id="/en/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -726,7 +726,7 @@
   
     
     <li data-nav-id="/en/contributing/developers/" title="Developers" class="dd-item 
-        
+        parent
         
         
         ">
@@ -757,8 +757,8 @@
   
     
     <li data-nav-id="/en/contributing/developers/building_testing/" title="Building and Testing" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/contributing/developers/building_testing/">
@@ -871,7 +871,7 @@
                   
                     
                     
-                      <option id="en" value="/en/deployment/" selected>English</option>
+                      <option id="en" value="/en/contributing/developers/building_testing/" selected>English</option>
                     
                   
               
@@ -931,7 +931,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/developers/building_testing/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -958,7 +958,19 @@
             
           
           
-            <a href='/en/'>Submariner</a> > Deployment
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/contributing/'>Contributing</a> > <a href='/en/contributing/developers/'>Developers</a> > Building and Testing
+          
+         
+          
+         
           
          
           
@@ -971,10 +983,36 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#installing-subctl">Installing subctl</a></li>
-    <li><a href="#deployment-of-broker">Deployment of broker</a></li>
-    <li><a href="#joining-clusters">Joining clusters</a></li>
-    <li><a href="#discovery">Discovery</a></li>
+    <li><a href="#standard-development-environment">Standard Development Environment</a></li>
+    <li><a href="#prescribed-tasks-via-make-targets">Prescribed Tasks via Make Targets</a></li>
+    <li><a href="#common-build-and-testing-targets">Common Build and Testing Targets</a>
+      <ul>
+        <li><a href="#linting">Linting</a></li>
+        <li><a href="#unit-tests">Unit tests</a></li>
+        <li><a href="#end-to-end-tests">End-to-end tests</a></li>
+      </ul>
+    </li>
+    <li><a href="#submariner-iosubmariner">submariner-io/submariner</a>
+      <ul>
+        <li><a href="#building-engine-routeagent-and-globalnet-go-binaries">Building Engine, Routeagent, and Globalnet Go binaries</a></li>
+        <li><a href="#building-engine-routeagent-and-globalnet-container-images">Building Engine, Routeagent, and Globalnet container images</a></li>
+      </ul>
+    </li>
+    <li><a href="#submariner-iosubmariner-operator">submariner-io/submariner-operator</a>
+      <ul>
+        <li><a href="#building-the-operator-and-subctl">Building the Operator and subctl</a></li>
+      </ul>
+    </li>
+    <li><a href="#submariner-iolighthouse">submariner-io/lighthouse</a>
+      <ul>
+        <li><a href="#building-lighthouse-controller-coredns-and-dnsserver-container-images">Building Lighthouse Controller, CoreDNS and DNSServer container images</a></li>
+      </ul>
+    </li>
+    <li><a href="#submariner-ioshipyard">submariner-io/shipyard</a>
+      <ul>
+        <li><a href="#building-dapper-base-container-image">Building dapper-base container image</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -992,7 +1030,7 @@
           
             <h1>
               
-              Deployment
+              Building and Testing
             </h1>
           
 
@@ -1001,42 +1039,67 @@
 
 
 
-	<p>The inner details of deploying a broker and connecting clusters to the broker are complicated, subctl automates and simplifies most of those details eliminating human error as much as possible. This is why <strong>subctl</strong> is the recommended deployment method, you can find a complete guide to the subctl tool here: <a href="subctl">subctl in detail</a>. If you still believe <em>helm</em> works better for you, please go <a href="helm">here</a>.</p>
-<h2 id="installing-subctl">Installing subctl</h2>
-<p>Download the subctl binary and make it available on your PATH.</p>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p ~/.local/bin
-curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.0/subctl-v0.1.0-linux-amd64
-chmod a+x ~/.local/bin/subctl
-export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
-echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:~/.local/bin &gt;&gt; ~/.profile
-</code></pre></div><h2 id="deployment-of-broker">Deployment of broker</h2>
-<p>Please remember, this cluster&rsquo;s API should be accessible from all other clusters:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; 
-</code></pre></div><p>this will create:</p>
-<ul>
-<li>The submariner-k8s-broker namespace</li>
-<li>The Cluster and Endpoint (.submariner.io) CRDs in the cluster</li>
-<li>A service account in the namespace for subsequent subctl access.</li>
-<li>A random IPSEC PSK which will be stored only in the <code>broker-info.subm</code> file.</li>
-</ul>
-<p>And generate a broker-info.subm file which contains the following elements:</p>
-<ul>
-<li>The API endpoint</li>
-<li>A CA certificate to for the API endpoint</li>
-<li>The service account token for accessing the API endpoint / submariner-k8s-broker namespace.</li>
-</ul>
-
-<div class="notices info" ><p>This cluster can also participate in the dataplane connectivity with the other clusters, but it will need to be joined (see following step)</p>
-</div>
-
-<h2 id="joining-clusters">Joining clusters</h2>
-<p>For each cluster you want to join:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig &lt;PATH-TO-JOINING-CLUSTER&gt; broker-info.subm
-</code></pre></div><p>subctl will discover as much as it can, and ask you for any necessary detail it can&rsquo;t figure out like the cluster ID which has to be different between all clusters.</p>
-<h2 id="discovery">Discovery</h2>
-<p>Service discovery (via DNS and lighthouse project) is an experimental feature (developer preview), and the instructions to deploy with discovery can be found <a href="with-discovery/">here</a></p>
-
+	<h2 id="standard-development-environment">Standard Development Environment</h2>
+<p>Submariner provides a standard, shared development environment suitable for all
+local work. The same environment is used in CI.</p>
+<p>The <a href="https://github.com/submariner-io/shipyard">submariner-io/shipyard</a> project
+contains the logic to build the base container images used across all
+submariner-io repositories.</p>
+<h2 id="prescribed-tasks-via-make-targets">Prescribed Tasks via Make Targets</h2>
+<p>Make targets are provided to further ease the process of using the shared
+development environment. The specific make targets available differ by
+repository. For any submariner-io repository, see the Makefile at the root of
+the repository for the supported targets and the <code>.travis.yml</code> file for the
+targets actually used in CI.</p>
+<h2 id="common-build-and-testing-targets">Common Build and Testing Targets</h2>
+<p>All <code>submariner-io/*</code> repositories provide a standard set of Make targets for
+similar building and testing actions.</p>
+<h3 id="linting">Linting</h3>
+<p>To run static Go linting (goimports, golangci-lint):</p>
+<pre><code>make validate
+</code></pre><h3 id="unit-tests">Unit tests</h3>
+<p>To run Go unit tests:</p>
+<pre><code>make test
+</code></pre><h3 id="end-to-end-tests">End-to-end tests</h3>
+<p>To run functional tests with a full multicluster deployment:</p>
+<pre><code>make e2e
+</code></pre><p>The <code>e2e</code> target supports flags to configure the deployment and testing. For
+example, here are two <code>e2e</code> flag variations used in <code>submariner-io/submariner</code>
+CI:</p>
+<pre><code>make e2e status=keep
+make e2e status=keep deploytool=helm globalnet=true
+</code></pre><p>To clean up the clusters deployed with <code>e2e status=keep</code>, use:</p>
+<pre><code>make e2e status=clean
+</code></pre><h2 id="submariner-iosubmariner">submariner-io/submariner</h2>
+<h3 id="building-engine-routeagent-and-globalnet-go-binaries">Building Engine, Routeagent, and Globalnet Go binaries</h3>
+<p>To build the <code>submariner-route-agent</code>, <code>submariner-engine</code>, and
+<code>submariner-globalnet</code> Go binaries, in the <a href="https://github.com/submariner-io/submariner">submariner-io/submariner</a>
+repository:</p>
+<pre><code>make build
+</code></pre><p>There is an optional flag to build with debug flags set:</p>
+<pre><code>make build --build_debug=true
+</code></pre><h3 id="building-engine-routeagent-and-globalnet-container-images">Building Engine, Routeagent, and Globalnet container images</h3>
+<p>To build the <code>submariner/submariner</code>, <code>submariner/submariner-route-agent</code>, and
+<code>submariner/submariner-globalnet</code> container images, in the
+<a href="https://github.com/submariner-io/submariner">submariner-io/submariner</a> repository:</p>
+<pre><code>make package
+</code></pre><h2 id="submariner-iosubmariner-operator">submariner-io/submariner-operator</h2>
+<h3 id="building-the-operator-and-subctl">Building the Operator and subctl</h3>
+<p>To build the <code>submariner-operator</code> container image and the <code>subctl</code> Go binary,
+in the <a href="https://github.com/submariner-io/submariner-operator">submariner-io/submariner-operator</a> repository:</p>
+<pre><code>make build
+</code></pre><h2 id="submariner-iolighthouse">submariner-io/lighthouse</h2>
+<h3 id="building-lighthouse-controller-coredns-and-dnsserver-container-images">Building Lighthouse Controller, CoreDNS and DNSServer container images</h3>
+<p>To build the <code>lighthouse-controller</code>, <code>lighthouse-coredns</code>, and
+<code>lighthouse-dnsserver</code> contaienr images, in the <a href="https://github.com/submariner-io/lighthouse">submariner-io/lighthouse</a>
+repository:</p>
+<pre><code>make build-controller build-coredns build-dnsserver
+</code></pre><h2 id="submariner-ioshipyard">submariner-io/shipyard</h2>
+<h3 id="building-dapper-base-container-image">Building dapper-base container image</h3>
+<p>To build the base container image used in the shared developer and CI
+enviroment, in the <a href="https://github.com/submariner-io/shipyard">submariner-io/shipyard</a>:</p>
+<pre><code>make dapper-image
+</code></pre>
 
 
 
@@ -1161,7 +1224,6 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
                 
                     
-                    
                 
                 
 
@@ -1176,9 +1238,6 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1395,6 +1454,7 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
                 
                     
+                    
                 
                 
 
@@ -1409,6 +1469,9 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1442,6 +1505,7 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
                 
                     
+                    
                 
                 
 
@@ -1456,6 +1520,7 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
             
                 
+                    
                     
                 
                 
@@ -1475,6 +1540,9 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,10 +1567,10 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/quickstart/openshift/" title="OpenShift (AWS)"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/contributing/developers/" title="Developers"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/deployment/subctl/" title="subctl" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/contributing/code-of-conduct/" title="Code of Conduct" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

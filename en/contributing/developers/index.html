@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Deployment :: Submariner k8s project documentation website</title>
+    <title>Developers :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1585237045" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/deployment/">
+  <body class="" data-url="/en/contributing/developers/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -228,8 +228,8 @@
   
     
     <li data-nav-id="/en/deployment/" title="Deployment" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/en/deployment/">
@@ -639,7 +639,7 @@
   
     
     <li data-nav-id="/en/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -726,8 +726,8 @@
   
     
     <li data-nav-id="/en/contributing/developers/" title="Developers" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/contributing/developers/">
@@ -871,7 +871,7 @@
                   
                     
                     
-                      <option id="en" value="/en/deployment/" selected>English</option>
+                      <option id="en" value="/en/contributing/developers/" selected>English</option>
                     
                   
               
@@ -931,7 +931,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/developers/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -958,7 +958,13 @@
             
           
           
-            <a href='/en/'>Submariner</a> > Deployment
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/contributing/'>Contributing</a> > Developers
+          
+         
           
          
           
@@ -969,14 +975,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#installing-subctl">Installing subctl</a></li>
-    <li><a href="#deployment-of-broker">Deployment of broker</a></li>
-    <li><a href="#joining-clusters">Joining clusters</a></li>
-    <li><a href="#discovery">Discovery</a></li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -992,7 +991,7 @@
           
             <h1>
               
-              Deployment
+              Developers
             </h1>
           
 
@@ -1001,41 +1000,8 @@
 
 
 
-	<p>The inner details of deploying a broker and connecting clusters to the broker are complicated, subctl automates and simplifies most of those details eliminating human error as much as possible. This is why <strong>subctl</strong> is the recommended deployment method, you can find a complete guide to the subctl tool here: <a href="subctl">subctl in detail</a>. If you still believe <em>helm</em> works better for you, please go <a href="helm">here</a>.</p>
-<h2 id="installing-subctl">Installing subctl</h2>
-<p>Download the subctl binary and make it available on your PATH.</p>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p ~/.local/bin
-curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.0/subctl-v0.1.0-linux-amd64
-chmod a+x ~/.local/bin/subctl
-export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
-echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:~/.local/bin &gt;&gt; ~/.profile
-</code></pre></div><h2 id="deployment-of-broker">Deployment of broker</h2>
-<p>Please remember, this cluster&rsquo;s API should be accessible from all other clusters:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; 
-</code></pre></div><p>this will create:</p>
-<ul>
-<li>The submariner-k8s-broker namespace</li>
-<li>The Cluster and Endpoint (.submariner.io) CRDs in the cluster</li>
-<li>A service account in the namespace for subsequent subctl access.</li>
-<li>A random IPSEC PSK which will be stored only in the <code>broker-info.subm</code> file.</li>
-</ul>
-<p>And generate a broker-info.subm file which contains the following elements:</p>
-<ul>
-<li>The API endpoint</li>
-<li>A CA certificate to for the API endpoint</li>
-<li>The service account token for accessing the API endpoint / submariner-k8s-broker namespace.</li>
-</ul>
-
-<div class="notices info" ><p>This cluster can also participate in the dataplane connectivity with the other clusters, but it will need to be joined (see following step)</p>
-</div>
-
-<h2 id="joining-clusters">Joining clusters</h2>
-<p>For each cluster you want to join:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig &lt;PATH-TO-JOINING-CLUSTER&gt; broker-info.subm
-</code></pre></div><p>subctl will discover as much as it can, and ask you for any necessary detail it can&rsquo;t figure out like the cluster ID which has to be different between all clusters.</p>
-<h2 id="discovery">Discovery</h2>
-<p>Service discovery (via DNS and lighthouse project) is an experimental feature (developer preview), and the instructions to deploy with discovery can be found <a href="with-discovery/">here</a></p>
+	<p>Submariner strives to be an open, welcoming community for developers.
+Substantial tooling is provided to ease the contribution experience.</p>
 
 
 
@@ -1161,7 +1127,6 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
                 
                     
-                    
                 
                 
 
@@ -1176,9 +1141,6 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1395,6 +1357,7 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
                 
                     
+                    
                 
                 
 
@@ -1409,6 +1372,9 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1442,6 +1408,7 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
                 
                     
+                    
                 
                 
 
@@ -1456,6 +1423,9 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,10 +1469,10 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/quickstart/openshift/" title="OpenShift (AWS)"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/contributing/release-process/" title="Release process"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/deployment/subctl/" title="subctl" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/contributing/developers/building_testing/" title="Building and Testing" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
