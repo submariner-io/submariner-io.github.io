@@ -53,7 +53,7 @@
 	"title": "Submariner components",
 	"tags": [],
 	"description": "",
-	"content": "Lorem Ipsum.\n"
+	"content": ""
 },
 {
 	"uri": "/en/quickstart/openshiftsd/",
@@ -147,11 +147,32 @@
 	"content": "Deployment with discovery will include the (lighthouse components.\nProject status: The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster may disable some of the operator features.\n The Lighthouse project helps in cross-cluster service discovery. It has the below additional dependencies\n kubefedctl installed (0.1.0-rc3). kubectl installed.  Deploying Submariner with Lighthouse Deploy Broker subctl deploy-broker --kubeconfig \u0026lt;PATH-TO-KUBECONFIG-BROKER\u0026gt; --service-discovery --broker-cluster-context \u0026lt;BROKER-CONTEXT-NAME\u0026gt; kubefed will be installed in the broker cluster, as lighthouse currently depends on it for resource distribution. This dependency will be eliminated in the future.\nJoin Clusters To join all the other clusters with the broker cluster, run subctl using the broker-info.subm generated in the folder from which the previous step was run.\nYou will need a kubeconfig file with multiple contexts, a default admin context pointing to the cluster you\u0026rsquo;re trying to join, and another context which provides access to the broker cluster from the previous step. This is a requirement from kubefedctl.\n subctl join --kubeconfig \u0026lt;PATH-TO-KUBECONFIG-DATA-CLUSTER\u0026gt; broker-info.subm --broker-cluster-context \u0026lt;BROKER-CONTEXT-NAME\u0026gt; As for a normal deployment, subctl will try to figure out all necessary information and will ask for anything it can\u0026rsquo;t figure out.\n"
 },
 {
+	"uri": "/en/architecture/components/broker/",
+	"title": "Broker",
+	"tags": [],
+	"description": "",
+	"content": "Submariner uses a central broker to facilitate the exchange of metadata information between connected clusters. The broker is basically a set of custom resource definitions (CRDs) backed by the kubernetes datastore. The broker is a singleton component that is deployed on one of the clusters whose Kubernetes API must be accessible by all of the connected clusters.\n"
+},
+{
 	"uri": "/en/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
+},
+{
+	"uri": "/en/architecture/components/gateway-engine/",
+	"title": "Gateway Engine",
+	"tags": [],
+	"description": "",
+	"content": "The gateway engine component is deployed in each connected cluster and is responsible for establishing IPsec tunnels to other clusters. Instances of the gateway engine run on specifically designated nodes in a cluster of which there may be more than one for fault tolerance. There is only one active gateway engine instance in a cluster - the others await in standby mode ready to take over should the active instance fail. The active gateway engine communicates with the central broker to advertise its endpoint to the other connected clusters and to learn about the gateway endpoints on the other clusters.\n"
+},
+{
+	"uri": "/en/architecture/components/route-agent/",
+	"title": "Route Agent",
+	"tags": [],
+	"description": "",
+	"content": "The Route Agent runs on every node in each connected cluster. It is responsible for setting up VxLAN tunnels and routing the cross cluster traffic from the node to the cluster’s active Gateway Engine which subsequently sends the traffic to the destination cluster.\n"
 },
 {
 	"uri": "/en/tags/",

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>subctl :: Submariner k8s project documentation website</title>
+    <title>Gateway Engine :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1585236745" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/deployment/subctl/">
+  <body class="" data-url="/en/architecture/components/gateway-engine/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -228,7 +228,7 @@
   
     
     <li data-nav-id="/en/deployment/" title="Deployment" class="dd-item 
-        parent
+        
         
         
         ">
@@ -259,8 +259,8 @@
   
     
     <li data-nav-id="/en/deployment/subctl/" title="subctl" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/en/deployment/subctl/">
@@ -343,7 +343,7 @@
   
     
     <li data-nav-id="/en/architecture/" title="Architecture" class="dd-item 
-        
+        parent
         
         
         ">
@@ -402,7 +402,7 @@
   
     
     <li data-nav-id="/en/architecture/components/" title="Submariner components" class="dd-item 
-        
+        parent
         
         
         ">
@@ -489,8 +489,8 @@
   
     
     <li data-nav-id="/en/architecture/components/gateway-engine/" title="Gateway Engine" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/en/architecture/components/gateway-engine/">
@@ -803,7 +803,7 @@
                   
                     
                     
-                      <option id="en" value="/en/deployment/subctl/" selected>English</option>
+                      <option id="en" value="/en/architecture/components/gateway-engine/" selected>English</option>
                     
                   
               
@@ -863,7 +863,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/subctl/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/architecture/components/gateway-engine/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -894,7 +894,13 @@
             
           
           
-            <a href='/en/'>Submariner</a> > <a href='/en/deployment/'>Deployment</a> > subctl
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/architecture/'>Architecture</a> > <a href='/en/architecture/components/'>Submariner components</a> > Gateway Engine
+          
+         
           
          
           
@@ -923,7 +929,7 @@
           
             <h1>
               
-              subctl
+              Gateway Engine
             </h1>
           
 
@@ -932,7 +938,17 @@
 
 
 
-	
+	<p>The gateway engine component is deployed in each connected cluster and
+is responsible for establishing IPsec tunnels to other
+clusters. Instances of the gateway engine run on specifically
+designated nodes in a cluster of which there may be more than one for
+fault tolerance. There is only one active gateway engine instance in a
+cluster - the others await in standby mode ready to take over should
+the active instance fail. The active gateway engine communicates with
+the central broker to advertise its endpoint to the other connected
+clusters and to learn about the gateway endpoints on the other
+clusters.</p>
+
 
 
 
@@ -1057,108 +1073,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -1217,10 +1131,119 @@
             
         
                     
+            
+        
+                    
                         
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1362,10 +1385,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/deployment/" title="Deployment"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/architecture/components/broker/" title="Broker"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/deployment/helm/" title="helm" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/architecture/components/route-agent/" title="Route Agent" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
