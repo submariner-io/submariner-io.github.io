@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1585237140" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1585237140" rel="stylesheet">
-    <link href="/css/hybrid.css?1585237140" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1585237140" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1585237140" rel="stylesheet">
-    <link href="/css/auto-complete.css?1585237140" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1585237140" rel="stylesheet">
-    <link href="/css/theme.css?1585237140" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1585237140" rel="stylesheet">
+    <link href="/css/nucleus.css?1585321379" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1585321379" rel="stylesheet">
+    <link href="/css/hybrid.css?1585321379" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1585321379" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1585321379" rel="stylesheet">
+    <link href="/css/auto-complete.css?1585321379" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1585321379" rel="stylesheet">
+    <link href="/css/theme.css?1585321379" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1585321379" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1585237140" rel="stylesheet">
+      <link href="/css/theme-blue.css?1585321379" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1585237140"></script>
+    <script src="/js/jquery-3.3.1.min.js?1585321379"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1585237140"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1585237140"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1585321379"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1585321379"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/en";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1585237140"></script>
+<script type="text/javascript" src="/js/search.js?1585321379"></script>
 
     
   </div>
@@ -971,6 +971,8 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</a></li>
+    <li><a href="#v011-submariner-with-more-light">v0.1.1 Submariner with more light</a></li>
     <li><a href="#v010-submariner-with-some-light">v0.1.0 Submariner with some light</a></li>
     <li><a href="#v003----kubecon-na-2019">v0.0.3 &ndash; KubeCon NA 2019</a></li>
     <li><a href="#v001-second-submariner-release">v0.0.1 Second Submariner release</a></li>
@@ -1001,7 +1003,32 @@
 
 
 
-	<h2 id="v010-submariner-with-some-light">v0.1.0 Submariner with some light</h2>
+	<h2 id="v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</h2>
+<blockquote>
+<p>This release is focused on overlapping CIDR support between clusters</p>
+</blockquote>
+<ul>
+<li>Support for Overlapping CIDRs between clusters (globalnet)</li>
+<li>Enhanced e2e scripts, which will be shared between repositories in the shipyard project (ongoing work)</li>
+<li>Improved e2e deployment by using a local registry.</li>
+<li>Refactoring to support pluggable drivers (in preparation for <a href="https://www.wireguard.com/">WireGuard</a> support)</li>
+</ul>
+<h2 id="v011-submariner-with-more-light">v0.1.1 Submariner with more light</h2>
+<blockquote>
+<p>This release has focused on stability for the Lighthouse support</p>
+</blockquote>
+<ul>
+<li>Cleaner logging for the submariner-engine</li>
+<li>Cleaner logging for the submariner-route-agent</li>
+<li>Fixed issue with wrong token stored in subm file #244</li>
+<li>Added flag to disable the OpenShift CVO #235</li>
+<li>Fixed several service-discovery related bugs #194 , #167</li>
+<li>Fixed several panics on nil network discovery</li>
+<li>Added checks to ensure the CIDRs for joining cluster don&rsquo;t overlap with an existing ones.</li>
+<li>Fix context handling related to service-discovery / kubefed #180</li>
+<li>Use the right CoreDNS image for OpenShift.</li>
+</ul>
+<h2 id="v010-submariner-with-some-light">v0.1.0 Submariner with some light</h2>
 <blockquote>
 <p>This release has focused on stability, bugfixes and making <a href="https://github.com/submariner.io/lighthouse">https://github.com/submariner.io/lighthouse</a> available as developer preview via subctl deployments.</p>
 </blockquote>
@@ -1508,19 +1535,19 @@ was created to make deployment of submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1585237140"></script>
-    <script src="/js/perfect-scrollbar.min.js?1585237140"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1585237140"></script>
-    <script src="/js/jquery.sticky.js?1585237140"></script>
-    <script src="/js/featherlight.min.js?1585237140"></script>
-    <script src="/js/highlight.pack.js?1585237140"></script>
+    <script src="/js/clipboard.min.js?1585321379"></script>
+    <script src="/js/perfect-scrollbar.min.js?1585321379"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1585321379"></script>
+    <script src="/js/jquery.sticky.js?1585321379"></script>
+    <script src="/js/featherlight.min.js?1585321379"></script>
+    <script src="/js/highlight.pack.js?1585321379"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1585237140"></script>
-    <script src="/js/learn.js?1585237140"></script>
-    <script src="/js/hugo-learn.js?1585237140"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1585321379"></script>
+    <script src="/js/learn.js?1585321379"></script>
+    <script src="/js/hugo-learn.js?1585321379"></script>
 
-    <link href="/mermaid/mermaid.css?1585237140" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1585237140"></script>
+    <link href="/mermaid/mermaid.css?1585321379" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1585321379"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
