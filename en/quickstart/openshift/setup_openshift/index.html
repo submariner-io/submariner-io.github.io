@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Contributing to the website :: Submariner k8s project documentation website</title>
+    <title> :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1586268262" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/contributing/website/">
+  <body class="" data-url="/en/quickstart/openshift/setup_openshift/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -78,7 +78,7 @@
   
     
     <li data-nav-id="/en/quickstart/" title="Quickstart guide" class="dd-item 
-        
+        parent
         
         
         ">
@@ -193,7 +193,7 @@
   
     
     <li data-nav-id="/en/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
-        
+        parent
         
         
         ">
@@ -221,7 +221,7 @@
  
   
     
-      <li data-nav-id="/en/quickstart/openshift/setup_openshift/" title="" class="dd-item ">
+      <li data-nav-id="/en/quickstart/openshift/setup_openshift/" title="" class="dd-item active">
         <a href="/en/quickstart/openshift/setup_openshift/">
         
         <i class="fas fa-check read-icon"></i>
@@ -670,7 +670,7 @@
   
     
     <li data-nav-id="/en/contributing/" title="Contributing" class="dd-item 
-        parent
+        
         
         
         ">
@@ -701,8 +701,8 @@
   
     
     <li data-nav-id="/en/contributing/website/" title="Contributing to the website" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/en/contributing/website/">
@@ -866,7 +866,7 @@
                   
                     
                     
-                      <option id="en" value="/en/contributing/website/" selected>English</option>
+                      <option id="en" value="/en/quickstart/openshift/setup_openshift/" selected>English</option>
                     
                   
               
@@ -926,7 +926,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/website/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshift/setup_openshift.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -957,7 +957,13 @@
             
           
           
-            <a href='/en/'>Submariner</a> > <a href='/en/contributing/'>Contributing</a> > Contributing to the website
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/quickstart/'>Quickstart guide</a> > <a href='/en/quickstart/openshift/'>OpenShift (AWS)</a> > 
+          
+         
           
          
           
@@ -970,7 +976,16 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#openshift-install-and-pull-secret">openshift-install and pull-secret</a></li>
+        <li><a href="#make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -986,7 +1001,7 @@
           
             <h1>
               
-              Contributing to the website
+              
             </h1>
           
 
@@ -994,41 +1009,32 @@
 
 
 
-
-	<p>The Submariner documentation website is based on hugo, grav, and the
-hugo-learn-theme and written in markdown format.</p>
-<p>If you want to contribute I recommend reading the
-<a href="https://themes.gohugo.io//theme/hugo-theme-learn/en/cont/pages/">hugo-learn-theme documentation</a></p>
-<p>You can always click the &ldquo;Edit this page link&rdquo; at the top right of each page, but
-if you want to test your changes locally before submitting you can:</p>
-<ol>
-<li>
-<p>Fork the <a href="https://github.com/submariner-io/submariner-website/fork">submariner-io/submariner-website</a> on github</p>
-</li>
-<li>
-<p>Checkout your copy locally</p>
-</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone ssh://git@github.com/&lt;your-user&gt;/submariner-website.git
-$ cd submariner-website
-$ make server
-</code></pre></div><ol start="4">
-<li>
-<p>Open your browser on <a href="http://localhost:1313">http://localhost:1313</a></p>
-</li>
-<li>
-<p>Edit files in src, the browser should automatically reload changes.</p>
-</li>
-<li>
-<p>Eventually commit, push, and pull-request your changes. You can find a good guide about the github workflow here: <a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project">contributing to a github project</a></p>
-</li>
-</ol>
+<h3 id="openshift-install-and-pull-secret">openshift-install and pull-secret</h3>
+<p>Download the <strong>openshift-install</strong> and <em>oc</em> tools, and copy your <em>pull secret</em> from:</p>
+<blockquote>
+<p><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">https://cloud.redhat.com/openshift/install/aws/installer-provisioned</a></p>
+</blockquote>
+<p>Find more detailed instructions here:</p>
+<blockquote>
+<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html</a></p>
+</blockquote>
+<h3 id="make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</h3>
+<p>Installation instructions</p>
+<blockquote>
+<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
+AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
+</code></pre></div><p>See also for more details:</p>
+<blockquote>
+<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html</a></p>
+</blockquote>
 
 
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -1063,8 +1069,209 @@ $ make server
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1137,201 +1344,6 @@ $ make server
                     
 
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -1394,7 +1406,6 @@ $ make server
             
                 
                     
-                    
                 
                 
 
@@ -1409,7 +1420,6 @@ $ make server
             
             
                 
-                    
                     
                 
                 
@@ -1426,9 +1436,6 @@ $ make server
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1485,10 +1492,10 @@ $ make server
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/contributing/" title="Contributing"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/quickstart/openshift/" title="OpenShift (AWS)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/contributing/building_testing/" title="Building and Testing" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/deployment/" title="Deployment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1518,3 +1525,4 @@ $ make server
 
   </body>
 </html>
+

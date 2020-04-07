@@ -123,6 +123,10 @@
   </url>
   
   <url>
+    <loc>/en/quickstart/openshift/setup_openshift/</loc>
+  </url>
+  
+  <url>
     <loc>/en/architecture/components/broker/</loc>
   </url>
   
