@@ -12,20 +12,20 @@
     <title>Deployment :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1586268262" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1586268262" rel="stylesheet">
-    <link href="/css/hybrid.css?1586268262" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1586268262" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1586268262" rel="stylesheet">
-    <link href="/css/auto-complete.css?1586268262" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1586268262" rel="stylesheet">
-    <link href="/css/theme.css?1586268262" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1586268262" rel="stylesheet">
+    <link href="/css/nucleus.css?1586337382" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1586337382" rel="stylesheet">
+    <link href="/css/hybrid.css?1586337382" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1586337382" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1586337382" rel="stylesheet">
+    <link href="/css/auto-complete.css?1586337382" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1586337382" rel="stylesheet">
+    <link href="/css/theme.css?1586337382" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1586337382" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1586268262" rel="stylesheet">
+      <link href="/css/theme-blue.css?1586337382" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1586268262"></script>
+    <script src="/js/jquery-3.3.1.min.js?1586337382"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1586268262"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1586268262"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1586337382"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1586337382"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/en";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1586268262"></script>
+<script type="text/javascript" src="/js/search.js?1586337382"></script>
 
     
   </div>
@@ -98,6 +98,107 @@
           
           
         
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/quickstart/openshift/">
+          OpenShift (AWS)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/quickstart/openshift/create_clusters/" title="" class="dd-item ">
+        <a href="/en/quickstart/openshift/create_clusters/">
+        
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/quickstart/openshift/ready_clusters/" title="" class="dd-item ">
+        <a href="/en/quickstart/openshift/ready_clusters/">
+        
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/quickstart/openshift/setup_openshift/" title="" class="dd-item ">
+        <a href="/en/quickstart/openshift/setup_openshift/">
+        
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
           
             
             
@@ -176,65 +277,6 @@
           
       </a>
       
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/en/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/en/quickstart/openshift/">
-          OpenShift (AWS)
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/en/quickstart/openshift/setup_openshift/" title="" class="dd-item ">
-        <a href="/en/quickstart/openshift/setup_openshift/">
-        
-        <i class="fas fa-check read-icon"></i>
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
               
     </li>
   
@@ -998,14 +1040,23 @@
 
 	<p>The inner details of deploying a broker and connecting clusters to the broker are complicated, subctl automates and simplifies most of those details eliminating human error as much as possible. This is why <strong>subctl</strong> is the recommended deployment method, you can find a complete guide to the subctl tool here: <a href="subctl">subctl in detail</a>. If you still believe <em>helm</em> works better for you, please go <a href="helm">here</a>.</p>
 <h2 id="installing-subctl">Installing subctl</h2>
-<p>Download the subctl binary and make it available on your PATH.</p>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p ~/.local/bin
-curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.0/subctl-v0.1.0-linux-amd64
+Download the subctl binary and make it available on your PATH.
+
+
+
+<div class="highlight">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<code class="language-bash" data-lang="bash">
+mkdir -p ~/.local/bin
+curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.1/subctl-v0.1.1-linux-amd64
 chmod a+x ~/.local/bin/subctl
-export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
-echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:~/.local/bin &gt;&gt; ~/.profile
-</code></pre></div><h2 id="deployment-of-broker">Deployment of broker</h2>
+export PATH=$PATH:~/.local/bin
+echo export PATH=$PATH:~/.local/bin >> ~/.profile
+</code>
+</pre>
+</div>
+
+<h2 id="deployment-of-broker">Deployment of broker</h2>
 <p>Please remember, this cluster&rsquo;s API should be accessible from all other clusters:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; 
 </code></pre></div><p>this will create:</p>
@@ -1097,6 +1148,54 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
                     
 
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1144,22 +1243,6 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
             
         
@@ -1492,7 +1575,7 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/quickstart/openshift/setup_openshift/" title=""> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/quickstart/kind/" title="KIND"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/en/deployment/subctl/" title="subctl" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -1505,19 +1588,19 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1586268262"></script>
-    <script src="/js/perfect-scrollbar.min.js?1586268262"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1586268262"></script>
-    <script src="/js/jquery.sticky.js?1586268262"></script>
-    <script src="/js/featherlight.min.js?1586268262"></script>
-    <script src="/js/highlight.pack.js?1586268262"></script>
+    <script src="/js/clipboard.min.js?1586337382"></script>
+    <script src="/js/perfect-scrollbar.min.js?1586337382"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1586337382"></script>
+    <script src="/js/jquery.sticky.js?1586337382"></script>
+    <script src="/js/featherlight.min.js?1586337382"></script>
+    <script src="/js/highlight.pack.js?1586337382"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1586268262"></script>
-    <script src="/js/learn.js?1586268262"></script>
-    <script src="/js/hugo-learn.js?1586268262"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1586337382"></script>
+    <script src="/js/learn.js?1586337382"></script>
+    <script src="/js/hugo-learn.js?1586337382"></script>
 
-    <link href="/mermaid/mermaid.css?1586268262" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1586268262"></script>
+    <link href="/mermaid/mermaid.css?1586337382" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1586337382"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

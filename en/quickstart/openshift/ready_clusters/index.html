@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>OpenShift with Service Discovery (AWS) :: Submariner k8s project documentation website</title>
+    <title> :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1586337382" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/quickstart/openshiftsd/">
+  <body class="" data-url="/en/quickstart/openshift/ready_clusters/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -158,7 +158,7 @@
  
   
     
-      <li data-nav-id="/en/quickstart/openshift/ready_clusters/" title="" class="dd-item ">
+      <li data-nav-id="/en/quickstart/openshift/ready_clusters/" title="" class="dd-item active">
         <a href="/en/quickstart/openshift/ready_clusters/">
         
         <i class="fas fa-check read-icon"></i>
@@ -210,8 +210,8 @@
   
     
     <li data-nav-id="/en/quickstart/openshiftsd/" title="OpenShift with Service Discovery (AWS)" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/en/quickstart/openshiftsd/">
@@ -908,7 +908,7 @@
                   
                     
                     
-                      <option id="en" value="/en/quickstart/openshiftsd/" selected>English</option>
+                      <option id="en" value="/en/quickstart/openshift/ready_clusters/" selected>English</option>
                     
                   
               
@@ -968,7 +968,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshiftsd/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshift/ready_clusters.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -999,7 +999,13 @@
             
           
           
-            <a href='/en/'>Submariner</a> > <a href='/en/quickstart/'>Quickstart guide</a> > OpenShift with Service Discovery (AWS)
+            
+            
+          
+          
+            <a href='/en/'>Submariner</a> > <a href='/en/quickstart/'>Quickstart guide</a> > <a href='/en/quickstart/openshift/'>OpenShift (AWS)</a> > 
+          
+         
           
          
           
@@ -1016,9 +1022,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#install-subctl">Install subctl</a></li>
-        <li><a href="#install-kubefedctl">Install kubefedctl</a></li>
-        <li><a href="#install-submariner-with-service-discovery">Install Submariner with Service Discovery</a></li>
+        <li><a href="#make-your-clusters-ready-for-submariner">Make your clusters ready for submariner</a></li>
       </ul>
     </li>
   </ul>
@@ -1038,92 +1042,11 @@
           
             <h1>
               
-              OpenShift with Service Discovery (AWS)
+              
             </h1>
           
 
         
-
-
-
-
-	<p>
-
-<h2 id="aws">AWS</h2>
-<h3 id="openshift-install-and-pull-secret">openshift-install and pull-secret</h3>
-<p>Download the <strong>openshift-install</strong> and <em>oc</em> tools, and copy your <em>pull secret</em> from:</p>
-<blockquote>
-<p><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">https://cloud.redhat.com/openshift/install/aws/installer-provisioned</a></p>
-</blockquote>
-<p>Find more detailed instructions here:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html</a></p>
-</blockquote>
-<h3 id="make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</h3>
-<p>Installation instructions</p>
-<blockquote>
-<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html</a></p>
-</blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
-AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
-</code></pre></div><p>See also for more details:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html</a></p>
-</blockquote>
-
-
-
-
-
-<h3 id="create-and-deploy-cluster-a">Create and deploy cluster A</h3>
-<p>In this step you will deploy cluster A, with the default IP CIDRs</p>
-<table>
-<thead>
-<tr>
-<th>Pod CIDR</th>
-<th>Service CIDR</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10.128.0.0/14</td>
-<td>172.30.0.0/16</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-a
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-a
-</code></pre></div><p>The create cluster step will take some time, you can create Cluster B in parallel if you wish.</p>
-<h3 id="create-and-deploy-cluster-b">Create and deploy cluster B</h3>
-<p>In this step you will deploy cluster B, modifying the default IP CIDRs</p>
-<table>
-<thead>
-<tr>
-<th>Pod CIDR</th>
-<th>Service CIDR</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10.132.0.0/14</td>
-<td>172.31.0.0/16</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
-</code></pre></div><p>Change the POD IP network, please note it’s a /14 range by default so you need to use
-+4 increments for “128”, for example: 10.132.0.0, 10.136.0.0, 10.140.0.0, &hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>Change the service IP network, this is a /16 range by default, so just use +1 increments
-for “30”: for example: 172.31.0.0, 172.32.0.0, 172.33.0.0, &hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>And finally deploy</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
-</code></pre></div>
-
 
 
 
@@ -1142,67 +1065,13 @@ chmod a+x ./prep_for_subm.sh
 ./prep_for_subm.sh cluster-a     <span style="color:#75715e"># respond yes when terraform asks</span>
 ./prep_for_subm.sh cluster-b      <span style="color:#75715e"># respond yes when terraform asks</span>
 
-</code></pre></div><p>{{% notice info %}}</p>
-<p>Please note that the prep_for_subm.sh script has a few pre-requirements, you will need to install: <strong>oc, aws-cli, terraform, and unzip</strong>.</p>
-<p>{{% /notice %}}</p>
-
-
-</p>
-<h3 id="install-subctl">Install subctl</h3>
-Download the subctl binary and make it available on your PATH.
-
-
-
-<div class="highlight">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<code class="language-bash" data-lang="bash">
-mkdir -p ~/.local/bin
-curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.1/subctl-v0.1.1-linux-amd64
-chmod a+x ~/.local/bin/subctl
-export PATH=$PATH:~/.local/bin
-echo export PATH=$PATH:~/.local/bin >> ~/.profile
-</code>
-</pre>
-</div>
-
-<h3 id="install-kubefedctl">Install kubefedctl</h3>
-<p>Download the kubefedctl binary and make it available on your PATH.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VERSION<span style="color:#f92672">=</span>0.1.0-rc3
-OS<span style="color:#f92672">=</span>linux
-ARCH<span style="color:#f92672">=</span>amd64
-curl -LO https://github.com/kubernetes-sigs/kubefed/releases/download/v<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span>/kubefedctl-<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>OS<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>ARCH<span style="color:#e6db74">}</span>.tgz
-tar -zxvf kubefedctl-*.tgz
-chmod u+x kubefedctl
-mv kubefedctl ~/.local/bin/
-</code></pre></div><h3 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h3>
-
-<div class="notices info" ><p>The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster will disable Openshift CVO.</p>
-</div>
-
-<p>To install Submariner with multi-cluster service discovery follow the steps below.</p>
-<h4 id="create-a-merged-kubeconfig">Create a merged kubeconfig</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>$PWD/cluster-a/auth/kubeconfig:$PWD/cluster-b/auth/kubeconfig
-sed -i <span style="color:#e6db74">&#39;s/admin/east/&#39;</span> cluster-a/auth/kubeconfig
-sed -i <span style="color:#e6db74">&#39;s/admin/west/&#39;</span> cluster-b/auth/kubeconfig
-kubectl config view --flatten &gt; ./merged_kubeconfig
-</code></pre></div><h4 id="use-cluster-a-as-broker-with-service-discovery-enabled">Use cluster-a as broker with service discovery enabled</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker  --kubecontext west --kubeconfig ./merged_kubeconfig --service-discovery
-</code></pre></div><h4 id="join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the broker</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext west --kubeconfig ./merged_kubeconfig broker-info.subm --clusterid west --broker-cluster-context west
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext east --kubeconfig ./merged_kubeconfig broker-info.subm --clusterid east --broker-cluster-context west
-</code></pre></div><h4 id="verify-deployment">Verify Deployment</h4>
-<p>To verify the deployment follow the steps below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>./merged_kubeconfig
-kubectl --context east create deployment nginx --image<span style="color:#f92672">=</span>nginx
-kubectl --context east expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
-kubectl --context west run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image nicolaka/netshoot -- /bin/bash
-curl nginx
 </code></pre></div>
+<div class="notices info" ><p>Please note that the prep_for_subm.sh script has a few pre-requirements, you will need to install: <strong>oc, aws-cli, terraform, and unzip</strong>.</p>
+</div>
 
 
 
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -1253,8 +1122,6 @@ curl nginx
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -1269,37 +1136,8 @@ curl nginx
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
                     
                 
                 
@@ -1308,9 +1146,6 @@ curl nginx
                     
                     
 
-                    
-            
-        
                     
             
         
@@ -1339,6 +1174,41 @@ curl nginx
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1691,10 +1561,10 @@ curl nginx
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/quickstart/openshift/setup_openshift/" title=""> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/quickstart/openshift/create_clusters/" title=""> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/quickstart/openshiftgn/" title="OpenShift with Service Discovery and Globalnet (AWS)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/quickstart/openshift/setup_openshift/" title="" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1724,3 +1594,4 @@ curl nginx
 
   </body>
 </html>
+

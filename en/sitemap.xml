@@ -33,6 +33,11 @@
   </url>
   
   <url>
+    <loc>/en/quickstart/openshift/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/en/deployment/subctl/</loc>
     <lastmod>2020-02-19T21:25:35+01:00</lastmod>
   </url>
@@ -53,11 +58,6 @@
   </url>
   
   <url>
-    <loc>/en/quickstart/openshiftgn/</loc>
-    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/en/architecture/</loc>
     <lastmod>2020-02-19T21:00:30+01:00</lastmod>
   </url>
@@ -70,6 +70,11 @@
   <url>
     <loc>/en/reading_material/</loc>
     <lastmod>2020-03-09T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/en/quickstart/openshiftgn/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
   <url>
@@ -113,13 +118,16 @@
   </url>
   
   <url>
-    <loc>/en/quickstart/openshift/</loc>
-    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+    <loc>/en/deployment/with-discovery/</loc>
+    <lastmod>2020-02-20T16:40:57+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/en/deployment/with-discovery/</loc>
-    <lastmod>2020-02-20T16:40:57+01:00</lastmod>
+    <loc>/en/quickstart/openshift/create_clusters/</loc>
+  </url>
+  
+  <url>
+    <loc>/en/quickstart/openshift/ready_clusters/</loc>
   </url>
   
   <url>

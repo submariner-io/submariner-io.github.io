@@ -25,11 +25,32 @@ Project status: The Lighthouse project is meant only to be used as a development
     
     <item>
       <title></title>
+      <link>/en/quickstart/openshift/create_clusters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/quickstart/openshift/create_clusters/</guid>
+      <description>Create and deploy cluster A In this step you will deploy cluster A, with the default IP CIDRs
+   Pod CIDR Service CIDR     10.128.0.0/14 172.30.0.0/16    openshift-install create install-config --dir cluster-a openshift-install create cluster --dir cluster-a The create cluster step will take some time, you can create Cluster B in parallel if you wish.
+Create and deploy cluster B In this step you will deploy cluster B, modifying the default IP CIDRs</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/quickstart/openshift/ready_clusters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/quickstart/openshift/ready_clusters/</guid>
+      <description>Make your clusters ready for submariner Submariner gateway nodes need to be able to accept traffic over ports 4500/UDP and 500/UDP when using IPSEC. In addition we use port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes and ensuring that Pod IP addresses are preserved.
+Additionally, the default Openshift deployments don&amp;rsquo;t allow assigning an elastic public IP to existing worker nodes, something that it&amp;rsquo;s necessary at least on one end of the IPSEC connections.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/en/quickstart/openshift/setup_openshift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/en/quickstart/openshift/setup_openshift/</guid>
-      <description>openshift-install and pull-secret Download the openshift-install and oc tools, and copy your pull secret from:
+      <description>AWS openshift-install and pull-secret Download the openshift-install and oc tools, and copy your pull secret from:
  https://cloud.redhat.com/openshift/install/aws/installer-provisioned
  Find more detailed instructions here:
  https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html
