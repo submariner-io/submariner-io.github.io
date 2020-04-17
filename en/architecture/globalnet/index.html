@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Lighthouse :: Submariner k8s project documentation website</title>
+    <title>Globalnet Controller :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1587150796" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/en/architecture/components/lighthouse/">
+  <body class="" data-url="/en/architecture/globalnet/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -448,7 +448,7 @@
     
     <li data-nav-id="/en/architecture/globalnet/" title="Globalnet Controller" class="dd-item 
         
-        
+        active
         
         ">
       <a href="/en/architecture/globalnet/">
@@ -503,7 +503,7 @@
   
     
     <li data-nav-id="/en/architecture/components/" title="Submariner components" class="dd-item 
-        parent
+        
         
         
         ">
@@ -535,7 +535,7 @@
     
     <li data-nav-id="/en/architecture/components/lighthouse/" title="Lighthouse" class="dd-item 
         
-        active
+        
         
         ">
       <a href="/en/architecture/components/lighthouse/">
@@ -964,7 +964,7 @@
                   
                     
                     
-                      <option id="en" value="/en/architecture/components/lighthouse/" selected>English</option>
+                      <option id="en" value="/en/architecture/globalnet/" selected>English</option>
                     
                   
               
@@ -1024,7 +1024,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/architecture/components/lighthouse/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/architecture/globalnet/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1055,13 +1055,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/en/'>Submariner</a> > <a href='/en/architecture/'>Architecture</a> > <a href='/en/architecture/components/'>Submariner components</a> > Lighthouse
-          
-         
+            <a href='/en/'>Submariner</a> > <a href='/en/architecture/'>Architecture</a> > Globalnet Controller
           
          
           
@@ -1076,12 +1070,14 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#introduction">Introduction</a></li>
     <li><a href="#architecture">Architecture</a>
       <ul>
-        <li><a href="#lighthouse-controller">Lighthouse Controller</a></li>
-        <li><a href="#lighthouse-plugin">Lighthouse Plugin</a></li>
+        <li><a href="#submariner-globalnet">submariner-globalnet</a></li>
+        <li><a href="#service-discovery---lighthouse">Service Discovery - Lighthouse</a></li>
       </ul>
     </li>
+    <li><a href="#building">Building</a></li>
   </ul>
 </nav>
     </div>
@@ -1099,7 +1095,7 @@
           
             <h1>
               
-              Lighthouse
+              Globalnet Controller
             </h1>
           
 
@@ -1108,36 +1104,45 @@
 
 
 
-	<p>Lighthouse provides DNS discovery for Kubernetes clusters connected by <a href="https://github.com/submariner-io/submariner">Submariner</a> in multi-cluster environments. The solution is compatible with any CNI (Container Network Interfaces) plugin.</p>
+	<h2 id="introduction">Introduction</h2>
+<p>Submariner is a tool built to connect overlay networks of different
+Kubernetes clusters. These clusters can be on different public clouds
+or on-premise. An important use case for Submariner is to connect disparate
+independent clusters into a single cohesive multi-cluster fleet.</p>
+<p>However, by default, a limitation of submariner is that it doesn&rsquo;t handle
+overlapping CIDRs (ServiceCIDR and ClusterCIDR) across these clusters.
+Each cluster must use distinct CIDRs that don&rsquo;t conflict or overlap with any
+other cluster that is going to be part of cluster fleet.</p>
+<p><img src="/images/globalnet/overlappingcidr-problem.png" alt="Figure 1 - Problem with overlapping CIDRs"></p>
+<p>This is largely problematic because most actual deployments use the default CIDRs for a cluster so every cluster ends up using the same CIDRs. Changing CIDRs on existing clusters is a very disruptive process and requires a cluster restart. So submariner needs a way to allow clusters with overlapping CIDRs to connect together.</p>
 <h2 id="architecture">Architecture</h2>
-<p>The below digram shows the basic Lighthouse architecture.</p>
-<p><img src="/images/lighthouse/architecture.png" alt="Lighthouse Architecture"></p>
-<h3 id="lighthouse-controller">Lighthouse Controller</h3>
-<p>This is the central discovery controller that gathers the information from the clusters, decides what information is to be shared and distributes the information as newly defined CRDs (Kubernetes custom resources).</p>
-<p>The Lighthouse controller uses <a href="https://github.com/kubernetes-sigs/kubefed">kubefed</a> to discover clusters and to extract and distribute aggregated Service information used to perform DNS resolution.</p>
-<h4 id="workflow">WorkFlow</h4>
-<p>The workflow is as follows.</p>
+<p>To support overlapping CIDRs in clusters connected through submariner, submariner has a component called Global Private Network, GlobalNet (<code>globalnet</code>). This GlobalNet is a virtual network specifically to support submariner&rsquo;s multi-cluster solution with a Global CIDR. Each cluster is given a subnet from this Global Private Network, configured as new cluster parameter <code>GlobalCIDR</code> (e.g. 169.254.0.0/16) which is configurable at time of deployment</p>
+<p>Once configured, each service and pod that requires cross-cluster access is allocated an IP, named <code>GlobalIp</code>, from this <code>GlobalCIDR</code> that is annotated on the Pod/Service object. This <code>GlobalIp</code> is used for all cross-cluster communication to and from to this Pod/Service. Routing and IPTable/OVS/OVN rules are configured to use this IP for ingress and egress. All address translations occur on the Gateway node.</p>
+<p><img src="/images/globalnet/overlappingcidr-solution.png" alt="Figure 1 - Proposed solution"></p>
+<h3 id="submariner-globalnet">submariner-globalnet</h3>
+<p>Submariner GlobalNet is a component that provides cross-cluster connectivity between pods and services using their GlobalIps. Compiled as binary <code>submariner-globalnet</code>, it is responsible for maintaining a pool of global IPs, allocating IPs from the globalIp pool to pods and services, annotating services and pods with their GlobalIp, and configuring the required rules on the gateway node to provide cross-cluster connectivity using GlobalIps. It mainly consists of two key components: the IP Address Manager and Globalnet.</p>
+<h4 id="ip-address-manager-ipam">IP Address Manager (IPAM)</h4>
+<p>The IP Address Manager (IPAM) component does the following:</p>
 <ul>
-<li>Lighthouse controller registers to be notified when clusters join and unjoin the kubefed control plane.</li>
-<li>When notified about a join event, it retrieves the credentials from kubefed and registers a watch for Service creation and removal on that cluster.</li>
-<li>When notified of a new Service created, it creates a MultiClusterService resource with the Service info and distributes it to all the clusters that are connected to the kubefed  control plane.</li>
-<li>When notified of a Service deleted, its info is removed from the MultiClusterService resource and re-distributed.</li>
+<li>Creates a pool of IP addresses based on the <code>GlobalCIDR</code> configured on cluster.</li>
+<li>On creation of a Pod/Service, allocates a GlobalIp from the GlobalIp pool.</li>
+<li>Annotates the Pod/Service with <code>submariner.io/GlobalIp=&lt;global-ip&gt;</code>.</li>
+<li>On deletion of a Pod/Service, releases its GlobalIp back to the pool.</li>
 </ul>
-<p><img src="/images/lighthouse/controllerWorkFlow.png" alt="Lighthouse Controller WorkFlow"></p>
-<!-- raw HTML omitted -->
-<h3 id="lighthouse-plugin">Lighthouse Plugin</h3>
-<p>Lighthouse plugin can be installed as an external plugin for CoreDNS, and will work along with the default Kubernetes plugin. It uses the MultiClusterService resources that are distributed by the controller for DNS resolution. The below diagram indicates a high-level architecture.</p>
-<p><img src="/images/lighthouse/lighthousePluginArchitecture.png" alt="Lighthouse Plugin Architecture"></p>
-<h4 id="workflow-1">WorkFlow</h4>
-<p>The workflow is as follows.</p>
+<h4 id="globalnet">Globalnet</h4>
+<p>This component is responsible for programming the routing entries and IPTable rules and does the following:</p>
 <ul>
-<li>A pod tries to resolve a Service name.</li>
-<li>The Kubernetes plugin in CoreDNS will first try to resolve the request. If no records are present the request will be sent to Lighthouse plugin.</li>
-<li>The Lighthouse plugin will use its MultiClusterService cache to try to resolve the request.</li>
-<li>If a record exists it will be returned, otherwise the plugin will pass the request to the next plugin registered in CoreDNS.</li>
+<li>Creates initial IPTables chains for Globalnet rules.</li>
+<li>Whenever a pod is annotated with Global IP, creates an egress SNAT rule to convert source ip from PodIp to pod&rsquo;s GlobalIp on the Gateway Node.</li>
+<li>Whenever a service is annotated with Global IP, creates an ingress rule to direct all traffic destined to service&rsquo;s GlobalIp to the service&rsquo;s <code>kube-proxy</code> IPTables chain which in turn directs traffic to service&rsquo;s backend pods.</li>
+<li>On deletion of pod/service, clean up the rules from the gateway node.</li>
 </ul>
-<p><img src="/images/lighthouse/coreDNSWorkFlow.png" alt="Lighthouse CoreDNS WorkFlow"></p>
-<!-- raw HTML omitted -->
+<p>Globalnet currently relies on <code>kube-proxy</code> and thus will only work with deployments that use <code>kube-proxy</code>.</p>
+<h3 id="service-discovery---lighthouse">Service Discovery - Lighthouse</h3>
+<p>Connectivity is only part of the solution as pods still need to know the IPs of services on remote clusters.</p>
+<p>This is achieved by enhancing <a href="https://github.com/submariner-io/lighthouse">lighthouse</a> with support for GlobalNet. The Lighthouse controller adds the service&rsquo;s GlobalIp to the <code>MultiClusterService</code> object that is distributed to all clusters. The <a href="https://github.com/submariner-io/lighthouse/tree/master/plugin/lighthouse">lighthouse plugin</a> then uses the service&rsquo;s GlobalIp when replying to DNS queries for the service.</p>
+<h2 id="building">Building</h2>
+<p>Nothing extra needs to be done to build <code>submariner-globalnet</code> as it is built with the standard submariner build.</p>
 
 
 
@@ -1393,6 +1398,23 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                         
                         
                     
@@ -1417,23 +1439,6 @@
 
                     
                     
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
                         
                     
                     
@@ -1443,7 +1448,6 @@
             
             
                 
-                    
                     
                 
                 
@@ -1460,9 +1464,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1668,10 +1669,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/en/architecture/components/" title="Submariner components"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/en/architecture/" title="Architecture"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/en/architecture/components/broker/" title="Broker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/en/architecture/network/" title="Network" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
