@@ -102,7 +102,7 @@
 	"title": "Online resources",
 	"tags": [],
 	"description": "",
-	"content": "There are multiple presentations/demo recordings on Submariner available online.\nConference presentations  KubeCon China 2019 slides and video recording KubeCon North America 2019 slides and video recording  Demo recordings  Deploying Submariner with subctl Connecting hybrid Kubernetes clusters using Submariner Cross-cluster service discovery in Submariner using Lighthouse  Blogs  Kubernetes Multi-Cloud and Multi-Cluster Connectivity with Submariner  If you find additional material that isn\u0026rsquo;t listed here, please feel free to add it to this page. The contributing guide can be found at here.\n"
+	"content": "There are multiple presentations/demo recordings on Submariner available online.\nConference presentations  KubeCon China 2019 slides and video recording KubeCon North America 2019 slides and video recording  Demo recordings  Deploying Submariner with subctl Connecting hybrid Kubernetes clusters using Submariner Cross-cluster service discovery in Submariner using Lighthouse  Blogs  Kubernetes Multi-Cloud and Multi-Cluster Connectivity with Submariner  If you find additional material that isn\u0026rsquo;t listed here, please feel free to add it to this page. The contributing guide can be found here.\n"
 },
 {
 	"uri": "/en/quickstart/openshiftgn/",
