@@ -151,7 +151,7 @@
 	"title": "Contributing",
 	"tags": [],
 	"description": "",
-	"content": "Getting in touch with the community  Join the developer mailing list. Join our weekly meetings and feel free to propose topics for discussion.  Pick up an issue to work on Or propose an enhancement via github issues Proposing a pull request Once your code is ready to be reviewed, you can propose a pull request.\nYou can find a good guide about the github workflow here: contributing to a github project\n"
+	"content": "Talk to Us! We would love to hear from you, how you are using Submariner, and what we can do to make it better.\nGitHub Project Check out the project and consider contributing. Pick up an issue to work on or propose an enhancement by reporting a new issue; once your code is ready to be reviewed, you can propose a pull request. You can find a good guide about the GitHub workflow here.\n#submariner Share your ideas in the #submariner channel in Kubernetes\u0026rsquo; Slack. If you need it, you can request an invite to K8S slack instance.\nCommunity Calendar As a member of the Submariner Community, join any of our community meetings - no registration required. The weekly Submariner Community Meeting (Tuesdays at 5:00pm CET) is a good place to start.\nMailing List Join the developer mailing list.\n"
 },
 {
 	"uri": "/en/",
