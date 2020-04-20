@@ -12,20 +12,20 @@
     <title>Release process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1587390461" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1587390461" rel="stylesheet">
-    <link href="/css/hybrid.css?1587390461" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1587390461" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1587390461" rel="stylesheet">
-    <link href="/css/auto-complete.css?1587390461" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1587390461" rel="stylesheet">
-    <link href="/css/theme.css?1587390461" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1587390461" rel="stylesheet">
+    <link href="/css/nucleus.css?1587390496" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1587390496" rel="stylesheet">
+    <link href="/css/hybrid.css?1587390496" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1587390496" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1587390496" rel="stylesheet">
+    <link href="/css/auto-complete.css?1587390496" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1587390496" rel="stylesheet">
+    <link href="/css/theme.css?1587390496" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1587390496" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1587390461" rel="stylesheet">
+      <link href="/css/theme-blue.css?1587390496" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1587390461"></script>
+    <script src="/js/jquery-3.3.1.min.js?1587390496"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1587390461"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1587390461"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1587390496"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1587390496"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/en";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1587390461"></script>
+<script type="text/javascript" src="/js/search.js?1587390496"></script>
 
     
   </div>
@@ -1070,6 +1070,12 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#build-lighthouse-controller">Build Lighthouse Controller</a></li>
+    <li><a href="#build-lighthouse-coredns">Build Lighthouse CoreDNS</a></li>
+    <li><a href="#build-cluster-dns-operator">Build Cluster-DNS-Operator</a></li>
+  </ul>
+
+  <ul>
     <li><a href="#change-referenced-versions">Change referenced versions</a></li>
     <li><a href="#create-a-submariner-operator-release">Create a submariner-operator release</a></li>
     <li><a href="#create-the-subctl-binaries-release">Create the subctl binaries release</a></li>
@@ -1129,6 +1135,8 @@ git push upstream v0.2.0-rc0
 </blockquote>
 <!-- raw HTML omitted -->
 <h1 id="step-2-create-a-lighthouse-release">Step 2: create a lighthouse release</h1>
+<p>To create lighthouse release artifacts follow the steps below.</p>
+<h2 id="build-lighthouse-controller">Build Lighthouse Controller</h2>
 <p>Assuming that you have an existing lighthouse git directory, run the following steps .</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd lighthouse
 git stash
@@ -1151,8 +1159,57 @@ git push upstream v0.2.0-rc0
 <p><a href="https://quay.io/repository/submariner/lighthouse-controller?tab=tags">https://quay.io/repository/submariner/lighthouse-controller?tab=tags</a>
 <a href="https://quay.io/repository/submariner/lighthouse-coredns?tab=tags">https://quay.io/repository/submariner/lighthouse-coredns?tab=tags</a></p>
 </blockquote>
-<!-- raw HTML omitted -->
-<h1 id="step-3-update-the-operator-version-references-and-create-a-release">Step 3: update the operator version references and create a release</h1>
+<h2 id="build-lighthouse-coredns">Build Lighthouse CoreDNS</h2>
+<ol>
+<li>Get the coredns repository and change to the folder</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go get github.com/openshift/coredns
+cd $GOPATH/src/github.com/openshift/coredns
+</code></pre></div><ol start="2">
+<li>Build the image and push</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">COREDNS_VERSION<span style="color:#f92672">=</span>&lt;VERSION-NO&gt;
+LH_COREDNS_VERSION<span style="color:#f92672">=</span>&lt;LH-VERSION-NO&gt;
+COREDNS_IMAGE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lighthouse-coredns:</span><span style="color:#e6db74">${</span>LH_COREDNS_VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+git checkout -b <span style="color:#e6db74">${</span>COREDNS_VERSION<span style="color:#e6db74">}</span>
+sed -i <span style="color:#e6db74">&#39;/^kubernetes:kubernetes/a lighthouse:github.com/submariner-io/lighthouse/plugin/lighthouse&#39;</span> plugin.cfg
+sed -i <span style="color:#e6db74">&#39;/^github.com/aws/aws-sdk-go/a github.com/submariner-io/lighthouse v0.2.0&#39;</span> go.mod
+sed -i <span style="color:#e6db74">&#39;$a replace\ k8s.io\/apimachinery\ =&gt;\ k8s.io\/apimachinery\ v0.0.0-20190313205120-d7deff9243b1&#39;</span> go.mod
+sed -i <span style="color:#e6db74">&#39;$a replace\ github.com\/openzipkin-contrib\/zipkin-go-opentracing\ =&gt;\ github.com\/openzipkin-contrib\/zipkin-go-opentracing\ v0.3.5&#39;</span> go.mod
+docker build  -f Dockerfile.openshift -t quay.io/submariner/<span style="color:#e6db74">${</span>COREDNS_IMAGE<span style="color:#e6db74">}</span> .
+docker push quay.io/submariner/<span style="color:#e6db74">${</span>COREDNS_IMAGE<span style="color:#e6db74">}</span>
+</code></pre></div><h2 id="build-cluster-dns-operator">Build Cluster-DNS-Operator</h2>
+<ol>
+<li>Clone the cluster-dns-operator repository and create a version branch</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/submariner-io/cluster-dns-operator.git
+git checkout -b &lt;VERSION-NO&gt;
+</code></pre></div><ol start="2">
+<li>Change the coredns and cluster dns operator versions.</li>
+</ol>
+<pre><code>	- name: dns-operator
+          terminationMessagePolicy: FallbackToLogsOnError
+          image: quay.io/submariner/lighthouse-cluster-dns-operator:&lt;VERSION-NO&gt;
+          command:
+          - dns-operator
+          env:
+          - name: RELEASE_VERSION
+            value: &quot;0.0.1-snapshot&quot;
+          - name: IMAGE
+            value: quay.io/submariner/lighthouse-coredns:&lt;VERSION-NO&gt;
+</code></pre><p>For example,
+<a href="https://github.com/submariner-io/cluster-dns-operator/pull/1/files#diff-8c85a5683e17f9599cbfc641cceaa040R33">https://github.com/submariner-io/cluster-dns-operator/pull/1/files#diff-8c85a5683e17f9599cbfc641cceaa040R33</a></p>
+<ol start="3">
+<li>Build a new image and upload it to quay.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">REPO<span style="color:#f92672">=</span>quay.io/submariner/lighthouse-cluster-dns-operator:$VERSION make release-local
+</code></pre></div><ol start="3">
+<li>Commit and push the changes and raise a PR.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
+git commit -s
+git push HEAD:&lt;VERSION-NO&gt;
+</code></pre></div><h1 id="step-3-update-the-operator-version-references-and-create-a-release">Step 3: update the operator version references and create a release</h1>
 <p>Once the other builds have finished and you have 0.2.0-rc0 release tags for the submariner and lighthouse projects, you can proceed with changes to the operator.</p>
 <h2 id="change-referenced-versions">Change referenced versions</h2>
 <p>Edit the operator <a href="https://github.com/submariner-io/submariner-operator/edit/master/pkg/versions/versions.go">versions</a> file and change the project version constants to reference the new release, &ldquo;0.2.0-rc0&rdquo;.</p>
@@ -1749,19 +1806,19 @@ Go to <a href="https://github.com/submariner-io/submariner-operator/tags,">https
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1587390461"></script>
-    <script src="/js/perfect-scrollbar.min.js?1587390461"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1587390461"></script>
-    <script src="/js/jquery.sticky.js?1587390461"></script>
-    <script src="/js/featherlight.min.js?1587390461"></script>
-    <script src="/js/highlight.pack.js?1587390461"></script>
+    <script src="/js/clipboard.min.js?1587390496"></script>
+    <script src="/js/perfect-scrollbar.min.js?1587390496"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1587390496"></script>
+    <script src="/js/jquery.sticky.js?1587390496"></script>
+    <script src="/js/featherlight.min.js?1587390496"></script>
+    <script src="/js/highlight.pack.js?1587390496"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1587390461"></script>
-    <script src="/js/learn.js?1587390461"></script>
-    <script src="/js/hugo-learn.js?1587390461"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1587390496"></script>
+    <script src="/js/learn.js?1587390496"></script>
+    <script src="/js/hugo-learn.js?1587390496"></script>
 
-    <link href="/mermaid/mermaid.css?1587390461" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1587390461"></script>
+    <link href="/mermaid/mermaid.css?1587390496" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1587390496"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
