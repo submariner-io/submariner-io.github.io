@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Submariner :: Submariner k8s project documentation website</title>
+    <title>Release process :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1587393365" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/contributing/release-process/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -740,7 +740,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -828,7 +828,7 @@
     
     <li data-nav-id="/contributing/release-process/" title="Release process" class="dd-item 
         
-        
+        active
         
         ">
       <a href="/contributing/release-process/">
@@ -984,39 +984,262 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/release-process/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > Release process
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#build-lighthouse-controller">Build Lighthouse Controller</a></li>
+    <li><a href="#build-lighthouse-coredns">Build Lighthouse CoreDNS</a></li>
+    <li><a href="#build-cluster-dns-operator">Build Cluster-DNS-Operator</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#change-referenced-versions">Change referenced versions</a></li>
+    <li><a href="#create-a-submariner-operator-release">Create a submariner-operator release</a></li>
+    <li><a href="#create-the-subctl-binaries-release">Create the subctl binaries release</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#email">email</a></li>
+    <li><a href="#twitter">twitter</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Release process
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="submariner">Submariner</h1>
-<h4 id="submariner-enables-direct-networking-between-pods-and-services-in-different-kubernetes-clusters-either-on-premise-or-in-the-cloud">Submariner enables direct networking between pods and services in different Kubernetes clusters, either on premise or in the cloud.</h4>
-<h2 id="why-submariner">Why Submariner?</h2>
-<p>As Kubernetes gains adoption, teams are finding they must deploy and manage multiple clusters to facilitate features like geo-redundancy, scale, and fault isolation for their applications. With Submariner, your applications and services can span multiple cloud providers, data centers, and regions.</p>
-<p>Submariner is completely open source, and designed to be network plugin (CNI) agnostic.</p>
-<h2 id="what-submariner-provides">What Submariner Provides?</h2>
+
+	<p>This section explains the necessary steps to make a submariner release.
+It is assumed that you are familiar with the submariner project and the various repositories.</p>
+<h1 id="step-1-create-a-submariner-release">Step 1: create a submariner release</h1>
+<p>Assuming that you have an existing submariner git directory, the following steps create a release named &ldquo;Globalnet Overlapping IP support RC0&rdquo; with version v0.2.0-rc0 based on the master branch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner
+git stash
+git remote add upstream ssh://git@github.com/submariner-io/submariner
+git fetch -a -v -t upstream
+git checkout remotes/upstream/master -B master
+git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
+git push upstream v0.2.0-rc0
+</code></pre></div><p>A tagged release should appear <a href="https://github.com/submariner-io/submariner/tags">here</a>.</p>
+<blockquote>
+<p><a href="https://github.com/submariner-io/submariner/tags">https://github.com/submariner-io/submariner/tags</a></p>
+</blockquote>
+<p>A build for v0.2.0-rc0 should start and appear under the &ldquo;Active branches&rdquo; section <a href="https://travis-ci.com/github/submariner-io/submariner/branches">here</a>.</p>
+<blockquote>
+<p><a href="https://travis-ci.com/github/submariner-io/submariner/branches">https://travis-ci.com/github/submariner-io/submariner/branches</a></p>
+</blockquote>
+<p>Verify that the build successfully completes as indicated by a green checkmark at the right. At this point the images tagged with 0.2.0-rc0 will be available <a href="https://quay.io/repository/submariner/submariner?tab=tags">here</a>.</p>
+<blockquote>
+<p><a href="https://quay.io/repository/submariner/submariner?tab=tags">https://quay.io/repository/submariner/submariner?tab=tags</a></p>
+</blockquote>
+<!-- raw HTML omitted -->
+<h1 id="step-2-create-a-lighthouse-release">Step 2: create a lighthouse release</h1>
+<p>To create lighthouse release artifacts follow the steps below.</p>
+<h2 id="build-lighthouse-controller">Build Lighthouse Controller</h2>
+<p>Assuming that you have an existing lighthouse git directory, run the following steps .</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd lighthouse
+git stash
+git remote add upstream ssh://git@github.com/submariner-io/lighthouse
+git fetch -a -v -t upstream
+git checkout remotes/upstream/master -B master
+git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
+git push upstream v0.2.0-rc0
+</code></pre></div><p>A tagged release should appear <a href="https://github.com/submariner-io/lighthouse/tags">here</a></p>
+<blockquote>
+<p><a href="https://github.com/submariner-io/lighthouse/tags">https://github.com/submariner-io/lighthouse/tags</a></p>
+</blockquote>
+<p>A build for v0.2.0-rc0 should start and appear under the &ldquo;Active branches&rdquo; section <a href="https://travis-ci.com/github/submariner-io/lighthouse/branches">here</a></p>
+<blockquote>
+<p><a href="https://travis-ci.com/github/submariner-io/lighthouse/branches">https://travis-ci.com/github/submariner-io/lighthouse/branches</a></p>
+</blockquote>
+<p>For this example the build can be found <a href="https://travis-ci.com/github/submariner-io/lighthouse/builds/153946391">here</a>.</p>
+<p>Verify that the build successfully completes as indicated by a green checkmark at the right. At this point the images tagged with 0.2.0-rc0 will be available on quay.io at:</p>
+<blockquote>
+<p><a href="https://quay.io/repository/submariner/lighthouse-controller?tab=tags">https://quay.io/repository/submariner/lighthouse-controller?tab=tags</a>
+<a href="https://quay.io/repository/submariner/lighthouse-coredns?tab=tags">https://quay.io/repository/submariner/lighthouse-coredns?tab=tags</a></p>
+</blockquote>
+<h2 id="build-lighthouse-coredns">Build Lighthouse CoreDNS</h2>
+<ol>
+<li>Get the coredns repository and change to the folder</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go get github.com/openshift/coredns
+cd $GOPATH/src/github.com/openshift/coredns
+</code></pre></div><ol start="2">
+<li>Build the image and push</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">COREDNS_VERSION<span style="color:#f92672">=</span>&lt;VERSION-NO&gt;
+LH_COREDNS_VERSION<span style="color:#f92672">=</span>&lt;LH-VERSION-NO&gt;
+COREDNS_IMAGE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lighthouse-coredns:</span><span style="color:#e6db74">${</span>LH_COREDNS_VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+git checkout -b <span style="color:#e6db74">${</span>COREDNS_VERSION<span style="color:#e6db74">}</span>
+sed -i <span style="color:#e6db74">&#39;/^kubernetes:kubernetes/a lighthouse:github.com/submariner-io/lighthouse/plugin/lighthouse&#39;</span> plugin.cfg
+sed -i <span style="color:#e6db74">&#39;/^github.com/aws/aws-sdk-go/a github.com/submariner-io/lighthouse v0.2.0&#39;</span> go.mod
+sed -i <span style="color:#e6db74">&#39;$a replace\ k8s.io\/apimachinery\ =&gt;\ k8s.io\/apimachinery\ v0.0.0-20190313205120-d7deff9243b1&#39;</span> go.mod
+sed -i <span style="color:#e6db74">&#39;$a replace\ github.com\/openzipkin-contrib\/zipkin-go-opentracing\ =&gt;\ github.com\/openzipkin-contrib\/zipkin-go-opentracing\ v0.3.5&#39;</span> go.mod
+docker build  -f Dockerfile.openshift -t quay.io/submariner/<span style="color:#e6db74">${</span>COREDNS_IMAGE<span style="color:#e6db74">}</span> .
+docker push quay.io/submariner/<span style="color:#e6db74">${</span>COREDNS_IMAGE<span style="color:#e6db74">}</span>
+</code></pre></div><h2 id="build-cluster-dns-operator">Build Cluster-DNS-Operator</h2>
+<ol>
+<li>Clone the cluster-dns-operator repository and create a version branch</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/submariner-io/cluster-dns-operator.git
+git checkout -b &lt;VERSION-NO&gt;
+</code></pre></div><ol start="2">
+<li>Change the coredns and cluster dns operator versions.</li>
+</ol>
+<pre><code>	- name: dns-operator
+          terminationMessagePolicy: FallbackToLogsOnError
+          image: quay.io/submariner/lighthouse-cluster-dns-operator:&lt;VERSION-NO&gt;
+          command:
+          - dns-operator
+          env:
+          - name: RELEASE_VERSION
+            value: &quot;0.0.1-snapshot&quot;
+          - name: IMAGE
+            value: quay.io/submariner/lighthouse-coredns:&lt;VERSION-NO&gt;
+</code></pre><p>For example,
+<a href="https://github.com/submariner-io/cluster-dns-operator/pull/1/files#diff-8c85a5683e17f9599cbfc641cceaa040R33">https://github.com/submariner-io/cluster-dns-operator/pull/1/files#diff-8c85a5683e17f9599cbfc641cceaa040R33</a></p>
+<ol start="3">
+<li>Build a new image and upload it to quay.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">REPO<span style="color:#f92672">=</span>quay.io/submariner/lighthouse-cluster-dns-operator:$VERSION make release-local
+</code></pre></div><ol start="3">
+<li>Commit and push the changes and raise a PR.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
+git commit -s
+git push HEAD:&lt;VERSION-NO&gt;
+</code></pre></div><h1 id="step-3-update-the-operator-version-references-and-create-a-release">Step 3: update the operator version references and create a release</h1>
+<p>Once the other builds have finished and you have 0.2.0-rc0 release tags for the submariner and lighthouse projects, you can proceed with changes to the operator.</p>
+<h2 id="change-referenced-versions">Change referenced versions</h2>
+<p>Edit the operator <a href="https://github.com/submariner-io/submariner-operator/edit/master/pkg/versions/versions.go">versions</a> file and change the project version constants to reference the new release, &ldquo;0.2.0-rc0&rdquo;.</p>
+<blockquote>
+<p><a href="https://github.com/submariner-io/submariner-operator/edit/master/pkg/versions/versions.go">https://github.com/submariner-io/submariner-operator/edit/master/pkg/versions/versions.go</a></p>
+</blockquote>
+<p>Create a pull request, wait for the CI job to pass, and get approval/merge. See an example PR <a href="https://github.com/submariner-io/submariner-operator/pull/276">here</a></p>
+<h2 id="create-a-submariner-operator-release">Create a submariner-operator release</h2>
+<p>Assuming you have an existing submariner-operator git directory, run the following steps:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner-operator
+git stash
+git remote add upstream ssh://git@github.com/submariner-io/submariner-operator
+git fetch -a -v -t upstream
+git checkout remotes/upstream/master -B master
+git tag -s -m <span style="color:#e6db74">&#34;Globalnet Overlapping IP support RC0&#34;</span> v0.2.0-rc0
+git push upstream v0.2.0-rc0
+</code></pre></div><p>A tagged release should appear <a href="https://github.com/submariner-io/submariner-operator/tags">here</a>.</p>
+<blockquote>
+<p><a href="https://github.com/submariner-io/submariner-operator/tags">https://github.com/submariner-io/submariner-operator/tags</a></p>
+</blockquote>
+<p>A build for v0.2.0-rc0 should start and appear under the under the &ldquo;Active branches&rdquo; section <a href="https://travis-ci.com/github/submariner-io/submariner-operator/branches">here</a>.</p>
+<blockquote>
+<p><a href="https://travis-ci.com/github/submariner-io/submariner-operator/branches">https://travis-ci.com/github/submariner-io/submariner-operator/branches</a></p>
+</blockquote>
+<p>Verify that the build successfully completes as indicated by a green checkmark at the right.
+At this point the images tagged with 0.2.0-rc0 will be available <a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">here</a>.</p>
+<blockquote>
+<p><a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">https://quay.io/repository/submariner/submariner-operator?tab=tags</a></p>
+</blockquote>
+<h2 id="create-the-subctl-binaries-release">Create the subctl binaries release</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git stash
+cd submariner-operator
+git fetch -a -v -t upstream
+git checkout v0.2.0-rc0
+rm bin/subctl*
+make build-cross
+ls -la bin/subctl*
+</code></pre></div><p>At this point, you should see subctl binaries generated and listed for the various platforms under bin.
+Go to <a href="https://github.com/submariner-io/submariner-operator/tags,">https://github.com/submariner-io/submariner-operator/tags,</a> find the tag for v0.2.0-rc0 and select &ldquo;Edit release&rdquo; to the right. Then upload the generated subctl binaries.</p>
+<p>If this is a pre-release, mark the checkbox &ldquo;This is a pre-release&rdquo;.</p>
+<h1 id="verify-the-version">Verify the version</h1>
+<p>You can follow any of our quickstarts, for example <a href="https://submariner-io.github.io/en/quickstart/openshiftgn/">this</a></p>
+<h1 id="announce">Announce</h1>
+<h2 id="email">email</h2>
+<p>to:</p>
 <ul>
-<li>Cross-cluster L3 connectivity using encrypted VPN tunnels</li>
-<li>Service Discovery across clusters via <a href="./architecture/components/lighthouse/">Lighthouse</a></li>
-<li><a href="./deployment/">subctl</a>, a friendly deployment tool</li>
-<li>Support for interconnecting clusters with <a href="./architecture/globalnet/">overlapping CIDRs</a></li>
+<li>bit.ly/submariner-dev</li>
+<li>bit.ly/submariner-users</li>
+</ul>
+<h2 id="twitter">twitter</h2>
+<p>under:</p>
+<ul>
+<li>twitter.com/submarinerio</li>
 </ul>
 
-<div class="notices tip" ><p>Check the <a href="./quickstart/">Quickstart guide</a> section for deployment instructions.</p>
-</div>
 
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div> 
         
@@ -1427,6 +1650,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1441,6 +1665,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1474,6 +1701,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1489,6 +1717,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1529,8 +1760,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/contributing/building_testing/" title="Building and Testing"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quickstart guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/contributing/code-of-conduct/" title="Code of Conduct" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1560,4 +1793,3 @@
 
   </body>
 </html>
-

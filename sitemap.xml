@@ -1,16 +1,157 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	
-	<sitemap>
-	   	<loc>/en/sitemap.xml</loc>
-		
-	   	<lastmod>2020-03-18T16:03:26+01:00</lastmod>
-		
-	</sitemap>
-	
-	<sitemap>
-	   	<loc>/es/sitemap.xml</loc>
-		
-	</sitemap>
-	
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/contributing/website/</loc>
+    <lastmod>2020-02-19T22:03:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/architecture/globalnet/</loc>
+    <lastmod>2020-02-19T21:08:37+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/architecture/network/</loc>
+    <lastmod>2020-02-19T21:08:28+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quickstart/</loc>
+    <lastmod>2020-02-19T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/contributing/building_testing/</loc>
+    <lastmod>2020-03-18T16:03:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/contributing/release-process/</loc>
+    <lastmod>2020-03-18T16:03:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/architecture/components/lighthouse/</loc>
+    <lastmod>2020-03-02T21:25:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quickstart/openshift/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/deployment/subctl/</loc>
+    <lastmod>2020-02-19T21:25:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/deployment/</loc>
+    <lastmod>2020-02-19T21:25:11+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/architecture/components/</loc>
+    <lastmod>2020-02-19T21:08:37+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quickstart/openshiftsd/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/architecture/</loc>
+    <lastmod>2020-02-19T21:00:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/releases/</loc>
+    <lastmod>2016-04-09T16:50:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/reading_material/</loc>
+    <lastmod>2020-03-09T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quickstart/openshiftgn/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/contributing/code-of-conduct/</loc>
+    <lastmod>2020-02-19T21:43:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/contributing/community-membership/</loc>
+    <lastmod>2020-02-19T21:43:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/deployment/helm/</loc>
+    <lastmod>2020-02-19T21:25:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quickstart/kind/</loc>
+    <lastmod>2020-03-17T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/roadmap/</loc>
+    <lastmod>2020-02-19T20:24:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/contributing/</loc>
+    <lastmod>2020-02-19T20:24:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-03-18T16:03:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/deployment/with-discovery/</loc>
+    <lastmod>2020-02-20T16:40:57+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quickstart/openshift/create_clusters/</loc>
+  </url>
+  
+  <url>
+    <loc>/quickstart/openshift/ready_clusters/</loc>
+  </url>
+  
+  <url>
+    <loc>/quickstart/openshift/setup_openshift/</loc>
+  </url>
+  
+  <url>
+    <loc>/architecture/components/broker/</loc>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>/architecture/components/gateway-engine/</loc>
+  </url>
+  
+  <url>
+    <loc>/architecture/components/route-agent/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+  </url>
+  
+</urlset>

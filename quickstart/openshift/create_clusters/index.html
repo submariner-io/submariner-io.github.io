@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Submariner :: Submariner k8s project documentation website</title>
+    <title> :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1587393365" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/quickstart/openshift/create_clusters/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -109,7 +109,7 @@
   
     
     <li data-nav-id="/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
-        
+        parent
         
         
         ">
@@ -137,7 +137,7 @@
  
   
     
-      <li data-nav-id="/quickstart/openshift/create_clusters/" title="" class="dd-item ">
+      <li data-nav-id="/quickstart/openshift/create_clusters/" title="" class="dd-item active">
         <a href="/quickstart/openshift/create_clusters/">
         
         <i class="fas fa-check read-icon"></i>
@@ -984,39 +984,146 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshift/create_clusters.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Submariner</a> > <a href='/quickstart/'>Quickstart guide</a> > <a href='/quickstart/openshift/'>OpenShift (AWS)</a> > 
+          
+         
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#create-and-deploy-cluster-a">Create and deploy cluster A</a></li>
+        <li><a href="#create-and-deploy-cluster-b">Create and deploy cluster B</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="submariner">Submariner</h1>
-<h4 id="submariner-enables-direct-networking-between-pods-and-services-in-different-kubernetes-clusters-either-on-premise-or-in-the-cloud">Submariner enables direct networking between pods and services in different Kubernetes clusters, either on premise or in the cloud.</h4>
-<h2 id="why-submariner">Why Submariner?</h2>
-<p>As Kubernetes gains adoption, teams are finding they must deploy and manage multiple clusters to facilitate features like geo-redundancy, scale, and fault isolation for their applications. With Submariner, your applications and services can span multiple cloud providers, data centers, and regions.</p>
-<p>Submariner is completely open source, and designed to be network plugin (CNI) agnostic.</p>
-<h2 id="what-submariner-provides">What Submariner Provides?</h2>
-<ul>
-<li>Cross-cluster L3 connectivity using encrypted VPN tunnels</li>
-<li>Service Discovery across clusters via <a href="./architecture/components/lighthouse/">Lighthouse</a></li>
-<li><a href="./deployment/">subctl</a>, a friendly deployment tool</li>
-<li>Support for interconnecting clusters with <a href="./architecture/globalnet/">overlapping CIDRs</a></li>
-</ul>
+<h3 id="create-and-deploy-cluster-a">Create and deploy cluster A</h3>
+<p>In this step you will deploy cluster A, with the default IP CIDRs</p>
+<table>
+<thead>
+<tr>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.128.0.0/14</td>
+<td>172.30.0.0/16</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-a
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-a
+</code></pre></div><p>The create cluster step will take some time, you can create Cluster B in parallel if you wish.</p>
+<h3 id="create-and-deploy-cluster-b">Create and deploy cluster B</h3>
+<p>In this step you will deploy cluster B, modifying the default IP CIDRs</p>
+<table>
+<thead>
+<tr>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.132.0.0/14</td>
+<td>172.31.0.0/16</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
+</code></pre></div><p>Change the POD IP network, please note it’s a /14 range by default so you need to use
++4 increments for “128”, for example: 10.132.0.0, 10.136.0.0, 10.140.0.0, &hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
+</code></pre></div><p>Change the service IP network, this is a /16 range by default, so just use +1 increments
+for “30”: for example: 172.31.0.0, 172.32.0.0, 172.33.0.0, &hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
+</code></pre></div><p>And finally deploy</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
+</code></pre></div>
 
-<div class="notices tip" ><p>Check the <a href="./quickstart/">Quickstart guide</a> section for deployment instructions.</p>
-</div>
-
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div> 
         
@@ -1048,8 +1155,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -1066,6 +1171,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1078,6 +1184,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -1094,6 +1201,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1529,8 +1639,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/quickstart/openshift/" title="OpenShift (AWS)"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quickstart guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/quickstart/openshift/ready_clusters/" title="" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

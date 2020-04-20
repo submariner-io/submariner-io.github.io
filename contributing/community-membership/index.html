@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Submariner :: Submariner k8s project documentation website</title>
+    <title>Community membership :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1587393365" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/contributing/community-membership/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -740,7 +740,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -884,7 +884,7 @@
     
     <li data-nav-id="/contributing/community-membership/" title="Community membership" class="dd-item 
         
-        
+        active
         
         ">
       <a href="/contributing/community-membership/">
@@ -984,39 +984,314 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/community-membership/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > Community membership
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#new-contributors">New contributors</a></li>
+    <li><a href="#established-community-members">Established community members</a></li>
+    <li><a href="#member">Member</a>
+      <ul>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#responsibilities-and-privileges">Responsibilities and privileges</a></li>
+      </ul>
+    </li>
+    <li><a href="#committers">Committers</a>
+      <ul>
+        <li><a href="#requirements-1">Requirements</a></li>
+        <li><a href="#responsibilities-and-privileges-1">Responsibilities and privileges</a></li>
+      </ul>
+    </li>
+    <li><a href="#project-owner">Project Owner</a>
+      <ul>
+        <li><a href="#requirements-2">Requirements</a></li>
+        <li><a href="#responsibilities-and-privileges-2">Responsibilities and privileges</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Community membership
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="submariner">Submariner</h1>
-<h4 id="submariner-enables-direct-networking-between-pods-and-services-in-different-kubernetes-clusters-either-on-premise-or-in-the-cloud">Submariner enables direct networking between pods and services in different Kubernetes clusters, either on premise or in the cloud.</h4>
-<h2 id="why-submariner">Why Submariner?</h2>
-<p>As Kubernetes gains adoption, teams are finding they must deploy and manage multiple clusters to facilitate features like geo-redundancy, scale, and fault isolation for their applications. With Submariner, your applications and services can span multiple cloud providers, data centers, and regions.</p>
-<p>Submariner is completely open source, and designed to be network plugin (CNI) agnostic.</p>
-<h2 id="what-submariner-provides">What Submariner Provides?</h2>
+
+	<p><strong>This is a stripped-down version of the <a href="https://github.com/kubernetes/community/blob/7d2ebad43cde06607cde3d55e9eed4bb08a286a9/community-membership.md">Kubernetes Community Membership
+process</a>.</strong></p>
+<p><strong>Although we aspire to follow the K8s process, some parts are not currently
+relevant to our structure or possible with our tooling:</strong></p>
 <ul>
-<li>Cross-cluster L3 connectivity using encrypted VPN tunnels</li>
-<li>Service Discovery across clusters via <a href="./architecture/components/lighthouse/">Lighthouse</a></li>
-<li><a href="./deployment/">subctl</a>, a friendly deployment tool</li>
-<li>Support for interconnecting clusters with <a href="./architecture/globalnet/">overlapping CIDRs</a></li>
+<li><strong>The SIG and subproject abstraction layers don&rsquo;t apply to Submariner.
+Submariner is treated as a single project with file-based commit rights, not
+a &ldquo;project&rdquo; per repository.</strong></li>
+<li><strong>We hope to eventually move to K8s OWNERS and Prow, but until we do so we
+can&rsquo;t support advanced role-based automation (reviewers vs approvers;
+PR workflow commands like /okay-to-test, /lgtm, /approved).</strong></li>
+</ul>
+<hr>
+<p>This doc outlines the various responsibilities of contributor roles in
+Submariner.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Responsibilities</th>
+<th>Requirements</th>
+<th>Defined by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Member</td>
+<td>Active contributor in the community</td>
+<td>Sponsored by 2 committers, multiple contributions to the project</td>
+<td><a href="https://github.com/orgs/submariner-io/people">Submariner GitHub org member</a></td>
+</tr>
+<tr>
+<td>Committer</td>
+<td>Approve contributions from other members</td>
+<td>History of review and authorship</td>
+<td>CODEOWNERS file entry</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Set direction and priorities for the project</td>
+<td>Demonstrated responsibility and excellent technical judgement for the project</td>
+<td><a href="https://github.com/orgs/submariner-io/teams/submariner-core">Submariner-owners GitHub team member</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="new-contributors">New contributors</h2>
+<p>New contributors should be welcomed to the community by existing members,
+helped with PR workflow, and directed to relevant documentation and
+communication channels.</p>
+<h2 id="established-community-members">Established community members</h2>
+<p>Established community members are expected to demonstrate their adherence to
+the principles in this document, familiarity with project organization, roles,
+policies, procedures, conventions, etc., and technical and/or writing ability.
+Role-specific expectations, responsibilities, and requirements are enumerated
+below.</p>
+<h2 id="member">Member</h2>
+<p>Members are continuously active contributors in the community. They can have
+issues and PRs assigned to them and participate through GitHub teams. Members
+are expected to remain active contributors to the community.</p>
+<p><strong>Defined by:</strong> Member of the <a href="https://github.com/orgs/submariner-io/people">Submariner GitHub organization</a>.</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Enabled <a href="https://help.github.com/articles/about-two-factor-authentication">two-factor authentication</a> on their GitHub account</li>
+<li>Have made multiple contributions to the project or community. Contribution
+may include, but is not limited to:
+<ul>
+<li>Authoring or reviewing PRs on GitHub</li>
+<li>Filing or commenting on issues on GitHub</li>
+<li>Contributing to community discussions (e.g. meetings, Slack, email
+discussion forums, Stack Overflow)</li>
+</ul>
+</li>
+<li>Subscribed to <a href="https://groups.google.com/forum/#!forum/submariner-dev">submariner-dev@googlegroups.com</a></li>
+<li>Have read the <a href="https://submariner-io.github.io/en/contributing/">contributor guide</a></li>
+<li>Actively contributing</li>
+<li>Sponsored by 2 committers. <strong>Note the following requirements for sponsors</strong>:
+<ul>
+<li>Sponsors must have close interactions with the prospective member - e.g.
+code/design/proposal review, coordinating on issues, etc.</li>
+<li>Sponsors must be committers in at least 1 CODEOWNERS file either in any
+repo in the <a href="https://github.com/submariner">Submariner org</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/submariner-io/submariner/issues/new">Open an issue</a> against the submariner-io/submariner repo
+<ul>
+<li>Ensure your sponsors are @mentioned on the issue</li>
+<li>Complete every item on the checklist (<a href="https://git.k8s.io/org/.github/ISSUE_TEMPLATE/membership.md">preview the current version of the template</a>)</li>
+<li>Make sure that the list of contributions included is representative of
+your work on the project</li>
+</ul>
+</li>
+<li>Have your sponsoring committers reply confirmation of sponsorship: <code>+1</code></li>
+<li>Once your sponsors have responded, your request will be reviewed. Any missing
+information will be requested.</li>
+</ul>
+<h3 id="responsibilities-and-privileges">Responsibilities and privileges</h3>
+<ul>
+<li>Responsive to issues and PRs assigned to them</li>
+<li>Responsive to mentions of teams they are members of</li>
+<li>Active owner of code they have contributed (unless ownership is explicitly
+transferred)
+<ul>
+<li>Code is well tested</li>
+<li>Tests consistently pass</li>
+<li>Addresses bugs or issues discovered after code is accepted</li>
+</ul>
+</li>
+<li>They can be assigned to issues and PRs, and people can ask members for
+reviews</li>
+</ul>
+<p><strong>Note:</strong> Members who frequently contribute code are expected to proactively
+perform code reviews and work towards becoming a committer.</p>
+<h2 id="committers">Committers</h2>
+<p>Committers are able to review code for quality and correctness on some part of
+the project. They are knowledgeable about both the codebase and software
+engineering principles.</p>
+<p><strong>Until automation supports approvers vs reviewers:</strong> They also review for
+holistic acceptance of a contribution including: backwards / forwards
+compatibility, adhering to API and flag conventions, subtle performance and
+correctness issues, interactions with other parts of the system, etc.</p>
+<p><strong>Defined by:</strong> Entry in an CODEOWNERS file in a repo owned by the Submariner
+project.</p>
+<p><strong>Committer status is scoped to a part of the codebase.</strong></p>
+<h3 id="requirements-1">Requirements</h3>
+<p>The following apply to the part of codebase for which one would be a committer
+in an CODEOWNERS file:</p>
+<ul>
+<li>Member for at least 3 months</li>
+<li>Primary reviewer for at least 5 PRs to the codebase</li>
+<li>Reviewed at least 20 substantial PRs to the codebase</li>
+<li>Knowledgeable about the codebase</li>
+<li>Sponsored by two committers or project owners
+<ul>
+<li>With no objections from other committers or project owners</li>
+</ul>
+</li>
+<li>May either self-nominate or be nominated by a committer/owner</li>
+</ul>
+<h3 id="responsibilities-and-privileges-1">Responsibilities and privileges</h3>
+<p>The following apply to the part of codebase for which one would be a committer
+in an CODEOWNERS file:</p>
+<ul>
+<li>Responsible for project quality control via <a href="https://github.com/kubernetes/community/blob/7d2ebad43cde06607cde3d55e9eed4bb08a286a9/contributors/guide/collab.md">code reviews</a>
+<ul>
+<li>Focus on code quality and correctness, including testing and factoring</li>
+<li><strong>Until automation supports approvers vs reviewers:</strong> Focus on holistic
+acceptance of contribution such as dependencies with other features,
+backwards / forwards compatibility, API and flag definitions, etc</li>
+</ul>
+</li>
+<li>Expected to be responsive to review requests as per <a href="https://github.com/kubernetes/community/blob/7d2ebad43cde06607cde3d55e9eed4bb08a286a9/contributors/guide/expectations.md">community expectations</a></li>
+<li>Assigned PRs to review related to project of expertise</li>
+<li>Assigned test bugs related to project of expertise</li>
+<li>Granted &ldquo;read access&rdquo; to submariner repo</li>
+<li>May get a badge on PR and issue comments</li>
+<li>Demonstrate sound technical judgement</li>
+<li>Mentor contributors and reviewers</li>
+</ul>
+<h2 id="project-owner">Project Owner</h2>
+<p>Project owners are the technical authority for the Submariner project. They
+<em>MUST</em> have demonstrated both good judgement and responsibility towards the
+health the project. Project owners <em>MUST</em> set technical direction and make or
+approve design decisions for the project - either directly or through
+delegation of these responsibilities.</p>
+<p><strong>Defined by:</strong> Member of the <a href="https://github.com/orgs/submariner-io/teams/submariner-core">submariner-owners GitHub team</a>.</p>
+<h3 id="requirements-2">Requirements</h3>
+<p>Unlike the roles outlined above, the owners of the project are typically
+limited to a relatively small group of decision makers and updated as fits the
+needs of the project.</p>
+<p>The following apply to people who would be an owner:</p>
+<ul>
+<li>Deep understanding of the technical goals and direction of the project</li>
+<li>Deep understanding of the technical domain of the project</li>
+<li>Sustained contributions to design and direction by doing all of:
+<ul>
+<li>Authoring and reviewing proposals</li>
+<li>Initiating, contributing and resolving discussions (emails, GitHub issues,
+meetings)</li>
+<li>Identifying subtle or complex issues in designs and implementation PRs</li>
+</ul>
+</li>
+<li>Directly contributed to the project through implementation and / or review</li>
+</ul>
+<h3 id="responsibilities-and-privileges-2">Responsibilities and privileges</h3>
+<p>The following apply to people who would be an owner:</p>
+<ul>
+<li>Make and approve technical design decisions for the project</li>
+<li>Set technical direction and priorities for the project</li>
+<li>Define milestones and releases</li>
+<li>Mentor and guide committers and contributors to the project</li>
+<li>Ensure continued health of project
+<ul>
+<li>Adequate test coverage to confidently release</li>
+<li>Tests are passing reliably (i.e. not flaky) and are fixed when they fail</li>
+</ul>
+</li>
+<li>Ensure a healthy process for discussion and decision making is in place</li>
+<li>Work with other project owners to maintain the project&rsquo;s overall health and
+success holistically</li>
 </ul>
 
-<div class="notices tip" ><p>Check the <a href="./quickstart/">Quickstart guide</a> section for deployment instructions.</p>
-</div>
 
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div> 
         
@@ -1427,6 +1702,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1441,6 +1717,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1505,6 +1784,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -1529,8 +1809,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/contributing/code-of-conduct/" title="Code of Conduct"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quickstart guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/contributing/website/" title="Contributing to the website" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1560,4 +1842,3 @@
 
   </body>
 </html>
-

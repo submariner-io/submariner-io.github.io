@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Submariner :: Submariner k8s project documentation website</title>
+    <title>Deployment :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1587393365" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/deployment/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -302,7 +302,7 @@
     
     <li data-nav-id="/deployment/" title="Deployment" class="dd-item 
         
-        
+        active
         
         ">
       <a href="/deployment/">
@@ -984,39 +984,136 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'>Submariner</a> > Deployment
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#installing-subctl">Installing subctl</a></li>
+    <li><a href="#deployment-of-broker">Deployment of broker</a></li>
+    <li><a href="#joining-clusters">Joining clusters</a></li>
+    <li><a href="#discovery">Discovery</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Deployment
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="submariner">Submariner</h1>
-<h4 id="submariner-enables-direct-networking-between-pods-and-services-in-different-kubernetes-clusters-either-on-premise-or-in-the-cloud">Submariner enables direct networking between pods and services in different Kubernetes clusters, either on premise or in the cloud.</h4>
-<h2 id="why-submariner">Why Submariner?</h2>
-<p>As Kubernetes gains adoption, teams are finding they must deploy and manage multiple clusters to facilitate features like geo-redundancy, scale, and fault isolation for their applications. With Submariner, your applications and services can span multiple cloud providers, data centers, and regions.</p>
-<p>Submariner is completely open source, and designed to be network plugin (CNI) agnostic.</p>
-<h2 id="what-submariner-provides">What Submariner Provides?</h2>
-<ul>
-<li>Cross-cluster L3 connectivity using encrypted VPN tunnels</li>
-<li>Service Discovery across clusters via <a href="./architecture/components/lighthouse/">Lighthouse</a></li>
-<li><a href="./deployment/">subctl</a>, a friendly deployment tool</li>
-<li>Support for interconnecting clusters with <a href="./architecture/globalnet/">overlapping CIDRs</a></li>
-</ul>
 
-<div class="notices tip" ><p>Check the <a href="./quickstart/">Quickstart guide</a> section for deployment instructions.</p>
+	<p>The inner details of deploying a broker and connecting clusters to the broker are complicated, subctl automates and simplifies most of those details eliminating human error as much as possible. This is why <strong>subctl</strong> is the recommended deployment method, you can find a complete guide to the subctl tool here: <a href="subctl">subctl in detail</a>. If you still believe <em>helm</em> works better for you, please go <a href="helm">here</a>.</p>
+<h2 id="installing-subctl">Installing subctl</h2>
+Download the subctl binary and make it available on your PATH.
+
+
+
+<div class="highlight">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<code class="language-bash" data-lang="bash">
+mkdir -p ~/.local/bin
+curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.1.1/subctl-v0.1.1-linux-amd64
+chmod a+x ~/.local/bin/subctl
+export PATH=$PATH:~/.local/bin
+echo export PATH=$PATH:~/.local/bin >> ~/.profile
+</code>
+</pre>
 </div>
 
+<h2 id="deployment-of-broker">Deployment of broker</h2>
+<p>Please remember, this cluster&rsquo;s API should be accessible from all other clusters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; 
+</code></pre></div><p>this will create:</p>
+<ul>
+<li>The submariner-k8s-broker namespace</li>
+<li>The Cluster and Endpoint (.submariner.io) CRDs in the cluster</li>
+<li>A service account in the namespace for subsequent subctl access.</li>
+<li>A random IPSEC PSK which will be stored only in the <code>broker-info.subm</code> file.</li>
+</ul>
+<p>And generate a broker-info.subm file which contains the following elements:</p>
+<ul>
+<li>The API endpoint</li>
+<li>A CA certificate to for the API endpoint</li>
+<li>The service account token for accessing the API endpoint / submariner-k8s-broker namespace.</li>
+</ul>
+
+<div class="notices info" ><p>This cluster can also participate in the dataplane connectivity with the other clusters, but it will need to be joined (see following step)</p>
+</div>
+
+<h2 id="joining-clusters">Joining clusters</h2>
+<p>For each cluster you want to join:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig &lt;PATH-TO-JOINING-CLUSTER&gt; broker-info.subm
+</code></pre></div><p>subctl will discover as much as it can, and ask you for any necessary detail it can&rsquo;t figure out like the cluster ID which has to be different between all clusters.</p>
+<h2 id="discovery">Discovery</h2>
+<p>Service discovery (via DNS and lighthouse project) is an experimental feature (developer preview), and the instructions to deploy with discovery can be found <a href="with-discovery/">here</a></p>
+
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div> 
         
@@ -1181,6 +1278,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1195,6 +1293,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1529,8 +1630,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/quickstart/kind/" title="KIND"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quickstart guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/deployment/subctl/" title="subctl" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1560,4 +1663,3 @@
 
   </body>
 </html>
-

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Submariner :: Submariner k8s project documentation website</title>
+    <title> :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1587393365" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/quickstart/openshift/ready_clusters/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -109,7 +109,7 @@
   
     
     <li data-nav-id="/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
-        
+        parent
         
         
         ">
@@ -158,7 +158,7 @@
  
   
     
-      <li data-nav-id="/quickstart/openshift/ready_clusters/" title="" class="dd-item ">
+      <li data-nav-id="/quickstart/openshift/ready_clusters/" title="" class="dd-item active">
         <a href="/quickstart/openshift/ready_clusters/">
         
         <i class="fas fa-check read-icon"></i>
@@ -984,39 +984,120 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshift/ready_clusters.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Submariner</a> > <a href='/quickstart/'>Quickstart guide</a> > <a href='/quickstart/openshift/'>OpenShift (AWS)</a> > 
+          
+         
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#make-your-clusters-ready-for-submariner">Make your clusters ready for submariner</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="submariner">Submariner</h1>
-<h4 id="submariner-enables-direct-networking-between-pods-and-services-in-different-kubernetes-clusters-either-on-premise-or-in-the-cloud">Submariner enables direct networking between pods and services in different Kubernetes clusters, either on premise or in the cloud.</h4>
-<h2 id="why-submariner">Why Submariner?</h2>
-<p>As Kubernetes gains adoption, teams are finding they must deploy and manage multiple clusters to facilitate features like geo-redundancy, scale, and fault isolation for their applications. With Submariner, your applications and services can span multiple cloud providers, data centers, and regions.</p>
-<p>Submariner is completely open source, and designed to be network plugin (CNI) agnostic.</p>
-<h2 id="what-submariner-provides">What Submariner Provides?</h2>
-<ul>
-<li>Cross-cluster L3 connectivity using encrypted VPN tunnels</li>
-<li>Service Discovery across clusters via <a href="./architecture/components/lighthouse/">Lighthouse</a></li>
-<li><a href="./deployment/">subctl</a>, a friendly deployment tool</li>
-<li>Support for interconnecting clusters with <a href="./architecture/globalnet/">overlapping CIDRs</a></li>
-</ul>
+<h3 id="make-your-clusters-ready-for-submariner">Make your clusters ready for submariner</h3>
+<p>Submariner gateway nodes need to be able to accept traffic over ports 4500/UDP and 500/UDP
+when using IPSEC. In addition we use port 4800/UDP to encapsulate traffic from the worker nodes
+to the gateway nodes and ensuring that Pod IP addresses are preserved.</p>
+<p>Additionally, the default Openshift deployments don&rsquo;t allow assigning an elastic public IP
+to existing worker nodes, something that it&rsquo;s necessary at least on one end of the IPSEC connections.</p>
+<p>To handle all those details we provide a script that will prepare your AWS OpenShift deployment
+for submariner, and will create an additional gateway node with an external IP.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
+chmod a+x ./prep_for_subm.sh
 
-<div class="notices tip" ><p>Check the <a href="./quickstart/">Quickstart guide</a> section for deployment instructions.</p>
+./prep_for_subm.sh cluster-a     <span style="color:#75715e"># respond yes when terraform asks</span>
+./prep_for_subm.sh cluster-b      <span style="color:#75715e"># respond yes when terraform asks</span>
+
+</code></pre></div>
+<div class="notices info" ><p>Please note that the prep_for_subm.sh script has a few pre-requirements, you will need to install: <strong>oc, aws-cli, terraform, and unzip</strong>.</p>
 </div>
 
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div> 
         
@@ -1048,8 +1129,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -1066,6 +1145,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1078,6 +1158,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1095,6 +1178,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1110,6 +1194,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1529,8 +1616,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/quickstart/openshift/create_clusters/" title=""> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quickstart guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/quickstart/openshift/setup_openshift/" title="" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

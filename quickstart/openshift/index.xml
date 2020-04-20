@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenShift (AWS) on Submariner k8s project documentation website</title>
+    <link>/quickstart/openshift/</link>
+    <description>Recent content in OpenShift (AWS) on Submariner k8s project documentation website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 21 Feb 2020 13:36:18 +0100</lastBuildDate>
+    
+	<atom:link href="/quickstart/openshift/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/quickstart/openshift/create_clusters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/quickstart/openshift/create_clusters/</guid>
+      <description>Create and deploy cluster A In this step you will deploy cluster A, with the default IP CIDRs
+   Pod CIDR Service CIDR     10.128.0.0/14 172.30.0.0/16    openshift-install create install-config --dir cluster-a openshift-install create cluster --dir cluster-a The create cluster step will take some time, you can create Cluster B in parallel if you wish.
+Create and deploy cluster B In this step you will deploy cluster B, modifying the default IP CIDRs</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/quickstart/openshift/ready_clusters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/quickstart/openshift/ready_clusters/</guid>
+      <description>Make your clusters ready for submariner Submariner gateway nodes need to be able to accept traffic over ports 4500/UDP and 500/UDP when using IPSEC. In addition we use port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes and ensuring that Pod IP addresses are preserved.
+Additionally, the default Openshift deployments don&amp;rsquo;t allow assigning an elastic public IP to existing worker nodes, something that it&amp;rsquo;s necessary at least on one end of the IPSEC connections.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/quickstart/openshift/setup_openshift/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/quickstart/openshift/setup_openshift/</guid>
+      <description>AWS openshift-install and pull-secret Download the openshift-install and oc tools, and copy your pull secret from:
+ https://cloud.redhat.com/openshift/install/aws/installer-provisioned
+ Find more detailed instructions here:
+ https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html
+ Make sure the aws cli is properly installed and configured Installation instructions
+ https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+ $ aws configure AWS Access Key ID [None]: .... AWS Secret Access Key [None]: .... Default region name [None]: .... Default output format [None]: text See also for more details:</description>
+    </item>
+    
+  </channel>
+</rss>
