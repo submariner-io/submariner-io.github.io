@@ -12,20 +12,20 @@
     <title>OpenShift with Service Discovery (AWS) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1587997928" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1587997928" rel="stylesheet">
-    <link href="/css/hybrid.css?1587997928" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1587997928" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1587997928" rel="stylesheet">
-    <link href="/css/auto-complete.css?1587997928" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1587997928" rel="stylesheet">
-    <link href="/css/theme.css?1587997928" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1587997928" rel="stylesheet">
+    <link href="/css/nucleus.css?1587998990" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1587998990" rel="stylesheet">
+    <link href="/css/hybrid.css?1587998990" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1587998990" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1587998990" rel="stylesheet">
+    <link href="/css/auto-complete.css?1587998990" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1587998990" rel="stylesheet">
+    <link href="/css/theme.css?1587998990" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1587998990" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1587997928" rel="stylesheet">
+      <link href="/css/theme-blue.css?1587998990" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1587997928"></script>
+    <script src="/js/jquery-3.3.1.min.js?1587998990"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1587997928"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1587997928"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1587998990"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1587998990"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1587997928"></script>
+<script type="text/javascript" src="/js/search.js?1587998990"></script>
 
     
   </div>
@@ -1040,7 +1040,6 @@
     <li>
       <ul>
         <li><a href="#install-subctl">Install subctl</a></li>
-        <li><a href="#install-kubefedctl">Install kubefedctl</a></li>
         <li><a href="#install-submariner-with-service-discovery">Install Submariner with Service Discovery</a></li>
       </ul>
     </li>
@@ -1188,37 +1187,22 @@ echo export PATH=$PATH:~/.local/bin >> ~/.profile
 </pre>
 </div>
 
-<h3 id="install-kubefedctl">Install kubefedctl</h3>
-<p>Download the kubefedctl binary and make it available on your PATH.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VERSION<span style="color:#f92672">=</span>0.1.0-rc3
-OS<span style="color:#f92672">=</span>linux
-ARCH<span style="color:#f92672">=</span>amd64
-curl -LO https://github.com/kubernetes-sigs/kubefed/releases/download/v<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span>/kubefedctl-<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>OS<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>ARCH<span style="color:#e6db74">}</span>.tgz
-tar -zxvf kubefedctl-*.tgz
-chmod u+x kubefedctl
-mv kubefedctl ~/.local/bin/
-</code></pre></div><h3 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h3>
+<h3 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h3>
 
 <div class="notices info" ><p>The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster will disable Openshift CVO.</p>
 </div>
 
 <p>To install Submariner with multi-cluster service discovery follow the steps below.</p>
-<h4 id="create-a-merged-kubeconfig">Create a merged kubeconfig</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>$PWD/cluster-a/auth/kubeconfig:$PWD/cluster-b/auth/kubeconfig
-sed -i <span style="color:#e6db74">&#39;s/admin/east/&#39;</span> cluster-a/auth/kubeconfig
-sed -i <span style="color:#e6db74">&#39;s/admin/west/&#39;</span> cluster-b/auth/kubeconfig
-kubectl config view --flatten &gt; ./merged_kubeconfig
-</code></pre></div><h4 id="use-cluster-a-as-broker-with-service-discovery-enabled">Use cluster-a as broker with service discovery enabled</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker  --kubecontext west --kubeconfig ./merged_kubeconfig --service-discovery
+<h4 id="use-cluster-a-as-broker-with-service-discovery-enabled">Use cluster-a as broker with service discovery enabled</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig cluster-a/auth/kubeconfig --service-discovery
 </code></pre></div><h4 id="join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the broker</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext west --kubeconfig ./merged_kubeconfig broker-info.subm --clusterid west --broker-cluster-context west
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext east --kubeconfig ./merged_kubeconfig broker-info.subm --clusterid east --broker-cluster-context west
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --clusterid cluster-a
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --clusterid cluster-b
 </code></pre></div><h4 id="verify-deployment">Verify Deployment</h4>
 <p>To verify the deployment follow the steps below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>./merged_kubeconfig
-kubectl --context east create deployment nginx --image<span style="color:#f92672">=</span>nginx
-kubectl --context east expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
-kubectl --context west run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image nicolaka/netshoot -- /bin/bash
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig cluster-b/auth/kubeconfig create deployment nginx --image<span style="color:#f92672">=</span>nginx
+kubectl --kubeconfig cluster-b/auth/kubeconfig expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
+kubectl --kubeconfig cluster-a/auth/kubeconfig run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image nicolaka/netshoot -- /bin/bash
 curl nginx
 </code></pre></div>
 
@@ -1759,19 +1743,19 @@ curl nginx
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1587997928"></script>
-    <script src="/js/perfect-scrollbar.min.js?1587997928"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1587997928"></script>
-    <script src="/js/jquery.sticky.js?1587997928"></script>
-    <script src="/js/featherlight.min.js?1587997928"></script>
-    <script src="/js/highlight.pack.js?1587997928"></script>
+    <script src="/js/clipboard.min.js?1587998990"></script>
+    <script src="/js/perfect-scrollbar.min.js?1587998990"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1587998990"></script>
+    <script src="/js/jquery.sticky.js?1587998990"></script>
+    <script src="/js/featherlight.min.js?1587998990"></script>
+    <script src="/js/highlight.pack.js?1587998990"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1587997928"></script>
-    <script src="/js/learn.js?1587997928"></script>
-    <script src="/js/hugo-learn.js?1587997928"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1587998990"></script>
+    <script src="/js/learn.js?1587998990"></script>
+    <script src="/js/hugo-learn.js?1587998990"></script>
 
-    <link href="/mermaid/mermaid.css?1587997928" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1587997928"></script>
+    <link href="/mermaid/mermaid.css?1587998990" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1587998990"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

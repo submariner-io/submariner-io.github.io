@@ -12,20 +12,20 @@
     <title>With Discovery (experimental) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1587997928" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1587997928" rel="stylesheet">
-    <link href="/css/hybrid.css?1587997928" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1587997928" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1587997928" rel="stylesheet">
-    <link href="/css/auto-complete.css?1587997928" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1587997928" rel="stylesheet">
-    <link href="/css/theme.css?1587997928" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1587997928" rel="stylesheet">
+    <link href="/css/nucleus.css?1587998990" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1587998990" rel="stylesheet">
+    <link href="/css/hybrid.css?1587998990" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1587998990" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1587998990" rel="stylesheet">
+    <link href="/css/auto-complete.css?1587998990" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1587998990" rel="stylesheet">
+    <link href="/css/theme.css?1587998990" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1587998990" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1587997928" rel="stylesheet">
+      <link href="/css/theme-blue.css?1587998990" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1587997928"></script>
+    <script src="/js/jquery-3.3.1.min.js?1587998990"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1587997928"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1587997928"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1587998990"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1587998990"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1587997928"></script>
+<script type="text/javascript" src="/js/search.js?1587998990"></script>
 
     
   </div>
@@ -1074,22 +1074,14 @@
 
 <p>The <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> project helps in cross-cluster service discovery. It has the below <strong>additional dependencies</strong></p>
 <ul>
-<li>kubefedctl installed (<a href="https://github.com/kubernetes-sigs/kubefed/releases/tag/v0.1.0-rc3">0.1.0-rc3</a>).</li>
 <li>kubectl installed.</li>
 </ul>
 <h3 id="deploying-submariner-with-lighthouse">Deploying Submariner with Lighthouse</h3>
 <h4 id="deploy-broker">Deploy Broker</h4>
-<pre><code>subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; --service-discovery --broker-cluster-context &lt;BROKER-CONTEXT-NAME&gt;
-</code></pre><p>kubefed will be installed in the broker cluster, as lighthouse currently depends on it for resource distribution. This dependency will be eliminated in the future.</p>
-<h4 id="join-clusters">Join Clusters</h4>
+<pre><code>subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt; --service-discovery
+</code></pre><h4 id="join-clusters">Join Clusters</h4>
 <p>To join all the other clusters with the broker cluster, run subctl using the broker-info.subm generated in the folder from which the previous step was run.</p>
-
-<div class="notices info" ><p>You will need a kubeconfig file with multiple contexts, a default admin context pointing to
-the cluster you&rsquo;re trying to join, and another context which provides access to the broker
-cluster from the previous step. This is a requirement from kubefedctl.</p>
-</div>
-
-<pre><code>subctl join --kubeconfig &lt;PATH-TO-KUBECONFIG-DATA-CLUSTER&gt; broker-info.subm  --broker-cluster-context &lt;BROKER-CONTEXT-NAME&gt;
+<pre><code>subctl join --kubeconfig &lt;PATH-TO-KUBECONFIG-DATA-CLUSTER&gt; broker-info.subm
 </code></pre><p>As for a normal deployment, subctl will try to figure out all necessary information and will
 ask for anything it can&rsquo;t figure out.</p>
 
@@ -1631,19 +1623,19 @@ ask for anything it can&rsquo;t figure out.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1587997928"></script>
-    <script src="/js/perfect-scrollbar.min.js?1587997928"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1587997928"></script>
-    <script src="/js/jquery.sticky.js?1587997928"></script>
-    <script src="/js/featherlight.min.js?1587997928"></script>
-    <script src="/js/highlight.pack.js?1587997928"></script>
+    <script src="/js/clipboard.min.js?1587998990"></script>
+    <script src="/js/perfect-scrollbar.min.js?1587998990"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1587998990"></script>
+    <script src="/js/jquery.sticky.js?1587998990"></script>
+    <script src="/js/featherlight.min.js?1587998990"></script>
+    <script src="/js/highlight.pack.js?1587998990"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1587997928"></script>
-    <script src="/js/learn.js?1587997928"></script>
-    <script src="/js/hugo-learn.js?1587997928"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1587998990"></script>
+    <script src="/js/learn.js?1587998990"></script>
+    <script src="/js/hugo-learn.js?1587998990"></script>
 
-    <link href="/mermaid/mermaid.css?1587997928" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1587997928"></script>
+    <link href="/mermaid/mermaid.css?1587998990" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1587998990"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
