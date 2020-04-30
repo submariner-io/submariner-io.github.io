@@ -12,20 +12,20 @@
     <title>Lighthouse :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1588169401" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588169401" rel="stylesheet">
-    <link href="/css/hybrid.css?1588169401" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588169401" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588169401" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588169401" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588169401" rel="stylesheet">
-    <link href="/css/theme.css?1588169401" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588169401" rel="stylesheet">
+    <link href="/css/nucleus.css?1588248756" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1588248756" rel="stylesheet">
+    <link href="/css/hybrid.css?1588248756" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1588248756" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1588248756" rel="stylesheet">
+    <link href="/css/auto-complete.css?1588248756" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1588248756" rel="stylesheet">
+    <link href="/css/theme.css?1588248756" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1588248756" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1588169401" rel="stylesheet">
+      <link href="/css/theme-blue.css?1588248756" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588169401"></script>
+    <script src="/js/jquery-3.3.1.min.js?1588248756"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588169401"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588169401"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1588248756"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1588248756"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588169401"></script>
+<script type="text/javascript" src="/js/search.js?1588248756"></script>
 
     
   </div>
@@ -1045,7 +1045,7 @@
   <ul>
     <li><a href="#architecture">Architecture</a>
       <ul>
-        <li><a href="#lighthouse-controller">Lighthouse Controller</a></li>
+        <li><a href="#lighthouse-agent">Lighthouse Agent</a></li>
         <li><a href="#lighthouse-plugin">Lighthouse Plugin</a></li>
       </ul>
     </li>
@@ -1079,18 +1079,16 @@
 <h2 id="architecture">Architecture</h2>
 <p>The below digram shows the basic Lighthouse architecture.</p>
 <p><img src="/images/lighthouse/architecture.png" alt="Lighthouse Architecture"></p>
-<h3 id="lighthouse-controller">Lighthouse Controller</h3>
-<p>This is the central discovery controller that gathers the information from the clusters, decides what information is to be shared and distributes the information as newly defined CRDs (Kubernetes custom resources).</p>
-<p>The Lighthouse controller uses <a href="https://github.com/kubernetes-sigs/kubefed">kubefed</a> to discover clusters and to extract and distribute aggregated Service information used to perform DNS resolution.</p>
+<h3 id="lighthouse-agent">Lighthouse Agent</h3>
+<p>The Lighthouse Agent runs in every cluster and accesses the Kubernetes API server running in the broker cluster to exchange service metadata information with other clusters. Local service information is exported to the broker and service information from other clusters is imported.</p>
 <h4 id="workflow">WorkFlow</h4>
-<p>The workflow is as follows.</p>
+<p>The workflow is as follows:</p>
 <ul>
-<li>Lighthouse controller registers to be notified when clusters join and unjoin the kubefed control plane.</li>
-<li>When notified about a join event, it retrieves the credentials from kubefed and registers a watch for Service creation and removal on that cluster.</li>
-<li>When notified of a new Service created, it creates a MultiClusterService resource with the Service info and distributes it to all the clusters that are connected to the kubefed  control plane.</li>
-<li>When notified of a Service deleted, its info is removed from the MultiClusterService resource and re-distributed.</li>
+<li>Lighthouse agent connects to the broker&rsquo;s K8s API server.</li>
+<li>For every service in the local cluster, it creates a corresponding MultiClusterService resource and exports it to the broker to be consumed by other clusters.</li>
+<li>For every MultiClusterService resource in the broker exported from another cluster, it creates a copy of it in the local cluster.</li>
 </ul>
-<p><img src="/images/lighthouse/controllerWorkFlow.png" alt="Lighthouse Controller WorkFlow"></p>
+<p><img src="/images/lighthouse/controllerWorkFlow.png" alt="Lighthouse Agent WorkFlow"></p>
 <!-- raw HTML omitted -->
 <h3 id="lighthouse-plugin">Lighthouse Plugin</h3>
 <p>Lighthouse plugin can be installed as an external plugin for CoreDNS, and will work along with the default Kubernetes plugin. It uses the MultiClusterService resources that are distributed by the controller for DNS resolution. The below diagram indicates a high-level architecture.</p>
@@ -1648,19 +1646,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588169401"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588169401"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588169401"></script>
-    <script src="/js/jquery.sticky.js?1588169401"></script>
-    <script src="/js/featherlight.min.js?1588169401"></script>
-    <script src="/js/highlight.pack.js?1588169401"></script>
+    <script src="/js/clipboard.min.js?1588248756"></script>
+    <script src="/js/perfect-scrollbar.min.js?1588248756"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1588248756"></script>
+    <script src="/js/jquery.sticky.js?1588248756"></script>
+    <script src="/js/featherlight.min.js?1588248756"></script>
+    <script src="/js/highlight.pack.js?1588248756"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588169401"></script>
-    <script src="/js/learn.js?1588169401"></script>
-    <script src="/js/hugo-learn.js?1588169401"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1588248756"></script>
+    <script src="/js/learn.js?1588248756"></script>
+    <script src="/js/hugo-learn.js?1588248756"></script>
 
-    <link href="/mermaid/mermaid.css?1588169401" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588169401"></script>
+    <link href="/mermaid/mermaid.css?1588248756" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1588248756"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
