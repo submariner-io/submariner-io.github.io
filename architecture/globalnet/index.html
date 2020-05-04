@@ -12,20 +12,20 @@
     <title>Globalnet Controller :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1588340140" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588340140" rel="stylesheet">
-    <link href="/css/hybrid.css?1588340140" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588340140" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588340140" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588340140" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588340140" rel="stylesheet">
-    <link href="/css/theme.css?1588340140" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588340140" rel="stylesheet">
+    <link href="/css/nucleus.css?1588579200" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1588579200" rel="stylesheet">
+    <link href="/css/hybrid.css?1588579200" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1588579200" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1588579200" rel="stylesheet">
+    <link href="/css/auto-complete.css?1588579200" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1588579200" rel="stylesheet">
+    <link href="/css/theme.css?1588579200" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1588579200" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1588340140" rel="stylesheet">
+      <link href="/css/theme-blue.css?1588579200" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588340140"></script>
+    <script src="/js/jquery-3.3.1.min.js?1588579200"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588340140"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588340140"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1588579200"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1588579200"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588340140"></script>
+<script type="text/javascript" src="/js/search.js?1588579200"></script>
 
     
   </div>
@@ -1092,30 +1092,36 @@ other cluster that is going to be part of cluster fleet.</p>
 <p>This is largely problematic because most actual deployments use the default CIDRs for a cluster so every cluster ends up using the same CIDRs. Changing CIDRs on existing clusters is a very disruptive process and requires a cluster restart. So submariner needs a way to allow clusters with overlapping CIDRs to connect together.</p>
 <h2 id="architecture">Architecture</h2>
 <p>To support overlapping CIDRs in clusters connected through submariner, submariner has a component called Global Private Network, GlobalNet (<code>globalnet</code>). This GlobalNet is a virtual network specifically to support submariner&rsquo;s multi-cluster solution with a Global CIDR. Each cluster is given a subnet from this Global Private Network, configured as new cluster parameter <code>GlobalCIDR</code> (e.g. 169.254.0.0/16) which is configurable at time of deployment</p>
-<p>Once configured, each service and pod that requires cross-cluster access is allocated an IP, named <code>GlobalIp</code>, from this <code>GlobalCIDR</code> that is annotated on the Pod/Service object. This <code>GlobalIp</code> is used for all cross-cluster communication to and from to this Pod/Service. Routing and IPTable/OVS/OVN rules are configured to use this IP for ingress and egress. All address translations occur on the Gateway node.</p>
+<p>Once configured, each Service and Pod that requires cross-cluster access is allocated an IP, named <code>globalIp</code>, from this <code>GlobalCIDR</code> that is annotated on the Pod/Service object. This globalIp is used for all cross-cluster communication to and from a Pod and the globalIp of a remote Service. Routing and IPTable rules are configured to use the globalIp for ingress and egress. All address translations occur on the Gateway node.</p>
 <p><img src="/images/globalnet/overlappingcidr-solution.png" alt="Figure 1 - Proposed solution"></p>
+
+<div class="notices info" ><p>Unlike vanilla Submariner, where Pod to Pod connectivity is also supported, GlobalNet only supports Pod to remote Service connectivity using globalIps.</p>
+</div>
+
 <h3 id="submariner-globalnet">submariner-globalnet</h3>
-<p>Submariner GlobalNet is a component that provides cross-cluster connectivity between pods and services using their GlobalIps. Compiled as binary <code>submariner-globalnet</code>, it is responsible for maintaining a pool of global IPs, allocating IPs from the globalIp pool to pods and services, annotating services and pods with their GlobalIp, and configuring the required rules on the gateway node to provide cross-cluster connectivity using GlobalIps. It mainly consists of two key components: the IP Address Manager and Globalnet.</p>
+<p>Submariner GlobalNet is a component that provides cross-cluster connectivity from Pods to remote Services using their globalIps. Compiled as binary <code>submariner-globalnet</code>, it is responsible for maintaining a pool of global IPs, allocating IPs from the GlobalIp pool to pods and services, annotating Services and Pods with their globalIp, and configuring the required rules on the gateway node to provide cross-cluster connectivity using globalIps.
+Globalnet also supports connectivity from the Nodes (including Pods that use HostNetworking) to globalIp of remote Services.
+It mainly consists of two key components: the IP Address Manager and Globalnet.</p>
 <h4 id="ip-address-manager-ipam">IP Address Manager (IPAM)</h4>
 <p>The IP Address Manager (IPAM) component does the following:</p>
 <ul>
 <li>Creates a pool of IP addresses based on the <code>GlobalCIDR</code> configured on cluster.</li>
-<li>On creation of a Pod/Service, allocates a GlobalIp from the GlobalIp pool.</li>
-<li>Annotates the Pod/Service with <code>submariner.io/GlobalIp=&lt;global-ip&gt;</code>.</li>
-<li>On deletion of a Pod/Service, releases its GlobalIp back to the pool.</li>
+<li>On creation of a Pod/Service, allocates a globalIp from the GlobalIp pool.</li>
+<li>Annotates the Pod/Service with <code>submariner.io/globalIp=&lt;global-ip&gt;</code>.</li>
+<li>On deletion of a Pod/Service, releases its globalIp back to the pool.</li>
 </ul>
 <h4 id="globalnet">Globalnet</h4>
-<p>This component is responsible for programming the routing entries and IPTable rules and does the following:</p>
+<p>This component is responsible for programming the routing entries, IPTable rules and does the following:</p>
 <ul>
 <li>Creates initial IPTables chains for Globalnet rules.</li>
-<li>Whenever a pod is annotated with Global IP, creates an egress SNAT rule to convert source ip from PodIp to pod&rsquo;s GlobalIp on the Gateway Node.</li>
-<li>Whenever a service is annotated with Global IP, creates an ingress rule to direct all traffic destined to service&rsquo;s GlobalIp to the service&rsquo;s <code>kube-proxy</code> IPTables chain which in turn directs traffic to service&rsquo;s backend pods.</li>
+<li>Whenever a Pod is annotated with a globalIp, creates an egress SNAT rule to convert the source Ip from the Pod&rsquo;s Ip to the Pod&rsquo;s globalIp on the Gateway Node.</li>
+<li>Whenever a Service is annotated with a globalIp, creates an ingress rule to direct all traffic destined to the Service&rsquo;s globalIp to the Service&rsquo;s <code>kube-proxy</code> IPTables chain which in turn directs traffic to Service&rsquo;s backend Pods.</li>
 <li>On deletion of pod/service, clean up the rules from the gateway node.</li>
 </ul>
 <p>Globalnet currently relies on <code>kube-proxy</code> and thus will only work with deployments that use <code>kube-proxy</code>.</p>
 <h3 id="service-discovery---lighthouse">Service Discovery - Lighthouse</h3>
 <p>Connectivity is only part of the solution as pods still need to know the IPs of services on remote clusters.</p>
-<p>This is achieved by enhancing <a href="https://github.com/submariner-io/lighthouse">lighthouse</a> with support for GlobalNet. The Lighthouse controller adds the service&rsquo;s GlobalIp to the <code>MultiClusterService</code> object that is distributed to all clusters. The <a href="https://github.com/submariner-io/lighthouse/tree/master/plugin/lighthouse">lighthouse plugin</a> then uses the service&rsquo;s GlobalIp when replying to DNS queries for the service.</p>
+<p>This is achieved by enhancing <a href="https://github.com/submariner-io/lighthouse">lighthouse</a> with support for GlobalNet. The Lighthouse controller adds the service&rsquo;s globalIp to the <code>MultiClusterService</code> object that is distributed to all clusters. The <a href="https://github.com/submariner-io/lighthouse/tree/master/plugin/lighthouse">lighthouse plugin</a> then uses the Service&rsquo;s globalIp when replying to DNS queries for the Service.</p>
 <h2 id="building">Building</h2>
 <p>Nothing extra needs to be done to build <code>submariner-globalnet</code> as it is built with the standard submariner build.</p>
 
@@ -1657,19 +1663,19 @@ other cluster that is going to be part of cluster fleet.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588340140"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588340140"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588340140"></script>
-    <script src="/js/jquery.sticky.js?1588340140"></script>
-    <script src="/js/featherlight.min.js?1588340140"></script>
-    <script src="/js/highlight.pack.js?1588340140"></script>
+    <script src="/js/clipboard.min.js?1588579200"></script>
+    <script src="/js/perfect-scrollbar.min.js?1588579200"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1588579200"></script>
+    <script src="/js/jquery.sticky.js?1588579200"></script>
+    <script src="/js/featherlight.min.js?1588579200"></script>
+    <script src="/js/highlight.pack.js?1588579200"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588340140"></script>
-    <script src="/js/learn.js?1588340140"></script>
-    <script src="/js/hugo-learn.js?1588340140"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1588579200"></script>
+    <script src="/js/learn.js?1588579200"></script>
+    <script src="/js/hugo-learn.js?1588579200"></script>
 
-    <link href="/mermaid/mermaid.css?1588340140" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588340140"></script>
+    <link href="/mermaid/mermaid.css?1588579200" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1588579200"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
