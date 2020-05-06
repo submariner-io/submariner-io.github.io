@@ -3,29 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.69.2" />
+    <meta name="generator" content="Hugo 0.70.0" />
     <meta name="description" content="Documentation website for the submariner project">
 <meta name="author" content="The submariner community">
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Release process :: Submariner k8s project documentation website</title>
+    <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1588763227" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588763227" rel="stylesheet">
-    <link href="/css/hybrid.css?1588763227" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588763227" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588763227" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588763227" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588763227" rel="stylesheet">
-    <link href="/css/theme.css?1588763227" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588763227" rel="stylesheet">
+    <link href="/css/nucleus.css?1588770029" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1588770029" rel="stylesheet">
+    <link href="/css/hybrid.css?1588770029" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1588770029" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1588770029" rel="stylesheet">
+    <link href="/css/auto-complete.css?1588770029" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1588770029" rel="stylesheet">
+    <link href="/css/theme.css?1588770029" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1588770029" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1588763227" rel="stylesheet">
+      <link href="/css/theme-blue.css?1588770029" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588763227"></script>
+    <script src="/js/jquery-3.3.1.min.js?1588770029"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588763227"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588763227"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1588770029"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1588770029"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588763227"></script>
+<script type="text/javascript" src="/js/search.js?1588770029"></script>
 
     
   </div>
@@ -269,13 +269,13 @@
  
   
     
-    <li data-nav-id="/quickstart/kind/" title="KIND" class="dd-item 
+    <li data-nav-id="/quickstart/kind/" title="KIND (Local Environment)" class="dd-item 
         
         
         
         ">
       <a href="/quickstart/kind/">
-          KIND
+          KIND (Local Environment)
           
             <i class="fas fa-check read-icon"></i>
           
@@ -335,13 +335,13 @@
  
   
     
-    <li data-nav-id="/deployment/subctl/" title="subctl" class="dd-item 
+    <li data-nav-id="/deployment/subctl/" title="Using Subctl" class="dd-item 
         
         
         
         ">
       <a href="/deployment/subctl/">
-          subctl
+          Using Subctl
           
             <i class="fas fa-check read-icon"></i>
           
@@ -363,13 +363,13 @@
  
   
     
-    <li data-nav-id="/deployment/helm/" title="helm" class="dd-item 
+    <li data-nav-id="/deployment/helm/" title="Using Helm" class="dd-item 
         
         
         
         ">
       <a href="/deployment/helm/">
-          helm
+          Using Helm
           
             <i class="fas fa-check read-icon"></i>
           
@@ -734,13 +734,13 @@
  
   
     
-    <li data-nav-id="/contributing/website/" title="Contributing to the website" class="dd-item 
+    <li data-nav-id="/contributing/website/" title="Contributing to the Website" class="dd-item 
         
         
         
         ">
       <a href="/contributing/website/">
-          Contributing to the website
+          Contributing to the Website
           
             <i class="fas fa-check read-icon"></i>
           
@@ -889,13 +889,13 @@
  
   
     
-    <li data-nav-id="/contributing/release-process/" title="Release process" class="dd-item 
+    <li data-nav-id="/contributing/release-process/" title="Release Process" class="dd-item 
         parent
         active
         
         ">
       <a href="/contributing/release-process/">
-          Release process
+          Release Process
           
             <i class="fas fa-check read-icon"></i>
           
@@ -945,13 +945,13 @@
  
   
     
-    <li data-nav-id="/contributing/community-membership/" title="Community membership" class="dd-item 
+    <li data-nav-id="/contributing/community-membership/" title="Community Membership" class="dd-item 
         
         
         
         ">
       <a href="/contributing/community-membership/">
-          Community membership
+          Community Membership
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1089,7 +1089,7 @@
             
           
           
-            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > Release process
+            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > Release Process
           
          
           
@@ -1104,20 +1104,28 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#build-lighthouse-controller">Build Lighthouse Controller</a></li>
-    <li><a href="#build-lighthouse-coredns">Build Lighthouse CoreDNS</a></li>
-    <li><a href="#build-cluster-dns-operator">Build Cluster-DNS-Operator</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#change-referenced-versions">Change referenced versions</a></li>
-    <li><a href="#create-a-submariner-operator-release">Create a submariner-operator release</a></li>
-    <li><a href="#create-the-subctl-binaries-release">Create the subctl binaries release</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#email">email</a></li>
-    <li><a href="#twitter">twitter</a></li>
+    <li><a href="#step-1-create-a-submariner-release">Step 1: Create a Submariner Release</a></li>
+    <li><a href="#step-2-create-a-lighthouse-release">Step 2: Create a Lighthouse Release</a>
+      <ul>
+        <li><a href="#build-lighthouse-controller">Build Lighthouse Controller</a></li>
+        <li><a href="#build-lighthouse-coredns">Build Lighthouse CoreDNS</a></li>
+        <li><a href="#build-cluster-dns-operator">Build Cluster-DNS-Operator</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-3-update-the-operator-version-references-and-create-a-release">Step 3: Update the Operator Version References and Create a Release</a>
+      <ul>
+        <li><a href="#change-referenced-versions">Change Referenced Versions</a></li>
+        <li><a href="#create-a-submariner-operator-release">Create a Submariner-Operator Release</a></li>
+        <li><a href="#create-the-subctl-binaries-release">Create the Subctl Binaries Release</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-4-verify-the-version">Step 4: Verify the Version</a></li>
+    <li><a href="#step-5-announce">Step 5: Announce</a>
+      <ul>
+        <li><a href="#via-e-mail">Via E-Mail</a></li>
+        <li><a href="#via-twitter">Via Twitter</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -1135,7 +1143,7 @@
           
             <h1>
               
-              Release process
+              Release Process
             </h1>
           
 
@@ -1146,7 +1154,7 @@
 
 	<p>This section explains the necessary steps to make a submariner release.
 It is assumed that you are familiar with the submariner project and the various repositories.</p>
-<h1 id="step-1-create-a-submariner-release">Step 1: create a submariner release</h1>
+<h2 id="step-1-create-a-submariner-release">Step 1: Create a Submariner Release</h2>
 <p>Assuming that you have an existing submariner git directory, the following steps create a release named &ldquo;Globalnet Overlapping IP support RC0&rdquo; with version v0.2.0-rc0 based on the master branch.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner
 git stash
@@ -1168,9 +1176,9 @@ git push upstream v0.2.0-rc0
 <p><a href="https://quay.io/repository/submariner/submariner?tab=tags">https://quay.io/repository/submariner/submariner?tab=tags</a></p>
 </blockquote>
 <!-- raw HTML omitted -->
-<h1 id="step-2-create-a-lighthouse-release">Step 2: create a lighthouse release</h1>
+<h2 id="step-2-create-a-lighthouse-release">Step 2: Create a Lighthouse Release</h2>
 <p>To create lighthouse release artifacts follow the steps below.</p>
-<h2 id="build-lighthouse-controller">Build Lighthouse Controller</h2>
+<h3 id="build-lighthouse-controller">Build Lighthouse Controller</h3>
 <p>Assuming that you have an existing lighthouse git directory, run the following steps .</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd lighthouse
 git stash
@@ -1193,7 +1201,7 @@ git push upstream v0.2.0-rc0
 <p><a href="https://quay.io/repository/submariner/lighthouse-controller?tab=tags">https://quay.io/repository/submariner/lighthouse-controller?tab=tags</a>
 <a href="https://quay.io/repository/submariner/lighthouse-coredns?tab=tags">https://quay.io/repository/submariner/lighthouse-coredns?tab=tags</a></p>
 </blockquote>
-<h2 id="build-lighthouse-coredns">Build Lighthouse CoreDNS</h2>
+<h3 id="build-lighthouse-coredns">Build Lighthouse CoreDNS</h3>
 <ol>
 <li>Get the coredns repository and change to the folder</li>
 </ol>
@@ -1212,7 +1220,7 @@ sed -i <span style="color:#e6db74">&#39;$a replace\ k8s.io\/apimachinery\ =&gt;\
 sed -i <span style="color:#e6db74">&#39;$a replace\ github.com\/openzipkin-contrib\/zipkin-go-opentracing\ =&gt;\ github.com\/openzipkin-contrib\/zipkin-go-opentracing\ v0.3.5&#39;</span> go.mod
 docker build  -f Dockerfile.openshift -t quay.io/submariner/<span style="color:#e6db74">${</span>COREDNS_IMAGE<span style="color:#e6db74">}</span> .
 docker push quay.io/submariner/<span style="color:#e6db74">${</span>COREDNS_IMAGE<span style="color:#e6db74">}</span>
-</code></pre></div><h2 id="build-cluster-dns-operator">Build Cluster-DNS-Operator</h2>
+</code></pre></div><h3 id="build-cluster-dns-operator">Build Cluster-DNS-Operator</h3>
 <ol>
 <li>Clone the cluster-dns-operator repository and create a version branch</li>
 </ol>
@@ -1243,9 +1251,9 @@ git checkout -b &lt;VERSION-NO&gt;
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
 git commit -s
 git push HEAD:&lt;VERSION-NO&gt;
-</code></pre></div><h1 id="step-3-update-the-operator-version-references-and-create-a-release">Step 3: update the operator version references and create a release</h1>
+</code></pre></div><h2 id="step-3-update-the-operator-version-references-and-create-a-release">Step 3: Update the Operator Version References and Create a Release</h2>
 <p>Once the other builds have finished and you have 0.2.0-rc0 release tags for the submariner and lighthouse projects, you can proceed with changes to the operator.</p>
-<h2 id="change-referenced-versions">Change referenced versions</h2>
+<h3 id="change-referenced-versions">Change Referenced Versions</h3>
 <p>Edit the operator <a href="https://github.com/submariner-io/submariner-operator/edit/master/pkg/versions/versions.go">versions</a> file and change the project version constants to reference the new release, &ldquo;0.2.0-rc0&rdquo;.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner-operator
 git stash
@@ -1257,7 +1265,7 @@ vim pkg/versions/versions.go
 GO111MODULES<span style="color:#f92672">=</span>on go get github.com/submariner-io/submariner@v0.2.0-rc0
 git push my-repo update-references-to-v0.2.0-rc0
 </code></pre></div><p>Create a pull request, wait for the CI job to pass, and get approval/merge. See an example PR <a href="https://github.com/submariner-io/submariner-operator/pull/276">here</a></p>
-<h2 id="create-a-submariner-operator-release">Create a submariner-operator release</h2>
+<h3 id="create-a-submariner-operator-release">Create a Submariner-Operator Release</h3>
 <p>Assuming you have an existing submariner-operator git directory, run the following steps:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd submariner-operator
 git stash
@@ -1279,7 +1287,7 @@ At this point the images tagged with 0.2.0-rc0 will be available <a href="https:
 <blockquote>
 <p><a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">https://quay.io/repository/submariner/submariner-operator?tab=tags</a></p>
 </blockquote>
-<h2 id="create-the-subctl-binaries-release">Create the subctl binaries release</h2>
+<h3 id="create-the-subctl-binaries-release">Create the Subctl Binaries Release</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git stash
 cd submariner-operator
 git fetch -a -v -t upstream
@@ -1290,19 +1298,17 @@ ls -la bin/subctl*
 </code></pre></div><p>At this point, you should see subctl binaries generated and listed for the various platforms under bin.
 Go to <a href="https://github.com/submariner-io/submariner-operator/tags,">https://github.com/submariner-io/submariner-operator/tags,</a> find the tag for v0.2.0-rc0 and select &ldquo;Edit release&rdquo; to the right. Then upload the generated subctl binaries.</p>
 <p>If this is a pre-release, mark the checkbox &ldquo;This is a pre-release&rdquo;.</p>
-<h1 id="verify-the-version">Verify the version</h1>
-<p>You can follow any of our quickstarts, for example <a href="https://submariner-io.github.io/quickstart/openshiftgn/">this</a></p>
-<h1 id="announce">Announce</h1>
-<h2 id="email">email</h2>
-<p>to:</p>
+<h2 id="step-4-verify-the-version">Step 4: Verify the Version</h2>
+<p>You can follow any of our quickstarts, for example <a href="../../quickstart/openshiftgn/">this one</a></p>
+<h2 id="step-5-announce">Step 5: Announce</h2>
+<h3 id="via-e-mail">Via E-Mail</h3>
 <ul>
-<li>bit.ly/submariner-dev</li>
-<li>bit.ly/submariner-users</li>
+<li><a href="https://bit.ly/submariner-dev">https://bit.ly/submariner-dev</a></li>
+<li><a href="https://bit.ly/submariner-users">https://bit.ly/submariner-users</a></li>
 </ul>
-<h2 id="twitter">twitter</h2>
-<p>under:</p>
+<h3 id="via-twitter">Via Twitter</h3>
 <ul>
-<li>twitter.com/submarinerio</li>
+<li><a href="https://twitter.com/submarinerio">https://twitter.com/submarinerio</a></li>
 </ul>
 
 
@@ -1878,19 +1884,19 @@ Go to <a href="https://github.com/submariner-io/submariner-operator/tags,">https
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588763227"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588763227"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588763227"></script>
-    <script src="/js/jquery.sticky.js?1588763227"></script>
-    <script src="/js/featherlight.min.js?1588763227"></script>
-    <script src="/js/highlight.pack.js?1588763227"></script>
+    <script src="/js/clipboard.min.js?1588770029"></script>
+    <script src="/js/perfect-scrollbar.min.js?1588770029"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1588770029"></script>
+    <script src="/js/jquery.sticky.js?1588770029"></script>
+    <script src="/js/featherlight.min.js?1588770029"></script>
+    <script src="/js/highlight.pack.js?1588770029"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588763227"></script>
-    <script src="/js/learn.js?1588763227"></script>
-    <script src="/js/hugo-learn.js?1588763227"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1588770029"></script>
+    <script src="/js/learn.js?1588770029"></script>
+    <script src="/js/hugo-learn.js?1588770029"></script>
 
-    <link href="/mermaid/mermaid.css?1588763227" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588763227"></script>
+    <link href="/mermaid/mermaid.css?1588770029" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1588770029"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
