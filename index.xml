@@ -6,10 +6,22 @@
     <description>Recent content in Submariner on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 20 Apr 2020 17:12:52 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 29 Apr 2020 19:09:55 +0200</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docs Style Guide</title>
+      <link>/contributing/website/style_guide/</link>
+      <pubDate>Wed, 29 Apr 2020 19:09:55 +0200</pubDate>
+      
+      <guid>/contributing/website/style_guide/</guid>
+      <description>Documentation Style Guide This guide is meant to help keep our documentation consistent and ease the contribution and review process.
+Submariner follows the Kubernetes Documentation Style Guide wherever relevant. This is a Submariner-specific extension of those practices.
+Submariner.io word list A list of Submariner-specific terms and words to be used consistently across the site.
+   Term Usage     Submariner The project name Submariner should always be capitalized.</description>
+    </item>
     
     <item>
       <title>With Discovery (experimental)</title>
