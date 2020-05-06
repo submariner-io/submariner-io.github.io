@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1588751155" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588751155" rel="stylesheet">
-    <link href="/css/hybrid.css?1588751155" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588751155" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588751155" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588751155" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588751155" rel="stylesheet">
-    <link href="/css/theme.css?1588751155" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588751155" rel="stylesheet">
+    <link href="/css/nucleus.css?1588758799" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1588758799" rel="stylesheet">
+    <link href="/css/hybrid.css?1588758799" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1588758799" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1588758799" rel="stylesheet">
+    <link href="/css/auto-complete.css?1588758799" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1588758799" rel="stylesheet">
+    <link href="/css/theme.css?1588758799" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1588758799" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1588751155" rel="stylesheet">
+      <link href="/css/theme-blue.css?1588758799" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588751155"></script>
+    <script src="/js/jquery-3.3.1.min.js?1588758799"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588751155"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588751155"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1588758799"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1588758799"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588751155"></script>
+<script type="text/javascript" src="/js/search.js?1588758799"></script>
 
     
   </div>
@@ -419,6 +419,32 @@
  
   
     
+    <li data-nav-id="/releases/" title="Releases" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/releases/">
+          <b>4. </b>Releases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
     <li data-nav-id="/architecture/" title="Architecture" class="dd-item 
         
         
@@ -651,32 +677,6 @@
           
         
         </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/releases/" title="Releases" class="dd-item 
-        parent
-        active
-        
-        ">
-      <a href="/releases/">
-          <b>4. </b>Releases
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
               
     </li>
   
@@ -1138,6 +1138,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v030-lighthouse-service-discovery-without-kubefed">v0.3.0 Lighthouse Service Discovery without KubeFed</a></li>
     <li><a href="#v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</a></li>
     <li><a href="#v011-submariner-with-more-light">v0.1.1 Submariner with more light</a></li>
     <li><a href="#v010-submariner-with-some-light">v0.1.0 Submariner with some light</a></li>
@@ -1170,7 +1171,23 @@
 
 
 
-	<h2 id="v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</h2>
+	<h2 id="v030-lighthouse-service-discovery-without-kubefed">v0.3.0 Lighthouse Service Discovery without KubeFed</h2>
+<blockquote>
+<p>This release is focused on removing the KubeFed dependency from Lighthouse, improving the user experience
+and adding experimental WireGuard support as an alternative to IPsec</p>
+</blockquote>
+<ul>
+<li>Lighthouse no longer depends KubeFed. All metadata exchange is handled over the Broker as MultiClusterService CRs.</li>
+<li>Experimental <strong>Wireguard</strong> support has been added as a pluggable CableDriver option in addition to the current default IPsec.</li>
+<li>Submariner reports the active and passive gateways as a gateway.submariner.io CRD.</li>
+<li>The Submariner Operator reports a detailed status of the deployment.</li>
+<li>The <strong>gateway redundancy/failover</strong> tests are now enabled and stable in CI.</li>
+<li><em>Globalnet hostNetwork</em> to remote globalIP is now supported. Previously, when a pod used hostNetworking it was unable to connect to a remote service via globalIP.</li>
+<li>A globalCIDR can be manually specified when joining a cluster with globalnet enabled. This enables CI speed optimizations via better parallelism.</li>
+<li>Operator and subctl are more robust via standard retries on updates.</li>
+<li>Subctl creates a new <strong>individual access token</strong> for every new joined cluster.</li>
+</ul>
+<h2 id="v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</h2>
 <blockquote>
 <p>This release is focused on overlapping CIDR support between clusters</p>
 </blockquote>
@@ -1465,6 +1482,26 @@ was created to make deployment of submariner easier.</p>
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
                 
                 
 
@@ -1596,26 +1633,6 @@ was created to make deployment of submariner easier.</p>
             
             
                 
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1801,10 +1818,10 @@ was created to make deployment of submariner easier.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/architecture/components/route-agent/" title="Route Agent"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/deployment/with-discovery/" title="With Discovery (experimental)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/reading_material/" title="Online Resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/architecture/" title="Architecture" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1814,19 +1831,19 @@ was created to make deployment of submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588751155"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588751155"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588751155"></script>
-    <script src="/js/jquery.sticky.js?1588751155"></script>
-    <script src="/js/featherlight.min.js?1588751155"></script>
-    <script src="/js/highlight.pack.js?1588751155"></script>
+    <script src="/js/clipboard.min.js?1588758799"></script>
+    <script src="/js/perfect-scrollbar.min.js?1588758799"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1588758799"></script>
+    <script src="/js/jquery.sticky.js?1588758799"></script>
+    <script src="/js/featherlight.min.js?1588758799"></script>
+    <script src="/js/highlight.pack.js?1588758799"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588751155"></script>
-    <script src="/js/learn.js?1588751155"></script>
-    <script src="/js/hugo-learn.js?1588751155"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1588758799"></script>
+    <script src="/js/learn.js?1588758799"></script>
+    <script src="/js/hugo-learn.js?1588758799"></script>
 
-    <link href="/mermaid/mermaid.css?1588751155" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588751155"></script>
+    <link href="/mermaid/mermaid.css?1588758799" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1588758799"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
