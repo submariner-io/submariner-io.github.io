@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Broker :: Submariner k8s project documentation website</title>
+    <title>Working With Shipyard :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1588750975" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/architecture/components/broker/">
+  <body class="" data-url="/contributing/shipyard/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -420,7 +420,7 @@
   
     
     <li data-nav-id="/architecture/" title="Architecture" class="dd-item 
-        parent
+        
         
         
         ">
@@ -507,7 +507,7 @@
   
     
     <li data-nav-id="/architecture/components/" title="Submariner components" class="dd-item 
-        parent
+        
         
         
         ">
@@ -566,8 +566,8 @@
   
     
     <li data-nav-id="/architecture/components/broker/" title="Broker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/architecture/components/broker/">
@@ -744,7 +744,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -803,8 +803,8 @@
   
     
     <li data-nav-id="/contributing/shipyard/" title="Working With Shipyard" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/contributing/shipyard/">
@@ -1067,7 +1067,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/architecture/components/broker/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/shipyard/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1098,13 +1098,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/'>Submariner</a> > <a href='/architecture/'>Architecture</a> > <a href='/architecture/components/'>Submariner components</a> > Broker
-          
-         
+            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > Working With Shipyard
           
          
           
@@ -1117,7 +1111,29 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#usage">Usage</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#shared-makefile-targets">Shared Makefile Targets</a>
+      <ul>
+        <li><a href="#clusters">Clusters</a></li>
+        <li><a href="#deploy">Deploy</a></li>
+        <li><a href="#cleanup">Cleanup</a></li>
+        <li><a href="#release">Release</a></li>
+      </ul>
+    </li>
+    <li><a href="#specific-makefile-targets">Specific Makefile Targets</a>
+      <ul>
+        <li><a href="#dapper-image">Dapper-Image</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1133,7 +1149,7 @@
           
             <h1>
               
-              Broker
+              Working With Shipyard
             </h1>
           
 
@@ -1142,12 +1158,95 @@
 
 
 
-	<p>Submariner uses a central broker to facilitate the exchange of
-metadata information between connected clusters. The broker is
-basically a set of custom resource definitions (CRDs) backed by the
-kubernetes datastore. The broker is a singleton component that is
-deployed on one of the clusters whose Kubernetes API must be
-accessible by all of the connected clusters.</p>
+	<h2 id="overview">Overview</h2>
+<p>The Shipyard project provides common tooling for creating K8s clusters with <a href="https://github.com/kubernetes-sigs/kind">KIND</a> (K8s in Docker) and provides a common Go framework for creating end to end tests.
+Shipyard contains common functionality shared by other projects. Any project specific functionality should be part of that project.</p>
+<p>A base image <code>quay.io/submariner/shipyard-dapper-base</code> is created from Shipyard and contains all the tooling to build other projects and run tests in a consistent environment.</p>
+<p>Shipyard has several folders at the root of the project:</p>
+<ul>
+<li><strong>package:</strong> Contains the ingredients to build the base image.</li>
+<li><strong>scripts:</strong> Contains general scripts for Shipyard make targets.
+<ul>
+<li><strong>shared:</strong> Contains all the shared scripts that projects can consume. These are copied into the base image under <code>$SCRIPTS_DIR</code>.
+<ul>
+<li><strong>lib:</strong> Library functions that shared scripts, or consuming projects, can use.</li>
+<li><strong>resources:</strong> Resource files to be used by the shared scripts.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>test:</strong> Test library to be used by other projects.</li>
+</ul>
+<p>Shipyard ships with some <a href="#shared-makefile-targets">Makefile targets</a> which can be used by consuming projects and are used by Shipyard&rsquo;s CI to test and validate itself. It also has some <a href="#specific-makefile-targets">specific Makefile targets</a> which are used by the project itself.</p>
+<h2 id="usage">Usage</h2>
+<h4 id="add-shipyard-to-a-project">Add Shipyard to a Project</h4>
+<p>To enable usage of Shipyard&rsquo;s functionality, please see <a href="first_time">Adding Shipyard to a Project</a>.</p>
+<h4 id="use-shipyard-in-your-project">Use Shipyard in Your Project</h4>
+<p>Once Shipyard has been added to a project, you can use any of the <a href="#shared-makefile-targets">Makefile targets</a> that it provides.</p>
+<p>Any variables that you need to pass to these targets should be specified in your Dockerfile.dapper so they&rsquo;re available in the Dapper environment.
+For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">ENV</span> DAPPER_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;REPO TAG QUAY_USERNAME QUAY_PASSWORD TRAVIS_COMMIT CLUSTERS_ARGS DEPLOY_ARGS&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h4 id="have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</h4>
+<p>Having any of the Shipyard Makefile targets rely on your project&rsquo;s specific targets can be done easily by adding the dependency in your project&rsquo;s Makefile.
+For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#a6e22e">clusters</span><span style="color:#f92672">:</span> build images
+</code></pre></div><h4 id="use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</h4>
+<p>If you&rsquo;ve made changes to Shipyard&rsquo;s <a href="#dapper-image">base image</a> and need to test them in your project, run:</p>
+<pre><code>make dapper-image
+</code></pre><p>in the Shipyard directory. This creates a local image with your changes available for consumption in other projects.</p>
+<h2 id="shared-makefile-targets">Shared Makefile Targets</h2>
+<p>Shipyard ships a <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.inc">Makefile.inc</a> file which defines these basic targets:</p>
+<ul>
+<li><strong><a href="#clusters">clusters</a>:</strong> Creates the KIND -based cluster environment.</li>
+<li><strong><a href="#deploy">deploy</a></strong> : Deploys submariner components in the cluster environment (depends on clusters).</li>
+<li><strong><a href="#cleanup">cleanup</a>:</strong> Deletes the KIND environment (if it exists) and any residual resources.</li>
+<li><strong><a href="#release">release</a>:</strong> Uploads the requested image(s) to Quay.io.</li>
+<li><strong>vendor/modules.txt:</strong> Populates go modules (in case go.mod exists in the root directory).</li>
+</ul>
+<p>If your project uses Shipyard then it has all these targets and supports all the variables these targets support.</p>
+<p>Any variables supported by these targets can be either declared as environment variables or assigned on the <code>make</code> command line (takes precedence over environment variables).</p>
+<h3 id="clusters">Clusters</h3>
+<p>A Make target that creates a KIND-based multi-cluster environment with just the default K8s deployment:</p>
+<pre><code>make clusters
+</code></pre><p>Respected variables:</p>
+<ul>
+<li><strong>CLUSTERS_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>clusters.sh</code> script. To get a list of available arguments, run: <code>scripts/shared/clusters.sh --help</code></li>
+</ul>
+<h3 id="deploy">Deploy</h3>
+<p>A Make target that deploys Submariner components in a KIND-based cluster environment (if one isn&rsquo;t created yet, this target will first invoke the clusters target to do so):</p>
+<pre><code>make deploy
+</code></pre><p>Respected variables:</p>
+<ul>
+<li>Any variable from <a href="#clusters">clusters</a> target (only if it wasn&rsquo;t created).</li>
+<li><strong>DEPLOY_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>deploy.sh</code> script. To get a list of available arguments, run: <code>scripts/shared/deploy.sh --help</code></li>
+</ul>
+<h3 id="cleanup">Cleanup</h3>
+<p>To clean up all the KIND clusters deployed in any of the previous steps, use:</p>
+<pre><code>make cleanup
+</code></pre><p>This command will remove the clusters and any resources that might&rsquo;ve been left in docker that are not needed any more (images, volumes, etc).</p>
+<h3 id="release">Release</h3>
+<p>Uploads the built images to Quay.io:</p>
+<pre><code>make release release_images=&quot;&lt;image name&gt;&quot;
+</code></pre><p>Respected variables:</p>
+<ul>
+<li><strong>QUAY_USERNAME, QUAY_PASSWORD:</strong> Needed in order to log in to Quay.</li>
+<li><strong>release_images:</strong> One or more image names to release separated by spaces.</li>
+<li><strong>release_tag:</strong> A tag to use for the release (default is <em>latest</em>).</li>
+<li><strong>repo:</strong> The Quay repo to use (default is <em>quay.io/submariner</em>).</li>
+</ul>
+<h2 id="specific-makefile-targets">Specific Makefile Targets</h2>
+<p>Shipyard has some project-specific targets which are used to build parts of the projects:</p>
+<ul>
+<li><strong><a href="#dapper-image">dapper-image</a>:</strong> Builds the base image that can be used by other projects.</li>
+<li><strong>validate:</strong> Validates the go code that Shipyard provides, and the shared shell scripts.</li>
+</ul>
+<h3 id="dapper-image">Dapper-Image</h3>
+<p>Builds the basic image which is then used by other projects to build the code and run tests:</p>
+<pre><code>make dapper-image
+</code></pre><p>Respected variables:</p>
+<ul>
+<li><strong>dapper_image_flags:</strong> Any additional flags and values to be sent to the <code>build_image.sh</code> script.</li>
+</ul>
 
 
 
@@ -1387,7 +1486,6 @@ accessible by all of the connected clusters.</p>
             
                 
                     
-                    
                 
                 
 
@@ -1402,9 +1500,6 @@ accessible by all of the connected clusters.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1438,7 +1533,6 @@ accessible by all of the connected clusters.</p>
             
                 
                     
-                    
                 
                 
 
@@ -1453,9 +1547,6 @@ accessible by all of the connected clusters.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1473,7 +1564,6 @@ accessible by all of the connected clusters.</p>
             
                 
                     
-                    
                 
                 
 
@@ -1489,9 +1579,6 @@ accessible by all of the connected clusters.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1579,6 +1666,7 @@ accessible by all of the connected clusters.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1593,6 +1681,9 @@ accessible by all of the connected clusters.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1610,6 +1701,7 @@ accessible by all of the connected clusters.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1624,6 +1716,9 @@ accessible by all of the connected clusters.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1715,10 +1810,10 @@ accessible by all of the connected clusters.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/architecture/components/lighthouse/" title="Lighthouse"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/contributing/website/" title="Contributing to the website"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/architecture/components/gateway-engine/" title="Gateway Engine" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/contributing/shipyard/first_time/" title="Adding Shipyard to a Project" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

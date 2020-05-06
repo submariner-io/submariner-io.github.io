@@ -12,20 +12,20 @@
     <title>Building and Testing :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1588702677" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588702677" rel="stylesheet">
-    <link href="/css/hybrid.css?1588702677" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588702677" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588702677" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588702677" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588702677" rel="stylesheet">
-    <link href="/css/theme.css?1588702677" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588702677" rel="stylesheet">
+    <link href="/css/nucleus.css?1588750975" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1588750975" rel="stylesheet">
+    <link href="/css/hybrid.css?1588750975" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1588750975" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1588750975" rel="stylesheet">
+    <link href="/css/auto-complete.css?1588750975" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1588750975" rel="stylesheet">
+    <link href="/css/theme.css?1588750975" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1588750975" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1588702677" rel="stylesheet">
+      <link href="/css/theme-blue.css?1588750975" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588702677"></script>
+    <script src="/js/jquery-3.3.1.min.js?1588750975"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588702677"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588702677"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1588750975"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1588750975"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588702677"></script>
+<script type="text/javascript" src="/js/search.js?1588750975"></script>
 
     
   </div>
@@ -802,6 +802,74 @@
  
   
     
+    <li data-nav-id="/contributing/shipyard/" title="Working With Shipyard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/contributing/shipyard/">
+          Working With Shipyard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/contributing/shipyard/first_time/" title="Adding Shipyard to a Project" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/contributing/shipyard/first_time/">
+          Adding Shipyard to a Project
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
     <li data-nav-id="/contributing/building_testing/" title="Building and Testing" class="dd-item 
         parent
         active
@@ -1051,7 +1119,10 @@
       <ul>
         <li><a href="#linting">Linting</a></li>
         <li><a href="#unit-tests">Unit tests</a></li>
-        <li><a href="#end-to-end-tests">End-to-end tests</a></li>
+        <li><a href="#clusters">Multi-Cluster KIND Based Environment</a></li>
+        <li><a href="#multi-cluster-submariner-deployment">Multi-Cluster Submariner Deployment</a></li>
+        <li><a href="#end-to-end-tests">End-to-End Tests</a></li>
+        <li><a href="#environment-clean-up">Environment Clean Up</a></li>
       </ul>
     </li>
     <li><a href="#submariner-iosubmariner">submariner-io/submariner</a>
@@ -1109,14 +1180,15 @@ local work. The same environment is used in CI.</p>
 <p>The <a href="https://github.com/submariner-io/shipyard">submariner-io/shipyard</a> project
 contains the logic to build the base container images used across all
 submariner-io repositories.</p>
+<p>Learn more about working with Shipyard <a href="../shipyard">here</a>.</p>
 <h2 id="prescribed-tasks-via-make-targets">Prescribed Tasks via Make Targets</h2>
 <p>Make targets are provided to further ease the process of using the shared
-development environment. The specific make targets available differ by
-repository. For any submariner-io repository, see the Makefile at the root of
+development environment. The specific make targets available might differ by
+repository. For any submariner-io repository, see the <code>Makefile</code> at the root of
 the repository for the supported targets and the <code>.travis.yml</code> file for the
 targets actually used in CI.</p>
 <h2 id="common-build-and-testing-targets">Common Build and Testing Targets</h2>
-<p>All <code>submariner-io/*</code> repositories provide a standard set of Make targets for
+<p>All <strong>submariner-io/</strong>* repositories provide a standard set of Make targets for
 similar building and testing actions.</p>
 <h3 id="linting">Linting</h3>
 <p>To run static Go linting (goimports, golangci-lint):</p>
@@ -1124,17 +1196,33 @@ similar building and testing actions.</p>
 </code></pre><h3 id="unit-tests">Unit tests</h3>
 <p>To run Go unit tests:</p>
 <pre><code>make test
-</code></pre><h3 id="end-to-end-tests">End-to-end tests</h3>
-<p>To run functional tests with a full multicluster deployment:</p>
+</code></pre><h3 id="clusters">Multi-Cluster KIND Based Environment</h3>
+<p>Shipyard provides a basic target that creates a KIND based multi-cluster
+environment, without any special deployment (apart from the default K8s):</p>
+<pre><code>make clusters
+</code></pre><p>Find out more about <a href="../shipyard#clusters">Shipyard&rsquo;s clusters target</a>.</p>
+<h3 id="multi-cluster-submariner-deployment">Multi-Cluster Submariner Deployment</h3>
+<p>Shipyard provides a basic target that deploys submariner on a KIND based
+multi-cluster environment (if one isn&rsquo;t yet created, this target will first invoke the clusters target to do so):
+as well):</p>
+<pre><code>make deploy
+</code></pre><p>Find out more about <a href="../shipyard#deploy">Shipyard&rsquo;s deploy target</a>.</p>
+<h3 id="end-to-end-tests">End-to-End Tests</h3>
+<p>To run functional end-to-end tests with a full multi-cluster deployment (if one isn&rsquo;t yet deployed, this target will first invoke the deploy target to do so):</p>
 <pre><code>make e2e
-</code></pre><p>The <code>e2e</code> target supports flags to configure the deployment and testing. For
-example, here are two <code>e2e</code> flag variations used in <code>submariner-io/submariner</code>
-CI:</p>
-<pre><code>make e2e status=keep
-make e2e status=keep deploytool=helm globalnet=true
-</code></pre><p>To clean up the clusters deployed with <code>e2e status=keep</code>, use:</p>
-<pre><code>make e2e status=clean
-</code></pre><h2 id="submariner-iosubmariner">submariner-io/submariner</h2>
+</code></pre><p>Optionally, you can specify flags to control the execution of the end-to-end
+testing and deployment (if it wasn&rsquo;t run separately).
+Currently these flags are project-specific, so consult the project&rsquo;s
+<code>Makefile</code> to learn which flags are supported.
+The flags can be combined or used separately, or not at all (in which case
+default values apply).</p>
+<p>For example, here&rsquo;s a flag variation used in <strong>submariner-io/submariner</strong> CI:</p>
+<pre><code>make e2e deploytool=helm globalnet=true
+</code></pre><h3 id="environment-clean-up">Environment Clean Up</h3>
+<p>To clean up all the KIND clusters deployed in any of the previous steps, use:</p>
+<pre><code>make cleanup
+</code></pre><p>Learn more about Shipyard&rsquo;s cleanup target <a href="../shipyard#cleanup">here</a>.</p>
+<h2 id="submariner-iosubmariner">submariner-io/submariner</h2>
 <h3 id="building-engine-routeagent-and-globalnet-go-binaries">Building Engine, Routeagent, and Globalnet Go binaries</h3>
 <p>To build the <code>submariner-route-agent</code>, <code>submariner-engine</code>, and
 <code>submariner-globalnet</code> Go binaries, in the <a href="https://github.com/submariner-io/submariner">submariner-io/submariner</a>
@@ -1617,6 +1705,40 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
                 
                     
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -1692,7 +1814,7 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
 	 
 	 
 		
-			<a class="nav nav-prev" href="/contributing/website/" title="Contributing to the website"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/contributing/shipyard/first_time/" title="Adding Shipyard to a Project"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/contributing/release-process/" title="Release process" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -1705,19 +1827,19 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588702677"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588702677"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588702677"></script>
-    <script src="/js/jquery.sticky.js?1588702677"></script>
-    <script src="/js/featherlight.min.js?1588702677"></script>
-    <script src="/js/highlight.pack.js?1588702677"></script>
+    <script src="/js/clipboard.min.js?1588750975"></script>
+    <script src="/js/perfect-scrollbar.min.js?1588750975"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1588750975"></script>
+    <script src="/js/jquery.sticky.js?1588750975"></script>
+    <script src="/js/featherlight.min.js?1588750975"></script>
+    <script src="/js/highlight.pack.js?1588750975"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588702677"></script>
-    <script src="/js/learn.js?1588702677"></script>
-    <script src="/js/hugo-learn.js?1588702677"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1588750975"></script>
+    <script src="/js/learn.js?1588750975"></script>
+    <script src="/js/hugo-learn.js?1588750975"></script>
 
-    <link href="/mermaid/mermaid.css?1588702677" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588702677"></script>
+    <link href="/mermaid/mermaid.css?1588750975" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1588750975"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

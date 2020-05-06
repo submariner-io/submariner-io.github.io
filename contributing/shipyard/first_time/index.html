@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Broker :: Submariner k8s project documentation website</title>
+    <title>Adding Shipyard to a Project :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1588750975" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/architecture/components/broker/">
+  <body class="" data-url="/contributing/shipyard/first_time/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -420,7 +420,7 @@
   
     
     <li data-nav-id="/architecture/" title="Architecture" class="dd-item 
-        parent
+        
         
         
         ">
@@ -507,7 +507,7 @@
   
     
     <li data-nav-id="/architecture/components/" title="Submariner components" class="dd-item 
-        parent
+        
         
         
         ">
@@ -566,8 +566,8 @@
   
     
     <li data-nav-id="/architecture/components/broker/" title="Broker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/architecture/components/broker/">
@@ -744,7 +744,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -803,7 +803,7 @@
   
     
     <li data-nav-id="/contributing/shipyard/" title="Working With Shipyard" class="dd-item 
-        
+        parent
         
         
         ">
@@ -834,8 +834,8 @@
   
     
     <li data-nav-id="/contributing/shipyard/first_time/" title="Adding Shipyard to a Project" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/contributing/shipyard/first_time/">
@@ -1067,7 +1067,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/architecture/components/broker/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/shipyard/first_time/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1102,7 +1102,7 @@
             
           
           
-            <a href='/'>Submariner</a> > <a href='/architecture/'>Architecture</a> > <a href='/architecture/components/'>Submariner components</a> > Broker
+            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > <a href='/contributing/shipyard/'>Working With Shipyard</a> > Adding Shipyard to a Project
           
          
           
@@ -1117,7 +1117,16 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#dockerfiledapper">Dockerfile.dapper</a>
+      <ul>
+        <li></li>
+        <li><a href="#makefile">Makefile</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1133,7 +1142,7 @@
           
             <h1>
               
-              Broker
+              Adding Shipyard to a Project
             </h1>
           
 
@@ -1142,12 +1151,47 @@
 
 
 
-	<p>Submariner uses a central broker to facilitate the exchange of
-metadata information between connected clusters. The broker is
-basically a set of custom resource definitions (CRDs) backed by the
-kubernetes datastore. The broker is a singleton component that is
-deployed on one of the clusters whose Kubernetes API must be
-accessible by all of the connected clusters.</p>
+	<p>To use Shipyard in your project, it&rsquo;s easiest to use <em><a href="https://github.com/rancher/dapper">Dapper</a></em> and <em>Make</em>.
+To use Dapper you&rsquo;ll need a specific Dockerfile that Dapper consumes to create a consistent environment based upon Shipyard&rsquo;s base image.
+To use Make you&rsquo;ll need some commands to enable Dapper and also include the targets which ship in the base image.</p>
+<h2 id="dockerfiledapper">Dockerfile.dapper</h2>
+<p>The project should have a <code>Dockerfile.dapper</code> Dockerfile which builds upon <code>quay.io/submariner/shipyard-dapper-base</code>.</p>
+<p>For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> quay.io/submariner/shipyard-dapper-base</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> DAPPER_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;REPO TAG QUAY_USERNAME QUAY_PASSWORD TRAVIS_COMMIT&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    DAPPER_SOURCE<span style="color:#f92672">=</span>&lt;your source directory&gt; DAPPER_DOCKER_SOCKET<span style="color:#f92672">=</span>true<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> DAPPER_OUTPUT<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>DAPPER_SOURCE<span style="color:#e6db74">}</span>/output<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> ${DAPPER_SOURCE}</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;./scripts/entry&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;ci&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/master/Dockerfile.dapper">Dockerfile.dapper</a> as an example.</p>
+<h4 id="building-the-base-image">Building The Base Image</h4>
+<p>To build the base container image used in the shared developer and CI enviroment, simply run:</p>
+<pre><code>make dapper-image
+</code></pre><h3 id="makefile">Makefile</h3>
+<p>The project&rsquo;s Makefile should include targets to run everything in Dapper. These are defined in Shipyard&rsquo;s  <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.dapper">Makefile.dapper</a> which can be copied as is into your project and included in the Makefile.
+To use Shipyard&rsquo;s built-in targets available in the base Dapper image, include the <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.inc">Makefile.inc</a> file in the project&rsquo;s Makefile within the section where the Dapper environment is detected.</p>
+<p>The simplest Makefile would look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#960050;background-color:#1e0010">ifneq</span> <span style="color:#960050;background-color:#1e0010">(,</span><span style="color:#66d9ef">$(</span>DAPPER_HOST_ARCH<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">)</span>
+
+<span style="color:#75715e"># Running in Dapper
+</span><span style="color:#75715e"></span>
+<span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#66d9ef">$(</span>SHIPYARD_DIR<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">/Makefile.inc</span>
+
+<span style="color:#960050;background-color:#1e0010">else</span>
+
+<span style="color:#75715e"># Not running in Dapper
+</span><span style="color:#75715e"></span>
+<span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#960050;background-color:#1e0010">Makefile.dapper</span>
+
+<span style="color:#960050;background-color:#1e0010">endif</span>
+
+<span style="color:#75715e"># Disable rebuilding Makefile
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Makefile Makefile.dapper Makefile.inc</span><span style="color:#f92672">:</span> ;
+</code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile">Makefile</a> as an example.</p>
 
 
 
@@ -1387,7 +1431,6 @@ accessible by all of the connected clusters.</p>
             
                 
                     
-                    
                 
                 
 
@@ -1402,9 +1445,6 @@ accessible by all of the connected clusters.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1438,7 +1478,6 @@ accessible by all of the connected clusters.</p>
             
                 
                     
-                    
                 
                 
 
@@ -1453,9 +1492,6 @@ accessible by all of the connected clusters.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1473,7 +1509,6 @@ accessible by all of the connected clusters.</p>
             
                 
                     
-                    
                 
                 
 
@@ -1489,9 +1524,6 @@ accessible by all of the connected clusters.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1579,6 +1611,7 @@ accessible by all of the connected clusters.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1593,6 +1626,9 @@ accessible by all of the connected clusters.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1610,6 +1646,7 @@ accessible by all of the connected clusters.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1624,6 +1661,7 @@ accessible by all of the connected clusters.</p>
             
             
                 
+                    
                     
                 
                 
@@ -1643,6 +1681,9 @@ accessible by all of the connected clusters.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1715,10 +1756,10 @@ accessible by all of the connected clusters.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/architecture/components/lighthouse/" title="Lighthouse"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/contributing/shipyard/" title="Working With Shipyard"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/architecture/components/gateway-engine/" title="Gateway Engine" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/contributing/building_testing/" title="Building and Testing" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
