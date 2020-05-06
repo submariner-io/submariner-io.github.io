@@ -48,7 +48,7 @@
   </url>
   
   <url>
-    <loc>/architecture/components/lighthouse/</loc>
+    <loc>/architecture/service-discovery/</loc>
     <lastmod>2020-03-02T21:25:35+01:00</lastmod>
   </url>
   
@@ -65,11 +65,6 @@
   <url>
     <loc>/deployment/</loc>
     <lastmod>2020-02-19T21:25:11+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/architecture/components/</loc>
-    <lastmod>2020-02-19T21:08:37+01:00</lastmod>
   </url>
   
   <url>
@@ -150,7 +145,7 @@
   </url>
   
   <url>
-    <loc>/architecture/components/broker/</loc>
+    <loc>/architecture/broker/</loc>
   </url>
   
   <url>
@@ -158,11 +153,11 @@
   </url>
   
   <url>
-    <loc>/architecture/components/gateway-engine/</loc>
+    <loc>/architecture/gateway-engine/</loc>
   </url>
   
   <url>
-    <loc>/architecture/components/route-agent/</loc>
+    <loc>/architecture/route-agent/</loc>
   </url>
   
   <url>

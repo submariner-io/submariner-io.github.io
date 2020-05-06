@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Route Agent on Submariner k8s project documentation website</title>
-    <link>/architecture/components/route-agent/</link>
+    <link>/architecture/route-agent/</link>
     <description>Recent content in Route Agent on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     
-	<atom:link href="/architecture/components/route-agent/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/architecture/route-agent/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
