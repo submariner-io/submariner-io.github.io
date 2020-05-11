@@ -24,6 +24,20 @@ Submariner.io word list A list of Submariner-specific terms and words to be used
     </item>
     
     <item>
+      <title>subctl</title>
+      <link>/deployment/subctl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/deployment/subctl/</guid>
+      <description>subctl is a command line utility designed to simplify the deployment and maintenance of Submariner across your clusters.
+Synopsis subctl [command] [--flags] ...
+Description subctl helps to automate the deployment of the Submariner operator, thereby reducing the possibility of mistakes during the process.
+subctl connects to specified cluster(s) and performs the requested command.
+Commands deploy-broker subctl deploy-broker [flags]
+The deploy-broker command configures the cluster specified by the --kubeconfig flag (or KUBECONFIG env var) and the --kubecontext flag as the Broker.</description>
+    </item>
+    
+    <item>
       <title>With Discovery (experimental)</title>
       <link>/deployment/with-discovery/</link>
       <pubDate>Thu, 20 Feb 2020 16:40:57 +0100</pubDate>

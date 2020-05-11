@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Using Subctl :: Submariner k8s project documentation website</title>
+    <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1589197725" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1589197725" rel="stylesheet">
-    <link href="/css/hybrid.css?1589197725" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1589197725" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1589197725" rel="stylesheet">
-    <link href="/css/auto-complete.css?1589197725" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1589197725" rel="stylesheet">
-    <link href="/css/theme.css?1589197725" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1589197725" rel="stylesheet">
+    <link href="/css/nucleus.css?1589200376" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1589200376" rel="stylesheet">
+    <link href="/css/hybrid.css?1589200376" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1589200376" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1589200376" rel="stylesheet">
+    <link href="/css/auto-complete.css?1589200376" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1589200376" rel="stylesheet">
+    <link href="/css/theme.css?1589200376" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1589200376" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1589197725" rel="stylesheet">
+      <link href="/css/theme-blue.css?1589200376" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1589197725"></script>
+    <script src="/js/jquery-3.3.1.min.js?1589200376"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1589197725"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1589197725"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1589200376"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1589200376"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1589197725"></script>
+<script type="text/javascript" src="/js/search.js?1589200376"></script>
 
     
   </div>
@@ -335,20 +335,13 @@
  
   
     
-    <li data-nav-id="/deployment/subctl/" title="Using Subctl" class="dd-item 
-        parent
-        active
-        
-        ">
-      <a href="/deployment/subctl/">
-          Using Subctl
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
+      <li data-nav-id="/deployment/subctl/" title="subctl" class="dd-item active">
+        <a href="/deployment/subctl/">
+        subctl
+        <i class="fas fa-check read-icon"></i>
+        </a>
     </li>
+     
   
  
 
@@ -1086,7 +1079,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/subctl/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/deployment/subctl.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1117,7 +1110,7 @@
             
           
           
-            <a href='/'>Submariner</a> > <a href='/deployment/'>Deployment</a> > Using Subctl
+            <a href='/'>Submariner</a> > <a href='/deployment/'>Deployment</a> > subctl
           
          
           
@@ -1130,7 +1123,22 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#synopsis">Synopsis</a></li>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#commands">Commands</a>
+      <ul>
+        <li><a href="#deploy-broker">deploy-broker</a></li>
+        <li><a href="#join">join</a></li>
+        <li><a href="#info">info</a></li>
+        <li><a href="#verify-connectivity">verify-connectivity</a></li>
+        <li><a href="#version">version</a></li>
+      </ul>
+    </li>
+    <li><a href="#installation">Installation</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1146,7 +1154,7 @@
           
             <h1>
               
-              Using Subctl
+              subctl
             </h1>
           
 
@@ -1154,13 +1162,274 @@
 
 
 
+<p><code>subctl</code> is a command line utility designed to simplify the deployment and maintenance of
+Submariner across your clusters.</p>
+<h2 id="synopsis">Synopsis</h2>
+<p><code>subctl [command] [--flags] ...</code></p>
+<h2 id="description">Description</h2>
+<p><code>subctl</code> helps to automate the deployment of the Submariner <a href="https://github.com/submariner-io/submariner-operator">operator</a>, thereby reducing the possibility of mistakes during the process.</p>
+<p><code>subctl</code> connects to specified cluster(s) and performs the requested <em>command</em>.</p>
+<h2 id="commands">Commands</h2>
+<h3 id="deploy-broker">deploy-broker</h3>
+<p><code>subctl deploy-broker [flags]</code></p>
+<p>The <strong>deploy-broker</strong> command configures the cluster specified by the <code>--kubeconfig</code> flag
+(or <code>KUBECONFIG</code> env var) and the <code>--kubecontext</code> flag as the Broker. It installs
+the necessary CRDs and the <code>submariner-k8s-broker</code> namespace.</p>
+<p>In addition, it generates a <code>broker-info.subm</code> file which can be used with the <code>join</code> command
+to connect clusters to the Broker. This file contains the following details:</p>
+<ul>
+<li>Encryption PSK key</li>
+<li>Broker access details for subsequent <code>subctl</code> runs.</li>
+<li>Service discovery settings</li>
+<li>Globalnet settings</li>
+</ul>
+<h4 id="deploy-broker-flags">deploy-broker flags</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
+<td align="left">Absolute path(s) to the kubeconfig file(s) (default &ldquo;$HOME/.kube/config&rdquo;)</td>
+</tr>
+<tr>
+<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left">kubeconfig context to use</td>
+</tr>
+<tr>
+<td align="left"><code>--service-discovery</code></td>
+<td align="left">Enable Multi Cluster Service Discovery</td>
+</tr>
+<tr>
+<td align="left"><code>--globalnet</code></td>
+<td align="left">Enable support for Overlapping cluster/service CIDRs in connecting clusters (default disabled)</td>
+</tr>
+<tr>
+<td align="left"><code>--globalnet-cidr-range</code> <code>&lt;string&gt;</code></td>
+<td align="left">Global CIDR supernet range for allocating GlobalCIDRs to each cluster (default &ldquo;169.254.0.0/16&rdquo;)</td>
+</tr>
+<tr>
+<td align="left"><code>--ipsec-psk-from</code> <code>&lt;string&gt;</code></td>
+<td align="left">Import IPSEC PSK from existing Submariner broker file, like broker-info.subm (default &ldquo;broker-info.subm)</td>
+</tr>
+<tr>
+<td align="left"><code>--dataplane</code></td>
+<td align="left">Install the Submariner dataplane on the broker. If this flag is enabled, the broker will be joined as if a join command was run right after deploy-broker. Use the join flags too if you use &ndash;dataplane.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="join">join</h3>
+<p><code>subctl join broker-info.subm [flags]</code></p>
+<p>The <strong>join</strong> command deploys the Submariner operator in a cluster using the settings provided in the <code>broker-info.subm</code> file.
+The service account credentials needed for the new cluster to access the Broker cluster will be created and provided to the Submariner operator
+deployment. All the other settings like service discovery enablement and globalnet support are sourced from the
+broker-info file.</p>
+<h4 id="join-flags-general">join flags (general)</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--cable-driver</code> <code>&lt;string&gt;</code></td>
+<td align="left">Cable driver implementation (defaults to strongswan -IPSec-)</td>
+</tr>
+<tr>
+<td align="left"><code>--clusterid</code> <code>&lt;string&gt;</code></td>
+<td align="left">Cluster ID used to identify the tunnels. Every cluster needs to have a unique cluster ID, if not provided <code>subctl</code> will prompt the admin for a cluster ID.</td>
+</tr>
+<tr>
+<td align="left"><code>--clustercidr</code> <code>&lt;string&gt;</code></td>
+<td align="left">Specifies the cluster&rsquo;s CIDR used to generate Pod IP addresses. If not specified, subctl will try to discover it and, if unable to do so, it will prompt the user.</td>
+</tr>
+<tr>
+<td align="left"><code>--no-label </code></td>
+<td align="left">Skip gateway labeling. This disables the prompt for a worker node to use as gateway.</td>
+</tr>
+<tr>
+<td align="left"><code>--subm-debug</code></td>
+<td align="left">Enable Submariner debugging (verbose logging)</td>
+</tr>
+<tr>
+<td align="left"><code>--disable-cvo</code></td>
+<td align="left">Disable OpenShift&rsquo;s cluster version operator, if necessary, without prompting as a warning. Currently, Lighthouse modifies the cluster DNS operator in OpenShift to disable CVO.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="join-flags-globalnet">join flags (globalnet)</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--globalnet-cluster-size</code> <code>&lt;value&gt;</code></td>
+<td align="left">Cluster size for GlobalCIDR allocated to this cluster (amount of global IPs).</td>
+</tr>
+<tr>
+<td align="left"><code>--globalnet-cidr</code> <code>&lt;string&gt;</code></td>
+<td align="left">GlobalCIDR to be allocated to the cluster, this setting is exclusive with <code>--globalnet-cluster-size</code> and configures a specific globalnet CIDR for this cluster.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="join-flags-ipsec">join flags (IPSec)</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--disable-nat</code></td>
+<td align="left">Disable NAT for IPsec.</td>
+</tr>
+<tr>
+<td align="left"><code>--ikeport</code> <code>&lt;value&gt;</code></td>
+<td align="left">IPsec IKE port (default 500)</td>
+</tr>
+<tr>
+<td align="left"><code>--ipsec-debug</code></td>
+<td align="left">Enable IPsec debugging (verbose logging)</td>
+</tr>
+<tr>
+<td align="left"><code>--nattport</code> <code>&lt;value&gt;</code></td>
+<td align="left">IPsec NATT port (default 4500)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="join-flags-images-and-repositories">join flags (images and repositories)</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--repository</code> <code>&lt;string&gt;</code></td>
+<td align="left">The repository from where the various submariner images will be sourced. (default &ldquo;quay.io/submariner&rdquo;)</td>
+</tr>
+<tr>
+<td align="left"><code>--version</code> <code>&lt;string&gt;</code></td>
+<td align="left">Image version</td>
+</tr>
+<tr>
+<td align="left"><code>-o</code>, <code>--operator-image</code> <code>&lt;string&gt;</code></td>
+<td align="left">The operator image location (default &ldquo;quay.io/submariner/submariner-operator:$version&rdquo;)</td>
+</tr>
+<tr>
+<td align="left"><code>--service-discovery-repo</code> <code>&lt;string&gt;</code></td>
+<td align="left">Service Discovery image repository (default &ldquo;quay.io/submariner&rdquo;)</td>
+</tr>
+<tr>
+<td align="left"><code>--service-discovery-version</code> <code>&lt;string&gt;</code></td>
+<td align="left">Service Discovery image version</td>
+</tr>
+</tbody>
+</table>
+<h3 id="info">info</h3>
+<p><code>subctl info [flags]</code></p>
+<p>The <code>info</code> command inspects the cluster and reports information related to Submariner, like the
+detected network plugin, and the detected Cluster and Service CIDRs.</p>
+<h4 id="info-flags">info flags</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
+<td align="left">Absolute path(s) to the kubeconfig file(s) (default &ldquo;$HOME/.kube/config&rdquo;)</td>
+</tr>
+<tr>
+<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left">Kubeconfig context to use</td>
+</tr>
+</tbody>
+</table>
+<h3 id="verify-connectivity">verify-connectivity</h3>
+<p><code>subctl verify-connectivity &lt;kubeConfig1&gt; &lt;kubeConfig2&gt; [flags]</code></p>
+<p>The <code>verify-connectivity</code> command verifies dataplane connectivity between two clusters. The
+<code>kubeConfig1</code> file will be <code>ClusterA</code> in the reports, while <code>kubeConfig2</code> will be <code>ClusterB</code> in the
+reports. The <code>--verbose</code> flag is recommended to see what&rsquo;s happening during the tests.</p>
+<p>Dataplane connectivity is verified in multiple ways:</p>
+<ul>
+<li>Pods (on gateways) to Services</li>
+<li>Pods (on non-gateways) to Services</li>
+<li>Pods (on gateways) to Pods</li>
+<li>Pods (on non-gateways) to Pods
+and between gateway and non-gateway node combinations.</li>
+</ul>
+<h4 id="verify-connectivity-flags">verify-connectivity flags</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--connection-attempts</code> <code>&lt;value&gt;</code></td>
+<td align="left">The maximum number of connection attempts (default 2)</td>
+</tr>
+<tr>
+<td align="left"><code>--connection-timeout</code> <code>&lt;value&gt;</code></td>
+<td align="left">The timeout in seconds per connection attempt  (default 60)</td>
+</tr>
+<tr>
+<td align="left"><code>--operation-timeout</code> <code>&lt;value&gt;</code></td>
+<td align="left">Operation timeout for K8s API calls (default 240)</td>
+</tr>
+<tr>
+<td align="left"><code>--report-dir</code> <code>&lt;string&gt;</code></td>
+<td align="left">XML report directory (default &ldquo;.&quot;)</td>
+</tr>
+<tr>
+<td align="left"><code>--verbose</code></td>
+<td align="left">Produce verbose logs during connectivity verification</td>
+</tr>
+</tbody>
+</table>
+<h3 id="version">version</h3>
+<p><code>subctl version</code></p>
+<p>Prints the version details for the subctl binary.</p>
+<h2 id="installation">Installation</h2>
+Download the subctl binary and make it available on your PATH.
 
-	
+
+
+<div class="highlight">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<code class="language-bash" data-lang="bash">
+mkdir -p ~/.local/bin
+curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.3.0-rc2/subctl-v0.3.0-rc2-linux-amd64
+chmod a+x ~/.local/bin/subctl
+export PATH=$PATH:~/.local/bin
+echo export PATH=$PATH:~/.local/bin >> ~/.profile
+</code>
+</pre>
+</div>
 
 
 
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -1742,19 +2011,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1589197725"></script>
-    <script src="/js/perfect-scrollbar.min.js?1589197725"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1589197725"></script>
-    <script src="/js/jquery.sticky.js?1589197725"></script>
-    <script src="/js/featherlight.min.js?1589197725"></script>
-    <script src="/js/highlight.pack.js?1589197725"></script>
+    <script src="/js/clipboard.min.js?1589200376"></script>
+    <script src="/js/perfect-scrollbar.min.js?1589200376"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1589200376"></script>
+    <script src="/js/jquery.sticky.js?1589200376"></script>
+    <script src="/js/featherlight.min.js?1589200376"></script>
+    <script src="/js/highlight.pack.js?1589200376"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1589197725"></script>
-    <script src="/js/learn.js?1589197725"></script>
-    <script src="/js/hugo-learn.js?1589197725"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1589200376"></script>
+    <script src="/js/learn.js?1589200376"></script>
+    <script src="/js/hugo-learn.js?1589200376"></script>
 
-    <link href="/mermaid/mermaid.css?1589197725" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1589197725"></script>
+    <link href="/mermaid/mermaid.css?1589200376" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1589200376"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
@@ -1762,3 +2031,4 @@
 
   </body>
 </html>
+
