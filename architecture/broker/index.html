@@ -12,20 +12,20 @@
     <title>Broker :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1589200376" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1589200376" rel="stylesheet">
-    <link href="/css/hybrid.css?1589200376" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1589200376" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1589200376" rel="stylesheet">
-    <link href="/css/auto-complete.css?1589200376" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1589200376" rel="stylesheet">
-    <link href="/css/theme.css?1589200376" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1589200376" rel="stylesheet">
+    <link href="/css/nucleus.css?1589200477" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1589200477" rel="stylesheet">
+    <link href="/css/hybrid.css?1589200477" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1589200477" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1589200477" rel="stylesheet">
+    <link href="/css/auto-complete.css?1589200477" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1589200477" rel="stylesheet">
+    <link href="/css/theme.css?1589200477" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1589200477" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1589200376" rel="stylesheet">
+      <link href="/css/theme-blue.css?1589200477" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1589200376"></script>
+    <script src="/js/jquery-3.3.1.min.js?1589200477"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1589200376"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1589200376"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1589200477"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1589200477"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1589200376"></script>
+<script type="text/javascript" src="/js/search.js?1589200477"></script>
 
     
   </div>
@@ -412,32 +412,6 @@
  
   
     
-    <li data-nav-id="/releases/" title="Releases" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/releases/">
-          <b>4. </b>Releases
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
     <li data-nav-id="/architecture/" title="Architecture" class="dd-item 
         parent
         
@@ -459,90 +433,6 @@
           
           
         
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/architecture/globalnet/" title="Globalnet Controller" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/architecture/globalnet/">
-          Globalnet Controller
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/architecture/network/" title="Network" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/architecture/network/">
-          Network
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/architecture/service-discovery/" title="Service Discovery" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/architecture/service-discovery/">
-          Service Discovery
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
           
             
             
@@ -628,8 +518,90 @@
 
             
           
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/architecture/globalnet/" title="Globalnet Controller" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/architecture/globalnet/">
+          Globalnet Controller
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/architecture/service-discovery/" title="Service Discovery" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/architecture/service-discovery/">
+          Service Discovery
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
         
         </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/releases/" title="Releases" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/releases/">
+          <b>4. </b>Releases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
               
     </li>
   
@@ -1148,12 +1120,22 @@
 
 
 
-	<p>Submariner uses a central broker to facilitate the exchange of
-metadata information between connected clusters. The broker is
-basically a set of custom resource definitions (CRDs) backed by the
-kubernetes datastore. The broker is a singleton component that is
-deployed on one of the clusters whose Kubernetes API must be
-accessible by all of the connected clusters.</p>
+	<p>Submariner uses a central Broker component to facilitate the exchange of metadata
+information between Gateway Engines deployed in participating clusters. The Broker is
+basically a set of Custom Resource Definitions (CRDs) backed by the Kubernetes datastore.
+The Broker also defines a ServiceAccount and RBAC components to enable other Submariner
+components to securely access the Broker&rsquo;s API. There are no Pods or Services deployed
+with the Broker.</p>
+<p>Submariner defines two CRDs that are exchanged via the Broker: <code>Endpoint</code> and <code>Cluster</code>.
+The <code>Endpoint</code> CRD contains the information about the active Gateway Engine in a cluster,
+such as its IP, needed for clusters to connect to one another. The <code>Cluster</code> CRD contains
+static information about the originating cluster, such as its Service and Pod CIDRs.</p>
+<p>The Broker is a singleton component that is deployed on a cluster whose Kubernetes API must
+be accessible by all of the participating clusters. If there is a mix of on-premise and
+public clusters, the Broker can be deployed on a public cluster. The Broker cluster may be
+one of the participating clusters or a standalone cluster without the other Submariner
+components deployed. The Gateway Engine components deployed in each participating cluster are
+configured with the information to securely connect to the Broker cluster&rsquo;s API.</p>
 
 
 
@@ -1393,22 +1375,6 @@ accessible by all of the connected clusters.</p>
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                     
                 
                 
@@ -1419,57 +1385,6 @@ accessible by all of the connected clusters.</p>
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -1522,6 +1437,54 @@ accessible by all of the connected clusters.</p>
                     
             
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
@@ -1731,7 +1694,7 @@ accessible by all of the connected clusters.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/architecture/service-discovery/" title="Service Discovery"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/architecture/" title="Architecture"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/architecture/gateway-engine/" title="Gateway Engine" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -1744,19 +1707,19 @@ accessible by all of the connected clusters.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1589200376"></script>
-    <script src="/js/perfect-scrollbar.min.js?1589200376"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1589200376"></script>
-    <script src="/js/jquery.sticky.js?1589200376"></script>
-    <script src="/js/featherlight.min.js?1589200376"></script>
-    <script src="/js/highlight.pack.js?1589200376"></script>
+    <script src="/js/clipboard.min.js?1589200477"></script>
+    <script src="/js/perfect-scrollbar.min.js?1589200477"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1589200477"></script>
+    <script src="/js/jquery.sticky.js?1589200477"></script>
+    <script src="/js/featherlight.min.js?1589200477"></script>
+    <script src="/js/highlight.pack.js?1589200477"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1589200376"></script>
-    <script src="/js/learn.js?1589200376"></script>
-    <script src="/js/hugo-learn.js?1589200376"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1589200477"></script>
+    <script src="/js/learn.js?1589200477"></script>
+    <script src="/js/hugo-learn.js?1589200477"></script>
 
-    <link href="/mermaid/mermaid.css?1589200376" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1589200376"></script>
+    <link href="/mermaid/mermaid.css?1589200477" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1589200477"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

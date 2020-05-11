@@ -3,13 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/contributing/website/style_guide/</loc>
-    <lastmod>2020-04-29T19:09:55+02:00</lastmod>
+    <loc>/architecture/broker/</loc>
   </url>
   
   <url>
-    <loc>/contributing/website/</loc>
-    <lastmod>2020-02-19T22:03:26+01:00</lastmod>
+    <loc>/architecture/gateway-engine/</loc>
+  </url>
+  
+  <url>
+    <loc>/architecture/route-agent/</loc>
   </url>
   
   <url>
@@ -18,8 +20,18 @@
   </url>
   
   <url>
-    <loc>/architecture/network/</loc>
-    <lastmod>2020-02-19T21:08:28+01:00</lastmod>
+    <loc>/contributing/website/style_guide/</loc>
+    <lastmod>2020-04-29T19:09:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/architecture/service-discovery/</loc>
+    <lastmod>2020-03-02T21:25:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/contributing/website/</loc>
+    <lastmod>2020-02-19T22:03:26+01:00</lastmod>
   </url>
   
   <url>
@@ -48,11 +60,6 @@
   </url>
   
   <url>
-    <loc>/architecture/service-discovery/</loc>
-    <lastmod>2020-03-02T21:25:35+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/quickstart/openshift/</loc>
     <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
@@ -64,11 +71,6 @@
   
   <url>
     <loc>/deployment/subctl/</loc>
-  </url>
-  
-  <url>
-    <loc>/releases/</loc>
-    <lastmod>2020-05-04T16:50:16+02:00</lastmod>
   </url>
   
   <url>
@@ -87,8 +89,8 @@
   </url>
   
   <url>
-    <loc>/reading_material/</loc>
-    <lastmod>2020-03-09T20:03:44+01:00</lastmod>
+    <loc>/releases/</loc>
+    <lastmod>2020-05-04T16:50:16+02:00</lastmod>
   </url>
   
   <url>
@@ -112,8 +114,8 @@
   </url>
   
   <url>
-    <loc>/quickstart/kind/</loc>
-    <lastmod>2020-03-17T13:36:18+01:00</lastmod>
+    <loc>/reading_material/</loc>
+    <lastmod>2020-03-09T20:03:44+01:00</lastmod>
   </url>
   
   <url>
@@ -124,6 +126,11 @@
   <url>
     <loc>/contributing/</loc>
     <lastmod>2020-02-19T20:24:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quickstart/kind/</loc>
+    <lastmod>2020-03-17T13:36:18+01:00</lastmod>
   </url>
   
   <url>
@@ -149,19 +156,7 @@
   </url>
   
   <url>
-    <loc>/architecture/broker/</loc>
-  </url>
-  
-  <url>
     <loc>/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>/architecture/gateway-engine/</loc>
-  </url>
-  
-  <url>
-    <loc>/architecture/route-agent/</loc>
   </url>
   
   <url>
