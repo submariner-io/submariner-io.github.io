@@ -12,20 +12,20 @@
     <title>Quickstart Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1588968647" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588968647" rel="stylesheet">
-    <link href="/css/hybrid.css?1588968647" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588968647" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588968647" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588968647" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588968647" rel="stylesheet">
-    <link href="/css/theme.css?1588968647" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588968647" rel="stylesheet">
+    <link href="/css/nucleus.css?1589190842" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1589190842" rel="stylesheet">
+    <link href="/css/hybrid.css?1589190842" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1589190842" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1589190842" rel="stylesheet">
+    <link href="/css/auto-complete.css?1589190842" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1589190842" rel="stylesheet">
+    <link href="/css/theme.css?1589190842" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1589190842" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1588968647" rel="stylesheet">
+      <link href="/css/theme-blue.css?1589190842" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588968647"></script>
+    <script src="/js/jquery-3.3.1.min.js?1589190842"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588968647"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588968647"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1589190842"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1589190842"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588968647"></script>
+<script type="text/javascript" src="/js/search.js?1589190842"></script>
 
     
   </div>
@@ -1105,6 +1105,12 @@
       </ul>
     </li>
     <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#support-matrix">Support Matrix</a>
+      <ul>
+        <li><a href="#cloud-providers">Cloud Providers</a></li>
+        <li><a href="#kubernetes-cni-plugins">Kubernetes CNI Plugins</a></li>
+      </ul>
+    </li>
     <li><a href="#deployment">Deployment</a></li>
   </ul>
 </nav>
@@ -1202,6 +1208,27 @@ this topic can be found in the <a href="../architecture">Architecture</a> sectio
 </tr>
 </tbody>
 </table>
+<h2 id="support-matrix">Support Matrix</h2>
+<p>Submariner is designed to be cloud provider agnostic, and should run in any standard Kubernetes cluster. Submariner has been tested with and known to be working properly with the following cloud environments:</p>
+
+<div class="notices tip" ><p>Are you using Submariner in an environment which is not described here? Please <a href="../contributing/website">let us know</a> so that we can update this document.</p>
+</div>
+
+<h3 id="cloud-providers">Cloud Providers</h3>
+<ul>
+<li>AWS</li>
+<li>VMware vSphere</li>
+<li>OpenStack</li>
+<li>GCP</li>
+</ul>
+<h3 id="kubernetes-cni-plugins">Kubernetes CNI Plugins</h3>
+<p>Presently, Submariner has been tested with the following CNI Plugins that leverage kube-proxy with iptables mode:</p>
+<ul>
+<li><a href="https://github.com/openshift/sdn">openshift-sdn</a></li>
+<li><a href="https://github.com/weaveworks/weave">Weave</a></li>
+<li><a href="https://github.com/coreos/flannel">Flannel</a></li>
+<li><a href="https://docs.projectcalico.org/getting-started/kubernetes/flannel/flannel">Canal</a></li>
+</ul>
 <h2 id="deployment">Deployment</h2>
 <p>The available methods for deployment are:</p>
 <ul>
@@ -1787,19 +1814,19 @@ If <strong>helm</strong> fits better your deployment methodologies, please find 
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588968647"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588968647"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588968647"></script>
-    <script src="/js/jquery.sticky.js?1588968647"></script>
-    <script src="/js/featherlight.min.js?1588968647"></script>
-    <script src="/js/highlight.pack.js?1588968647"></script>
+    <script src="/js/clipboard.min.js?1589190842"></script>
+    <script src="/js/perfect-scrollbar.min.js?1589190842"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1589190842"></script>
+    <script src="/js/jquery.sticky.js?1589190842"></script>
+    <script src="/js/featherlight.min.js?1589190842"></script>
+    <script src="/js/highlight.pack.js?1589190842"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588968647"></script>
-    <script src="/js/learn.js?1588968647"></script>
-    <script src="/js/hugo-learn.js?1588968647"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1589190842"></script>
+    <script src="/js/learn.js?1589190842"></script>
+    <script src="/js/hugo-learn.js?1589190842"></script>
 
-    <link href="/mermaid/mermaid.css?1588968647" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588968647"></script>
+    <link href="/mermaid/mermaid.css?1589190842" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1589190842"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
