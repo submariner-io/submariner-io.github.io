@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Community Membership :: Submariner k8s project documentation website</title>
+    <title>OpenShift with Service Discovery (vSphere/AWS) :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1589202550" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/contributing/community-membership/">
+  <body class="" data-url="/quickstart/vsphere_aws/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -82,7 +82,7 @@
   
     
     <li data-nav-id="/quickstart/" title="Quickstart Guide" class="dd-item 
-        
+        parent
         
         
         ">
@@ -242,8 +242,8 @@
   
     
     <li data-nav-id="/quickstart/vsphere_aws/" title="OpenShift with Service Discovery (vSphere/AWS)" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/quickstart/vsphere_aws/">
@@ -697,7 +697,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        parent
+        
         
         
         ">
@@ -995,8 +995,8 @@
   
     
     <li data-nav-id="/contributing/community-membership/" title="Community Membership" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/contributing/community-membership/">
@@ -1107,7 +1107,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/community-membership/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/vsphere_aws/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1138,7 +1138,7 @@
             
           
           
-            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > Community Membership
+            <a href='/'>Submariner</a> > <a href='/quickstart/'>Quickstart Guide</a> > OpenShift with Service Discovery (vSphere/AWS)
           
          
           
@@ -1153,24 +1153,13 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#new-contributors">New Contributors</a></li>
-    <li><a href="#established-community-members">Established Community Members</a></li>
-    <li><a href="#member">Member</a>
+    <li>
       <ul>
-        <li><a href="#requirements">Requirements</a></li>
-        <li><a href="#responsibilities-and-privileges">Responsibilities and Privileges</a></li>
-      </ul>
-    </li>
-    <li><a href="#committers">Committers</a>
-      <ul>
-        <li><a href="#requirements-1">Requirements</a></li>
-        <li><a href="#responsibilities-and-privileges-1">Responsibilities and Privileges</a></li>
-      </ul>
-    </li>
-    <li><a href="#project-owner">Project Owner</a>
-      <ul>
-        <li><a href="#requirements-2">Requirements</a></li>
-        <li><a href="#responsibilities-and-privileges-2">Responsibilities and Privileges</a></li>
+        <li><a href="#openshift-prerequisites">OpenShift Prerequisites</a></li>
+        <li><a href="#deploy-cluster-on-vsphere-onprem">Deploy Cluster on vSphere (OnPrem)</a></li>
+        <li><a href="#deploy-cluster-on-aws">Deploy Cluster on AWS</a></li>
+        <li><a href="#make-your-aws-cluster-ready-for-submariner">Make your AWS cluster ready for Submariner</a></li>
+        <li><a href="#submariner-installation">Submariner Installation</a></li>
       </ul>
     </li>
   </ul>
@@ -1190,7 +1179,7 @@
           
             <h1>
               
-              Community Membership
+              OpenShift with Service Discovery (vSphere/AWS)
             </h1>
           
 
@@ -1199,218 +1188,158 @@
 
 
 
-	<p><strong>This is a stripped-down version of the <a href="https://github.com/kubernetes/community/blob/7d2ebad43cde06607cde3d55e9eed4bb08a286a9/community-membership.md">Kubernetes Community Membership
-process</a>.</strong></p>
-<p><strong>Although we aspire to follow the K8s process, some parts are not currently
-relevant to our structure or possible with our tooling:</strong></p>
-<ul>
-<li><strong>The SIG and subproject abstraction layers don&rsquo;t apply to Submariner.
-Submariner is treated as a single project with file-based commit rights, not
-a &ldquo;project&rdquo; per repository.</strong></li>
-<li><strong>We hope to eventually move to K8s OWNERS and Prow, but until we do so we
-can&rsquo;t support advanced role-based automation (reviewers vs approvers;
-PR workflow commands like /okay-to-test, /lgtm, /approved).</strong></li>
-</ul>
-<hr>
-<p>This doc outlines the various responsibilities of contributor roles in
-Submariner.</p>
+	<p>In this quickstart guide, we shall cover the necessary steps to deploy OpenShift Container Platform (OCP) on vSphere and AWS. Once the OCP clusters are deployed, we shall cover how to deploy Submariner and connect the two clusters.</p>
+<h3 id="openshift-prerequisites">OpenShift Prerequisites</h3>
+<p>Before we proceed, the following prerequisites have to be downloaded and added to your <code>$PATH:</code></p>
+<ol>
+<li><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">openshift-installer</a></li>
+<li><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">pull secret</a></li>
+<li><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">oc</a> tools</li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">aws cli</a></li>
+</ol>
+
+<div class="notices info" ><p>Please ensure that the tools you downloaded above are compatible with the OpenShift Container Platform version.</p>
+</div>
+
+<h3 id="deploy-cluster-on-vsphere-onprem">Deploy Cluster on vSphere (OnPrem)</h3>
+<p>Create the necessary infrastructure on vSphere and ensure that your machines have direct internet access before starting the installation.
+To deploy OCP 4.4, follow the instructions shown <a href="https://docs.openshift.com/container-platform/4.4/installing/installing_vsphere/installing-vsphere.html">here</a></p>
+<p>Assuming that you deployed the cluster (say, cluster-a) with default network configuration, the Pod and Service CIDRs would be</p>
 <table>
 <thead>
 <tr>
-<th>Role</th>
-<th>Responsibilities</th>
-<th>Requirements</th>
-<th>Defined by</th>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Member</td>
-<td>Active contributor in the community</td>
-<td>Sponsored by 2 committers, multiple contributions to the project</td>
-<td><a href="https://github.com/orgs/submariner-io/people">Submariner GitHub org member</a></td>
-</tr>
-<tr>
-<td>Committer</td>
-<td>Approve contributions from other members</td>
-<td>History of review and authorship</td>
-<td>CODEOWNERS file entry</td>
-</tr>
-<tr>
-<td>Owner</td>
-<td>Set direction and priorities for the project</td>
-<td>Demonstrated responsibility and excellent technical judgement for the project</td>
-<td><a href="https://github.com/orgs/submariner-io/teams/submariner-core">Submariner-owners GitHub team member</a></td>
+<td>10.128.0.0/14</td>
+<td>172.30.0.0/16</td>
 </tr>
 </tbody>
 </table>
-<h2 id="new-contributors">New Contributors</h2>
-<p>New contributors should be welcomed to the community by existing members,
-helped with PR workflow, and directed to relevant documentation and
-communication channels.</p>
-<h2 id="established-community-members">Established Community Members</h2>
-<p>Established community members are expected to demonstrate their adherence to
-the principles in this document, familiarity with project organization, roles,
-policies, procedures, conventions, etc., and technical and/or writing ability.
-Role-specific expectations, responsibilities, and requirements are enumerated
-below.</p>
-<h2 id="member">Member</h2>
-<p>Members are continuously active contributors in the community. They can have
-issues and PRs assigned to them and participate through GitHub teams. Members
-are expected to remain active contributors to the community.</p>
-<p><strong>Defined by:</strong> Member of the <a href="https://github.com/orgs/submariner-io/people">Submariner GitHub organization</a>.</p>
-<h3 id="requirements">Requirements</h3>
-<ul>
-<li>Enabled <a href="https://help.github.com/articles/about-two-factor-authentication">two-factor authentication</a> on their GitHub account</li>
-<li>Have made multiple contributions to the project or community. Contribution
-may include, but is not limited to:
-<ul>
-<li>Authoring or reviewing PRs on GitHub</li>
-<li>Filing or commenting on issues on GitHub</li>
-<li>Contributing to community discussions (e.g. meetings, Slack, email
-discussion forums, Stack Overflow)</li>
-</ul>
-</li>
-<li>Subscribed to <a href="https://groups.google.com/forum/#!forum/submariner-dev">submariner-dev@googlegroups.com</a></li>
-<li>Have read the <a href="https://submariner-io.github.io/contributing/">contributor guide</a></li>
-<li>Actively contributing</li>
-<li>Sponsored by 2 committers. <strong>Note the following requirements for sponsors</strong>:
-<ul>
-<li>Sponsors must have close interactions with the prospective member - e.g.
-code/design/proposal review, coordinating on issues, etc.</li>
-<li>Sponsors must be committers in at least 1 CODEOWNERS file either in any
-repo in the <a href="https://github.com/submariner">Submariner org</a></li>
-</ul>
-</li>
-<li><a href="https://github.com/submariner-io/submariner/issues/new?template=membership.md&amp;title=REQUEST%3A%20New%20membership%20request%20for%20%3Cyour-GH-handle%3E">Open an issue</a> against the submariner-io/submariner repo
-<ul>
-<li>Ensure your sponsors are @mentioned on the issue</li>
-<li>Complete every item on the checklist (<a href="https://github.com/submariner-io/submariner/blob/master/.github/ISSUE_TEMPLATE/membership.md">preview the current version of the member template</a>)</li>
-<li>Make sure that the list of contributions included is representative of
-your work on the project</li>
-</ul>
-</li>
-<li>Have your sponsoring committers reply confirmation of sponsorship: <code>+1</code></li>
-<li>Once your sponsors have responded, your request will be reviewed. Any missing
-information will be requested.</li>
-</ul>
-<h3 id="responsibilities-and-privileges">Responsibilities and Privileges</h3>
-<ul>
-<li>Responsive to issues and PRs assigned to them</li>
-<li>Responsive to mentions of teams they are members of</li>
-<li>Active owner of code they have contributed (unless ownership is explicitly
-transferred)
-<ul>
-<li>Code is well tested</li>
-<li>Tests consistently pass</li>
-<li>Addresses bugs or issues discovered after code is accepted</li>
-</ul>
-</li>
-<li>They can be assigned to issues and PRs, and people can ask members for
-reviews</li>
-</ul>
-<p><strong>Note:</strong> Members who frequently contribute code are expected to proactively
-perform code reviews and work towards becoming a committer.</p>
-<h2 id="committers">Committers</h2>
-<p>Committers are able to review code for quality and correctness on some part of
-the project. They are knowledgeable about both the codebase and software
-engineering principles.</p>
-<p><strong>Until automation supports approvers vs reviewers:</strong> They also review for
-holistic acceptance of a contribution including: backwards / forwards
-compatibility, adhering to API and flag conventions, subtle performance and
-correctness issues, interactions with other parts of the system, etc.</p>
-<p><strong>Defined by:</strong> Entry in an CODEOWNERS file in a repo owned by the Submariner
-project.</p>
-<p><strong>Committer status is scoped to a part of the codebase.</strong></p>
-<h3 id="requirements-1">Requirements</h3>
-<p>The following apply to the part of codebase for which one would be a committer
-in an CODEOWNERS file:</p>
-<ul>
-<li>Member for at least 3 months</li>
-<li>Primary reviewer for at least 5 PRs to the codebase</li>
-<li>Reviewed at least 20 substantial PRs to the codebase</li>
-<li>Knowledgeable about the codebase</li>
-<li>Sponsored by two committers or project owners
-<ul>
-<li>With no objections from other committers or project owners</li>
-</ul>
-</li>
-<li>May either self-nominate or be nominated by a committer/owner</li>
-<li><a href="https://github.com/submariner-io/submariner/issues/new?template=committership.md&amp;title=REQUEST%3A%20New%20committer%20rights%20request%20for%20%3Cyour-GH-handle%3E">Open an issue</a> against the submariner-io/submariner repo
-<ul>
-<li>Ensure your sponsors are @mentioned on the issue</li>
-<li>Complete every item on the checklist (<a href="https://github.com/submariner-io/submariner/blob/master/.github/ISSUE_TEMPLATE/committership.md">preview the current version of the committer template</a>)</li>
-<li>Make sure that the list of contributions included is representative of
-your work on the project</li>
-</ul>
-</li>
-<li>Have your sponsoring committers/owners reply confirmation of sponsorship: <code>+1</code></li>
-<li>Once your sponsors have responded, your request will be reviewed. Any missing
-information will be requested.</li>
-</ul>
-<h3 id="responsibilities-and-privileges-1">Responsibilities and Privileges</h3>
-<p>The following apply to the part of codebase for which one would be a committer
-in an CODEOWNERS file:</p>
-<ul>
-<li>Responsible for project quality control via <a href="https://github.com/kubernetes/community/blob/7d2ebad43cde06607cde3d55e9eed4bb08a286a9/contributors/guide/collab.md">code reviews</a>
-<ul>
-<li>Focus on code quality and correctness, including testing and factoring</li>
-<li><strong>Until automation supports approvers vs reviewers:</strong> Focus on holistic
-acceptance of contribution such as dependencies with other features,
-backwards / forwards compatibility, API and flag definitions, etc</li>
-</ul>
-</li>
-<li>Expected to be responsive to review requests as per <a href="https://github.com/kubernetes/community/blob/7d2ebad43cde06607cde3d55e9eed4bb08a286a9/contributors/guide/expectations.md">community expectations</a></li>
-<li>Assigned PRs to review related to project of expertise</li>
-<li>Assigned test bugs related to project of expertise</li>
-<li>Granted &ldquo;read access&rdquo; to submariner repo</li>
-<li>May get a badge on PR and issue comments</li>
-<li>Demonstrate sound technical judgement</li>
-<li>Mentor contributors and reviewers</li>
-</ul>
-<h2 id="project-owner">Project Owner</h2>
-<p>Project owners are the technical authority for the Submariner project. They
-<em>MUST</em> have demonstrated both good judgement and responsibility towards the
-health the project. Project owners <em>MUST</em> set technical direction and make or
-approve design decisions for the project - either directly or through
-delegation of these responsibilities.</p>
-<p><strong>Defined by:</strong> Member of the <a href="https://github.com/orgs/submariner-io/teams/submariner-core">submariner-owners GitHub team</a>.</p>
-<h3 id="requirements-2">Requirements</h3>
-<p>Unlike the roles outlined above, the owners of the project are typically
-limited to a relatively small group of decision makers and updated as fits the
-needs of the project.</p>
-<p>The following apply to people who would be an owner:</p>
-<ul>
-<li>Deep understanding of the technical goals and direction of the project</li>
-<li>Deep understanding of the technical domain of the project</li>
-<li>Sustained contributions to design and direction by doing all of:
-<ul>
-<li>Authoring and reviewing proposals</li>
-<li>Initiating, contributing and resolving discussions (emails, GitHub issues,
-meetings)</li>
-<li>Identifying subtle or complex issues in designs and implementation PRs</li>
-</ul>
-</li>
-<li>Directly contributed to the project through implementation and / or review</li>
-</ul>
-<h3 id="responsibilities-and-privileges-2">Responsibilities and Privileges</h3>
-<p>The following apply to people who would be an owner:</p>
-<ul>
-<li>Make and approve technical design decisions for the project</li>
-<li>Set technical direction and priorities for the project</li>
-<li>Define milestones and releases</li>
-<li>Mentor and guide committers and contributors to the project</li>
-<li>Ensure continued health of project
-<ul>
-<li>Adequate test coverage to confidently release</li>
-<li>Tests are passing reliably (i.e. not flaky) and are fixed when they fail</li>
-</ul>
-</li>
-<li>Ensure a healthy process for discussion and decision making is in place</li>
-<li>Work with other project owners to maintain the project&rsquo;s overall health and
-success holistically</li>
-</ul>
+<p>Submariner creates a VxLAN overlay network in the local cluster and uses port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes to preserve the source IP of the inter-cluster traffic.
+Ensure that firewall configuration on vSphere cluster allows 4800/UDP across all the worker nodes.</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UDP</td>
+<td>4800</td>
+<td>overlay network for inter-cluster traffic</td>
+</tr>
+</tbody>
+</table>
 
+<div class="notices tip" ><p>Although we are using the default OCP network configuration on vSphere, you can install vSphere with a custom network configuration as shown <a href="https://red.ht/2WFjEVg">here</a></p>
+</div>
+
+<h3 id="deploy-cluster-on-aws">Deploy Cluster on AWS</h3>
+<h4 id="configure-aws-cli-with-appropriate-values">Configure AWS CLI with appropriate values</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
+AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
+</code></pre></div><p>For more details, follow this link:</p>
+<blockquote>
+<p><a href="https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-account.html">https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-account.html</a></p>
+</blockquote>
+<p>In this step we shall modify the default Cluster/Service CIDRs and deploy cluster-b on AWS.</p>
+<table>
+<thead>
+<tr>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.132.0.0/14</td>
+<td>172.31.0.0/16</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
+</code></pre></div><p>Change the Pod IP network. Please note it’s a /14 range by default so you need to use
++4 increments for “128”, for example: 10.132.0.0, 10.136.0.0, 10.140.0.0, &hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
+</code></pre></div><p>Change the Service IP network. This is a /16 range by default, so just use +1 increments
+for “30”: for example: 172.31.0.0, 172.32.0.0, 172.33.0.0, &hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
+</code></pre></div><p>And finally deploy</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
+</code></pre></div><h3 id="make-your-aws-cluster-ready-for-submariner">Make your AWS cluster ready for Submariner</h3>
+<p>Submariner gateway nodes need to be able to accept IPsec traffic. The default ports are 4500/UDP and 500/UDP.
+However, when you have some on-premise clusters (like vSphere in this example) which are typically inside a corporate network, the firewall configuration on the corporate router may not allow the default IPsec traffic.
+We can overcome this limitation by using non-standard ports like 4501/UDP and 501/UDP.</p>
+<p>Additionally, the default OpenShift deployments do not allow assigning an elastic public IP
+to existing worker nodes, something that&rsquo;s necessary at least on one end of the IPsec connections.</p>
+<p>To handle these requirements on AWS, we provide a script that will prepare your AWS OpenShift deployment
+for Submariner, and will create an additional gateway node with an external IP.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
+chmod a+x ./prep_for_subm.sh
+
+./prep_for_subm.sh cluster-b      <span style="color:#75715e"># respond yes when terraform asks</span>
+
+</code></pre></div><blockquote>
+<p><strong><em>INFO</em></strong> Please note that  <strong>oc</strong>, <strong>aws-cli</strong>, <strong>terraform</strong>, and <strong>unzip</strong> need to be installed before running the <code>prep_for_subm.sh</code> script.</p>
+</blockquote>
+<p>Currently, prep_for_subm.sh script does not support specifying custom IPsec ports.
+Until the <a href="https://github.com/submariner-io/submariner/issues/240">issue</a> is resolved, execute the following commands to open the necessary ports:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+export BROKER_IKEPORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
+export NAT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+sed <span style="color:#e6db74">&#34;s/\ 500/\ </span>$BROKER_IKEPORT<span style="color:#e6db74">/g&#34;</span> -i cluster-b/ocp-ipi-aws/ocp-ipi-aws-prep/ec2-resources.tf
+sed <span style="color:#e6db74">&#34;s/\ 4500/\ </span>$NAT_PORT<span style="color:#e6db74">/g&#34;</span> -i cluster-b/ocp-ipi-aws/ocp-ipi-aws-prep/ec2-resources.tf
+
+./prep_for_subm.sh cluster-b      <span style="color:#75715e"># respond yes when terraform asks</span>
+
+</code></pre></div><h3 id="submariner-installation">Submariner Installation</h3>
+Download the subctl binary and make it available on your PATH.
+
+
+
+<div class="highlight">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<code class="language-bash" data-lang="bash">
+mkdir -p ~/.local/bin
+curl -L -o ~/.local/bin/subctl https://github.com/submariner-io/submariner-operator/releases/download/v0.3.0-rc2/subctl-v0.3.0-rc2-linux-amd64
+chmod a+x ~/.local/bin/subctl
+export PATH=$PATH:~/.local/bin
+echo export PATH=$PATH:~/.local/bin >> ~/.profile
+</code>
+</pre>
+</div>
+
+<h4 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h4>
+
+<div class="notices info" ><p>The Lighthouse project is meant only to be used as a development preview. Installing the operator on an OpenShift cluster will disable OpenShift CVO</p>
+</div>
+
+<p>To install Submariner with multi-cluster service discovery, follow the steps below.</p>
+<h5 id="use-cluster-b-aws-as-broker-with-service-discovery-enabled">Use cluster-b (AWS) as broker with service discovery enabled</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig cluster-b/auth/kubeconfig --service-discovery
+</code></pre></div><h5 id="join-cluster-b-aws-and-cluster-a-vsphere-to-the-broker">Join cluster-b (AWS) and cluster-a (vSphere) to the broker</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --clusterid cluster-b --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span> 
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --clusterid cluster-a --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span> 
+</code></pre></div><h4 id="verify-deployment">Verify Deployment</h4>
+<p>To verify the deployment follow the steps below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig cluster-b/auth/kubeconfig create deployment nginx --image<span style="color:#f92672">=</span>nginx
+kubectl --kubeconfig cluster-b/auth/kubeconfig expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
+kubectl --kubeconfig cluster-a/auth/kubeconfig run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image nicolaka/netshoot -- /bin/bash
+curl nginx
+</code></pre></div><p>Alternately, you can also run the Submariner test-suite that validates various use-cases:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify-connectivity cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig
+</code></pre></div>
 
 
 
@@ -1450,8 +1379,159 @@ success holistically</li>
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1475,6 +1555,91 @@ success holistically</li>
                     
                     
 
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
                         
             
@@ -1585,25 +1750,6 @@ success holistically</li>
 
                     
                     
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
                         
                     
                     
@@ -1613,222 +1759,6 @@ success holistically</li>
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1975,7 +1905,6 @@ success holistically</li>
             
             
                 
-                    
                     
                 
                 
@@ -2000,10 +1929,10 @@ success holistically</li>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/contributing/code-of-conduct/" title="Code of Conduct"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/quickstart/openshiftsd/" title="OpenShift with Service Discovery (AWS)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/contributing/code-review/" title="Code Review Guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/quickstart/openshiftgn/" title="OpenShift with Service Discovery and Globalnet (AWS)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
