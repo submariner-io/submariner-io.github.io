@@ -79,12 +79,12 @@
   </url>
   
   <url>
-    <loc>/quickstart/openshiftsd/</loc>
+    <loc>/quickstart/vsphere_aws/</loc>
     <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/quickstart/vsphere_aws/</loc>
+    <loc>/quickstart/openshift/service_discovery/</loc>
     <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
@@ -104,7 +104,7 @@
   </url>
   
   <url>
-    <loc>/quickstart/openshiftgn/</loc>
+    <loc>/quickstart/openshift/globalnet/</loc>
     <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
