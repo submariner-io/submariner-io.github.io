@@ -99,8 +99,8 @@
   </url>
   
   <url>
-    <loc>/releases/</loc>
-    <lastmod>2020-05-04T16:50:16+02:00</lastmod>
+    <loc>/troubleshooting/</loc>
+    <lastmod>2020-05-04T19:01:14+05:30</lastmod>
   </url>
   
   <url>
@@ -121,6 +121,11 @@
   <url>
     <loc>/deployment/helm/</loc>
     <lastmod>2020-02-19T21:25:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/releases/</loc>
+    <lastmod>2020-05-04T16:50:16+02:00</lastmod>
   </url>
   
   <url>
