@@ -12,20 +12,20 @@
     <title>Building and Testing :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1589293345" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1589293345" rel="stylesheet">
-    <link href="/css/hybrid.css?1589293345" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1589293345" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1589293345" rel="stylesheet">
-    <link href="/css/auto-complete.css?1589293345" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1589293345" rel="stylesheet">
-    <link href="/css/theme.css?1589293345" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1589293345" rel="stylesheet">
+    <link href="/css/nucleus.css?1589382308" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1589382308" rel="stylesheet">
+    <link href="/css/hybrid.css?1589382308" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1589382308" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1589382308" rel="stylesheet">
+    <link href="/css/auto-complete.css?1589382308" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1589382308" rel="stylesheet">
+    <link href="/css/theme.css?1589382308" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1589382308" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1589293345" rel="stylesheet">
+      <link href="/css/theme-blue.css?1589382308" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1589293345"></script>
+    <script src="/js/jquery-3.3.1.min.js?1589382308"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1589293345"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1589293345"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1589382308"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1589382308"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1589293345"></script>
+<script type="text/javascript" src="/js/search.js?1589382308"></script>
 
     
   </div>
@@ -1276,17 +1276,16 @@ as well):</p>
 <pre><code>make deploy
 </code></pre><p>Find out more about <a href="../shipyard#deploy">Shipyard&rsquo;s deploy target</a>.</p>
 <h3 id="end-to-end-tests">End-to-End Tests</h3>
-<p>To run functional end-to-end tests with a full multi-cluster deployment (if one isn&rsquo;t yet deployed, this target will first invoke the deploy target to do so):</p>
-<pre><code>make e2e
-</code></pre><p>Optionally, you can specify flags to control the execution of the end-to-end
-testing and deployment (if it wasn&rsquo;t run separately).
-Currently these flags are project-specific, so consult the project&rsquo;s
-<code>Makefile</code> to learn which flags are supported.
-The flags can be combined or used separately, or not at all (in which case
-default values apply).</p>
-<p>For example, here&rsquo;s a flag variation used in <strong>submariner-io/submariner</strong> CI:</p>
-<pre><code>make e2e deploytool=helm globalnet=true
-</code></pre><h3 id="environment-clean-up">Environment Clean Up</h3>
+<p>To run functional end-to-end tests with a full multi-cluster deployment (if one isn&rsquo;t yet deployed, this target will first invoke the <code>deploy</code> target to do so):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make e2e
+</code></pre></div><p>Optionally, you can specify arguments to control the execution of the end-to-end testing and deployment (if it wasn&rsquo;t run separately).
+Currently some arguments are project-specific, while standard ones are supplied by <a href="../shipyard">Shipyard</a>.
+Please consult the project&rsquo;s <code>Makefile</code> to learn which arguments are supported.
+The arguments can be combined or used separately, or not at all (in which case default values apply).</p>
+<p><a href="../shipyard/advanced">Learn more</a> about controlling the deployments via Shipyard&rsquo;s standard arguments.</p>
+<p>For example, here&rsquo;s a variation used in <strong>submariner-io/submariner</strong> CI to deploy with <em>globalnet</em>, using <em>helm</em>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make e2e CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--globalnet&#34;</span> DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--globalnet --deploytool helm&#34;</span>
+</code></pre></div><h3 id="environment-clean-up">Environment Clean Up</h3>
 <p>To clean up all the KIND clusters deployed in any of the previous steps, use:</p>
 <pre><code>make cleanup
 </code></pre><p>Learn more about Shipyard&rsquo;s cleanup target <a href="../shipyard#cleanup">here</a>.</p>
@@ -1297,7 +1296,7 @@ default values apply).</p>
 repository:</p>
 <pre><code>make build
 </code></pre><p>There is an optional flag to build with debug flags set:</p>
-<pre><code>make build --build_debug=true
+<pre><code>make build build_debug=true
 </code></pre><h3 id="building-engine-routeagent-and-globalnet-container-images">Building Engine, Routeagent, and Globalnet container images</h3>
 <p>To build the <code>submariner/submariner</code>, <code>submariner/submariner-route-agent</code>, and
 <code>submariner/submariner-globalnet</code> container images, in the
@@ -1942,19 +1941,19 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1589293345"></script>
-    <script src="/js/perfect-scrollbar.min.js?1589293345"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1589293345"></script>
-    <script src="/js/jquery.sticky.js?1589293345"></script>
-    <script src="/js/featherlight.min.js?1589293345"></script>
-    <script src="/js/highlight.pack.js?1589293345"></script>
+    <script src="/js/clipboard.min.js?1589382308"></script>
+    <script src="/js/perfect-scrollbar.min.js?1589382308"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1589382308"></script>
+    <script src="/js/jquery.sticky.js?1589382308"></script>
+    <script src="/js/featherlight.min.js?1589382308"></script>
+    <script src="/js/highlight.pack.js?1589382308"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1589293345"></script>
-    <script src="/js/learn.js?1589293345"></script>
-    <script src="/js/hugo-learn.js?1589293345"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1589382308"></script>
+    <script src="/js/learn.js?1589382308"></script>
+    <script src="/js/hugo-learn.js?1589382308"></script>
 
-    <link href="/mermaid/mermaid.css?1589293345" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1589293345"></script>
+    <link href="/mermaid/mermaid.css?1589382308" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1589382308"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
