@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Service Discovery :: Submariner k8s project documentation website</title>
+    <title>Contributing to Lighthouse :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1589458802" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/architecture/service-discovery/">
+  <body class="" data-url="/contributing/lighthouse/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -443,7 +443,7 @@
   
     
     <li data-nav-id="/architecture/" title="Architecture" class="dd-item 
-        parent
+        
         
         
         ">
@@ -586,8 +586,8 @@
   
     
     <li data-nav-id="/architecture/service-discovery/" title="Service Discovery" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/architecture/service-discovery/">
@@ -725,7 +725,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -843,8 +843,8 @@
   
     
     <li data-nav-id="/contributing/lighthouse/" title="Contributing to Lighthouse" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/contributing/lighthouse/">
@@ -1163,7 +1163,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/architecture/service-discovery/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/lighthouse/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1194,7 +1194,7 @@
             
           
           
-            <a href='/'>Submariner</a> > <a href='/architecture/'>Architecture</a> > Service Discovery
+            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > Contributing to Lighthouse
           
          
           
@@ -1209,10 +1209,10 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#architecture">Architecture</a>
+    <li>
       <ul>
-        <li><a href="#lighthouse-agent">Lighthouse Agent</a></li>
-        <li><a href="#lighthouse-plugin">Lighthouse Plugin</a></li>
+        <li><a href="#fork-and-clone-the-repository">Fork and Clone the Repository</a></li>
+        <li><a href="#creating-a-pull-request">Creating a Pull Request</a></li>
       </ul>
     </li>
   </ul>
@@ -1232,7 +1232,7 @@
           
             <h1>
               
-              Service Discovery
+              Contributing to Lighthouse
             </h1>
           
 
@@ -1241,34 +1241,32 @@
 
 
 
-	<p>The Lighthouse project provides DNS discovery for Kubernetes clusters connected by <a href="https://github.com/submariner-io/submariner">Submariner</a> in multi-cluster environments. The solution is compatible with any CNI (Container Network Interfaces) plugin.</p>
-<h2 id="architecture">Architecture</h2>
-<p>The below diagram shows the basic Lighthouse architecture.</p>
-<p><img src="/images/lighthouse/architecture.png" alt="Lighthouse Architecture"></p>
-<h3 id="lighthouse-agent">Lighthouse Agent</h3>
-<p>The Lighthouse Agent runs in every cluster and accesses the Kubernetes API server running in the broker cluster to exchange service metadata information with other clusters. Local service information is exported to the broker and service information from other clusters is imported.</p>
-<h4 id="workflow">WorkFlow</h4>
-<p>The workflow is as follows:</p>
-<ul>
-<li>Lighthouse agent connects to the broker&rsquo;s K8s API server.</li>
-<li>For every service in the local cluster, it creates a corresponding MultiClusterService resource and exports it to the broker to be consumed by other clusters.</li>
-<li>For every MultiClusterService resource in the broker exported from another cluster, it creates a copy of it in the local cluster.</li>
-</ul>
-<p><img src="/images/lighthouse/controllerWorkFlow.png" alt="Lighthouse Agent WorkFlow"></p>
-<!-- raw HTML omitted -->
-<h3 id="lighthouse-plugin">Lighthouse Plugin</h3>
-<p>Lighthouse plugin can be installed as an external plugin for CoreDNS, and will work along with the default Kubernetes plugin. It uses the MultiClusterService resources that are distributed by the controller for DNS resolution. The below diagram indicates a high-level architecture.</p>
-<p><img src="/images/lighthouse/lighthousePluginArchitecture.png" alt="Lighthouse Plugin Architecture"></p>
-<h4 id="workflow-1">WorkFlow</h4>
-<p>The workflow is as follows.</p>
-<ul>
-<li>A pod tries to resolve a Service name.</li>
-<li>The Kubernetes plugin in CoreDNS will first try to resolve the request. If no records are present the request will be sent to Lighthouse plugin.</li>
-<li>The Lighthouse plugin will use its MultiClusterService cache to try to resolve the request.</li>
-<li>If a record exists it will be returned, otherwise the plugin will pass the request to the next plugin registered in CoreDNS.</li>
-</ul>
-<p><img src="/images/lighthouse/coreDNSWorkFlow.png" alt="Lighthouse CoreDNS WorkFlow"></p>
-<!-- raw HTML omitted -->
+	<p>The <a href="https://github.com/submariner-io/lighthouse">Lighthouse Project</a> contains the code for the service discovery component of Submariner. It mainly consists of an agent and a coreDNS plugin.
+Learn more about the architecture <a href="../../architecture/service-discovery/">here</a>.</p>
+<h3 id="fork-and-clone-the-repository">Fork and Clone the Repository</h3>
+<p>First log into your GitHub account and create a <a href="https://github.com/submariner-io/lighthouse/fork">fork of the Lighthouse repository</a>.
+Then clone your forked repository locally and switch to the lighthouse folder. You will need to create a branch in order to raise a PR.</p>
+<pre><code>git clone https://github.com/&lt;your-github-username&gt;/lighthouse.git
+cd lighthouse
+git checkout -b &lt;BRANCH-NAME&gt;
+</code></pre><h4 id="contributing-to-lighthouse-agent">Contributing to Lighthouse Agent</h4>
+<p>The Lighthouse Agent code is located under the <code>pkg/agent</code> directory. The <code>Controller</code> is the main component that performs bi-directional syncing of Service and MultiClusterService resources. After making code changes, please refer to <a href="../building_testing/#submariner-iolighthouse">building</a>
+and <a href="../building_testing/#common-build-and-testing-targets">testing</a> to build and verify your changes.</p>
+<p>Running <code>make e2e</code> will create a 3-cluster deployment which you can use to manually verify changes if necessary.
+The Lighthouse Agent will be deployed in the <code>submariner-operator</code> namespace in each cluster. You can use <code>kubectl</code> commands to check the pod&rsquo;s logs and status.</p>
+<h4 id="contributing-to-lighthouse-plugin">Contributing to Lighthouse Plugin</h4>
+<p>The Lighthouse plugin code is located under the <code>plugin/lighthouse</code> directory and uses the structure as required by a standard CoreDNS plugin.
+The plugin answers DNS requests by using the MultiClusterService resources populated by the Lighthouse Agent. After making code changes, please refer to <a href="../building_testing/#submariner-iolighthouse">building</a>
+and <a href="../building_testing/#common-build-and-testing-targets">testing</a> to build and verify your changes.</p>
+<p>Similar to the agent, you can use the deployment created using <code>make e2e</code> to manually test and verify as well. The Lighthouse plugin will be running as a part of the CoreDNS in the <code>kube-system</code><br>
+namespace and the CoreDNS config map will be changed to use it. The usual <code>kubectl</code> commands can be used here as well.
+You can add the debug entry in the CoreDNS config map if you require more logging.</p>
+<h3 id="creating-a-pull-request">Creating a Pull Request</h3>
+<p>You can commit your changes using <code>git commit</code> and push the changes to your fork branch. Then you will see an option to create a PR in
+the GitHub UI in your browser when you go to your forked repository.</p>
+<pre><code>git commit -s #Give a commit message
+git push -f origin HEAD:&lt;Your-Branch-Name&gt;
+</code></pre><p>Creating a PR will trigger CI to verify the changes.</p>
 
 
 
@@ -1526,7 +1524,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1541,96 +1538,6 @@
             
             
                 
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1701,6 +1608,90 @@
 
                     
                     
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
                         
                     
                     
@@ -1710,6 +1701,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1759,6 +1753,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1774,6 +1769,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1896,10 +1894,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/architecture/globalnet/" title="Globalnet Controller"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/contributing/website/style_guide/" title="Docs Style Guide"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/troubleshooting/" title="Troubleshooting Guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/contributing/shipyard/" title="Working With Shipyard" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
