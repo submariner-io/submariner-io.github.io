@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rancher 2.x on Submariner k8s project documentation website</title>
+    <link>/quickstart/rancher/</link>
+    <description>Recent content in Rancher 2.x on Submariner k8s project documentation website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 15 May 2020 15:30:00 +0000</lastBuildDate>
+    
+	<atom:link href="/quickstart/rancher/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/quickstart/rancher/create_clusters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/quickstart/rancher/create_clusters/</guid>
+      <description>Create and Deploy Cluster A In this step you will deploy cluster A, with the default IP CIDRs
+   Pod CIDR Service CIDR     10.42.0.0/16 10.43.0.0/16    Use the Rancher UI to create a cluster, leaving the default options selected.
+Make sure you create at least one node that has a publicly accessible IP with the label submariner.io/gateway: &amp;quot;true&amp;quot;, either via node pool or via a custom node registration command.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/quickstart/rancher/prerequisites/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/quickstart/rancher/prerequisites/</guid>
+      <description>Prerequisites These instructions were developed with Rancher v2.4.x
+Make sure you are familiar with Rancher, and creating clusters. You can create either node driver clusters or Custom clusters, as long as your designated gateway nodes can communicate with each other.</description>
+    </item>
+    
+  </channel>
+</rss>

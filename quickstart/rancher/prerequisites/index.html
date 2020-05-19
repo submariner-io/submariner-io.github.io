@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Building and Testing :: Submariner k8s project documentation website</title>
+    <title> :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1589900804" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/contributing/building_testing/">
+  <body class="" data-url="/quickstart/rancher/prerequisites/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -82,7 +82,7 @@
   
     
     <li data-nav-id="/quickstart/" title="Quickstart Guide" class="dd-item 
-        
+        parent
         
         
         ">
@@ -113,7 +113,7 @@
   
     
     <li data-nav-id="/quickstart/rancher/" title="Rancher 2.x" class="dd-item 
-        
+        parent
         
         
         ">
@@ -162,7 +162,7 @@
  
   
     
-      <li data-nav-id="/quickstart/rancher/prerequisites/" title="" class="dd-item ">
+      <li data-nav-id="/quickstart/rancher/prerequisites/" title="" class="dd-item active">
         <a href="/quickstart/rancher/prerequisites/">
         
         <i class="fas fa-check read-icon"></i>
@@ -805,7 +805,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        parent
+        
         
         
         ">
@@ -1047,8 +1047,8 @@
   
     
     <li data-nav-id="/contributing/building_testing/" title="Building and Testing" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/contributing/building_testing/">
@@ -1243,7 +1243,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/building_testing/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/rancher/prerequisites.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1274,7 +1274,13 @@
             
           
           
-            <a href='/'>Submariner</a> > <a href='/contributing/'>Contributing</a> > Building and Testing
+            
+            
+          
+          
+            <a href='/'>Submariner</a> > <a href='/quickstart/'>Quickstart Guide</a> > <a href='/quickstart/rancher/'>Rancher 2.x</a> > 
+          
+         
           
          
           
@@ -1289,39 +1295,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#standard-development-environment">Standard Development Environment</a></li>
-    <li><a href="#prescribed-tasks-via-make-targets">Prescribed Tasks via Make Targets</a></li>
-    <li><a href="#common-build-and-testing-targets">Common Build and Testing Targets</a>
-      <ul>
-        <li><a href="#linting">Linting</a></li>
-        <li><a href="#unit-tests">Unit tests</a></li>
-        <li><a href="#clusters">Multi-Cluster KIND Based Environment</a></li>
-        <li><a href="#multi-cluster-submariner-deployment">Multi-Cluster Submariner Deployment</a></li>
-        <li><a href="#end-to-end-tests">End-to-End Tests</a></li>
-        <li><a href="#environment-clean-up">Environment Clean Up</a></li>
-      </ul>
-    </li>
-    <li><a href="#submariner-iosubmariner">submariner-io/submariner</a>
-      <ul>
-        <li><a href="#building-engine-routeagent-and-globalnet-go-binaries">Building Engine, Routeagent, and Globalnet Go binaries</a></li>
-        <li><a href="#building-engine-routeagent-and-globalnet-container-images">Building Engine, Routeagent, and Globalnet container images</a></li>
-      </ul>
-    </li>
-    <li><a href="#submariner-iosubmariner-operator">submariner-io/submariner-operator</a>
-      <ul>
-        <li><a href="#building-the-operator-and-subctl">Building the Operator and subctl</a></li>
-      </ul>
-    </li>
-    <li><a href="#submariner-iolighthouse">submariner-io/lighthouse</a>
-      <ul>
-        <li><a href="#building-lighthouse-controller-coredns-and-dnsserver-container-images">Building Lighthouse Controller, CoreDNS and DNSServer container images</a></li>
-      </ul>
-    </li>
-    <li><a href="#submariner-ioshipyard">submariner-io/shipyard</a>
-      <ul>
-        <li><a href="#building-dapper-base-container-image">Building dapper-base container image</a></li>
-      </ul>
-    </li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
   </ul>
 </nav>
     </div>
@@ -1339,7 +1313,7 @@
           
             <h1>
               
-              Building and Testing
+              
             </h1>
           
 
@@ -1347,90 +1321,12 @@
 
 
 
-
-	<p>Submariner strives to be an open, welcoming community for developers.
-Substantial tooling is provided to ease the contribution experience.</p>
-<h2 id="standard-development-environment">Standard Development Environment</h2>
-<p>Submariner provides a standard, shared development environment suitable for all
-local work. The same environment is used in CI.</p>
-<p>The <a href="https://github.com/submariner-io/shipyard">submariner-io/shipyard</a> project
-contains the logic to build the base container images used across all
-submariner-io repositories.</p>
-<p>Learn more about working with Shipyard <a href="../shipyard">here</a>.</p>
-<h2 id="prescribed-tasks-via-make-targets">Prescribed Tasks via Make Targets</h2>
-<p>Make targets are provided to further ease the process of using the shared
-development environment. The specific make targets available might differ by
-repository. For any submariner-io repository, see the <code>Makefile</code> at the root of
-the repository for the supported targets and the <code>.travis.yml</code> file for the
-targets actually used in CI.</p>
-<h2 id="common-build-and-testing-targets">Common Build and Testing Targets</h2>
-<p>All <strong>submariner-io/</strong>* repositories provide a standard set of Make targets for
-similar building and testing actions.</p>
-<h3 id="linting">Linting</h3>
-<p>To run static Go linting (goimports, golangci-lint):</p>
-<pre><code>make validate
-</code></pre><h3 id="unit-tests">Unit tests</h3>
-<p>To run Go unit tests:</p>
-<pre><code>make test
-</code></pre><h3 id="clusters">Multi-Cluster KIND Based Environment</h3>
-<p>Shipyard provides a basic target that creates a KIND based multi-cluster
-environment, without any special deployment (apart from the default K8s):</p>
-<pre><code>make clusters
-</code></pre><p>Find out more about <a href="../shipyard#clusters">Shipyard&rsquo;s clusters target</a>.</p>
-<h3 id="multi-cluster-submariner-deployment">Multi-Cluster Submariner Deployment</h3>
-<p>Shipyard provides a basic target that deploys submariner on a KIND based
-multi-cluster environment (if one isn&rsquo;t yet created, this target will first invoke the clusters target to do so):
-as well):</p>
-<pre><code>make deploy
-</code></pre><p>Find out more about <a href="../shipyard#deploy">Shipyard&rsquo;s deploy target</a>.</p>
-<h3 id="end-to-end-tests">End-to-End Tests</h3>
-<p>To run functional end-to-end tests with a full multi-cluster deployment (if one isn&rsquo;t yet deployed, this target will first invoke the <code>deploy</code> target to do so):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make e2e
-</code></pre></div><p>Optionally, you can specify arguments to control the execution of the end-to-end testing and deployment (if it wasn&rsquo;t run separately).
-Currently some arguments are project-specific, while standard ones are supplied by <a href="../shipyard">Shipyard</a>.
-Please consult the project&rsquo;s <code>Makefile</code> to learn which arguments are supported.
-The arguments can be combined or used separately, or not at all (in which case default values apply).</p>
-<p><a href="../shipyard/advanced">Learn more</a> about controlling the deployments via Shipyard&rsquo;s standard arguments.</p>
-<p>For example, here&rsquo;s a variation used in <strong>submariner-io/submariner</strong> CI to deploy with <em>globalnet</em>, using <em>helm</em>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make e2e CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--globalnet&#34;</span> DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--globalnet --deploytool helm&#34;</span>
-</code></pre></div><h3 id="environment-clean-up">Environment Clean Up</h3>
-<p>To clean up all the KIND clusters deployed in any of the previous steps, use:</p>
-<pre><code>make cleanup
-</code></pre><p>Learn more about Shipyard&rsquo;s cleanup target <a href="../shipyard#cleanup">here</a>.</p>
-<h2 id="submariner-iosubmariner">submariner-io/submariner</h2>
-<h3 id="building-engine-routeagent-and-globalnet-go-binaries">Building Engine, Routeagent, and Globalnet Go binaries</h3>
-<p>To build the <code>submariner-route-agent</code>, <code>submariner-engine</code>, and
-<code>submariner-globalnet</code> Go binaries, in the <a href="https://github.com/submariner-io/submariner">submariner-io/submariner</a>
-repository:</p>
-<pre><code>make build
-</code></pre><p>There is an optional flag to build with debug flags set:</p>
-<pre><code>make build build_debug=true
-</code></pre><h3 id="building-engine-routeagent-and-globalnet-container-images">Building Engine, Routeagent, and Globalnet container images</h3>
-<p>To build the <code>submariner/submariner</code>, <code>submariner/submariner-route-agent</code>, and
-<code>submariner/submariner-globalnet</code> container images, in the
-<a href="https://github.com/submariner-io/submariner">submariner-io/submariner</a> repository:</p>
-<pre><code>make images
-</code></pre><h2 id="submariner-iosubmariner-operator">submariner-io/submariner-operator</h2>
-<h3 id="building-the-operator-and-subctl">Building the Operator and subctl</h3>
-<p>To build the <code>submariner-operator</code> container image and the <code>subctl</code> Go binary,
-in the <a href="https://github.com/submariner-io/submariner-operator">submariner-io/submariner-operator</a> repository:</p>
-<pre><code>make build
-</code></pre><h2 id="submariner-iolighthouse">submariner-io/lighthouse</h2>
-<h3 id="building-lighthouse-controller-coredns-and-dnsserver-container-images">Building Lighthouse Controller, CoreDNS and DNSServer container images</h3>
-<p>To build the <code>lighthouse-agent</code> and <code>lighthouse-coredns</code> container images, in the <a href="https://github.com/submariner-io/lighthouse">submariner-io/lighthouse</a>
-repository:</p>
-<pre><code>make build-agent build-coredns
-</code></pre><h2 id="submariner-ioshipyard">submariner-io/shipyard</h2>
-<h3 id="building-dapper-base-container-image">Building dapper-base container image</h3>
-<p>To build the base container image used in the shared developer and CI
-enviroment, in the <a href="https://github.com/submariner-io/shipyard">submariner-io/shipyard</a>:</p>
-<pre><code>make dapper-image
-</code></pre>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>These instructions were developed with Rancher v2.4.x</p>
+<p>Make sure you are familiar with Rancher, and creating clusters. You can create either node driver clusters or Custom clusters, as long as your designated gateway nodes can communicate with each other.</p>
 
 
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -1465,8 +1361,6 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -1483,6 +1377,7 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
                 
                     
+                    
                 
                 
 
@@ -1495,6 +1390,9 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1512,103 +1410,6 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1629,106 +1430,8 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1855,6 +1558,24 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
                         
             
             
@@ -1892,25 +1613,6 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -1921,51 +1623,6 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
             
         
@@ -2017,14 +1674,10 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
         
                     
-            
-        
-                    
                         
             
             
                 
-                    
                     
                 
                 
@@ -2042,8 +1695,249 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -2100,10 +1994,10 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
 	 
 	 
 		
-			<a class="nav nav-prev" href="/contributing/shipyard/advanced/" title="Advanced Features"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/quickstart/rancher/create_clusters/" title=""> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/contributing/release-process/" title="Release Process" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/quickstart/openshift/" title="OpenShift (AWS)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2133,3 +2027,4 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
 
   </body>
 </html>
+
