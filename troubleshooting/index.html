@@ -12,20 +12,20 @@
     <title>Troubleshooting Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1589900804" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1589900804" rel="stylesheet">
-    <link href="/css/hybrid.css?1589900804" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1589900804" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1589900804" rel="stylesheet">
-    <link href="/css/auto-complete.css?1589900804" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1589900804" rel="stylesheet">
-    <link href="/css/theme.css?1589900804" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1589900804" rel="stylesheet">
+    <link href="/css/nucleus.css?1589994841" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1589994841" rel="stylesheet">
+    <link href="/css/hybrid.css?1589994841" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1589994841" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1589994841" rel="stylesheet">
+    <link href="/css/auto-complete.css?1589994841" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1589994841" rel="stylesheet">
+    <link href="/css/theme.css?1589994841" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1589994841" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1589900804" rel="stylesheet">
+      <link href="/css/theme-blue.css?1589994841" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1589900804"></script>
+    <script src="/js/jquery-3.3.1.min.js?1589994841"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1589900804"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1589900804"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1589994841"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1589994841"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1589900804"></script>
+<script type="text/javascript" src="/js/search.js?1589994841"></script>
 
     
   </div>
@@ -1323,8 +1323,36 @@
 <p>Before we begin troubleshooting, run <code>subctl version</code> to obtain which version of the Submariner components you are running.</p>
 <p>Run <code>kubectl get services -n &lt;service-namespace&gt; | grep &lt;service-name&gt;</code> to get information about the service you&rsquo;re trying to access. This will provide you with the Service <em>Name</em>, <em>Namespace</em> and <em>ServiceIP</em>. If <strong>GlobalNet</strong> is enabled, you will also need the <em>globalIp</em> of the service by running</p>
 <p><code>kubectl get service &lt;service-name&gt; -o jsonpath='{.metadata.annotations.submariner\.io/globalIp}'</code></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<!---
+### Deployment Issues
+This section will contain information about common deployment issues you can run into.
+
+#### TBD
+
+### Connectivity Issues
+Submariner deployment completed successfully but Services/Pods on one cluster are unable to connect to Services on another cluster. This can be due to multiple factors outlined in the following sections.
+
+#### IPSec tunnel not created between clusters
+TBD
+
+#### IPSEc tunnel is not up between clusters
+TBD
+
+#### None of pods/services able to connect to remote service
+TBD
+##### Without GlobalNet
+TBD
+##### With GlobalNet
+TBD
+
+#### Pods on non-gateway nodes not able to connect to remote service
+TBD
+##### Without GlobalNet
+TBD
+##### With GlobalNet
+TBD
+
+-->
 <h3 id="service-discovery-issues">Service Discovery Issues</h3>
 <p>If you are able to connect to remote service by using ServiceIP or globalIp, but not by service name, it is a Service Discovery Issue.</p>
 <h4 id="service-discovery-not-working">Service Discovery not working</h4>
@@ -2066,19 +2094,19 @@ Events:              &lt;none&gt;
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1589900804"></script>
-    <script src="/js/perfect-scrollbar.min.js?1589900804"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1589900804"></script>
-    <script src="/js/jquery.sticky.js?1589900804"></script>
-    <script src="/js/featherlight.min.js?1589900804"></script>
-    <script src="/js/highlight.pack.js?1589900804"></script>
+    <script src="/js/clipboard.min.js?1589994841"></script>
+    <script src="/js/perfect-scrollbar.min.js?1589994841"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1589994841"></script>
+    <script src="/js/jquery.sticky.js?1589994841"></script>
+    <script src="/js/featherlight.min.js?1589994841"></script>
+    <script src="/js/highlight.pack.js?1589994841"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1589900804"></script>
-    <script src="/js/learn.js?1589900804"></script>
-    <script src="/js/hugo-learn.js?1589900804"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1589994841"></script>
+    <script src="/js/learn.js?1589994841"></script>
+    <script src="/js/hugo-learn.js?1589994841"></script>
 
-    <link href="/mermaid/mermaid.css?1589900804" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1589900804"></script>
+    <link href="/mermaid/mermaid.css?1589994841" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1589994841"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
