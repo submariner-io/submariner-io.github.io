@@ -12,20 +12,20 @@
     <title>Gateway Engine :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1591600620" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1591600620" rel="stylesheet">
-    <link href="/css/hybrid.css?1591600620" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1591600620" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1591600620" rel="stylesheet">
-    <link href="/css/auto-complete.css?1591600620" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1591600620" rel="stylesheet">
-    <link href="/css/theme.css?1591600620" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1591600620" rel="stylesheet">
+    <link href="/css/nucleus.css?1591632331" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1591632331" rel="stylesheet">
+    <link href="/css/hybrid.css?1591632331" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1591632331" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1591632331" rel="stylesheet">
+    <link href="/css/auto-complete.css?1591632331" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1591632331" rel="stylesheet">
+    <link href="/css/theme.css?1591632331" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1591632331" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1591600620" rel="stylesheet">
+      <link href="/css/theme-blue.css?1591632331" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1591600620"></script>
+    <script src="/js/jquery-3.3.1.min.js?1591632331"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1591600620"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1591600620"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1591632331"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1591632331"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1591600620"></script>
+<script type="text/javascript" src="/js/search.js?1591632331"></script>
 
     
   </div>
@@ -1335,9 +1335,14 @@ a new tunnel.</p>
 <p>The Gateway Engine is deployed as a DaemonSet that is configured to only run
 on nodes labelled with <code>submariner.io/gateway=true</code>.</p>
 <p>The Gateway Engine has a pluggable architecture for the cable engine component
-that maintains the tunnels. The default implementation uses the
-<a href="https://github.com/bronze1man/goStrongswanVici">Strongswan</a> IPsec library.
-An implementation for <a href="https://www.wireguard.com/">WireGuard</a> is also available.</p>
+that maintains the tunnels. The following implementations are available:</p>
+<ul>
+<li>an IPsec implementation using <a href="https://www.strongswan.org/">strongSwan</a> (via the
+<a href="https://github.com/bronze1man/goStrongswanVici">goStrongswanVici</a> library);
+this is currently the default;</li>
+<li>an IPsec implementation using <a href="https://libreswan.org/">Libreswan</a>;</li>
+<li>an implementation for <a href="https://www.wireguard.com/">WireGuard</a>.</li>
+</ul>
 
 
 
@@ -2026,19 +2031,19 @@ An implementation for <a href="https://www.wireguard.com/">WireGuard</a> is also
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1591600620"></script>
-    <script src="/js/perfect-scrollbar.min.js?1591600620"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1591600620"></script>
-    <script src="/js/jquery.sticky.js?1591600620"></script>
-    <script src="/js/featherlight.min.js?1591600620"></script>
-    <script src="/js/highlight.pack.js?1591600620"></script>
+    <script src="/js/clipboard.min.js?1591632331"></script>
+    <script src="/js/perfect-scrollbar.min.js?1591632331"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1591632331"></script>
+    <script src="/js/jquery.sticky.js?1591632331"></script>
+    <script src="/js/featherlight.min.js?1591632331"></script>
+    <script src="/js/highlight.pack.js?1591632331"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1591600620"></script>
-    <script src="/js/learn.js?1591600620"></script>
-    <script src="/js/hugo-learn.js?1591600620"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1591632331"></script>
+    <script src="/js/learn.js?1591632331"></script>
+    <script src="/js/hugo-learn.js?1591632331"></script>
 
-    <link href="/mermaid/mermaid.css?1591600620" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1591600620"></script>
+    <link href="/mermaid/mermaid.css?1591632331" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1591632331"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
