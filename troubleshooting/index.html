@@ -12,20 +12,20 @@
     <title>Troubleshooting Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1592326465" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1592326465" rel="stylesheet">
-    <link href="/css/hybrid.css?1592326465" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1592326465" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1592326465" rel="stylesheet">
-    <link href="/css/auto-complete.css?1592326465" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1592326465" rel="stylesheet">
-    <link href="/css/theme.css?1592326465" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1592326465" rel="stylesheet">
+    <link href="/css/nucleus.css?1592477357" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1592477357" rel="stylesheet">
+    <link href="/css/hybrid.css?1592477357" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1592477357" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1592477357" rel="stylesheet">
+    <link href="/css/auto-complete.css?1592477357" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1592477357" rel="stylesheet">
+    <link href="/css/theme.css?1592477357" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1592477357" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1592326465" rel="stylesheet">
+      <link href="/css/theme-blue.css?1592477357" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1592326465"></script>
+    <script src="/js/jquery-3.3.1.min.js?1592477357"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1592326465"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1592326465"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1592477357"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1592477357"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1592326465"></script>
+<script type="text/javascript" src="/js/search.js?1592477357"></script>
 
     
   </div>
@@ -1357,28 +1357,36 @@ TBD
 <p>If you are able to connect to remote service by using ServiceIP or globalIp, but not by service name, it is a Service Discovery Issue.</p>
 <h4 id="service-discovery-not-working">Service Discovery not working</h4>
 <p>This is good time to familiarize yourself with <a href="../architecture/service-discovery/">Service Discovery Architecture</a> if you haven&rsquo;t already.</p>
-<h5 id="check-coredns-configuration">Check CoreDNS Configuration</h5>
-<p>Submariner configures CoreDNS deployment to enable <code>lighthouse</code> plugin. Since CoreDNS is the first point of entry for any DNS queries, that is where we will start first.</p>
-<p>First we check if we are running the CoreDNS image with the Lighthouse plugin enabled.</p>
-<p><code>kubectl -n kube-system kube-dns describe deployment</code></p>
-
-<div class="notices info" ><p>For Openshift use <code>kubectl -n openshift-dns dns describe deployment</code>. Some deployments may use different name and namespace for DNS service e.g. <code>coredns</code>, <code>core-dns</code> etc.</p>
-</div>
-
-<p>Make sure that <code>Image</code> is set to <code>quay.io/submariner/lighthouse-coredns:&lt;version&gt;</code> and the version is correct. If not, change it to use the Lighthouse image.</p>
-<p>If the image is correct, next we check if the Lighthouse plugin is enabled on the CoreDNS in the cluster making the query.</p>
+<h5 id="check-serviceexport-for-your-service">Check ServiceExport for your Service</h5>
+<p>For a Service to be accessible across clusters, you must first create a <code>ServiceExport</code> resource. Make sure the <code>ServiceExport</code> resource exists and has the same name and namespace as the Service you&rsquo;re trying to export.</p>
+<p><code>kubectl get serviceexport -n &lt;service-namespace&gt; &lt;service-name&gt;</code></p>
+<p>Sample output:</p>
+<pre><code>apiVersion: lighthouse.submariner.io/v2alpha1
+kind: ServiceExport
+metadata:
+  name: nginx
+</code></pre><h5 id="check-lighthouse-coredns-service">Check Lighthouse CoreDNS Service</h5>
+<p>All cross-cluster service queries are handled by Lighthouse CoreDNS server. First we check if the Lighthouse CoreDNS Service is running properly.</p>
+<p><code>kubectl -n submariner-operator get service submariner-lighthouse-coredns</code></p>
+<p>If it is running fine, note down the <code>ServiceIP</code> for the next steps. If not, check the logs for an error.</p>
+<p>If the error is due to a wrong image, run <code>kubectl -n submariner-operator get deployment submariner-lighthouse-coredns</code> and make sure <code>Image</code> is set to <code>quay.io/submariner/lighthouse-coredns:&lt;version&gt;</code> and refers to the correct version.</p>
+<p>For any other errors, capture the information and raise a new <a href="https://github.com/submariner-io/lighthouse/issues">issue</a></p>
+<p>If there&rsquo;s no error, then check if the Lighthouse CoreDNS server is configured correctly. Run <code>kubectl describe configmap submariner-lighthouse-coredns</code> and make sure it has following configuration:</p>
+<pre><code>    supercluster.local:53 {
+        lighthouse
+        errors
+        health
+        ready
+    }
+</code></pre><h5 id="check-coredns-configuration">Check CoreDNS Configuration</h5>
+<p>Submariner requires the CoreDNS deployment to forward requests for the domain <code>supercluster.local</code> to the Lighthouse CoreDNS server in the cluster making the query. Ensure this configuration exists and is correct.</p>
+<p>First we check if CoreDNS is configured to forward requests for domain <code>supercluster.local</code> to Lighthouse CoreDNS Server in the cluster making the query.</p>
 <p><code>kubectl describe configmap coredns</code></p>
 <p>In the output look for something like this:</p>
-<pre><code>        kubernetes cluster2.local in-addr.arpa ip6.arpa {
-           pods insecure
-           upstream
-           #fallthrough in-addr.arpa ip6.arpa
-           fallthrough     =====&gt; This tells kubernetes to go to next plugin if query fails locally
-        }
-        lighthouse { ====&gt; Lighthouse plugin will catch any queries that local kubernetes can't resolve
-           fallthrough =====&gt; proceed as usual if lighthouse can't resolve
-        }
-</code></pre><p>If the entries highlighted above are missing, it means CoreDNS wasn&rsquo;t configured to enable Lighthouse. It can be enabled by running <code>kubectl edit configmap coredns</code> and making the changes manually. You may need to repeat this step on every cluster.</p>
+<pre><code>    supercluster.local:53 {
+        forward . &lt;lighthouse-coredns-serviceip&gt; ======&gt; ServiceIP of lighthouse-coredns service as noted in previous section
+    }
+</code></pre><p>If the entries highlighted above are missing or <code>ServiceIp</code> is incorrect, it means CoreDNS wasn&rsquo;t configured correctly. It can be fixed by running <code>kubectl edit configmap coredns</code> and making the changes manually. You may need to repeat this step on every cluster.</p>
 <h5 id="check-submariner-lighthouse-agent">Check submariner-lighthouse-agent</h5>
 <p>Next we check if the <code>submariner-lighthouse-agent</code> is properly running. Run <code>kubectl -n submariner-operator get pods submariner-lighthouse-agent</code> and check the status of Pods.</p>
 <p>If the status indicates the <code>ImagePullBackOff</code> error, run <code>kubectl -n submariner-operator describe deployment submariner-lighthouse-agent</code> and check if <code>Image</code> is set correctly to <code>quay.io/submariner/lighthouse-agent:&lt;version&gt;</code>. If it is and the same error still occurs, raise an issue <a href="https://github.com/submariner-io/lighthouse/issues">here</a> or ping us on the community slack channel.</p>
@@ -2094,19 +2102,19 @@ Events:              &lt;none&gt;
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1592326465"></script>
-    <script src="/js/perfect-scrollbar.min.js?1592326465"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1592326465"></script>
-    <script src="/js/jquery.sticky.js?1592326465"></script>
-    <script src="/js/featherlight.min.js?1592326465"></script>
-    <script src="/js/highlight.pack.js?1592326465"></script>
+    <script src="/js/clipboard.min.js?1592477357"></script>
+    <script src="/js/perfect-scrollbar.min.js?1592477357"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1592477357"></script>
+    <script src="/js/jquery.sticky.js?1592477357"></script>
+    <script src="/js/featherlight.min.js?1592477357"></script>
+    <script src="/js/highlight.pack.js?1592477357"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1592326465"></script>
-    <script src="/js/learn.js?1592326465"></script>
-    <script src="/js/hugo-learn.js?1592326465"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1592477357"></script>
+    <script src="/js/learn.js?1592477357"></script>
+    <script src="/js/hugo-learn.js?1592477357"></script>
 
-    <link href="/mermaid/mermaid.css?1592326465" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1592326465"></script>
+    <link href="/mermaid/mermaid.css?1592477357" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1592477357"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
