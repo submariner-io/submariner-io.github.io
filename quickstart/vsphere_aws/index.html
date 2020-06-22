@@ -12,20 +12,20 @@
     <title>OpenShift with Service Discovery (vSphere/AWS) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1592498047" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1592498047" rel="stylesheet">
-    <link href="/css/hybrid.css?1592498047" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1592498047" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1592498047" rel="stylesheet">
-    <link href="/css/auto-complete.css?1592498047" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1592498047" rel="stylesheet">
-    <link href="/css/theme.css?1592498047" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1592498047" rel="stylesheet">
+    <link href="/css/nucleus.css?1592829048" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1592829048" rel="stylesheet">
+    <link href="/css/hybrid.css?1592829048" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1592829048" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1592829048" rel="stylesheet">
+    <link href="/css/auto-complete.css?1592829048" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1592829048" rel="stylesheet">
+    <link href="/css/theme.css?1592829048" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1592829048" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1592498047" rel="stylesheet">
+      <link href="/css/theme-blue.css?1592829048" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1592498047"></script>
+    <script src="/js/jquery-3.3.1.min.js?1592829048"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1592498047"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1592498047"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1592829048"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1592829048"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1592498047"></script>
+<script type="text/javascript" src="/js/search.js?1592829048"></script>
 
     
   </div>
@@ -393,6 +393,27 @@
       
               
     </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/quickstart/verify_with_discovery/" title="" class="dd-item ">
+        <a href="/quickstart/verify_with_discovery/">
+        
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
   
  
 
@@ -1459,25 +1480,30 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 </code></pre></div><h5 id="join-cluster-b-aws-and-cluster-a-vsphere-to-the-broker">Join cluster-b (AWS) and cluster-a (vSphere) to the broker</h5>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --clusterid cluster-b --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span> 
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --clusterid cluster-a --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span> 
-</code></pre></div><h4 id="verify-deployment">Verify Deployment</h4>
-<p>To manually verify the deployment follow the steps below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
-kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
-kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 -n default apply -f - <span style="color:#e6db74">&lt;&lt;EOF
+</code></pre></div>
+
+<h4 id="verify-deployment">Verify Deployment</h4>
+<p>To verify the deployment follow the steps below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
+kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
+kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+kubectl -n default apply -f - <span style="color:#e6db74">&lt;&lt;EOF
 </span><span style="color:#e6db74">apiVersion: lighthouse.submariner.io/v2alpha1
 </span><span style="color:#e6db74">kind: ServiceExport
 </span><span style="color:#e6db74">metadata:
 </span><span style="color:#e6db74">  name: nginx
 </span><span style="color:#e6db74">EOF</span>
-kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash curl -4 nginx.default.svc.supercluster.local:8080
-</code></pre></div>
-<div class="notices info" ><p>The <code>ServiceExport</code> resource must be created in the same namespace as the Service you&rsquo;re trying to export. In the example above, <code>nginx</code> is created in <code>default</code> so we create the <code>ServiceExport</code> resource in <code>default</code> as well.</p>
-</div>
-
-<h4 id="perform-automated-verification">Perform automated verification</h4>
-<p>You can also perform automated verifications of service discovery via the <code>subctl verify</code> command.</p>
+</code></pre></div><p><strong>NOTE</strong>: The <code>ServiceExport</code> resource must be created in the same namespace as the Service you&rsquo;re trying to export. In the example above, <code>nginx</code> is created in <code>default</code> so we create the <code>ServiceExport</code> resource in <code>default</code> as well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
+kubectl -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+curl nginx.default.svc.supercluster.local:8080
+</code></pre></div><h4 id="perform-automated-verification">Perform automated verification</h4>
+<p>This will perform all automated verification between your clusters</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig --only service-discovery,connectivity --verbose
 </code></pre></div>
+
+
+
 
 
 
@@ -1701,6 +1727,22 @@ kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 -n default  run --g
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -2162,19 +2204,19 @@ kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 -n default  run --g
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1592498047"></script>
-    <script src="/js/perfect-scrollbar.min.js?1592498047"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1592498047"></script>
-    <script src="/js/jquery.sticky.js?1592498047"></script>
-    <script src="/js/featherlight.min.js?1592498047"></script>
-    <script src="/js/highlight.pack.js?1592498047"></script>
+    <script src="/js/clipboard.min.js?1592829049"></script>
+    <script src="/js/perfect-scrollbar.min.js?1592829049"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1592829049"></script>
+    <script src="/js/jquery.sticky.js?1592829049"></script>
+    <script src="/js/featherlight.min.js?1592829049"></script>
+    <script src="/js/highlight.pack.js?1592829049"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1592498047"></script>
-    <script src="/js/learn.js?1592498047"></script>
-    <script src="/js/hugo-learn.js?1592498047"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1592829049"></script>
+    <script src="/js/learn.js?1592829049"></script>
+    <script src="/js/hugo-learn.js?1592829049"></script>
 
-    <link href="/mermaid/mermaid.css?1592498047" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1592498047"></script>
+    <link href="/mermaid/mermaid.css?1592829049" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1592829049"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

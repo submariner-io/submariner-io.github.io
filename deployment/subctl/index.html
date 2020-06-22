@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1592498047" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1592498047" rel="stylesheet">
-    <link href="/css/hybrid.css?1592498047" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1592498047" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1592498047" rel="stylesheet">
-    <link href="/css/auto-complete.css?1592498047" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1592498047" rel="stylesheet">
-    <link href="/css/theme.css?1592498047" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1592498047" rel="stylesheet">
+    <link href="/css/nucleus.css?1592829048" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1592829048" rel="stylesheet">
+    <link href="/css/hybrid.css?1592829048" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1592829048" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1592829048" rel="stylesheet">
+    <link href="/css/auto-complete.css?1592829048" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1592829048" rel="stylesheet">
+    <link href="/css/theme.css?1592829048" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1592829048" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1592498047" rel="stylesheet">
+      <link href="/css/theme-blue.css?1592829048" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1592498047"></script>
+    <script src="/js/jquery-3.3.1.min.js?1592829048"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1592498047"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1592498047"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1592829048"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1592829048"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1592498047"></script>
+<script type="text/javascript" src="/js/search.js?1592829048"></script>
 
     
   </div>
@@ -393,6 +393,27 @@
       
               
     </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/quickstart/verify_with_discovery/" title="" class="dd-item ">
+        <a href="/quickstart/verify_with_discovery/">
+        
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
   
  
 
@@ -1296,7 +1317,7 @@
         <li><a href="#deploy-broker">deploy-broker</a></li>
         <li><a href="#join">join</a></li>
         <li><a href="#info">info</a></li>
-        <li><a href="#verify-connectivity">verify-connectivity</a></li>
+        <li><a href="#verify">verify</a></li>
         <li><a href="#version">version</a></li>
       </ul>
     </li>
@@ -1511,12 +1532,16 @@ detected network plugin, and the detected Cluster and Service CIDRs.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="verify-connectivity">verify-connectivity</h3>
-<p><code>subctl verify-connectivity &lt;kubeConfig1&gt; &lt;kubeConfig2&gt; [flags]</code></p>
-<p>The <code>verify-connectivity</code> command verifies dataplane connectivity between two clusters. The
+<h3 id="verify">verify</h3>
+<p><code>subctl verify &lt;kubeConfig1&gt; &lt;kubeConfig2&gt; [flags]</code></p>
+<p>The <code>verify</code> command verifies a Submariner deployment between two clusters is functioning properly. The
 <code>kubeConfig1</code> file will be <code>ClusterA</code> in the reports, while <code>kubeConfig2</code> will be <code>ClusterB</code> in the
 reports. The <code>--verbose</code> flag is recommended to see what&rsquo;s happening during the tests.</p>
-<p>Dataplane connectivity is verified in multiple ways:</p>
+<p>There are several suites of verifications that can be performed. By default all verifications are performed.
+Some verifications are deemed disruptive in that they change some state of the clusters as a side effect.
+If running the command interactively, you will be prompted for confirmation to perform disruptive
+verifications unless the <code>--enable-disruptive</code> flag is also specified. If running non-interactively (that is with no stdin), <code>--enable-disruptive</code> must be specified otherwise disruptive verifications are skipped.</p>
+<p>The <code>connectivity</code> suite verifies dataplane connectivity across the clusters for the following cases:</p>
 <ul>
 <li>Pods (on gateways) to Services</li>
 <li>Pods (on non-gateways) to Services</li>
@@ -1524,7 +1549,12 @@ reports. The <code>--verbose</code> flag is recommended to see what&rsquo;s happ
 <li>Pods (on non-gateways) to Pods
 and between gateway and non-gateway node combinations.</li>
 </ul>
-<h4 id="verify-connectivity-flags">verify-connectivity flags</h4>
+<p>The <code>service-discovery</code> suite verifies dns discovery of <code>&lt;service&gt;.&lt;namespace&gt;.svc.supercluster.local</code>
+entries across the clusters.</p>
+<p>The <code>gateway-failover</code> suite verifies the continuity of cross-cluster dataplane connectivity after a
+gateway failure in a cluster occurs. This suite requires a single gateway configured on <code>ClusterA</code> and other
+available worker nodes capable of serving as gateways. Please note that this verification is disruptive.</p>
+<h4 id="verify-flags">verify flags</h4>
 <table>
 <thead>
 <tr>
@@ -1552,6 +1582,14 @@ and between gateway and non-gateway node combinations.</li>
 <tr>
 <td align="left"><code>--verbose</code></td>
 <td align="left">Produce verbose logs during connectivity verification</td>
+</tr>
+<tr>
+<td align="left"><code>--only</code></td>
+<td align="left">Comma separated list of specific verifications to perform</td>
+</tr>
+<tr>
+<td align="left"><code>--enable-disruptive</code></td>
+<td align="left">Enable verifications which are potentially disruptive to your deployment</td>
 </tr>
 </tbody>
 </table>
@@ -1763,6 +1801,22 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
@@ -2253,19 +2307,19 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1592498047"></script>
-    <script src="/js/perfect-scrollbar.min.js?1592498047"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1592498047"></script>
-    <script src="/js/jquery.sticky.js?1592498047"></script>
-    <script src="/js/featherlight.min.js?1592498047"></script>
-    <script src="/js/highlight.pack.js?1592498047"></script>
+    <script src="/js/clipboard.min.js?1592829048"></script>
+    <script src="/js/perfect-scrollbar.min.js?1592829048"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1592829048"></script>
+    <script src="/js/jquery.sticky.js?1592829048"></script>
+    <script src="/js/featherlight.min.js?1592829048"></script>
+    <script src="/js/highlight.pack.js?1592829048"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1592498047"></script>
-    <script src="/js/learn.js?1592498047"></script>
-    <script src="/js/hugo-learn.js?1592498047"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1592829048"></script>
+    <script src="/js/learn.js?1592829048"></script>
+    <script src="/js/hugo-learn.js?1592829048"></script>
 
-    <link href="/mermaid/mermaid.css?1592498047" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1592498047"></script>
+    <link href="/mermaid/mermaid.css?1592829048" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1592829048"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

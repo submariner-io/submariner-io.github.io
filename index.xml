@@ -106,5 +106,15 @@ Make sure you create at least one node that has a publicly accessible IP with th
 Make sure you are familiar with Rancher, and creating clusters. You can create either node driver clusters or Custom clusters, as long as your designated gateway nodes can communicate with each other.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>/quickstart/verify_with_discovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/quickstart/verify_with_discovery/</guid>
+      <description>Verify Deployment To verify the deployment follow the steps below.
+export KUBECONFIG=cluster-b/auth/kubeconfig kubectl -n default create deployment nginx --image=nginxinc/nginx-unprivileged:stable-alpine kubectl -n default expose deployment nginx --port=8080 kubectl -n default apply -f - &amp;lt;&amp;lt;EOF apiVersion: lighthouse.submariner.io/v2alpha1 kind: ServiceExport metadata: name: nginx EOF NOTE: The ServiceExport resource must be created in the same namespace as the Service you&amp;rsquo;re trying to export. In the example above, nginx is created in default so we create the ServiceExport resource in default as well.</description>
+    </item>
+    
   </channel>
 </rss>
