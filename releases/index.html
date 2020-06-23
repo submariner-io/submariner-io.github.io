@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1592829048" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1592829048" rel="stylesheet">
-    <link href="/css/hybrid.css?1592829048" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1592829048" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1592829048" rel="stylesheet">
-    <link href="/css/auto-complete.css?1592829048" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1592829048" rel="stylesheet">
-    <link href="/css/theme.css?1592829048" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1592829048" rel="stylesheet">
+    <link href="/css/nucleus.css?1592922869" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1592922869" rel="stylesheet">
+    <link href="/css/hybrid.css?1592922869" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1592922869" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1592922869" rel="stylesheet">
+    <link href="/css/auto-complete.css?1592922869" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1592922869" rel="stylesheet">
+    <link href="/css/theme.css?1592922869" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1592922869" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1592829048" rel="stylesheet">
+      <link href="/css/theme-blue.css?1592922869" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1592829048"></script>
+    <script src="/js/jquery-3.3.1.min.js?1592922869"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1592829048"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1592829048"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1592922869"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1592922869"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1592829048"></script>
+<script type="text/javascript" src="/js/search.js?1592922869"></script>
 
     
   </div>
@@ -1340,39 +1340,25 @@
 
 	<h2 id="v040-libreswan-cable-driver-kubernetes-multicluster-service-discovery">v0.4.0 Libreswan cable driver, Kubernetes multicluster service discovery</h2>
 <blockquote>
-<p>This release is mainly focused on the libreswan Submariner cable driver implementation, as well
-as standardizing the service discovery support in Lighthouse with the upstream
-kubernetes KEP [1].</p>
+<p>This release is mainly focused on Submariner&rsquo;s Libreswan cable driver implementation, as well
+as standardizing Lighthouse&rsquo;s service discovery support with the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster
+Services KEP</a>.</p>
 </blockquote>
 <ul>
-<li>
-<p>The <strong>libreswan</strong> IPsec cable driver is available for testing. It&rsquo;s been included
-on the testing matrix of the project.</p>
-</li>
-<li>
-<p><strong>Lighthouse</strong> has been modified per [1] as follows:</p>
+<li><strong>Libreswan</strong> IPsec cable driver is available for testing and is covered in Submariner&rsquo;s CI.</li>
+<li><strong>Lighthouse</strong> has been modified per the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services KEP</a> as follows:
 <ul>
-<li>A <code>ServiceExport</code> object needs to be created alongside any <code>Service</code> that is intended to be exported to participant clusters</li>
-<li>The supercluster services can now be accessed with <code>&lt;service-name&gt;.&lt;namespace&gt;.svc.supercluster.local</code></li>
+<li>A <code>ServiceExport</code> object needs to be created alongside any <code>Service</code> that is intended to be
+exported to participant clusters.</li>
+<li>Supercluster services can be accessed with <code>&lt;service-name&gt;.&lt;namespace&gt;.svc.supercluster.local</code>.</li>
 </ul>
 </li>
-<li>
-<p><strong>Globanet</strong> overlapping CIDR support improvements and bug fixes</p>
-</li>
-<li>
-<p>Multiple <strong>CI</strong> improvements implemented from shipyard</p>
-</li>
-<li>
-<p>The testing matrix is now run via <a href="https://github.com/submariner-io/submariner/actions">GitHub actions</a></p>
-</li>
-<li>
-<p>The submariner-operator now completely handles the Lighthouse deployment via the <code>ServiceDiscovery</code> CRD.</p>
-</li>
-<li>
-<p><code>subctl verify</code> is now available for <code>connectivity</code>, <code>service-discovery</code> and <code>gateway-failover</code>.</p>
-</li>
+<li><strong>Globanet</strong> overlapping CIDR support improvements and bug fixes.</li>
+<li>Multiple <strong>CI</strong> improvements implemented from Shipyard.</li>
+<li>CI tests are now run via <strong><a href="https://github.com/submariner-io/submariner/actions">GitHub Actions</a></strong>.</li>
+<li>Submariner-operator now completely handles the Lighthouse deployment via the <code>ServiceDiscovery</code> CRD.</li>
+<li><code>subctl verify</code> is now available for <code>connectivity</code>, <code>service-discovery</code> and <code>gateway-failover</code>.</li>
 </ul>
-<p>[1] <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api</a></p>
 <h2 id="v030-lighthouse-service-discovery-without-kubefed">v0.3.0 Lighthouse Service Discovery without KubeFed</h2>
 <blockquote>
 <p>This release is focused on removing the KubeFed dependency from Lighthouse, improving the user experience
@@ -2145,19 +2131,19 @@ was created to make deployment of submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1592829049"></script>
-    <script src="/js/perfect-scrollbar.min.js?1592829049"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1592829049"></script>
-    <script src="/js/jquery.sticky.js?1592829049"></script>
-    <script src="/js/featherlight.min.js?1592829049"></script>
-    <script src="/js/highlight.pack.js?1592829049"></script>
+    <script src="/js/clipboard.min.js?1592922869"></script>
+    <script src="/js/perfect-scrollbar.min.js?1592922869"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1592922869"></script>
+    <script src="/js/jquery.sticky.js?1592922869"></script>
+    <script src="/js/featherlight.min.js?1592922869"></script>
+    <script src="/js/highlight.pack.js?1592922869"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1592829049"></script>
-    <script src="/js/learn.js?1592829049"></script>
-    <script src="/js/hugo-learn.js?1592829049"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1592922869"></script>
+    <script src="/js/learn.js?1592922869"></script>
+    <script src="/js/hugo-learn.js?1592922869"></script>
 
-    <link href="/mermaid/mermaid.css?1592829049" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1592829049"></script>
+    <link href="/mermaid/mermaid.css?1592922869" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1592922869"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
