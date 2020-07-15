@@ -12,20 +12,20 @@
     <title>Roadmap :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1594819607" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1594819607" rel="stylesheet">
-    <link href="/css/hybrid.css?1594819607" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1594819607" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1594819607" rel="stylesheet">
-    <link href="/css/auto-complete.css?1594819607" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1594819607" rel="stylesheet">
-    <link href="/css/theme.css?1594819607" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1594819607" rel="stylesheet">
+    <link href="/css/nucleus.css?1594839110" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1594839110" rel="stylesheet">
+    <link href="/css/hybrid.css?1594839110" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1594839110" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1594839110" rel="stylesheet">
+    <link href="/css/auto-complete.css?1594839110" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1594839110" rel="stylesheet">
+    <link href="/css/theme.css?1594839110" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1594839110" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1594819607" rel="stylesheet">
+      <link href="/css/theme-blue.css?1594839110" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1594819607"></script>
+    <script src="/js/jquery-3.3.1.min.js?1594839110"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1594819607"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1594819607"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1594839110"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1594839110"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1594819607"></script>
+<script type="text/javascript" src="/js/search.js?1594839110"></script>
 
     
   </div>
@@ -1304,8 +1304,9 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#v040">v0.4.0</a></li>
+    <li><a href="#v060">v0.6.0</a></li>
     <li><a href="#future-releases">Future Releases</a></li>
+    <li><a href="#how-you-can-help">How You Can Help</a></li>
   </ul>
 </nav>
     </div>
@@ -1332,26 +1333,29 @@
 
 
 
-	<p>This is a preliminary community roadmap. It&rsquo;s not written in stone, but can serve as a guideline.</p>
-<p>Details of past releases are described <a href="../releases">here.</a></p>
-<h2 id="v040">v0.4.0</h2>
+	<p>This is a preliminary community roadmap. It represents our best guess at broad priorities, and can serve as a general guideline.</p>
+<p>Details of past releases are described <a href="../releases">here</a>.</p>
+<h2 id="v060">v0.6.0</h2>
 <ul>
-<li>In progress: <a href="https://github.com/orgs/submariner-io/projects/7">https://github.com/orgs/submariner-io/projects/7</a></li>
+<li>In progress: <a href="https://github.com/orgs/submariner-io/projects/9">https://github.com/orgs/submariner-io/projects/9</a></li>
 </ul>
 <h2 id="future-releases">Future Releases</h2>
 <ul>
 <li>Auto detecting NAT vs non-NAT scenarios (<a href="https://github.com/submariner-io/submariner/issues/300">https://github.com/submariner-io/submariner/issues/300</a>)</li>
-<li>Supporting different IPsec ports for each cluster</li>
+<li>Support different IPsec ports for each cluster</li>
 <li>Measuring and improving High Availability for gateway-labeled nodes</li>
 <li>Network Policy across clusters (Coastguard)</li>
-<li>Richer monitoring and reporting of tunnel endpoints (<a href="https://github.com/submariner-io/submariner/issues/308">https://github.com/submariner-io/submariner/issues/308</a>)</li>
-<li>Monitoring connectivity over port 4800 between route agent nodes</li>
+<li>Richer monitoring and alerting with Prometheus</li>
 <li>Support for finer-grained connectivity policies (<a href="https://github.com/submariner-io/submariner/issues/533">https://github.com/submariner-io/submariner/issues/533</a>)</li>
 <li>Support for more network plugins (OVN, Calico, others)</li>
+<li>Globalnet: annotating Global IPs per namespaces</li>
+<li>Globalnet: only annotate Services for which a ServiceExport has been created</li>
 <li>More tunnel encapsulation options</li>
 <li>Dynamic routing with BGP to support multi-path forwarding across gateways</li>
-<li>Testing with Istio</li>
+<li>Testing with multi-cluster Istio</li>
 </ul>
+<h2 id="how-you-can-help">How You Can Help</h2>
+<p>If we are missing something that would make Submariner more useful to you, please let us know. The best way is to file an issue and include information on how you intend to use Submariner with that feature.</p>
 
 
 
@@ -2052,19 +2056,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1594819607"></script>
-    <script src="/js/perfect-scrollbar.min.js?1594819607"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1594819607"></script>
-    <script src="/js/jquery.sticky.js?1594819607"></script>
-    <script src="/js/featherlight.min.js?1594819607"></script>
-    <script src="/js/highlight.pack.js?1594819607"></script>
+    <script src="/js/clipboard.min.js?1594839110"></script>
+    <script src="/js/perfect-scrollbar.min.js?1594839110"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1594839110"></script>
+    <script src="/js/jquery.sticky.js?1594839110"></script>
+    <script src="/js/featherlight.min.js?1594839110"></script>
+    <script src="/js/highlight.pack.js?1594839110"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1594819607"></script>
-    <script src="/js/learn.js?1594819607"></script>
-    <script src="/js/hugo-learn.js?1594819607"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1594839110"></script>
+    <script src="/js/learn.js?1594839110"></script>
+    <script src="/js/hugo-learn.js?1594839110"></script>
 
-    <link href="/mermaid/mermaid.css?1594819607" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1594819607"></script>
+    <link href="/mermaid/mermaid.css?1594839110" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1594839110"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
