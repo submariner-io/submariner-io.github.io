@@ -12,20 +12,20 @@
     <title>Troubleshooting Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1594816543" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1594816543" rel="stylesheet">
-    <link href="/css/hybrid.css?1594816543" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1594816543" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1594816543" rel="stylesheet">
-    <link href="/css/auto-complete.css?1594816543" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1594816543" rel="stylesheet">
-    <link href="/css/theme.css?1594816543" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1594816543" rel="stylesheet">
+    <link href="/css/nucleus.css?1594819607" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1594819607" rel="stylesheet">
+    <link href="/css/hybrid.css?1594819607" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1594819607" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1594819607" rel="stylesheet">
+    <link href="/css/auto-complete.css?1594819607" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1594819607" rel="stylesheet">
+    <link href="/css/theme.css?1594819607" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1594819607" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1594816543" rel="stylesheet">
+      <link href="/css/theme-blue.css?1594819607" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1594816543"></script>
+    <script src="/js/jquery-3.3.1.min.js?1594819607"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1594816543"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1594816543"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1594819607"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1594819607"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1594816543"></script>
+<script type="text/javascript" src="/js/search.js?1594819607"></script>
 
     
   </div>
@@ -1413,32 +1413,37 @@ metadata:
 <p>If the status indicates the <code>ImagePullBackOff</code> error, run <code>kubectl -n submariner-operator describe deployment submariner-lighthouse-agent</code> and check if <code>Image</code> is set correctly to <code>quay.io/submariner/lighthouse-agent:&lt;version&gt;</code>. If it is and the same error still occurs, raise an issue <a href="https://github.com/submariner-io/lighthouse/issues">here</a> or ping us on the community slack channel.</p>
 <p>If the status indicates any other error, run <code>kubectl -n submariner-operator get pods</code> to get the name of the <code>lighthouse-agent</code> Pod. Then run <code>kubectl -n submariner-operator logs &lt;lighthouse-agent-pod-name&gt;</code> to get the logs. See if there are any errors in the log. If yes, raise an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with the log contents, or you can continue reading through this guide to troubleshoot further.</p>
 <p>If there are no errors, grep the log for the service name that you&rsquo;re trying to query as we may need the log entries later for raising an issue.</p>
-<h5 id="check-multiclusterservice-resources">Check Multiclusterservice resources</h5>
-<p>If the steps above did not indicate an issue, next we check if the Multiclusterservice resources were properly created for the service you&rsquo;re trying to access. The format of a Multiclusterservice resources&rsquo;s name is as follows:</p>
+<h5 id="check-serviceimport-resources">Check ServiceImport resources</h5>
+<p>If the steps above did not indicate an issue, next we check if the ServiceImport resources were properly created for the service you&rsquo;re trying to access. The format of a ServiceImport resources&rsquo;s name is as follows:</p>
 <p><code>&lt;service-name&gt;-&lt;service-namespace&gt;-&lt;cluster-id&gt;</code></p>
-<p>Run <code>kubectl get multiclusterservices --all-namespaces |grep &lt;your-service-name&gt;</code> on the broker cluster to check if a resource was created for your service. If not, then check the Lighthouse Agent logs on the cluster where service was created and look for any error or warning messages indicating a failure to create the Multiclusterservice resource for your service. The most common error is <code>Forbidden</code> if the RBAC wasn&rsquo;t configured correctly. Depending on the deployment method used, &lsquo;subctl&rsquo; or &lsquo;helm&rsquo;, it should&rsquo;ve been done for you. Create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
-<p>If the Multiclusterservice resource was created correctly on the broker cluster, the next step is to check if it exists on the cluster where you&rsquo;re trying to access the service. Follow the same steps as earlier to get the list of the Multiclusterservice resources and check if the Multiclusterservice for your service exists. If not, check the logs of the Lighthouse Agent on the cluster where you are trying to access the service. As described earlier, it will most commonly be an issue with RBAC otherwise create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
-<p>If the Multiclusterservice resource was created properly on the cluster, run <code>kubectl -n submariner-operator describe multiclusterservice &lt;your-multiclusterservice-name&gt;</code> and check if it has the correct <code>ClusterID</code> and <code>ServiceIP</code>:</p>
-<pre><code>Name:         nginx-demo-default-cluster2
+<p>Run <code>kubectl get serviceimports --all-namespaces |grep &lt;your-service-name&gt;</code> on the broker cluster to check if a resource was created for your service. If not, then check the Lighthouse Agent logs on the cluster where service was created and look for any error or warning messages indicating a failure to create the ServiceImport resource for your service. The most common error is <code>Forbidden</code> if the RBAC wasn&rsquo;t configured correctly. Depending on the deployment method used, &lsquo;subctl&rsquo; or &lsquo;helm&rsquo;, it should&rsquo;ve been done for you. Create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
+<p>If the ServiceImport resource was created correctly on the broker cluster, the next step is to check if it exists on the cluster where you&rsquo;re trying to access the service. Follow the same steps as earlier to get the list of the ServiceImport resources and check if the ServiceImport for your service exists. If not, check the logs of the Lighthouse Agent on the cluster where you are trying to access the service. As described earlier, it will most commonly be an issue with RBAC otherwise create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
+<p>If the ServiceImport resource was created properly on the cluster, run <code>kubectl -n submariner-operator describe serviceimport &lt;your-serviceimport-name&gt;</code> and check if it has the correct <code>ClusterID</code> and <code>ServiceIP</code>:</p>
+<pre><code>Name:         nginx-default-cluster2
 Namespace:    submariner-operator
-Labels:       submariner-io/clusterID=cluster2
-Annotations:  &lt;none&gt;
-API Version:  lighthouse.submariner.io/v1
-Kind:         MultiClusterService
+Labels:       &lt;none&gt;
+Annotations:  origin-name: nginx
+              origin-namespace: default
+API Version:  lighthouse.submariner.io/v2alpha1
+Kind:         ServiceImport
 Metadata:
-  Creation Timestamp:  2020-04-16T15:40:36Z
+  Creation Timestamp:  2020-07-14T17:27:32Z
   Generation:          1
-  Resource Version:    6847
-  Self Link:           /apis/lighthouse.submariner.io/v1/namespaces/submariner-operator/multiclusterservices/nginx-demo-ns-default-src-cluster2
-  UID:                 9db7759c-7ff8-11ea-85a3-0242ac110006
+  Resource Version:    2790
+  Self Link:           /apis/lighthouse.submariner.io/v2alpha1/namespaces/submariner-operator/serviceimports/nginx-default-cluster2
+  UID:                 4cbe1c2b-c5f7-11ea-9bbe-0242ac110009
 Spec:
-  Cluster Service Info:
-    Cluster Domain:  
-    Cluster ID:      cluster2       ==========&gt; ClusterID of cluster where service is running
-    Service IP:      100.92.243.156 ==========&gt; ServiceIP or GlobalIP of service you're trying to access
-Events:              &lt;none&gt;
-</code></pre><p>If the data is not correct, you can manually edit the Multiclusterservice resource to set the correct IP as a workaround and create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant information.</p>
-<p>If it is correct, congratulations - you&rsquo;ve found a new <a href="https://github.com/submariner-io/lighthouse/issues">issue</a>.</p>
+  Ports:                    &lt;nil&gt;
+  Session Affinity:
+  Session Affinity Config:  &lt;nil&gt;
+  Type:                     SuperclusterIP
+Status:
+  Clusters:
+    Cluster:  cluster2 ==========&gt; ClusterID of cluster where service is running
+    Ips:
+      100.92.43.63     ==========&gt; ServiceIP or GlobalIP of service you're trying to access
+Events:  &lt;none&gt;
+</code></pre><p>If the data is not correct, you can manually edit the ServiceImport resource to set the correct IP as a workaround and create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant information.</p>
 
 
 
@@ -2139,19 +2144,19 @@ Events:              &lt;none&gt;
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1594816543"></script>
-    <script src="/js/perfect-scrollbar.min.js?1594816543"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1594816543"></script>
-    <script src="/js/jquery.sticky.js?1594816543"></script>
-    <script src="/js/featherlight.min.js?1594816543"></script>
-    <script src="/js/highlight.pack.js?1594816543"></script>
+    <script src="/js/clipboard.min.js?1594819607"></script>
+    <script src="/js/perfect-scrollbar.min.js?1594819607"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1594819607"></script>
+    <script src="/js/jquery.sticky.js?1594819607"></script>
+    <script src="/js/featherlight.min.js?1594819607"></script>
+    <script src="/js/highlight.pack.js?1594819607"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1594816543"></script>
-    <script src="/js/learn.js?1594816543"></script>
-    <script src="/js/hugo-learn.js?1594816543"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1594819607"></script>
+    <script src="/js/learn.js?1594819607"></script>
+    <script src="/js/hugo-learn.js?1594819607"></script>
 
-    <link href="/mermaid/mermaid.css?1594816543" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1594816543"></script>
+    <link href="/mermaid/mermaid.css?1594819607" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1594819607"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
