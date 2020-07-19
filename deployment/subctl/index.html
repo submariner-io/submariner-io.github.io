@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1594839110" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1594839110" rel="stylesheet">
-    <link href="/css/hybrid.css?1594839110" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1594839110" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1594839110" rel="stylesheet">
-    <link href="/css/auto-complete.css?1594839110" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1594839110" rel="stylesheet">
-    <link href="/css/theme.css?1594839110" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1594839110" rel="stylesheet">
+    <link href="/css/nucleus.css?1595177330" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1595177330" rel="stylesheet">
+    <link href="/css/hybrid.css?1595177330" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1595177330" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1595177330" rel="stylesheet">
+    <link href="/css/auto-complete.css?1595177330" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1595177330" rel="stylesheet">
+    <link href="/css/theme.css?1595177330" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1595177330" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1594839110" rel="stylesheet">
+      <link href="/css/theme-blue.css?1595177330" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1594839110"></script>
+    <script src="/js/jquery-3.3.1.min.js?1595177330"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1594839110"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1594839110"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1595177330"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1595177330"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1594839110"></script>
+<script type="text/javascript" src="/js/search.js?1595177330"></script>
 
     
   </div>
@@ -1316,7 +1316,7 @@
       <ul>
         <li><a href="#deploy-broker">deploy-broker</a></li>
         <li><a href="#join">join</a></li>
-        <li><a href="#info">info</a></li>
+        <li><a href="#show">show</a></li>
         <li><a href="#verify">verify</a></li>
         <li><a href="#version">version</a></li>
       </ul>
@@ -1505,11 +1505,26 @@ broker-info file.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="info">info</h3>
-<p><code>subctl info [flags]</code></p>
-<p>The <code>info</code> command inspects the cluster and reports information related to Submariner, like the
-detected network plugin, and the detected Cluster and Service CIDRs.</p>
-<h4 id="info-flags">info flags</h4>
+<h3 id="show">show</h3>
+<h4 id="show-networks">show networks</h4>
+<p><code>subctl show networks [flags]</code></p>
+<p>Inspects the cluster and reports information about the detected network plugin and detected Cluster and Service CIDRs.</p>
+<h4 id="show-versions">show versions</h4>
+<p><code>subctl show versions [flags]</code></p>
+<p>Shows the version and image repository of each Submariner component in the cluster.</p>
+<h4 id="show-gateways">show gateways</h4>
+<p><code>subctl show gateways [flags]</code></p>
+<p>Shows summary information about the Submariner gateways in the cluster.</p>
+<h4 id="show-connections">show connections</h4>
+<p><code>subctl show connections [flags]</code></p>
+<p>Shows information about the Submariner endpoint connections with other clusters.</p>
+<h4 id="show-endpoints">show endpoints</h4>
+<p><code>subctl show endpoints [flags]</code></p>
+<p>Shows information about the Submariner endpoints in the cluster.</p>
+<h4 id="show-all">show all</h4>
+<p><code>subctl show all [flags]</code></p>
+<p>Shows the aggregated information from all the other show commands.</p>
+<h4 id="show-flags">show flags</h4>
 <table>
 <thead>
 <tr>
@@ -2303,19 +2318,19 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1594839110"></script>
-    <script src="/js/perfect-scrollbar.min.js?1594839110"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1594839110"></script>
-    <script src="/js/jquery.sticky.js?1594839110"></script>
-    <script src="/js/featherlight.min.js?1594839110"></script>
-    <script src="/js/highlight.pack.js?1594839110"></script>
+    <script src="/js/clipboard.min.js?1595177330"></script>
+    <script src="/js/perfect-scrollbar.min.js?1595177330"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1595177330"></script>
+    <script src="/js/jquery.sticky.js?1595177330"></script>
+    <script src="/js/featherlight.min.js?1595177330"></script>
+    <script src="/js/highlight.pack.js?1595177330"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1594839110"></script>
-    <script src="/js/learn.js?1594839110"></script>
-    <script src="/js/hugo-learn.js?1594839110"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1595177330"></script>
+    <script src="/js/learn.js?1595177330"></script>
+    <script src="/js/hugo-learn.js?1595177330"></script>
 
-    <link href="/mermaid/mermaid.css?1594839110" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1594839110"></script>
+    <link href="/mermaid/mermaid.css?1595177330" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1595177330"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
