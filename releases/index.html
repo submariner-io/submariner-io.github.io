@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1595177331" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1595177331" rel="stylesheet">
-    <link href="/css/hybrid.css?1595177331" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1595177331" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1595177331" rel="stylesheet">
-    <link href="/css/auto-complete.css?1595177331" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1595177331" rel="stylesheet">
-    <link href="/css/theme.css?1595177331" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1595177331" rel="stylesheet">
+    <link href="/css/nucleus.css?1595295188" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1595295188" rel="stylesheet">
+    <link href="/css/hybrid.css?1595295188" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1595295188" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1595295188" rel="stylesheet">
+    <link href="/css/auto-complete.css?1595295188" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1595295188" rel="stylesheet">
+    <link href="/css/theme.css?1595295188" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1595295188" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1595177331" rel="stylesheet">
+      <link href="/css/theme-blue.css?1595295188" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1595177331"></script>
+    <script src="/js/jquery-3.3.1.min.js?1595295188"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1595177331"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1595177331"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1595295188"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1595295188"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1595177331"></script>
+<script type="text/javascript" src="/js/search.js?1595295188"></script>
 
     
   </div>
@@ -1304,6 +1304,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</a></li>
     <li><a href="#v040-libreswan-cable-driver-kubernetes-multicluster-service-discovery">v0.4.0 Libreswan cable driver, Kubernetes multicluster service discovery</a></li>
     <li><a href="#v030-lighthouse-service-discovery-without-kubefed">v0.3.0 Lighthouse Service Discovery without KubeFed</a></li>
     <li><a href="#v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</a></li>
@@ -1338,7 +1339,35 @@
 
 
 
-	<h2 id="v040-libreswan-cable-driver-kubernetes-multicluster-service-discovery">v0.4.0 Libreswan cable driver, Kubernetes multicluster service discovery</h2>
+	<h2 id="v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</h2>
+<blockquote>
+<p>This release mainly focused on continuing the alignment of Lighthouse&rsquo;s service discovery support with the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster
+Services KEP</a>.</p>
+</blockquote>
+<ul>
+<li><strong>Lighthouse</strong> has been modified per the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services KEP</a> as follows:
+<ul>
+<li>The <code>MultiClusterService</code> resource has been replaced by <code>ServiceImport</code>.</li>
+<li>The <code>ServiceExport</code> resource is now updated with status information as lifecycle events occur.</li>
+</ul>
+</li>
+<li><strong>Lighthouse</strong> now allows a <code>ServiceExport</code> resource to be created prior to the associated <code>Service</code>.</li>
+<li>Network discovery was moved from <code>subctl</code> to the Submariner operator.</li>
+<li>Several new commands were added to <code>subctl</code>: <code>export service</code>, <code>show versions</code>, <code>show connections</code>, <code>show networks</code>,
+<code>show endpoints</code>, and <code>show gateways</code>.</li>
+<li>The <code>subctl info</code> command has been removed in lieu of the new <code>show networks</code> command.</li>
+<li>The <strong>Globanet</strong> configuration has been moved from the <em>broker-info.subm</em> file to a <code>ConfigMap</code> resource stored on the
+broker cluster. Therefore, the new <code>subctl</code> cannot be used on brownfield <strong>Globalnet</strong> deployments where this information
+was stored as part of <em>broker-info.subm</em>.</li>
+<li><code>subctl</code> now supports joining multiple clusters in parallel without having to explicitly specify the <code>globalnet-cidr</code> for the
+cluster to work around this issue. The <code>globalnet-cidr</code> will automatically be allocated by <code>subctl</code> for each cluster.</li>
+<li>The separate <code>--operator-image</code> parameter has been removed from <code>subctl join</code> and the <code>--repository</code> and <code>--version</code>
+parameters are now used for all images.</li>
+<li>The Submariner operator status now includes <code>Gateway</code> information.</li>
+<li>Closed technical requirements for Submariner to become a CNFC project, including <em>Developer Certificate of Origin</em> compliance,
+and source code linting.</li>
+</ul>
+<h2 id="v040-libreswan-cable-driver-kubernetes-multicluster-service-discovery">v0.4.0 Libreswan cable driver, Kubernetes multicluster service discovery</h2>
 <blockquote>
 <p>This release is mainly focused on Submariner&rsquo;s Libreswan cable driver implementation, as well
 as standardizing Lighthouse&rsquo;s service discovery support with the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster
@@ -2131,19 +2160,19 @@ was created to make deployment of submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1595177331"></script>
-    <script src="/js/perfect-scrollbar.min.js?1595177331"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1595177331"></script>
-    <script src="/js/jquery.sticky.js?1595177331"></script>
-    <script src="/js/featherlight.min.js?1595177331"></script>
-    <script src="/js/highlight.pack.js?1595177331"></script>
+    <script src="/js/clipboard.min.js?1595295188"></script>
+    <script src="/js/perfect-scrollbar.min.js?1595295188"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1595295188"></script>
+    <script src="/js/jquery.sticky.js?1595295188"></script>
+    <script src="/js/featherlight.min.js?1595295188"></script>
+    <script src="/js/highlight.pack.js?1595295188"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1595177331"></script>
-    <script src="/js/learn.js?1595177331"></script>
-    <script src="/js/hugo-learn.js?1595177331"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1595295188"></script>
+    <script src="/js/learn.js?1595295188"></script>
+    <script src="/js/hugo-learn.js?1595295188"></script>
 
-    <link href="/mermaid/mermaid.css?1595177331" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1595177331"></script>
+    <link href="/mermaid/mermaid.css?1595295188" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1595295188"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
