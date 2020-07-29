@@ -38,18 +38,6 @@ The deploy-broker command configures the cluster specified by the --kubeconfig f
     </item>
     
     <item>
-      <title>With Discovery (experimental)</title>
-      <link>/deployment/with-discovery/</link>
-      <pubDate>Thu, 20 Feb 2020 16:40:57 +0100</pubDate>
-      
-      <guid>/deployment/with-discovery/</guid>
-      <description>Deployment with discovery will include the (lighthouse components.
-Project status: The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster may disable some of the operator features.
- The Lighthouse project helps in cross-cluster service discovery. It has the below additional dependencies
- kubectl installed.  Deploying Submariner with Lighthouse Deploy Broker subctl deploy-broker --kubeconfig &amp;lt;PATH-TO-KUBECONFIG-BROKER&amp;gt; --service-discovery Join Clusters To join all the other clusters with the broker cluster, run subctl using the broker-info.</description>
-    </item>
-    
-    <item>
       <title></title>
       <link>/quickstart/openshift/create_clusters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -112,8 +100,8 @@ Make sure you are familiar with Rancher, and creating clusters. You can create e
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/quickstart/verify_with_discovery/</guid>
-      <description>Verify Deployment To verify the deployment follow the steps below.
-export KUBECONFIG=cluster-b/auth/kubeconfig kubectl -n default create deployment nginx --image=nginxinc/nginx-unprivileged:stable-alpine kubectl -n default expose deployment nginx --port=8080 kubectl -n default apply -f - &amp;lt;&amp;lt;EOF apiVersion: lighthouse.submariner.io/v2alpha1 kind: ServiceExport metadata: name: nginx EOF NOTE: The ServiceExport resource must be created in the same namespace as the Service you&amp;rsquo;re trying to export. In the example above, nginx is created in default so we create the ServiceExport resource in default as well.</description>
+      <description>Verify Deployment To verify the deployment follow the steps below which creates an nginx service and ServiceExport for it.
+export KUBECONFIG=cluster-b/auth/kubeconfig kubectl -n default create deployment nginx --image=nginxinc/nginx-unprivileged:stable-alpine kubectl -n default expose deployment nginx --port=8080 subctl export service --namespace default nginx export KUBECONFIG=cluster-a/auth/kubeconfig kubectl -n default run --generator=run-pod/v1 tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash curl nginx.default.svc.supercluster.local:8080 Perform automated verification This will perform all automated verification between your clusters</description>
     </item>
     
   </channel>

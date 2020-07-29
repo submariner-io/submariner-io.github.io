@@ -25,17 +25,5 @@ Commands deploy-broker subctl deploy-broker [flags]
 The deploy-broker command configures the cluster specified by the --kubeconfig flag (or KUBECONFIG env var) and the --kubecontext flag as the Broker.</description>
     </item>
     
-    <item>
-      <title>With Discovery (experimental)</title>
-      <link>/deployment/with-discovery/</link>
-      <pubDate>Thu, 20 Feb 2020 16:40:57 +0100</pubDate>
-      
-      <guid>/deployment/with-discovery/</guid>
-      <description>Deployment with discovery will include the (lighthouse components.
-Project status: The Lighthouse project is meant only to be used as a development preview. Installing the operator on an Openshift cluster may disable some of the operator features.
- The Lighthouse project helps in cross-cluster service discovery. It has the below additional dependencies
- kubectl installed.  Deploying Submariner with Lighthouse Deploy Broker subctl deploy-broker --kubeconfig &amp;lt;PATH-TO-KUBECONFIG-BROKER&amp;gt; --service-discovery Join Clusters To join all the other clusters with the broker cluster, run subctl using the broker-info.</description>
-    </item>
-    
   </channel>
 </rss>
