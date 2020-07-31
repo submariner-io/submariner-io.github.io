@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1596010381" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596010381" rel="stylesheet">
-    <link href="/css/hybrid.css?1596010381" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596010381" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596010381" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596010381" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596010381" rel="stylesheet">
-    <link href="/css/theme.css?1596010381" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596010381" rel="stylesheet">
+    <link href="/css/nucleus.css?1596200120" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596200120" rel="stylesheet">
+    <link href="/css/hybrid.css?1596200120" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596200120" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596200120" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596200120" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596200120" rel="stylesheet">
+    <link href="/css/theme.css?1596200120" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596200120" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1596010381" rel="stylesheet">
+      <link href="/css/theme-blue.css?1596200120" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596010381"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596200120"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596010381"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596010381"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1596200120"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1596200120"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596010381"></script>
+<script type="text/javascript" src="/js/search.js?1596200120"></script>
 
     
   </div>
@@ -1294,6 +1294,7 @@
     <li><a href="#commands">Commands</a>
       <ul>
         <li><a href="#deploy-broker">deploy-broker</a></li>
+        <li><a href="#export">export</a></li>
         <li><a href="#join">join</a></li>
         <li><a href="#show">show</a></li>
         <li><a href="#verify">verify</a></li>
@@ -1382,6 +1383,33 @@ to connect clusters to the Broker. This file contains the following details:</p>
 </tr>
 </tbody>
 </table>
+<h3 id="export">export</h3>
+<h4 id="export-service">export service</h4>
+<p><code>subctl export service [flags] &lt;name&gt;</code> creates a <code>ServiceExport</code> resource for the given Service name. This makes the corresponding Service discoverable from other clusters in the Submariner deployment.</p>
+<h4 id="export-service-flags">export service flags</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
+<td align="left">Absolute path(s) to the kubeconfig file(s) (default &ldquo;$HOME/.kube/config&rdquo;)</td>
+</tr>
+<tr>
+<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left">Kubeconfig context to use</td>
+</tr>
+<tr>
+<td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left">Namespace in which the Service to be exported belongs</td>
+</tr>
+</tbody>
+</table>
+<p>If no <code>namespace</code> flag is specified, it uses the default namespace from the current context, if present, otherwise it uses <code>default</code>.</p>
 <h3 id="join">join</h3>
 <p><code>subctl join broker-info.subm [flags]</code></p>
 <p>The <strong>join</strong> command deploys the Submariner operator in a cluster using the settings provided in the <code>broker-info.subm</code> file.
@@ -2281,19 +2309,19 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1596010381"></script>
-    <script src="/js/perfect-scrollbar.min.js?1596010381"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1596010381"></script>
-    <script src="/js/jquery.sticky.js?1596010381"></script>
-    <script src="/js/featherlight.min.js?1596010381"></script>
-    <script src="/js/highlight.pack.js?1596010381"></script>
+    <script src="/js/clipboard.min.js?1596200120"></script>
+    <script src="/js/perfect-scrollbar.min.js?1596200120"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1596200120"></script>
+    <script src="/js/jquery.sticky.js?1596200120"></script>
+    <script src="/js/featherlight.min.js?1596200120"></script>
+    <script src="/js/highlight.pack.js?1596200120"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1596010381"></script>
-    <script src="/js/learn.js?1596010381"></script>
-    <script src="/js/hugo-learn.js?1596010381"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1596200120"></script>
+    <script src="/js/learn.js?1596200120"></script>
+    <script src="/js/hugo-learn.js?1596200120"></script>
 
-    <link href="/mermaid/mermaid.css?1596010381" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1596010381"></script>
+    <link href="/mermaid/mermaid.css?1596200120" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1596200120"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
