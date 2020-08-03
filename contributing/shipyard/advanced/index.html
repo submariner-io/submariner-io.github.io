@@ -12,20 +12,20 @@
     <title>Advanced Features :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1596456529" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596456529" rel="stylesheet">
-    <link href="/css/hybrid.css?1596456529" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596456529" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596456529" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596456529" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596456529" rel="stylesheet">
-    <link href="/css/theme.css?1596456529" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596456529" rel="stylesheet">
+    <link href="/css/nucleus.css?1596456587" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596456587" rel="stylesheet">
+    <link href="/css/hybrid.css?1596456587" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596456587" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596456587" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596456587" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596456587" rel="stylesheet">
+    <link href="/css/theme.css?1596456587" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596456587" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1596456529" rel="stylesheet">
+      <link href="/css/theme-blue.css?1596456587" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596456529"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596456587"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596456529"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596456529"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1596456587"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1596456587"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596456529"></script>
+<script type="text/javascript" src="/js/search.js?1596456587"></script>
 
     
   </div>
@@ -1349,14 +1349,17 @@
 The settings are sent to supporting scripts using a <code>--cluster_settings</code> flag.</p>
 <p>Currently, the following settings are supported:</p>
 <ul>
-<li><strong>clusters:</strong> An array of the clusters to deploy.
+<li>
+<p><strong>clusters:</strong> An array of the clusters to deploy.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">clusters<span style="color:#f92672">=(</span>cluster1,cluster2<span style="color:#f92672">)</span>
 </code></pre></div></li>
-<li><strong>cluster_nodes:</strong> A map of cluster names to a space separated string, representing a list of nodes to deploy. Supported values are <code>control-plane</code> and <code>worker</code>.
+<li>
+<p><strong>cluster_nodes:</strong> A map of cluster names to a space separated string, representing a list of nodes to deploy. Supported values are <code>control-plane</code> and <code>worker</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cluster_nodes<span style="color:#f92672">[</span>cluster1<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker&#34;</span>
 cluster_nodes<span style="color:#f92672">[</span>cluster2<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker worker&#34;</span>
 </code></pre></div></li>
-<li><strong>cluster_subm:</strong> A map of cluster names to values specifying if Submariner should be installed. Set to <code>true</code> to have Submariner installed, or to <code>false</code> to skip the installation.
+<li>
+<p><strong>cluster_subm:</strong> A map of cluster names to values specifying if Submariner should be installed. Set to <code>true</code> to have Submariner installed, or to <code>false</code> to skip the installation.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cluster_subm<span style="color:#f92672">[</span>cluster1<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;false&#34;</span>
 cluster_subm<span style="color:#f92672">[</span>cluster2<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;true&#34;</span>
 </code></pre></div></li>
@@ -1376,10 +1379,12 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> <span style="color:#66d9ef">$(
 <p>It&rsquo;s possible to supply extra flags when calling <code>make clusters</code> via a make variable <code>CLUSTERS_ARGS</code> (or an environment variable with the same name). These flags affect how the clusters are deployed (and possibly influence how Submariner works).</p>
 <p>Flags of note:</p>
 <ul>
-<li><strong>k8s_version:</strong> Allows to specify the K8s version that <a href="https://kind.sigs.k8s.io/">KIND</a> will deploy. Available versions can be found <a href="https://hub.docker.com/r/kindest/node/tags">here</a>.
+<li>
+<p><strong>k8s_version:</strong> Allows to specify the K8s version that <a href="https://kind.sigs.k8s.io/">KIND</a> will deploy. Available versions can be found <a href="https://hub.docker.com/r/kindest/node/tags">here</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make clusters CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--k8s_version 1.18.0&#39;</span>
 </code></pre></div></li>
-<li><strong>globalnet:</strong> When set, deploys the clusters with overlapping Pod &amp; Service CIDRs to simulate this scenario.
+<li>
+<p><strong>globalnet:</strong> When set, deploys the clusters with overlapping Pod &amp; Service CIDRs to simulate this scenario.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make clusters CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--globalnet&#39;</span>
 </code></pre></div></li>
 </ul>
@@ -1388,16 +1393,20 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> <span style="color:#66d9ef">$(
 <p>Since <code>deploy</code> relies on <code>clusters</code> then effectively you could also specify <code>CLUSTERS_ARGS</code> to control the cluster deployment (provided the cluster hasn&rsquo;t been deployed yet).</p>
 <p>Flags of note:</p>
 <ul>
-<li><strong>deploytool:</strong> Specifies the deployment tool to use: <code>operator</code> (default) or <code>helm</code>.
+<li>
+<p><strong>deploytool:</strong> Specifies the deployment tool to use: <code>operator</code> (default) or <code>helm</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator&#39;</span>
 </code></pre></div></li>
-<li><strong>deploytool_broker_args:</strong> Any extra arguments to pass to the deploy tool when deploying the broker.
+<li>
+<p><strong>deploytool_broker_args:</strong> Any extra arguments to pass to the deploy tool when deploying the broker.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator --deploytool_broker_args &#34;--service-discovery&#34;&#39;</span>
 </code></pre></div></li>
-<li><strong>deploytool_submariner_args:</strong> Any extra arguments to pass to the deploy tool when deploying Submariner.
+<li>
+<p><strong>deploytool_submariner_args:</strong> Any extra arguments to pass to the deploy tool when deploying Submariner.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator --deploytool_submariner_args &#34;--cable-driver wireguard&#34;&#39;</span>
 </code></pre></div></li>
-<li><strong>globalnet:</strong> When set, deploys Submariner with the globalnet controller, and assigns a unique Global CIDR to each cluster.
+<li>
+<p><strong>globalnet:</strong> When set, deploys Submariner with the globalnet controller, and assigns a unique Global CIDR to each cluster.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--globalnet&#39;</span>
 </code></pre></div></li>
 </ul>
@@ -2103,19 +2112,19 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool helm --deploytool
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1596456529"></script>
-    <script src="/js/perfect-scrollbar.min.js?1596456529"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1596456529"></script>
-    <script src="/js/jquery.sticky.js?1596456529"></script>
-    <script src="/js/featherlight.min.js?1596456529"></script>
-    <script src="/js/highlight.pack.js?1596456529"></script>
+    <script src="/js/clipboard.min.js?1596456587"></script>
+    <script src="/js/perfect-scrollbar.min.js?1596456587"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1596456587"></script>
+    <script src="/js/jquery.sticky.js?1596456587"></script>
+    <script src="/js/featherlight.min.js?1596456587"></script>
+    <script src="/js/highlight.pack.js?1596456587"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1596456529"></script>
-    <script src="/js/learn.js?1596456529"></script>
-    <script src="/js/hugo-learn.js?1596456529"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1596456587"></script>
+    <script src="/js/learn.js?1596456587"></script>
+    <script src="/js/hugo-learn.js?1596456587"></script>
 
-    <link href="/mermaid/mermaid.css?1596456529" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1596456529"></script>
+    <link href="/mermaid/mermaid.css?1596456587" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1596456587"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
