@@ -12,20 +12,20 @@
     <title>Service Discovery :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1596706956" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596706956" rel="stylesheet">
-    <link href="/css/hybrid.css?1596706956" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596706956" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596706956" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596706956" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596706956" rel="stylesheet">
-    <link href="/css/theme.css?1596706956" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596706956" rel="stylesheet">
+    <link href="/css/nucleus.css?1596707870" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596707870" rel="stylesheet">
+    <link href="/css/hybrid.css?1596707870" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596707870" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596707870" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596707870" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596707870" rel="stylesheet">
+    <link href="/css/theme.css?1596707870" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596707870" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1596706956" rel="stylesheet">
+      <link href="/css/theme-blue.css?1596707870" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596706956"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596707870"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596706956"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596706956"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1596707870"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1596707870"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596706956"></script>
+<script type="text/javascript" src="/js/search.js?1596707870"></script>
 
     
   </div>
@@ -1330,7 +1330,7 @@
 <p>The Lighthouse Agent runs in every cluster and accesses the Kubernetes API server running in
 the broker cluster to exchange service metadata information with other clusters. Local service
 information is exported to the broker and service information from other clusters is imported.</p>
-<h4 id="workflow">Workflow</h4>
+<h4 id="agent-workflow">Agent Workflow</h4>
 <p>The workflow is as follows:</p>
 <ul>
 <li>Lighthouse agent connects to the broker&rsquo;s K8s API server.</li>
@@ -1345,7 +1345,7 @@ it creates a copy of it in the local cluster.</li>
 <p>The Lighthouse DNS server runs as an external DNS server which owns the domain supercluster.local.
 KubeDNS is configured to forward any request sent to supercluster.local to the Lighthouse DNS server,
 which uses the ServiceImport resources that are distributed by the controller for DNS resolution.</p>
-<h4 id="workflow-1">Workflow</h4>
+<h4 id="server-workflow">Server Workflow</h4>
 <p>The workflow is as follows.</p>
 <ul>
 <li>A Pod tries to resolve a Service name using the domain name supercluster.local</li>
@@ -2043,19 +2043,19 @@ which uses the ServiceImport resources that are distributed by the controller fo
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1596706956"></script>
-    <script src="/js/perfect-scrollbar.min.js?1596706956"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1596706956"></script>
-    <script src="/js/jquery.sticky.js?1596706956"></script>
-    <script src="/js/featherlight.min.js?1596706956"></script>
-    <script src="/js/highlight.pack.js?1596706956"></script>
+    <script src="/js/clipboard.min.js?1596707870"></script>
+    <script src="/js/perfect-scrollbar.min.js?1596707870"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1596707870"></script>
+    <script src="/js/jquery.sticky.js?1596707870"></script>
+    <script src="/js/featherlight.min.js?1596707870"></script>
+    <script src="/js/highlight.pack.js?1596707870"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1596706956"></script>
-    <script src="/js/learn.js?1596706956"></script>
-    <script src="/js/hugo-learn.js?1596706956"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1596707870"></script>
+    <script src="/js/learn.js?1596707870"></script>
+    <script src="/js/hugo-learn.js?1596707870"></script>
 
-    <link href="/mermaid/mermaid.css?1596706956" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1596706956"></script>
+    <link href="/mermaid/mermaid.css?1596707870" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1596707870"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
