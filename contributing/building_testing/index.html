@@ -12,20 +12,20 @@
     <title>Building and Testing :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1596706549" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596706549" rel="stylesheet">
-    <link href="/css/hybrid.css?1596706549" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596706549" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596706549" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596706549" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596706549" rel="stylesheet">
-    <link href="/css/theme.css?1596706549" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596706549" rel="stylesheet">
+    <link href="/css/nucleus.css?1596706858" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596706858" rel="stylesheet">
+    <link href="/css/hybrid.css?1596706858" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596706858" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596706858" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596706858" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596706858" rel="stylesheet">
+    <link href="/css/theme.css?1596706858" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596706858" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1596706549" rel="stylesheet">
+      <link href="/css/theme-blue.css?1596706858" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596706549"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596706858"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596706549"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596706549"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1596706858"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1596706858"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596706549"></script>
+<script type="text/javascript" src="/js/search.js?1596706858"></script>
 
     
   </div>
@@ -1368,21 +1368,21 @@ targets actually used in CI.</p>
 similar building and testing actions.</p>
 <h3 id="linting">Linting</h3>
 <p>To run static Go linting (goimports, golangci-lint):</p>
-<pre><code>make validate
-</code></pre><h3 id="unit-tests">Unit tests</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make validate
+</code></pre></div><h3 id="unit-tests">Unit tests</h3>
 <p>To run Go unit tests:</p>
-<pre><code>make test
-</code></pre><h3 id="clusters">Multi-Cluster KIND Based Environment</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make test
+</code></pre></div><h3 id="clusters">Multi-Cluster KIND Based Environment</h3>
 <p>Shipyard provides a basic target that creates a KIND based multi-cluster
 environment, without any special deployment (apart from the default K8s):</p>
-<pre><code>make clusters
-</code></pre><p>Find out more about <a href="../shipyard#clusters">Shipyard&rsquo;s clusters target</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clusters
+</code></pre></div><p>Find out more about <a href="../shipyard#clusters">Shipyard&rsquo;s clusters target</a>.</p>
 <h3 id="multi-cluster-submariner-deployment">Multi-Cluster Submariner Deployment</h3>
 <p>Shipyard provides a basic target that deploys submariner on a KIND based
 multi-cluster environment (if one isn&rsquo;t yet created, this target will first invoke the clusters target to do so):
 as well):</p>
-<pre><code>make deploy
-</code></pre><p>Find out more about <a href="../shipyard#deploy">Shipyard&rsquo;s deploy target</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy
+</code></pre></div><p>Find out more about <a href="../shipyard#deploy">Shipyard&rsquo;s deploy target</a>.</p>
 <h3 id="end-to-end-tests">End-to-End Tests</h3>
 <p>To run functional end-to-end tests with a full multi-cluster deployment (if one isn&rsquo;t yet deployed, this target will first invoke the <code>deploy</code> target to do so):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make e2e
@@ -1395,37 +1395,37 @@ The arguments can be combined or used separately, or not at all (in which case d
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make e2e CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--globalnet&#34;</span> DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--globalnet --deploytool helm&#34;</span>
 </code></pre></div><h3 id="environment-clean-up">Environment Clean Up</h3>
 <p>To clean up all the KIND clusters deployed in any of the previous steps, use:</p>
-<pre><code>make cleanup
-</code></pre><p>Learn more about Shipyard&rsquo;s cleanup target <a href="../shipyard#cleanup">here</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make cleanup
+</code></pre></div><p>Learn more about Shipyard&rsquo;s cleanup target <a href="../shipyard#cleanup">here</a>.</p>
 <h2 id="submariner-iosubmariner">submariner-io/submariner</h2>
 <h3 id="building-engine-routeagent-and-globalnet-go-binaries">Building Engine, Routeagent, and Globalnet Go binaries</h3>
 <p>To build the <code>submariner-route-agent</code>, <code>submariner-engine</code>, and
 <code>submariner-globalnet</code> Go binaries, in the <a href="https://github.com/submariner-io/submariner">submariner-io/submariner</a>
 repository:</p>
-<pre><code>make build
-</code></pre><p>There is an optional flag to build with debug flags set:</p>
-<pre><code>make build build_debug=true
-</code></pre><h3 id="building-engine-routeagent-and-globalnet-container-images">Building Engine, Routeagent, and Globalnet container images</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make build
+</code></pre></div><p>There is an optional flag to build with debug flags set:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make build build_debug<span style="color:#f92672">=</span>true
+</code></pre></div><h3 id="building-engine-routeagent-and-globalnet-container-images">Building Engine, Routeagent, and Globalnet container images</h3>
 <p>To build the <code>submariner/submariner</code>, <code>submariner/submariner-route-agent</code>, and
 <code>submariner/submariner-globalnet</code> container images, in the
 <a href="https://github.com/submariner-io/submariner">submariner-io/submariner</a> repository:</p>
-<pre><code>make images
-</code></pre><h2 id="submariner-iosubmariner-operator">submariner-io/submariner-operator</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make images
+</code></pre></div><h2 id="submariner-iosubmariner-operator">submariner-io/submariner-operator</h2>
 <h3 id="building-the-operator-and-subctl">Building the Operator and subctl</h3>
 <p>To build the <code>submariner-operator</code> container image and the <code>subctl</code> Go binary,
 in the <a href="https://github.com/submariner-io/submariner-operator">submariner-io/submariner-operator</a> repository:</p>
-<pre><code>make build
-</code></pre><h2 id="submariner-iolighthouse">submariner-io/lighthouse</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make build
+</code></pre></div><h2 id="submariner-iolighthouse">submariner-io/lighthouse</h2>
 <h3 id="building-lighthouse-controller-coredns-and-dnsserver-container-images">Building Lighthouse Controller, CoreDNS and DNSServer container images</h3>
 <p>To build the <code>lighthouse-agent</code> and <code>lighthouse-coredns</code> container images, in the <a href="https://github.com/submariner-io/lighthouse">submariner-io/lighthouse</a>
 repository:</p>
-<pre><code>make build-agent build-coredns
-</code></pre><h2 id="submariner-ioshipyard">submariner-io/shipyard</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make build-agent build-coredns
+</code></pre></div><h2 id="submariner-ioshipyard">submariner-io/shipyard</h2>
 <h3 id="building-dapper-base-container-image">Building dapper-base container image</h3>
 <p>To build the base container image used in the shared developer and CI
 enviroment, in the <a href="https://github.com/submariner-io/shipyard">submariner-io/shipyard</a>:</p>
-<pre><code>make dapper-image
-</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
+</code></pre></div>
 
 
 
@@ -2113,19 +2113,19 @@ enviroment, in the <a href="https://github.com/submariner-io/shipyard">submarine
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1596706549"></script>
-    <script src="/js/perfect-scrollbar.min.js?1596706549"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1596706549"></script>
-    <script src="/js/jquery.sticky.js?1596706549"></script>
-    <script src="/js/featherlight.min.js?1596706549"></script>
-    <script src="/js/highlight.pack.js?1596706549"></script>
+    <script src="/js/clipboard.min.js?1596706858"></script>
+    <script src="/js/perfect-scrollbar.min.js?1596706858"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1596706858"></script>
+    <script src="/js/jquery.sticky.js?1596706858"></script>
+    <script src="/js/featherlight.min.js?1596706858"></script>
+    <script src="/js/highlight.pack.js?1596706858"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1596706549"></script>
-    <script src="/js/learn.js?1596706549"></script>
-    <script src="/js/hugo-learn.js?1596706549"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1596706858"></script>
+    <script src="/js/learn.js?1596706858"></script>
+    <script src="/js/hugo-learn.js?1596706858"></script>
 
-    <link href="/mermaid/mermaid.css?1596706549" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1596706549"></script>
+    <link href="/mermaid/mermaid.css?1596706858" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1596706858"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

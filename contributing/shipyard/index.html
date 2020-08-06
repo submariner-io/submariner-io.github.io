@@ -12,20 +12,20 @@
     <title>Working With Shipyard :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1596706549" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596706549" rel="stylesheet">
-    <link href="/css/hybrid.css?1596706549" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596706549" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596706549" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596706549" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596706549" rel="stylesheet">
-    <link href="/css/theme.css?1596706549" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596706549" rel="stylesheet">
+    <link href="/css/nucleus.css?1596706858" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596706858" rel="stylesheet">
+    <link href="/css/hybrid.css?1596706858" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596706858" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596706858" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596706858" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596706858" rel="stylesheet">
+    <link href="/css/theme.css?1596706858" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596706858" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1596706549" rel="stylesheet">
+      <link href="/css/theme-blue.css?1596706858" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596706549"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596706858"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596706549"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596706549"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1596706858"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1596706858"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596706549"></script>
+<script type="text/javascript" src="/js/search.js?1596706858"></script>
 
     
   </div>
@@ -1368,8 +1368,8 @@ For example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#a6e22e">clusters</span><span style="color:#f92672">:</span> build images
 </code></pre></div><h4 id="use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</h4>
 <p>If you&rsquo;ve made changes to Shipyard&rsquo;s <a href="#dapper-image">base image</a> and need to test them in your project, run:</p>
-<pre><code>make dapper-image
-</code></pre><p>in the Shipyard directory. This creates a local image with your changes available for consumption in other projects.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
+</code></pre></div><p>in the Shipyard directory. This creates a local image with your changes available for consumption in other projects.</p>
 <h2 id="shared-makefile-targets">Shared Makefile Targets</h2>
 <p>Shipyard ships a <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.inc">Makefile.inc</a> file which defines these basic targets:</p>
 <ul>
@@ -1383,27 +1383,27 @@ For example:</p>
 <p>Any variables supported by these targets can be either declared as environment variables or assigned on the <code>make</code> command line (takes precedence over environment variables).</p>
 <h3 id="clusters">Clusters</h3>
 <p>A Make target that creates a KIND-based multi-cluster environment with just the default K8s deployment:</p>
-<pre><code>make clusters
-</code></pre><p>Respected variables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clusters
+</code></pre></div><p>Respected variables:</p>
 <ul>
 <li><strong>CLUSTERS_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>clusters.sh</code> script. To get a list of available arguments, run: <code>scripts/shared/clusters.sh --help</code></li>
 </ul>
 <h3 id="deploy">Deploy</h3>
 <p>A Make target that deploys Submariner components in a KIND-based cluster environment (if one isn&rsquo;t created yet, this target will first invoke the clusters target to do so):</p>
-<pre><code>make deploy
-</code></pre><p>Respected variables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy
+</code></pre></div><p>Respected variables:</p>
 <ul>
 <li>Any variable from <a href="#clusters">clusters</a> target (only if it wasn&rsquo;t created).</li>
 <li><strong>DEPLOY_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>deploy.sh</code> script. To get a list of available arguments, run: <code>scripts/shared/deploy.sh --help</code></li>
 </ul>
 <h3 id="cleanup">Cleanup</h3>
 <p>To clean up all the KIND clusters deployed in any of the previous steps, use:</p>
-<pre><code>make cleanup
-</code></pre><p>This command will remove the clusters and any resources that might&rsquo;ve been left in docker that are not needed any more (images, volumes, etc).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make cleanup
+</code></pre></div><p>This command will remove the clusters and any resources that might&rsquo;ve been left in docker that are not needed any more (images, volumes, etc).</p>
 <h3 id="release">Release</h3>
 <p>Uploads the built images to Quay.io:</p>
-<pre><code>make release release_images=&quot;&lt;image name&gt;&quot;
-</code></pre><p>Respected variables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make release release_images<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;image name&gt;&#34;</span>
+</code></pre></div><p>Respected variables:</p>
 <ul>
 <li><strong>QUAY_USERNAME, QUAY_PASSWORD:</strong> Needed in order to log in to Quay.</li>
 <li><strong>release_images:</strong> One or more image names to release separated by spaces.</li>
@@ -1418,8 +1418,8 @@ For example:</p>
 </ul>
 <h3 id="dapper-image">Dapper-Image</h3>
 <p>Builds the basic image which is then used by other projects to build the code and run tests:</p>
-<pre><code>make dapper-image
-</code></pre><p>Respected variables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
+</code></pre></div><p>Respected variables:</p>
 <ul>
 <li><strong>dapper_image_flags:</strong> Any additional flags and values to be sent to the <code>build_image.sh</code> script.</li>
 </ul>
@@ -2111,19 +2111,19 @@ For example:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1596706549"></script>
-    <script src="/js/perfect-scrollbar.min.js?1596706549"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1596706549"></script>
-    <script src="/js/jquery.sticky.js?1596706549"></script>
-    <script src="/js/featherlight.min.js?1596706549"></script>
-    <script src="/js/highlight.pack.js?1596706549"></script>
+    <script src="/js/clipboard.min.js?1596706858"></script>
+    <script src="/js/perfect-scrollbar.min.js?1596706858"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1596706858"></script>
+    <script src="/js/jquery.sticky.js?1596706858"></script>
+    <script src="/js/featherlight.min.js?1596706858"></script>
+    <script src="/js/highlight.pack.js?1596706858"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1596706549"></script>
-    <script src="/js/learn.js?1596706549"></script>
-    <script src="/js/hugo-learn.js?1596706549"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1596706858"></script>
+    <script src="/js/learn.js?1596706858"></script>
+    <script src="/js/hugo-learn.js?1596706858"></script>
 
-    <link href="/mermaid/mermaid.css?1596706549" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1596706549"></script>
+    <link href="/mermaid/mermaid.css?1596706858" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1596706858"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
