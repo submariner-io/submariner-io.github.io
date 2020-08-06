@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Submariner on Submariner k8s project documentation website</title>
+    <title>Submariner k8s project documentation website</title>
     <link>/</link>
-    <description>Recent content in Submariner on Submariner k8s project documentation website</description>
+    <description>Recent content on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Fri, 15 May 2020 15:30:00 +0000</lastBuildDate>
