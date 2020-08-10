@@ -214,7 +214,7 @@
 	"title": "Contributing",
 	"tags": [],
 	"description": "",
-	"content": "Talk to Us! We would love to hear from you, how you are using Submariner, and what we can do to make it better.\nGitHub Project Check out the project and consider contributing. Pick up an issue to work on or propose an enhancement by reporting a new issue; once your code is ready to be reviewed, you can propose a pull request. You can find a good guide about the GitHub workflow here.\n#submariner Share your ideas in the #submariner channel in Kubernetes\u0026rsquo; Slack. If you need it, you can request an invite to K8S slack instance.\nCommunity Calendar As a member of the Submariner Community, join any of our community meetings - no registration required. The weekly Submariner Community Meeting (Tuesdays at 5:00pm CET) is a good place to start.\nMailing List Join the developer mailing list.\n"
+	"content": "Talk to Us We would love to hear from you, how you are using Submariner, and what we can do to make it better.\nGitHub Project Check out the project and consider contributing. Pick up an issue to work on or propose an enhancement by reporting a new issue; once your code is ready to be reviewed, you can propose a pull request. You can find a good guide about the GitHub workflow here.\n#submariner Share your ideas in the #submariner channel in Kubernetes\u0026rsquo; Slack. If you need it, you can request an invite to K8S slack instance.\nCommunity Calendar As a member of the Submariner Community, join any of our community meetings - no registration required. The weekly Submariner Community Meeting (Tuesdays at 5:00pm CET) is a good place to start.\nMailing List Join the developer mailing list.\n"
 },
 {
 	"uri": "/quickstart/kind/",
@@ -228,7 +228,7 @@
 	"title": "",
 	"tags": [],
 	"description": "",
-	"content": "Submariner Submariner enables direct networking between Pods and Services in different Kubernetes clusters, either on premise or in the cloud.\nWhy Submariner? As Kubernetes gains adoption, teams are finding they must deploy and manage multiple clusters to facilitate features like geo-redundancy, scale, and fault isolation for their applications. With Submariner, your applications and services can span multiple cloud providers, data centers, and regions.\nSubmariner is completely open source, and designed to be network plugin (CNI) agnostic.\nWhat Does Submariner Provide?  Cross-cluster L3 connectivity using encrypted VPN tunnels Service Discovery across clusters subctl, a friendly deployment tool Support for interconnecting clusters with overlapping CIDRs  Check the Quickstart guide section for deployment instructions.\n "
+	"content": "Submariner Submariner enables direct networking between Pods and Services in different Kubernetes clusters, either on premise or in the cloud.\nWhy Submariner As Kubernetes gains adoption, teams are finding they must deploy and manage multiple clusters to facilitate features like geo-redundancy, scale, and fault isolation for their applications. With Submariner, your applications and services can span multiple cloud providers, data centers, and regions.\nSubmariner is completely open source, and designed to be network plugin (CNI) agnostic.\nWhat Submariner Provides  Cross-cluster L3 connectivity using encrypted VPN tunnels Service Discovery across clusters subctl, a friendly deployment tool Support for interconnecting clusters with overlapping CIDRs  Check the Quickstart guide section for deployment instructions.\n "
 },
 {
 	"uri": "/quickstart/openshift/create_clusters/",
