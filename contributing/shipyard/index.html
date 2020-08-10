@@ -12,20 +12,20 @@
     <title>Working With Shipyard :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597080534" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597080534" rel="stylesheet">
-    <link href="/css/hybrid.css?1597080534" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597080534" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597080534" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597080534" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597080534" rel="stylesheet">
-    <link href="/css/theme.css?1597080534" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597080534" rel="stylesheet">
+    <link href="/css/nucleus.css?1597080632" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597080632" rel="stylesheet">
+    <link href="/css/hybrid.css?1597080632" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597080632" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597080632" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597080632" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597080632" rel="stylesheet">
+    <link href="/css/theme.css?1597080632" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597080632" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597080534" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597080632" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597080534"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597080632"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597080534"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597080534"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597080632"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597080632"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597080534"></script>
+<script type="text/javascript" src="/js/search.js?1597080632"></script>
 
     
   </div>
@@ -1292,7 +1292,10 @@
     <li><a href="#overview">Overview</a></li>
     <li><a href="#usage">Usage</a>
       <ul>
-        <li></li>
+        <li><a href="#add-shipyard-to-a-project">Add Shipyard to a Project</a></li>
+        <li><a href="#use-shipyard-in-your-project">Use Shipyard in Your Project</a></li>
+        <li><a href="#have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</a></li>
+        <li><a href="#use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</a></li>
       </ul>
     </li>
     <li><a href="#shared-makefile-targets">Shared Makefile Targets</a>
@@ -1355,18 +1358,18 @@ Shipyard contains common functionality shared by other projects. Any project spe
 </ul>
 <p>Shipyard ships with some <a href="#shared-makefile-targets">Makefile targets</a> which can be used by consuming projects and are used by Shipyard&rsquo;s CI to test and validate itself. It also has some <a href="#specific-makefile-targets">specific Makefile targets</a> which are used by the project itself.</p>
 <h2 id="usage">Usage</h2>
-<h4 id="add-shipyard-to-a-project">Add Shipyard to a Project</h4>
+<h3 id="add-shipyard-to-a-project">Add Shipyard to a Project</h3>
 <p>To enable usage of Shipyard&rsquo;s functionality, please see <a href="first_time">Adding Shipyard to a Project</a>.</p>
-<h4 id="use-shipyard-in-your-project">Use Shipyard in Your Project</h4>
+<h3 id="use-shipyard-in-your-project">Use Shipyard in Your Project</h3>
 <p>Once Shipyard has been added to a project, you can use any of the <a href="#shared-makefile-targets">Makefile targets</a> that it provides.</p>
 <p>Any variables that you need to pass to these targets should be specified in your Dockerfile.dapper so they&rsquo;re available in the Dapper environment.
 For example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">ENV</span> DAPPER_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;REPO TAG QUAY_USERNAME QUAY_PASSWORD TRAVIS_COMMIT CLUSTERS_ARGS DEPLOY_ARGS&#34;</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><h4 id="have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</h4>
+</span></code></pre></div><h3 id="have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</h3>
 <p>Having any of the Shipyard Makefile targets rely on your project&rsquo;s specific targets can be done easily by adding the dependency in your project&rsquo;s Makefile.
 For example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#a6e22e">clusters</span><span style="color:#f92672">:</span> build images
-</code></pre></div><h4 id="use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</h4>
+</code></pre></div><h3 id="use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</h3>
 <p>If you&rsquo;ve made changes to Shipyard&rsquo;s <a href="#dapper-image">base image</a> and need to test them in your project, run:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
 </code></pre></div><p>in the Shipyard directory. This creates a local image with your changes available for consumption in other projects.</p>
@@ -2111,19 +2114,19 @@ For example:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597080534"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597080534"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597080534"></script>
-    <script src="/js/jquery.sticky.js?1597080534"></script>
-    <script src="/js/featherlight.min.js?1597080534"></script>
-    <script src="/js/highlight.pack.js?1597080534"></script>
+    <script src="/js/clipboard.min.js?1597080632"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597080632"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597080632"></script>
+    <script src="/js/jquery.sticky.js?1597080632"></script>
+    <script src="/js/featherlight.min.js?1597080632"></script>
+    <script src="/js/highlight.pack.js?1597080632"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597080534"></script>
-    <script src="/js/learn.js?1597080534"></script>
-    <script src="/js/hugo-learn.js?1597080534"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597080632"></script>
+    <script src="/js/learn.js?1597080632"></script>
+    <script src="/js/hugo-learn.js?1597080632"></script>
 
-    <link href="/mermaid/mermaid.css?1597080534" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597080534"></script>
+    <link href="/mermaid/mermaid.css?1597080632" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597080632"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
