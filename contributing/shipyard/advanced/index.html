@@ -12,20 +12,20 @@
     <title>Advanced Features :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597168086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597168086" rel="stylesheet">
-    <link href="/css/hybrid.css?1597168086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597168086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597168086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597168086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597168086" rel="stylesheet">
-    <link href="/css/theme.css?1597168086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597168086" rel="stylesheet">
+    <link href="/css/nucleus.css?1597322090" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597322090" rel="stylesheet">
+    <link href="/css/hybrid.css?1597322090" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597322090" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597322090" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597322090" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597322090" rel="stylesheet">
+    <link href="/css/theme.css?1597322090" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597322090" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597168086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597322090" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597168086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597322090"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597168086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597168086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597322090"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597322090"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597168086"></script>
+<script type="text/javascript" src="/js/search.js?1597322090"></script>
 
     
   </div>
@@ -1337,9 +1337,11 @@
 
 
 	<p>Shipyard has many advanced features to use in consuming projects.</p>
-<p>To utilize an advanced feature in a project consuming Shipyard, a good practice is to change the project&rsquo;s Makefile to have the advanced logic that is always needed. Any variable functionality can then be passed as desired in the command line.</p>
+<p>To utilize an advanced feature in a project consuming Shipyard, a good practice is to change the project&rsquo;s Makefile to have the advanced
+logic that is always needed. Any variable functionality can then be passed as desired in the command line.</p>
 <h2 id="image-building-helper-script">Image Building Helper Script</h2>
-<p>Shipyard ships an image building script <code>build_image.sh</code> which can be used to build the image(s) that you require. The script has built in caching capabilities to speed up local and pull request CI builds, by utilizing docker&rsquo;s ability to reuse layers from a cached image.</p>
+<p>Shipyard ships an image building script <code>build_image.sh</code> which can be used to build the image(s) that you require. The script has built in
+caching capabilities to speed up local and pull request CI builds, by utilizing docker&rsquo;s ability to reuse layers from a cached image.</p>
 <p>The script accepts several flags:</p>
 <ul>
 <li><strong>tag:</strong> The tag to set for the local image (defaults to <em>dev</em>).</li>
@@ -1352,8 +1354,8 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">${</span>SCRIPTS_DIR<span style="color:#e6db74">}</span>/build_image.sh -i submariner -f package/Dockerfile
 </code></pre></div><h2 id="deployment-scripts-features">Deployment Scripts Features</h2>
 <h3 id="per-cluster-settings">Per Cluster Settings</h3>
-<p>Shipyard supports specifying different settings for each deployed cluster. A default <code>cluster_settings</code> is supplied in the image, so any custom settings override those.
-The settings are sent to supporting scripts using a <code>--cluster_settings</code> flag.</p>
+<p>Shipyard supports specifying different settings for each deployed cluster. A default <code>cluster_settings</code> is supplied in the image, so any
+custom settings override those. The settings are sent to supporting scripts using a <code>--cluster_settings</code> flag.</p>
 <p>Currently, the following settings are supported:</p>
 <ul>
 <li>
@@ -1361,18 +1363,21 @@ The settings are sent to supporting scripts using a <code>--cluster_settings</co
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">clusters<span style="color:#f92672">=(</span>cluster1,cluster2<span style="color:#f92672">)</span>
 </code></pre></div></li>
 <li>
-<p><strong>cluster_nodes:</strong> A map of cluster names to a space separated string, representing a list of nodes to deploy. Supported values are <code>control-plane</code> and <code>worker</code>.</p>
+<p><strong>cluster_nodes:</strong> A map of cluster names to a space separated string, representing a list of nodes to deploy. Supported values are
+<code>control-plane</code> and <code>worker</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cluster_nodes<span style="color:#f92672">[</span>cluster1<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker&#34;</span>
 cluster_nodes<span style="color:#f92672">[</span>cluster2<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker worker&#34;</span>
 </code></pre></div></li>
 <li>
-<p><strong>cluster_subm:</strong> A map of cluster names to values specifying if Submariner should be installed. Set to <code>true</code> to have Submariner installed, or to <code>false</code> to skip the installation.</p>
+<p><strong>cluster_subm:</strong> A map of cluster names to values specifying if Submariner should be installed. Set to <code>true</code> to have Submariner
+installed, or to <code>false</code> to skip the installation.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cluster_subm<span style="color:#f92672">[</span>cluster1<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;false&#34;</span>
 cluster_subm<span style="color:#f92672">[</span>cluster2<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;true&#34;</span>
 </code></pre></div></li>
 </ul>
 <h4 id="example-custom-per-cluster-settings">Example: Custom Per Cluster Settings</h4>
-<p>As an example, in order to customize the clusters to have two workers, and no submariner on the 1st cluster, create a <code>cluster_settings</code> file in the project:</p>
+<p>As an example, in order to customize the clusters to have two workers, and no submariner on the 1st cluster, create a <code>cluster_settings</code>
+file in the project:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cluster_nodes<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cluster1&#39;</span><span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane&#34;</span>
 cluster_nodes<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cluster2&#39;</span><span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker worker&#34;</span>
 cluster_nodes<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cluster3&#39;</span><span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker worker&#34;</span>
@@ -1381,13 +1386,16 @@ cluster_subm<span style="color:#f92672">[</span><span style="color:#e6db74">&#39
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile">CLUSTER_SETTINGS_FLAG <span style="color:#f92672">=</span> --cluster_settings <span style="color:#66d9ef">$(</span>DAPPER_SOURCE<span style="color:#66d9ef">)</span>/path/to/cluster_settings
 CLUSTERS_ARGS <span style="color:#f92672">+=</span> <span style="color:#66d9ef">$(</span>CLUSTER_SETTINGS_FLAG<span style="color:#66d9ef">)</span>
 DEPLOY_ARGS <span style="color:#f92672">+=</span> <span style="color:#66d9ef">$(</span>CLUSTER_SETTINGS_FLAG<span style="color:#66d9ef">)</span>
-</code></pre></div><p>The path to <code>cluster_settings</code> should be specified relative to the project root; this ends up available in the build container in the directory referenced by <code>$DAPPER_SOURCE</code>.</p>
+</code></pre></div><p>The path to <code>cluster_settings</code> should be specified relative to the project root; this ends up available in the build container in the
+directory referenced by <code>$DAPPER_SOURCE</code>.</p>
 <h3 id="clusters-deployment-customization">Clusters Deployment Customization</h3>
-<p>It&rsquo;s possible to supply extra flags when calling <code>make clusters</code> via a make variable <code>CLUSTERS_ARGS</code> (or an environment variable with the same name). These flags affect how the clusters are deployed (and possibly influence how Submariner works).</p>
+<p>It&rsquo;s possible to supply extra flags when calling <code>make clusters</code> via a make variable <code>CLUSTERS_ARGS</code> (or an environment variable with the
+same name). These flags affect how the clusters are deployed (and possibly influence how Submariner works).</p>
 <p>Flags of note:</p>
 <ul>
 <li>
-<p><strong>k8s_version:</strong> Allows to specify the K8s version that <a href="https://kind.sigs.k8s.io/">KIND</a> will deploy. Available versions can be found <a href="https://hub.docker.com/r/kindest/node/tags">here</a>.</p>
+<p><strong>k8s_version:</strong> Allows to specify the K8s version that <a href="https://kind.sigs.k8s.io/">KIND</a> will deploy. Available versions can be found
+<a href="https://hub.docker.com/r/kindest/node/tags">here</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make clusters CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--k8s_version 1.18.0&#39;</span>
 </code></pre></div></li>
 <li>
@@ -1396,8 +1404,10 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> <span style="color:#66d9ef">$(
 </code></pre></div></li>
 </ul>
 <h3 id="submariner-deployment-customization">Submariner Deployment Customization</h3>
-<p>It&rsquo;s possible to supply extra flags when calling <code>make deploy</code> via a make variable <code>DEPLOY_ARGS</code> (or an environment variable with the same name). These flags affect how Submariner is deployed on the clusters.</p>
-<p>Since <code>deploy</code> relies on <code>clusters</code> then effectively you could also specify <code>CLUSTERS_ARGS</code> to control the cluster deployment (provided the cluster hasn&rsquo;t been deployed yet).</p>
+<p>It&rsquo;s possible to supply extra flags when calling <code>make deploy</code> via a make variable <code>DEPLOY_ARGS</code> (or an environment variable with the same
+name). These flags affect how Submariner is deployed on the clusters.</p>
+<p>Since <code>deploy</code> relies on <code>clusters</code> then effectively you could also specify <code>CLUSTERS_ARGS</code> to control the cluster deployment (provided the
+cluster hasn&rsquo;t been deployed yet).</p>
 <p>Flags of note:</p>
 <ul>
 <li>
@@ -2119,19 +2129,19 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool helm --deploytool
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597168086"></script>
-    <script src="/js/jquery.sticky.js?1597168086"></script>
-    <script src="/js/featherlight.min.js?1597168086"></script>
-    <script src="/js/highlight.pack.js?1597168086"></script>
+    <script src="/js/clipboard.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597322090"></script>
+    <script src="/js/jquery.sticky.js?1597322090"></script>
+    <script src="/js/featherlight.min.js?1597322090"></script>
+    <script src="/js/highlight.pack.js?1597322090"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597168086"></script>
-    <script src="/js/learn.js?1597168086"></script>
-    <script src="/js/hugo-learn.js?1597168086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597322090"></script>
+    <script src="/js/learn.js?1597322090"></script>
+    <script src="/js/hugo-learn.js?1597322090"></script>
 
-    <link href="/mermaid/mermaid.css?1597168086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597168086"></script>
+    <link href="/mermaid/mermaid.css?1597322090" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597322090"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,20 +12,20 @@
     <title>Working With Shipyard :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597168086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597168086" rel="stylesheet">
-    <link href="/css/hybrid.css?1597168086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597168086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597168086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597168086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597168086" rel="stylesheet">
-    <link href="/css/theme.css?1597168086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597168086" rel="stylesheet">
+    <link href="/css/nucleus.css?1597322090" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597322090" rel="stylesheet">
+    <link href="/css/hybrid.css?1597322090" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597322090" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597322090" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597322090" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597322090" rel="stylesheet">
+    <link href="/css/theme.css?1597322090" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597322090" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597168086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597322090" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597168086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597322090"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597168086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597168086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597322090"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597322090"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597168086"></script>
+<script type="text/javascript" src="/js/search.js?1597322090"></script>
 
     
   </div>
@@ -1345,9 +1345,11 @@
 
 
 	<h2 id="overview">Overview</h2>
-<p>The Shipyard project provides common tooling for creating K8s clusters with <a href="https://github.com/kubernetes-sigs/kind">KIND</a> (K8s in Docker) and provides a common Go framework for creating end to end tests.
+<p>The Shipyard project provides common tooling for creating K8s clusters with <a href="https://github.com/kubernetes-sigs/kind">KIND</a> (K8s in Docker)
+and provides a common Go framework for creating end to end tests.
 Shipyard contains common functionality shared by other projects. Any project specific functionality should be part of that project.</p>
-<p>A base image <code>quay.io/submariner/shipyard-dapper-base</code> is created from Shipyard and contains all the tooling to build other projects and run tests in a consistent environment.</p>
+<p>A base image <code>quay.io/submariner/shipyard-dapper-base</code> is created from Shipyard and contains all the tooling to build other projects and run
+tests in a consistent environment.</p>
 <p>Shipyard has several folders at the root of the project:</p>
 <ul>
 <li><strong>package:</strong> Contains the ingredients to build the base image.</li>
@@ -1363,18 +1365,19 @@ Shipyard contains common functionality shared by other projects. Any project spe
 </li>
 <li><strong>test:</strong> Test library to be used by other projects.</li>
 </ul>
-<p>Shipyard ships with some <a href="#shared-makefile-targets">Makefile targets</a> which can be used by consuming projects and are used by Shipyard&rsquo;s CI to test and validate itself. It also has some <a href="#specific-makefile-targets">specific Makefile targets</a> which are used by the project itself.</p>
+<p>Shipyard ships with some <a href="#shared-makefile-targets">Makefile targets</a> which can be used by consuming projects and are used by Shipyard&rsquo;s CI
+to test and validate itself. It also has some <a href="#specific-makefile-targets">specific Makefile targets</a> which are used by the project itself.</p>
 <h2 id="usage">Usage</h2>
 <h3 id="add-shipyard-to-a-project">Add Shipyard to a Project</h3>
 <p>To enable usage of Shipyard&rsquo;s functionality, please see <a href="first_time">Adding Shipyard to a Project</a>.</p>
 <h3 id="use-shipyard-in-your-project">Use Shipyard in Your Project</h3>
 <p>Once Shipyard has been added to a project, you can use any of the <a href="#shared-makefile-targets">Makefile targets</a> that it provides.</p>
-<p>Any variables that you need to pass to these targets should be specified in your Dockerfile.dapper so they&rsquo;re available in the Dapper environment.
-For example:</p>
+<p>Any variables that you need to pass to these targets should be specified in your Dockerfile.dapper so they&rsquo;re available in the Dapper
+environment. For example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">ENV</span> DAPPER_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;REPO TAG QUAY_USERNAME QUAY_PASSWORD TRAVIS_COMMIT CLUSTERS_ARGS DEPLOY_ARGS&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><h3 id="have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</h3>
-<p>Having any of the Shipyard Makefile targets rely on your project&rsquo;s specific targets can be done easily by adding the dependency in your project&rsquo;s Makefile.
-For example:</p>
+<p>Having any of the Shipyard Makefile targets rely on your project&rsquo;s specific targets can be done easily by adding the dependency in your
+project&rsquo;s Makefile. For example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#a6e22e">clusters</span><span style="color:#f92672">:</span> build images
 </code></pre></div><h3 id="use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</h3>
 <p>If you&rsquo;ve made changes to Shipyard&rsquo;s <a href="#dapper-image">base image</a> and need to test them in your project, run:</p>
@@ -1390,26 +1393,31 @@ For example:</p>
 <li><strong>vendor/modules.txt:</strong> Populates go modules (in case go.mod exists in the root directory).</li>
 </ul>
 <p>If your project uses Shipyard then it has all these targets and supports all the variables these targets support.</p>
-<p>Any variables supported by these targets can be either declared as environment variables or assigned on the <code>make</code> command line (takes precedence over environment variables).</p>
+<p>Any variables supported by these targets can be either declared as environment variables or assigned on the <code>make</code> command line (takes
+precedence over environment variables).</p>
 <h3 id="clusters">Clusters</h3>
 <p>A Make target that creates a KIND-based multi-cluster environment with just the default K8s deployment:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clusters
 </code></pre></div><p>Respected variables:</p>
 <ul>
-<li><strong>CLUSTERS_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>clusters.sh</code> script. To get a list of available arguments, run: <code>scripts/shared/clusters.sh --help</code></li>
+<li><strong>CLUSTERS_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>clusters.sh</code> script. To get a list of available arguments, run:
+<code>scripts/shared/clusters.sh --help</code></li>
 </ul>
 <h3 id="deploy">Deploy</h3>
-<p>A Make target that deploys Submariner components in a KIND-based cluster environment (if one isn&rsquo;t created yet, this target will first invoke the clusters target to do so):</p>
+<p>A Make target that deploys Submariner components in a KIND-based cluster environment (if one isn&rsquo;t created yet, this target will first
+invoke the clusters target to do so):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy
 </code></pre></div><p>Respected variables:</p>
 <ul>
 <li>Any variable from <a href="#clusters">clusters</a> target (only if it wasn&rsquo;t created).</li>
-<li><strong>DEPLOY_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>deploy.sh</code> script. To get a list of available arguments, run: <code>scripts/shared/deploy.sh --help</code></li>
+<li><strong>DEPLOY_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>deploy.sh</code> script. To get a list of available arguments, run:
+<code>scripts/shared/deploy.sh --help</code></li>
 </ul>
 <h3 id="cleanup">Cleanup</h3>
 <p>To clean up all the KIND clusters deployed in any of the previous steps, use:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make cleanup
-</code></pre></div><p>This command will remove the clusters and any resources that might&rsquo;ve been left in docker that are not needed any more (images, volumes, etc).</p>
+</code></pre></div><p>This command will remove the clusters and any resources that might&rsquo;ve been left in docker that are not needed any more (images, volumes,
+etc).</p>
 <h3 id="release">Release</h3>
 <p>Uploads the built images to Quay.io:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make release release_images<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;image name&gt;&#34;</span>
@@ -2121,19 +2129,19 @@ For example:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597168086"></script>
-    <script src="/js/jquery.sticky.js?1597168086"></script>
-    <script src="/js/featherlight.min.js?1597168086"></script>
-    <script src="/js/highlight.pack.js?1597168086"></script>
+    <script src="/js/clipboard.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597322090"></script>
+    <script src="/js/jquery.sticky.js?1597322090"></script>
+    <script src="/js/featherlight.min.js?1597322090"></script>
+    <script src="/js/highlight.pack.js?1597322090"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597168086"></script>
-    <script src="/js/learn.js?1597168086"></script>
-    <script src="/js/hugo-learn.js?1597168086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597322090"></script>
+    <script src="/js/learn.js?1597322090"></script>
+    <script src="/js/hugo-learn.js?1597322090"></script>
 
-    <link href="/mermaid/mermaid.css?1597168086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597168086"></script>
+    <link href="/mermaid/mermaid.css?1597322090" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597322090"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

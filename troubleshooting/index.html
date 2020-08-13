@@ -12,20 +12,20 @@
     <title>Troubleshooting Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597168087" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597168087" rel="stylesheet">
-    <link href="/css/hybrid.css?1597168087" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597168087" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597168087" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597168087" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597168087" rel="stylesheet">
-    <link href="/css/theme.css?1597168087" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597168087" rel="stylesheet">
+    <link href="/css/nucleus.css?1597322090" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597322090" rel="stylesheet">
+    <link href="/css/hybrid.css?1597322090" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597322090" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597322090" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597322090" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597322090" rel="stylesheet">
+    <link href="/css/theme.css?1597322090" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597322090" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597168087" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597322090" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597168087"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597322090"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597168087"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597168087"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597322090"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597322090"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597168087"></script>
+<script type="text/javascript" src="/js/search.js?1597322090"></script>
 
     
   </div>
@@ -1323,12 +1323,17 @@
 
 
 	<h2 id="overview">Overview</h2>
-<p>You have followed steps in <a href="../deployment">Deployment</a> but something has gone wrong. You&rsquo;re not sure what and how to fix it, or what information to collect to raise an issue. Welcome to the Submariner troubleshooting guide where we will help you get your deployment working again.</p>
-<p>Basic familiarity with the Submariner components and architecture will be helpful when troubleshooting so please review the <a href="../architecture">Architecture</a> section.</p>
+<p>You have followed steps in <a href="../deployment">Deployment</a> but something has gone wrong. You&rsquo;re not sure what and how to fix it, or what
+information to collect to raise an issue. Welcome to the Submariner troubleshooting guide where we will help you get your deployment working
+again.</p>
+<p>Basic familiarity with the Submariner components and architecture will be helpful when troubleshooting so please review the
+<a href="../architecture">Architecture</a> section.</p>
 <p>The guide has been broken into different sections for easy navigation.</p>
 <h3 id="pre-requisite">Pre-requisite</h3>
 <p>Before we begin troubleshooting, run <code>subctl version</code> to obtain which version of the Submariner components you are running.</p>
-<p>Run <code>kubectl get services -n &lt;service-namespace&gt; | grep &lt;service-name&gt;</code> to get information about the service you&rsquo;re trying to access. This will provide you with the Service <em>Name</em>, <em>Namespace</em> and <em>ServiceIP</em>. If <strong>GlobalNet</strong> is enabled, you will also need the <em>globalIp</em> of the service by running</p>
+<p>Run <code>kubectl get services -n &lt;service-namespace&gt; | grep &lt;service-name&gt;</code> to get information about the service you&rsquo;re trying to access. This
+will provide you with the Service <em>Name</em>, <em>Namespace</em> and <em>ServiceIP</em>. If <strong>GlobalNet</strong> is enabled, you will also need the <em>globalIp</em> of the
+service by running</p>
 <p><code>kubectl get service &lt;service-name&gt; -o jsonpath='{.metadata.annotations.submariner\.io/globalIp}'</code></p>
 <!---
 
@@ -1340,7 +1345,8 @@ This section will contain information about common deployment issues you can run
 
 ### Connectivity Issues
 
-Submariner deployment completed successfully but Services/Pods on one cluster are unable to connect to Services on another cluster. This can be due to multiple factors outlined in the following sections.
+Submariner deployment completed successfully but Services/Pods on one cluster are unable to connect to Services on another cluster. This can
+be due to multiple factors outlined in the following sections.
 
 #### IPSec tunnel not created between clusters
 
@@ -1380,7 +1386,9 @@ TBD
 <h4 id="service-discovery-not-working">Service Discovery not working</h4>
 <p>This is good time to familiarize yourself with <a href="../architecture/service-discovery/">Service Discovery Architecture</a> if you haven&rsquo;t already.</p>
 <h5 id="check-serviceexport-for-your-service">Check ServiceExport for your Service</h5>
-<p>For a Service to be accessible across clusters, you must first export the Service via <code>subctl</code> which creates a <code>ServiceExport</code> resource. Ensure the <code>ServiceExport</code> resource exists and check if its status condition indicates `Exported&rsquo;. Otherwise, its status condition will indicate the reason it wasn&rsquo;t exported.</p>
+<p>For a Service to be accessible across clusters, you must first export the Service via <code>subctl</code> which creates a <code>ServiceExport</code> resource.
+Ensure the <code>ServiceExport</code> resource exists and check if its status condition indicates `Exported&rsquo;. Otherwise, its status condition will
+indicate the reason it wasn&rsquo;t exported.</p>
 <p><code>kubectl get serviceexport -n &lt;service-namespace&gt; &lt;service-name&gt;</code></p>
 <p>Sample output:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: lighthouse.submariner.io/v2alpha1
@@ -1393,10 +1401,12 @@ TBD
     <span style="color:#66d9ef">Status</span>:   True
     <span style="color:#66d9ef">Type</span>:     Exported
 </code></pre></div><h5 id="check-lighthouse-coredns-service">Check Lighthouse CoreDNS Service</h5>
-<p>All cross-cluster service queries are handled by Lighthouse CoreDNS server. First we check if the Lighthouse CoreDNS Service is running properly.</p>
+<p>All cross-cluster service queries are handled by Lighthouse CoreDNS server. First we check if the Lighthouse CoreDNS Service is running
+properly.</p>
 <p><code>kubectl -n submariner-operator get service submariner-lighthouse-coredns</code></p>
 <p>If it is running fine, note down the <code>ServiceIP</code> for the next steps. If not, check the logs for an error.</p>
-<p>If the error is due to a wrong image, run <code>kubectl -n submariner-operator get deployment submariner-lighthouse-coredns</code> and make sure <code>Image</code> is set to <code>quay.io/submariner/lighthouse-coredns:&lt;version&gt;</code> and refers to the correct version.</p>
+<p>If the error is due to a wrong image, run <code>kubectl -n submariner-operator get deployment submariner-lighthouse-coredns</code> and make sure
+<code>Image</code> is set to <code>quay.io/submariner/lighthouse-coredns:&lt;version&gt;</code> and refers to the correct version.</p>
 <p>For any other errors, capture the information and raise a new <a href="https://github.com/submariner-io/lighthouse/issues">issue</a></p>
 <p>If there&rsquo;s no error, then check if the Lighthouse CoreDNS server is configured correctly. Run <code>kubectl describe configmap submariner-lighthouse-coredns</code> and make sure it has following configuration:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    supercluster.local:53 {
@@ -1406,25 +1416,45 @@ TBD
         ready
     }
 </code></pre></div><h5 id="check-coredns-configuration">Check CoreDNS Configuration</h5>
-<p>Submariner requires the CoreDNS deployment to forward requests for the domain <code>supercluster.local</code> to the Lighthouse CoreDNS server in the cluster making the query. Ensure this configuration exists and is correct.</p>
-<p>First we check if CoreDNS is configured to forward requests for domain <code>supercluster.local</code> to Lighthouse CoreDNS Server in the cluster making the query.</p>
+<p>Submariner requires the CoreDNS deployment to forward requests for the domain <code>supercluster.local</code> to the Lighthouse CoreDNS server in the
+cluster making the query. Ensure this configuration exists and is correct.</p>
+<p>First we check if CoreDNS is configured to forward requests for domain <code>supercluster.local</code> to Lighthouse CoreDNS Server in the cluster
+making the query.</p>
 <p><code>kubectl describe configmap coredns</code></p>
 <p>In the output look for something like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    supercluster.local:53 {
         forward . &lt;lighthouse-coredns-serviceip&gt; ======&gt; ServiceIP of lighthouse-coredns service as noted in previous section
     }
-</code></pre></div><p>If the entries highlighted above are missing or <code>ServiceIp</code> is incorrect, it means CoreDNS wasn&rsquo;t configured correctly. It can be fixed by running <code>kubectl edit configmap coredns</code> and making the changes manually. You may need to repeat this step on every cluster.</p>
+</code></pre></div><p>If the entries highlighted above are missing or <code>ServiceIp</code> is incorrect, it means CoreDNS wasn&rsquo;t configured correctly. It can be fixed by
+running <code>kubectl edit configmap coredns</code> and making the changes manually. You may need to repeat this step on every cluster.</p>
 <h5 id="check-submariner-lighthouse-agent">Check submariner-lighthouse-agent</h5>
 <p>Next we check if the <code>submariner-lighthouse-agent</code> is properly running. Run <code>kubectl -n submariner-operator get pods submariner-lighthouse-agent</code> and check the status of Pods.</p>
-<p>If the status indicates the <code>ImagePullBackOff</code> error, run <code>kubectl -n submariner-operator describe deployment submariner-lighthouse-agent</code> and check if <code>Image</code> is set correctly to <code>quay.io/submariner/lighthouse-agent:&lt;version&gt;</code>. If it is and the same error still occurs, raise an issue <a href="https://github.com/submariner-io/lighthouse/issues">here</a> or ping us on the community slack channel.</p>
-<p>If the status indicates any other error, run <code>kubectl -n submariner-operator get pods</code> to get the name of the <code>lighthouse-agent</code> Pod. Then run <code>kubectl -n submariner-operator logs &lt;lighthouse-agent-pod-name&gt;</code> to get the logs. See if there are any errors in the log. If yes, raise an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with the log contents, or you can continue reading through this guide to troubleshoot further.</p>
-<p>If there are no errors, grep the log for the service name that you&rsquo;re trying to query as we may need the log entries later for raising an issue.</p>
+<p>If the status indicates the <code>ImagePullBackOff</code> error, run <code>kubectl -n submariner-operator describe deployment submariner-lighthouse-agent</code>
+and check if <code>Image</code> is set correctly to <code>quay.io/submariner/lighthouse-agent:&lt;version&gt;</code>. If it is and the same error still occurs, raise an
+issue <a href="https://github.com/submariner-io/lighthouse/issues">here</a> or ping us on the community slack channel.</p>
+<p>If the status indicates any other error, run <code>kubectl -n submariner-operator get pods</code> to get the name of the <code>lighthouse-agent</code> Pod. Then
+run <code>kubectl -n submariner-operator logs &lt;lighthouse-agent-pod-name&gt;</code> to get the logs. See if there are any errors in the log. If yes, raise
+an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with the log contents, or you can continue reading through this guide to
+troubleshoot further.</p>
+<p>If there are no errors, grep the log for the service name that you&rsquo;re trying to query as we may need the log entries later for raising an
+issue.</p>
 <h5 id="check-serviceimport-resources">Check ServiceImport resources</h5>
-<p>If the steps above did not indicate an issue, next we check if the ServiceImport resources were properly created for the service you&rsquo;re trying to access. The format of a ServiceImport resources&rsquo;s name is as follows:</p>
+<p>If the steps above did not indicate an issue, next we check if the ServiceImport resources were properly created for the service you&rsquo;re
+trying to access. The format of a ServiceImport resources&rsquo;s name is as follows:</p>
 <p><code>&lt;service-name&gt;-&lt;service-namespace&gt;-&lt;cluster-id&gt;</code></p>
-<p>Run <code>kubectl get serviceimports --all-namespaces |grep &lt;your-service-name&gt;</code> on the broker cluster to check if a resource was created for your service. If not, then check the Lighthouse Agent logs on the cluster where service was created and look for any error or warning messages indicating a failure to create the ServiceImport resource for your service. The most common error is <code>Forbidden</code> if the RBAC wasn&rsquo;t configured correctly. Depending on the deployment method used, &lsquo;subctl&rsquo; or &lsquo;helm&rsquo;, it should&rsquo;ve been done for you. Create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
-<p>If the ServiceImport resource was created correctly on the broker cluster, the next step is to check if it exists on the cluster where you&rsquo;re trying to access the service. Follow the same steps as earlier to get the list of the ServiceImport resources and check if the ServiceImport for your service exists. If not, check the logs of the Lighthouse Agent on the cluster where you are trying to access the service. As described earlier, it will most commonly be an issue with RBAC otherwise create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
-<p>If the ServiceImport resource was created properly on the cluster, run <code>kubectl -n submariner-operator describe serviceimport &lt;your-serviceimport-name&gt;</code> and check if it has the correct <code>ClusterID</code> and <code>ServiceIP</code>:</p>
+<p>Run <code>kubectl get serviceimports --all-namespaces |grep &lt;your-service-name&gt;</code> on the broker cluster to check if a resource was created for
+your service. If not, then check the Lighthouse Agent logs on the cluster where service was created and look for any error or warning
+messages indicating a failure to create the ServiceImport resource for your service. The most common error is <code>Forbidden</code> if the RBAC wasn&rsquo;t
+configured correctly. Depending on the deployment method used, &lsquo;subctl&rsquo; or &lsquo;helm&rsquo;, it should&rsquo;ve been done for you. Create an
+<a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
+<p>If the ServiceImport resource was created correctly on the broker cluster, the next step is to check if it exists on the cluster where
+you&rsquo;re trying to access the service. Follow the same steps as earlier to get the list of the ServiceImport resources and check if the
+ServiceImport for your service exists. If not, check the logs of the Lighthouse Agent on the cluster where you are trying to access the
+service. As described earlier, it will most commonly be an issue with RBAC otherwise create an
+<a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
+<p>If the ServiceImport resource was created properly on the cluster, run
+<code>kubectl -n submariner-operator describe serviceimport &lt;your-serviceimport-name&gt;</code>
+and check if it has the correct <code>ClusterID</code> and <code>ServiceIP</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Name:         nginx-default-cluster2
 Namespace:    submariner-operator
 Labels:       &lt;none&gt;
@@ -1449,7 +1479,8 @@ Status:
     Ips:
       100.92.43.63     ==========&gt; ServiceIP or GlobalIP of service you&#39;re trying to access
 Events:  &lt;none&gt;
-</code></pre></div><p>If the data is not correct, you can manually edit the ServiceImport resource to set the correct IP as a workaround and create an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant information.</p>
+</code></pre></div><p>If the data is not correct, you can manually edit the ServiceImport resource to set the correct IP as a workaround and create an
+<a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant information.</p>
 
 
 
@@ -2134,19 +2165,19 @@ Events:  &lt;none&gt;
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597168087"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597168087"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597168087"></script>
-    <script src="/js/jquery.sticky.js?1597168087"></script>
-    <script src="/js/featherlight.min.js?1597168087"></script>
-    <script src="/js/highlight.pack.js?1597168087"></script>
+    <script src="/js/clipboard.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597322090"></script>
+    <script src="/js/jquery.sticky.js?1597322090"></script>
+    <script src="/js/featherlight.min.js?1597322090"></script>
+    <script src="/js/highlight.pack.js?1597322090"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597168087"></script>
-    <script src="/js/learn.js?1597168087"></script>
-    <script src="/js/hugo-learn.js?1597168087"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597322090"></script>
+    <script src="/js/learn.js?1597322090"></script>
+    <script src="/js/hugo-learn.js?1597322090"></script>
 
-    <link href="/mermaid/mermaid.css?1597168087" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597168087"></script>
+    <link href="/mermaid/mermaid.css?1597322090" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597322090"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

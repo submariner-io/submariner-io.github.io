@@ -12,20 +12,20 @@
     <title>Contributing to Lighthouse :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597168086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597168086" rel="stylesheet">
-    <link href="/css/hybrid.css?1597168086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597168086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597168086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597168086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597168086" rel="stylesheet">
-    <link href="/css/theme.css?1597168086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597168086" rel="stylesheet">
+    <link href="/css/nucleus.css?1597322090" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597322090" rel="stylesheet">
+    <link href="/css/hybrid.css?1597322090" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597322090" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597322090" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597322090" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597322090" rel="stylesheet">
+    <link href="/css/theme.css?1597322090" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597322090" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597168086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597322090" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597168086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597322090"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597168086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597168086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597322090"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597322090"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597168086"></script>
+<script type="text/javascript" src="/js/search.js?1597322090"></script>
 
     
   </div>
@@ -1328,8 +1328,8 @@
 
 
 
-	<p>The <a href="https://github.com/submariner-io/lighthouse">Lighthouse Project</a> contains the code for the service discovery component of Submariner. It mainly consists of an agent and a coreDNS plugin.
-Learn more about the architecture <a href="../../architecture/service-discovery/">here</a>.</p>
+	<p>The <a href="https://github.com/submariner-io/lighthouse">Lighthouse Project</a> contains the code for the service discovery component of Submariner.
+It mainly consists of an agent and a coreDNS plugin. Learn more about the architecture <a href="../../architecture/service-discovery/">here</a>.</p>
 <h3 id="fork-and-clone-the-repository">Fork and Clone the Repository</h3>
 <p>First log into your GitHub account and create a <a href="https://github.com/submariner-io/lighthouse/fork">fork of the Lighthouse repository</a>.
 Then clone your forked repository locally and switch to the lighthouse folder. You will need to create a branch in order to raise a PR.</p>
@@ -1337,20 +1337,23 @@ Then clone your forked repository locally and switch to the lighthouse folder. Y
 cd lighthouse
 git checkout -b &lt;BRANCH-NAME&gt;
 </code></pre></div><h4 id="contributing-to-lighthouse-agent">Contributing to Lighthouse Agent</h4>
-<p>The Lighthouse Agent code is located under the <code>pkg/agent</code> directory. The <code>Controller</code> is the main component that performs bi-directional syncing of <code>ServiceImport</code> objects. After making code changes, please refer to <a href="../building_testing/#submariner-iolighthouse">building</a>
+<p>The Lighthouse Agent code is located under the <code>pkg/agent</code> directory. The <code>Controller</code> is the main component that performs bi-directional
+syncing of <code>ServiceImport</code> objects. After making code changes, please refer to <a href="../building_testing/#submariner-iolighthouse">building</a>
 and <a href="../building_testing/#common-build-and-testing-targets">testing</a> to build and verify your changes.</p>
 <p>Running <code>make e2e</code> will create a 3-cluster deployment which you can use to manually verify changes if necessary.
-The Lighthouse Agent will be deployed in the <code>submariner-operator</code> namespace in each cluster. You can use <code>kubectl</code> commands to check the pod&rsquo;s logs and status.</p>
+The Lighthouse Agent will be deployed in the <code>submariner-operator</code> namespace in each cluster. You can use <code>kubectl</code> commands to check the
+pod&rsquo;s logs and status.</p>
 <h4 id="contributing-to-lighthouse-plugin">Contributing to Lighthouse Plugin</h4>
-<p>The Lighthouse plugin code is located under the <code>plugin/lighthouse</code> directory and uses the structure as required by a standard CoreDNS plugin.
-The plugin answers DNS requests by using the ServiceImport resources populated by the Lighthouse Agent. After making code changes, please refer to <a href="../building_testing/#submariner-iolighthouse">building</a>
-and <a href="../building_testing/#common-build-and-testing-targets">testing</a> to build and verify your changes.</p>
-<p>Similar to the agent, you can use the deployment created using <code>make e2e</code> to manually test and verify as well. The Lighthouse plugin will be running as a part of the CoreDNS in the <code>kube-system</code>
-namespace and the CoreDNS config map will be changed to use it. The usual <code>kubectl</code> commands can be used here as well.
-You can add the debug entry in the CoreDNS config map if you require more logging.</p>
+<p>The Lighthouse plugin code is located under the <code>plugin/lighthouse</code> directory and uses the structure as required by a standard CoreDNS
+plugin. The plugin answers DNS requests by using the ServiceImport resources populated by the Lighthouse Agent. After making code changes,
+please refer to <a href="../building_testing/#submariner-iolighthouse">building</a> and
+<a href="../building_testing/#common-build-and-testing-targets">testing</a> to build and verify your changes.</p>
+<p>Similar to the agent, you can use the deployment created using <code>make e2e</code> to manually test and verify as well. The Lighthouse plugin will be
+running as a part of the CoreDNS in the <code>kube-system</code> namespace and the CoreDNS config map will be changed to use it. The usual <code>kubectl</code>
+commands can be used here as well.  You can add the debug entry in the CoreDNS config map if you require more logging.</p>
 <h3 id="creating-a-pull-request">Creating a Pull Request</h3>
-<p>You can commit your changes using <code>git commit</code> and push the changes to your fork branch. Then you will see an option to create a PR in
-the GitHub UI in your browser when you go to your forked repository.</p>
+<p>You can commit your changes using <code>git commit</code> and push the changes to your fork branch. Then you will see an option to create a PR in the
+GitHub UI in your browser when you go to your forked repository.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git commit -s <span style="color:#75715e">#Give a commit message</span>
 git push -f origin HEAD:&lt;Your-Branch-Name&gt;
 </code></pre></div><p>Creating a PR will trigger CI to verify the changes.</p>
@@ -2042,19 +2045,19 @@ git push -f origin HEAD:&lt;Your-Branch-Name&gt;
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597168086"></script>
-    <script src="/js/jquery.sticky.js?1597168086"></script>
-    <script src="/js/featherlight.min.js?1597168086"></script>
-    <script src="/js/highlight.pack.js?1597168086"></script>
+    <script src="/js/clipboard.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597322090"></script>
+    <script src="/js/jquery.sticky.js?1597322090"></script>
+    <script src="/js/featherlight.min.js?1597322090"></script>
+    <script src="/js/highlight.pack.js?1597322090"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597168086"></script>
-    <script src="/js/learn.js?1597168086"></script>
-    <script src="/js/hugo-learn.js?1597168086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597322090"></script>
+    <script src="/js/learn.js?1597322090"></script>
+    <script src="/js/hugo-learn.js?1597322090"></script>
 
-    <link href="/mermaid/mermaid.css?1597168086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597168086"></script>
+    <link href="/mermaid/mermaid.css?1597322090" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597322090"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

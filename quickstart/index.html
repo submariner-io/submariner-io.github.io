@@ -12,20 +12,20 @@
     <title>Quickstart Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597168086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597168086" rel="stylesheet">
-    <link href="/css/hybrid.css?1597168086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597168086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597168086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597168086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597168086" rel="stylesheet">
-    <link href="/css/theme.css?1597168086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597168086" rel="stylesheet">
+    <link href="/css/nucleus.css?1597322090" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597322090" rel="stylesheet">
+    <link href="/css/hybrid.css?1597322090" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597322090" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597322090" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597322090" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597322090" rel="stylesheet">
+    <link href="/css/theme.css?1597322090" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597322090" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597168086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597322090" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597168086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597322090"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597168086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597168086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597322090"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597322090"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597168086"></script>
+<script type="text/javascript" src="/js/search.js?1597322090"></script>
 
     
   </div>
@@ -1331,24 +1331,33 @@
 
 
 	<h2 id="basic-overview">Basic Overview</h2>
-<p>Submariner has two main core pieces (the broker and submariner), more information about
-this topic can be found in the <a href="../architecture">Architecture</a> section.</p>
+<p>Submariner has two main core pieces (the broker and submariner), more information about this topic can be found in the
+<a href="../architecture">Architecture</a> section.</p>
 <h3 id="the-broker">The Broker</h3>
 <p>The broker is an API to which all participating clusters are given access and where two objects are exchanged via CRDs:</p>
 <ul>
 <li>Cluster(.submariner.io): defines a participating cluster and its IP CIDRs.</li>
 <li>Endpoint(.submariner.io): defines a connection endpoint to a Cluster, and the reachable cluster IPs from the endpoint.</li>
 </ul>
-<p>The broker must be deployed on a single Kubernetes cluster. This cluster’s API server must be reachable by all Kubernetes clusters connected by Submariner. It can be a dedicated cluster, or one of the connected clusters.</p>
+<p>The broker must be deployed on a single Kubernetes cluster. This cluster’s API server must be reachable by all Kubernetes clusters connected
+by Submariner. It can be a dedicated cluster, or one of the connected clusters.</p>
 <h3 id="the-submariner-deployment-on-a-cluster">The Submariner Deployment on a Cluster</h3>
-<p>Once submariner is deployed on a cluster with the proper credentials to the broker it will exchange Cluster and Endpoint objects with other clusters (via push/pull/watching), and start forming connections and routes to other clusters.</p>
+<p>Once submariner is deployed on a cluster with the proper credentials to the broker it will exchange Cluster and Endpoint objects with other
+clusters (via push/pull/watching), and start forming connections and routes to other clusters.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Submariner has a few requirements to get started:</p>
 <ul>
-<li>At least <strong>2 Kubernetes</strong> clusters, one of which is designated to serve as the central broker that is accessible by all of your connected clusters; this can be one of your connected clusters, but comes with the limitation that the cluster is required to be up to facilitate interconnectivity/negotiation.</li>
-<li><strong>Non-overlapping</strong> Service and Pod CIDRs between clusters. This is to prevent routing conflicts. For cases where addresses <strong>do overlap</strong>, <a href="../architecture/globalnet">GlobalNet</a> can be set up.</li>
-<li><strong>IP reachability between the gateway nodes</strong>. When connecting two clusters, at least one of the clusters should have a publicly routable IP address designated to the gateway node. This is needed for creating the IPsec tunnel between the clusters. The default ports used by IPsec are 4500/UDP and 500/UDP. For clusters behind corporate firewalls that block the default ports, Submariner also supports NAT Traversal (NAT-T) with the option to set custom non-standard ports like 4501/UDP and 501/UDP.</li>
-<li>We use port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes and ensuring that Pod IP addresses are preserved. Ensure that firewall configuration allows 4800/UDP across all the worker nodes.</li>
+<li>At least <strong>2 Kubernetes</strong> clusters, one of which is designated to serve as the central broker that is accessible by all of your connected
+clusters; this can be one of your connected clusters, but comes with the limitation that the cluster is required to be up to facilitate
+interconnectivity/negotiation.</li>
+<li><strong>Non-overlapping</strong> Service and Pod CIDRs between clusters. This is to prevent routing conflicts. For cases where addresses <strong>do
+overlap</strong>, <a href="../architecture/globalnet">GlobalNet</a> can be set up.</li>
+<li><strong>IP reachability between the gateway nodes</strong>. When connecting two clusters, at least one of the clusters should have a publicly routable
+IP address designated to the gateway node. This is needed for creating the IPsec tunnel between the clusters. The default ports used by
+IPsec are 4500/UDP and 500/UDP. For clusters behind corporate firewalls that block the default ports, Submariner also supports NAT Traversal
+(NAT-T) with the option to set custom non-standard ports like 4501/UDP and 501/UDP.</li>
+<li>We use port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes and ensuring that Pod IP addresses are preserved.
+Ensure that firewall configuration allows 4800/UDP across all the worker nodes.</li>
 <li>Knowledge of each cluster&rsquo;s network configuration.</li>
 <li>Worker node IPs on all connected clusters must be outside of the Pods/Service CIDR ranges.</li>
 </ul>
@@ -1388,9 +1397,11 @@ this topic can be found in the <a href="../architecture">Architecture</a> sectio
 </tbody>
 </table>
 <h2 id="support-matrix">Support Matrix</h2>
-<p>Submariner is designed to be cloud provider agnostic, and should run in any standard Kubernetes cluster. Submariner has been tested with and known to be working properly with the following cloud environments:</p>
+<p>Submariner is designed to be cloud provider agnostic, and should run in any standard Kubernetes cluster. Submariner has been tested with and
+known to be working properly with the following cloud environments:</p>
 
-<div class="notices tip" ><p>Are you using Submariner in an environment which is not described here? Please <a href="../contributing/website">let us know</a> so that we can update this document.</p>
+<div class="notices tip" ><p>Are you using Submariner in an environment which is not described here? Please <a href="../contributing/website">let us know</a> so that we can update
+this document.</p>
 </div>
 
 <h3 id="cloud-providers">Cloud Providers</h3>
@@ -1414,8 +1425,8 @@ this topic can be found in the <a href="../architecture">Architecture</a> sectio
 <li><a href="../deployment">subctl</a> (+ submariner-operator).</li>
 <li><a href="../deployment/helm">helm charts</a>.</li>
 </ul>
-<p>The community recommends the use of <strong><em>subctl</em></strong>, because it simplifies most of the
-manual steps required for deployment, as well as verification of connectivity between the clusters. In the <em>future</em> it may provide additional capabilities like:</p>
+<p>The community recommends the use of <strong><em>subctl</em></strong>, because it simplifies most of the manual steps required for deployment, as well as
+verification of connectivity between the clusters. In the <em>future</em> it may provide additional capabilities like:</p>
 <ul>
 <li>Detection of possible conflicts</li>
 <li>Upgrade management</li>
@@ -2107,19 +2118,19 @@ If <strong>helm</strong> fits better your deployment methodologies, please find 
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597168086"></script>
-    <script src="/js/jquery.sticky.js?1597168086"></script>
-    <script src="/js/featherlight.min.js?1597168086"></script>
-    <script src="/js/highlight.pack.js?1597168086"></script>
+    <script src="/js/clipboard.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597322090"></script>
+    <script src="/js/jquery.sticky.js?1597322090"></script>
+    <script src="/js/featherlight.min.js?1597322090"></script>
+    <script src="/js/highlight.pack.js?1597322090"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597168086"></script>
-    <script src="/js/learn.js?1597168086"></script>
-    <script src="/js/hugo-learn.js?1597168086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597322090"></script>
+    <script src="/js/learn.js?1597322090"></script>
+    <script src="/js/hugo-learn.js?1597322090"></script>
 
-    <link href="/mermaid/mermaid.css?1597168086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597168086"></script>
+    <link href="/mermaid/mermaid.css?1597322090" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597322090"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

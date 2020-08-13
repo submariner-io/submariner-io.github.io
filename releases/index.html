@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597168086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597168086" rel="stylesheet">
-    <link href="/css/hybrid.css?1597168086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597168086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597168086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597168086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597168086" rel="stylesheet">
-    <link href="/css/theme.css?1597168086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597168086" rel="stylesheet">
+    <link href="/css/nucleus.css?1597322090" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597322090" rel="stylesheet">
+    <link href="/css/hybrid.css?1597322090" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597322090" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597322090" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597322090" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597322090" rel="stylesheet">
+    <link href="/css/theme.css?1597322090" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597322090" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597168086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597322090" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597168086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597322090"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597168086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597168086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597322090"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597322090"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597168086"></script>
+<script type="text/javascript" src="/js/search.js?1597322090"></script>
 
     
   </div>
@@ -1385,8 +1385,10 @@ and adding experimental WireGuard support as an alternative to IPsec</p>
 <li>Submariner reports the active and passive gateways as a gateway.submariner.io resource.</li>
 <li>The Submariner Operator reports a detailed status of the deployment.</li>
 <li>The <strong>gateway redundancy/failover</strong> tests are now enabled and stable in CI.</li>
-<li><em>Globalnet hostNetwork</em> to remote globalIP is now supported. Previously, when a pod used hostNetworking it was unable to connect to a remote service via globalIP.</li>
-<li>A globalCIDR can be manually specified when joining a cluster with globalnet enabled. This enables CI speed optimizations via better parallelism.</li>
+<li><em>Globalnet hostNetwork</em> to remote globalIP is now supported. Previously, when a pod used hostNetworking it was unable to connect to a
+remote service via globalIP.</li>
+<li>A globalCIDR can be manually specified when joining a cluster with globalnet enabled. This enables CI speed optimizations via better
+parallelism.</li>
 <li>Operator and subctl are more robust via standard retries on updates.</li>
 <li>Subctl creates a new <strong>individual access token</strong> for every new joined cluster.</li>
 </ul>
@@ -1417,7 +1419,8 @@ and adding experimental WireGuard support as an alternative to IPsec</p>
 </ul>
 <h2 id="v010-submariner-with-some-light">v0.1.0 Submariner with some light</h2>
 <blockquote>
-<p>This release has focused on stability, bugfixes and making <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> available as developer preview via subctl deployments.</p>
+<p>This release has focused on stability, bugfixes and making <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> available as
+developer preview via subctl deployments.</p>
 </blockquote>
 <ul>
 <li>Several bugfixes and enhancements around HA failover (#346, #348, #332)</li>
@@ -1440,10 +1443,9 @@ and adding experimental WireGuard support as an alternative to IPsec</p>
 <li>nicer spinners during deployment (thanks to kind)</li>
 </ul>
 <h2 id="v003----kubecon-na-2019">v0.0.3 &ndash; KubeCon NA 2019</h2>
-<blockquote>
-<p>Submariner has been greatly enhanced to allow operators to deploy into Kubernetes clusters without the necessity for layer-2 adjacency for nodes. Submariner now allows for VXLAN interconnectivity between nodes (facilitated by the route agent). Subctl
-was created to make deployment of submariner easier.</p>
-</blockquote>
+<p>Submariner has been greatly enhanced to allow operators to deploy into Kubernetes clusters without the necessity for layer-2 adjacency for
+nodes. Submariner now allows for VXLAN interconnectivity between nodes (facilitated by the route agent). Subctl was created to make
+deployment of submariner easier.</p>
 <h2 id="v001-second-submariner-release">v0.0.1 Second Submariner release</h2>
 <h2 id="v001-first-submariner-release">v0.0.1 First Submariner release</h2>
 
@@ -2130,19 +2132,19 @@ was created to make deployment of submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597168087"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597168087"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597168087"></script>
-    <script src="/js/jquery.sticky.js?1597168087"></script>
-    <script src="/js/featherlight.min.js?1597168087"></script>
-    <script src="/js/highlight.pack.js?1597168087"></script>
+    <script src="/js/clipboard.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597322090"></script>
+    <script src="/js/jquery.sticky.js?1597322090"></script>
+    <script src="/js/featherlight.min.js?1597322090"></script>
+    <script src="/js/highlight.pack.js?1597322090"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597168087"></script>
-    <script src="/js/learn.js?1597168087"></script>
-    <script src="/js/hugo-learn.js?1597168087"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597322090"></script>
+    <script src="/js/learn.js?1597322090"></script>
+    <script src="/js/hugo-learn.js?1597322090"></script>
 
-    <link href="/mermaid/mermaid.css?1597168087" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597168087"></script>
+    <link href="/mermaid/mermaid.css?1597322090" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597322090"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

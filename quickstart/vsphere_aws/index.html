@@ -12,20 +12,20 @@
     <title>OpenShift with Service Discovery (vSphere/AWS) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597168086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597168086" rel="stylesheet">
-    <link href="/css/hybrid.css?1597168086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597168086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597168086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597168086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597168086" rel="stylesheet">
-    <link href="/css/theme.css?1597168086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597168086" rel="stylesheet">
+    <link href="/css/nucleus.css?1597322090" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597322090" rel="stylesheet">
+    <link href="/css/hybrid.css?1597322090" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597322090" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597322090" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597322090" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597322090" rel="stylesheet">
+    <link href="/css/theme.css?1597322090" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597322090" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597168086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597322090" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597168086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597322090"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597168086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597168086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597322090"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597322090"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597168086"></script>
+<script type="text/javascript" src="/js/search.js?1597322090"></script>
 
     
   </div>
@@ -1331,7 +1331,8 @@
 
 
 
-	<p>In this quickstart guide, we shall cover the necessary steps to deploy OpenShift Container Platform (OCP) on vSphere and AWS. Once the OCP clusters are deployed, we shall cover how to deploy Submariner and connect the two clusters.</p>
+	<p>In this quickstart guide, we shall cover the necessary steps to deploy OpenShift Container Platform (OCP) on vSphere and AWS.
+Once the OCP clusters are deployed, we shall cover how to deploy Submariner and connect the two clusters.</p>
 <h3 id="openshift-prerequisites">OpenShift Prerequisites</h3>
 <p>Before we proceed, the following prerequisites have to be downloaded and added to your <code>$PATH:</code></p>
 <ol>
@@ -1346,7 +1347,8 @@
 
 <h3 id="deploy-cluster-on-vsphere-onprem">Deploy Cluster on vSphere (OnPrem)</h3>
 <p>Create the necessary infrastructure on vSphere and ensure that your machines have direct internet access before starting the installation.
-To deploy OCP 4.4, follow the instructions shown <a href="https://docs.openshift.com/container-platform/4.4/installing/installing_vsphere/installing-vsphere.html">here</a></p>
+To deploy OCP 4.4, follow the instructions shown
+<a href="https://docs.openshift.com/container-platform/4.4/installing/installing_vsphere/installing-vsphere.html">here</a></p>
 <p>Assuming that you deployed the cluster (say, cluster-a) with default network configuration, the Pod and Service CIDRs would be</p>
 <table>
 <thead>
@@ -1362,7 +1364,8 @@ To deploy OCP 4.4, follow the instructions shown <a href="https://docs.openshift
 </tr>
 </tbody>
 </table>
-<p>Submariner creates a VxLAN overlay network in the local cluster and uses port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes to preserve the source IP of the inter-cluster traffic.
+<p>Submariner creates a VxLAN overlay network in the local cluster and uses port 4800/UDP to encapsulate traffic from the worker nodes to the
+gateway nodes to preserve the source IP of the inter-cluster traffic.
 Ensure that firewall configuration on vSphere cluster allows 4800/UDP across all the worker nodes.</p>
 <table>
 <thead>
@@ -1381,7 +1384,8 @@ Ensure that firewall configuration on vSphere cluster allows 4800/UDP across all
 </tbody>
 </table>
 
-<div class="notices tip" ><p>Although we are using the default OCP network configuration on vSphere, you can install vSphere with a custom network configuration as shown <a href="https://red.ht/2WFjEVg">here</a></p>
+<div class="notices tip" ><p>Although we are using the default OCP network configuration on vSphere, you can install vSphere with a custom network configuration as shown
+<a href="https://red.ht/2WFjEVg">here</a></p>
 </div>
 
 <h3 id="deploy-cluster-on-aws">Deploy Cluster on AWS</h3>
@@ -1411,22 +1415,23 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
 </tbody>
 </table>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
-</code></pre></div><p>Change the Pod IP network. Please note it’s a /14 range by default so you need to use
-+4 increments for “128”, for example: 10.132.0.0, 10.136.0.0, 10.140.0.0, &hellip;</p>
+</code></pre></div><p>Change the Pod IP network. Please note it’s a /14 range by default so you need to use +4 increments for “128”, for example: 10.132.0.0,
+10.136.0.0, 10.140.0.0, &hellip;</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>Change the Service IP network. This is a /16 range by default, so just use +1 increments
-for “30”: for example: 172.31.0.0, 172.32.0.0, 172.33.0.0, &hellip;</p>
+</code></pre></div><p>Change the Service IP network. This is a /16 range by default, so just use +1 increments for “30”: for example: 172.31.0.0, 172.32.0.0,
+172.33.0.0, &hellip;</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
 </code></pre></div><p>And finally deploy</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
 </code></pre></div><h3 id="make-your-aws-cluster-ready-for-submariner">Make your AWS cluster ready for Submariner</h3>
 <p>Submariner gateway nodes need to be able to accept IPsec traffic. The default ports are 4500/UDP and 500/UDP.
-However, when you have some on-premise clusters (like vSphere in this example) which are typically inside a corporate network, the firewall configuration on the corporate router may not allow the default IPsec traffic.
+However, when you have some on-premise clusters (like vSphere in this example) which are typically inside a corporate network, the firewall
+configuration on the corporate router may not allow the default IPsec traffic.
 We can overcome this limitation by using non-standard ports like 4501/UDP and 501/UDP.</p>
 <p>Additionally, the default OpenShift deployments do not allow assigning an elastic public IP
 to existing worker nodes, something that&rsquo;s necessary at least on one end of the IPsec connections.</p>
-<p>To handle these requirements on AWS, we provide a script that will prepare your AWS OpenShift deployment
-for Submariner, and will create an additional gateway node with an external IP.</p>
+<p>To handle these requirements on AWS, we provide a script that will prepare your AWS OpenShift deployment for Submariner, and will create an
+additional gateway node with an external IP.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
 curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
 chmod a+x ./prep_for_subm.sh
@@ -2169,19 +2174,19 @@ curl nginx.default.svc.supercluster.local:8080
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597168086"></script>
-    <script src="/js/jquery.sticky.js?1597168086"></script>
-    <script src="/js/featherlight.min.js?1597168086"></script>
-    <script src="/js/highlight.pack.js?1597168086"></script>
+    <script src="/js/clipboard.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597322090"></script>
+    <script src="/js/jquery.sticky.js?1597322090"></script>
+    <script src="/js/featherlight.min.js?1597322090"></script>
+    <script src="/js/highlight.pack.js?1597322090"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597168086"></script>
-    <script src="/js/learn.js?1597168086"></script>
-    <script src="/js/hugo-learn.js?1597168086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597322090"></script>
+    <script src="/js/learn.js?1597322090"></script>
+    <script src="/js/hugo-learn.js?1597322090"></script>
 
-    <link href="/mermaid/mermaid.css?1597168086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597168086"></script>
+    <link href="/mermaid/mermaid.css?1597322090" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597322090"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

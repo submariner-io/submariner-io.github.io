@@ -12,20 +12,20 @@
     <title>Adding Shipyard to a Project :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1597168086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1597168086" rel="stylesheet">
-    <link href="/css/hybrid.css?1597168086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1597168086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1597168086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1597168086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1597168086" rel="stylesheet">
-    <link href="/css/theme.css?1597168086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1597168086" rel="stylesheet">
+    <link href="/css/nucleus.css?1597322090" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1597322090" rel="stylesheet">
+    <link href="/css/hybrid.css?1597322090" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1597322090" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1597322090" rel="stylesheet">
+    <link href="/css/auto-complete.css?1597322090" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1597322090" rel="stylesheet">
+    <link href="/css/theme.css?1597322090" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1597322090" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1597168086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1597322090" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1597168086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1597322090"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1597168086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1597168086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1597322090"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1597322090"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1597168086"></script>
+<script type="text/javascript" src="/js/search.js?1597322090"></script>
 
     
   </div>
@@ -1350,13 +1350,18 @@ To use Make you&rsquo;ll need some commands to enable Dapper and also include th
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;./scripts/entry&#34;</span>]<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;ci&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/master/Dockerfile.dapper">Dockerfile.dapper</a> as an example.</p>
+</span></code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/master/Dockerfile.dapper">Dockerfile.dapper</a> as an
+example.</p>
 <h3 id="building-the-base-image">Building The Base Image</h3>
 <p>To build the base container image used in the shared developer and CI enviroment, simply run:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
 </code></pre></div><h2 id="makefile">Makefile</h2>
-<p>The project&rsquo;s Makefile should include targets to run everything in Dapper. These are defined in Shipyard&rsquo;s  <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.dapper">Makefile.dapper</a> which can be copied as is into your project and included in the Makefile.
-To use Shipyard&rsquo;s built-in targets available in the base Dapper image, include the <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.inc">Makefile.inc</a> file in the project&rsquo;s Makefile within the section where the Dapper environment is detected.</p>
+<p>The project&rsquo;s Makefile should include targets to run everything in Dapper. These are defined in Shipyard&rsquo;s
+<a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.dapper">Makefile.dapper</a> which can be copied as is into your project and
+included in the Makefile.
+To use Shipyard&rsquo;s built-in targets available in the base Dapper image, include the
+<a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.inc">Makefile.inc</a> file in the project&rsquo;s Makefile within the section where
+the Dapper environment is detected.</p>
 <p>The simplest Makefile would look like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#960050;background-color:#1e0010">ifneq</span> <span style="color:#960050;background-color:#1e0010">(,</span><span style="color:#66d9ef">$(</span>DAPPER_HOST_ARCH<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">)</span>
 
@@ -2064,19 +2069,19 @@ To use Shipyard&rsquo;s built-in targets available in the base Dapper image, inc
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1597168086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1597168086"></script>
-    <script src="/js/jquery.sticky.js?1597168086"></script>
-    <script src="/js/featherlight.min.js?1597168086"></script>
-    <script src="/js/highlight.pack.js?1597168086"></script>
+    <script src="/js/clipboard.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.min.js?1597322090"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1597322090"></script>
+    <script src="/js/jquery.sticky.js?1597322090"></script>
+    <script src="/js/featherlight.min.js?1597322090"></script>
+    <script src="/js/highlight.pack.js?1597322090"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1597168086"></script>
-    <script src="/js/learn.js?1597168086"></script>
-    <script src="/js/hugo-learn.js?1597168086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1597322090"></script>
+    <script src="/js/learn.js?1597322090"></script>
+    <script src="/js/hugo-learn.js?1597322090"></script>
 
-    <link href="/mermaid/mermaid.css?1597168086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1597168086"></script>
+    <link href="/mermaid/mermaid.css?1597322090" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1597322090"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
