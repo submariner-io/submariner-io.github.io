@@ -12,20 +12,20 @@
     <title>With Service Discovery :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1599028972" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1599028972" rel="stylesheet">
-    <link href="/css/hybrid.css?1599028972" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1599028972" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1599028972" rel="stylesheet">
-    <link href="/css/auto-complete.css?1599028972" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1599028972" rel="stylesheet">
-    <link href="/css/theme.css?1599028972" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1599028972" rel="stylesheet">
+    <link href="/css/nucleus.css?1599029697" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1599029697" rel="stylesheet">
+    <link href="/css/hybrid.css?1599029697" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1599029697" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1599029697" rel="stylesheet">
+    <link href="/css/auto-complete.css?1599029697" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1599029697" rel="stylesheet">
+    <link href="/css/theme.css?1599029697" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1599029697" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1599028972" rel="stylesheet">
+      <link href="/css/theme-blue.css?1599029697" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1599028972"></script>
+    <script src="/js/jquery-3.3.1.min.js?1599029697"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1599028972"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1599028972"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1599029697"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1599029697"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1599028972"></script>
+<script type="text/javascript" src="/js/search.js?1599029697"></script>
 
     
   </div>
@@ -1458,17 +1458,25 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 </code></pre></div>
 
 <h4 id="verify-deployment">Verify Deployment</h4>
-<p>To verify the deployment follow the steps below which creates an nginx service and
-ServiceExport for it.</p>
+<p>To manually verify the deployment, follow the steps below using either a headless or ClusterIP <code>nginx</code> service deployed in <code>cluster-b</code>.</p>
+<h5 id="deploy-clusterip-service">Deploy ClusterIP Service</h5>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
 kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
 kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
 subctl export service --namespace default nginx
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
+</code></pre></div><h5 id="deploy-headless-service">Deploy Headless Service</h5>
+<p>Note that headless Services can only be exported on non-globalnet deployments.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
+kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
+kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span> --cluster-ip<span style="color:#f92672">=</span>None
+subctl export service --namespace default nginx
+</code></pre></div><h5 id="verify">Verify</h5>
+<p>Run <code>nettest</code> from <code>cluster-a</code> to access the <code>nginx</code> service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
 kubectl -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
 curl nginx.default.svc.clusterset.local:8080
 </code></pre></div><h4 id="perform-automated-verification">Perform automated verification</h4>
-<p>This will perform all automated verification between your clusters</p>
+<p>This will perform automated verifications between the clusters.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig --only service-discovery,connectivity --verbose
 </code></pre></div>
 
@@ -2159,19 +2167,19 @@ curl nginx.default.svc.clusterset.local:8080
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1599028972"></script>
-    <script src="/js/perfect-scrollbar.min.js?1599028972"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1599028972"></script>
-    <script src="/js/jquery.sticky.js?1599028972"></script>
-    <script src="/js/featherlight.min.js?1599028972"></script>
-    <script src="/js/highlight.pack.js?1599028972"></script>
+    <script src="/js/clipboard.min.js?1599029697"></script>
+    <script src="/js/perfect-scrollbar.min.js?1599029697"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1599029697"></script>
+    <script src="/js/jquery.sticky.js?1599029697"></script>
+    <script src="/js/featherlight.min.js?1599029697"></script>
+    <script src="/js/highlight.pack.js?1599029697"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1599028972"></script>
-    <script src="/js/learn.js?1599028972"></script>
-    <script src="/js/hugo-learn.js?1599028972"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1599029697"></script>
+    <script src="/js/learn.js?1599029697"></script>
+    <script src="/js/hugo-learn.js?1599029697"></script>
 
-    <link href="/mermaid/mermaid.css?1599028972" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1599028972"></script>
+    <link href="/mermaid/mermaid.css?1599029697" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1599029697"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
