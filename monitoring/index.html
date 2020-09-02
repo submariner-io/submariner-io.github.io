@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Adding Shipyard to a Project :: Submariner k8s project documentation website</title>
+    <title>Monitoring :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1599063398" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/contributing/shipyard/first_time/">
+  <body class="" data-url="/monitoring/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -708,8 +708,8 @@
   
     
     <li data-nav-id="/monitoring/" title="Monitoring" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/monitoring/">
@@ -838,7 +838,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        parent
+        
         
         
         ">
@@ -984,7 +984,7 @@
   
     
     <li data-nav-id="/contributing/shipyard/" title="Working With Shipyard" class="dd-item 
-        parent
+        
         
         
         ">
@@ -1015,8 +1015,8 @@
   
     
     <li data-nav-id="/contributing/shipyard/first_time/" title="Adding Shipyard to a Project" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/contributing/shipyard/first_time/">
@@ -1276,7 +1276,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/shipyard/first_time/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/monitoring/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1303,19 +1303,7 @@
             
           
           
-            
-            
-          
-          
-            
-            
-          
-          
-            <a href='/'></a> > <a href='/contributing/'>Contributing</a> > <a href='/contributing/shipyard/'>Working With Shipyard</a> > Adding Shipyard to a Project
-          
-         
-          
-         
+            <a href='/'></a> > Monitoring
           
          
           
@@ -1328,12 +1316,12 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#dockerfiledapper">Dockerfile.dapper</a>
+    <li><a href="#basic-overview">Basic Overview</a>
       <ul>
-        <li><a href="#building-the-base-image">Building The Base Image</a></li>
+        <li><a href="#openshift-setup">OpenShift setup</a></li>
+        <li><a href="#prometheus-operator">Prometheus operator</a></li>
       </ul>
     </li>
-    <li><a href="#makefile">Makefile</a></li>
   </ul>
 </nav>
     </div>
@@ -1351,7 +1339,7 @@
           
             <h1>
               
-              Adding Shipyard to a Project
+              Monitoring
             </h1>
           
 
@@ -1360,53 +1348,57 @@
 
 
 
-	<p>To use Shipyard in your project, it&rsquo;s easiest to use <em><a href="https://github.com/rancher/dapper">Dapper</a></em> and <em>Make</em>.
-To use Dapper you&rsquo;ll need a specific Dockerfile that Dapper consumes to create a consistent environment based upon Shipyard&rsquo;s base image.
-To use Make you&rsquo;ll need some commands to enable Dapper and also include the targets which ship in the base image.</p>
-<h2 id="dockerfiledapper">Dockerfile.dapper</h2>
-<p>The project should have a <code>Dockerfile.dapper</code> Dockerfile which builds upon <code>quay.io/submariner/shipyard-dapper-base</code>.</p>
-<p>For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> quay.io/submariner/shipyard-dapper-base</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> DAPPER_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;REPO TAG QUAY_USERNAME QUAY_PASSWORD TRAVIS_COMMIT&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    DAPPER_SOURCE<span style="color:#f92672">=</span>&lt;your source directory&gt; DAPPER_DOCKER_SOCKET<span style="color:#f92672">=</span>true<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> DAPPER_OUTPUT<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>DAPPER_SOURCE<span style="color:#e6db74">}</span>/output<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> ${DAPPER_SOURCE}</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;./scripts/entry&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;ci&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/master/Dockerfile.dapper">Dockerfile.dapper</a> as an
-example.</p>
-<h3 id="building-the-base-image">Building The Base Image</h3>
-<p>To build the base container image used in the shared developer and CI enviroment, simply run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
-</code></pre></div><h2 id="makefile">Makefile</h2>
-<p>The project&rsquo;s Makefile should include targets to run everything in Dapper. These are defined in Shipyard&rsquo;s
-<a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.dapper">Makefile.dapper</a> which can be copied as is into your project and
-included in the Makefile.
-To use Shipyard&rsquo;s built-in targets available in the base Dapper image, include the
-<a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.inc">Makefile.inc</a> file in the project&rsquo;s Makefile within the section where
-the Dapper environment is detected.</p>
-<p>The simplest Makefile would look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#960050;background-color:#1e0010">ifneq</span> <span style="color:#960050;background-color:#1e0010">(,</span><span style="color:#66d9ef">$(</span>DAPPER_HOST_ARCH<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">)</span>
-
-<span style="color:#75715e"># Running in Dapper
-</span><span style="color:#75715e"></span>
-<span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#66d9ef">$(</span>SHIPYARD_DIR<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">/Makefile.inc</span>
-
-<span style="color:#960050;background-color:#1e0010">else</span>
-
-<span style="color:#75715e"># Not running in Dapper
-</span><span style="color:#75715e"></span>
-<span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#960050;background-color:#1e0010">Makefile.dapper</span>
-
-<span style="color:#960050;background-color:#1e0010">endif</span>
-
-<span style="color:#75715e"># Disable rebuilding Makefile
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">Makefile Makefile.dapper Makefile.inc</span><span style="color:#f92672">:</span> ;
-</code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile">Makefile</a> as an example.</p>
-
+	<h2 id="basic-overview">Basic Overview</h2>
+<p>Submariner provides a number of Prometheus metrics, and sets up <code>ServiceMonitor</code> instances which allow these metrics to be scraped by an
+in-cluster Prometheus instance.</p>
+<p>The following metrics are exposed currently:</p>
+<ul>
+<li>
+<p><code>submariner_gateways</code>: the number of gateways in the cluster;</p>
+</li>
+<li>
+<p><code>submariner_connections</code>: the number of connections to other clusters, with the following labels:</p>
+<ul>
+<li><code>local_cluster</code>: the local cluster name</li>
+<li><code>local_hostname</code>: the local hostname</li>
+<li><code>remote_cluster</code>: the remote cluster name</li>
+<li><code>remote_hostname</code>: the remote hostname</li>
+<li><code>status</code>: the connection status (“connecting”, “connected”, or “error”)</li>
+</ul>
+</li>
+</ul>
+<h3 id="openshift-setup">OpenShift setup</h3>
+<p>OpenShift 4.5 or later can automatically discover the Submariner metrics.
+This currently requires enabling user workload monitoring; see
+<a href="https://access.redhat.com/documentation/en-us/openshift_container_platform/4.5/html/monitoring/monitoring-your-own-services">the OpenShift documentation</a>
+for details.</p>
+<h3 id="prometheus-operator">Prometheus operator</h3>
+<p>To start monitoring Submariner using the Prometheus operator, Prometheus needs to be configured to scrape the Submariner operator’s
+namespace (<code>submariner-operator</code> by default). The specifics depend on your Prometheus deployment, but typically, this will require
+you to:</p>
+<ul>
+<li>
+<p>add the Submariner operator’s namespace to Prometheus’ <code>ClusterRoleBinding</code>;</p>
+</li>
+<li>
+<p>ensure that Prometheus’ configuration doesn’t prevent it from scraping this namespace.</p>
+</li>
+</ul>
+<p>A minimal <code>Prometheus</code> object providing access to the Submariner metrics is as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: monitoring.coreos.com/v1
+<span style="color:#66d9ef">kind</span>: Prometheus
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: prometheus
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">prometheus</span>: prometheus
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">serviceAccountName</span>: prometheus
+  <span style="color:#66d9ef">serviceMonitorNamespaceSelector</span>: {}
+  <span style="color:#66d9ef">serviceMonitorSelector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+      <span style="color:#66d9ef">name</span>: submariner-operator
+</code></pre></div>
 
 
 
@@ -1809,6 +1801,26 @@ the Dapper environment is detected.</p>
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
                 
                 
 
@@ -1878,23 +1890,6 @@ the Dapper environment is detected.</p>
 
                     
                     
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
                         
                     
                     
@@ -1904,9 +1899,6 @@ the Dapper environment is detected.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1972,7 +1964,6 @@ the Dapper environment is detected.</p>
             
                 
                     
-                    
                 
                 
 
@@ -1987,7 +1978,6 @@ the Dapper environment is detected.</p>
             
             
                 
-                    
                     
                 
                 
@@ -2004,9 +1994,6 @@ the Dapper environment is detected.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -2098,10 +2085,10 @@ the Dapper environment is detected.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/contributing/shipyard/" title="Working With Shipyard"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/architecture/service-discovery/" title="Service Discovery"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/contributing/shipyard/advanced/" title="Advanced Features" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/troubleshooting/" title="Troubleshooting Guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -104,13 +104,13 @@
   </url>
   
   <url>
-    <loc>/contributing/shipyard/advanced/</loc>
-    <lastmod>2020-05-05T09:11:00+03:00</lastmod>
+    <loc>/monitoring/</loc>
+    <lastmod>2020-08-12T16:02:00+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/troubleshooting/</loc>
-    <lastmod>2020-05-04T19:01:14+05:30</lastmod>
+    <loc>/contributing/shipyard/advanced/</loc>
+    <lastmod>2020-05-05T09:11:00+03:00</lastmod>
   </url>
   
   <url>
@@ -131,6 +131,11 @@
   <url>
     <loc>/deployment/helm/</loc>
     <lastmod>2020-02-19T21:25:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/troubleshooting/</loc>
+    <lastmod>2020-05-04T19:01:14+05:30</lastmod>
   </url>
   
   <url>
