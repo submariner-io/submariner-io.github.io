@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1599029697" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1599029697" rel="stylesheet">
-    <link href="/css/hybrid.css?1599029697" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1599029697" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1599029697" rel="stylesheet">
-    <link href="/css/auto-complete.css?1599029697" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1599029697" rel="stylesheet">
-    <link href="/css/theme.css?1599029697" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1599029697" rel="stylesheet">
+    <link href="/css/nucleus.css?1599039550" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1599039550" rel="stylesheet">
+    <link href="/css/hybrid.css?1599039550" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1599039550" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1599039550" rel="stylesheet">
+    <link href="/css/auto-complete.css?1599039550" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1599039550" rel="stylesheet">
+    <link href="/css/theme.css?1599039550" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1599039550" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1599029697" rel="stylesheet">
+      <link href="/css/theme-blue.css?1599039550" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1599029697"></script>
+    <script src="/js/jquery-3.3.1.min.js?1599039550"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1599029697"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1599029697"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1599039550"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1599039550"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1599029697"></script>
+<script type="text/javascript" src="/js/search.js?1599039550"></script>
 
     
   </div>
@@ -1290,6 +1290,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v060-improved-submariner-high-availability-and-various-lighthouse-enhancements">v0.6.0 Improved Submariner High Availability and various Lighthouse enhancements</a></li>
     <li><a href="#v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</a></li>
     <li><a href="#v040-libreswan-cable-driver-kubernetes-multicluster-service-discovery">v0.4.0 Libreswan cable driver, Kubernetes multicluster service discovery</a></li>
     <li><a href="#v030-lighthouse-service-discovery-without-kubefed">v0.3.0 Lighthouse Service Discovery without KubeFed</a></li>
@@ -1325,7 +1326,37 @@
 
 
 
-	<h2 id="v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</h2>
+	<h2 id="v060-improved-submariner-high-availability-and-various-lighthouse-enhancements">v0.6.0 Improved Submariner High Availability and various Lighthouse enhancements</h2>
+<blockquote>
+<p>This release mainly focused on support for headless Services in Lighthouse,
+as well as improving Submariner&rsquo;s High Availability (HA).</p>
+</blockquote>
+
+<div class="notices warning" ><p>The DNS domains have been updated from &lt;service&gt;.&lt;namespace&gt;.svc.<strong>supercluster</strong>.local to
+&lt;service&gt;.&lt;namespace&gt;.svc.<strong>clusterset</strong>.local to align with the change in Kubernetes MultiCluster Service API.
+Both domains will be supported for 0.6.0 but 0.7.0 will remove support for <strong>supercluster</strong>.local.
+Please update your deployments and applications.</p>
+</div>
+
+<ul>
+<li><strong>Lighthouse</strong> has been enhanced to:
+<ul>
+<li>Be aware of the local cluster Gateway connectivity so as not to announce the IP addresses for disconnected remote clusters.</li>
+<li>Support headless Services for non-<strong>Globalnet</strong> deployments. Support for <strong>Globalnet</strong> will be available in a future release.</li>
+<li>Be aware of a Service&rsquo;s backend Pods so as not to announce IP addresses for Services that have no active pods.</li>
+<li>Use Round Robin IP resolution for services available in multiple clusters.</li>
+<li>Enable Service discovery by default for <strong>subctl</strong> deployments.</li>
+</ul>
+</li>
+<li><strong>subctl</strong> auto-detects the cluster ID from the kubeconfig file information when possible.</li>
+<li>The Submariner Pods now shutdown gracefully and do proper cleanup which reduces the downtime during Gateway failover.</li>
+<li>The operator now automatically exports Prometheus metrics; these integrate seamlessly with OpenShift Prometheus if user
+workload monitoring is enabled, and can be included in any other Prometheus setup.</li>
+<li>Minimum Kubernetes version is now 1.17.</li>
+<li>HostNetwork to remote Service connectivity fixes for AWS clusters (<a href="https://github.com/submariner-io/submariner/issues/736">Issue 736</a>).</li>
+<li>The project&rsquo;s codebase quality and readability has been improved using various linters.</li>
+</ul>
+<h2 id="v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</h2>
 <blockquote>
 <p>This release mainly focused on continuing the alignment of Lighthouse&rsquo;s service discovery support with the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster
 Services KEP</a>.</p>
@@ -2132,19 +2163,19 @@ deployment of submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1599029697"></script>
-    <script src="/js/perfect-scrollbar.min.js?1599029697"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1599029697"></script>
-    <script src="/js/jquery.sticky.js?1599029697"></script>
-    <script src="/js/featherlight.min.js?1599029697"></script>
-    <script src="/js/highlight.pack.js?1599029697"></script>
+    <script src="/js/clipboard.min.js?1599039550"></script>
+    <script src="/js/perfect-scrollbar.min.js?1599039550"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1599039550"></script>
+    <script src="/js/jquery.sticky.js?1599039550"></script>
+    <script src="/js/featherlight.min.js?1599039550"></script>
+    <script src="/js/highlight.pack.js?1599039550"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1599029697"></script>
-    <script src="/js/learn.js?1599029697"></script>
-    <script src="/js/hugo-learn.js?1599029697"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1599039550"></script>
+    <script src="/js/learn.js?1599039550"></script>
+    <script src="/js/hugo-learn.js?1599039550"></script>
 
-    <link href="/mermaid/mermaid.css?1599029697" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1599029697"></script>
+    <link href="/mermaid/mermaid.css?1599039550" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1599039550"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
