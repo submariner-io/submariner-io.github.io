@@ -144,6 +144,10 @@
   </url>
   
   <url>
+    <loc>/deployment/calico/</loc>
+  </url>
+  
+  <url>
     <loc>/reading_material/</loc>
     <lastmod>2020-03-09T20:03:44+01:00</lastmod>
   </url>
