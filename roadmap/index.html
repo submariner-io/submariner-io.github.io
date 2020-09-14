@@ -12,20 +12,20 @@
     <title>Roadmap :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1599659680" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1599659680" rel="stylesheet">
-    <link href="/css/hybrid.css?1599659680" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1599659680" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1599659680" rel="stylesheet">
-    <link href="/css/auto-complete.css?1599659680" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1599659680" rel="stylesheet">
-    <link href="/css/theme.css?1599659680" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1599659680" rel="stylesheet">
+    <link href="/css/nucleus.css?1600105932" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1600105932" rel="stylesheet">
+    <link href="/css/hybrid.css?1600105932" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1600105932" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1600105932" rel="stylesheet">
+    <link href="/css/auto-complete.css?1600105932" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1600105932" rel="stylesheet">
+    <link href="/css/theme.css?1600105932" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1600105932" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1599659680" rel="stylesheet">
+      <link href="/css/theme-blue.css?1600105932" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1599659680"></script>
+    <script src="/js/jquery-3.3.1.min.js?1600105932"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1599659680"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1599659680"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1600105932"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1600105932"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1599659680"></script>
+<script type="text/javascript" src="/js/search.js?1600105932"></script>
 
     
   </div>
@@ -1344,9 +1344,10 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#v070">v0.7.0</a></li>
-    <li><a href="#future-releases">Future Releases</a></li>
-    <li><a href="#how-you-can-help">How You Can Help</a></li>
+    <li><a href="#planning-process">Planning Process</a></li>
+    <li><a href="#current-work">Current Work</a></li>
+    <li><a href="#future-work">Future Work</a></li>
+    <li><a href="#suggesting-work">Suggesting Work</a></li>
   </ul>
 </nav>
     </div>
@@ -1373,13 +1374,18 @@
 
 
 
-	<p>This is a preliminary community roadmap. It represents our best guess at broad priorities, and can serve as a general guideline.</p>
-<p>Details of past releases are described <a href="../releases">here</a>.</p>
-<h2 id="v070">v0.7.0</h2>
-<ul>
-<li>In progress: <a href="https://github.com/orgs/submariner-io/projects/10">https://github.com/orgs/submariner-io/projects/10</a></li>
-</ul>
-<h2 id="future-releases">Future Releases</h2>
+	<p>Submariner organizes all current and upcoming work using GitHub Issues, Projects, and Milestones.</p>
+<h2 id="planning-process">Planning Process</h2>
+<p>In preparation for sprint planning meetings (see <a href="https://submariner.io/contributing/#community-calendarhttpscalendargooglecomcalendarrcidnhfuzgvoogy0bzz1ajlvznbsczh1nwnlz2taz3jvdxauy2fszw5kyxiuz29vz2xllmnvbq">Submariner&rsquo;s Community Calendar</a>), GitHub Issues should be raised for work that is to
+be a part of a sprint. Issues targeted for a sprint should be added to the upcoming Project&rsquo;s &ldquo;Backlog&rdquo; column. During sprint planning
+meetings, Issues will be discussed and moved to the &ldquo;TODO&rdquo; column and the milestone will be set to the targeted release. As contributors
+make progress during sprints, Issues should be moved through the &ldquo;In Progress&rdquo;/&ldquo;Review/Verify&rdquo;/&ldquo;Done&rdquo; columns of the Project. If an Issue is
+implemented during a release but additional work (like an ACK-fixed verification) tracked by the relevant Issue is necessary, the Issue can
+be carried over to the next Project but the Milestone should reflect where the code was shipped for accurate release note creation.</p>
+<h2 id="current-work">Current Work</h2>
+<p>Current and near-future work is tracked by <a href="https://github.com/orgs/submariner-io/projects">Submariner&rsquo;s open Projects</a>.</p>
+<h2 id="future-work">Future Work</h2>
+<p>Some high-level goals are summarized here, but the primary source for tracking future work are Submariner&rsquo;s GitHub Issues.</p>
 <ul>
 <li>Auto detecting NAT vs non-NAT scenarios (<a href="https://github.com/submariner-io/submariner/issues/300">https://github.com/submariner-io/submariner/issues/300</a>)</li>
 <li>Support different IPsec ports for each cluster</li>
@@ -1392,8 +1398,8 @@
 <li>Dynamic routing with BGP to support multi-path forwarding across gateways</li>
 <li>Testing with multi-cluster Istio</li>
 </ul>
-<h2 id="how-you-can-help">How You Can Help</h2>
-<p>If we are missing something that would make Submariner more useful to you, please let us know. The best way is to file an issue and include
+<h2 id="suggesting-work">Suggesting Work</h2>
+<p>If we are missing something that would make Submariner more useful to you, please let us know. The best way is to file an Issue and include
 information on how you intend to use Submariner with that feature.</p>
 
 
@@ -2111,19 +2117,19 @@ information on how you intend to use Submariner with that feature.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1599659680"></script>
-    <script src="/js/perfect-scrollbar.min.js?1599659680"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1599659680"></script>
-    <script src="/js/jquery.sticky.js?1599659680"></script>
-    <script src="/js/featherlight.min.js?1599659680"></script>
-    <script src="/js/highlight.pack.js?1599659680"></script>
+    <script src="/js/clipboard.min.js?1600105932"></script>
+    <script src="/js/perfect-scrollbar.min.js?1600105932"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1600105932"></script>
+    <script src="/js/jquery.sticky.js?1600105932"></script>
+    <script src="/js/featherlight.min.js?1600105932"></script>
+    <script src="/js/highlight.pack.js?1600105932"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1599659680"></script>
-    <script src="/js/learn.js?1599659680"></script>
-    <script src="/js/hugo-learn.js?1599659680"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1600105932"></script>
+    <script src="/js/learn.js?1600105932"></script>
+    <script src="/js/hugo-learn.js?1600105932"></script>
 
-    <link href="/mermaid/mermaid.css?1599659680" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1599659680"></script>
+    <link href="/mermaid/mermaid.css?1600105932" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1600105932"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
