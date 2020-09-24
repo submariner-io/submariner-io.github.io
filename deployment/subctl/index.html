@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1600961916" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1600961916" rel="stylesheet">
-    <link href="/css/hybrid.css?1600961916" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1600961916" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1600961916" rel="stylesheet">
-    <link href="/css/auto-complete.css?1600961916" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1600961916" rel="stylesheet">
-    <link href="/css/theme.css?1600961916" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1600961916" rel="stylesheet">
+    <link href="/css/nucleus.css?1600972421" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1600972421" rel="stylesheet">
+    <link href="/css/hybrid.css?1600972421" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1600972421" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1600972421" rel="stylesheet">
+    <link href="/css/auto-complete.css?1600972421" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1600972421" rel="stylesheet">
+    <link href="/css/theme.css?1600972421" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1600972421" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1600961916" rel="stylesheet">
+      <link href="/css/theme-blue.css?1600972421" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1600961916"></script>
+    <script src="/js/jquery-3.3.1.min.js?1600972421"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1600961916"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1600961916"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1600972421"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1600972421"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1600961916"></script>
+<script type="text/javascript" src="/js/search.js?1600972421"></script>
 
     
   </div>
@@ -1405,11 +1405,11 @@ flag as the Broker. It installs the necessary CRDs and the <code>submariner-k8s-
 contains the following details:</p>
 <ul>
 <li>Encryption PSK key</li>
-<li>Broker access details for subsequent <code>subctl</code> runs.</li>
-<li>Service discovery settings</li>
-<li>Globalnet settings</li>
+<li>Broker access details for subsequent <code>subctl</code> runs</li>
+<li>Service Discovery settings</li>
 </ul>
 <h4 id="deploy-broker-flags">deploy-broker flags</h4>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -1428,11 +1428,11 @@ contains the following details:</p>
 </tr>
 <tr>
 <td align="left"><code>--service-discovery</code></td>
-<td align="left">Enable Multi Cluster Service Discovery</td>
+<td align="left">Enable Multi Cluster Service Discovery (default true)</td>
 </tr>
 <tr>
 <td align="left"><code>--globalnet</code></td>
-<td align="left">Enable support for Overlapping cluster/service CIDRs in connecting clusters (default disabled)</td>
+<td align="left">Enable support for overlapping Cluster/Service CIDRs in connecting clusters (default disabled)</td>
 </tr>
 <tr>
 <td align="left"><code>--globalnet-cidr-range</code> <code>&lt;string&gt;</code></td>
@@ -1440,10 +1440,11 @@ contains the following details:</p>
 </tr>
 <tr>
 <td align="left"><code>--ipsec-psk-from</code> <code>&lt;string&gt;</code></td>
-<td align="left">Import IPSEC PSK from existing Submariner broker file, like broker-info.subm (default &ldquo;broker-info.subm)</td>
+<td align="left">Import IPsec PSK from existing Submariner broker file, like broker-info.subm (default &ldquo;broker-info.subm&rdquo;)</td>
 </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable line-length -->
 <h3 id="export">export</h3>
 <h4 id="export-service">export service</h4>
 <p><code>subctl export service [flags] &lt;name&gt;</code> creates a <code>ServiceExport</code> resource for the given Service name. This makes the corresponding Service
@@ -1474,10 +1475,11 @@ discoverable from other clusters in the Submariner deployment.</p>
 <p>If no <code>namespace</code> flag is specified, it uses the default namespace from the current context, if present, otherwise it uses <code>default</code>.</p>
 <h3 id="join">join</h3>
 <p><code>subctl join broker-info.subm [flags]</code></p>
-<p>The <strong>join</strong> command deploys the Submariner operator in a cluster using the settings provided in the <code>broker-info.subm</code> file.  The service
+<p>The <strong>join</strong> command deploys the Submariner operator in a cluster using the settings provided in the <code>broker-info.subm</code> file. The service
 account credentials needed for the new cluster to access the Broker cluster will be created and provided to the Submariner operator
-deployment. All the other settings like service discovery enablement and globalnet support are sourced from the broker-info file.</p>
+deployment.</p>
 <h4 id="join-flags-general">join flags (general)</h4>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -1488,18 +1490,29 @@ deployment. All the other settings like service discovery enablement and globaln
 <tbody>
 <tr>
 <td align="left"><code>--cable-driver</code> <code>&lt;string&gt;</code></td>
-<td align="left">Cable driver implementation (defaults to strongswan -IPSec-)</td>
+<td align="left">Cable driver implementation (defaults to strongSwan IPsec)</td>
+</tr>
+<tr>
+<td align="left"><code>--clusterid</code> <code>&lt;string&gt;</code></td>
+<td align="left">Cluster ID used to identify the tunnels. Every cluster needs to have a unique cluster ID. If not provided, one will be generated by default based on the cluster name in the <code>kubeconfig</code> file</td>
+</tr>
+<tr>
+<td align="left"><code>--clustercidr</code> <code>&lt;string&gt;</code></td>
+<td align="left">Specifies the cluster&rsquo;s CIDR used to generate Pod IP addresses. If not specified, subctl will try to discover it and if unable to do so, it will prompt the user</td>
+</tr>
+<tr>
+<td align="left"><code>--no-label</code></td>
+<td align="left">Skip gateway labeling. This disables the prompt for a Worker node to use as gateway</td>
+</tr>
+<tr>
+<td align="left"><code>--enable-pod-debugging</code></td>
+<td align="left">Enable Submariner pod debugging (verbose logging in the deployed pods)</td>
 </tr>
 </tbody>
 </table>
-<!-- markdownlint-disable line-length -->
-<p>| <code>--clusterid</code> <code>&lt;string&gt;</code>           | Cluster ID used to identify the tunnels. Every cluster needs to have a unique cluster ID, if not provided <code>subctl</code> will prompt the admin for a cluster ID.
-| <code>--clusterid</code> <code>&lt;string&gt;</code>           | Cluster ID used to identify the tunnels. Every cluster needs to have a unique cluster ID. If not provided, one will be generated by default based on the cluster name in the <code>kubeconfig</code> file.
-| <code>--clustercidr</code> <code>&lt;string&gt;</code>         | Specifies the cluster&rsquo;s CIDR used to generate Pod IP addresses. If not specified, subctl will try to discover it and, if unable to do so, it will prompt the user.</p>
 <!-- markdownlint-enable line-length -->
-<p>| <code>--no-label</code>                       | Skip gateway labeling. This disables the prompt for a worker node to use as gateway.
-| <code>--enable-pod-debugging</code>          | Enable Submariner pod debugging (verbose logging in the deployed pods)</p>
-<h4 id="join-flags-globalnet">join flags (globalnet)</h4>
+<h4 id="join-flags-globalnet">join flags (Globalnet)</h4>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -1510,14 +1523,16 @@ deployment. All the other settings like service discovery enablement and globaln
 <tbody>
 <tr>
 <td align="left"><code>--globalnet-cluster-size</code> <code>&lt;value&gt;</code></td>
-<td align="left">Cluster size for GlobalCIDR allocated to this cluster (amount of global IPs).</td>
+<td align="left">Cluster size for GlobalCIDR allocated to this cluster (amount of global IPs)</td>
+</tr>
+<tr>
+<td align="left"><code>--globalnet-cidr</code> <code>&lt;string&gt;</code></td>
+<td align="left">GlobalCIDR to be allocated to the cluster, this setting is exclusive with <code>--globalnet-cluster-size</code> and configures a specific Globalnet CIDR for this cluster</td>
 </tr>
 </tbody>
 </table>
-<!-- markdownlint-disable line-length -->
-<p>| <code>--globalnet-cidr</code> <code>&lt;string&gt;</code>        | GlobalCIDR to be allocated to the cluster, this setting is exclusive with <code>--globalnet-cluster-size</code> and configures a specific globalnet CIDR for this cluster.</p>
 <!-- markdownlint-enable line-length -->
-<h4 id="join-flags-ipsec">join flags (IPSec)</h4>
+<h4 id="join-flags-ipsec">join flags (IPsec)</h4>
 <table>
 <thead>
 <tr>
@@ -1528,7 +1543,7 @@ deployment. All the other settings like service discovery enablement and globaln
 <tbody>
 <tr>
 <td align="left"><code>--disable-nat</code></td>
-<td align="left">Disable NAT for IPsec.</td>
+<td align="left">Disable NAT for IPsec</td>
 </tr>
 <tr>
 <td align="left"><code>--ikeport</code> <code>&lt;value&gt;</code></td>
@@ -1540,11 +1555,12 @@ deployment. All the other settings like service discovery enablement and globaln
 </tr>
 <tr>
 <td align="left"><code>--nattport</code> <code>&lt;value&gt;</code></td>
-<td align="left">IPsec NATT port (default 4500)</td>
+<td align="left">IPsec NAT-T port (default 4500)</td>
 </tr>
 </tbody>
 </table>
 <h4 id="join-flags-images-and-repositories">join flags (images and repositories)</h4>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -1555,7 +1571,7 @@ deployment. All the other settings like service discovery enablement and globaln
 <tbody>
 <tr>
 <td align="left"><code>--repository</code> <code>&lt;string&gt;</code></td>
-<td align="left">The repository from where the various submariner images will be sourced. (default &ldquo;quay.io/submariner&rdquo;)</td>
+<td align="left">The repository from where the various Submariner images will be sourced (default &ldquo;quay.io/submariner&rdquo;)</td>
 </tr>
 <tr>
 <td align="left"><code>--version</code> <code>&lt;string&gt;</code></td>
@@ -1563,6 +1579,7 @@ deployment. All the other settings like service discovery enablement and globaln
 </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable line-length -->
 <h3 id="show">show</h3>
 <h4 id="show-networks">show networks</h4>
 <p><code>subctl show networks [flags]</code></p>
@@ -1612,15 +1629,14 @@ confirmation to perform disruptive verifications unless the <code>--enable-disru
 is with no stdin), <code>--enable-disruptive</code> must be specified otherwise disruptive verifications are skipped.</p>
 <p>The <code>connectivity</code> suite verifies dataplane connectivity across the clusters for the following cases:</p>
 <ul>
-<li>Pods (on gateways) to Services</li>
-<li>Pods (on non-gateways) to Services</li>
-<li>Pods (on gateways) to Pods</li>
-<li>Pods (on non-gateways) to Pods</li>
+<li>Pods (on Gateway nodes) to Services</li>
+<li>Pods (on non-Gateway nodes) to Services</li>
+<li>Pods (on Gateway nodes) to Pods</li>
+<li>Pods (on non-Gateway nodes) to Pods</li>
 </ul>
-<p>and between gateway and non-gateway node combinations.</p>
-<p>The <code>service-discovery</code> suite verifies dns discovery of <code>&lt;service&gt;.&lt;namespace&gt;.svc.clusterset.local</code> entries across the clusters.</p>
+<p>The <code>service-discovery</code> suite verifies DNS discovery of <code>&lt;service&gt;.&lt;namespace&gt;.svc.clusterset.local</code> entries across the clusters.</p>
 <p>The <code>gateway-failover</code> suite verifies the continuity of cross-cluster dataplane connectivity after a gateway failure in a cluster occurs.
-This suite requires a single gateway configured on <code>ClusterA</code> and other available worker nodes capable of serving as gateways. Please note
+This suite requires a single gateway configured on <code>ClusterA</code> and other available Worker nodes capable of serving as gateways. Please note
 that this verification is disruptive.</p>
 <h4 id="verify-flags">verify flags</h4>
 <table>
@@ -1664,7 +1680,7 @@ that this verification is disruptive.</p>
 <h3 id="benchmark">benchmark</h3>
 <h4 id="benchmark-throughput">benchmark throughput</h4>
 <p><code>subctl benchmark throughput &lt;kubeconfig1&gt; &lt;kubeconfig2&gt;</code></p>
-<p>The <code>benchmark throughput</code> command runs a throughput benchmark test between two specified clusters.<br>
+<p>The <code>benchmark throughput</code> command runs a throughput benchmark test between two specified clusters.
 When running <code>benchmark throughput</code> command, two type of tests will be issued:</p>
 <ul>
 <li>Pod to Pod - where both Pods are scheduled on Gateway nodes</li>
@@ -1672,7 +1688,7 @@ When running <code>benchmark throughput</code> command, two type of tests will b
 </ul>
 <h4 id="benchmark-latency">benchmark latency</h4>
 <p><code>subctl benchmark latency &lt;kubeconfig1&gt; &lt;kubeconfig2&gt;</code></p>
-<p>The <code>benchmark latency</code> command runs a latency benchmark test between two specified clusters.<br>
+<p>The <code>benchmark latency</code> command runs a latency benchmark test between two specified clusters.
 When running <code>benchmark latency</code> command, two type of tests will be issued:</p>
 <ul>
 <li>Pod to Pod - where both Pods are scheduled on Gateway nodes</li>
@@ -2411,19 +2427,19 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1600961916"></script>
-    <script src="/js/perfect-scrollbar.min.js?1600961916"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1600961916"></script>
-    <script src="/js/jquery.sticky.js?1600961916"></script>
-    <script src="/js/featherlight.min.js?1600961916"></script>
-    <script src="/js/highlight.pack.js?1600961916"></script>
+    <script src="/js/clipboard.min.js?1600972421"></script>
+    <script src="/js/perfect-scrollbar.min.js?1600972421"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1600972421"></script>
+    <script src="/js/jquery.sticky.js?1600972421"></script>
+    <script src="/js/featherlight.min.js?1600972421"></script>
+    <script src="/js/highlight.pack.js?1600972421"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1600961916"></script>
-    <script src="/js/learn.js?1600961916"></script>
-    <script src="/js/hugo-learn.js?1600961916"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1600972421"></script>
+    <script src="/js/learn.js?1600972421"></script>
+    <script src="/js/hugo-learn.js?1600972421"></script>
 
-    <link href="/mermaid/mermaid.css?1600961916" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1600961916"></script>
+    <link href="/mermaid/mermaid.css?1600972421" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1600972421"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
