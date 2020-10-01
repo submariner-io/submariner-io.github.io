@@ -12,20 +12,20 @@
     <title>Globalnet Controller :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1601563747" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1601563747" rel="stylesheet">
-    <link href="/css/hybrid.css?1601563747" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1601563747" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1601563747" rel="stylesheet">
-    <link href="/css/auto-complete.css?1601563747" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1601563747" rel="stylesheet">
-    <link href="/css/theme.css?1601563747" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1601563747" rel="stylesheet">
+    <link href="/css/nucleus.css?1601564727" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1601564727" rel="stylesheet">
+    <link href="/css/hybrid.css?1601564727" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1601564727" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1601564727" rel="stylesheet">
+    <link href="/css/auto-complete.css?1601564727" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1601564727" rel="stylesheet">
+    <link href="/css/theme.css?1601564727" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1601564727" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1601563747" rel="stylesheet">
+      <link href="/css/theme-blue.css?1601564727" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1601563747"></script>
+    <script src="/js/jquery-3.3.1.min.js?1601564727"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1601563747"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1601563747"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1601564727"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1601564727"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1601563747"></script>
+<script type="text/javascript" src="/js/search.js?1601564727"></script>
 
     
   </div>
@@ -1369,8 +1369,8 @@ clusters with overlapping CIDRs to connect together.</p>
 <p>To support overlapping CIDRs in connected clusters, Submariner has a component called Global Private Network, Globalnet (<code>globalnet</code>). This
 Globalnet is a virtual network specifically to support Submariner&rsquo;s multi-cluster solution with a global CIDR. Each cluster is given a
 subnet from this virtual Global Private Network, configured as new cluster parameter <code>GlobalCIDR</code> (e.g. 169.254.0.0/16) which is
-configurable at time of deployment. User can also manually specify GlobalCIDR for each cluster that is joined to the broker using the flag
-<code>globalnet-cidr</code> passed to <code>subctl join</code> command. If Globalnet is not enabled in the broker or if a GlobalCIDR is preconfigured in
+configurable at time of deployment. User can also manually specify GlobalCIDR for each cluster that is joined to the Broker using the flag
+<code>globalnet-cidr</code> passed to <code>subctl join</code> command. If Globalnet is not enabled in the Broker or if a GlobalCIDR is preconfigured in
 the cluster, the supplied globalnet-cidr will be ignored.</p>
 <p>Once configured, each Service and Pod that requires cross-cluster access is allocated an IP, named <code>globalIp</code>, from this <code>GlobalCIDR</code> that
 is annotated on the Pod/Service object. This globalIp is used for all cross-cluster communication to and from a Pod and the globalIp of a
@@ -2120,19 +2120,19 @@ queries for the Service.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1601563747"></script>
-    <script src="/js/perfect-scrollbar.min.js?1601563747"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1601563747"></script>
-    <script src="/js/jquery.sticky.js?1601563747"></script>
-    <script src="/js/featherlight.min.js?1601563747"></script>
-    <script src="/js/highlight.pack.js?1601563747"></script>
+    <script src="/js/clipboard.min.js?1601564727"></script>
+    <script src="/js/perfect-scrollbar.min.js?1601564727"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1601564727"></script>
+    <script src="/js/jquery.sticky.js?1601564727"></script>
+    <script src="/js/featherlight.min.js?1601564727"></script>
+    <script src="/js/highlight.pack.js?1601564727"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1601563747"></script>
-    <script src="/js/learn.js?1601563747"></script>
-    <script src="/js/hugo-learn.js?1601563747"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1601564727"></script>
+    <script src="/js/learn.js?1601564727"></script>
+    <script src="/js/hugo-learn.js?1601564727"></script>
 
-    <link href="/mermaid/mermaid.css?1601563747" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1601563747"></script>
+    <link href="/mermaid/mermaid.css?1601564727" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1601564727"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
