@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1601561831" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1601561831" rel="stylesheet">
-    <link href="/css/hybrid.css?1601561831" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1601561831" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1601561831" rel="stylesheet">
-    <link href="/css/auto-complete.css?1601561831" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1601561831" rel="stylesheet">
-    <link href="/css/theme.css?1601561831" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1601561831" rel="stylesheet">
+    <link href="/css/nucleus.css?1601563694" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1601563694" rel="stylesheet">
+    <link href="/css/hybrid.css?1601563694" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1601563694" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1601563694" rel="stylesheet">
+    <link href="/css/auto-complete.css?1601563694" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1601563694" rel="stylesheet">
+    <link href="/css/theme.css?1601563694" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1601563694" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1601561831" rel="stylesheet">
+      <link href="/css/theme-blue.css?1601563694" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1601561831"></script>
+    <script src="/js/jquery-3.3.1.min.js?1601563694"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1601561831"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1601561831"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1601563694"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1601563694"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1601561831"></script>
+<script type="text/javascript" src="/js/search.js?1601563694"></script>
 
     
   </div>
@@ -1335,7 +1335,7 @@
         <li><a href="#step-6-unpin-the-shipyard-dapper-base-image-version">Step 6: Unpin the <code>shipyard</code> Dapper base image version</a></li>
         <li><a href="#step-7-add-release-notes">Step 7: Add release notes</a></li>
         <li><a href="#step-8-verify-the-release">Step 8: Verify the release</a></li>
-        <li><a href="#step-9-update-the-submariner-operator-on-operatorhubio">Step 9: Update the Submariner operator on OperatorHub.io</a></li>
+        <li><a href="#step-9-update-the-submariner-operator-on-operatorhubio">Step 9: Update the Submariner Operator on OperatorHub.io</a></li>
         <li><a href="#step-10-announce-the-release">Step 10: Announce the release</a></li>
       </ul>
     </li>
@@ -1575,7 +1575,7 @@ automatically pick up the latest changes to the base image.</p>
 <a href="https://github.com/submariner-io/submariner-website/edit/master/src/content/releases/_index.en.md">here</a></p>
 <h3 id="step-8-verify-the-release">Step 8: Verify the release</h3>
 <p>You can follow any of the <a href="../../quickstart">quick start guides</a>.</p>
-<h3 id="step-9-update-the-submariner-operator-on-operatorhubio">Step 9: Update the Submariner operator on OperatorHub.io</h3>
+<h3 id="step-9-update-the-submariner-operator-on-operatorhubio">Step 9: Update the Submariner Operator on OperatorHub.io</h3>
 <p>The <a href="https://github.com/operator-framework/community-operators">community-operators</a> Git repository
 is the source for sharing Kubernetes Operators with the broader community. This repository is split into two sections:</p>
 <ul>
@@ -1583,7 +1583,7 @@ is the source for sharing Kubernetes Operators with the broader community. This 
 These are shared with the Kubernetes community via <a href="https://operatorhub.io/">OperatorHub.io</a>.</li>
 <li>Operators for deployment to OpenShift (community-operators)</li>
 </ul>
-<p>To publish the Submariner operator to the community, perform the following steps:</p>
+<p>To publish the Submariner Operator to the community, perform the following steps:</p>
 <ol>
 <li>
 <p>Clone the <a href="https://github.com/submariner-io/submariner-operator">submariner-operator</a> project</p>
@@ -1608,20 +1608,20 @@ otherwise follow <a href="https://v0-18-x.sdk.operatorframework.io/docs/install-
 <p>Fork and clone <a href="https://github.com/operator-framework/community-operators">community-operators</a> project.</p>
 </li>
 <li>
-<p>Update the Kubernetes operator:</p>
+<p>Update the Kubernetes Operator:</p>
 <ul>
 <li>copy the generated package from step 3 into <code>upstream-community-operators/submariner</code></li>
 <li>compare the new CSV file with the previous one and update the missing fields (e.g spec.description)</li>
 <li>update the version in <code>upstream-community-operators/submariner/submariner.package.yaml</code></li>
-<li>test the operator by running the command: <code>make operator.test OP_PATH=upstream-community-operators/submariner</code></li>
-<li>preview the operator on <a href="https://operatorhub.io/preview">OperatorHub.io</a></li>
+<li>test the Operator by running the command: <code>make operator.test OP_PATH=upstream-community-operators/submariner</code></li>
+<li>preview the Operator on <a href="https://operatorhub.io/preview">OperatorHub.io</a></li>
 <li>once everything is fine, review this
 <a href="https://github.com/operator-framework/community-operators/blob/master/docs/pull_request_template.md">checklist</a>
 and create a new PR on <a href="https://github.com/operator-framework/community-operators">community-operators</a></li>
 </ul>
 </li>
 <li>
-<p>Update the OpenShift operator:</p>
+<p>Update the OpenShift Operator:</p>
 <ul>
 <li>re-run step 5 on the <code>community-operators/submariner</code> directory.</li>
 </ul>
@@ -2341,19 +2341,19 @@ and create a new PR on <a href="https://github.com/operator-framework/community-
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1601561831"></script>
-    <script src="/js/perfect-scrollbar.min.js?1601561831"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1601561831"></script>
-    <script src="/js/jquery.sticky.js?1601561831"></script>
-    <script src="/js/featherlight.min.js?1601561831"></script>
-    <script src="/js/highlight.pack.js?1601561831"></script>
+    <script src="/js/clipboard.min.js?1601563694"></script>
+    <script src="/js/perfect-scrollbar.min.js?1601563694"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1601563694"></script>
+    <script src="/js/jquery.sticky.js?1601563694"></script>
+    <script src="/js/featherlight.min.js?1601563694"></script>
+    <script src="/js/highlight.pack.js?1601563694"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1601561831"></script>
-    <script src="/js/learn.js?1601561831"></script>
-    <script src="/js/hugo-learn.js?1601561831"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1601563694"></script>
+    <script src="/js/learn.js?1601563694"></script>
+    <script src="/js/hugo-learn.js?1601563694"></script>
 
-    <link href="/mermaid/mermaid.css?1601561831" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1601561831"></script>
+    <link href="/mermaid/mermaid.css?1601563694" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1601563694"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
