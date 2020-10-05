@@ -12,20 +12,20 @@
     <title>Quickstart Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1601656489" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1601656489" rel="stylesheet">
-    <link href="/css/hybrid.css?1601656489" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1601656489" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1601656489" rel="stylesheet">
-    <link href="/css/auto-complete.css?1601656489" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1601656489" rel="stylesheet">
-    <link href="/css/theme.css?1601656489" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1601656489" rel="stylesheet">
+    <link href="/css/nucleus.css?1601897498" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1601897498" rel="stylesheet">
+    <link href="/css/hybrid.css?1601897498" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1601897498" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1601897498" rel="stylesheet">
+    <link href="/css/auto-complete.css?1601897498" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1601897498" rel="stylesheet">
+    <link href="/css/theme.css?1601897498" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1601897498" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1601656489" rel="stylesheet">
+      <link href="/css/theme-blue.css?1601897498" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1601656489"></script>
+    <script src="/js/jquery-3.3.1.min.js?1601897498"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1601656489"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1601656489"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1601897498"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1601897498"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1601656489"></script>
+<script type="text/javascript" src="/js/search.js?1601897498"></script>
 
     
   </div>
@@ -1323,12 +1323,7 @@
       </ul>
     </li>
     <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#support-matrix">Support Matrix</a>
-      <ul>
-        <li><a href="#cloud-providers">Cloud Providers</a></li>
-        <li><a href="#kubernetes-cni-plugins">Kubernetes CNI Plugins</a></li>
-      </ul>
-    </li>
+    <li><a href="#support-matrix">Support Matrix</a></li>
     <li><a href="#deployment">Deployment</a></li>
   </ul>
 </nav>
@@ -1381,8 +1376,8 @@ overlap</strong>, <a href="../architecture/globalnet">Globalnet</a> can be set u
 IP address designated to the Gateway node. This is needed for creating the IPsec tunnel between the clusters. The default ports used by
 IPsec are 4500/UDP and 500/UDP. For clusters behind corporate firewalls that block the default ports, Submariner also supports NAT Traversal
 (NAT-T) with the option to set custom non-standard ports like 4501/UDP and 501/UDP.</li>
-<li>Submariner uses port 4800/UDP to encapsulate traffic from the Worker nodes to the Gateway nodes and ensuring that Pod IP addresses are preserved.
-Ensure that firewall configuration allows 4800/UDP across all the Worker nodes.</li>
+<li>Submariner uses port 4800/UDP to encapsulate traffic from the Worker nodes to the Gateway nodes and ensuring that Pod IP addresses are
+preserved. Ensure that firewall configuration allows 4800/UDP across all the Worker nodes.</li>
 <li>Worker node IPs on all connected clusters must be outside of the Pod/Service CIDR ranges.</li>
 </ul>
 <p>An example of three clusters configured to use with Submariner (without Globalnet) would look like the following:</p>
@@ -1421,22 +1416,8 @@ Ensure that firewall configuration allows 4800/UDP across all the Worker nodes.<
 </tbody>
 </table>
 <h2 id="support-matrix">Support Matrix</h2>
-<p>Submariner is designed to be cloud provider agnostic, and should run in any standard Kubernetes cluster. Submariner has been tested with and
-known to be working properly with the following cloud environments:</p>
-
-<div class="notices tip" ><p>Are you using Submariner in an environment which is not described here? Please <a href="../contributing/website">let us know</a> so that we can update
-this document.</p>
-</div>
-
-<h3 id="cloud-providers">Cloud Providers</h3>
-<ul>
-<li>AWS</li>
-<li>VMware vSphere</li>
-<li>OpenStack</li>
-<li>GCP</li>
-</ul>
-<h3 id="kubernetes-cni-plugins">Kubernetes CNI Plugins</h3>
-<p>Presently, Submariner has been tested with the following CNI Plugins that leverage kube-proxy with iptables mode:</p>
+<p>Submariner is designed to be cloud provider agnostic, and should run in any standard Kubernetes cluster. Presently, Submariner has been
+tested with the following network (CNI) Plugins that leverage kube-proxy with iptables mode:</p>
 <ul>
 <li><a href="https://github.com/openshift/sdn">OpenShift-SDN</a></li>
 <li><a href="https://github.com/weaveworks/weave">Weave</a></li>
@@ -2150,19 +2131,19 @@ method.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1601656489"></script>
-    <script src="/js/perfect-scrollbar.min.js?1601656489"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1601656489"></script>
-    <script src="/js/jquery.sticky.js?1601656489"></script>
-    <script src="/js/featherlight.min.js?1601656489"></script>
-    <script src="/js/highlight.pack.js?1601656489"></script>
+    <script src="/js/clipboard.min.js?1601897498"></script>
+    <script src="/js/perfect-scrollbar.min.js?1601897498"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1601897498"></script>
+    <script src="/js/jquery.sticky.js?1601897498"></script>
+    <script src="/js/featherlight.min.js?1601897498"></script>
+    <script src="/js/highlight.pack.js?1601897498"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1601656489"></script>
-    <script src="/js/learn.js?1601656489"></script>
-    <script src="/js/hugo-learn.js?1601656489"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1601897498"></script>
+    <script src="/js/learn.js?1601897498"></script>
+    <script src="/js/hugo-learn.js?1601897498"></script>
 
-    <link href="/mermaid/mermaid.css?1601656489" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1601656489"></script>
+    <link href="/mermaid/mermaid.css?1601897498" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1601897498"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
