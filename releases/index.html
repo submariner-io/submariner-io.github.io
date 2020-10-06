@@ -4,28 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.71.0" />
-    <meta name="description" content="Documentation website for the submariner project">
-<meta name="author" content="The submariner community">
+    <meta name="description" content="Documentation website for the Submariner project">
+<meta name="author" content="The Submariner community">
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1601972639" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1601972639" rel="stylesheet">
-    <link href="/css/hybrid.css?1601972639" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1601972639" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1601972639" rel="stylesheet">
-    <link href="/css/auto-complete.css?1601972639" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1601972639" rel="stylesheet">
-    <link href="/css/theme.css?1601972639" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1601972639" rel="stylesheet">
+    <link href="/css/nucleus.css?1601990896" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1601990896" rel="stylesheet">
+    <link href="/css/hybrid.css?1601990896" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1601990896" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1601990896" rel="stylesheet">
+    <link href="/css/auto-complete.css?1601990896" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1601990896" rel="stylesheet">
+    <link href="/css/theme.css?1601990896" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1601990896" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1601972639" rel="stylesheet">
+      <link href="/css/theme-blue.css?1601990896" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1601972639"></script>
+    <script src="/js/jquery-3.3.1.min.js?1601990896"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1601972639"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1601972639"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1601990896"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1601990896"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1601972639"></script>
+<script type="text/javascript" src="/js/search.js?1601990896"></script>
 
     
   </div>
@@ -1371,10 +1371,10 @@ Please update your deployments and applications.</p>
 <li>Support headless Services for non-<strong>Globalnet</strong> deployments. Support for <strong>Globalnet</strong> will be available in a future release.</li>
 <li>Be aware of a Service&rsquo;s backend Pods so as not to announce IP addresses for Services that have no active pods.</li>
 <li>Use Round Robin IP resolution for services available in multiple clusters.</li>
-<li>Enable Service discovery by default for <strong>subctl</strong> deployments.</li>
+<li>Enable Service discovery by default for <strong><code>subctl</code></strong> deployments.</li>
 </ul>
 </li>
-<li><strong>subctl</strong> auto-detects the cluster ID from the kubeconfig file information when possible.</li>
+<li><strong><code>subctl</code></strong> auto-detects the cluster ID from the kubeconfig file information when possible.</li>
 <li>The Submariner Pods now shutdown gracefully and do proper cleanup which reduces the downtime during Gateway failover.</li>
 <li>The Operator now automatically exports Prometheus metrics; these integrate seamlessly with OpenShift Prometheus if user
 workload monitoring is enabled, and can be included in any other Prometheus setup.</li>
@@ -1446,8 +1446,8 @@ and adding experimental WireGuard support as an alternative to IPsec</p>
 remote service via globalIP.</li>
 <li>A globalCIDR can be manually specified when joining a cluster with globalnet enabled. This enables CI speed optimizations via better
 parallelism.</li>
-<li>Operator and subctl are more robust via standard retries on updates.</li>
-<li>Subctl creates a new <strong>individual access token</strong> for every new joined cluster.</li>
+<li>Operator and <code>subctl</code> are more robust via standard retries on updates.</li>
+<li><code>subctl</code> creates a new <strong>individual access token</strong> for every new joined cluster.</li>
 </ul>
 <h2 id="v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</h2>
 <blockquote>
@@ -1477,7 +1477,7 @@ parallelism.</li>
 <h2 id="v010-submariner-with-some-light">v0.1.0 Submariner with some light</h2>
 <blockquote>
 <p>This release has focused on stability, bugfixes and making <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> available as
-developer preview via subctl deployments.</p>
+developer preview via <code>subctl</code> deployments.</p>
 </blockquote>
 <ul>
 <li>Several bugfixes and enhancements around HA failover (#346, #348, #332)</li>
@@ -1488,20 +1488,20 @@ developer preview via subctl deployments.</p>
 <li>Better iptables detection for some hosts (#227)</li>
 </ul>
 <blockquote>
-<p>subctl and the submariner Operator have the following improvements</p>
+<p><code>subctl</code> and the submariner Operator have the following improvements</p>
 </blockquote>
 <ul>
 <li>support to verify-connectivity between two connected clusters</li>
 <li>deployment of submariner gateways based in daemonsets instead of deployments</li>
 <li>renaming submariner pods to &ldquo;submariner-gateway&rdquo; pods for clarity</li>
-<li>print version details on crash (subctl)</li>
+<li>print version details on crash (<code>subctl</code>)</li>
 <li>stop storing IPSEC key on broker during deploy-broker, now it&rsquo;s only contained into the .subm file</li>
-<li>version command for subctl</li>
+<li>version command for <code>subctl</code></li>
 <li>nicer spinners during deployment (thanks to kind)</li>
 </ul>
 <h2 id="v003----kubecon-na-2019">v0.0.3 &ndash; KubeCon NA 2019</h2>
 <p>Submariner has been greatly enhanced to allow Operators to deploy into Kubernetes clusters without the necessity for layer-2 adjacency for
-nodes. Submariner now allows for VXLAN interconnectivity between nodes (facilitated by the route agent). Subctl was created to make
+nodes. Submariner now allows for VXLAN interconnectivity between nodes (facilitated by the route agent). <code>subctl</code> was created to make
 deployment of submariner easier.</p>
 <h2 id="v001-second-submariner-release">v0.0.1 Second Submariner release</h2>
 <h2 id="v001-first-submariner-release">v0.0.1 First Submariner release</h2>
@@ -2205,19 +2205,19 @@ deployment of submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1601972639"></script>
-    <script src="/js/perfect-scrollbar.min.js?1601972639"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1601972639"></script>
-    <script src="/js/jquery.sticky.js?1601972639"></script>
-    <script src="/js/featherlight.min.js?1601972639"></script>
-    <script src="/js/highlight.pack.js?1601972639"></script>
+    <script src="/js/clipboard.min.js?1601990896"></script>
+    <script src="/js/perfect-scrollbar.min.js?1601990896"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1601990896"></script>
+    <script src="/js/jquery.sticky.js?1601990896"></script>
+    <script src="/js/featherlight.min.js?1601990896"></script>
+    <script src="/js/highlight.pack.js?1601990896"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1601972639"></script>
-    <script src="/js/learn.js?1601972639"></script>
-    <script src="/js/hugo-learn.js?1601972639"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1601990896"></script>
+    <script src="/js/learn.js?1601990896"></script>
+    <script src="/js/hugo-learn.js?1601990896"></script>
 
-    <link href="/mermaid/mermaid.css?1601972639" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1601972639"></script>
+    <link href="/mermaid/mermaid.css?1601990896" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1601990896"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -4,28 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.71.0" />
-    <meta name="description" content="Documentation website for the submariner project">
-<meta name="author" content="The submariner community">
+    <meta name="description" content="Documentation website for the Submariner project">
+<meta name="author" content="The Submariner community">
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
     <title>Deployment :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1601972639" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1601972639" rel="stylesheet">
-    <link href="/css/hybrid.css?1601972639" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1601972639" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1601972639" rel="stylesheet">
-    <link href="/css/auto-complete.css?1601972639" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1601972639" rel="stylesheet">
-    <link href="/css/theme.css?1601972639" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1601972639" rel="stylesheet">
+    <link href="/css/nucleus.css?1601990896" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1601990896" rel="stylesheet">
+    <link href="/css/hybrid.css?1601990896" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1601990896" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1601990896" rel="stylesheet">
+    <link href="/css/auto-complete.css?1601990896" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1601990896" rel="stylesheet">
+    <link href="/css/theme.css?1601990896" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1601990896" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1601972639" rel="stylesheet">
+      <link href="/css/theme-blue.css?1601990896" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1601972639"></script>
+    <script src="/js/jquery-3.3.1.min.js?1601990896"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1601972639"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1601972639"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1601990896"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1601990896"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1601972639"></script>
+<script type="text/javascript" src="/js/search.js?1601990896"></script>
 
     
   </div>
@@ -1316,7 +1316,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#installing-subctl">Installing subctl</a></li>
+    <li><a href="#installing-subctl">Installing <code>subctl</code></a></li>
     <li><a href="#deployment-of-the-broker">Deployment of the Broker</a></li>
     <li><a href="#joining-clusters">Joining clusters</a></li>
   </ul>
@@ -1346,11 +1346,11 @@
 
 
 	<p>Submariner provides a Go-based Kubernetes custom controller, called an <a href="https://github.com/submariner-io/submariner-operator">Operator</a>,
-that provides easy API-based installation and management. A command line utility, <em>subctl</em>, wraps the Operator to aid users with manual
-deployments and easy experimentation. subctl greatly simplifies the deployment of Submariner, and is therefore the recommended deployment
-method. For complete information about subctl, please refer to <a href="subctl">this page</a>.</p>
-<p>In addition to Operator and subctl, Submariner also provides <a href="helm">Helm Charts</a>.</p>
-<h2 id="installing-subctl">Installing subctl</h2>
+that provides easy API-based installation and management. A command line utility, <em><code>subctl</code></em>, wraps the Operator to aid users with manual
+deployments and easy experimentation. <code>subctl</code> greatly simplifies the deployment of Submariner, and is therefore the recommended deployment
+method. For complete information about <code>subctl</code>, please refer to <a href="subctl">this page</a>.</p>
+<p>In addition to Operator and <code>subctl</code>, Submariner also provides <a href="helm">Helm Charts</a>.</p>
+<h2 id="installing-subctl">Installing <code>subctl</code></h2>
 Download the subctl binary and make it available on your PATH.
 
 <div class="highlight">
@@ -1371,7 +1371,7 @@ Kubernetes API is accessible by all of the participating clusters:</p>
 <ul>
 <li>The <code>submariner-k8s-broker</code> namespace.</li>
 <li>The <code>Endpoint</code> and <code>Cluster</code> CRDs in the cluster.</li>
-<li>A Service Account (SA) in the namespace for subsequent subctl access.</li>
+<li>A Service Account (SA) in the namespace for subsequent <code>subctl</code> access.</li>
 </ul>
 <p>It also generates the <code>broker-info.subm</code> file which contains the following elements:</p>
 <ul>
@@ -1389,7 +1389,7 @@ joined (see following step).</p>
 <h2 id="joining-clusters">Joining clusters</h2>
 <p>For each cluster you want to join, issue the following command:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig &lt;PATH-TO-JOINING-CLUSTER&gt; broker-info.subm --clusterid &lt;ID&gt;
-</code></pre></div><p>subctl will automatically discover as much as it can, and prompt the user for any missing necessary information.
+</code></pre></div><p><code>subctl</code> will automatically discover as much as it can, and prompt the user for any missing necessary information.
 Note that each cluster must have a unique cluster ID; the cluster ID can be specified, or otherwise is going to be generated by default
 based on the cluster name in the <code>kubeconfig</code> file.</p>
 
@@ -2092,19 +2092,19 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1601972639"></script>
-    <script src="/js/perfect-scrollbar.min.js?1601972639"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1601972639"></script>
-    <script src="/js/jquery.sticky.js?1601972639"></script>
-    <script src="/js/featherlight.min.js?1601972639"></script>
-    <script src="/js/highlight.pack.js?1601972639"></script>
+    <script src="/js/clipboard.min.js?1601990896"></script>
+    <script src="/js/perfect-scrollbar.min.js?1601990896"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1601990896"></script>
+    <script src="/js/jquery.sticky.js?1601990896"></script>
+    <script src="/js/featherlight.min.js?1601990896"></script>
+    <script src="/js/highlight.pack.js?1601990896"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1601972639"></script>
-    <script src="/js/learn.js?1601972639"></script>
-    <script src="/js/hugo-learn.js?1601972639"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1601990896"></script>
+    <script src="/js/learn.js?1601990896"></script>
+    <script src="/js/hugo-learn.js?1601990896"></script>
 
-    <link href="/mermaid/mermaid.css?1601972639" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1601972639"></script>
+    <link href="/mermaid/mermaid.css?1601990896" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1601990896"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
