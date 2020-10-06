@@ -12,20 +12,20 @@
     <title>Code Review Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1601897497" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1601897497" rel="stylesheet">
-    <link href="/css/hybrid.css?1601897497" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1601897497" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1601897497" rel="stylesheet">
-    <link href="/css/auto-complete.css?1601897497" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1601897497" rel="stylesheet">
-    <link href="/css/theme.css?1601897497" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1601897497" rel="stylesheet">
+    <link href="/css/nucleus.css?1601972639" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1601972639" rel="stylesheet">
+    <link href="/css/hybrid.css?1601972639" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1601972639" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1601972639" rel="stylesheet">
+    <link href="/css/auto-complete.css?1601972639" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1601972639" rel="stylesheet">
+    <link href="/css/theme.css?1601972639" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1601972639" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1601897497" rel="stylesheet">
+      <link href="/css/theme-blue.css?1601972639" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1601897497"></script>
+    <script src="/js/jquery-3.3.1.min.js?1601972639"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1601897497"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1601897497"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1601972639"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1601972639"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1601897497"></script>
+<script type="text/javascript" src="/js/search.js?1601972639"></script>
 
     
   </div>
@@ -1324,10 +1324,13 @@
   <ul>
     <li><a href="#code-review-guide">Code Review Guide</a>
       <ul>
-        <li><a href="#two-non-author-approvals-required">Two non-author approvals required</a></li>
+        <li><a href="#two-non-author-committer-approvals-required">Two non-author Committer approvals required</a></li>
         <li><a href="#no-merge-commits">No merge commits</a></li>
         <li><a href="#squashamend-commits-into-discrete-steps">Squash/amend commits into discrete steps</a></li>
+        <li><a href="#address-code-review-feedback-with-new-commits">Address code review feedback with new commits</a></li>
         <li><a href="#commit-message-formatting">Commit message formatting</a></li>
+        <li><a href="#dismiss-reviews-after-substantial-changes">Dismiss reviews after substantial changes</a></li>
+        <li><a href="#address-all--1s-before-merging">Address all -1s before merging</a></li>
       </ul>
     </li>
   </ul>
@@ -1357,33 +1360,39 @@
 
 
 	<h2 id="code-review-guide">Code Review Guide</h2>
-<p>This guide is meant to facilitate Submariner code review by sharing norms, best
-practices, and useful patterns.</p>
-<p>Submariner follows the <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/contributing.md#code-review">Kubernetes Code Review Guide</a>
-wherever relevant. This guide collects the most important highlights of the
-K8s process and adds Submariner-specific extensions.</p>
-<h3 id="two-non-author-approvals-required">Two non-author approvals required</h3>
-<p>Pull Requests to Submariner require two non-author code review approvals.</p>
-<p>At least one approval must be from a Committer to the relevant part of the code
-base, as defined by the CODEOWNERS file at the root of the repository.</p>
+<p>This guide is meant to facilitate Submariner code review by sharing norms, best practices, and useful patterns.</p>
+<p>Submariner follows the <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/contributing.md#code-review">Kubernetes Code Review Guide</a> wherever relevant. This guide collects the most important
+highlights of the K8s process and adds Submariner-specific extensions.</p>
+<h3 id="two-non-author-committer-approvals-required">Two non-author Committer approvals required</h3>
+<p>Pull Requests to Submariner require two approvals from a Committer to the relevant part of the code base, as defined by the CODEOWNERS file
+at the root of each repository and the <a href="http://localhost:1313/contributing/community-membership/#committers">Community
+Membership/Committers</a> process.</p>
 <h3 id="no-merge-commits">No merge commits</h3>
 <p>Kubernetes recommends <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md#4-keep-your-branch-in-sync">avoiding merge commits</a>.</p>
-<p>Use <code>git fetch</code> and <code>git rebase</code> to avoid them.</p>
+<p>With our current GitHub setup, pull requests are liable to include merge commits temporarily. Whenever a PR is updated through the UI,
+GitHub merges the target branch into the PR. However, since we merge PRs by either squashing or rebasing them, those merge commits
+disappear from the series of commits which ultimately ends up in the target branch.</p>
 <h3 id="squashamend-commits-into-discrete-steps">Squash/amend commits into discrete steps</h3>
 <p>Kubernetes recommends <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md#squash-commits">squashing commits using these guidelines</a>.</p>
 <p>After a review, prepare your PR for merging by squashing your commits.</p>
-<p>All commits left on your branch after a review should represent meaningful
-milestones or units of work. Use commits to add clarity to the development and
-review process.</p>
+<p>All commits left on your branch after a review should represent meaningful milestones or units of work. Use commits to add clarity to the
+development and review process. Keep in mind that smaller commits are easier to review.</p>
 <p>Before merging a PR, squash the following kinds of commits:</p>
 <ul>
 <li>Fixes/review feedback</li>
 <li>Typos</li>
 <li>Merges and rebases</li>
 <li>Work in progress</li>
-<li>Aim to have every commit in a PR compile and pass tests independently if you
-can, but it&rsquo;s not a requirement.</li>
+<li>Aim to have every commit in a PR compile and pass tests independently if you can, but it&rsquo;s not a requirement.</li>
 </ul>
+<h3 id="address-code-review-feedback-with-new-commits">Address code review feedback with new commits</h3>
+<p>When addressing review comments, as a general rule, push a new commit instead of amending to the prior commit as the former makes it easy
+for reviewers to determine what changed.</p>
+<p>To avoid cluttering the git log, squash the review commits into the appropriate commit before merging. The committer can do this in GitHub
+via the &ldquo;Squash and merge&rdquo; option. However you may want to preserve other commits, in which case squashing will need to be done manually via
+the Git CLI. To make that simpler, you can commit the review-prompted changes with <code>git commit --fixup</code> with the appropriate commit hash.
+This will keep them as separate commits, and if you later rebase with the <code>--autosquash</code> option (that is <code>git rebase --autosquash -i</code>) they
+will automatically be selected for squashing.</p>
 <h3 id="commit-message-formatting">Commit message formatting</h3>
 <p>Kubernetes recommends <a href="https://chris.beams.io/posts/git-commit/">these commit message practices</a>.</p>
 <p>In summary:</p>
@@ -1396,6 +1405,15 @@ can, but it&rsquo;s not a requirement.</li>
 <li>Wrap the body at 72 characters</li>
 <li>Use the body to explain what and why vs how</li>
 </ol>
+<p>GitLint will automatically be run against all commits to try to validate these conventions.</p>
+<h3 id="dismiss-reviews-after-substantial-changes">Dismiss reviews after substantial changes</h3>
+<p>If a PR is substantially changed after a code review, the author should dismiss the stale reviews.</p>
+<p>With the current GitHub configuration, reviews are not automatically dismissed when PRs are updated. This is to cause less drag for the
+typical cases, like minor merge conflicts. As Submariner grows, it might make sense to trade this low-drag solution for one where only
+exactly the reviewed code can be merged.</p>
+<h3 id="address-all--1s-before-merging">Address all -1s before merging</h3>
+<p>If someone requests changes (&ldquo;votes -1&rdquo;) for a PR, a best-effort should be made to address those concerns and achieve a neutral position or
+approval (0/+1 vote) before the PR is merged.</p>
 
 
 
@@ -2100,19 +2118,19 @@ can, but it&rsquo;s not a requirement.</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1601897498"></script>
-    <script src="/js/perfect-scrollbar.min.js?1601897498"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1601897498"></script>
-    <script src="/js/jquery.sticky.js?1601897498"></script>
-    <script src="/js/featherlight.min.js?1601897498"></script>
-    <script src="/js/highlight.pack.js?1601897498"></script>
+    <script src="/js/clipboard.min.js?1601972639"></script>
+    <script src="/js/perfect-scrollbar.min.js?1601972639"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1601972639"></script>
+    <script src="/js/jquery.sticky.js?1601972639"></script>
+    <script src="/js/featherlight.min.js?1601972639"></script>
+    <script src="/js/highlight.pack.js?1601972639"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1601897498"></script>
-    <script src="/js/learn.js?1601897498"></script>
-    <script src="/js/hugo-learn.js?1601897498"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1601972639"></script>
+    <script src="/js/learn.js?1601972639"></script>
+    <script src="/js/hugo-learn.js?1601972639"></script>
 
-    <link href="/mermaid/mermaid.css?1601897498" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1601897498"></script>
+    <link href="/mermaid/mermaid.css?1601972639" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1601972639"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
