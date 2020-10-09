@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1602251065" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1602251065" rel="stylesheet">
-    <link href="/css/hybrid.css?1602251065" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1602251065" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1602251065" rel="stylesheet">
-    <link href="/css/auto-complete.css?1602251065" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1602251065" rel="stylesheet">
-    <link href="/css/theme.css?1602251065" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1602251065" rel="stylesheet">
+    <link href="/css/nucleus.css?1602256763" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1602256763" rel="stylesheet">
+    <link href="/css/hybrid.css?1602256763" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1602256763" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1602256763" rel="stylesheet">
+    <link href="/css/auto-complete.css?1602256763" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1602256763" rel="stylesheet">
+    <link href="/css/theme.css?1602256763" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1602256763" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1602251065" rel="stylesheet">
+      <link href="/css/theme-blue.css?1602256763" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1602251065"></script>
+    <script src="/js/jquery-3.3.1.min.js?1602256763"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1602251065"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1602251065"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1602256763"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1602256763"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1602251065"></script>
+<script type="text/javascript" src="/js/search.js?1602256763"></script>
 
     
   </div>
@@ -1323,7 +1323,11 @@
 <nav id="TableOfContents">
   <ul>
     <li><a href="#synopsis">Synopsis</a></li>
-    <li><a href="#installation">Installation</a></li>
+    <li><a href="#installation">Installation</a>
+      <ul>
+        <li><a href="#installing-specific-versions">Installing specific versions</a></li>
+      </ul>
+    </li>
     <li><a href="#commands">Commands</a>
       <ul>
         <li><a href="#deploy-broker">deploy-broker</a></li>
@@ -1381,7 +1385,19 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 </pre>
 </div>
 
-<h2 id="commands">Commands</h2>
+<h3 id="installing-specific-versions">Installing specific versions</h3>
+<p>By default, <a href="https://get.submariner.io">https://get.submariner.io</a> will provide the latest release for <code>subctl</code>, and hence Submariner.
+Specific versions can be requested by using the VERSION environment variable.</p>
+<p>Avalailable options are:</p>
+<ul>
+<li><code>latest</code>: the latest stable release (default)</li>
+<li><code>devel</code>: the master branch code.</li>
+<li><code>rc</code>: the latest release candidate.</li>
+<li><code>x.x.x</code> (like 0.6.1, 0.5.0, etc)</li>
+</ul>
+<p>For example</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl https://get.submariner.io | VERSION<span style="color:#f92672">=</span>devel bash
+</code></pre></div><h2 id="commands">Commands</h2>
 <h3 id="deploy-broker">deploy-broker</h3>
 <p><code>subctl deploy-broker [flags]</code></p>
 <p>The <strong>deploy-broker</strong> command configures the cluster specified by the <code>--kubeconfig</code> flag (or <code>KUBECONFIG</code> env var) and the <code>--kubecontext</code>
@@ -2400,19 +2416,19 @@ When running <code>benchmark latency</code> command, two type of tests will be i
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1602251065"></script>
-    <script src="/js/perfect-scrollbar.min.js?1602251065"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1602251065"></script>
-    <script src="/js/jquery.sticky.js?1602251065"></script>
-    <script src="/js/featherlight.min.js?1602251065"></script>
-    <script src="/js/highlight.pack.js?1602251065"></script>
+    <script src="/js/clipboard.min.js?1602256763"></script>
+    <script src="/js/perfect-scrollbar.min.js?1602256763"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1602256763"></script>
+    <script src="/js/jquery.sticky.js?1602256763"></script>
+    <script src="/js/featherlight.min.js?1602256763"></script>
+    <script src="/js/highlight.pack.js?1602256763"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1602251065"></script>
-    <script src="/js/learn.js?1602251065"></script>
-    <script src="/js/hugo-learn.js?1602251065"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1602256763"></script>
+    <script src="/js/learn.js?1602256763"></script>
+    <script src="/js/hugo-learn.js?1602256763"></script>
 
-    <link href="/mermaid/mermaid.css?1602251065" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1602251065"></script>
+    <link href="/mermaid/mermaid.css?1602256763" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1602256763"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
