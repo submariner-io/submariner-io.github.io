@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1602187475" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1602187475" rel="stylesheet">
-    <link href="/css/hybrid.css?1602187475" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1602187475" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1602187475" rel="stylesheet">
-    <link href="/css/auto-complete.css?1602187475" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1602187475" rel="stylesheet">
-    <link href="/css/theme.css?1602187475" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1602187475" rel="stylesheet">
+    <link href="/css/nucleus.css?1602251066" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1602251066" rel="stylesheet">
+    <link href="/css/hybrid.css?1602251066" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1602251066" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1602251066" rel="stylesheet">
+    <link href="/css/auto-complete.css?1602251066" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1602251066" rel="stylesheet">
+    <link href="/css/theme.css?1602251066" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1602251066" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1602187475" rel="stylesheet">
+      <link href="/css/theme-blue.css?1602251066" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1602187475"></script>
+    <script src="/js/jquery-3.3.1.min.js?1602251066"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1602187475"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1602187475"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1602251066"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1602251066"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1602187475"></script>
+<script type="text/javascript" src="/js/search.js?1602251066"></script>
 
     
   </div>
@@ -1324,7 +1324,7 @@
     <li><a href="#v011-submariner-with-more-light">v0.1.1 Submariner with more light</a></li>
     <li><a href="#v010-submariner-with-some-light">v0.1.0 Submariner with some light</a></li>
     <li><a href="#v003----kubecon-na-2019">v0.0.3 &ndash; KubeCon NA 2019</a></li>
-    <li><a href="#v001-second-submariner-release">v0.0.1 Second Submariner release</a></li>
+    <li><a href="#v002-second-submariner-release">v0.0.2 Second Submariner release</a></li>
     <li><a href="#v001-first-submariner-release">v0.0.1 First Submariner release</a></li>
   </ul>
 </nav>
@@ -1358,28 +1358,28 @@
 as well as improving Submariner&rsquo;s High Availability (HA).</p>
 </blockquote>
 
-<div class="notices warning" ><p>The DNS domains have been updated from &lt;service&gt;.&lt;namespace&gt;.svc.<strong>supercluster</strong>.local to
-&lt;service&gt;.&lt;namespace&gt;.svc.<strong>clusterset</strong>.local to align with the change in Kubernetes MultiCluster Service API.
-Both domains will be supported for 0.6.0 but 0.7.0 will remove support for <strong>supercluster</strong>.local.
+<div class="notices warning" ><p>The DNS domains have been updated from <code>&lt;service&gt;.&lt;namespace&gt;.svc.supercluster.local</code> to
+<code>&lt;service&gt;.&lt;namespace&gt;.svc.clusterset.local</code> to <strong>align with the change in Kubernetes Multicluster Service API</strong>.
+Both domains will be supported for 0.6.0 but <strong>0.7.0 will remove support for <code>supercluster.local</code></strong>.
 Please update your deployments and applications.</p>
 </div>
 
 <ul>
-<li><strong>Lighthouse</strong> has been enhanced to:
+<li>Lighthouse has been enhanced to:
 <ul>
 <li>Be aware of the local cluster Gateway connectivity so as not to announce the IP addresses for disconnected remote clusters.</li>
-<li>Support headless Services for non-<strong>Globalnet</strong> deployments. Support for <strong>Globalnet</strong> will be available in a future release.</li>
-<li>Be aware of a Service&rsquo;s backend Pods so as not to announce IP addresses for Services that have no active pods.</li>
-<li>Use Round Robin IP resolution for services available in multiple clusters.</li>
-<li>Enable Service discovery by default for <strong><code>subctl</code></strong> deployments.</li>
+<li>Support <strong>headless Services</strong> for non-Globalnet deployments. Support for Globalnet will be available in a future release.</li>
+<li>Be aware of a Service&rsquo;s backend Pods so as not to announce IP addresses for Services that have no active Pods.</li>
+<li>Use Round Robin IP resolution for Services available in multiple clusters.</li>
+<li>Enable service discovery by default for <code>subctl</code> deployments.</li>
 </ul>
 </li>
-<li><strong><code>subctl</code></strong> auto-detects the cluster ID from the kubeconfig file information when possible.</li>
-<li>The Submariner Pods now shutdown gracefully and do proper cleanup which reduces the downtime during Gateway failover.</li>
-<li>The Operator now automatically exports Prometheus metrics; these integrate seamlessly with OpenShift Prometheus if user
+<li><code>subctl</code> auto-detects the cluster ID from the <code>kubeconfig</code> file&rsquo;s information when possible.</li>
+<li>Submariner&rsquo;s Pods now shut down gracefully and do proper cleanup which <strong>reduces downtime</strong> during Gateway failover.</li>
+<li>The Operator now automatically exports <strong>Prometheus metrics</strong>; these integrate seamlessly with OpenShift Prometheus if user
 workload monitoring is enabled, and can be included in any other Prometheus setup.</li>
 <li>Minimum Kubernetes version is now 1.17.</li>
-<li>HostNetwork to remote Service connectivity fixes for AWS clusters (<a href="https://github.com/submariner-io/submariner/issues/736">Issue 736</a>).</li>
+<li>HostNetwork to remote Service connectivity <a href="https://github.com/submariner-io/submariner/issues/736">fixes for AWS clusters</a>.</li>
 <li>The project&rsquo;s codebase quality and readability has been improved using various linters.</li>
 </ul>
 <h2 id="v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</h2>
@@ -1388,27 +1388,27 @@ workload monitoring is enabled, and can be included in any other Prometheus setu
 Services KEP</a>.</p>
 </blockquote>
 <ul>
-<li><strong>Lighthouse</strong> has been modified per the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services KEP</a> as follows:
+<li>Lighthouse has been modified per the <strong><a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services KEP</a></strong> as follows:
 <ul>
 <li>The <code>MultiClusterService</code> resource has been replaced by <code>ServiceImport</code>.</li>
 <li>The <code>ServiceExport</code> resource is now updated with status information as lifecycle events occur.</li>
 </ul>
 </li>
-<li><strong>Lighthouse</strong> now allows a <code>ServiceExport</code> resource to be created prior to the associated <code>Service</code>.</li>
-<li>Network discovery was moved from <code>subctl</code> to the Submariner Operator.</li>
-<li>Several new commands were added to <code>subctl</code>: <code>export service</code>, <code>show versions</code>, <code>show connections</code>, <code>show networks</code>,
+<li>Lighthouse now allows a <code>ServiceExport</code> resource to be created prior to the associated <code>Service</code>.</li>
+<li><strong>Network discovery</strong> was moved from <code>subctl</code> to the Submariner Operator.</li>
+<li>Several <strong>new commands</strong> were added to <code>subctl</code>: <code>export service</code>, <code>show versions</code>, <code>show connections</code>, <code>show networks</code>,
 <code>show endpoints</code>, and <code>show gateways</code>.</li>
 <li>The <code>subctl info</code> command has been removed in lieu of the new <code>show networks</code> command.</li>
-<li>The <strong>Globalnet</strong> configuration has been moved from the <em>broker-info.subm</em> file to a <code>ConfigMap</code> resource stored on the
-broker cluster. Therefore, the new <code>subctl</code> cannot be used on brownfield <strong>Globalnet</strong> deployments where this information
-was stored as part of <em>broker-info.subm</em>.</li>
-<li><code>subctl</code> now supports joining multiple clusters in parallel without having to explicitly specify the <code>globalnet-cidr</code> for the
+<li>The Globalnet configuration has been moved from the <code>broker-info.subm</code> file to a <code>ConfigMap</code> resource stored on the
+Broker cluster. Therefore, the new <code>subctl</code> cannot be used on brownfield Globalnet deployments where this information
+was stored as part of <code>broker-info.subm</code>.</li>
+<li><code>subctl</code> now supports <strong>joining multiple clusters in parallel</strong> without having to explicitly specify the <code>globalnet-cidr</code> for the
 cluster to work around this issue. The <code>globalnet-cidr</code> will automatically be allocated by <code>subctl</code> for each cluster.</li>
 <li>The separate <code>--operator-image</code> parameter has been removed from <code>subctl join</code> and the <code>--repository</code> and <code>--version</code>
 parameters are now used for all images.</li>
 <li>The Submariner Operator status now includes <code>Gateway</code> information.</li>
-<li>Closed technical requirements for Submariner to become a CNFC project, including <em>Developer Certificate of Origin</em> compliance,
-and source code linting.</li>
+<li>Closed technical requirements for Submariner to become a <strong>CNCF project</strong>, including <em>Developer Certificate of Origin</em> compliance
+and additional source code linting.</li>
 </ul>
 <h2 id="v040-libreswan-cable-driver-kubernetes-multicluster-service-discovery">v0.4.0 Libreswan cable driver, Kubernetes multicluster service discovery</h2>
 <blockquote>
@@ -1417,93 +1417,97 @@ as standardizing Lighthouse&rsquo;s service discovery support with the <a href="
 Services KEP</a>.</p>
 </blockquote>
 <ul>
-<li><strong>Libreswan</strong> IPsec cable driver is available for testing and is covered in Submariner&rsquo;s CI.</li>
-<li><strong>Lighthouse</strong> has been modified per the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services KEP</a> as follows:
+<li><strong>Libreswan IPsec cable driver</strong> is available for testing and is covered in Submariner&rsquo;s CI.</li>
+<li>Lighthouse has been modified per the <strong><a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services KEP</a></strong> as follows:
 <ul>
 <li>A <code>ServiceExport</code> object needs to be created alongside any <code>Service</code> that is intended to be
 exported to participant clusters.</li>
 <li>Supercluster services can be accessed with <code>&lt;service-name&gt;.&lt;namespace&gt;.svc.clusterset.local</code>.</li>
 </ul>
 </li>
-<li><strong>Globalnet</strong> overlapping CIDR support improvements and bug fixes.</li>
+<li>Globalnet <strong>overlapping CIDR</strong> support improvements and bug fixes.</li>
 <li>Multiple <strong>CI</strong> improvements implemented from Shipyard.</li>
 <li>CI tests are now run via <strong><a href="https://github.com/submariner-io/submariner/actions">GitHub Actions</a></strong>.</li>
-<li>Submariner-operator now completely handles the Lighthouse deployment via the <code>ServiceDiscovery</code> CRD.</li>
+<li>Submariner&rsquo;s Operator now completely handles the <strong>Lighthouse deployment</strong> via the <code>ServiceDiscovery</code> CRD.</li>
 <li><code>subctl verify</code> is now available for <code>connectivity</code>, <code>service-discovery</code> and <code>gateway-failover</code>.</li>
 </ul>
 <h2 id="v030-lighthouse-service-discovery-without-kubefed">v0.3.0 Lighthouse Service Discovery without KubeFed</h2>
 <blockquote>
-<p>This release is focused on removing the KubeFed dependency from Lighthouse, improving the user experience
-and adding experimental WireGuard support as an alternative to IPsec</p>
+<p>This release is focused on removing the KubeFed dependency from Lighthouse, improving the user experience,
+and adding experimental WireGuard support as an alternative to IPsec.</p>
 </blockquote>
 <ul>
-<li>Lighthouse no longer depends KubeFed. All metadata exchange is handled over the Broker as MultiClusterService CRs.</li>
-<li>Experimental <strong>Wireguard</strong> support has been added as a pluggable CableDriver option in addition to the current default IPsec.</li>
-<li>Submariner reports the active and passive gateways as a gateway.submariner.io resource.</li>
+<li>Lighthouse <strong>no longer depends on KubeFed</strong>. All metadata exchange is handled over the Broker as <code>MultiClusterService</code> CRs.</li>
+<li>Experimental <strong>WireGuard</strong> support has been added as a pluggable <code>CableDriver</code> option in addition to the current default IPsec.</li>
+<li>Submariner reports the active and passive gateways as a <code>gateway.submariner.io</code> resource.</li>
 <li>The Submariner Operator reports a detailed status of the deployment.</li>
 <li>The <strong>gateway redundancy/failover</strong> tests are now enabled and stable in CI.</li>
-<li><em>Globalnet hostNetwork</em> to remote globalIP is now supported. Previously, when a pod used hostNetworking it was unable to connect to a
-remote service via globalIP.</li>
-<li>A globalCIDR can be manually specified when joining a cluster with globalnet enabled. This enables CI speed optimizations via better
+<li>Globalnet <strong>hostNetwork to remote globalIP</strong> is now supported. Previously, when a Pod used hostNetworking it was unable to connect to a
+remote Service via globalIP.</li>
+<li>A GlobalCIDR can be manually specified when joining a cluster with Globalnet enabled. This enables CI speed optimizations via better
 parallelism.</li>
 <li>Operator and <code>subctl</code> are more robust via standard retries on updates.</li>
 <li><code>subctl</code> creates a new <strong>individual access token</strong> for every new joined cluster.</li>
 </ul>
 <h2 id="v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</h2>
 <blockquote>
-<p>This release is focused on overlapping CIDR support between clusters</p>
+<p>This release is focused on overlapping CIDR support between clusters.</p>
 </blockquote>
 <ul>
-<li>Support for Overlapping CIDRs between clusters (globalnet)</li>
-<li>Enhanced e2e scripts, which will be shared between repositories in the shipyard project (ongoing work)</li>
-<li>Improved e2e deployment by using a local registry.</li>
-<li>Refactoring to support pluggable drivers (in preparation for <a href="https://www.wireguard.com/">WireGuard</a> support)</li>
+<li><strong>Support for overlapping CIDRs</strong> between clusters (Globalnet).</li>
+<li>Enhanced end-to-end scripts, which will be shared between repositories in the Shipyard project (ongoing work).</li>
+<li>Improved end-to-end deployment by using a local registry.</li>
+<li>Refactoring to <strong>support pluggable drivers</strong> (in preparation for <a href="https://www.wireguard.com/">WireGuard</a> support).</li>
 </ul>
 <h2 id="v011-submariner-with-more-light">v0.1.1 Submariner with more light</h2>
 <blockquote>
-<p>This release has focused on stability for the Lighthouse support</p>
+<p>This release is focused on stability for Lighthouse.</p>
 </blockquote>
 <ul>
-<li>Cleaner logging for the submariner-engine</li>
-<li>Cleaner logging for the submariner-route-agent</li>
-<li>Fixed issue with wrong token stored in subm file #244</li>
-<li>Added flag to disable the OpenShift CVO #235</li>
-<li>Fixed several service-discovery related bugs #194 , #167</li>
-<li>Fixed several panics on nil network discovery</li>
-<li>Added checks to ensure the CIDRs for joining cluster don&rsquo;t overlap with an existing ones.</li>
-<li>Fix context handling related to service-discovery / kubefed #180</li>
-<li>Use the right CoreDNS image for OpenShift.</li>
+<li>Cleaner logging for submariner-engine.</li>
+<li>Cleaner logging for submariner-route-agent.</li>
+<li>Fixed issue with wrong token stored in <code>.subm</code> file (<a href="https://github.com/submariner-io/submariner-operator/issues/244">submariner-operator#244</a>).</li>
+<li>Added flag to disable the OpenShift CVO (<a href="https://github.com/submariner-io/submariner-operator/issues/235">submariner-operator#235</a>).</li>
+<li>Fixed several service discovery bugs (<a href="https://github.com/submariner-io/submariner-operator/issues/194">submariner-operator#194</a>, <a href="https://github.com/submariner-io/submariner-operator/issues/167">submariner-operator#167</a>).</li>
+<li>Fixed several panics on nil network discovery.</li>
+<li>Added checks to ensure the CIDRs for joining cluster don&rsquo;t overlap with existing ones.</li>
+<li>Fix context handling related to service discovery/KubeFed
+(<a href="https://github.com/submariner-io/submariner-operator/issues/180">submariner-operator#180</a>).</li>
+<li>Use the correct CoreDNS image for OpenShift.</li>
 </ul>
 <h2 id="v010-submariner-with-some-light">v0.1.0 Submariner with some light</h2>
 <blockquote>
-<p>This release has focused on stability, bugfixes and making <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> available as
+<p>This release has focused on stability, bugfixes and making <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> available as a
 developer preview via <code>subctl</code> deployments.</p>
 </blockquote>
 <ul>
-<li>Several bugfixes and enhancements around HA failover (#346, #348, #332)</li>
-<li>Migrated to Daemonsets for submariner gateway deployment</li>
-<li>Added support for hostNetwork to remote pod/service connectivity (#288)</li>
-<li>Auto detection and configuration of MTU for vx-submariner, jumbo frames support (#301)</li>
-<li>Support for updated strongswan (#288)</li>
-<li>Better iptables detection for some hosts (#227)</li>
+<li>Several bugfixes and enhancements around HA failover (<a href="https://github.com/submariner-io/submariner/issues/346">submariner#346</a>,
+<a href="https://github.com/submariner-io/submariner/pull/348">submariner#348</a>,
+<a href="https://github.com/submariner-io/submariner/pull/332">submariner#332</a>).</li>
+<li>Migrated to DaemonSets for Submariner gateway deployment.</li>
+<li>Added support for hostNetwork to remote Pod/Service connectivity (<a href="https://github.com/submariner-io/submariner/issues/298">submariner#298</a>).</li>
+<li>Auto detection and configuration of MTU for vx-submariner, jumbo frames support
+(<a href="https://github.com/submariner-io/submariner/issues/301">submariner#301</a>).</li>
+<li>Support for updated strongSwan (<a href="https://github.com/submariner-io/submariner/issues/288">submariner#288</a>).</li>
+<li>Better iptables detection for some hosts (<a href="https://github.com/submariner-io/submariner/pull/227">submariner#227</a>).</li>
 </ul>
 <blockquote>
-<p><code>subctl</code> and the submariner Operator have the following improvements</p>
+<p><code>subctl</code> and the Submariner Operator have the following improvements:</p>
 </blockquote>
 <ul>
-<li>support to verify-connectivity between two connected clusters</li>
-<li>deployment of submariner gateways based in daemonsets instead of deployments</li>
-<li>renaming submariner pods to &ldquo;submariner-gateway&rdquo; pods for clarity</li>
-<li>print version details on crash (<code>subctl</code>)</li>
-<li>stop storing IPSEC key on broker during deploy-broker, now it&rsquo;s only contained into the .subm file</li>
-<li>version command for <code>subctl</code></li>
-<li>nicer spinners during deployment (thanks to kind)</li>
+<li>Support for <code>verify-connectivity</code> checks between two connected clusters.</li>
+<li>Deployment of Submariner gateways based on <code>DaemonSet</code> instead of <code>Deployment</code>.</li>
+<li>Rename <code>submariner</code> Pods to <code>submariner-gateway</code> Pods for clarity.</li>
+<li>Print version details on crash (<code>subctl</code>).</li>
+<li>Stop storing IPsec key on Broker during <code>deploy-broker</code>, now it&rsquo;s only contained into the <code>.subm</code> file.</li>
+<li>Version command for <code>subctl</code>.</li>
+<li>Nicer spinners during deployment (thanks to kind).</li>
 </ul>
 <h2 id="v003----kubecon-na-2019">v0.0.3 &ndash; KubeCon NA 2019</h2>
-<p>Submariner has been greatly enhanced to allow Operators to deploy into Kubernetes clusters without the necessity for layer-2 adjacency for
-nodes. Submariner now allows for VXLAN interconnectivity between nodes (facilitated by the route agent). <code>subctl</code> was created to make
-deployment of submariner easier.</p>
-<h2 id="v001-second-submariner-release">v0.0.1 Second Submariner release</h2>
+<p>Submariner has been greatly enhanced to allow administrators to deploy into Kubernetes clusters without the necessity for Layer 2 adjacency
+for nodes. Submariner now allows for VXLAN interconnectivity between nodes (facilitated by the route agent). <code>subctl</code> was created to make
+deployment of Submariner easier.</p>
+<h2 id="v002-second-submariner-release">v0.0.2 Second Submariner release</h2>
 <h2 id="v001-first-submariner-release">v0.0.1 First Submariner release</h2>
 
 
@@ -2205,19 +2209,19 @@ deployment of submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1602187475"></script>
-    <script src="/js/perfect-scrollbar.min.js?1602187475"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1602187475"></script>
-    <script src="/js/jquery.sticky.js?1602187475"></script>
-    <script src="/js/featherlight.min.js?1602187475"></script>
-    <script src="/js/highlight.pack.js?1602187475"></script>
+    <script src="/js/clipboard.min.js?1602251066"></script>
+    <script src="/js/perfect-scrollbar.min.js?1602251066"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1602251066"></script>
+    <script src="/js/jquery.sticky.js?1602251066"></script>
+    <script src="/js/featherlight.min.js?1602251066"></script>
+    <script src="/js/highlight.pack.js?1602251066"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1602187475"></script>
-    <script src="/js/learn.js?1602187475"></script>
-    <script src="/js/hugo-learn.js?1602187475"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1602251066"></script>
+    <script src="/js/learn.js?1602251066"></script>
+    <script src="/js/hugo-learn.js?1602251066"></script>
 
-    <link href="/mermaid/mermaid.css?1602187475" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1602187475"></script>
+    <link href="/mermaid/mermaid.css?1602251066" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1602251066"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
