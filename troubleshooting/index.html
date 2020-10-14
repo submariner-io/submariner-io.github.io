@@ -12,20 +12,20 @@
     <title>Troubleshooting Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1602613766" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1602613766" rel="stylesheet">
-    <link href="/css/hybrid.css?1602613766" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1602613766" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1602613766" rel="stylesheet">
-    <link href="/css/auto-complete.css?1602613766" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1602613766" rel="stylesheet">
-    <link href="/css/theme.css?1602613766" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1602613766" rel="stylesheet">
+    <link href="/css/nucleus.css?1602653176" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1602653176" rel="stylesheet">
+    <link href="/css/hybrid.css?1602653176" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1602653176" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1602653176" rel="stylesheet">
+    <link href="/css/auto-complete.css?1602653176" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1602653176" rel="stylesheet">
+    <link href="/css/theme.css?1602653176" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1602653176" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1602613766" rel="stylesheet">
+      <link href="/css/theme-blue.css?1602653176" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1602613766"></script>
+    <script src="/js/jquery-3.3.1.min.js?1602653176"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1602613766"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1602613766"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1602653176"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1602653176"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1602613766"></script>
+<script type="text/javascript" src="/js/search.js?1602653176"></script>
 
     
   </div>
@@ -1505,12 +1505,61 @@ Status:
     Ips:
       100.92.43.63     ==========&gt; ServiceIP or GlobalIP of service you&#39;re trying to access
 Events:  &lt;none&gt;
-</code></pre></div><p>Note that for a headless Service, the <code>Ips</code> field will contain the list of associated Endpoint IPs.</p>
+</code></pre></div><p>For headless Service, you need to check <code>EndpointSlice</code> resource.</p>
 <p>If the data is not correct, you can manually edit the ServiceImport resource to set the correct IP as a workaround and create an
 <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant information.</p>
 <p>If the ServiceImport <code>Ips</code> are correct but still not being returned from DNS queries, check the connectivity to the cluster
 using <a href="../deployment/subctl/_index.en.md#show-endpoints"><code>subctl show endpoint</code></a>. The Lighthouse CoreDNS Server only returns IPs
 from connected clusters.</p>
+<h5 id="check-endpointslice-resources">Check EndpointSlice resources</h5>
+<p>For a headless Service, next we check if the EndpointSlice resources were properly created for the service you&rsquo;re
+trying to access. EndpointSlice resources are created in the same namespace as the source Service. The format of a EndpointSlice
+resource&rsquo;s name is as follows:</p>
+<p><code>&lt;service-name&gt;--&lt;cluster-id&gt;</code></p>
+<p>Run <code>kubectl get endpointslices --all-namespaces |grep &lt;your-service-name&gt;</code> on the Broker cluster to check if a resource was created for
+your Service. If not, then check the Lighthouse Agent logs on the cluster where the Service was created and look for any error or warning
+messages indicating a failure to create the ServiceImport resource for your Service. The most common error is <code>Forbidden</code> if the RBAC wasn&rsquo;t
+configured correctly. This is supposed to be done automatically during deployment so please file an
+<a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with the relevant log entries.</p>
+<p>If the EndpointSlice resource was created correctly on the Broker cluster, the next step is to check if it exists on the cluster where
+you&rsquo;re trying to access the Service. Follow the same steps as earlier to get the list of the EndpointSlice resources and check if the
+EndpointSlice for the Service exists. If not, check the logs of the Lighthouse Agent on the cluster where you are trying to access the
+Service. As described earlier, it will most commonly be an issue with RBAC so create an
+<a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
+<p>If the EndpointSlice resource was created properly on the cluster, run
+<code>kubectl -n &lt;your-service-namespace&gt; describe endpointslice &lt;your-endpointslice-name&gt;</code>
+and check if it has the correct endpoint addresses:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Name:         nginx-ss-cluster2
+Namespace:    default
+Labels:       endpointslice.kubernetes.io/managed-by=lighthouse-agent.submariner.io
+              lighthouse.submariner.io/sourceCluster=cluster2
+              lighthouse.submariner.io/sourceName=nginx-ss
+              lighthouse.submariner.io/sourceNamespace=default
+              multicluster.kubernetes.io/service-name=nginx-ss-default-cluster2
+Annotations:  &lt;none&gt;
+AddressType:  IPv4
+Ports:
+  Name  Port  Protocol
+  ----  ----  --------
+  web   80    TCP
+Endpoints:
+  - Addresses:  10.242.0.5  -----&gt; Pod IP
+    Conditions:
+      Ready:    true
+    Hostname:   web-0   -----&gt; Pod hostname
+    Topology:   kubernetes.io/hostname=cluster2-worker2
+  - Addresses:  10.242.224.4
+    Conditions:
+      Ready:   true
+    Hostname:  web-1
+    Topology:  kubernetes.io/hostname=cluster2-worker
+Events:        &lt;none&gt;
+</code></pre></div><p>If the <code>Addresses</code> are correct but still not being returned from DNS queries, try querying IPs in a specific cluster
+by prefixing the query with <code>&lt;cluster-id&gt;.</code> If that returns the IPs correctly, then check the connectivity to the cluster
+using <a href="../deployment/subctl/_index.en.md#show-endpoints"><code>subctl show endpoint</code></a>. The Lighthouse CoreDNS Server only returns IPs
+from connected clusters.</p>
+<p>For errors querying specific Pods of a StatefulSet, check that the <code>Hostname</code> is correct for the endpoint.</p>
+<p>If still not working, file an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
 
 
 
@@ -2211,19 +2260,19 @@ from connected clusters.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1602613766"></script>
-    <script src="/js/perfect-scrollbar.min.js?1602613766"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1602613766"></script>
-    <script src="/js/jquery.sticky.js?1602613766"></script>
-    <script src="/js/featherlight.min.js?1602613766"></script>
-    <script src="/js/highlight.pack.js?1602613766"></script>
+    <script src="/js/clipboard.min.js?1602653176"></script>
+    <script src="/js/perfect-scrollbar.min.js?1602653176"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1602653176"></script>
+    <script src="/js/jquery.sticky.js?1602653176"></script>
+    <script src="/js/featherlight.min.js?1602653176"></script>
+    <script src="/js/highlight.pack.js?1602653176"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1602613766"></script>
-    <script src="/js/learn.js?1602613766"></script>
-    <script src="/js/hugo-learn.js?1602613766"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1602653176"></script>
+    <script src="/js/learn.js?1602653176"></script>
+    <script src="/js/hugo-learn.js?1602653176"></script>
 
-    <link href="/mermaid/mermaid.css?1602613766" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1602613766"></script>
+    <link href="/mermaid/mermaid.css?1602653176" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1602653176"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
