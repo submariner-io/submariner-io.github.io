@@ -12,20 +12,20 @@
     <title>OpenShift with Service Discovery (vSphere/AWS) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1603133304" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1603133304" rel="stylesheet">
-    <link href="/css/hybrid.css?1603133304" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1603133304" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1603133304" rel="stylesheet">
-    <link href="/css/auto-complete.css?1603133304" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1603133304" rel="stylesheet">
-    <link href="/css/theme.css?1603133304" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1603133304" rel="stylesheet">
+    <link href="/css/nucleus.css?1603199499" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1603199499" rel="stylesheet">
+    <link href="/css/hybrid.css?1603199499" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1603199499" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1603199499" rel="stylesheet">
+    <link href="/css/auto-complete.css?1603199499" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1603199499" rel="stylesheet">
+    <link href="/css/theme.css?1603199499" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1603199499" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1603133304" rel="stylesheet">
+      <link href="/css/theme-blue.css?1603199499" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1603133304"></script>
+    <script src="/js/jquery-3.3.1.min.js?1603199499"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1603133304"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1603133304"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1603199499"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1603199499"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1603133304"></script>
+<script type="text/javascript" src="/js/search.js?1603199499"></script>
 
     
   </div>
@@ -1454,30 +1454,26 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
 However, when you have some on-premises clusters (like vSphere in this example) which are typically inside a corporate network, the firewall
 configuration on the corporate router may not allow the default IPsec traffic.
 We can overcome this limitation by using non-standard ports like 4501/UDP and 501/UDP.</p>
-<p>Additionally, the default OpenShift deployments do not allow assigning an elastic public IP
-to existing worker nodes, something that&rsquo;s necessary at least on one end of the IPsec connections.</p>
-<p>To handle these requirements on AWS, we provide a script that will prepare your AWS OpenShift deployment for Submariner, and will create an
-additional gateway node with an external IP.</p>
+<p>Additionally, the default OpenShift deployment does not allow assigning an elastic public IP
+to existing worker nodes, something that is necessary at least on one end of the IPsec connections.</p>
+<p>To handle these requirements on AWS, we provide a script
+<a href="https://github.com/submariner-io/submariner/blob/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh">prep_for_subm.sh</a>,
+that will prepare your AWS OpenShift deployment for Submariner, and will create an additional gateway node with an external IP.</p>
+<p>In the following example, we create the gateway node on cluster-b, with custom IPsec ports and instance type:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
 curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
 chmod a+x ./prep_for_subm.sh
 
-./prep_for_subm.sh cluster-b      <span style="color:#75715e"># respond yes when terraform asks</span>
+export IPSEC_NATT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+export IPSEC_IKE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
+export GW_INSTANCE_TYPE<span style="color:#f92672">=</span>m4.xlarge
+
+./prep_for_subm.sh cluster-b  <span style="color:#75715e"># respond yes when terraform asks to approve, or add after path: -auto-approve</span>
 
 </code></pre></div><blockquote>
-<p><strong><em>INFO</em></strong> Please note that  <strong>oc</strong>, <strong>aws-cli</strong>, <strong>terraform</strong>, and <strong>unzip</strong> need to be installed before running the <code>prep_for_subm.sh</code> script.</p>
+<p><strong><em>INFO</em></strong> Please note that  <strong>oc</strong>, <strong>aws-cli</strong>, <strong>terraform</strong>, and <strong>wget</strong> need to be installed before running the <code>prep_for_subm.sh</code> script.</p>
 </blockquote>
-<p>Currently, prep_for_subm.sh script does not support specifying custom IPsec ports.
-Until the <a href="https://github.com/submariner-io/submariner/issues/240">issue</a> is resolved, execute the following commands to open the necessary ports:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-export BROKER_IKEPORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
-export NAT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
-sed <span style="color:#e6db74">&#34;s/\ 500/\ </span>$BROKER_IKEPORT<span style="color:#e6db74">/g&#34;</span> -i cluster-b/ocp-ipi-aws/ocp-ipi-aws-prep/ec2-resources.tf
-sed <span style="color:#e6db74">&#34;s/\ 4500/\ </span>$NAT_PORT<span style="color:#e6db74">/g&#34;</span> -i cluster-b/ocp-ipi-aws/ocp-ipi-aws-prep/ec2-resources.tf
-
-./prep_for_subm.sh cluster-b      <span style="color:#75715e"># respond yes when terraform asks</span>
-
-</code></pre></div><h3 id="submariner-installation">Submariner Installation</h3>
+<h3 id="submariner-installation">Submariner Installation</h3>
 Download the subctl binary and make it available on your PATH.
 
 <div class="highlight">
@@ -1495,8 +1491,8 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 <h5 id="use-cluster-b-aws-as-broker-with-service-discovery-enabled">Use cluster-b (AWS) as Broker with service discovery enabled</h5>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig cluster-b/auth/kubeconfig --service-discovery
 </code></pre></div><h5 id="join-cluster-b-aws-and-cluster-a-vsphere-to-the-broker">Join cluster-b (AWS) and cluster-a (vSphere) to the Broker</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --clusterid cluster-b --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --clusterid cluster-a --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span>
 </code></pre></div>
 
 <h4 id="verify-deployment">Verify Deployment</h4>
@@ -2275,19 +2271,19 @@ curl nginx-ss.default.svc.clusterset.local:8080
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1603133304"></script>
-    <script src="/js/perfect-scrollbar.min.js?1603133304"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1603133304"></script>
-    <script src="/js/jquery.sticky.js?1603133304"></script>
-    <script src="/js/featherlight.min.js?1603133304"></script>
-    <script src="/js/highlight.pack.js?1603133304"></script>
+    <script src="/js/clipboard.min.js?1603199499"></script>
+    <script src="/js/perfect-scrollbar.min.js?1603199499"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1603199499"></script>
+    <script src="/js/jquery.sticky.js?1603199499"></script>
+    <script src="/js/featherlight.min.js?1603199499"></script>
+    <script src="/js/highlight.pack.js?1603199499"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1603133304"></script>
-    <script src="/js/learn.js?1603133304"></script>
-    <script src="/js/hugo-learn.js?1603133304"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1603199499"></script>
+    <script src="/js/learn.js?1603199499"></script>
+    <script src="/js/hugo-learn.js?1603199499"></script>
 
-    <link href="/mermaid/mermaid.css?1603133304" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1603133304"></script>
+    <link href="/mermaid/mermaid.css?1603199499" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1603199499"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

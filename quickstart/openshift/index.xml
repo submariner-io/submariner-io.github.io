@@ -28,8 +28,8 @@ Create and deploy cluster B In this step you will deploy cluster B, modifying th
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/quickstart/openshift/ready_clusters/</guid>
-      <description>Make your clusters ready for Submariner Submariner gateway nodes need to be able to accept traffic over ports 4500/UDP and 500/UDP when using IPSEC. In addition we use port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes and ensuring that Pod IP addresses are preserved.
-Additionally, the default OpenShift deployments don&amp;rsquo;t allow assigning an elastic public IP to existing worker nodes, something that it&amp;rsquo;s necessary at least on one end of the IPSEC connections.</description>
+      <description>Make your clusters ready for Submariner Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. In addition we use port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes and ensuring that Pod IP addresses are preserved.
+Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connections.</description>
     </item>
     
     <item>
