@@ -12,20 +12,20 @@
     <title>OpenShift with Service Discovery (vSphere/AWS) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1603360762" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1603360762" rel="stylesheet">
-    <link href="/css/hybrid.css?1603360762" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1603360762" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1603360762" rel="stylesheet">
-    <link href="/css/auto-complete.css?1603360762" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1603360762" rel="stylesheet">
-    <link href="/css/theme.css?1603360762" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1603360762" rel="stylesheet">
+    <link href="/css/nucleus.css?1603718041" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1603718041" rel="stylesheet">
+    <link href="/css/hybrid.css?1603718041" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1603718041" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1603718041" rel="stylesheet">
+    <link href="/css/auto-complete.css?1603718041" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1603718041" rel="stylesheet">
+    <link href="/css/theme.css?1603718041" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1603718041" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1603360762" rel="stylesheet">
+      <link href="/css/theme-blue.css?1603718041" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1603360762"></script>
+    <script src="/js/jquery-3.3.1.min.js?1603718041"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1603360762"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1603360762"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1603718041"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1603718041"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1603360762"></script>
+<script type="text/javascript" src="/js/search.js?1603718041"></script>
 
     
   </div>
@@ -1325,7 +1325,7 @@
     <li>
       <ul>
         <li><a href="#openshift-prerequisites">OpenShift Prerequisites</a></li>
-        <li><a href="#deploy-cluster-on-vsphere-onprem">Deploy Cluster on vSphere (OnPrem)</a></li>
+        <li><a href="#deploy-cluster-on-vsphere-on-prem">Deploy Cluster on vSphere (On-Prem)</a></li>
         <li><a href="#deploy-cluster-on-aws">Deploy Cluster on AWS</a></li>
         <li><a href="#make-your-aws-cluster-ready-for-submariner">Make your AWS cluster ready for Submariner</a></li>
         <li><a href="#submariner-installation">Submariner Installation</a></li>
@@ -1360,7 +1360,7 @@
 	<p>In this quickstart guide, we shall cover the necessary steps to deploy OpenShift Container Platform (OCP) on vSphere and AWS.
 Once the OCP clusters are deployed, we shall cover how to deploy Submariner and connect the two clusters.</p>
 <h3 id="openshift-prerequisites">OpenShift Prerequisites</h3>
-<p>Before we proceed, the following prerequisites have to be downloaded and added to your <code>$PATH:</code></p>
+<p>Before we proceed, the following prerequisites have to be downloaded and added to your <code>$PATH</code>:</p>
 <ol>
 <li><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">openshift-installer</a></li>
 <li><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">pull secret</a></li>
@@ -1371,10 +1371,10 @@ Once the OCP clusters are deployed, we shall cover how to deploy Submariner and 
 <div class="notices info" ><p>Please ensure that the tools you downloaded above are compatible with the OpenShift Container Platform version.</p>
 </div>
 
-<h3 id="deploy-cluster-on-vsphere-onprem">Deploy Cluster on vSphere (OnPrem)</h3>
+<h3 id="deploy-cluster-on-vsphere-on-prem">Deploy Cluster on vSphere (On-Prem)</h3>
 <p>Create the necessary infrastructure on vSphere and ensure that your machines have direct internet access before starting the installation.
-To deploy OCP 4.4, follow the instructions shown
-<a href="https://docs.openshift.com/container-platform/4.4/installing/installing_vsphere/installing-vsphere.html">here</a></p>
+See the <a href="https://docs.openshift.com/container-platform/4.4/installing/installing_vsphere/installing-vsphere.html">docs for deploying OCP 4.4 on
+vSphere</a>.</p>
 <p>Assuming that you deployed the cluster (say, cluster-a) with default network configuration, the Pod and Service CIDRs would be</p>
 <table>
 <thead>
@@ -1410,8 +1410,8 @@ Ensure that firewall configuration on vSphere cluster allows 4800/UDP across all
 </tbody>
 </table>
 
-<div class="notices tip" ><p>Although we are using the default OCP network configuration on vSphere, you can install vSphere with a custom network configuration as shown
-<a href="https://red.ht/2WFjEVg">here</a></p>
+<div class="notices tip" ><p>Although we are using the default OCP network configuration on vSphere, you can <a href="https://red.ht/2WFjEVg">install vSphere with a custom network
+configuration</a>.</p>
 </div>
 
 <h3 id="deploy-cluster-on-aws">Deploy Cluster on AWS</h3>
@@ -1421,10 +1421,8 @@ AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f9
 AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
 Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
 Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
-</code></pre></div><p>For more details, follow this link:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-account.html">https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-account.html</a></p>
-</blockquote>
+</code></pre></div><p>For more details, see the <a href="https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-account.html">OCP 4.4 AWS account configuration
+docs</a>.</p>
 <p>In this step we shall modify the default Cluster/Service CIDRs and deploy cluster-b on AWS.</p>
 <table>
 <thead>
@@ -2271,19 +2269,19 @@ curl nginx-ss.default.svc.clusterset.local:8080
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1603360762"></script>
-    <script src="/js/perfect-scrollbar.min.js?1603360762"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1603360762"></script>
-    <script src="/js/jquery.sticky.js?1603360762"></script>
-    <script src="/js/featherlight.min.js?1603360762"></script>
-    <script src="/js/highlight.pack.js?1603360762"></script>
+    <script src="/js/clipboard.min.js?1603718041"></script>
+    <script src="/js/perfect-scrollbar.min.js?1603718041"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1603718041"></script>
+    <script src="/js/jquery.sticky.js?1603718041"></script>
+    <script src="/js/featherlight.min.js?1603718041"></script>
+    <script src="/js/highlight.pack.js?1603718041"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1603360762"></script>
-    <script src="/js/learn.js?1603360762"></script>
-    <script src="/js/hugo-learn.js?1603360762"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1603718041"></script>
+    <script src="/js/learn.js?1603718041"></script>
+    <script src="/js/hugo-learn.js?1603718041"></script>
 
-    <link href="/mermaid/mermaid.css?1603360762" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1603360762"></script>
+    <link href="/mermaid/mermaid.css?1603718041" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1603718041"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

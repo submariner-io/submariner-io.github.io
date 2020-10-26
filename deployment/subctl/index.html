@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1603360762" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1603360762" rel="stylesheet">
-    <link href="/css/hybrid.css?1603360762" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1603360762" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1603360762" rel="stylesheet">
-    <link href="/css/auto-complete.css?1603360762" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1603360762" rel="stylesheet">
-    <link href="/css/theme.css?1603360762" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1603360762" rel="stylesheet">
+    <link href="/css/nucleus.css?1603718041" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1603718041" rel="stylesheet">
+    <link href="/css/hybrid.css?1603718041" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1603718041" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1603718041" rel="stylesheet">
+    <link href="/css/auto-complete.css?1603718041" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1603718041" rel="stylesheet">
+    <link href="/css/theme.css?1603718041" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1603718041" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1603360762" rel="stylesheet">
+      <link href="/css/theme-blue.css?1603718041" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1603360762"></script>
+    <script src="/js/jquery-3.3.1.min.js?1603718041"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1603360762"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1603360762"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1603718041"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1603718041"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1603360762"></script>
+<script type="text/javascript" src="/js/search.js?1603718041"></script>
 
     
   </div>
@@ -1330,13 +1330,13 @@
     </li>
     <li><a href="#commands">Commands</a>
       <ul>
-        <li><a href="#deploy-broker">deploy-broker</a></li>
-        <li><a href="#export">export</a></li>
-        <li><a href="#join">join</a></li>
-        <li><a href="#show">show</a></li>
-        <li><a href="#verify">verify</a></li>
-        <li><a href="#benchmark">benchmark</a></li>
-        <li><a href="#version">version</a></li>
+        <li><a href="#deploy-broker"><code>deploy-broker</code></a></li>
+        <li><a href="#export"><code>export</code></a></li>
+        <li><a href="#join"><code>join</code></a></li>
+        <li><a href="#show"><code>show</code></a></li>
+        <li><a href="#verify"><code>verify</code></a></li>
+        <li><a href="#benchmark"><code>benchmark</code></a></li>
+        <li><a href="#version"><code>version</code></a></li>
       </ul>
     </li>
   </ul>
@@ -1369,7 +1369,7 @@
 Submariner across your clusters.</p>
 <p><code>subctl</code> helps to automate the deployment of the Submariner <a href="https://github.com/submariner-io/submariner-operator">Operator</a>, thereby
 reducing the possibility of mistakes during the process.</p>
-<p><code>subctl</code> connects to specified cluster(s) and performs the requested <em>command</em>.</p>
+<p><code>subctl</code> connects to specified cluster(s) and performs the requested command.</p>
 <h2 id="synopsis">Synopsis</h2>
 <p><code>subctl [command] [--flags] ...</code></p>
 <h2 id="installation">Installation</h2>
@@ -1398,9 +1398,9 @@ Specific versions can be requested by using the VERSION environment variable.</p
 <p>For example</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl https://get.submariner.io | VERSION<span style="color:#f92672">=</span>devel bash
 </code></pre></div><h2 id="commands">Commands</h2>
-<h3 id="deploy-broker">deploy-broker</h3>
+<h3 id="deploy-broker"><code>deploy-broker</code></h3>
 <p><code>subctl deploy-broker [flags]</code></p>
-<p>The <strong>deploy-broker</strong> command configures the cluster specified by the <code>--kubeconfig</code> flag (or <code>KUBECONFIG</code> env var) and the <code>--kubecontext</code>
+<p>The <code>deploy-broker</code> command configures the cluster specified by the <code>--kubeconfig</code> flag (or <code>KUBECONFIG</code> env var) and the <code>--kubecontext</code>
 flag as the Broker. It installs the necessary CRDs and the <code>submariner-k8s-broker</code> namespace.</p>
 <p>In addition, it generates a <code>broker-info.subm</code> file which can be used with the <code>join</code> command to connect clusters to the Broker. This file
 contains the following details:</p>
@@ -1409,7 +1409,7 @@ contains the following details:</p>
 <li>Broker access details for subsequent <code>subctl</code> runs</li>
 <li>Service Discovery settings</li>
 </ul>
-<h4 id="deploy-broker-flags">deploy-broker flags</h4>
+<h4 id="deploy-broker-flags"><code>deploy-broker</code> flags</h4>
 <!-- markdownlint-disable line-length -->
 <table>
 <thead>
@@ -1421,7 +1421,7 @@ contains the following details:</p>
 <tbody>
 <tr>
 <td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s) (default &ldquo;$HOME/.kube/config&rdquo;)</td>
+<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
 </tr>
 <tr>
 <td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
@@ -1441,16 +1441,16 @@ contains the following details:</p>
 </tr>
 <tr>
 <td align="left"><code>--ipsec-psk-from</code> <code>&lt;string&gt;</code></td>
-<td align="left">Import IPsec PSK from existing Submariner broker file, like broker-info.subm (default &ldquo;broker-info.subm&rdquo;)</td>
+<td align="left">Import IPsec PSK from existing Submariner broker file, like broker-info.subm (default <code>broker-info.subm</code>)</td>
 </tr>
 </tbody>
 </table>
 <!-- markdownlint-enable line-length -->
-<h3 id="export">export</h3>
-<h4 id="export-service">export service</h4>
+<h3 id="export"><code>export</code></h3>
+<h4 id="export-service"><code>export service</code></h4>
 <p><code>subctl export service [flags] &lt;name&gt;</code> creates a <code>ServiceExport</code> resource for the given Service name. This makes the corresponding Service
 discoverable from other clusters in the Submariner deployment.</p>
-<h4 id="export-service-flags">export service flags</h4>
+<h4 id="export-service-flags"><code>export service</code> flags</h4>
 <table>
 <thead>
 <tr>
@@ -1461,7 +1461,7 @@ discoverable from other clusters in the Submariner deployment.</p>
 <tbody>
 <tr>
 <td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s) (default &ldquo;$HOME/.kube/config&rdquo;)</td>
+<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
 </tr>
 <tr>
 <td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
@@ -1474,12 +1474,12 @@ discoverable from other clusters in the Submariner deployment.</p>
 </tbody>
 </table>
 <p>If no <code>namespace</code> flag is specified, it uses the default namespace from the current context, if present, otherwise it uses <code>default</code>.</p>
-<h3 id="join">join</h3>
+<h3 id="join"><code>join</code></h3>
 <p><code>subctl join broker-info.subm [flags]</code></p>
-<p>The <strong>join</strong> command deploys the Submariner Operator in a cluster using the settings provided in the <code>broker-info.subm</code> file. The service
+<p>The <code>join</code> command deploys the Submariner Operator in a cluster using the settings provided in the <code>broker-info.subm</code> file. The service
 account credentials needed for the new cluster to access the Broker cluster will be created and provided to the Submariner Operator
 deployment.</p>
-<h4 id="join-flags-general">join flags (general)</h4>
+<h4 id="join-flags-general"><code>join</code> flags (general)</h4>
 <!-- markdownlint-disable line-length -->
 <table>
 <thead>
@@ -1512,7 +1512,7 @@ deployment.</p>
 </tbody>
 </table>
 <!-- markdownlint-enable line-length -->
-<h4 id="join-flags-globalnet">join flags (Globalnet)</h4>
+<h4 id="join-flags-globalnet"><code>join</code> flags (Globalnet)</h4>
 <!-- markdownlint-disable line-length -->
 <table>
 <thead>
@@ -1533,7 +1533,7 @@ deployment.</p>
 </tbody>
 </table>
 <!-- markdownlint-enable line-length -->
-<h4 id="join-flags-ipsec">join flags (IPsec)</h4>
+<h4 id="join-flags-ipsec"><code>join</code> flags (IPsec)</h4>
 <table>
 <thead>
 <tr>
@@ -1560,7 +1560,7 @@ deployment.</p>
 </tr>
 </tbody>
 </table>
-<h4 id="join-flags-images-and-repositories">join flags (images and repositories)</h4>
+<h4 id="join-flags-images-and-repositories"><code>join</code> flags (images and repositories)</h4>
 <!-- markdownlint-disable line-length -->
 <table>
 <thead>
@@ -1581,26 +1581,26 @@ deployment.</p>
 </tbody>
 </table>
 <!-- markdownlint-enable line-length -->
-<h3 id="show">show</h3>
-<h4 id="show-networks">show networks</h4>
+<h3 id="show"><code>show</code></h3>
+<h4 id="show-networks"><code>show networks</code></h4>
 <p><code>subctl show networks [flags]</code></p>
 <p>Inspects the cluster and reports information about the detected network plugin and detected Cluster and Service CIDRs.</p>
-<h4 id="show-versions">show versions</h4>
+<h4 id="show-versions"><code>show versions</code></h4>
 <p><code>subctl show versions [flags]</code></p>
 <p>Shows the version and image repository of each Submariner component in the cluster.</p>
-<h4 id="show-gateways">show gateways</h4>
+<h4 id="show-gateways"><code>show gateways</code></h4>
 <p><code>subctl show gateways [flags]</code></p>
 <p>Shows summary information about the Submariner gateways in the cluster.</p>
-<h4 id="show-connections">show connections</h4>
+<h4 id="show-connections"><code>show connections</code></h4>
 <p><code>subctl show connections [flags]</code></p>
 <p>Shows information about the Submariner endpoint connections with other clusters.</p>
-<h4 id="show-endpoints">show endpoints</h4>
+<h4 id="show-endpoints"><code>show endpoints</code></h4>
 <p><code>subctl show endpoints [flags]</code></p>
 <p>Shows information about the Submariner endpoints in the cluster.</p>
-<h4 id="show-all">show all</h4>
+<h4 id="show-all"><code>show all</code></h4>
 <p><code>subctl show all [flags]</code></p>
 <p>Shows the aggregated information from all the other show commands.</p>
-<h4 id="show-flags">show flags</h4>
+<h4 id="show-flags"><code>show</code> flags</h4>
 <table>
 <thead>
 <tr>
@@ -1611,7 +1611,7 @@ deployment.</p>
 <tbody>
 <tr>
 <td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s) (default &ldquo;$HOME/.kube/config&rdquo;)</td>
+<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
 </tr>
 <tr>
 <td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
@@ -1619,7 +1619,7 @@ deployment.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="verify">verify</h3>
+<h3 id="verify"><code>verify</code></h3>
 <p><code>subctl verify &lt;kubeConfig1&gt; &lt;kubeConfig2&gt; [flags]</code></p>
 <p>The <code>verify</code> command verifies a Submariner deployment between two clusters is functioning properly. The <code>kubeConfig1</code> file will be
 <code>ClusterA</code> in the reports, while <code>kubeConfig2</code> will be <code>ClusterB</code> in the reports. The <code>--verbose</code> flag is recommended to see what&rsquo;s
@@ -1639,7 +1639,7 @@ is with no stdin), <code>--enable-disruptive</code> must be specified otherwise 
 <p>The <code>gateway-failover</code> suite verifies the continuity of cross-cluster dataplane connectivity after a gateway failure in a cluster occurs.
 This suite requires a single gateway configured on <code>ClusterA</code> and other available Worker nodes capable of serving as gateways. Please note
 that this verification is disruptive.</p>
-<h4 id="verify-flags">verify flags</h4>
+<h4 id="verify-flags"><code>verify</code> flags</h4>
 <table>
 <thead>
 <tr>
@@ -1678,26 +1678,26 @@ that this verification is disruptive.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="benchmark">benchmark</h3>
-<h4 id="benchmark-throughput">benchmark throughput</h4>
+<h3 id="benchmark"><code>benchmark</code></h3>
+<h4 id="benchmark-throughput"><code>benchmark throughput</code></h4>
 <p><code>subctl benchmark throughput &lt;kubeconfig1&gt; [&lt;kubeconfig2&gt;] [flags]</code></p>
 <p>The <code>benchmark throughput</code> command runs a throughput benchmark test between two specified clusters or within a single cluster.
 It deploys a Pod to run the <a href="https://iperf.fr/">iperf</a> tool and logs the output to the console.
-When running <code>benchmark throughput</code> command, two type of tests will be issued:</p>
+When running <code>benchmark throughput</code>, two types of tests will be executed:</p>
 <ul>
 <li>Pod to Pod - where both Pods are scheduled on Gateway nodes</li>
 <li>Pod to Pod - where both Pods are scheduled on non-Gateway nodes</li>
 </ul>
-<h4 id="benchmark-latency">benchmark latency</h4>
+<h4 id="benchmark-latency"><code>benchmark latency</code></h4>
 <p><code>subctl benchmark latency &lt;kubeconfig1&gt; [&lt;kubeconfig2&gt;] [flags]</code></p>
 <p>The <code>benchmark latency</code> command runs a latency benchmark test between two specified clusters or within a single cluster.
 It deploys a Pod to run the <a href="https://hewlettpackard.github.io/netperf/doc/netperf.html">netperf</a> tool and logs the output to the console.
-When running <code>benchmark latency</code> command, two type of tests will be issued:</p>
+When running <code>benchmark latency</code>, two types of tests will be executed:</p>
 <ul>
 <li>Pod to Pod - where both Pods are scheduled on Gateway nodes</li>
 <li>Pod to Pod - where both Pods are scheduled on non-Gateway nodes</li>
 </ul>
-<h4 id="benchmark-flags">benchmark flags</h4>
+<h4 id="benchmark-flags"><code>benchmark</code> flags</h4>
 <!-- markdownlint-disable line-length -->
 <table>
 <thead>
@@ -1714,7 +1714,7 @@ When running <code>benchmark latency</code> command, two type of tests will be i
 </tbody>
 </table>
 <!-- markdownlint-enable line-length -->
-<h3 id="version">version</h3>
+<h3 id="version"><code>version</code></h3>
 <p><code>subctl version</code></p>
 <p>Prints the version details for the <code>subctl</code> binary.</p>
 
@@ -2418,19 +2418,19 @@ When running <code>benchmark latency</code> command, two type of tests will be i
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1603360762"></script>
-    <script src="/js/perfect-scrollbar.min.js?1603360762"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1603360762"></script>
-    <script src="/js/jquery.sticky.js?1603360762"></script>
-    <script src="/js/featherlight.min.js?1603360762"></script>
-    <script src="/js/highlight.pack.js?1603360762"></script>
+    <script src="/js/clipboard.min.js?1603718041"></script>
+    <script src="/js/perfect-scrollbar.min.js?1603718041"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1603718041"></script>
+    <script src="/js/jquery.sticky.js?1603718041"></script>
+    <script src="/js/featherlight.min.js?1603718041"></script>
+    <script src="/js/highlight.pack.js?1603718041"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1603360762"></script>
-    <script src="/js/learn.js?1603360762"></script>
-    <script src="/js/hugo-learn.js?1603360762"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1603718041"></script>
+    <script src="/js/learn.js?1603718041"></script>
+    <script src="/js/hugo-learn.js?1603718041"></script>
 
-    <link href="/mermaid/mermaid.css?1603360762" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1603360762"></script>
+    <link href="/mermaid/mermaid.css?1603718041" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1603718041"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
