@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: Submariner k8s project documentation website</title>
+    <title>Security Reporting :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1604328413" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/quickstart/openshift/setup_openshift/">
+  <body class="" data-url="/contributing/security/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -82,7 +82,7 @@
   
     
     <li data-nav-id="/quickstart/" title="Quickstart Guide" class="dd-item 
-        parent
+        
         
         
         ">
@@ -141,7 +141,7 @@
   
     
     <li data-nav-id="/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
-        parent
+        
         
         
         ">
@@ -269,7 +269,7 @@
  
   
     
-      <li data-nav-id="/quickstart/openshift/setup_openshift/" title="" class="dd-item active">
+      <li data-nav-id="/quickstart/openshift/setup_openshift/" title="" class="dd-item ">
         <a href="/quickstart/openshift/setup_openshift/">
         
         <i class="fas fa-check read-icon"></i>
@@ -866,7 +866,7 @@
   
     
     <li data-nav-id="/contributing/" title="Contributing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -1096,8 +1096,8 @@
   
     
     <li data-nav-id="/contributing/security/" title="Security Reporting" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/contributing/security/">
@@ -1304,7 +1304,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshift/setup_openshift.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/contributing/security/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1335,13 +1335,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/'></a> > <a href='/quickstart/'>Quickstart Guide</a> > <a href='/quickstart/openshift/'>OpenShift (AWS)</a> > 
-          
-         
+            <a href='/'></a> > <a href='/contributing/'>Contributing</a> > Security Reporting
           
          
           
@@ -1354,16 +1348,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#aws">AWS</a>
-      <ul>
-        <li><a href="#openshift-install-and-pull-secret">openshift-install and pull-secret</a></li>
-        <li><a href="#make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -1379,7 +1364,7 @@
           
             <h1>
               
-              
+              Security Reporting
             </h1>
           
 
@@ -1387,33 +1372,18 @@
 
 
 
-<h2 id="aws">AWS</h2>
-<h3 id="openshift-install-and-pull-secret">openshift-install and pull-secret</h3>
-<p>Download the <strong>openshift-install</strong> and <em>oc</em> tools, and copy your <em>pull secret</em> from:</p>
-<blockquote>
-<p><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">https://cloud.redhat.com/openshift/install/aws/installer-provisioned</a></p>
-</blockquote>
-<p>Find more detailed instructions here:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html</a></p>
-</blockquote>
-<h3 id="make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</h3>
-<p>Installation instructions</p>
-<blockquote>
-<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html</a></p>
-</blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
-AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
-</code></pre></div><p>See also for more details:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html</a></p>
-</blockquote>
+
+	<p>Submariner welcomes and appreciates responsible disclosure of security vulnerabilities.</p>
+<p>If you know of a security issue with Submariner, please report it to <a href="mailto:submariner-security@googlegroups.com">submariner-security@googlegroups.com</a>.</p>
+<p>Submariner aspires to follow the <a href="https://kubernetes.io/docs/reference/issues-security/security/">Kubernetes security reporting process</a>,
+but is far too small of a project to implement those practices. Where applicable, Submariner will follow the principles of the Kubernetes
+process.</p>
 
 
-<footer class="footline">
+
+
+
+<footer class=" footline" >
 	
 </footer>
 
@@ -1448,41 +1418,8 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                     
                 
                 
@@ -1498,9 +1435,6 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1512,6 +1446,21 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
                     
             
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
                     
                         
             
@@ -1566,6 +1515,21 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1585,9 +1549,6 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1916,6 +1877,7 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
             
                 
                     
+                    
                 
                 
 
@@ -1930,6 +1892,9 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -2043,6 +2008,7 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
             
                 
                     
+                    
                 
                 
 
@@ -2058,6 +2024,9 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -2116,10 +2085,10 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
 	 
 	 
 		
-			<a class="nav nav-prev" href="/quickstart/openshift/ready_clusters/" title=""> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/contributing/release-process/" title="Release Process"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/quickstart/vsphere_aws/" title="OpenShift with Service Discovery (vSphere/AWS)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/contributing/shipyard/" title="Working With Shipyard" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2149,4 +2118,3 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
 
   </body>
 </html>
-
