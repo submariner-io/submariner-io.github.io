@@ -130,7 +130,7 @@
 	"title": "Code of Conduct",
 	"tags": [],
 	"description": "",
-	"content": "Submariner Community Code of Conduct Submariner follows the CNCF Code of Conduct.\nInstances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting one or more of the Submariner Committers or Owners.\n"
+	"content": "Submariner Community Code of Conduct Submariner follows the CNCF Code of Conduct.\nPlease report instances of abusive, harassing, or otherwise unacceptable behavior by contacting one or more of the Submariner Project Owners.\n"
 },
 {
 	"uri": "/deployment/helm/",
