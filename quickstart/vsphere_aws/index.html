@@ -12,20 +12,20 @@
     <title>OpenShift with Service Discovery (vSphere/AWS) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1604499880" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1604499880" rel="stylesheet">
-    <link href="/css/hybrid.css?1604499880" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1604499880" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1604499880" rel="stylesheet">
-    <link href="/css/auto-complete.css?1604499880" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1604499880" rel="stylesheet">
-    <link href="/css/theme.css?1604499880" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1604499880" rel="stylesheet">
+    <link href="/css/nucleus.css?1604509502" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1604509502" rel="stylesheet">
+    <link href="/css/hybrid.css?1604509502" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1604509502" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1604509502" rel="stylesheet">
+    <link href="/css/auto-complete.css?1604509502" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1604509502" rel="stylesheet">
+    <link href="/css/theme.css?1604509502" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1604509502" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1604499880" rel="stylesheet">
+      <link href="/css/theme-blue.css?1604509502" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1604499880"></script>
+    <script src="/js/jquery-3.3.1.min.js?1604509502"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1604499880"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1604499880"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1604509502"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1604509502"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1604499880"></script>
+<script type="text/javascript" src="/js/search.js?1604509502"></script>
 
     
   </div>
@@ -1394,9 +1394,8 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#deploy-cluster-on-vsphere-on-prem">Deploy Cluster on vSphere (On-Prem)</a></li>
-        <li><a href="#deploy-cluster-on-aws">Deploy Cluster on AWS</a></li>
-        <li><a href="#make-your-aws-cluster-ready-for-submariner">Make your AWS cluster ready for Submariner</a></li>
+        <li><a href="#create-and-deploy-cluster-a-on-vsphere-on-prem">Create and Deploy cluster-a on vSphere (On-Prem)</a></li>
+        <li><a href="#create-and-deploy-cluster-b-on-aws">Create and Deploy cluster-b on AWS</a></li>
         <li><a href="#submariner-installation">Submariner Installation</a></li>
       </ul>
     </li>
@@ -1446,24 +1445,8 @@ provisioned infrastructure (UPI) and the other one on AWS with full stack automa
 please refer to the official <a href="https://docs.openshift.com/container-platform/">OpenShift documentation</a>.</p>
 </div>
 
-
-
-<h3 id="setup-your-aws-profile">Setup Your AWS Profile</h3>
-<p>Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region,
-and the default output format:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
-AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
-</code></pre></div>
-
-
-<h3 id="deploy-cluster-on-vsphere-on-prem">Deploy Cluster on vSphere (On-Prem)</h3>
-<p>Create the necessary infrastructure on vSphere and ensure that your machines have direct internet access before starting the installation.
-See the <a href="https://docs.openshift.com/container-platform/4.4/installing/installing_vsphere/installing-vsphere.html">docs for deploying OCP 4.4 on
-vSphere</a>.</p>
-<p>Assuming that you deployed the cluster (say, cluster-a) with default network configuration, the Pod and Service CIDRs would be</p>
+<h3 id="create-and-deploy-cluster-a-on-vsphere-on-prem">Create and Deploy cluster-a on vSphere (On-Prem)</h3>
+<p>In this step you will deploy <strong>cluster-a</strong> using the default IP CIDR ranges:</p>
 <table>
 <thead>
 <tr>
@@ -1478,9 +1461,14 @@ vSphere</a>.</p>
 </tr>
 </tbody>
 </table>
-<p>Submariner creates a VXLAN overlay network in the local cluster and uses port 4800/UDP to encapsulate traffic from the worker nodes to the
-gateway nodes to preserve the source IP of the inter-cluster traffic.
-Ensure that firewall configuration on vSphere cluster allows 4800/UDP across all the worker nodes.</p>
+<p>Before you deploy an OpenShift Container Platform cluster that uses user-provisioned infrastructure, you must create the underlying
+infrastructure. Follow the <a href="https://docs.openshift.com/container-platform/">OpenShift documenation</a> for installation instructions on
+supported versions of vSphere.</p>
+<p>Submariner gateway nodes need to be able to accept IPsec traffic. For on-premises clusters behind corporate firewalls, the default IPsec UDP
+ports might be blocked. To overcome this, Submariner supports NAT Traversal (NAT-T) with the option to set custom non-standard ports.
+In this example, we use UDP 4501 and UDP 501. Ensure that those ports are allowed on the gateway node and on the corporate firewall.</p>
+<p>Submariner also uses VXLAN to encapsulate traffic from the worker nodes to the gateway nodes. Ensure that firewall configuration on the
+vSphere cluster allows UDP 4800 across all the worker nodes.</p>
 <table>
 <thead>
 <tr>
@@ -1493,17 +1481,36 @@ Ensure that firewall configuration on vSphere cluster allows 4800/UDP across all
 <tr>
 <td>UDP</td>
 <td>4800</td>
-<td>overlay network for inter-cluster traffic</td>
+<td>Overlay network for inter-cluster traffic</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>4501</td>
+<td>IPsec traffic</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>501</td>
+<td>IPsec traffic</td>
 </tr>
 </tbody>
 </table>
-
-<div class="notices tip" ><p>Although we are using the default OCP network configuration on vSphere, you can <a href="https://red.ht/2WFjEVg">install vSphere with a custom network
-configuration</a>.</p>
-</div>
-
-<h3 id="deploy-cluster-on-aws">Deploy Cluster on AWS</h3>
-<p>In this step we shall modify the default Cluster/Service CIDRs and deploy cluster-b on AWS.</p>
+<p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
+<code>kubeadmin</code> user, display in your terminal.</p>
+<h3 id="create-and-deploy-cluster-b-on-aws">Create and Deploy cluster-b on AWS</h3>
+<h4 id="setup-your-aws-profile">Setup Your AWS Profile</h4>
+<p>Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region,
+and the default output format:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
+AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
+</code></pre></div><h4 id="create-and-deploy-cluster-b">Create and Deploy cluster-b</h4>
+<p>In this step you will deploy <strong>cluster-b</strong>, modifying the default IP CIDRs to avoid IP address conflicts with <strong>cluster-a</strong>. You can change
+the IP addresses block and prefix based on your requirements. For more information on IPv4 CIDR conversion,
+please check <a href="https://www.ipaddressguide.com/cidr">this page</a>.</p>
+<p>In this example, we will use the following IP ranges:</p>
 <table>
 <thead>
 <tr>
@@ -1519,39 +1526,47 @@ configuration</a>.</p>
 </tbody>
 </table>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
-</code></pre></div><p>Change the Pod IP network. Please note it’s a /14 range by default so you need to use +4 increments for “128”, for example: 10.132.0.0,
-10.136.0.0, 10.140.0.0, &hellip;</p>
+</code></pre></div><p>Change the Pod network CIDR from 10.128.0.0/14 to 10.132.0.0/14:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>Change the Service IP network. This is a /16 range by default, so just use +1 increments for “30”: for example: 172.31.0.0, 172.32.0.0,
-172.33.0.0, &hellip;</p>
+</code></pre></div><p>Change the Service network CIDR from 172.30.0.0/16 to 172.31.0.0/16:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>And finally deploy</p>
+</code></pre></div><p>And finally deploy the cluster:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
-</code></pre></div><h3 id="make-your-aws-cluster-ready-for-submariner">Make your AWS cluster ready for Submariner</h3>
-<p>Submariner gateway nodes need to be able to accept IPsec traffic. The default ports are 4500/UDP and 500/UDP.
-However, when you have some on-premises clusters (like vSphere in this example) which are typically inside a corporate network, the firewall
-configuration on the corporate router may not allow the default IPsec traffic.
-We can overcome this limitation by using non-standard ports like 4501/UDP and 501/UDP.</p>
-<p>Additionally, the default OpenShift deployment does not allow assigning an elastic public IP
-to existing worker nodes, something that is necessary at least on one end of the IPsec connections.</p>
-<p>To handle these requirements on AWS, we provide a script
-<a href="https://github.com/submariner-io/submariner/blob/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh">prep_for_subm.sh</a>,
-that will prepare your AWS OpenShift deployment for Submariner, and will create an additional gateway node with an external IP.</p>
-<p>In the following example, we create the gateway node on cluster-b, with custom IPsec ports and instance type:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
+</code></pre></div><p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
+<code>kubeadmin</code> user, display in your terminal.</p>
+<h4 id="prepare-aws-cluster-for-submariner">Prepare AWS Cluster for Submariner</h4>
+
+
+<p>Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. Submariner also uses
+UDP port 4800 to encapsulate traffic from the worker nodes to the gateway nodes. Additionally, the default OpenShift deployment does not
+allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connection.</p>
+<p><code>prep_for_subm</code> is a script designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments,
+handling the requirements specified above.</p>
+<ul>
+<li>Download the <code>prep_for_subm.sh</code> script and set permissions:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
 chmod a+x ./prep_for_subm.sh
+</code></pre></div>
 
-export IPSEC_NATT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+
+
+<div class="notices info" ><p>Please note that  <code>oc</code>, <code>aws-cli</code>, <code>terraform</code>, and <code>wget</code> need to be installed before the <code>prep_for_subm.sh</code> script can be run.</p>
+</div>
+
+
+<div class="notices note" ><p>The script deploys an <code>m5n.large</code> EC2 instance type by default, optimized for improved network throughput and packet rate performance,
+for the Submariner gateway node. Please ensure that the AWS Region you deploy to support this instance type. Alternatively, you can
+customize the AWS instance type as shown below.</p>
+</div>
+
+<ul>
+<li>Modify the IPsec UDP ports and run the <code>prep_for_subm.sh</code> script for <strong>cluster-b</strong>:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export IPSEC_NATT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
 export IPSEC_IKE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
-export GW_INSTANCE_TYPE<span style="color:#f92672">=</span>m4.xlarge
-
-./prep_for_subm.sh cluster-b  <span style="color:#75715e"># respond yes when terraform asks to approve, or add after path: -auto-approve</span>
-
-</code></pre></div><blockquote>
-<p><strong><em>INFO</em></strong> Please note that  <strong>oc</strong>, <strong>aws-cli</strong>, <strong>terraform</strong>, and <strong>wget</strong> need to be installed before running the <code>prep_for_subm.sh</code> script.</p>
-</blockquote>
-<h3 id="submariner-installation">Submariner Installation</h3>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./prep_for_subm.sh cluster-b <span style="color:#75715e"># respond &#34;yes&#34; when Terraform asks for approval, or otherwise add the -auto-approve flag</span>
+</code></pre></div><h3 id="submariner-installation">Submariner Installation</h3>
 Download the subctl binary and make it available on your PATH.
 
 <div class="highlight">
@@ -1565,8 +1580,8 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 </div>
 
 <h4 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h4>
-<p>To install Submariner with multi-cluster service discovery, follow the steps below.</p>
-<h5 id="use-cluster-b-aws-as-broker-with-service-discovery-enabled">Use cluster-b (AWS) as Broker with service discovery enabled</h5>
+<p>To install Submariner with multi-cluster service discovery, follow the steps below:</p>
+<h5 id="use-cluster-b-aws-as-broker-with-service-discovery-enabled">Use cluster-b (AWS) as Broker with Service Discovery enabled</h5>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig cluster-b/auth/kubeconfig --service-discovery
 </code></pre></div><h5 id="join-cluster-b-aws-and-cluster-a-vsphere-to-the-broker">Join cluster-b (AWS) and cluster-a (vSphere) to the Broker</h5>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span>
@@ -2397,19 +2412,19 @@ curl nginx-ss.default.svc.clusterset.local:8080
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1604499880"></script>
-    <script src="/js/perfect-scrollbar.min.js?1604499880"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1604499880"></script>
-    <script src="/js/jquery.sticky.js?1604499880"></script>
-    <script src="/js/featherlight.min.js?1604499880"></script>
-    <script src="/js/highlight.pack.js?1604499880"></script>
+    <script src="/js/clipboard.min.js?1604509502"></script>
+    <script src="/js/perfect-scrollbar.min.js?1604509502"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1604509502"></script>
+    <script src="/js/jquery.sticky.js?1604509502"></script>
+    <script src="/js/featherlight.min.js?1604509502"></script>
+    <script src="/js/highlight.pack.js?1604509502"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1604499880"></script>
-    <script src="/js/learn.js?1604499880"></script>
-    <script src="/js/hugo-learn.js?1604499880"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1604509502"></script>
+    <script src="/js/learn.js?1604509502"></script>
+    <script src="/js/hugo-learn.js?1604509502"></script>
 
-    <link href="/mermaid/mermaid.css?1604499880" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1604499880"></script>
+    <link href="/mermaid/mermaid.css?1604509502" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1604509502"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

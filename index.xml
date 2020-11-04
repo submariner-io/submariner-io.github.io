@@ -49,7 +49,7 @@ prep_for_subm is a script designed to update your OpenShift installer provisione
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/quickstart/openshift/run_prep_for_subm/</guid>
-      <description>Run the prep_for_subm.sh script for cluster-a and cluser-b:  ./prep_for_subm.sh cluster-a # respond &amp;#34;yes&amp;#34; when Terraform asks for approval, or otherwise add the -auto-approve flag ./prep_for_subm.sh cluster-b # respond &amp;#34;yes&amp;#34; when Terraform asks for approval, or otherwise add the -auto-approve flag Note that certain parameters, such as the IPsec UDP ports and AWS instance type for the gateway, can be customized before running the script. For example:
+      <description>Run the prep_for_subm.sh script for cluster-a and cluster-b:  ./prep_for_subm.sh cluster-a # respond &amp;#34;yes&amp;#34; when Terraform asks for approval, or otherwise add the -auto-approve flag ./prep_for_subm.sh cluster-b # respond &amp;#34;yes&amp;#34; when Terraform asks for approval, or otherwise add the -auto-approve flag Note that certain parameters, such as the IPsec UDP ports and AWS instance type for the gateway, can be customized before running the script. For example:
 export IPSEC_NATT_PORT=4501 export IPSEC_IKE_PORT=501 export GW_INSTANCE_TYPE=m4.</description>
     </item>
     
