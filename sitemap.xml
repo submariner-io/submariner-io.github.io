@@ -177,7 +177,15 @@
   </url>
   
   <url>
-    <loc>/quickstart/openshift/ready_clusters/</loc>
+    <loc>/quickstart/openshift/download_prep_for_subm/</loc>
+  </url>
+  
+  <url>
+    <loc>/quickstart/openshift/run_prep_for_subm/</loc>
+  </url>
+  
+  <url>
+    <loc>/quickstart/openshift/setup_aws/</loc>
   </url>
   
   <url>

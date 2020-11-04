@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Architecture :: Submariner k8s project documentation website</title>
+    <title> :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1604481251" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/architecture/">
+  <body class="" data-url="/quickstart/openshift/setup_aws/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -82,7 +82,7 @@
   
     
     <li data-nav-id="/quickstart/" title="Quickstart Guide" class="dd-item 
-        
+        parent
         
         
         ">
@@ -141,7 +141,7 @@
   
     
     <li data-nav-id="/quickstart/openshift/" title="OpenShift (AWS)" class="dd-item 
-        
+        parent
         
         
         ">
@@ -290,7 +290,7 @@
  
   
     
-      <li data-nav-id="/quickstart/openshift/setup_aws/" title="" class="dd-item ">
+      <li data-nav-id="/quickstart/openshift/setup_aws/" title="" class="dd-item active">
         <a href="/quickstart/openshift/setup_aws/">
         
         <i class="fas fa-check read-icon"></i>
@@ -600,8 +600,8 @@
   
     
     <li data-nav-id="/architecture/" title="Architecture" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/architecture/">
@@ -1346,7 +1346,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/architecture/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/openshift/setup_aws.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1373,7 +1373,19 @@
             
           
           
-            <a href='/'></a> > Architecture
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/quickstart/'>Quickstart Guide</a> > <a href='/quickstart/openshift/'>OpenShift (AWS)</a> > 
+          
+         
+          
+         
           
          
           
@@ -1384,7 +1396,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#setup-your-aws-profile">Setup Your AWS Profile</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1400,7 +1420,7 @@
           
             <h1>
               
-              Architecture
+              
             </h1>
           
 
@@ -1408,27 +1428,17 @@
 
 
 
+<h3 id="setup-your-aws-profile">Setup Your AWS Profile</h3>
+<p>Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region,
+and the default output format:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
+AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
+</code></pre></div>
 
-	<p>The diagram below illustrates the basic architecture of Submariner:</p>
-<p><img src="/images/submariner/architecture.jpg" alt="Submariner Architecture"></p>
-<p>Submariner consists of several main components that work in conjunction to securely connect workloads across multiple Kubernetes clusters,
-both on-premises and on public clouds.</p>
-<ul>
-<li><a href="./gateway-engine/">Gateway Engine</a>: manages the secure tunnels to other clusters.</li>
-<li><a href="./route-agent/">Route Agent</a>: routes cross-cluster traffic from nodes to the active Gateway Engine.</li>
-<li><a href="./broker/">Broker</a>: facilitates the exchange of metadata between Gateway Engines enabling them to discover one another.</li>
-</ul>
-<p>Submariner has optional components that provide additional functionality.</p>
-<ul>
-<li><a href="./globalnet/">Globalnet Controller</a>: handles overlapping CIDRs across clusters.</li>
-<li><a href="./service-discovery/">Service Discovery</a>: provides DNS discovery of services across clusters.</li>
-</ul>
-
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -1463,8 +1473,6 @@ both on-premises and on public clouds.</p>
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -1480,6 +1488,9 @@ both on-premises and on public clouds.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1497,6 +1508,7 @@ both on-premises and on public clouds.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1512,37 +1524,8 @@ both on-premises and on public clouds.</p>
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
                     
                 
                 
@@ -1619,42 +1602,11 @@ both on-premises and on public clouds.</p>
             
         
                     
-            
-        
-                    
                         
             
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1671,6 +1623,9 @@ both on-premises and on public clouds.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1702,24 +1657,6 @@ both on-premises and on public clouds.</p>
             
         
                     
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
                         
             
             
@@ -1732,9 +1669,6 @@ both on-premises and on public clouds.</p>
                     
                     
 
-                    
-            
-        
                     
                         
             
@@ -1776,6 +1710,24 @@ both on-premises and on public clouds.</p>
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1792,8 +1744,71 @@ both on-premises and on public clouds.</p>
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -2158,10 +2173,10 @@ both on-premises and on public clouds.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/deployment/calico/" title="Calico CNI"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/quickstart/openshift/run_prep_for_subm/" title=""> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/architecture/broker/" title="Broker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/quickstart/openshift/setup_openshift/" title="" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2191,3 +2206,4 @@ both on-premises and on public clouds.</p>
 
   </body>
 </html>
+

@@ -12,20 +12,20 @@
     <title>With Service Discovery :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1604436520" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1604436520" rel="stylesheet">
-    <link href="/css/hybrid.css?1604436520" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1604436520" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1604436520" rel="stylesheet">
-    <link href="/css/auto-complete.css?1604436520" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1604436520" rel="stylesheet">
-    <link href="/css/theme.css?1604436520" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1604436520" rel="stylesheet">
+    <link href="/css/nucleus.css?1604481251" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1604481251" rel="stylesheet">
+    <link href="/css/hybrid.css?1604481251" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1604481251" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1604481251" rel="stylesheet">
+    <link href="/css/auto-complete.css?1604481251" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1604481251" rel="stylesheet">
+    <link href="/css/theme.css?1604481251" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1604481251" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1604436520" rel="stylesheet">
+      <link href="/css/theme-blue.css?1604481251" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1604436520"></script>
+    <script src="/js/jquery-3.3.1.min.js?1604481251"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1604436520"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1604436520"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1604481251"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1604481251"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1604436520"></script>
+<script type="text/javascript" src="/js/search.js?1604481251"></script>
 
     
   </div>
@@ -248,8 +248,50 @@
  
   
     
-      <li data-nav-id="/quickstart/openshift/ready_clusters/" title="" class="dd-item ">
-        <a href="/quickstart/openshift/ready_clusters/">
+      <li data-nav-id="/quickstart/openshift/download_prep_for_subm/" title="" class="dd-item ">
+        <a href="/quickstart/openshift/download_prep_for_subm/">
+        
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/quickstart/openshift/run_prep_for_subm/" title="" class="dd-item ">
+        <a href="/quickstart/openshift/run_prep_for_subm/">
+        
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/quickstart/openshift/setup_aws/" title="" class="dd-item ">
+        <a href="/quickstart/openshift/setup_aws/">
         
         <i class="fas fa-check read-icon"></i>
         </a>
@@ -1358,6 +1400,7 @@
   <ul>
     <li>
       <ul>
+        <li><a href="#prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</a></li>
         <li><a href="#install-subctl">Install subctl</a></li>
         <li><a href="#install-submariner-with-service-discovery">Install Submariner with Service Discovery</a></li>
       </ul>
@@ -1388,39 +1431,43 @@
 
 
 
-	<p>
+	<p>This quickstart guide covers the necessary steps to deploy two OpenShift Container Platform (OCP) clusters on AWS with
+full stack automation, also known as installer-provisioned infrastructure (IPI). Once the OpenShift clusters are deployed, we deploy
+Submariner with Service Discovery to interconnect the two clusters.</p>
 
-<h2 id="aws">AWS</h2>
-<h3 id="openshift-install-and-pull-secret">openshift-install and pull-secret</h3>
-<p>Download the <strong>openshift-install</strong> and <em>oc</em> tools, and copy your <em>pull secret</em> from:</p>
-<blockquote>
-<p><a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">https://cloud.redhat.com/openshift/install/aws/installer-provisioned</a></p>
-</blockquote>
-<p>Find more detailed instructions here:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html</a></p>
-</blockquote>
-<h3 id="make-sure-the-aws-cli-is-properly-installed-and-configured">Make sure the aws cli is properly installed and configured</h3>
-<p>Installation instructions</p>
-<blockquote>
-<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html</a></p>
-</blockquote>
+
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before we begin, the following tools need to be downloaded and added to your <code>$PATH</code>:</p>
+<ol>
+<li><strong>OpenShift installer</strong>, <strong>pull secret</strong>, and <strong>command line interface</strong>. All can be downloaded from
+<a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">here</a>.</li>
+<li><strong>AWS CLI</strong> which can be downloaded from <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">here</a>.</li>
+</ol>
+
+
+
+
+<div class="notices info" ><p>Please ensure that the tools you downloaded above are compatible with your OpenShift Container Platform version. For more information,
+please refer to the official <a href="https://docs.openshift.com/container-platform/">OpenShift documentation</a>.</p>
+</div>
+
+<p>
+
+<h3 id="setup-your-aws-profile">Setup Your AWS Profile</h3>
+<p>Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region,
+and the default output format:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
 AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
 AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
 Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
 Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
-</code></pre></div><p>See also for more details:</p>
-<blockquote>
-<p><a href="https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html">https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-account.html</a></p>
-</blockquote>
+</code></pre></div>
 
 
 
 
-
-<h3 id="create-and-deploy-cluster-a">Create and deploy cluster A</h3>
-<p>In this step you will deploy cluster A, with the default IP CIDRs</p>
+<h3 id="create-and-deploy-cluster-a">Create and Deploy cluster-a</h3>
+<p>In this step you will deploy <strong>cluster-a</strong> using the default IP CIDR ranges:</p>
 <table>
 <thead>
 <tr>
@@ -1437,9 +1484,13 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
 </table>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-a
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-a
-</code></pre></div><p>The create cluster step will take some time, you can create Cluster B in parallel if you wish.</p>
-<h3 id="create-and-deploy-cluster-b">Create and deploy cluster B</h3>
-<p>In this step you will deploy cluster B, modifying the default IP CIDRs</p>
+</code></pre></div><p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
+<code>kubeadmin</code> user, display in your terminal.</p>
+<h3 id="create-and-deploy-cluster-b">Create and Deploy cluster-b</h3>
+<p>In this step you will deploy <strong>cluster-b</strong>, modifying the default IP CIDRs to avoid IP address conflicts with <strong>cluster-a</strong>. You can change
+the IP addresses block and prefix based on your requirements. For more information on IPv4 CIDR conversion,
+please check <a href="https://www.ipaddressguide.com/cidr">this page</a>.</p>
+<p>In this example, we will use the following IP ranges:</p>
 <table>
 <thead>
 <tr>
@@ -1455,47 +1506,52 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
 </tbody>
 </table>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
-</code></pre></div><p>Change the POD IP network, please note it’s a /14 range by default so you need to use
-+4 increments for “128”, for example: 10.132.0.0, 10.136.0.0, 10.140.0.0, &hellip;</p>
+</code></pre></div><p>Change the Pod network CIDR from 10.128.0.0/14 to 10.132.0.0/14:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>Change the service IP network, this is a /16 range by default, so just use +1 increments
-for “30”: for example: 172.31.0.0, 172.32.0.0, 172.33.0.0, &hellip;</p>
+</code></pre></div><p>Change the Service network CIDR from 172.30.0.0/16 to 172.31.0.0/16:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>And finally deploy</p>
+</code></pre></div><p>And finally deploy the cluster:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
-</code></pre></div>
+</code></pre></div><p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
+<code>kubeadmin</code> user, display in your terminal.</p>
 
-
-
-
-<h3 id="make-your-clusters-ready-for-submariner">Make your clusters ready for Submariner</h3>
-<p>Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec.
-In addition we use port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes and ensuring that Pod IP addresses are preserved.</p>
-<p>Additionally, the default OpenShift deployment does not allow assigning an elastic public IP
-to existing worker nodes, which may be necessary on one end of the IPsec connections.</p>
-<p>To handle all those details we provide a script
-<a href="https://github.com/submariner-io/submariner/blob/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh">prep_for_subm.sh</a>
-that will prepare your AWS OpenShift deployment for Submariner, and will create an additional gateway node with an external IP:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
-chmod a+x ./prep_for_subm.sh
-
-./prep_for_subm.sh &lt;OCP install path&gt;  <span style="color:#75715e"># respond yes when terraform asks to approve, or add after path: -auto-approve</span>
-
-</code></pre></div><blockquote>
-<p><strong><em>INFO</em></strong> Please note that  <strong>oc</strong>, <strong>aws-cli</strong>, <strong>terraform</strong>, and <strong>wget</strong> need to be installed before running the <code>prep_for_subm.sh</code> script.</p>
-</blockquote>
-<p>In the following example, we create the gateway node on cluster-b, with custom IPsec ports and instance type:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-export IPSEC_NATT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
-export IPSEC_IKE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
-export GW_INSTANCE_TYPE<span style="color:#f92672">=</span>m4.xlarge
-
-./prep_for_subm.sh cluster-b
-
-</code></pre></div>
 
 </p>
+<h3 id="prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</h3>
+
+
+<p>Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. Submariner also uses
+UDP port 4800 to encapsulate traffic from the worker nodes to the gateway nodes. Additionally, the default OpenShift deployment does not
+allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connection.</p>
+<p><code>prep_for_subm</code> is a script designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments,
+handling the requirements specified above.</p>
+<ul>
+<li>Download the <code>prep_for_subm.sh</code> script and set permissions:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
+chmod a+x ./prep_for_subm.sh
+</code></pre></div>
+
+
+
+<div class="notices info" ><p>Please note that  <code>oc</code>, <code>aws-cli</code>, <code>terraform</code>, and <code>wget</code> need to be installed before the <code>prep_for_subm.sh</code> script can be run.</p>
+</div>
+
+
+
+<ul>
+<li>Run the <code>prep_for_subm.sh</code> script for <strong>cluster-a</strong> and <strong>cluser-b</strong>:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./prep_for_subm.sh cluster-a <span style="color:#75715e"># respond &#34;yes&#34; when Terraform asks for approval, or otherwise add the -auto-approve flag</span>
+./prep_for_subm.sh cluster-b <span style="color:#75715e"># respond &#34;yes&#34; when Terraform asks for approval, or otherwise add the -auto-approve flag</span>
+</code></pre></div><p>Note that certain parameters, such as the IPsec UDP ports and AWS instance type for the gateway,
+can be customized before running the script. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export IPSEC_NATT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+export IPSEC_IKE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
+export GW_INSTANCE_TYPE<span style="color:#f92672">=</span>m4.xlarge
+</code></pre></div>
+
+
 <h3 id="install-subctl">Install subctl</h3>
 Download the subctl binary and make it available on your PATH.
 
@@ -1703,6 +1759,38 @@ curl nginx-ss.default.svc.clusterset.local:8080
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -2311,19 +2399,19 @@ curl nginx-ss.default.svc.clusterset.local:8080
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1604436520"></script>
-    <script src="/js/perfect-scrollbar.min.js?1604436520"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1604436520"></script>
-    <script src="/js/jquery.sticky.js?1604436520"></script>
-    <script src="/js/featherlight.min.js?1604436520"></script>
-    <script src="/js/highlight.pack.js?1604436520"></script>
+    <script src="/js/clipboard.min.js?1604481251"></script>
+    <script src="/js/perfect-scrollbar.min.js?1604481251"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1604481251"></script>
+    <script src="/js/jquery.sticky.js?1604481251"></script>
+    <script src="/js/featherlight.min.js?1604481251"></script>
+    <script src="/js/highlight.pack.js?1604481251"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1604436520"></script>
-    <script src="/js/learn.js?1604436520"></script>
-    <script src="/js/hugo-learn.js?1604436520"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1604481251"></script>
+    <script src="/js/learn.js?1604481251"></script>
+    <script src="/js/hugo-learn.js?1604481251"></script>
 
-    <link href="/mermaid/mermaid.css?1604436520" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1604436520"></script>
+    <link href="/mermaid/mermaid.css?1604481251" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1604481251"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -29,19 +29,38 @@ Submariner.io Word List A list of Submariner-specific terms and words to be used
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/quickstart/openshift/create_clusters/</guid>
-      <description>Create and deploy cluster A In this step you will deploy cluster A, with the default IP CIDRs
-   Pod CIDR Service CIDR     10.128.0.0/14 172.30.0.0/16    openshift-install create install-config --dir cluster-a openshift-install create cluster --dir cluster-a The create cluster step will take some time, you can create Cluster B in parallel if you wish.
-Create and deploy cluster B In this step you will deploy cluster B, modifying the default IP CIDRs</description>
+      <description>Create and Deploy cluster-a In this step you will deploy cluster-a using the default IP CIDR ranges:
+   Pod CIDR Service CIDR     10.128.0.0/14 172.30.0.0/16    openshift-install create install-config --dir cluster-a openshift-install create cluster --dir cluster-a When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the kubeadmin user, display in your terminal.</description>
     </item>
     
     <item>
       <title></title>
-      <link>/quickstart/openshift/ready_clusters/</link>
+      <link>/quickstart/openshift/download_prep_for_subm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/quickstart/openshift/ready_clusters/</guid>
-      <description>Make your clusters ready for Submariner Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. In addition we use port 4800/UDP to encapsulate traffic from the worker nodes to the gateway nodes and ensuring that Pod IP addresses are preserved.
-Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connections.</description>
+      <guid>/quickstart/openshift/download_prep_for_subm/</guid>
+      <description>Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. Submariner also uses UDP port 4800 to encapsulate traffic from the worker nodes to the gateway nodes. Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connection.
+prep_for_subm is a script designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments, handling the requirements specified above.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/quickstart/openshift/run_prep_for_subm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/quickstart/openshift/run_prep_for_subm/</guid>
+      <description>Run the prep_for_subm.sh script for cluster-a and cluser-b:  ./prep_for_subm.sh cluster-a # respond &amp;#34;yes&amp;#34; when Terraform asks for approval, or otherwise add the -auto-approve flag ./prep_for_subm.sh cluster-b # respond &amp;#34;yes&amp;#34; when Terraform asks for approval, or otherwise add the -auto-approve flag Note that certain parameters, such as the IPsec UDP ports and AWS instance type for the gateway, can be customized before running the script. For example:
+export IPSEC_NATT_PORT=4501 export IPSEC_IKE_PORT=501 export GW_INSTANCE_TYPE=m4.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/quickstart/openshift/setup_aws/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/quickstart/openshift/setup_aws/</guid>
+      <description>Setup Your AWS Profile Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region, and the default output format:
+$ aws configure AWS Access Key ID [None]: .... AWS Secret Access Key [None]: .... Default region name [None]: .... Default output format [None]: text </description>
     </item>
     
     <item>
@@ -50,13 +69,8 @@ Additionally, the default OpenShift deployment does not allow assigning an elast
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/quickstart/openshift/setup_openshift/</guid>
-      <description>AWS openshift-install and pull-secret Download the openshift-install and oc tools, and copy your pull secret from:
- https://cloud.redhat.com/openshift/install/aws/installer-provisioned
- Find more detailed instructions here:
- https://docs.openshift.com/container-platform/4.3/installing/installing_aws/installing-aws-default.html
- Make sure the aws cli is properly installed and configured Installation instructions
- https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
- $ aws configure AWS Access Key ID [None]: .... AWS Secret Access Key [None]: .... Default region name [None]: .... Default output format [None]: text See also for more details:</description>
+      <description>Prerequisites Before we begin, the following tools need to be downloaded and added to your $PATH:
+ OpenShift installer, pull secret, and command line interface. All can be downloaded from here. AWS CLI which can be downloaded from here.  </description>
     </item>
     
     <item>
