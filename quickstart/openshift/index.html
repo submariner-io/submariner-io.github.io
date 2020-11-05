@@ -12,20 +12,20 @@
     <title>OpenShift (AWS) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1604558841" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1604558841" rel="stylesheet">
-    <link href="/css/hybrid.css?1604558841" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1604558841" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1604558841" rel="stylesheet">
-    <link href="/css/auto-complete.css?1604558841" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1604558841" rel="stylesheet">
-    <link href="/css/theme.css?1604558841" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1604558841" rel="stylesheet">
+    <link href="/css/nucleus.css?1604576382" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1604576382" rel="stylesheet">
+    <link href="/css/hybrid.css?1604576382" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1604576382" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1604576382" rel="stylesheet">
+    <link href="/css/auto-complete.css?1604576382" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1604576382" rel="stylesheet">
+    <link href="/css/theme.css?1604576382" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1604576382" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1604558841" rel="stylesheet">
+      <link href="/css/theme-blue.css?1604576382" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1604558841"></script>
+    <script src="/js/jquery-3.3.1.min.js?1604576382"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1604558841"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1604558841"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1604576382"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1604576382"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1604558841"></script>
+<script type="text/javascript" src="/js/search.js?1604576382"></script>
 
     
   </div>
@@ -171,41 +171,13 @@
  
   
     
-    <li data-nav-id="/quickstart/openshift/service_discovery/" title="With Service Discovery" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/quickstart/openshift/service_discovery/">
-          With Service Discovery
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/quickstart/openshift/globalnet/" title="With Service Discovery and Globalnet" class="dd-item 
+    <li data-nav-id="/quickstart/openshift/globalnet/" title="With Globalnet" class="dd-item 
         
         
         
         ">
       <a href="/quickstart/openshift/globalnet/">
-          With Service Discovery and Globalnet
+          With Globalnet
           
             <i class="fas fa-check read-icon"></i>
           
@@ -341,13 +313,13 @@
  
   
     
-    <li data-nav-id="/quickstart/vsphere_aws/" title="OpenShift with Service Discovery (vSphere/AWS)" class="dd-item 
+    <li data-nav-id="/quickstart/vsphere_aws/" title="OpenShift (vSphere/AWS)" class="dd-item 
         
         
         
         ">
       <a href="/quickstart/vsphere_aws/">
-          OpenShift with Service Discovery (vSphere/AWS)
+          OpenShift (vSphere/AWS)
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1396,9 +1368,7 @@
       <ul>
         <li><a href="#prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</a></li>
         <li><a href="#install-subctl">Install <code>subctl</code></a></li>
-        <li><a href="#use-cluster-a-as-broker">Use cluster-a as Broker</a></li>
-        <li><a href="#join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the Broker</a></li>
-        <li><a href="#verify-connectivity">Verify connectivity</a></li>
+        <li><a href="#install-submariner-with-service-discovery">Install Submariner with Service Discovery</a></li>
       </ul>
     </li>
   </ul>
@@ -1429,8 +1399,9 @@
 
 	<p>This quickstart guide covers the necessary steps to deploy two OpenShift Container Platform (OCP) clusters on AWS with
 full stack automation, also known as installer-provisioned infrastructure (IPI). Once the OpenShift clusters are deployed, we deploy
-Submariner to interconnect the two clusters. Note that this guide focuses on Submariner for network connectivity only. For Submariner with
-Service Discovery, please refer to the <a href="./service_discovery/">Submariner with Service Discovery guide</a>.</p>
+Submariner with Service Discovery to interconnect the two clusters. Note that this guide focuses on Submariner deployment on clusters with
+non-overlapping Pod and Service CIDRs. For connecting clusters with overlapping CIDRs, please refer to the
+<a href="./globalnet/">Submariner with Globalnet guide</a>.</p>
 
 
 <h3 id="prerequisites">Prerequisites</h3>
@@ -1568,15 +1539,91 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 </pre>
 </div>
 
-<h3 id="use-cluster-a-as-broker">Use cluster-a as Broker</h3>
+<h3 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h3>
+<p>To install Submariner with multi-cluster Service Discovery follow the steps below:</p>
+<h4 id="use-cluster-a-as-broker">Use cluster-a as Broker</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig cluster-a/auth/kubeconfig
-</code></pre></div><h3 id="join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the Broker</h3>
+</code></pre></div><h4 id="join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the Broker</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --clusterid cluster-a
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --clusterid cluster-b
-</code></pre></div><h3 id="verify-connectivity">Verify connectivity</h3>
-<p>This will run a series of E2E tests to verify proper connectivity between the cluster pods and services</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify --only connectivity cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig --verbose
 </code></pre></div>
+
+<h4 id="verify-deployment">Verify Deployment</h4>
+<p>To manually verify the deployment, follow the steps below using either a headless or ClusterIP <code>nginx</code> service deployed in <code>cluster-b</code>.</p>
+<h5 id="deploy-clusterip-service">Deploy ClusterIP Service</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
+kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
+kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+subctl export service --namespace default nginx
+</code></pre></div><h5 id="deploy-headless-service">Deploy Headless Service</h5>
+<p>Note that headless Services can only be exported on non-globalnet deployments.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
+kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
+kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span> --cluster-ip<span style="color:#f92672">=</span>None
+subctl export service --namespace default nginx
+</code></pre></div><h5 id="verify">Verify</h5>
+<p>Run <code>nettest</code> from <code>cluster-a</code> to access the <code>nginx</code> service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
+kubectl -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+curl nginx.default.svc.clusterset.local:8080
+</code></pre></div><p>To access a Service in a specific cluster, prefix the query with <code>&lt;cluster-id&gt;</code> as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-a.nginx.default.svc.clusterset.local:8080
+</code></pre></div><h4 id="verify-statefulsets">Verify StatefulSets</h4>
+<p>A StatefulSet uses a headless Service. Create a <code>web.yaml</code> as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: nginx-ss
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#66d9ef">name</span>: web
+  <span style="color:#66d9ef">clusterIP</span>: None
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: StatefulSet
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: web
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">serviceName</span>: <span style="color:#e6db74">&#34;nginx-ss&#34;</span>
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: nginx-ss
+        <span style="color:#66d9ef">image</span>: nginxinc/nginx-unprivileged:stable-alpine
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
+          <span style="color:#66d9ef">name</span>: web
+</code></pre></div><p>Use this yaml to create a StatefulSet <code>web</code> with <code>nginx-ss</code> as the headless Service.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
+kubectl -n default  apply -f web.yaml
+curl nginx-ss.default.svc.clusterset.local:8080
+</code></pre></div><p>To access the Service in a specific cluster, prefix the query with <code>&lt;cluster-id&gt;</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-a.nginx-ss.default.svc.clusterset.local:8080
+</code></pre></div><p>To access an individual pod in a specific cluster, prefix the query with <code>&lt;pod-hostname&gt;.&lt;cluster-id&gt;</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl web-0.cluster-a.nginx-ss.default.svc.clusterset.local:8080
+</code></pre></div><h4 id="perform-automated-verification">Perform automated verification</h4>
+<p>This will perform automated verifications between the clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig --only service-discovery,connectivity --verbose
+</code></pre></div>
+
+
+
 
 
 
@@ -1669,22 +1716,6 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
                     
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -2315,7 +2346,7 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 			<a class="nav nav-prev" href="/quickstart/kind/" title="kind (Local Environment)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/quickstart/openshift/service_discovery/" title="With Service Discovery" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/quickstart/openshift/globalnet/" title="With Globalnet" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2325,19 +2356,19 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1604558841"></script>
-    <script src="/js/perfect-scrollbar.min.js?1604558841"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1604558841"></script>
-    <script src="/js/jquery.sticky.js?1604558841"></script>
-    <script src="/js/featherlight.min.js?1604558841"></script>
-    <script src="/js/highlight.pack.js?1604558841"></script>
+    <script src="/js/clipboard.min.js?1604576382"></script>
+    <script src="/js/perfect-scrollbar.min.js?1604576382"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1604576382"></script>
+    <script src="/js/jquery.sticky.js?1604576382"></script>
+    <script src="/js/featherlight.min.js?1604576382"></script>
+    <script src="/js/highlight.pack.js?1604576382"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1604558841"></script>
-    <script src="/js/learn.js?1604558841"></script>
-    <script src="/js/hugo-learn.js?1604558841"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1604576382"></script>
+    <script src="/js/learn.js?1604576382"></script>
+    <script src="/js/hugo-learn.js?1604576382"></script>
 
-    <link href="/mermaid/mermaid.css?1604558841" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1604558841"></script>
+    <link href="/mermaid/mermaid.css?1604576382" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1604576382"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

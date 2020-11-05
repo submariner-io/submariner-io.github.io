@@ -59,11 +59,6 @@
   </url>
   
   <url>
-    <loc>/quickstart/openshift/service_discovery/</loc>
-    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/architecture/</loc>
     <lastmod>2020-02-19T21:00:30+01:00</lastmod>
   </url>
@@ -80,11 +75,6 @@
   
   <url>
     <loc>/quickstart/openshift/</loc>
-    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/quickstart/openshift/globalnet/</loc>
     <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
@@ -114,7 +104,7 @@
   </url>
   
   <url>
-    <loc>/quickstart/vsphere_aws/</loc>
+    <loc>/quickstart/openshift/globalnet/</loc>
     <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
@@ -128,8 +118,8 @@
   </url>
   
   <url>
-    <loc>/quickstart/rancher/</loc>
-    <lastmod>2020-05-15T15:30:00+00:00</lastmod>
+    <loc>/quickstart/vsphere_aws/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
   <url>
@@ -145,6 +135,11 @@
   <url>
     <loc>/contributing/</loc>
     <lastmod>2020-02-19T20:24:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quickstart/rancher/</loc>
+    <lastmod>2020-05-15T15:30:00+00:00</lastmod>
   </url>
   
   <url>
