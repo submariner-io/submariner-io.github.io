@@ -168,34 +168,6 @@
   </url>
   
   <url>
-    <loc>/quickstart/openshift/create_clusters/</loc>
-  </url>
-  
-  <url>
-    <loc>/quickstart/openshift/download_prep_for_subm/</loc>
-  </url>
-  
-  <url>
-    <loc>/quickstart/openshift/run_prep_for_subm/</loc>
-  </url>
-  
-  <url>
-    <loc>/quickstart/openshift/setup_aws/</loc>
-  </url>
-  
-  <url>
-    <loc>/quickstart/openshift/setup_openshift/</loc>
-  </url>
-  
-  <url>
-    <loc>/quickstart/rancher/create_clusters/</loc>
-  </url>
-  
-  <url>
-    <loc>/quickstart/rancher/prerequisites/</loc>
-  </url>
-  
-  <url>
     <loc>/quickstart/verify_with_discovery/</loc>
   </url>
   

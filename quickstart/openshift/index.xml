@@ -11,55 +11,5 @@
 	<atom:link href="/quickstart/openshift/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title></title>
-      <link>/quickstart/openshift/create_clusters/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/quickstart/openshift/create_clusters/</guid>
-      <description>Create and Deploy cluster-a In this step you will deploy cluster-a using the default IP CIDR ranges:
-   Pod CIDR Service CIDR     10.128.0.0/14 172.30.0.0/16    openshift-install create install-config --dir cluster-a openshift-install create cluster --dir cluster-a When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the kubeadmin user, display in your terminal.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/quickstart/openshift/download_prep_for_subm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/quickstart/openshift/download_prep_for_subm/</guid>
-      <description>Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. Submariner also uses UDP port 4800 to encapsulate traffic from the worker nodes to the gateway nodes. Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connection.
-prep_for_subm is a script designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments, handling the requirements specified above.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/quickstart/openshift/run_prep_for_subm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/quickstart/openshift/run_prep_for_subm/</guid>
-      <description>Run the prep_for_subm.sh script for cluster-a and cluster-b:  ./prep_for_subm.sh cluster-a # respond &amp;#34;yes&amp;#34; when Terraform asks for approval, or otherwise add the -auto-approve flag ./prep_for_subm.sh cluster-b # respond &amp;#34;yes&amp;#34; when Terraform asks for approval, or otherwise add the -auto-approve flag Note that certain parameters, such as the IPsec UDP ports and AWS instance type for the gateway, can be customized before running the script. For example:
-export IPSEC_NATT_PORT=4501 export IPSEC_IKE_PORT=501 export GW_INSTANCE_TYPE=m4.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/quickstart/openshift/setup_aws/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/quickstart/openshift/setup_aws/</guid>
-      <description>Setup Your AWS Profile Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region, and the default output format:
-$ aws configure AWS Access Key ID [None]: .... AWS Secret Access Key [None]: .... Default region name [None]: .... Default output format [None]: text </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/quickstart/openshift/setup_openshift/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/quickstart/openshift/setup_openshift/</guid>
-      <description>Prerequisites Before we begin, the following tools need to be downloaded and added to your $PATH:
- OpenShift installer, pull secret, and command line interface. All can be downloaded from here. AWS CLI which can be downloaded from here.  </description>
-    </item>
-    
   </channel>
 </rss>

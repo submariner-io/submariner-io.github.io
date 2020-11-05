@@ -238,55 +238,6 @@
 	"content": "Submariner Submariner enables direct networking between Pods and Services in different Kubernetes clusters, either on-premises or in the cloud.\nWhy Submariner As Kubernetes gains adoption, teams are finding they must deploy and manage multiple clusters to facilitate features like geo-redundancy, scale, and fault isolation for their applications. With Submariner, your applications and services can span multiple cloud providers, data centers, and regions.\nSubmariner is completely open source, and designed to be network plugin (CNI) agnostic.\nWhat Submariner Provides  Cross-cluster L3 connectivity using encrypted VPN tunnels Service Discovery across clusters subctl, a friendly deployment tool Support for interconnecting clusters with overlapping CIDRs  Check the Quickstart guide section for deployment instructions.\n "
 },
 {
-	"uri": "/quickstart/openshift/create_clusters/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": "Create and Deploy cluster-a In this step you will deploy cluster-a using the default IP CIDR ranges:\n   Pod CIDR Service CIDR     10.128.0.0/14 172.30.0.0/16    openshift-install create install-config --dir cluster-a openshift-install create cluster --dir cluster-a When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the kubeadmin user, display in your terminal.\nCreate and Deploy cluster-b In this step you will deploy cluster-b, modifying the default IP CIDRs to avoid IP address conflicts with cluster-a. You can change the IP addresses block and prefix based on your requirements. For more information on IPv4 CIDR conversion, please check this page.\nIn this example, we will use the following IP ranges:\n   Pod CIDR Service CIDR     10.132.0.0/14 172.31.0.0/16    openshift-install create install-config --dir cluster-b Change the Pod network CIDR from 10.128.0.0/14 to 10.132.0.0/14:\nsed -i \u0026#39;s/10.128.0.0/10.132.0.0/g\u0026#39; cluster-b/install-config.yaml Change the Service network CIDR from 172.30.0.0/16 to 172.31.0.0/16:\nsed -i \u0026#39;s/172.30.0.0/172.31.0.0/g\u0026#39; cluster-b/install-config.yaml And finally deploy the cluster:\nopenshift-install create cluster --dir cluster-b When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the kubeadmin user, display in your terminal.\n"
-},
-{
-	"uri": "/quickstart/openshift/download_prep_for_subm/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": "Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. Submariner also uses UDP port 4800 to encapsulate traffic from the worker nodes to the gateway nodes. Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connection.\nprep_for_subm is a script designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments, handling the requirements specified above.\n Download the prep_for_subm.sh script and set permissions:  curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O chmod a+x ./prep_for_subm.sh "
-},
-{
-	"uri": "/quickstart/openshift/run_prep_for_subm/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": " Run the prep_for_subm.sh script for cluster-a and cluster-b:  ./prep_for_subm.sh cluster-a # respond \u0026#34;yes\u0026#34; when Terraform asks for approval, or otherwise add the -auto-approve flag ./prep_for_subm.sh cluster-b # respond \u0026#34;yes\u0026#34; when Terraform asks for approval, or otherwise add the -auto-approve flag Note that certain parameters, such as the IPsec UDP ports and AWS instance type for the gateway, can be customized before running the script. For example:\nexport IPSEC_NATT_PORT=4501 export IPSEC_IKE_PORT=501 export GW_INSTANCE_TYPE=m4.xlarge "
-},
-{
-	"uri": "/quickstart/openshift/setup_aws/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": "Setup Your AWS Profile Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region, and the default output format:\n$ aws configure AWS Access Key ID [None]: .... AWS Secret Access Key [None]: .... Default region name [None]: .... Default output format [None]: text "
-},
-{
-	"uri": "/quickstart/openshift/setup_openshift/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": "Prerequisites Before we begin, the following tools need to be downloaded and added to your $PATH:\n OpenShift installer, pull secret, and command line interface. All can be downloaded from here. AWS CLI which can be downloaded from here.  "
-},
-{
-	"uri": "/quickstart/rancher/create_clusters/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": "Create and Deploy Cluster A In this step you will deploy cluster A, with the default IP CIDRs\n   Pod CIDR Service CIDR     10.42.0.0/16 10.43.0.0/16    Use the Rancher UI to create a cluster, leaving the default options selected.\nMake sure you create at least one node that has a publicly accessible IP with the label submariner.io/gateway: \u0026quot;true\u0026quot;, either via node pool or via a custom node registration command.\nCreate and Deploy Cluster B In this step you will deploy cluster B, modifying the default IP CIDRs\n   Pod CIDR Service CIDR     10.44.0.0/16 10.45.0.0/16    Create your cluster, but select Edit as YAML in the cluster creation UI. Edit the services stanza to reflect the options below, while making sure to keep the options that were already defined.\nservices: kube-api: service_cluster_ip_range: 10.45.0.0/16 kube-controller: cluster_cidr: 10.44.0.0/16 service_cluster_ip_range: 10.45.0.0/16 kubelet: cluster_domain: cluster.local cluster_dns_server: 10.45.0.10 Make sure you create at least one node that has a publicly accessible IP with the label submariner.io/gateway: \u0026quot;true\u0026quot;, either via node pool or via a custom node registration command.\nOnce you have done this, you can deploy your cluster.\n"
-},
-{
-	"uri": "/quickstart/rancher/prerequisites/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": "Prerequisites These instructions were developed with Rancher v2.4.x\nMake sure you are familiar with Rancher, and creating clusters. You can create either node driver clusters or Custom clusters, as long as your designated gateway nodes can communicate with each other.\n"
-},
-{
 	"uri": "/quickstart/verify_with_discovery/",
 	"title": "",
 	"tags": [],
