@@ -12,20 +12,20 @@
     <title>Service Discovery :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1604928712" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1604928712" rel="stylesheet">
-    <link href="/css/hybrid.css?1604928712" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1604928712" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1604928712" rel="stylesheet">
-    <link href="/css/auto-complete.css?1604928712" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1604928712" rel="stylesheet">
-    <link href="/css/theme.css?1604928712" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1604928712" rel="stylesheet">
+    <link href="/css/nucleus.css?1604928872" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1604928872" rel="stylesheet">
+    <link href="/css/hybrid.css?1604928872" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1604928872" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1604928872" rel="stylesheet">
+    <link href="/css/auto-complete.css?1604928872" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1604928872" rel="stylesheet">
+    <link href="/css/theme.css?1604928872" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1604928872" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1604928712" rel="stylesheet">
+      <link href="/css/theme-blue.css?1604928872" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1604928712"></script>
+    <script src="/js/jquery-3.3.1.min.js?1604928872"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1604928712"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1604928712"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1604928872"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1604928872"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1604928712"></script>
+<script type="text/javascript" src="/js/search.js?1604928872"></script>
 
     
   </div>
@@ -1240,19 +1240,20 @@
 
 
 	<p>The Lighthouse project provides DNS discovery for Kubernetes clusters connected by
-<a href="https://github.com/submariner-io/submariner">Submariner</a> in multi-cluster environments.</p>
+<a href="https://github.com/submariner-io/submariner">Submariner</a> in multi-cluster environments. Lighthouse implements the Kubernetes
+<a href="https://github.com/kubernetes-sigs/mcs-api">Multi-Cluster Service APIs</a>.</p>
 <h2 id="architecture">Architecture</h2>
-<p>The below diagram shows the basic Lighthouse architecture.</p>
+<p>The below diagram shows the basic Lighthouse architecture:</p>
 <p><img src="/images/lighthouse/architecture.png" alt="Lighthouse Architecture"></p>
 <h3 id="lighthouse-agent">Lighthouse Agent</h3>
 <p>The Lighthouse Agent runs in every cluster and accesses the Kubernetes API server running in
-the Broker cluster to exchange service metadata information with other clusters. Local service
-information is exported to the Broker and service information from other clusters is imported.</p>
+the Broker cluster to exchange service metadata information with other clusters. Local Service
+information is exported to the Broker and Service information from other clusters is imported.</p>
 <h4 id="agent-workflow">Agent Workflow</h4>
 <p>The workflow is as follows:</p>
 <ul>
-<li>Lighthouse agent connects to the Broker&rsquo;s Kubernetes API server.</li>
-<li>For every Service in the local cluster for which a ServiceExport has been created, the agent creates a corresponding
+<li>Lighthouse Agent connects to the Broker&rsquo;s Kubernetes API server.</li>
+<li>For every Service in the local cluster for which a ServiceExport has been created, the Agent creates a corresponding
 ServiceImport resource and exports it to the Broker to be consumed by other clusters.</li>
 <li>For every ServiceImport resource in the Broker exported from another cluster,
 it creates a copy of it in the local cluster.</li>
@@ -1260,15 +1261,19 @@ it creates a copy of it in the local cluster.</li>
 <p><img src="/images/lighthouse/controllerWorkFlow.png" alt="Lighthouse Agent WorkFlow"></p>
 <!-- Image Source: /images/lighthouse/source/controllerWorkFlow.vsdx  -->
 <h3 id="lighthouse-dns-server">Lighthouse DNS Server</h3>
-<p>The Lighthouse DNS server runs as an external DNS server which owns the domain clusterset.local.
-KubeDNS is configured to forward any request sent to clusterset.local to the Lighthouse DNS server,
-which uses the ServiceImport resources that are distributed by the controller for DNS resolution. The
-Lighthouse DNS server uses a round robin algorithm for IP selection to distribute the load evenly across the clusters.</p>
+<p>The Lighthouse DNS server runs as an external DNS server which owns the domain <code>clusterset.local</code>.
+CoreDNS is configured to forward any request sent to <code>clusterset.local</code> to the Lighthouse DNS server,
+which uses the ServiceImport resources that are distributed by the controller for DNS resolution.</p>
+
+<div class="notices note" ><p>When a single Service is deployed to multiple clusters, Lighthouse DNS server prefers the local cluster first before routing the traffic to
+other remote clusters in a round-robin fashion.</p>
+</div>
+
 <h4 id="server-workflow">Server Workflow</h4>
-<p>The workflow is as follows.</p>
+<p>The workflow is as follows:</p>
 <ul>
-<li>A Pod tries to resolve a Service name using the domain name clusterset.local</li>
-<li>KubeDNS forwards the request to the Lighthouse DNS server.</li>
+<li>A Pod tries to resolve a Service name using the domain name <code>clusterset.local</code>.</li>
+<li>CoreDNS forwards the request to the Lighthouse DNS server.</li>
 <li>The Lighthouse DNS server will use its ServiceImport cache to try to resolve the request.</li>
 <li>If a record exists it will be returned, else an NXDomain error will be returned.</li>
 </ul>
@@ -1898,19 +1903,19 @@ Lighthouse DNS server uses a round robin algorithm for IP selection to distribut
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1604928712"></script>
-    <script src="/js/perfect-scrollbar.min.js?1604928712"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1604928712"></script>
-    <script src="/js/jquery.sticky.js?1604928712"></script>
-    <script src="/js/featherlight.min.js?1604928712"></script>
-    <script src="/js/highlight.pack.js?1604928712"></script>
+    <script src="/js/clipboard.min.js?1604928872"></script>
+    <script src="/js/perfect-scrollbar.min.js?1604928872"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1604928872"></script>
+    <script src="/js/jquery.sticky.js?1604928872"></script>
+    <script src="/js/featherlight.min.js?1604928872"></script>
+    <script src="/js/highlight.pack.js?1604928872"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1604928712"></script>
-    <script src="/js/learn.js?1604928712"></script>
-    <script src="/js/hugo-learn.js?1604928712"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1604928872"></script>
+    <script src="/js/learn.js?1604928872"></script>
+    <script src="/js/hugo-learn.js?1604928872"></script>
 
-    <link href="/mermaid/mermaid.css?1604928712" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1604928712"></script>
+    <link href="/mermaid/mermaid.css?1604928872" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1604928872"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
