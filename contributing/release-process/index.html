@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1605019974" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1605019974" rel="stylesheet">
-    <link href="/css/hybrid.css?1605019974" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1605019974" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1605019974" rel="stylesheet">
-    <link href="/css/auto-complete.css?1605019974" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1605019974" rel="stylesheet">
-    <link href="/css/theme.css?1605019974" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1605019974" rel="stylesheet">
+    <link href="/css/nucleus.css?1605028237" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1605028237" rel="stylesheet">
+    <link href="/css/hybrid.css?1605028237" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1605028237" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1605028237" rel="stylesheet">
+    <link href="/css/auto-complete.css?1605028237" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1605028237" rel="stylesheet">
+    <link href="/css/theme.css?1605028237" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1605028237" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1605019974" rel="stylesheet">
+      <link href="/css/theme-blue.css?1605028237" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1605019974"></script>
+    <script src="/js/jquery-3.3.1.min.js?1605028237"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1605019974"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1605019974"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1605028237"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1605028237"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1605019974"></script>
+<script type="text/javascript" src="/js/search.js?1605028237"></script>
 
     
   </div>
@@ -1477,20 +1477,13 @@ These are shared with the Kubernetes community via <a href="https://operatorhub.
 <p>Clone the <a href="https://github.com/submariner-io/submariner-operator">submariner-operator</a> project</p>
 </li>
 <li>
-<p>Make sure you have the operator-sdk v0-18-x installed on your machine
-otherwise follow <a href="https://v0-18-x.sdk.operatorframework.io/docs/install-operator-sdk/">this guide</a></p>
+<p>Make sure you have operator-sdk v1 installed on your machine
+otherwise follow <a href="https://v1-0-x.sdk.operatorframework.io/docs/installation/install-operator-sdk/">this guide</a></p>
 </li>
 <li>
-<p>Generate a new CSV file by running the command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">operator-sdk generate csv <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span> --csv-version<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>OPERATOR_VERSION<span style="color:#e6db74">}</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span> --csv-channel<span style="color:#f92672">=</span>alpha <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span> --default-channel<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span> --operator-name<span style="color:#f92672">=</span>submariner <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span> --update-crds <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span> --make-manifests<span style="color:#f92672">=</span>false <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span> --interactive<span style="color:#f92672">=</span>false
-</code></pre></div><p>the generated package output should be located in <code>deploy/olm-catalog/submariner</code></p>
+<p>Generate new package manifests by running the command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make packagemanifests VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>new_version<span style="color:#e6db74">}</span> FROM_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>previous_version<span style="color:#e6db74">}</span> CHANNEL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>channel<span style="color:#e6db74">}</span>
+</code></pre></div><p>the generated package output should be located in <code>/packagemanifests/${VERSION}/</code></p>
 </li>
 <li>
 <p>Fork and clone <a href="https://github.com/operator-framework/community-operators">community-operators</a> project.</p>
@@ -1499,8 +1492,8 @@ otherwise follow <a href="https://v0-18-x.sdk.operatorframework.io/docs/install-
 <p>Update the Kubernetes Operator:</p>
 <ul>
 <li>copy the generated package from step 3 into <code>upstream-community-operators/submariner</code></li>
-<li>compare the new CSV file with the previous one and update the missing fields (e.g spec.description)</li>
-<li>update the version in <code>upstream-community-operators/submariner/submariner.package.yaml</code></li>
+<li>copy the generated package definition <code>/packagemanifests/submariner.package.yaml</code>
+into <code>upstream-community-operators/submariner/</code></li>
 <li>test the Operator by running the command: <code>make operator.test OP_PATH=upstream-community-operators/submariner</code></li>
 <li>preview the Operator on <a href="https://operatorhub.io/preview">OperatorHub.io</a></li>
 <li>once everything is fine, review this
@@ -2149,19 +2142,19 @@ and create a new PR on <a href="https://github.com/operator-framework/community-
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1605019974"></script>
-    <script src="/js/perfect-scrollbar.min.js?1605019974"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1605019974"></script>
-    <script src="/js/jquery.sticky.js?1605019974"></script>
-    <script src="/js/featherlight.min.js?1605019974"></script>
-    <script src="/js/highlight.pack.js?1605019974"></script>
+    <script src="/js/clipboard.min.js?1605028237"></script>
+    <script src="/js/perfect-scrollbar.min.js?1605028237"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1605028237"></script>
+    <script src="/js/jquery.sticky.js?1605028237"></script>
+    <script src="/js/featherlight.min.js?1605028237"></script>
+    <script src="/js/highlight.pack.js?1605028237"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1605019974"></script>
-    <script src="/js/learn.js?1605019974"></script>
-    <script src="/js/hugo-learn.js?1605019974"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1605028237"></script>
+    <script src="/js/learn.js?1605028237"></script>
+    <script src="/js/hugo-learn.js?1605028237"></script>
 
-    <link href="/mermaid/mermaid.css?1605019974" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1605019974"></script>
+    <link href="/mermaid/mermaid.css?1605028237" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1605028237"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
