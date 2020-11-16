@@ -12,20 +12,20 @@
     <title>kind (Local Environment) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1605532158" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1605532158" rel="stylesheet">
-    <link href="/css/hybrid.css?1605532158" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1605532158" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1605532158" rel="stylesheet">
-    <link href="/css/auto-complete.css?1605532158" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1605532158" rel="stylesheet">
-    <link href="/css/theme.css?1605532158" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1605532158" rel="stylesheet">
+    <link href="/css/nucleus.css?1605538754" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1605538754" rel="stylesheet">
+    <link href="/css/hybrid.css?1605538754" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1605538754" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1605538754" rel="stylesheet">
+    <link href="/css/auto-complete.css?1605538754" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1605538754" rel="stylesheet">
+    <link href="/css/theme.css?1605538754" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1605538754" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1605532158" rel="stylesheet">
+      <link href="/css/theme-blue.css?1605538754" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1605532158"></script>
+    <script src="/js/jquery-3.3.1.min.js?1605538754"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1605532158"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1605532158"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1605538754"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1605538754"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1605532158"></script>
+<script type="text/javascript" src="/js/search.js?1605538754"></script>
 
     
   </div>
@@ -1273,8 +1273,7 @@
 	<h2 id="deploy-kind-with-submariner-locally">Deploy kind with Submariner Locally</h2>
 <p><a href="https://github.com/kubernetes-sigs/kind">kind</a> is a tool for running local Kubernetes clusters using Docker container nodes. This guide
 uses kind to demonstrate deployment and operation of Submariner in three Kubernetes clusters running locally on your computer.</p>
-<p>Leveraging kind, Submariner provides scripts that deploy three Kubernetes clusters locally - one Broker and two data clusters - with the
-required Submariner components installed on all clusters.</p>
+<p>Submariner provides automation to deploy clusters using kind and connect them using Submariner.</p>
 <h3 id="prerequisites">Prerequisites</h3>
 <ol>
 <li>Install <a href="https://docs.docker.com/get-docker/">Docker</a> and ensure it is running properly on your computer.</li>
@@ -1285,7 +1284,9 @@ required Submariner components installed on all clusters.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/submariner-io/submariner
 cd submariner
 make deploy
-</code></pre></div><h3 id="deploy-manually">Deploy Manually</h3>
+</code></pre></div><p>By default, the automation configuration in the main submariner-io/submariner repository deploys three clusters, with cluster1 configured as
+the Broker. See the <a href="https://github.com/submariner-io/submariner/blob/master/scripts/cluster_settings">cluster-settings</a> file for details.</p>
+<h3 id="deploy-manually">Deploy Manually</h3>
 <p>If you wish to try out Submariner deployment manually, an easy option is to create kind clusters using our scripts and deploy Submariner
 with <a href="../../deployment/subctl"><code>subctl</code></a>.</p>
 <h4 id="create-kind-clusters">Create kind Clusters</h4>
@@ -1995,19 +1996,19 @@ curl nginx.default.svc.clusterset.local
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1605532158"></script>
-    <script src="/js/perfect-scrollbar.min.js?1605532158"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1605532158"></script>
-    <script src="/js/jquery.sticky.js?1605532158"></script>
-    <script src="/js/featherlight.min.js?1605532158"></script>
-    <script src="/js/highlight.pack.js?1605532158"></script>
+    <script src="/js/clipboard.min.js?1605538754"></script>
+    <script src="/js/perfect-scrollbar.min.js?1605538754"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1605538754"></script>
+    <script src="/js/jquery.sticky.js?1605538754"></script>
+    <script src="/js/featherlight.min.js?1605538754"></script>
+    <script src="/js/highlight.pack.js?1605538754"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1605532158"></script>
-    <script src="/js/learn.js?1605532158"></script>
-    <script src="/js/hugo-learn.js?1605532158"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1605538754"></script>
+    <script src="/js/learn.js?1605538754"></script>
+    <script src="/js/hugo-learn.js?1605538754"></script>
 
-    <link href="/mermaid/mermaid.css?1605532158" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1605532158"></script>
+    <link href="/mermaid/mermaid.css?1605538754" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1605538754"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
