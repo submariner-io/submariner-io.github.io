@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: Submariner k8s project documentation website</title>
+    <title>Google Kubernetes Engine (GKE) :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1605524264" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/quickstart/verify_with_discovery/">
+  <body class="" data-url="/quickstart/gke/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -141,8 +141,8 @@
   
     
     <li data-nav-id="/quickstart/gke/" title="Google Kubernetes Engine (GKE)" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/quickstart/gke/">
@@ -292,7 +292,7 @@
  
   
     
-      <li data-nav-id="/quickstart/verify_with_discovery/" title="" class="dd-item active">
+      <li data-nav-id="/quickstart/verify_with_discovery/" title="" class="dd-item ">
         <a href="/quickstart/verify_with_discovery/">
         
         <i class="fas fa-check read-icon"></i>
@@ -1189,7 +1189,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/verify_with_discovery.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/quickstart/gke/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1220,7 +1220,7 @@
             
           
           
-            <a href='/'></a> > <a href='/quickstart/'>Quickstart Guide</a> > 
+            <a href='/'></a> > <a href='/quickstart/'>Quickstart Guide</a> > Google Kubernetes Engine (GKE)
           
          
           
@@ -1235,9 +1235,16 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#cluster-creation">Cluster Creation</a></li>
+    <li><a href="#prepare-clusters-for-submariner">Prepare Clusters for Submariner</a>
       <ul>
-        <li></li>
+        <li><a href="#preparation-node-configuration">Preparation: Node Configuration</a></li>
+        <li><a href="#preparation-firewall-configuration">Preparation: Firewall Configuration</a></li>
+      </ul>
+    </li>
+    <li><a href="#deploy-submariner">Deploy Submariner</a>
+      <ul>
+        <li><a href="#final-workaround-for-kubedns">Final Workaround for KubeDNS</a></li>
       </ul>
     </li>
   </ul>
@@ -1257,11 +1264,189 @@
           
             <h1>
               
-              
+              Google Kubernetes Engine (GKE)
             </h1>
           
 
         
+
+
+
+
+	<p>This quickstart guide covers the necessary steps to deploy two Google Kubernetes Engine (GKE) clusters on Google Cloud Platform (GCP) using
+<code>gcloud</code>. The clusters are named <strong>cluster-a</strong> and <strong>cluster-b</strong>.</p>
+<p>Once the GKE clusters are deployed, we deploy Submariner with Service Discovery to interconnect the two clusters.
+Note that this guide focuses on Submariner deployment on clusters with non-overlapping Pod and Service CIDRs.</p>
+
+<div class="notices info" ><p>The guide assumes that you have a working GCP account and the <code>gcloud</code> binary installed and configured.
+To get the binary, please visit <a href="https://cloud.google.com/sdk/docs/install">Google&rsquo;s website</a>.</p>
+</div>
+
+<h2 id="cluster-creation">Cluster Creation</h2>
+<p>Create two identical Kubernetes clusters on GKE.
+For this guide, the following minimal configuration was used, however not everything is required (see the note part below).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters create <span style="color:#e6db74">&#34;cluster-a&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --zone <span style="color:#e6db74">&#34;europe-west3-a&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --cluster-ipv4-cidr <span style="color:#e6db74">&#34;10.0.0.0/14&#34;</span>
+    --services-ipv4-cidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10.3.240.0/20&#34;</span>
+    --cluster-version <span style="color:#e6db74">&#34;1.17.13-gke.1400&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --username <span style="color:#e6db74">&#34;admin&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --machine-type <span style="color:#e6db74">&#34;g1-small&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --image-type <span style="color:#e6db74">&#34;UBUNTU&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --disk-type <span style="color:#e6db74">&#34;pd-ssd&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --disk-size <span style="color:#e6db74">&#34;15&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --num-nodes <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --network <span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#ae81ff">\
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters create <span style="color:#e6db74">&#34;cluster-b&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --zone <span style="color:#e6db74">&#34;europe-west3-a&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --cluster-ipv4-cidr <span style="color:#e6db74">&#34;10.4.0.0/14&#34;</span>
+    --services-ipv4-cidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10.7.240.0/20&#34;</span>
+    --cluster-version <span style="color:#e6db74">&#34;1.17.13-gke.1400&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --username <span style="color:#e6db74">&#34;admin&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --machine-type <span style="color:#e6db74">&#34;g1-small&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --image-type <span style="color:#e6db74">&#34;UBUNTU&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --disk-type <span style="color:#e6db74">&#34;pd-ssd&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --disk-size <span style="color:#e6db74">&#34;15&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --num-nodes <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --network <span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#ae81ff">\
+</span></code></pre></div>
+<div class="notices note" ><p>Make sure to use Kubernetes version 1.17 or higher, set by <code>--cluster-version</code>
+(refer to the <a href="https://cloud.google.com/kubernetes-engine/docs/release-notes">GKE docs/ release notes</a>).
+Also double check for non-overlapping Pod and Service CIDRs between clusters using the commands below:</p>
+</div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters describe <span style="color:#e6db74">&#34;cluster-a&#34;</span> --zone <span style="color:#e6db74">&#34;europe-west3-a&#34;</span> | grep -e clusterIpv4Cidr -e servicesIpv4Cidr
+gcloud container clusters describe <span style="color:#e6db74">&#34;cluster-b&#34;</span> --zone <span style="color:#e6db74">&#34;europe-west3-a&#34;</span> | grep -e clusterIpv4Cidr -e servicesIpv4Cidr
+</code></pre></div><h2 id="prepare-clusters-for-submariner">Prepare Clusters for Submariner</h2>
+<p>Next, the created clusters need some changes in order for Submariner to successfully open the IPSEC tunnel between them.</p>
+<h3 id="preparation-node-configuration">Preparation: Node Configuration</h3>
+<p>As of version 0.7 of Submariner (the current one while writing this), Google&rsquo;s native CNI plugin is not directly supported.
+GKE clusters can be generated with Calico CNI instead, but this was not tested during this demo and therefore could hold surprises as well.</p>
+<p>So as this guide uses Google&rsquo;s native CNI plugin, configuration is needed for the <code>eth0</code> interface of each node on every cluster.
+The used workaround deploys <code>netshoot</code> pods onto each node that configure the reverse path filtering.
+The scripts in <a href="https://github.com/sridhargaddam/k8sscripts/tree/main/rp_filter_settings">this</a> Github repository need to be executed
+in all clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://raw.githubusercontent.com/sridhargaddam/k8sscripts/main/rp_filter_settings/update-rp-filter.sh
+wget https://raw.githubusercontent.com/sridhargaddam/k8sscripts/main/rp_filter_settings/configure-rp-filter.sh
+chmod +x update-rp-filter.sh
+chmod +x configure-rp-filter.sh
+echo KUBECONTEXT<span style="color:#f92672">=</span>cluster-a
+./configure-rp-filter.sh
+echo KUBECONTEXT<span style="color:#f92672">=</span>cluster-b
+./configure-rp-filter.sh
+</code></pre></div><h3 id="preparation-firewall-configuration">Preparation: Firewall Configuration</h3>
+<p>Submariner requires UDP ports 500, 4500 and 4800 to be open in both directions.
+Additionally the microservices&rsquo; traffic needs to flow through the IPsec tunnel as TCP packets.
+Hence the TCP traffic has source and destination addresses originating in the participating clusters.
+Create those firewall rules on the GCP project.</p>
+
+<div class="notices note" ><p>Use the commands above to retrieve the <code>clusterIpv4Cidr</code> and <code>servicesIpv4Cidr</code> for both clusters.
+If you copied the above code, you can just copy&amp;paste the values below for the <code>--source-ranges</code> and <code>--destination-ranges</code>.</p>
+</div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud compute firewall-rules create <span style="color:#e6db74">&#34;allow-tcp-in&#34;</span> --allow<span style="color:#f92672">=</span>tcp <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --direction<span style="color:#f92672">=</span>IN --source-ranges<span style="color:#f92672">=</span>10.7.240.0/20,10.4.0.0/14,10.3.240.0/20,10.0.0.0/14
+
+gcloud compute firewall-rules create <span style="color:#e6db74">&#34;allow-tcp-out&#34;</span> --allow<span style="color:#f92672">=</span>tcp --direction<span style="color:#f92672">=</span>OUT <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --destination-ranges<span style="color:#f92672">=</span>10.7.240.0/20,10.4.0.0/14,10.3.240.0/20,10.0.0.0/14
+
+gcloud compute firewall-rules create <span style="color:#e6db74">&#34;udp-in-500&#34;</span> --allow<span style="color:#f92672">=</span>udp:500 --direction<span style="color:#f92672">=</span>IN
+gcloud compute firewall-rules create <span style="color:#e6db74">&#34;udp-in-4500&#34;</span> --allow<span style="color:#f92672">=</span>udp:4500 --direction<span style="color:#f92672">=</span>IN
+gcloud compute firewall-rules create <span style="color:#e6db74">&#34;udp-in-4800&#34;</span> --allow<span style="color:#f92672">=</span>udp:4800 --direction<span style="color:#f92672">=</span>IN
+
+gcloud compute firewall-rules create <span style="color:#e6db74">&#34;udp-out-500&#34;</span> --allow<span style="color:#f92672">=</span>udp:500 --direction<span style="color:#f92672">=</span>OUT
+gcloud compute firewall-rules create <span style="color:#e6db74">&#34;udp-out-4500&#34;</span> --allow<span style="color:#f92672">=</span>udp:4500 --direction<span style="color:#f92672">=</span>OUT
+gcloud compute firewall-rules create <span style="color:#e6db74">&#34;udp-out-4800&#34;</span> --allow<span style="color:#f92672">=</span>udp:4800 --direction<span style="color:#f92672">=</span>OUT
+</code></pre></div><p>After this, the clusters are finally ready for Submariner!</p>
+<h2 id="deploy-submariner">Deploy Submariner</h2>
+Download the subctl binary and make it available on your PATH.
+
+<div class="highlight">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<code class="language-bash" data-lang="bash">
+curl -Ls https://get.submariner.io | bash
+export PATH=$PATH:~/.local/bin
+echo export PATH=\$PATH:~/.local/bin >> ~/.profile
+</code>
+</pre>
+</div>
+
+<p>We will deploy the <a href="https://submariner.io/architecture/broker/">Broker</a> on <strong>cluster-a</strong>.
+The command will output a file named <code>broker-info.subm</code> to the directory it is run from, which will be used to setup the
+IPsec tunnel between clusters.</p>
+<p>The Broker cluster&rsquo;s API must be accessible by all the participating clusters, which is given by GKE standard configuration.</p>
+<p>Kubecontext and the kubeconfig file can be specified (it defaults to ~/.kube/config):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubecontext cluster-a --kubeconfig &lt;path/to/config&gt;
+</code></pre></div><p>Verify the Broker components are installed using <code>kubectl</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get crds --context cluster-a | grep -i submariner
+  &gt; clusters.submariner.io
+    endpoints.submariner.io
+    gateways.submariner.io
+    multiclusterservices.lighthouse.submariner.io
+    servicediscoveries.submariner.io
+    serviceexports.lighthouse.submariner.io
+    serviceimports.lighthouse.submariner.io
+    submariners.submariner.io
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get ns --context cluster-a | grep -i submariner
+  &gt; submariner-k8s-broker
+</code></pre></div><p>Now it is time to register every cluster in the future clusterset to the Broker.</p>
+<p>First join the Broker cluster itself (the Broker could also be deployed on a cluster that does not run workloads,
+hence installing the Broker does not automatically add the cluster). The command tags the cluster for Submariner with the ID <code>cluster-a</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext cluster-a --kubeconfig &lt;path/to/config&gt; broker-info.subm --clusterid cluster-a
+</code></pre></div><p>Submariner will figure out most information needed on its own. In addition, you will see a dialogue on the terminal that asks you to</p>
+<ul>
+<li>decide which of the three nodes shall be the Gateway. This node gets annotated with <code>submariner.io/gateway: true</code> automatically.</li>
+<li>input the cluster&rsquo;s Pod and Service CIDR, if it could not be detected.</li>
+</ul>
+<p>When a cluster is joined, the Submariner Operator is installed. It creates several components in the <code>submariner-operator</code> namespace:</p>
+<ul>
+<li>a <code>submariner-gateway</code> DaemonSet, to open a gateway for the IPsec tunnel on one node</li>
+<li>a <code>submariner-routeagent</code> DaemonSet, which runs on every worker node in order to route the internal traffic to the local gateway
+via VXLAN tunnels</li>
+<li>a <code>submariner-lighthouse-agent</code> Deployment, which accesses the Kubernetes API server in the Broker cluster to exchange Service
+information with the Broker</li>
+<li>a <code>submariner-lighthouse-coredns</code> Deployment, which - as an external DNS server - gets forwarded requests to the
+<code>*.clusterset.local</code> domain for cross-cluster communication by Kubernetes&rsquo; internal DNS server</li>
+</ul>
+<p>Check the DaemonSets and Deployments with the following command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --context cluster-a get ds,deploy -n submariner-operator
+</code></pre></div><p>Repeat with the second cluster:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext cluster-b --kubeconfig &lt;path/to/config&gt; broker-info.subm --clusterid cluster-b
+</code></pre></div><p>Then verify connectivity and CIDR settings within the clusterset using:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl show all
+</code></pre></div><p>You should see similar output to this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLUSTER ID    ENDPOINT IP    PUBLIC IP    CABLE DRIVER    TYPE
+cluster-a     10.156.0.46     35.x.x.x    strongswan      local
+cluster-b     10.156.0.42     35.x.x.x    strongswan      remote
+
+GATEWAY    CLUSTER     REMOTE IP      CABLE DRIVER    SUBNETS                       STATUS
+gke-*-*    cluster-a   10.156.0.42    strongswan      10.3.240.0/20, 10.0.0.0/14    connected
+
+NODE       HA STATUS     SUMMARY
+gke-*-*    active        All connections <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> are established
+</code></pre></div><h3 id="final-workaround-for-kubedns">Final Workaround for KubeDNS</h3>
+<p>GKE uses KubeDNS by default for cluster-internal DNS queries. Submariner however only works with CoreDNS as of version 0.7. As a
+consequence, the <code>*.clusterset.local</code> domain stub needs to be added manually to KubeDNS.
+Query the ClusterIP of the <code>submariner-lighthouse-coredns</code> Service in <strong>cluster-a</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLUSTER_IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl --context cluster-a get svc submariner-lighthouse-coredns -n submariner-operator <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -o<span style="color:#f92672">=</span>custom-columns<span style="color:#f92672">=</span>ClusterIP:.spec.clusterIP | tail -n +2<span style="color:#66d9ef">)</span>
+</code></pre></div><p>Use the information to apply the following ConfigMap, automatically replacing $CLUSTER_IP with the ClusterIP obtained for
+the <code>submariner-lighthouse-coredns</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt;EOF | kubectl --context cluster-a apply -f -
+</span><span style="color:#e6db74">apiVersion: v1
+</span><span style="color:#e6db74">kind: ConfigMap
+</span><span style="color:#e6db74">data:
+</span><span style="color:#e6db74">  stubDomains: |
+</span><span style="color:#e6db74">    {&#34;clusterset.local&#34;:[&#34;$CLUSTER_IP&#34;]}
+</span><span style="color:#e6db74">metadata:
+</span><span style="color:#e6db74">  labels:
+</span><span style="color:#e6db74">    addonmanager.kubernetes.io/mode: EnsureExists
+</span><span style="color:#e6db74">  name: kube-dns
+</span><span style="color:#e6db74">  namespace: kube-system
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div>
+<div class="notices note" ><p>Repeat both commands, the <code>CLUSTER_IP</code> discovery and the <code>kubectl apply</code>, this time using <code>--context cluster-b</code>.</p>
+</div>
 
 
 
@@ -1340,7 +1525,13 @@ curl nginx-ss.default.svc.clusterset.local:8080
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig --only service-discovery,connectivity --verbose
 </code></pre></div>
 
-<footer class="footline">
+
+
+
+
+
+
+<footer class=" footline" >
 	
 </footer>
 
@@ -1410,6 +1601,60 @@ curl nginx-ss.default.svc.clusterset.local:8080
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                 
                 
 
@@ -1431,40 +1676,6 @@ curl nginx-ss.default.svc.clusterset.local:8080
 
                     
                     
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
                     
 
                     
@@ -1487,23 +1698,6 @@ curl nginx-ss.default.svc.clusterset.local:8080
             
         
                     
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -1511,9 +1705,6 @@ curl nginx-ss.default.svc.clusterset.local:8080
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1959,10 +2150,10 @@ curl nginx-ss.default.svc.clusterset.local:8080
 	 
 	 
 		
-			<a class="nav nav-prev" href="/quickstart/rancher/" title="Rancher 2.x"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/quickstart/kind/" title="kind (Local Environment)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/deployment/" title="Deployment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/quickstart/openshift/" title="OpenShift (AWS)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1992,4 +2183,3 @@ curl nginx-ss.default.svc.clusterset.local:8080
 
   </body>
 </html>
-
