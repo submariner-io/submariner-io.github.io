@@ -12,20 +12,20 @@
     <title>kind (Local Environment) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1605524264" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1605524264" rel="stylesheet">
-    <link href="/css/hybrid.css?1605524264" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1605524264" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1605524264" rel="stylesheet">
-    <link href="/css/auto-complete.css?1605524264" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1605524264" rel="stylesheet">
-    <link href="/css/theme.css?1605524264" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1605524264" rel="stylesheet">
+    <link href="/css/nucleus.css?1605532158" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1605532158" rel="stylesheet">
+    <link href="/css/hybrid.css?1605532158" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1605532158" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1605532158" rel="stylesheet">
+    <link href="/css/auto-complete.css?1605532158" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1605532158" rel="stylesheet">
+    <link href="/css/theme.css?1605532158" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1605532158" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1605524264" rel="stylesheet">
+      <link href="/css/theme-blue.css?1605532158" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1605524264"></script>
+    <script src="/js/jquery-3.3.1.min.js?1605532158"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1605524264"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1605524264"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1605532158"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1605532158"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1605524264"></script>
+<script type="text/javascript" src="/js/search.js?1605532158"></script>
 
     
   </div>
@@ -1235,11 +1235,13 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#deploy-kindsubmariner-locally">Deploy kind+Submariner Locally</a>
+    <li><a href="#deploy-kind-with-submariner-locally">Deploy kind with Submariner Locally</a>
       <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#deploy-automatically">Deploy Automatically</a></li>
         <li><a href="#deploy-manually">Deploy Manually</a></li>
         <li><a href="#verify-deployment">Verify Deployment</a></li>
+        <li><a href="#cleanup">Cleanup</a></li>
       </ul>
     </li>
   </ul>
@@ -1268,14 +1270,16 @@
 
 
 
-	<h2 id="deploy-kindsubmariner-locally">Deploy kind+Submariner Locally</h2>
-<p><a href="https://github.com/kubernetes-sigs/kind">kind</a> is a tool to run local Kubernetes clusters inside Docker container nodes.</p>
-<p>Submariner provides (via <a href="../../contributing/shipyard">Shipyard</a>) scripts that deploy 3 Kubernetes clusters locally - 1 Broker and 2 data
-clusters with the Submariner dataplane components deployed on all the clusters.</p>
-
-<div class="notices note" ><p>Docker must be installed and running on your computer.</p>
-</div>
-
+	<h2 id="deploy-kind-with-submariner-locally">Deploy kind with Submariner Locally</h2>
+<p><a href="https://github.com/kubernetes-sigs/kind">kind</a> is a tool for running local Kubernetes clusters using Docker container nodes. This guide
+uses kind to demonstrate deployment and operation of Submariner in three Kubernetes clusters running locally on your computer.</p>
+<p>Leveraging kind, Submariner provides scripts that deploy three Kubernetes clusters locally - one Broker and two data clusters - with the
+required Submariner components installed on all clusters.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<ol>
+<li>Install <a href="https://docs.docker.com/get-docker/">Docker</a> and ensure it is running properly on your computer.</li>
+<li>Install and set up <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a>.</li>
+</ol>
 <h3 id="deploy-automatically">Deploy Automatically</h3>
 <p>To create kind clusters and deploy Submariner, run:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/submariner-io/submariner
@@ -1289,7 +1293,27 @@ with <a href="../../deployment/subctl"><code>subctl</code></a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/submariner-io/submariner
 cd submariner
 make clusters
-</code></pre></div><p>This creates 3 Kubernetes clusters, cluster1, cluster2 and cluster3.</p>
+</code></pre></div><p>This creates three Kubernetes clusters: cluster1, cluster2 and cluster3. To see the list of kind clusters, use the following command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kind get clusters
+cluster1
+cluster2
+cluster3
+</code></pre></div><!-- markdownlint-disable no-trailing-spaces -->
+<p>To list the local Kubernetes contexts, use the following command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl config get-contexts
+CURRENT   NAME       CLUSTER    AUTHINFO   NAMESPACE
+          cluster1   cluster1   cluster1   
+          cluster2   cluster2   cluster2   
+*         cluster3   cluster3   cluster3
+</code></pre></div><!-- markdownlint-enable no-trailing-spaces -->
+<p>Since multiple clusters are running, you need to choose which cluster <code>kubectl</code> talks to. You can set a default cluster for <code>kubectl</code> by
+setting the current context in the Kubernetes kubeconfig file. Additionally, you can run the following command to set the current context
+for <code>kubectl</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl config use-context &lt;cluster name&gt;
+</code></pre></div>
+<div class="notices tip" ><p>For more information on interacting with kind, please refer to the <a href="https://kind.sigs.k8s.io/docs/user/quick-start/">kind documentation</a>.</p>
+</div>
+
 <h4 id="install-subctl">Install <code>subctl</code></h4>
 Download the subctl binary and make it available on your PATH.
 
@@ -1322,7 +1346,10 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
 subctl export service --kubeconfig output/kubeconfigs/kind-config-cluster3 --namespace default nginx
 </code></pre></div><h5 id="deploy-headless-service">Deploy Headless Service</h5>
-<p>Note that headless Services can only be exported on non-globalnet deployments.</p>
+
+<div class="notices note" ><p>Headless Services can only be exported on non-Globalnet deployments.</p>
+</div>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 create deployment nginx --image<span style="color:#f92672">=</span>nginx
 kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span> --cluster-ip<span style="color:#f92672">=</span>None
 subctl export service --kubeconfig output/kubeconfigs/kind-config-cluster3 --namespace default nginx
@@ -1331,6 +1358,9 @@ subctl export service --kubeconfig output/kubeconfigs/kind-config-cluster3 --nam
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
 curl nginx.default.svc.clusterset.local
+</code></pre></div><h3 id="cleanup">Cleanup</h3>
+<p>When you are done experimenting and you want to delete the clusters deployed in any of the previous steps, use the following command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make cleanup
 </code></pre></div>
 
 
@@ -1965,19 +1995,19 @@ curl nginx.default.svc.clusterset.local
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1605524264"></script>
-    <script src="/js/perfect-scrollbar.min.js?1605524264"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1605524264"></script>
-    <script src="/js/jquery.sticky.js?1605524264"></script>
-    <script src="/js/featherlight.min.js?1605524264"></script>
-    <script src="/js/highlight.pack.js?1605524264"></script>
+    <script src="/js/clipboard.min.js?1605532158"></script>
+    <script src="/js/perfect-scrollbar.min.js?1605532158"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1605532158"></script>
+    <script src="/js/jquery.sticky.js?1605532158"></script>
+    <script src="/js/featherlight.min.js?1605532158"></script>
+    <script src="/js/highlight.pack.js?1605532158"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1605524264"></script>
-    <script src="/js/learn.js?1605524264"></script>
-    <script src="/js/hugo-learn.js?1605524264"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1605532158"></script>
+    <script src="/js/learn.js?1605532158"></script>
+    <script src="/js/hugo-learn.js?1605532158"></script>
 
-    <link href="/mermaid/mermaid.css?1605524264" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1605524264"></script>
+    <link href="/mermaid/mermaid.css?1605532158" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1605532158"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
