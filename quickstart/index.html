@@ -12,20 +12,20 @@
     <title>Quickstart Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1605644803" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1605644803" rel="stylesheet">
-    <link href="/css/hybrid.css?1605644803" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1605644803" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1605644803" rel="stylesheet">
-    <link href="/css/auto-complete.css?1605644803" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1605644803" rel="stylesheet">
-    <link href="/css/theme.css?1605644803" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1605644803" rel="stylesheet">
+    <link href="/css/nucleus.css?1605794932" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1605794932" rel="stylesheet">
+    <link href="/css/hybrid.css?1605794932" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1605794932" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1605794932" rel="stylesheet">
+    <link href="/css/auto-complete.css?1605794932" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1605794932" rel="stylesheet">
+    <link href="/css/theme.css?1605794932" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1605794932" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1605644803" rel="stylesheet">
+      <link href="/css/theme-blue.css?1605794932" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1605644803"></script>
+    <script src="/js/jquery-3.3.1.min.js?1605794932"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1605644803"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1605644803"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1605794932"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1605794932"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1605644803"></script>
+<script type="text/javascript" src="/js/search.js?1605794932"></script>
 
     
   </div>
@@ -1289,8 +1289,9 @@ overlap</strong>, <a href="../architecture/globalnet">Globalnet</a> can be set u
 IP address designated to the Gateway node. This is needed for creating the IPsec tunnel between the clusters. The default ports used by
 IPsec are 4500/UDP and 500/UDP. For clusters behind corporate firewalls that block the default ports, Submariner also supports NAT Traversal
 (NAT-T) with the option to set custom non-standard ports like 4501/UDP and 501/UDP.</li>
-<li>Submariner uses port 4800/UDP to encapsulate traffic from the Worker nodes to the Gateway nodes and ensuring that Pod IP addresses are
-preserved. Ensure that firewall configuration allows 4800/UDP across all the Worker nodes.</li>
+<li>Submariner uses UDP port 4800 to encapsulate Pod traffic from worker and master nodes to the Gateway nodes. This is required in order to
+preserve the source IP addresses of the Pods. Ensure that firewall configuration allows 4800/UDP across all nodes in the cluster in both
+directions.</li>
 <li>Worker node IPs on all connected clusters must be outside of the Pod/Service CIDR ranges.</li>
 </ul>
 <p>An example of three clusters configured to use with Submariner (without Globalnet) would look like the following:</p>
@@ -1980,19 +1981,19 @@ method.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1605644803"></script>
-    <script src="/js/perfect-scrollbar.min.js?1605644803"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1605644803"></script>
-    <script src="/js/jquery.sticky.js?1605644803"></script>
-    <script src="/js/featherlight.min.js?1605644803"></script>
-    <script src="/js/highlight.pack.js?1605644803"></script>
+    <script src="/js/clipboard.min.js?1605794932"></script>
+    <script src="/js/perfect-scrollbar.min.js?1605794932"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1605794932"></script>
+    <script src="/js/jquery.sticky.js?1605794932"></script>
+    <script src="/js/featherlight.min.js?1605794932"></script>
+    <script src="/js/highlight.pack.js?1605794932"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1605644803"></script>
-    <script src="/js/learn.js?1605644803"></script>
-    <script src="/js/hugo-learn.js?1605644803"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1605794932"></script>
+    <script src="/js/learn.js?1605794932"></script>
+    <script src="/js/hugo-learn.js?1605794932"></script>
 
-    <link href="/mermaid/mermaid.css?1605644803" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1605644803"></script>
+    <link href="/mermaid/mermaid.css?1605794932" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1605794932"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

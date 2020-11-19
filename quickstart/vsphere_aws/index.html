@@ -12,20 +12,20 @@
     <title>OpenShift (vSphere/AWS) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1605644803" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1605644803" rel="stylesheet">
-    <link href="/css/hybrid.css?1605644803" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1605644803" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1605644803" rel="stylesheet">
-    <link href="/css/auto-complete.css?1605644803" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1605644803" rel="stylesheet">
-    <link href="/css/theme.css?1605644803" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1605644803" rel="stylesheet">
+    <link href="/css/nucleus.css?1605794932" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1605794932" rel="stylesheet">
+    <link href="/css/hybrid.css?1605794932" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1605794932" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1605794932" rel="stylesheet">
+    <link href="/css/auto-complete.css?1605794932" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1605794932" rel="stylesheet">
+    <link href="/css/theme.css?1605794932" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1605794932" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1605644803" rel="stylesheet">
+      <link href="/css/theme-blue.css?1605794932" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1605644803"></script>
+    <script src="/js/jquery-3.3.1.min.js?1605794932"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1605644803"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1605644803"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1605794932"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1605794932"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1605644803"></script>
+<script type="text/javascript" src="/js/search.js?1605794932"></script>
 
     
   </div>
@@ -1307,11 +1307,11 @@ please refer to the official <a href="https://docs.openshift.com/container-platf
 <p>Before you deploy an OpenShift Container Platform cluster that uses user-provisioned infrastructure, you must create the underlying
 infrastructure. Follow the <a href="https://docs.openshift.com/container-platform/">OpenShift documenation</a> for installation instructions on
 supported versions of vSphere.</p>
-<p>Submariner gateway nodes need to be able to accept IPsec traffic. For on-premises clusters behind corporate firewalls, the default IPsec UDP
+<p>Submariner Gateway nodes need to be able to accept IPsec traffic. For on-premises clusters behind corporate firewalls, the default IPsec UDP
 ports might be blocked. To overcome this, Submariner supports NAT Traversal (NAT-T) with the option to set custom non-standard ports.
 In this example, we use UDP 4501 and UDP 501. Ensure that those ports are allowed on the gateway node and on the corporate firewall.</p>
-<p>Submariner also uses VXLAN to encapsulate traffic from the worker nodes to the gateway nodes. Ensure that firewall configuration on the
-vSphere cluster allows UDP 4800 across all the worker nodes.</p>
+<p>Submariner also uses VXLAN to encapsulate traffic from the worker and master nodes to the Gateway nodes. Ensure that firewall configuration
+on the vSphere cluster allows 4800/UDP across all nodes in the cluster in both directions.</p>
 <table>
 <thead>
 <tr>
@@ -1380,9 +1380,9 @@ please check <a href="https://www.ipaddressguide.com/cidr">this page</a>.</p>
 <h4 id="prepare-aws-cluster-for-submariner">Prepare AWS Cluster for Submariner</h4>
 
 
-<p>Submariner gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. Submariner also uses
-UDP port 4800 to encapsulate traffic from the worker nodes to the gateway nodes. Additionally, the default OpenShift deployment does not
-allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connection.</p>
+<p>Submariner Gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec. Submariner also uses
+UDP port 4800 to encapsulate traffic from worker and master nodes to the Gateway nodes. Additionally, the default OpenShift deployment does
+not allow assigning an elastic public IP to existing worker nodes, which may be necessary on one end of the IPsec connection.</p>
 <p><code>prep_for_subm</code> is a script designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments,
 handling the requirements specified above.</p>
 <ul>
@@ -2146,19 +2146,19 @@ curl nginx-ss.default.svc.clusterset.local:8080
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1605644803"></script>
-    <script src="/js/perfect-scrollbar.min.js?1605644803"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1605644803"></script>
-    <script src="/js/jquery.sticky.js?1605644803"></script>
-    <script src="/js/featherlight.min.js?1605644803"></script>
-    <script src="/js/highlight.pack.js?1605644803"></script>
+    <script src="/js/clipboard.min.js?1605794932"></script>
+    <script src="/js/perfect-scrollbar.min.js?1605794932"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1605794932"></script>
+    <script src="/js/jquery.sticky.js?1605794932"></script>
+    <script src="/js/featherlight.min.js?1605794932"></script>
+    <script src="/js/highlight.pack.js?1605794932"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1605644803"></script>
-    <script src="/js/learn.js?1605644803"></script>
-    <script src="/js/hugo-learn.js?1605644803"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1605794932"></script>
+    <script src="/js/learn.js?1605794932"></script>
+    <script src="/js/hugo-learn.js?1605794932"></script>
 
-    <link href="/mermaid/mermaid.css?1605644803" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1605644803"></script>
+    <link href="/mermaid/mermaid.css?1605794932" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1605794932"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
