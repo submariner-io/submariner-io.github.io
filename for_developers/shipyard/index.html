@@ -1,0 +1,2391 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="description" content="Documentation website for the Submariner project">
+<meta name="author" content="The Submariner community">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Working With Shipyard :: Submariner k8s project documentation website</title>
+
+    
+    <link href="/css/nucleus.css?1605863708" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1605863708" rel="stylesheet">
+    <link href="/css/hybrid.css?1605863708" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1605863708" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1605863708" rel="stylesheet">
+    <link href="/css/auto-complete.css?1605863708" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1605863708" rel="stylesheet">
+    <link href="/css/theme.css?1605863708" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1605863708" rel="stylesheet">
+    
+      <link href="/css/theme-blue.css?1605863708" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1605863708"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/for_developers/shipyard/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/" style="display: block;">
+    <object data="/images/logo-submariner.svg" type="image/svg+xml" style="pointer-events: none;">
+        <span>Your browser doesn't support SVG images</span>
+    </object>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1605863708"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1605863708"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1605863708"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/" title="Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/">
+          <b>1. </b>Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/" title="Architecture" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/">
+          Architecture
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/broker/" title="Broker" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/broker/">
+          Broker
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/gateway-engine/" title="Gateway Engine" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/gateway-engine/">
+          Gateway Engine
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/route-agent/" title="Route Agent" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/route-agent/">
+          Route Agent
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/service-discovery/" title="Service Discovery" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/service-discovery/">
+          Service Discovery
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/globalnet/" title="Globalnet Controller" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/globalnet/">
+          Globalnet Controller
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/" title="Quickstart Guides" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/">
+          Quickstart Guides
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/kind/" title="Sandbox Environment (kind)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/kind/">
+          Sandbox Environment (kind)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/openshift/" title="OpenShift" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/openshift/">
+          OpenShift
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/openshift/aws/" title="On AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/openshift/aws/">
+          On AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/openshift/globalnet/" title="On AWS with Globalnet" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/openshift/globalnet/">
+          On AWS with Globalnet
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/openshift/vsphere_aws/" title="Hybrid vSphere and AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/openshift/vsphere_aws/">
+          Hybrid vSphere and AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/managed_kubernetes/" title="Managed Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/managed_kubernetes/">
+          Managed Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/managed_kubernetes/gke/" title="Google (GKE)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/managed_kubernetes/gke/">
+          Google (GKE)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/managed_kubernetes/rancher/" title="Rancher" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/managed_kubernetes/rancher/">
+          Rancher
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/" title="Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/">
+          <b>2. </b>Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/" title="Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/">
+          Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/subctl/" title="subctl" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/subctl/">
+          subctl
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/helm/" title="Helm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/helm/">
+          Helm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/calico/" title="Calico CNI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/calico/">
+          Calico CNI
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/monitoring/" title="Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/monitoring/">
+          Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/troubleshooting/" title="Troubleshooting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/troubleshooting/">
+          Troubleshooting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/" title="Community" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/">
+          <b>3. </b>Community
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/getting_help/" title="Getting Help" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/getting_help/">
+          Getting Help
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/releases/" title="Releases" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/releases/">
+          Releases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/roadmap/" title="Roadmap" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/roadmap/">
+          Roadmap
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/security/" title="Security Reporting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/security/">
+          Security Reporting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/" title="For Developers" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/for_developers/">
+          <b>4. </b>For Developers
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/dev_guide/" title="Development Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/dev_guide/">
+          Development Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/dev_guide/code-of-conduct/" title="Code of Conduct" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/dev_guide/code-of-conduct/">
+          Code of Conduct
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/dev_guide/code-review/" title="Code Review Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/dev_guide/code-review/">
+          Code Review Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/dev_guide/website/" title="Contributing to the Website" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/dev_guide/website/">
+          Contributing to the Website
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/for_developers/dev_guide/website/style_guide/" title="Docs Style Guide" class="dd-item ">
+        <a href="/for_developers/dev_guide/website/style_guide/">
+        Docs Style Guide
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/building_testing/" title="Building and Testing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/building_testing/">
+          Building and Testing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/community-membership/" title="Community Membership" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/community-membership/">
+          Community Membership
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/release-process/" title="Release Process" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/release-process/">
+          Release Process
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/shipyard/" title="Working With Shipyard" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/for_developers/shipyard/">
+          Working With Shipyard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/shipyard/first_time/" title="Adding Shipyard to a Project" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/shipyard/first_time/">
+          Adding Shipyard to a Project
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/shipyard/advanced/" title="Advanced Features" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/shipyard/advanced/">
+          Advanced Features
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/reading_material/" title="Online Resources" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/reading_material/">
+          <b>5. </b>Online Resources
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/submariner-io/"><i class='fab fa-fw fa-github'></i> GitHub</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://kubernetes.slack.com/archives/C010RJV694M"><i class='fab fa-fw fa-slack'></i> Slack</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-users"><i class='fas fa-fw fa-envelope'></i> User mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-dev"><i class='fas fa-fw fa-envelope'></i> Devel mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.youtube.com/channel/UCZ3brSgl2v4boglZoeChClQ/videos"><i class='fas fa-fw fa-video'></i> YouTube</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://twitter.com/submarinerio"><i class='fab fa-fw fa-twitter'></i> Twitter</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://calendar.google.com/calendar?cid=NHFuZGVoOGY0bzZ1ajlvZnBsczh1NWNlZ2tAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"><i class='fas fa-fw fa-calendar'></i> Google Calendar</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <center>
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner-operator/releases" data-icon="octicon-cloud-download" aria-label="Download Submariner/subctl on github">Download</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner" data-icon="octicon-star" data-show-count="true" aria-label="Star submariner-io/submariner on GitHub">Star</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork submariner-io/submariner on GitHub">Fork</a>
+
+</center>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/for_developers/shipyard/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/for_developers/'>For Developers</a> > Working With Shipyard
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#add-shipyard-to-a-project">Add Shipyard to a Project</a></li>
+        <li><a href="#use-shipyard-in-your-project">Use Shipyard in Your Project</a></li>
+        <li><a href="#have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</a></li>
+        <li><a href="#use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</a></li>
+      </ul>
+    </li>
+    <li><a href="#shared-makefile-targets">Shared Makefile Targets</a>
+      <ul>
+        <li><a href="#clusters">Clusters</a></li>
+        <li><a href="#deploy">Deploy</a></li>
+        <li><a href="#cleanup">Cleanup</a></li>
+        <li><a href="#release">Release</a></li>
+      </ul>
+    </li>
+    <li><a href="#specific-makefile-targets">Specific Makefile Targets</a>
+      <ul>
+        <li><a href="#dapper-image">Dapper-Image</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Working With Shipyard
+            </h1>
+          
+
+        
+
+
+
+
+	<h2 id="overview">Overview</h2>
+<p>The Shipyard project provides common tooling for creating Kubernetes clusters with <a href="https://github.com/kubernetes-sigs/kind">kind</a>
+(Kubernetes in Docker) and provides a common Go framework for creating end to end tests.
+Shipyard contains common functionality shared by other projects. Any project specific functionality should be part of that project.</p>
+<p>A base image <code>quay.io/submariner/shipyard-dapper-base</code> is created from Shipyard and contains all the tooling to build other projects and run
+tests in a consistent environment.</p>
+<p>Shipyard has several folders at the root of the project:</p>
+<ul>
+<li><strong>package:</strong> Contains the ingredients to build the base image.</li>
+<li><strong>scripts:</strong> Contains general scripts for Shipyard make targets.
+<ul>
+<li><strong>shared:</strong> Contains all the shared scripts that projects can consume. These are copied into the base image under <code>$SCRIPTS_DIR</code>.
+<ul>
+<li><strong>lib:</strong> Library functions that shared scripts, or consuming projects, can use.</li>
+<li><strong>resources:</strong> Resource files to be used by the shared scripts.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>test:</strong> Test library to be used by other projects.</li>
+</ul>
+<p>Shipyard ships with some <a href="#shared-makefile-targets">Makefile targets</a> which can be used by consuming projects and are used by Shipyard&rsquo;s CI
+to test and validate itself. It also has some <a href="#specific-makefile-targets">specific Makefile targets</a> which are used by the project itself.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="add-shipyard-to-a-project">Add Shipyard to a Project</h3>
+<p>To enable usage of Shipyard&rsquo;s functionality, please see <a href="first_time">Adding Shipyard to a Project</a>.</p>
+<h3 id="use-shipyard-in-your-project">Use Shipyard in Your Project</h3>
+<p>Once Shipyard has been added to a project, you can use any of the <a href="#shared-makefile-targets">Makefile targets</a> that it provides.</p>
+<p>Any variables that you need to pass to these targets should be specified in your Dockerfile.dapper so they&rsquo;re available in the Dapper
+environment. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">ENV</span> DAPPER_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;REPO TAG QUAY_USERNAME QUAY_PASSWORD TRAVIS_COMMIT CLUSTERS_ARGS DEPLOY_ARGS&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h3 id="have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</h3>
+<p>Having any of the Shipyard Makefile targets rely on your project&rsquo;s specific targets can be done easily by adding the dependency in your
+project&rsquo;s Makefile. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#a6e22e">clusters</span><span style="color:#f92672">:</span> build images
+</code></pre></div><h3 id="use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</h3>
+<p>If you&rsquo;ve made changes to Shipyard&rsquo;s <a href="#dapper-image">base image</a> and need to test them in your project, run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
+</code></pre></div><p>in the Shipyard directory. This creates a local image with your changes available for consumption in other projects.</p>
+<h2 id="shared-makefile-targets">Shared Makefile Targets</h2>
+<p>Shipyard ships a <a href="https://github.com/submariner-io/shipyard/blob/master/Makefile.inc">Makefile.inc</a> file which defines these basic targets:</p>
+<ul>
+<li><strong><a href="#clusters">clusters</a>:</strong> Creates the kind-based cluster environment.</li>
+<li><strong><a href="#deploy">deploy</a></strong> : Deploys submariner components in the cluster environment (depends on clusters).</li>
+<li><strong><a href="#cleanup">cleanup</a>:</strong> Deletes the kind environment (if it exists) and any residual resources.</li>
+<li><strong><a href="#release">release</a>:</strong> Uploads the requested image(s) to Quay.io.</li>
+<li><strong>vendor/modules.txt:</strong> Populates go modules (in case go.mod exists in the root directory).</li>
+</ul>
+<p>If your project uses Shipyard then it has all these targets and supports all the variables these targets support.</p>
+<p>Any variables supported by these targets can be either declared as environment variables or assigned on the <code>make</code> command line (takes
+precedence over environment variables).</p>
+<h3 id="clusters">Clusters</h3>
+<p>A Make target that creates a kind-based multi-cluster environment with just the default Kubernetes deployment:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clusters
+</code></pre></div><p>Respected variables:</p>
+<ul>
+<li><strong>CLUSTERS_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>clusters.sh</code> script. To get a list of available arguments, run:
+<code>scripts/shared/clusters.sh --help</code></li>
+</ul>
+<h3 id="deploy">Deploy</h3>
+<p>A Make target that deploys Submariner components in a kind-based cluster environment (if one isn&rsquo;t created yet, this target will first
+invoke the clusters target to do so):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy
+</code></pre></div><p>Respected variables:</p>
+<ul>
+<li>Any variable from <a href="#clusters">clusters</a> target (only if it wasn&rsquo;t created).</li>
+<li><strong>DEPLOY_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>deploy.sh</code> script. To get a list of available arguments, run:
+<code>scripts/shared/deploy.sh --help</code></li>
+</ul>
+<h3 id="cleanup">Cleanup</h3>
+<p>To clean up all the kind clusters deployed in any of the previous steps, use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make cleanup
+</code></pre></div><p>This command will remove the clusters and any resources that might&rsquo;ve been left in docker that are not needed any more (images, volumes,
+etc).</p>
+<h3 id="release">Release</h3>
+<p>Uploads the built images to Quay.io:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make release release_images<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;image name&gt;&#34;</span>
+</code></pre></div><p>Respected variables:</p>
+<ul>
+<li><strong>QUAY_USERNAME, QUAY_PASSWORD:</strong> Needed in order to log in to Quay.</li>
+<li><strong>release_images:</strong> One or more image names to release separated by spaces.</li>
+<li><strong>release_tag:</strong> A tag to use for the release (default is <em>latest</em>).</li>
+<li><strong>repo:</strong> The Quay repo to use (default is <em>quay.io/submariner</em>).</li>
+</ul>
+<h2 id="specific-makefile-targets">Specific Makefile Targets</h2>
+<p>Shipyard has some project-specific targets which are used to build parts of the projects:</p>
+<ul>
+<li><strong><a href="#dapper-image">dapper-image</a>:</strong> Builds the base image that can be used by other projects.</li>
+<li><strong>validate:</strong> Validates the go code that Shipyard provides, and the shared shell scripts.</li>
+</ul>
+<h3 id="dapper-image">Dapper-Image</h3>
+<p>Builds the basic image which is then used by other projects to build the code and run tests:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
+</code></pre></div><p>Respected variables:</p>
+<ul>
+<li><strong>dapper_image_flags:</strong> Any additional flags and values to be sent to the <code>build_image.sh</code> script.</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/for_developers/release-process/" title="Release Process"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/for_developers/shipyard/first_time/" title="Adding Shipyard to a Project" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1605863708"></script>
+    <script src="/js/perfect-scrollbar.min.js?1605863708"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1605863708"></script>
+    <script src="/js/jquery.sticky.js?1605863708"></script>
+    <script src="/js/featherlight.min.js?1605863708"></script>
+    <script src="/js/highlight.pack.js?1605863708"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1605863708"></script>
+    <script src="/js/learn.js?1605863708"></script>
+    <script src="/js/hugo-learn.js?1605863708"></script>
+
+    <link href="/mermaid/mermaid.css?1605863708" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1605863708"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

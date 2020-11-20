@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development Guide on Submariner k8s project documentation website</title>
+    <link>/for_developers/dev_guide/</link>
+    <description>Recent content in Development Guide on Submariner k8s project documentation website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 06 May 2020 08:19:26 +0200</lastBuildDate>
+    
+	<atom:link href="/for_developers/dev_guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

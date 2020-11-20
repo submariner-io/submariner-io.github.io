@@ -3,118 +3,162 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/architecture/broker/</loc>
+    <loc>/getting_started/architecture/broker/</loc>
   </url>
   
   <url>
-    <loc>/architecture/gateway-engine/</loc>
+    <loc>/getting_started/architecture/gateway-engine/</loc>
   </url>
   
   <url>
-    <loc>/architecture/route-agent/</loc>
+    <loc>/getting_started/architecture/route-agent/</loc>
   </url>
   
   <url>
-    <loc>/architecture/service-discovery/</loc>
+    <loc>/getting_started/architecture/service-discovery/</loc>
     <lastmod>2020-03-02T21:25:35+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/contributing/website/style_guide/</loc>
+    <loc>/for_developers/dev_guide/website/style_guide/</loc>
     <lastmod>2020-04-29T19:09:55+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/architecture/globalnet/</loc>
+    <loc>/getting_started/architecture/globalnet/</loc>
     <lastmod>2020-02-19T21:08:37+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/quickstart/</loc>
-    <lastmod>2020-02-19T20:03:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/contributing/shipyard/first_time/</loc>
-    <lastmod>2020-04-20T17:12:52+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/contributing/building_testing/</loc>
-    <lastmod>2020-03-18T16:03:26+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/quickstart/kind/</loc>
-    <lastmod>2020-03-17T13:36:18+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/deployment/</loc>
-    <lastmod>2020-02-19T21:25:11+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/deployment/subctl/</loc>
-  </url>
-  
-  <url>
-    <loc>/architecture/</loc>
+    <loc>/getting_started/architecture/</loc>
     <lastmod>2020-02-19T21:00:30+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/quickstart/gke/</loc>
+    <loc>/getting_started/</loc>
+    <lastmod>2020-02-19T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting_started/quickstart/</loc>
+    <lastmod>2020-02-19T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting_started/quickstart/managed_kubernetes/gke/</loc>
     <lastmod>2020-11-13T17:55:18+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/monitoring/</loc>
+    <loc>/operations/</loc>
     <lastmod>2020-08-12T16:02:00+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/contributing/shipyard/advanced/</loc>
-    <lastmod>2020-05-05T09:11:00+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/quickstart/openshift/</loc>
-    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/contributing/code-of-conduct/</loc>
-    <lastmod>2020-02-19T21:43:46+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/deployment/helm/</loc>
-    <lastmod>2020-02-19T21:25:43+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/troubleshooting/</loc>
-    <lastmod>2020-05-04T19:01:14+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/releases/</loc>
-    <lastmod>2020-08-24T11:35:16+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/contributing/code-review/</loc>
+    <loc>/for_developers/dev_guide/</loc>
     <lastmod>2020-05-06T08:19:26+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/quickstart/openshift/globalnet/</loc>
+    <loc>/for_developers/shipyard/first_time/</loc>
+    <lastmod>2020-04-20T17:12:52+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/for_developers/building_testing/</loc>
+    <lastmod>2020-03-18T16:03:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting_started/quickstart/kind/</loc>
+    <lastmod>2020-03-17T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/operations/deployment/</loc>
+    <lastmod>2020-02-19T21:25:11+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/community/getting_help/</loc>
+  </url>
+  
+  <url>
+    <loc>/operations/deployment/subctl/</loc>
+  </url>
+  
+  <url>
+    <loc>/community/</loc>
+    <lastmod>2020-08-24T11:35:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/operations/monitoring/</loc>
+    <lastmod>2020-08-12T16:02:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting_started/quickstart/managed_kubernetes/rancher/</loc>
+    <lastmod>2020-05-15T15:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/for_developers/shipyard/advanced/</loc>
+    <lastmod>2020-05-05T09:11:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting_started/quickstart/openshift/aws/</loc>
     <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/deployment/calico/</loc>
+    <loc>/getting_started/quickstart/openshift/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/for_developers/dev_guide/code-of-conduct/</loc>
+    <lastmod>2020-02-19T21:43:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/operations/deployment/helm/</loc>
+    <lastmod>2020-02-19T21:25:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/for_developers/</loc>
+    <lastmod>2020-02-19T20:24:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting_started/quickstart/managed_kubernetes/</loc>
+    <lastmod>2020-02-19T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/operations/troubleshooting/</loc>
+    <lastmod>2020-05-04T19:01:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/community/releases/</loc>
+    <lastmod>2020-08-24T11:35:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/for_developers/dev_guide/code-review/</loc>
+    <lastmod>2020-05-06T08:19:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting_started/quickstart/openshift/globalnet/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/operations/deployment/calico/</loc>
   </url>
   
   <url>
@@ -123,46 +167,36 @@
   </url>
   
   <url>
-    <loc>/quickstart/vsphere_aws/</loc>
+    <loc>/getting_started/quickstart/openshift/vsphere_aws/</loc>
     <lastmod>2020-02-21T13:36:18+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/contributing/community-membership/</loc>
+    <loc>/for_developers/community-membership/</loc>
     <lastmod>2020-02-19T21:43:46+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/roadmap/</loc>
+    <loc>/community/roadmap/</loc>
     <lastmod>2020-02-19T20:24:34+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/contributing/</loc>
-    <lastmod>2020-02-19T20:24:34+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/quickstart/rancher/</loc>
-    <lastmod>2020-05-15T15:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/contributing/website/</loc>
+    <loc>/for_developers/dev_guide/website/</loc>
     <lastmod>2020-02-19T22:03:26+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/contributing/release-process/</loc>
+    <loc>/for_developers/release-process/</loc>
     <lastmod>2020-03-18T16:03:26+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/contributing/security/</loc>
+    <loc>/community/security/</loc>
   </url>
   
   <url>
-    <loc>/contributing/shipyard/</loc>
+    <loc>/for_developers/shipyard/</loc>
     <lastmod>2020-04-20T17:12:52+03:00</lastmod>
   </url>
   
@@ -170,10 +204,6 @@
     <loc>/</loc>
     <lastmod>2020-11-13T17:55:18+01:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/quickstart/verify_with_discovery/</loc>
   </url>
   
   <url>

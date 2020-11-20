@@ -1,0 +1,2463 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="description" content="Documentation website for the Submariner project">
+<meta name="author" content="The Submariner community">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Releases :: Submariner k8s project documentation website</title>
+
+    
+    <link href="/css/nucleus.css?1605863708" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1605863708" rel="stylesheet">
+    <link href="/css/hybrid.css?1605863708" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1605863708" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1605863708" rel="stylesheet">
+    <link href="/css/auto-complete.css?1605863708" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1605863708" rel="stylesheet">
+    <link href="/css/theme.css?1605863708" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1605863708" rel="stylesheet">
+    
+      <link href="/css/theme-blue.css?1605863708" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1605863708"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/community/releases/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/" style="display: block;">
+    <object data="/images/logo-submariner.svg" type="image/svg+xml" style="pointer-events: none;">
+        <span>Your browser doesn't support SVG images</span>
+    </object>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1605863708"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1605863708"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1605863708"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/" title="Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/">
+          <b>1. </b>Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/" title="Architecture" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/">
+          Architecture
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/broker/" title="Broker" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/broker/">
+          Broker
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/gateway-engine/" title="Gateway Engine" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/gateway-engine/">
+          Gateway Engine
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/route-agent/" title="Route Agent" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/route-agent/">
+          Route Agent
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/service-discovery/" title="Service Discovery" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/service-discovery/">
+          Service Discovery
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/architecture/globalnet/" title="Globalnet Controller" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/architecture/globalnet/">
+          Globalnet Controller
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/" title="Quickstart Guides" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/">
+          Quickstart Guides
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/kind/" title="Sandbox Environment (kind)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/kind/">
+          Sandbox Environment (kind)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/openshift/" title="OpenShift" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/openshift/">
+          OpenShift
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/openshift/aws/" title="On AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/openshift/aws/">
+          On AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/openshift/globalnet/" title="On AWS with Globalnet" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/openshift/globalnet/">
+          On AWS with Globalnet
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/openshift/vsphere_aws/" title="Hybrid vSphere and AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/openshift/vsphere_aws/">
+          Hybrid vSphere and AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/managed_kubernetes/" title="Managed Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/managed_kubernetes/">
+          Managed Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/managed_kubernetes/gke/" title="Google (GKE)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/managed_kubernetes/gke/">
+          Google (GKE)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started/quickstart/managed_kubernetes/rancher/" title="Rancher" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting_started/quickstart/managed_kubernetes/rancher/">
+          Rancher
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/" title="Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/">
+          <b>2. </b>Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/" title="Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/">
+          Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/subctl/" title="subctl" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/subctl/">
+          subctl
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/helm/" title="Helm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/helm/">
+          Helm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/calico/" title="Calico CNI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/calico/">
+          Calico CNI
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/monitoring/" title="Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/monitoring/">
+          Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/troubleshooting/" title="Troubleshooting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/troubleshooting/">
+          Troubleshooting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/" title="Community" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/community/">
+          <b>3. </b>Community
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/getting_help/" title="Getting Help" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/getting_help/">
+          Getting Help
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/releases/" title="Releases" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/community/releases/">
+          Releases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/roadmap/" title="Roadmap" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/roadmap/">
+          Roadmap
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/security/" title="Security Reporting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/security/">
+          Security Reporting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/" title="For Developers" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/">
+          <b>4. </b>For Developers
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/dev_guide/" title="Development Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/dev_guide/">
+          Development Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/dev_guide/code-of-conduct/" title="Code of Conduct" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/dev_guide/code-of-conduct/">
+          Code of Conduct
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/dev_guide/code-review/" title="Code Review Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/dev_guide/code-review/">
+          Code Review Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/dev_guide/website/" title="Contributing to the Website" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/dev_guide/website/">
+          Contributing to the Website
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/for_developers/dev_guide/website/style_guide/" title="Docs Style Guide" class="dd-item ">
+        <a href="/for_developers/dev_guide/website/style_guide/">
+        Docs Style Guide
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/building_testing/" title="Building and Testing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/building_testing/">
+          Building and Testing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/community-membership/" title="Community Membership" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/community-membership/">
+          Community Membership
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/release-process/" title="Release Process" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/release-process/">
+          Release Process
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/shipyard/" title="Working With Shipyard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/shipyard/">
+          Working With Shipyard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/shipyard/first_time/" title="Adding Shipyard to a Project" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/shipyard/first_time/">
+          Adding Shipyard to a Project
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/for_developers/shipyard/advanced/" title="Advanced Features" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/for_developers/shipyard/advanced/">
+          Advanced Features
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/reading_material/" title="Online Resources" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/reading_material/">
+          <b>5. </b>Online Resources
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/submariner-io/"><i class='fab fa-fw fa-github'></i> GitHub</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://kubernetes.slack.com/archives/C010RJV694M"><i class='fab fa-fw fa-slack'></i> Slack</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-users"><i class='fas fa-fw fa-envelope'></i> User mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-dev"><i class='fas fa-fw fa-envelope'></i> Devel mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.youtube.com/channel/UCZ3brSgl2v4boglZoeChClQ/videos"><i class='fas fa-fw fa-video'></i> YouTube</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://twitter.com/submarinerio"><i class='fab fa-fw fa-twitter'></i> Twitter</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://calendar.google.com/calendar?cid=NHFuZGVoOGY0bzZ1ajlvZnBsczh1NWNlZ2tAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"><i class='fas fa-fw fa-calendar'></i> Google Calendar</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <center>
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner-operator/releases" data-icon="octicon-cloud-download" aria-label="Download Submariner/subctl on github">Download</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner" data-icon="octicon-star" data-show-count="true" aria-label="Star submariner-io/submariner on GitHub">Star</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork submariner-io/submariner on GitHub">Fork</a>
+
+</center>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/community/releases/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/community/'>Community</a> > Releases
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#v070-statefulset-support-for-service-discovery-and-benchmark-tooling">v0.7.0 StatefulSet support for service discovery and benchmark tooling</a></li>
+    <li><a href="#v060-improved-submariner-high-availability-and-various-lighthouse-enhancements">v0.6.0 Improved Submariner High Availability and various Lighthouse enhancements</a></li>
+    <li><a href="#v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</a></li>
+    <li><a href="#v040-libreswan-cable-driver-kubernetes-multicluster-service-discovery">v0.4.0 Libreswan cable driver, Kubernetes multicluster service discovery</a></li>
+    <li><a href="#v030-lighthouse-service-discovery-without-kubefed">v0.3.0 Lighthouse Service Discovery without KubeFed</a></li>
+    <li><a href="#v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</a></li>
+    <li><a href="#v011-submariner-with-more-light">v0.1.1 Submariner with more light</a></li>
+    <li><a href="#v010-submariner-with-some-light">v0.1.0 Submariner with some light</a></li>
+    <li><a href="#v003----kubecon-na-2019">v0.0.3 &ndash; KubeCon NA 2019</a></li>
+    <li><a href="#v002-second-submariner-release">v0.0.2 Second Submariner release</a></li>
+    <li><a href="#v001-first-submariner-release">v0.0.1 First Submariner release</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Releases
+            </h1>
+          
+
+        
+
+
+
+
+	<h2 id="v070-statefulset-support-for-service-discovery-and-benchmark-tooling">v0.7.0 StatefulSet support for service discovery and benchmark tooling</h2>
+<blockquote>
+<p>This release mainly focused on adding support for StatefulSets in Lighthouse for service discovery and adding new <code>subctl</code>
+commands to benchmark the network performance across clusters.</p>
+</blockquote>
+<ul>
+<li>Lighthouse enhancements/changes:
+<ul>
+<li>Added support for accessing individual Pods in a StatefulSet using their host names.</li>
+<li>A Service in a specific cluster can now be explicitly queried.</li>
+<li>Removed support for the <code>supercluster.local</code> domain to align with the Kubernetes MultiCluster Service API.</li>
+</ul>
+</li>
+<li>Added new <code>subctl</code> benchmark commands for measuring the throughput and round trip latency between two Pods in separate
+clusters or within the same cluster.</li>
+<li>The data path is no longer disrupted when the Globalnet Pod is restarted.</li>
+<li>The Route Agent component now runs on all worker nodes including those with taints.</li>
+</ul>
+<p>When upgrading to 0.7.0 on a cluster already running Submariner, the current state must be cleared:</p>
+<ul>
+<li>Remove the Submariner namespaces: <code>kubectl delete ns submariner-operator submariner-k8s-broker</code></li>
+<li>Remove the Submariner cluster roles: <code>kubectl delete clusterroles submariner-lighthouse submariner-operator submariner-operator:globalnet</code></li>
+</ul>
+<h2 id="v060-improved-submariner-high-availability-and-various-lighthouse-enhancements">v0.6.0 Improved Submariner High Availability and various Lighthouse enhancements</h2>
+<blockquote>
+<p>This release mainly focused on support for headless Services in Lighthouse,
+as well as improving Submariner&rsquo;s High Availability (HA).</p>
+</blockquote>
+
+<div class="notices warning" ><p>The DNS domains have been updated from <code>&lt;service&gt;.&lt;namespace&gt;.svc.supercluster.local</code> to
+<code>&lt;service&gt;.&lt;namespace&gt;.svc.clusterset.local</code> to <strong>align with the change in Kubernetes Multicluster Service API</strong>.
+Both domains will be supported for 0.6.0 but <strong>0.7.0 will remove support for <code>supercluster.local</code></strong>.
+Please update your deployments and applications.</p>
+</div>
+
+<ul>
+<li>Lighthouse has been enhanced to:
+<ul>
+<li>Be aware of the local cluster Gateway connectivity so as not to announce the IP addresses for disconnected remote clusters.</li>
+<li>Support <strong>headless Services</strong> for non-Globalnet deployments. Support for Globalnet will be available in a future release.</li>
+<li>Be aware of a Service&rsquo;s backend Pods so as not to announce IP addresses for Services that have no active Pods.</li>
+<li>Use Round Robin IP resolution for Services available in multiple clusters.</li>
+<li>Enable service discovery by default for <code>subctl</code> deployments.</li>
+</ul>
+</li>
+<li><code>subctl</code> auto-detects the cluster ID from the <code>kubeconfig</code> file&rsquo;s information when possible.</li>
+<li>Submariner&rsquo;s Pods now shut down gracefully and do proper cleanup which <strong>reduces downtime</strong> during Gateway failover.</li>
+<li>The Operator now automatically exports <strong>Prometheus metrics</strong>; these integrate seamlessly with OpenShift Prometheus if user
+workload monitoring is enabled, and can be included in any other Prometheus setup.</li>
+<li>Minimum Kubernetes version is now 1.17.</li>
+<li>HostNetwork to remote Service connectivity <a href="https://github.com/submariner-io/submariner/issues/736">fixes for AWS clusters</a>.</li>
+<li>The project&rsquo;s codebase quality and readability has been improved using various linters.</li>
+</ul>
+<h2 id="v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</h2>
+<blockquote>
+<p>This release mainly focused on continuing the alignment of Lighthouse&rsquo;s service discovery support with the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster
+Services KEP</a>.</p>
+</blockquote>
+<ul>
+<li>Lighthouse has been modified per the <strong><a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services KEP</a></strong> as follows:
+<ul>
+<li>The <code>MultiClusterService</code> resource has been replaced by <code>ServiceImport</code>.</li>
+<li>The <code>ServiceExport</code> resource is now updated with status information as lifecycle events occur.</li>
+</ul>
+</li>
+<li>Lighthouse now allows a <code>ServiceExport</code> resource to be created prior to the associated <code>Service</code>.</li>
+<li><strong>Network discovery</strong> was moved from <code>subctl</code> to the Submariner Operator.</li>
+<li>Several <strong>new commands</strong> were added to <code>subctl</code>: <code>export service</code>, <code>show versions</code>, <code>show connections</code>, <code>show networks</code>,
+<code>show endpoints</code>, and <code>show gateways</code>.</li>
+<li>The <code>subctl info</code> command has been removed in lieu of the new <code>show networks</code> command.</li>
+<li>The Globalnet configuration has been moved from the <code>broker-info.subm</code> file to a <code>ConfigMap</code> resource stored on the
+Broker cluster. Therefore, the new <code>subctl</code> cannot be used on brownfield Globalnet deployments where this information
+was stored as part of <code>broker-info.subm</code>.</li>
+<li><code>subctl</code> now supports <strong>joining multiple clusters in parallel</strong> without having to explicitly specify the <code>globalnet-cidr</code> for the
+cluster to work around this issue. The <code>globalnet-cidr</code> will automatically be allocated by <code>subctl</code> for each cluster.</li>
+<li>The separate <code>--operator-image</code> parameter has been removed from <code>subctl join</code> and the <code>--repository</code> and <code>--version</code>
+parameters are now used for all images.</li>
+<li>The Submariner Operator status now includes <code>Gateway</code> information.</li>
+<li>Closed technical requirements for Submariner to become a <strong>CNCF project</strong>, including <em>Developer Certificate of Origin</em> compliance
+and additional source code linting.</li>
+</ul>
+<h2 id="v040-libreswan-cable-driver-kubernetes-multicluster-service-discovery">v0.4.0 Libreswan cable driver, Kubernetes multicluster service discovery</h2>
+<blockquote>
+<p>This release is mainly focused on Submariner&rsquo;s Libreswan cable driver implementation, as well
+as standardizing Lighthouse&rsquo;s service discovery support with the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster
+Services KEP</a>.</p>
+</blockquote>
+<ul>
+<li><strong>Libreswan IPsec cable driver</strong> is available for testing and is covered in Submariner&rsquo;s CI.</li>
+<li>Lighthouse has been modified per the <strong><a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services KEP</a></strong> as follows:
+<ul>
+<li>A <code>ServiceExport</code> object needs to be created alongside any <code>Service</code> that is intended to be
+exported to participant clusters.</li>
+<li>Supercluster services can be accessed with <code>&lt;service-name&gt;.&lt;namespace&gt;.svc.clusterset.local</code>.</li>
+</ul>
+</li>
+<li>Globalnet <strong>overlapping CIDR</strong> support improvements and bug fixes.</li>
+<li>Multiple <strong>CI</strong> improvements implemented from Shipyard.</li>
+<li>CI tests are now run via <strong><a href="https://github.com/submariner-io/submariner/actions">GitHub Actions</a></strong>.</li>
+<li>Submariner&rsquo;s Operator now completely handles the <strong>Lighthouse deployment</strong> via the <code>ServiceDiscovery</code> CRD.</li>
+<li><code>subctl verify</code> is now available for <code>connectivity</code>, <code>service-discovery</code> and <code>gateway-failover</code>.</li>
+</ul>
+<h2 id="v030-lighthouse-service-discovery-without-kubefed">v0.3.0 Lighthouse Service Discovery without KubeFed</h2>
+<blockquote>
+<p>This release is focused on removing the KubeFed dependency from Lighthouse, improving the user experience,
+and adding experimental WireGuard support as an alternative to IPsec.</p>
+</blockquote>
+<ul>
+<li>Lighthouse <strong>no longer depends on KubeFed</strong>. All metadata exchange is handled over the Broker as <code>MultiClusterService</code> CRs.</li>
+<li>Experimental <strong>WireGuard</strong> support has been added as a pluggable <code>CableDriver</code> option in addition to the current default IPsec.</li>
+<li>Submariner reports the active and passive gateways as a <code>gateway.submariner.io</code> resource.</li>
+<li>The Submariner Operator reports a detailed status of the deployment.</li>
+<li>The <strong>gateway redundancy/failover</strong> tests are now enabled and stable in CI.</li>
+<li>Globalnet <strong>hostNetwork to remote globalIP</strong> is now supported. Previously, when a Pod used hostNetworking it was unable to connect to a
+remote Service via globalIP.</li>
+<li>A GlobalCIDR can be manually specified when joining a cluster with Globalnet enabled. This enables CI speed optimizations via better
+parallelism.</li>
+<li>Operator and <code>subctl</code> are more robust via standard retries on updates.</li>
+<li><code>subctl</code> creates a new <strong>individual access token</strong> for every new joined cluster.</li>
+</ul>
+<h2 id="v020-overlapping-cidr-support">v0.2.0 Overlapping CIDR support</h2>
+<blockquote>
+<p>This release is focused on overlapping CIDR support between clusters.</p>
+</blockquote>
+<ul>
+<li><strong>Support for overlapping CIDRs</strong> between clusters (Globalnet).</li>
+<li>Enhanced end-to-end scripts, which will be shared between repositories in the Shipyard project (ongoing work).</li>
+<li>Improved end-to-end deployment by using a local registry.</li>
+<li>Refactoring to <strong>support pluggable drivers</strong> (in preparation for <a href="https://www.wireguard.com/">WireGuard</a> support).</li>
+</ul>
+<h2 id="v011-submariner-with-more-light">v0.1.1 Submariner with more light</h2>
+<blockquote>
+<p>This release is focused on stability for Lighthouse.</p>
+</blockquote>
+<ul>
+<li>Cleaner logging for submariner-engine.</li>
+<li>Cleaner logging for submariner-route-agent.</li>
+<li>Fixed issue with wrong token stored in <code>.subm</code> file (<a href="https://github.com/submariner-io/submariner-operator/issues/244">submariner-operator#244</a>).</li>
+<li>Added flag to disable the OpenShift CVO (<a href="https://github.com/submariner-io/submariner-operator/issues/235">submariner-operator#235</a>).</li>
+<li>Fixed several service discovery bugs (<a href="https://github.com/submariner-io/submariner-operator/issues/194">submariner-operator#194</a>, <a href="https://github.com/submariner-io/submariner-operator/issues/167">submariner-operator#167</a>).</li>
+<li>Fixed several panics on nil network discovery.</li>
+<li>Added checks to ensure the CIDRs for joining cluster don&rsquo;t overlap with existing ones.</li>
+<li>Fix context handling related to service discovery/KubeFed
+(<a href="https://github.com/submariner-io/submariner-operator/issues/180">submariner-operator#180</a>).</li>
+<li>Use the correct CoreDNS image for OpenShift.</li>
+</ul>
+<h2 id="v010-submariner-with-some-light">v0.1.0 Submariner with some light</h2>
+<blockquote>
+<p>This release has focused on stability, bugfixes and making <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> available as a
+developer preview via <code>subctl</code> deployments.</p>
+</blockquote>
+<ul>
+<li>Several bugfixes and enhancements around HA failover (<a href="https://github.com/submariner-io/submariner/issues/346">submariner#346</a>,
+<a href="https://github.com/submariner-io/submariner/pull/348">submariner#348</a>,
+<a href="https://github.com/submariner-io/submariner/pull/332">submariner#332</a>).</li>
+<li>Migrated to DaemonSets for Submariner gateway deployment.</li>
+<li>Added support for hostNetwork to remote Pod/Service connectivity (<a href="https://github.com/submariner-io/submariner/issues/298">submariner#298</a>).</li>
+<li>Auto detection and configuration of MTU for vx-submariner, jumbo frames support
+(<a href="https://github.com/submariner-io/submariner/issues/301">submariner#301</a>).</li>
+<li>Support for updated strongSwan (<a href="https://github.com/submariner-io/submariner/issues/288">submariner#288</a>).</li>
+<li>Better iptables detection for some hosts (<a href="https://github.com/submariner-io/submariner/pull/227">submariner#227</a>).</li>
+</ul>
+<blockquote>
+<p><code>subctl</code> and the Submariner Operator have the following improvements:</p>
+</blockquote>
+<ul>
+<li>Support for <code>verify-connectivity</code> checks between two connected clusters.</li>
+<li>Deployment of Submariner gateways based on <code>DaemonSet</code> instead of <code>Deployment</code>.</li>
+<li>Rename <code>submariner</code> Pods to <code>submariner-gateway</code> Pods for clarity.</li>
+<li>Print version details on crash (<code>subctl</code>).</li>
+<li>Stop storing IPsec key on Broker during <code>deploy-broker</code>, now it&rsquo;s only contained into the <code>.subm</code> file.</li>
+<li>Version command for <code>subctl</code>.</li>
+<li>Nicer spinners during deployment (thanks to kind).</li>
+</ul>
+<h2 id="v003----kubecon-na-2019">v0.0.3 &ndash; KubeCon NA 2019</h2>
+<p>Submariner has been greatly enhanced to allow administrators to deploy into Kubernetes clusters without the necessity for Layer 2 adjacency
+for nodes. Submariner now allows for VXLAN interconnectivity between nodes (facilitated by the route agent). <code>subctl</code> was created to make
+deployment of Submariner easier.</p>
+<h2 id="v002-second-submariner-release">v0.0.2 Second Submariner release</h2>
+<h2 id="v001-first-submariner-release">v0.0.1 First Submariner release</h2>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/community/getting_help/" title="Getting Help"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/community/roadmap/" title="Roadmap" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1605863708"></script>
+    <script src="/js/perfect-scrollbar.min.js?1605863708"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1605863708"></script>
+    <script src="/js/jquery.sticky.js?1605863708"></script>
+    <script src="/js/featherlight.min.js?1605863708"></script>
+    <script src="/js/highlight.pack.js?1605863708"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1605863708"></script>
+    <script src="/js/learn.js?1605863708"></script>
+    <script src="/js/hugo-learn.js?1605863708"></script>
+
+    <link href="/mermaid/mermaid.css?1605863708" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1605863708"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
