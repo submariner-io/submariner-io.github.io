@@ -12,20 +12,20 @@
     <title>Broker :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1606497150" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1606497150" rel="stylesheet">
-    <link href="/css/hybrid.css?1606497150" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1606497150" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1606497150" rel="stylesheet">
-    <link href="/css/auto-complete.css?1606497150" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1606497150" rel="stylesheet">
-    <link href="/css/theme.css?1606497150" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1606497150" rel="stylesheet">
+    <link href="/css/nucleus.css?1606577885" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606577885" rel="stylesheet">
+    <link href="/css/hybrid.css?1606577885" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606577885" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606577885" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606577885" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606577885" rel="stylesheet">
+    <link href="/css/theme.css?1606577885" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606577885" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1606497150" rel="stylesheet">
+      <link href="/css/theme-blue.css?1606577885" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1606497150"></script>
+    <script src="/js/jquery-3.3.1.min.js?1606577885"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1606497150"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1606497150"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1606577885"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606577885"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1606497150"></script>
+<script type="text/javascript" src="/js/search.js?1606577885"></script>
 
     
   </div>
@@ -1523,6 +1523,12 @@ public clusters, the Broker can be deployed on a public cluster. The Broker clus
 one of the participating clusters or a standalone cluster without the other Submariner
 components deployed. The Gateway Engine components deployed in each participating cluster are
 configured with the information to securely connect to the Broker cluster&rsquo;s API.</p>
+<p>The availability of the Broker cluster does not affect the operation of the dataplane on the
+participating clusters, that is the dataplane will continue to route traffic using the last known
+information while the Broker is unavailable. However, during this time, control plane components
+will be unable to advertise new or updated information to other clusters and learn about new or updated
+information from other clusters. When connection is re-established to the Broker, each component will
+automatically re-synchronize its local information with the Broker and update the dataplane if necessary.</p>
 
 
 
@@ -2264,19 +2270,19 @@ configured with the information to securely connect to the Broker cluster&rsquo;
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1606497150"></script>
-    <script src="/js/perfect-scrollbar.min.js?1606497150"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1606497150"></script>
-    <script src="/js/jquery.sticky.js?1606497150"></script>
-    <script src="/js/featherlight.min.js?1606497150"></script>
-    <script src="/js/highlight.pack.js?1606497150"></script>
+    <script src="/js/clipboard.min.js?1606577885"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606577885"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606577885"></script>
+    <script src="/js/jquery.sticky.js?1606577885"></script>
+    <script src="/js/featherlight.min.js?1606577885"></script>
+    <script src="/js/highlight.pack.js?1606577885"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1606497150"></script>
-    <script src="/js/learn.js?1606497150"></script>
-    <script src="/js/hugo-learn.js?1606497150"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606577885"></script>
+    <script src="/js/learn.js?1606577885"></script>
+    <script src="/js/hugo-learn.js?1606577885"></script>
 
-    <link href="/mermaid/mermaid.css?1606497150" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1606497150"></script>
+    <link href="/mermaid/mermaid.css?1606577885" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1606577885"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
