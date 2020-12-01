@@ -12,20 +12,20 @@
     <title>Helm :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1606726026" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1606726026" rel="stylesheet">
-    <link href="/css/hybrid.css?1606726026" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1606726026" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1606726026" rel="stylesheet">
-    <link href="/css/auto-complete.css?1606726026" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1606726026" rel="stylesheet">
-    <link href="/css/theme.css?1606726026" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1606726026" rel="stylesheet">
+    <link href="/css/nucleus.css?1606853118" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606853118" rel="stylesheet">
+    <link href="/css/hybrid.css?1606853118" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606853118" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606853118" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606853118" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606853118" rel="stylesheet">
+    <link href="/css/theme.css?1606853118" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606853118" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1606726026" rel="stylesheet">
+      <link href="/css/theme-blue.css?1606853118" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1606726026"></script>
+    <script src="/js/jquery-3.3.1.min.js?1606853118"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1606726026"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1606726026"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1606853118"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606853118"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1606726026"></script>
+<script type="text/javascript" src="/js/search.js?1606853118"></script>
 
     
   </div>
@@ -1526,19 +1526,16 @@
 
 	<h2 id="deploying-with-helm">Deploying with Helm</h2>
 <h3 id="installing-helm">Installing Helm</h3>
+<p>The latest Submariner charts require Helm 3; once you have that, run</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>&lt;kubeconfig-of-broker&gt;
 helm repo add submariner-latest https://submariner-io.github.io/submariner-charts/charts
-kubectl -n kube-system create serviceaccount tiller
-kubectl create clusterrolebinding tiller --clusterrole<span style="color:#f92672">=</span>cluster-admin --serviceaccount<span style="color:#f92672">=</span>kube-system:tiller
-helm init --service-account tiller
-kubectl -n kube-system rollout status deploy/tiller-deploy
 </code></pre></div><h3 id="exporting-environment-variables-needed-later">Exporting environment variables needed later</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export BROKER_NS<span style="color:#f92672">=</span>submariner-k8s-broker
 export SUBMARINER_PSK<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>LC_CTYPE<span style="color:#f92672">=</span>C tr -dc <span style="color:#e6db74">&#39;a-zA-Z0-9&#39;</span> &lt; /dev/urandom | fold -w <span style="color:#ae81ff">64</span> | head -n 1<span style="color:#66d9ef">)</span>
 export SUBMARINER_NS<span style="color:#f92672">=</span>submariner
 </code></pre></div><h3 id="deploying-the-broker">Deploying the Broker</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install submariner-latest/submariner-k8s-broker <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>             --name <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> submariner-latest/submariner-k8s-broker <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>             --create-namespace <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>             --namespace <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>             --set submariner.serviceDiscovery<span style="color:#f92672">=</span>true
 </code></pre></div><p>Setup more environment variables we will need later for joining clusters.</p>
@@ -1560,8 +1557,8 @@ export SERVICE_CIDR<span style="color:#f92672">=</span>x.x.x.x/x   <span style="
 export GLOBAL_CIDR<span style="color:#f92672">=</span>169.254.x.x/x <span style="color:#75715e"># using an individual non-overlapping</span>
                                  <span style="color:#75715e"># range for each cluster you join.</span>
 </code></pre></div><p>Joining the cluster:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install submariner-latest/submariner <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --name submariner <span style="color:#ae81ff">\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install submariner submariner-latest/submariner <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --create-namespace <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --namespace <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SUBMARINER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set ipsec.psk<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SUBMARINER_PSK<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set broker.server<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SUBMARINER_BROKER_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
@@ -2357,19 +2354,19 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1606726026"></script>
-    <script src="/js/perfect-scrollbar.min.js?1606726026"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1606726026"></script>
-    <script src="/js/jquery.sticky.js?1606726026"></script>
-    <script src="/js/featherlight.min.js?1606726026"></script>
-    <script src="/js/highlight.pack.js?1606726026"></script>
+    <script src="/js/clipboard.min.js?1606853118"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606853118"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606853118"></script>
+    <script src="/js/jquery.sticky.js?1606853118"></script>
+    <script src="/js/featherlight.min.js?1606853118"></script>
+    <script src="/js/highlight.pack.js?1606853118"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1606726026"></script>
-    <script src="/js/learn.js?1606726026"></script>
-    <script src="/js/hugo-learn.js?1606726026"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606853118"></script>
+    <script src="/js/learn.js?1606853118"></script>
+    <script src="/js/hugo-learn.js?1606853118"></script>
 
-    <link href="/mermaid/mermaid.css?1606726026" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1606726026"></script>
+    <link href="/mermaid/mermaid.css?1606853118" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1606853118"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
