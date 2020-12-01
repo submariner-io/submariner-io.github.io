@@ -12,20 +12,20 @@
     <title>Google (GKE) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1606854246" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1606854246" rel="stylesheet">
-    <link href="/css/hybrid.css?1606854246" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1606854246" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1606854246" rel="stylesheet">
-    <link href="/css/auto-complete.css?1606854246" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1606854246" rel="stylesheet">
-    <link href="/css/theme.css?1606854246" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1606854246" rel="stylesheet">
+    <link href="/css/nucleus.css?1606855255" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606855255" rel="stylesheet">
+    <link href="/css/hybrid.css?1606855255" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606855255" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606855255" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606855255" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606855255" rel="stylesheet">
+    <link href="/css/theme.css?1606855255" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606855255" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1606854246" rel="stylesheet">
+      <link href="/css/theme-blue.css?1606855255" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1606854246"></script>
+    <script src="/js/jquery-3.3.1.min.js?1606855255"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1606854246"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1606854246"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1606855255"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606855255"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1606854246"></script>
+<script type="text/javascript" src="/js/search.js?1606855255"></script>
 
     
   </div>
@@ -1500,7 +1500,6 @@
     <li><a href="#deploy-submariner">Deploy Submariner</a>
       <ul>
         <li><a href="#final-workaround-for-kubedns">Final Workaround for KubeDNS</a></li>
-        <li><a href="#reconfig-after-node-restart">Reconfig after Node Restart</a></li>
       </ul>
     </li>
   </ul>
@@ -1586,9 +1585,9 @@ in all clusters.</p>
 wget https://raw.githubusercontent.com/sridhargaddam/k8sscripts/main/rp_filter_settings/configure-rp-filter.sh
 chmod +x update-rp-filter.sh
 chmod +x configure-rp-filter.sh
-kubectx cluster-a <span style="color:#75715e"># kubectl config use-context cluster-a</span>
+echo KUBECONTEXT<span style="color:#f92672">=</span>cluster-a
 ./configure-rp-filter.sh
-kubectx cluster-b <span style="color:#75715e"># kubectl config use-context cluster-b</span>
+echo KUBECONTEXT<span style="color:#f92672">=</span>cluster-b
 ./configure-rp-filter.sh
 </code></pre></div><h3 id="preparation-firewall-configuration">Preparation: Firewall Configuration</h3>
 <p>Submariner requires UDP ports 500, 4500 and 4800 to be open in both directions.
@@ -1627,7 +1626,7 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 </pre>
 </div>
 
-<p>We will deploy the <a href="https://submariner.io/getting_started/architecture/broker/">Broker</a> on <strong>cluster-a</strong>.
+<p>We will deploy the <a href="https://submariner.io/architecture/broker/">Broker</a> on <strong>cluster-a</strong>.
 The command will output a file named <code>broker-info.subm</code> to the directory it is run from, which will be used to setup the
 IPsec tunnel between clusters.</p>
 <p>The Broker cluster&rsquo;s API must be accessible by all the participating clusters, which is given by GKE standard configuration.</p>
@@ -1782,15 +1781,6 @@ curl nginx-ss.default.svc.clusterset.local:8080
 </code></pre></div>
 
 
-<h3 id="reconfig-after-node-restart">Reconfig after Node Restart</h3>
-<p>If the GKE Nodes were at some point drained or deleted, the Submariner Pods needed to terminate.
-Once the Nodes are up again, remember to</p>
-<ul>
-<li>label one Node with <code>kubectl label node &lt;name&gt; submariner.io/gateway=true</code> in order for the Gateway to be deployed on this Node</li>
-<li>apply the Node Configuration workaround again</li>
-<li>change the applied KubeDNS workaround to reflect the current <code>submariner-lighthouse-coredns</code> IP.</li>
-</ul>
-<p>This makes Submariner functional again and work can be continued.</p>
 
 
 
@@ -2539,19 +2529,19 @@ Once the Nodes are up again, remember to</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1606854246"></script>
-    <script src="/js/perfect-scrollbar.min.js?1606854246"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1606854246"></script>
-    <script src="/js/jquery.sticky.js?1606854246"></script>
-    <script src="/js/featherlight.min.js?1606854246"></script>
-    <script src="/js/highlight.pack.js?1606854246"></script>
+    <script src="/js/clipboard.min.js?1606855255"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606855255"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606855255"></script>
+    <script src="/js/jquery.sticky.js?1606855255"></script>
+    <script src="/js/featherlight.min.js?1606855255"></script>
+    <script src="/js/highlight.pack.js?1606855255"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1606854246"></script>
-    <script src="/js/learn.js?1606854246"></script>
-    <script src="/js/hugo-learn.js?1606854246"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606855255"></script>
+    <script src="/js/learn.js?1606855255"></script>
+    <script src="/js/hugo-learn.js?1606855255"></script>
 
-    <link href="/mermaid/mermaid.css?1606854246" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1606854246"></script>
+    <link href="/mermaid/mermaid.css?1606855255" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1606855255"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
