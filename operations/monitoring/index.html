@@ -12,20 +12,20 @@
     <title>Monitoring :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1606905004" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1606905004" rel="stylesheet">
-    <link href="/css/hybrid.css?1606905004" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1606905004" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1606905004" rel="stylesheet">
-    <link href="/css/auto-complete.css?1606905004" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1606905004" rel="stylesheet">
-    <link href="/css/theme.css?1606905004" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1606905004" rel="stylesheet">
+    <link href="/css/nucleus.css?1606914246" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606914246" rel="stylesheet">
+    <link href="/css/hybrid.css?1606914246" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606914246" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606914246" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606914246" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606914246" rel="stylesheet">
+    <link href="/css/theme.css?1606914246" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606914246" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1606905004" rel="stylesheet">
+      <link href="/css/theme-blue.css?1606914246" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1606905004"></script>
+    <script src="/js/jquery-3.3.1.min.js?1606914246"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1606905004"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1606905004"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1606914246"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606914246"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1606905004"></script>
+<script type="text/javascript" src="/js/search.js?1606914246"></script>
 
     
   </div>
@@ -1506,7 +1506,8 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#basic-overview">Basic Overview</a>
+    <li><a href="#basic-overview">Basic Overview</a></li>
+    <li><a href="#exposed-metrics">Exposed Metrics</a>
       <ul>
         <li><a href="#openshift-setup">OpenShift setup</a></li>
         <li><a href="#prometheus-operator">Prometheus Operator</a></li>
@@ -1541,10 +1542,11 @@
 	<h2 id="basic-overview">Basic Overview</h2>
 <p>Submariner provides a number of Prometheus metrics, and sets up <code>ServiceMonitor</code> instances which allow these metrics to be scraped by an
 in-cluster Prometheus instance.</p>
+<h2 id="exposed-metrics">Exposed Metrics</h2>
 <p>The following metrics are exposed currently:</p>
 <ul>
 <li>
-<p><code>submariner_gateways</code>: the number of gateways in the cluster;</p>
+<p><code>submariner_gateways</code>: the number of gateways in the cluster</p>
 </li>
 <li>
 <p><code>submariner_connections</code>: the number of connections to other clusters, with the following labels:</p>
@@ -1555,6 +1557,27 @@ in-cluster Prometheus instance.</p>
 <li><code>remote_hostname</code>: the remote hostname</li>
 <li><code>status</code>: the connection status (“connecting”, “connected”, or “error”)</li>
 </ul>
+</li>
+<li>
+<p><code>gateway_rx_bytes</code>: count of bytes received by cable driver and cable (labels: <code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>,
+<code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>)</p>
+</li>
+<li>
+<p><code>gateway_tx_bytes</code>: count of bytes transmitted by cable driver and cable (labels: <code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>,
+<code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>)</p>
+</li>
+<li>
+<p><code>connection_established_timestamp</code>: timestamp of last successful connection established by cable driver and cable
+(labels: <code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>)</p>
+</li>
+<li>
+<p><code>connection_latency_seconds</code>: connection latency in seconds; last RTT, by cable driver and cable
+(labels: <code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>)</p>
+</li>
+<li>
+<p><code>connections</code>: the number of connections and corresponding status by cable driver and cable
+(labels: <code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>,
+<code>status</code>)</p>
 </li>
 </ul>
 <h3 id="openshift-setup">OpenShift setup</h3>
@@ -2352,19 +2375,19 @@ you to:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1606905004"></script>
-    <script src="/js/perfect-scrollbar.min.js?1606905004"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1606905004"></script>
-    <script src="/js/jquery.sticky.js?1606905004"></script>
-    <script src="/js/featherlight.min.js?1606905004"></script>
-    <script src="/js/highlight.pack.js?1606905004"></script>
+    <script src="/js/clipboard.min.js?1606914246"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606914246"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606914246"></script>
+    <script src="/js/jquery.sticky.js?1606914246"></script>
+    <script src="/js/featherlight.min.js?1606914246"></script>
+    <script src="/js/highlight.pack.js?1606914246"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1606905004"></script>
-    <script src="/js/learn.js?1606905004"></script>
-    <script src="/js/hugo-learn.js?1606905004"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606914246"></script>
+    <script src="/js/learn.js?1606914246"></script>
+    <script src="/js/hugo-learn.js?1606914246"></script>
 
-    <link href="/mermaid/mermaid.css?1606905004" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1606905004"></script>
+    <link href="/mermaid/mermaid.css?1606914246" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1606914246"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
