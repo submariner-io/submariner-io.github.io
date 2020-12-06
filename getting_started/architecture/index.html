@@ -12,20 +12,20 @@
     <title>Architecture :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1607263998" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1607263998" rel="stylesheet">
-    <link href="/css/hybrid.css?1607263998" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1607263998" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1607263998" rel="stylesheet">
-    <link href="/css/auto-complete.css?1607263998" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1607263998" rel="stylesheet">
-    <link href="/css/theme.css?1607263998" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1607263998" rel="stylesheet">
+    <link href="/css/nucleus.css?1607264138" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1607264138" rel="stylesheet">
+    <link href="/css/hybrid.css?1607264138" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1607264138" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1607264138" rel="stylesheet">
+    <link href="/css/auto-complete.css?1607264138" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1607264138" rel="stylesheet">
+    <link href="/css/theme.css?1607264138" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1607264138" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1607263998" rel="stylesheet">
+      <link href="/css/theme-blue.css?1607264138" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1607263998"></script>
+    <script src="/js/jquery-3.3.1.min.js?1607264138"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1607263998"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1607263998"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1607264138"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1607264138"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1607263998"></script>
+<script type="text/javascript" src="/js/search.js?1607264138"></script>
 
     
   </div>
@@ -1504,7 +1504,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#terminology-and-concepts">Terminology and Concepts</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1529,8 +1537,12 @@
 
 
 
-	<p>The diagram below illustrates the basic architecture of Submariner:</p>
-<p><img src="/images/submariner/architecture.jpg" alt="Submariner Architecture"></p>
+	<!-- markdownlint-disable line-length -->
+<p>Submariner connects multiple Kubernetes clusters in a way that is secure and performant. Submariner flattens the networks between the
+connected clusters, and enables IP reachability between Pods and Services. Submariner also provides, via Lighthouse, service discovery
+capabilities. The service discovery model is built using the proposed
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multi Cluster Services</a>.</p>
+<!-- markdownlint-enable line-length -->
 <p>Submariner consists of several main components that work in conjunction to securely connect workloads across multiple Kubernetes clusters,
 both on-premises and on public clouds:</p>
 <ul>
@@ -1542,6 +1554,33 @@ both on-premises and on public clouds:</p>
 <p>Submariner has optional components that provide additional functionality:</p>
 <ul>
 <li><a href="./globalnet/">Globalnet Controller</a>: handles interconnection of clusters with overlapping CIDRs.</li>
+</ul>
+<p>The diagram below illustrates the basic architecture of Submariner:</p>
+<p><img src="/images/submariner/architecture.jpg" alt="Submariner Architecture"></p>
+<h3 id="terminology-and-concepts">Terminology and Concepts</h3>
+<ul>
+<li>
+<p><code>ClusterSet</code> - a group of two or more clusters with a high degree of mutual trust that share Services amongst themselves.
+Within a cluster set, all namespaces with a given name are considered to be the same namespace.</p>
+</li>
+<li>
+<p><code>ServiceExport</code> (CRD) - used to specify which Services should be exposed across all clusters in the cluster set. If multiple clusters
+export a Service with the same name and from the same namespace, they will be recognized as a single logical Service.</p>
+<ul>
+<li>
+<p>ServiceExports must be explicitly created by the user in each cluster and within the namespace in which the underlying Service resides,
+in order to signify that the Service should be visible and discoverable to other clusters in the cluster set. The <code>ServiceExport</code> object can
+be created manually or via the <code>subctl export</code> command.</p>
+</li>
+<li>
+<p>When a Service is exported, it then becomes accessible as <code>&lt;service&gt;.&lt;ns&gt;.svc.clusterset.local</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>ServiceImport</code> (CRD) - representation of a multi-cluster Service in each cluster. Created and used internally by Lighthouse and does not
+require any user action.</p>
+</li>
 </ul>
 
 
@@ -2299,19 +2338,19 @@ both on-premises and on public clouds:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1607263998"></script>
-    <script src="/js/perfect-scrollbar.min.js?1607263998"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1607263998"></script>
-    <script src="/js/jquery.sticky.js?1607263998"></script>
-    <script src="/js/featherlight.min.js?1607263998"></script>
-    <script src="/js/highlight.pack.js?1607263998"></script>
+    <script src="/js/clipboard.min.js?1607264138"></script>
+    <script src="/js/perfect-scrollbar.min.js?1607264138"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1607264138"></script>
+    <script src="/js/jquery.sticky.js?1607264138"></script>
+    <script src="/js/featherlight.min.js?1607264138"></script>
+    <script src="/js/highlight.pack.js?1607264138"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1607263998"></script>
-    <script src="/js/learn.js?1607263998"></script>
-    <script src="/js/hugo-learn.js?1607263998"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1607264138"></script>
+    <script src="/js/learn.js?1607264138"></script>
+    <script src="/js/hugo-learn.js?1607264138"></script>
 
-    <link href="/mermaid/mermaid.css?1607263998" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1607263998"></script>
+    <link href="/mermaid/mermaid.css?1607264138" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1607264138"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
