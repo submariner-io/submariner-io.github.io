@@ -13,10 +13,10 @@
     
     <item>
       <title>Docs Style Guide</title>
-      <link>/for_developers/dev_guide/website/style_guide/</link>
+      <link>/development/website/style_guide/</link>
       <pubDate>Wed, 29 Apr 2020 19:09:55 +0200</pubDate>
       
-      <guid>/for_developers/dev_guide/website/style_guide/</guid>
+      <guid>/development/website/style_guide/</guid>
       <description>Documentation Style Guide This guide is meant to help keep our documentation consistent and ease the contribution and review process.
 Submariner follows the Kubernetes Documentation Style Guide wherever relevant. This is a Submariner-specific extension of those practices.
 Submariner.io Word List A list of Submariner-specific terms and words to be used consistently across the site.
