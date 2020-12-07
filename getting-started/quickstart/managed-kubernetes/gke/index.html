@@ -12,20 +12,20 @@
     <title>Google (GKE) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1607364656" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1607364656" rel="stylesheet">
-    <link href="/css/hybrid.css?1607364656" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1607364656" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1607364656" rel="stylesheet">
-    <link href="/css/auto-complete.css?1607364656" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1607364656" rel="stylesheet">
-    <link href="/css/theme.css?1607364656" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1607364656" rel="stylesheet">
+    <link href="/css/nucleus.css?1607365772" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1607365772" rel="stylesheet">
+    <link href="/css/hybrid.css?1607365772" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1607365772" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1607365772" rel="stylesheet">
+    <link href="/css/auto-complete.css?1607365772" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1607365772" rel="stylesheet">
+    <link href="/css/theme.css?1607365772" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1607365772" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1607364656" rel="stylesheet">
+      <link href="/css/theme-blue.css?1607365772" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1607364656"></script>
+    <script src="/js/jquery-3.3.1.min.js?1607365772"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1607364656"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1607364656"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1607365772"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1607365772"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1607364656"></script>
+<script type="text/javascript" src="/js/search.js?1607365772"></script>
 
     
   </div>
@@ -1487,10 +1487,12 @@
     </li>
     <li><a href="#deploy-submariner">Deploy Submariner</a>
       <ul>
-        <li><a href="#final-workaround-for-kubedns">Final Workaround for KubeDNS</a></li>
-        <li><a href="#reconfig-after-node-restart">Reconfig after Node Restart</a></li>
+        <li><a href="#workaround-for-kubedns">Workaround for KubeDNS</a></li>
       </ul>
     </li>
+    <li><a href="#automated-verification">Automated Verification</a></li>
+    <li><a href="#reconfig-after-node-restart">Reconfig after Node Restart</a></li>
+    <li><a href="#clean-up">Clean Up</a></li>
   </ul>
 </nav>
     </div>
@@ -1517,54 +1519,56 @@
 
 
 
-	<p>This quickstart guide covers the necessary steps to deploy two Google Kubernetes Engine (GKE) clusters on Google Cloud Platform (GCP) using
-<code>gcloud</code>. The clusters are named <strong>cluster-a</strong> and <strong>cluster-b</strong>.</p>
-<p>Once the GKE clusters are deployed, we deploy Submariner with Service Discovery to interconnect the two clusters.
-Note that this guide focuses on Submariner deployment on clusters with non-overlapping Pod and Service CIDRs.</p>
+	<p>This quickstart guide covers deploying two Google Kubernetes Engine (GKE) clusters on Google Cloud Platform (GCP) and connecting them with
+Submariner and <a href="https://submariner.io/getting-started/architecture/service-discovery/">Service Discovery</a>.</p>
 
-<div class="notices info" ><p>The guide assumes that you have a working GCP account and the <code>gcloud</code> binary installed and configured.
-To get the binary, please visit <a href="https://cloud.google.com/sdk/docs/install">Google&rsquo;s website</a>.</p>
+<div class="notices info" ><p>The guide assumes clusters have non-overlapping Pod and Service CIDRs.
+<a href="https://submariner.io/getting-started/architecture/globalnet/">Globalnet</a> can be used if overlapping CIDRs can&rsquo;t be avoided.</p>
+</div>
+
+
+<div class="notices info" ><p>The guide assumes you have the <a href="https://cloud.google.com/sdk/docs/install"><code>gcloud</code> binary installed and configured</a> and a <a href="https://cloud.google.com/kubernetes-engine/docs/quickstart#before-you-begin">GCP account with
+billing enabled for the active project</a>.</p>
 </div>
 
 <h2 id="cluster-creation">Cluster Creation</h2>
 <p>Create two identical Kubernetes clusters on GKE.
 For this guide, the following minimal configuration was used, however not everything is required (see the note part below).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters create <span style="color:#e6db74">&#34;cluster-a&#34;</span> <span style="color:#ae81ff">\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud container clusters create <span style="color:#e6db74">&#34;cluster-a&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --zone <span style="color:#e6db74">&#34;europe-west3-a&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --cluster-ipv4-cidr <span style="color:#e6db74">&#34;10.0.0.0/14&#34;</span>
-    --services-ipv4-cidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10.3.240.0/20&#34;</span>
-    --cluster-version <span style="color:#e6db74">&#34;1.17.13-gke.1400&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --enable-ip-alias <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --cluster-ipv4-cidr <span style="color:#e6db74">&#34;10.0.0.0/14&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --services-ipv4-cidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10.4.0.0/20&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --cluster-version <span style="color:#e6db74">&#34;1.17.13-gke.2001&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --username <span style="color:#e6db74">&#34;admin&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --machine-type <span style="color:#e6db74">&#34;g1-small&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --image-type <span style="color:#e6db74">&#34;UBUNTU&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --disk-type <span style="color:#e6db74">&#34;pd-ssd&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --disk-size <span style="color:#e6db74">&#34;15&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --num-nodes <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --network <span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#ae81ff">\
-</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters create <span style="color:#e6db74">&#34;cluster-b&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --network <span style="color:#e6db74">&#34;default&#34;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud container clusters create <span style="color:#e6db74">&#34;cluster-b&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --zone <span style="color:#e6db74">&#34;europe-west3-a&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --cluster-ipv4-cidr <span style="color:#e6db74">&#34;10.4.0.0/14&#34;</span>
-    --services-ipv4-cidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10.7.240.0/20&#34;</span>
-    --cluster-version <span style="color:#e6db74">&#34;1.17.13-gke.1400&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --enable-ip-alias <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --cluster-ipv4-cidr <span style="color:#e6db74">&#34;10.8.0.0/14&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --services-ipv4-cidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10.12.0.0/20&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --cluster-version <span style="color:#e6db74">&#34;1.17.13-gke.2001&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --username <span style="color:#e6db74">&#34;admin&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --machine-type <span style="color:#e6db74">&#34;g1-small&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --image-type <span style="color:#e6db74">&#34;UBUNTU&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --disk-type <span style="color:#e6db74">&#34;pd-ssd&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --disk-size <span style="color:#e6db74">&#34;15&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --num-nodes <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --network <span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#ae81ff">\
-</span></code></pre></div>
-<div class="notices note" ><p>Make sure to use Kubernetes version 1.17 or higher, set by <code>--cluster-version</code>
-(refer to the <a href="https://cloud.google.com/kubernetes-engine/docs/release-notes">GKE docs/ release notes</a>).
-Also double check for non-overlapping Pod and Service CIDRs between clusters using the commands below:</p>
+</span><span style="color:#ae81ff"></span>    --network <span style="color:#e6db74">&#34;default&#34;</span>
+</code></pre></div>
+<div class="notices note" ><p>Make sure to use Kubernetes version 1.17 or higher, set by <code>--cluster-version</code>. The latest versions are listed in the <a href="https://cloud.google.com/kubernetes-engine/docs/release-notes">GKE release
+notes</a>.</p>
 </div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters describe <span style="color:#e6db74">&#34;cluster-a&#34;</span> --zone <span style="color:#e6db74">&#34;europe-west3-a&#34;</span> | grep -e clusterIpv4Cidr -e servicesIpv4Cidr
-gcloud container clusters describe <span style="color:#e6db74">&#34;cluster-b&#34;</span> --zone <span style="color:#e6db74">&#34;europe-west3-a&#34;</span> | grep -e clusterIpv4Cidr -e servicesIpv4Cidr
-</code></pre></div><h2 id="prepare-clusters-for-submariner">Prepare Clusters for Submariner</h2>
-<p>Next, the created clusters need some changes in order for Submariner to successfully open the IPSEC tunnel between them.</p>
+<h2 id="prepare-clusters-for-submariner">Prepare Clusters for Submariner</h2>
+<p>The clusters need some changes in order for Submariner to successfully open the IPsec tunnel between them.</p>
 <h3 id="preparation-node-configuration">Preparation: Node Configuration</h3>
-<p>As of version 0.7 of Submariner (the current one while writing this), Google&rsquo;s native CNI plugin is not directly supported.
+<p>As of version 0.8 of Submariner (the current one while writing this), Google&rsquo;s native CNI plugin is not directly supported.
 GKE clusters can be generated with Calico CNI instead, but this was not tested during this demo and therefore could hold surprises as well.</p>
 <p>So as this guide uses Google&rsquo;s native CNI plugin, configuration is needed for the <code>eth0</code> interface of each node on every cluster.
 The used workaround deploys <code>netshoot</code> pods onto each node that configure the reverse path filtering.
@@ -1574,25 +1578,19 @@ in all clusters.</p>
 wget https://raw.githubusercontent.com/sridhargaddam/k8sscripts/main/rp_filter_settings/configure-rp-filter.sh
 chmod +x update-rp-filter.sh
 chmod +x configure-rp-filter.sh
-kubectx cluster-a <span style="color:#75715e"># kubectl config use-context cluster-a</span>
+gcloud container clusters get-credentials cluster-a --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
 ./configure-rp-filter.sh
-kubectx cluster-b <span style="color:#75715e"># kubectl config use-context cluster-b</span>
+gcloud container clusters get-credentials cluster-b --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
 ./configure-rp-filter.sh
 </code></pre></div><h3 id="preparation-firewall-configuration">Preparation: Firewall Configuration</h3>
-<p>Submariner requires UDP ports 500, 4500 and 4800 to be open in both directions.
-Additionally the microservices&rsquo; traffic needs to flow through the IPsec tunnel as TCP packets.
-Hence the TCP traffic has source and destination addresses originating in the participating clusters.
-Create those firewall rules on the GCP project.</p>
-
-<div class="notices note" ><p>Use the commands above to retrieve the <code>clusterIpv4Cidr</code> and <code>servicesIpv4Cidr</code> for both clusters.
-If you copied the above code, you can just copy&amp;paste the values below for the <code>--source-ranges</code> and <code>--destination-ranges</code>.</p>
-</div>
-
+<p>Submariner requires UDP ports 500, 4500, and 4800 to be open in both directions. Additionally the microservices&rsquo; traffic needs to flow
+through the IPsec tunnel as TCP packets. Hence the TCP traffic has source and destination addresses originating in the participating
+clusters. Create those firewall rules on the GCP project. Use the same IP ranges as in the cluster creation steps above.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud compute firewall-rules create <span style="color:#e6db74">&#34;allow-tcp-in&#34;</span> --allow<span style="color:#f92672">=</span>tcp <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --direction<span style="color:#f92672">=</span>IN --source-ranges<span style="color:#f92672">=</span>10.7.240.0/20,10.4.0.0/14,10.3.240.0/20,10.0.0.0/14
+</span><span style="color:#ae81ff"></span>  --direction<span style="color:#f92672">=</span>IN --source-ranges<span style="color:#f92672">=</span>10.12.0.0/20,10.8.0.0/14,10.4.0.0/20,10.0.0.0/14
 
 gcloud compute firewall-rules create <span style="color:#e6db74">&#34;allow-tcp-out&#34;</span> --allow<span style="color:#f92672">=</span>tcp --direction<span style="color:#f92672">=</span>OUT <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --destination-ranges<span style="color:#f92672">=</span>10.7.240.0/20,10.4.0.0/14,10.3.240.0/20,10.0.0.0/14
+</span><span style="color:#ae81ff"></span>  --destination-ranges<span style="color:#f92672">=</span>10.12.0.0/20,10.8.0.0/14,10.4.0.0/20,10.0.0.0/14
 
 gcloud compute firewall-rules create <span style="color:#e6db74">&#34;udp-in-500&#34;</span> --allow<span style="color:#f92672">=</span>udp:500 --direction<span style="color:#f92672">=</span>IN
 gcloud compute firewall-rules create <span style="color:#e6db74">&#34;udp-in-4500&#34;</span> --allow<span style="color:#f92672">=</span>udp:4500 --direction<span style="color:#f92672">=</span>IN
@@ -1615,68 +1613,90 @@ echo export PATH=\$PATH:~/.local/bin >> ~/.profile
 </pre>
 </div>
 
-<p>We will deploy the <a href="https://submariner.io/getting_started/architecture/broker/">Broker</a> on <strong>cluster-a</strong>.
-The command will output a file named <code>broker-info.subm</code> to the directory it is run from, which will be used to setup the
+<p>Deploy the <a href="https://submariner.io/getting-started/architecture/broker/">Broker</a> on cluster-a.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters get-credentials cluster-a --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+subctl deploy-broker
+</code></pre></div><p>The command will output a file named <code>broker-info.subm</code> to the directory it is run from, which will be used to setup the
 IPsec tunnel between clusters.</p>
-<p>The Broker cluster&rsquo;s API must be accessible by all the participating clusters, which is given by GKE standard configuration.</p>
-<p>Kubecontext and the kubeconfig file can be specified (it defaults to ~/.kube/config):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubecontext cluster-a --kubeconfig &lt;path/to/config&gt;
-</code></pre></div><p>Verify the Broker components are installed using <code>kubectl</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get crds --context cluster-a | grep -i submariner
-  &gt; clusters.submariner.io
-    endpoints.submariner.io
-    gateways.submariner.io
-    multiclusterservices.lighthouse.submariner.io
-    servicediscoveries.submariner.io
-    serviceexports.lighthouse.submariner.io
-    serviceimports.lighthouse.submariner.io
-    submariners.submariner.io
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get ns --context cluster-a | grep -i submariner
-  &gt; submariner-k8s-broker
-</code></pre></div><p>Now it is time to register every cluster in the future clusterset to the Broker.</p>
-<p>First join the Broker cluster itself (the Broker could also be deployed on a cluster that does not run workloads,
-hence installing the Broker does not automatically add the cluster). The command tags the cluster for Submariner with the ID <code>cluster-a</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext cluster-a --kubeconfig &lt;path/to/config&gt; broker-info.subm --clusterid cluster-a
-</code></pre></div><p>Submariner will figure out most information needed on its own. In addition, you will see a dialogue on the terminal that asks you to</p>
-<ul>
-<li>decide which of the three nodes shall be the Gateway. This node gets annotated with <code>submariner.io/gateway: true</code> automatically.</li>
-<li>input the cluster&rsquo;s Pod and Service CIDR, if it could not be detected.</li>
-</ul>
+<p>Verify the Broker components are installed:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get crds | grep submariner
+clusters.submariner.io
+endpoints.submariner.io
+gateways.submariner.io
+serviceimports.lighthouse.submariner.io
+$ kubectl get ns | grep submariner
+submariner-k8s-broker
+</code></pre></div><p>Now it is time to register every cluster in the future <code>ClusterSet</code> to the Broker.</p>
+<p>First join the Broker-hosting cluster itself to the Broker:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud container clusters get-credentials cluster-a --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+subctl join broker-info.subm --clusterid cluster-a --servicecidr 10.4.0.0/20
+</code></pre></div><p>Submariner will figure out most required information on its own. The <code>--clusterid</code> and <code>--servicecidr</code> flags should be used to pass the same
+values as during the cluster creation steps above. You will also see a dialogue on the terminal that asks you to decide which of the three
+nodes will be the Gateway. Any node will work. It will be annotated with <code>submariner.io/gateway: true</code>.</p>
 <p>When a cluster is joined, the Submariner Operator is installed. It creates several components in the <code>submariner-operator</code> namespace:</p>
 <ul>
-<li>a <code>submariner-gateway</code> DaemonSet, to open a gateway for the IPsec tunnel on one node</li>
-<li>a <code>submariner-routeagent</code> DaemonSet, which runs on every worker node in order to route the internal traffic to the local gateway
+<li><code>submariner-gateway</code> DaemonSet, to open a gateway for the IPsec tunnel on one node</li>
+<li><code>submariner-routeagent</code> DaemonSet, which runs on every worker node in order to route the internal traffic to the local gateway
 via VXLAN tunnels</li>
-<li>a <code>submariner-lighthouse-agent</code> Deployment, which accesses the Kubernetes API server in the Broker cluster to exchange Service
+<li><code>submariner-lighthouse-agent</code> Deployment, which accesses the Kubernetes API server in the Broker cluster to exchange Service
 information with the Broker</li>
-<li>a <code>submariner-lighthouse-coredns</code> Deployment, which - as an external DNS server - gets forwarded requests to the
+<li><code>submariner-lighthouse-coredns</code> Deployment, which - as an external DNS server - gets forwarded requests to the
 <code>*.clusterset.local</code> domain for cross-cluster communication by Kubernetes&rsquo; internal DNS server</li>
 </ul>
 <p>Check the DaemonSets and Deployments with the following command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --context cluster-a get ds,deploy -n submariner-operator
-</code></pre></div><p>Repeat with the second cluster:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubecontext cluster-b --kubeconfig &lt;path/to/config&gt; broker-info.subm --clusterid cluster-b
-</code></pre></div><p>Then verify connectivity and CIDR settings within the clusterset using:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl show all
-</code></pre></div><p>You should see similar output to this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLUSTER ID    ENDPOINT IP    PUBLIC IP    CABLE DRIVER    TYPE
-cluster-a     10.156.0.46     35.x.x.x    strongswan      local
-cluster-b     10.156.0.42     35.x.x.x    strongswan      remote
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gcloud container clusters get-credentials cluster-a --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+$ kubectl get ds,deploy -n submariner-operator
+NAME                                   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                AGE
+daemonset.apps/submariner-gateway      <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           submariner.io/gateway<span style="color:#f92672">=</span>true   5m29s
+daemonset.apps/submariner-routeagent   <span style="color:#ae81ff">3</span>         <span style="color:#ae81ff">3</span>         <span style="color:#ae81ff">3</span>       <span style="color:#ae81ff">3</span>            <span style="color:#ae81ff">3</span>           &lt;none&gt;                       5m27s
 
-GATEWAY    CLUSTER     REMOTE IP      CABLE DRIVER    SUBNETS                       STATUS
-gke-*-*    cluster-a   10.156.0.42    strongswan      10.3.240.0/20, 10.0.0.0/14    connected
+NAME                                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/submariner-lighthouse-agent     1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           5m28s
+deployment.apps/submariner-lighthouse-coredns   2/2     <span style="color:#ae81ff">2</span>            <span style="color:#ae81ff">2</span>           5m27s
+deployment.apps/submariner-operator             1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           5m43s
+</code></pre></div><p>Now join the second cluster to the Broker:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud container clusters get-credentials cluster-b --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+subctl join broker-info.subm --clusterid cluster-b --servicecidr 10.12.0.0/20
+</code></pre></div><p>Then verify connectivity and CIDR settings within the <code>ClusterSet</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gcloud container clusters get-credentials cluster-a --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+$ subctl show all
+CLUSTER ID                    ENDPOINT IP     PUBLIC IP       CABLE DRIVER        TYPE
+cluster-a                     10.156.0.8      34.107.75.239   libreswan           local
+cluster-b                     10.156.0.13     35.242.247.43   libreswan           remote
 
-NODE       HA STATUS     SUMMARY
-gke-*-*    active        All connections <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> are established
-</code></pre></div><h3 id="final-workaround-for-kubedns">Final Workaround for KubeDNS</h3>
+GATEWAY                         CLUSTER                 REMOTE IP       CABLE DRIVER        SUBNETS                                 STATUS
+gke-cluster-b-default-pool-e2e7 cluster-b               10.156.0.13     libreswan           10.12.0.0/20, 10.8.0.0/14               connected
+
+NODE                            HA STATUS       SUMMARY
+gke-cluster-a-default-pool-4e5f active          All connections <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> are established
+
+COMPONENT                       REPOSITORY                                            VERSION
+submariner                      quay.io/submariner                                    0.8.0-rc0
+submariner-operator             quay.io/submariner                                    0.8.0-rc0
+service-discovery               quay.io/submariner                                    0.8.0-rc0
+$ gcloud container clusters get-credentials cluster-b --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+$ subctl show all
+CLUSTER ID                    ENDPOINT IP     PUBLIC IP       CABLE DRIVER        TYPE
+cluster-b                     10.156.0.13     35.242.247.43   libreswan           local
+cluster-a                     10.156.0.8      34.107.75.239   libreswan           remote
+
+GATEWAY                         CLUSTER                 REMOTE IP       CABLE DRIVER        SUBNETS                                 STATUS
+gke-cluster-a-default-pool-4e5f cluster-a               10.156.0.8      libreswan           10.4.0.0/20, 10.0.0.0/14                connected
+
+NODE                            HA STATUS       SUMMARY
+gke-cluster-b-default-pool-e2e7 active          All connections <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> are established
+
+COMPONENT                       REPOSITORY                                            VERSION
+submariner                      quay.io/submariner                                    0.8.0-rc0
+submariner-operator             quay.io/submariner                                    0.8.0-rc0
+service-discovery               quay.io/submariner                                    0.8.0-rc0
+</code></pre></div><h3 id="workaround-for-kubedns">Workaround for KubeDNS</h3>
 <p>GKE uses KubeDNS by default for cluster-internal DNS queries. Submariner however only works with CoreDNS as of version 0.7. As a
 consequence, the <code>*.clusterset.local</code> domain stub needs to be added manually to KubeDNS.
-Query the ClusterIP of the <code>submariner-lighthouse-coredns</code> Service in <strong>cluster-a</strong>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLUSTER_IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl --context cluster-a get svc submariner-lighthouse-coredns -n submariner-operator <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  -o<span style="color:#f92672">=</span>custom-columns<span style="color:#f92672">=</span>ClusterIP:.spec.clusterIP | tail -n +2<span style="color:#66d9ef">)</span>
-</code></pre></div><p>Use the information to apply the following ConfigMap, automatically replacing $CLUSTER_IP with the ClusterIP obtained for
-the <code>submariner-lighthouse-coredns</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt;EOF | kubectl --context cluster-a apply -f -
+Query the ClusterIP of the <code>submariner-lighthouse-coredns</code> Service in cluster-a and cluster-b:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gcloud container clusters get-credentials cluster-a --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+$ CLUSTER_IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl get svc submariner-lighthouse-coredns -n submariner-operator -o<span style="color:#f92672">=</span>custom-columns<span style="color:#f92672">=</span>ClusterIP:.spec.clusterIP | tail -n +2<span style="color:#66d9ef">)</span>
+$ cat <span style="color:#e6db74">&lt;&lt;EOF | kubectl apply -f -
 </span><span style="color:#e6db74">apiVersion: v1
 </span><span style="color:#e6db74">kind: ConfigMap
 </span><span style="color:#e6db74">data:
@@ -1688,89 +1708,26 @@ the <code>submariner-lighthouse-coredns</code>:</p>
 </span><span style="color:#e6db74">  name: kube-dns
 </span><span style="color:#e6db74">  namespace: kube-system
 </span><span style="color:#e6db74">EOF</span>
-</code></pre></div>
-<div class="notices note" ><p>Repeat both commands, the <code>CLUSTER_IP</code> discovery and the <code>kubectl apply</code>, this time using <code>--context cluster-b</code>.</p>
-</div>
-
-
-
-<h4 id="verify-deployment">Verify Deployment</h4>
-<p>To manually verify the deployment, follow the steps below using either a headless or ClusterIP <code>nginx</code> service deployed in <code>cluster-b</code>.</p>
-<h5 id="deploy-clusterip-service">Deploy ClusterIP Service</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
-kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
-kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
-subctl export service --namespace default nginx
-</code></pre></div><h5 id="deploy-headless-service">Deploy Headless Service</h5>
-<p>Note that headless Services can only be exported on non-globalnet deployments.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
-kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
-kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span> --cluster-ip<span style="color:#f92672">=</span>None
-subctl export service --namespace default nginx
-</code></pre></div><h5 id="verify">Verify</h5>
-<p>Run <code>nettest</code> from <code>cluster-a</code> to access the <code>nginx</code> service:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
-kubectl -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
-curl nginx.default.svc.clusterset.local:8080
-</code></pre></div><p>To access a Service in a specific cluster, prefix the query with <code>&lt;cluster-id&gt;</code> as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-a.nginx.default.svc.clusterset.local:8080
-</code></pre></div><h4 id="verify-statefulsets">Verify StatefulSets</h4>
-<p>A StatefulSet uses a headless Service. Create a <code>web.yaml</code> as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Service
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: nginx-ss
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">ports</span>:
-  - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
-    <span style="color:#66d9ef">name</span>: web
-  <span style="color:#66d9ef">clusterIP</span>: None
-  <span style="color:#66d9ef">selector</span>:
-    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
----
-<span style="color:#66d9ef">apiVersion</span>: apps/v1
-<span style="color:#66d9ef">kind</span>: StatefulSet
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: web
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">serviceName</span>: <span style="color:#e6db74">&#34;nginx-ss&#34;</span>
-  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
-  <span style="color:#66d9ef">selector</span>:
-    <span style="color:#66d9ef">matchLabels</span>:
-        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-  <span style="color:#66d9ef">template</span>:
-    <span style="color:#66d9ef">metadata</span>:
-      <span style="color:#66d9ef">labels</span>:
-        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-    <span style="color:#66d9ef">spec</span>:
-      <span style="color:#66d9ef">containers</span>:
-      - <span style="color:#66d9ef">name</span>: nginx-ss
-        <span style="color:#66d9ef">image</span>: nginxinc/nginx-unprivileged:stable-alpine
-        <span style="color:#66d9ef">ports</span>:
-        - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
-          <span style="color:#66d9ef">name</span>: web
-</code></pre></div><p>Use this yaml to create a StatefulSet <code>web</code> with <code>nginx-ss</code> as the Headless Service.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
-kubectl -n default apply -f web.yaml
-subctl export service -n default nginx-ss
-curl nginx-ss.default.svc.clusterset.local:8080
-</code></pre></div><p>To access the Service in a specific cluster, prefix the query with <code>&lt;cluster-id&gt;</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-a.nginx-ss.default.svc.clusterset.local:8080
-</code></pre></div><p>To access an individual pod in a specific cluster, prefix the query with <code>&lt;pod-hostname&gt;.&lt;cluster-id&gt;</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl web-0.cluster-a.nginx-ss.default.svc.clusterset.local:8080
-</code></pre></div><h4 id="perform-automated-verification">Perform automated verification</h4>
+$ gcloud container clusters get-credentials cluster-b --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+$ CLUSTER_IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl get svc submariner-lighthouse-coredns -n submariner-operator -o<span style="color:#f92672">=</span>custom-columns<span style="color:#f92672">=</span>ClusterIP:.spec.clusterIP | tail -n +2<span style="color:#66d9ef">)</span>
+$ cat <span style="color:#e6db74">&lt;&lt;EOF | kubectl apply -f -
+</span><span style="color:#e6db74">apiVersion: v1
+</span><span style="color:#e6db74">kind: ConfigMap
+</span><span style="color:#e6db74">data:
+</span><span style="color:#e6db74">  stubDomains: |
+</span><span style="color:#e6db74">    {&#34;clusterset.local&#34;:[&#34;$CLUSTER_IP&#34;]}
+</span><span style="color:#e6db74">metadata:
+</span><span style="color:#e6db74">  labels:
+</span><span style="color:#e6db74">    addonmanager.kubernetes.io/mode: EnsureExists
+</span><span style="color:#e6db74">  name: kube-dns
+</span><span style="color:#e6db74">  namespace: kube-system
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><h2 id="automated-verification">Automated Verification</h2>
 <p>This will perform automated verifications between the clusters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig --only service-discovery,connectivity --verbose
-</code></pre></div>
-
-
-<h3 id="reconfig-after-node-restart">Reconfig after Node Restart</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">KUBECONFIG<span style="color:#f92672">=</span>cluster-a.yml gcloud container clusters get-credentials cluster-a --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+KUBECONFIG<span style="color:#f92672">=</span>cluster-b.yml gcloud container clusters get-credentials cluster-b --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+subctl verify cluster-a.yml cluster-b.yml --only service-discovery,connectivity --verbose
+</code></pre></div><h2 id="reconfig-after-node-restart">Reconfig after Node Restart</h2>
 <p>If the GKE Nodes were at some point drained or deleted, the Submariner Pods needed to terminate.
 Once the Nodes are up again, remember to</p>
 <ul>
@@ -1779,7 +1736,11 @@ Once the Nodes are up again, remember to</p>
 <li>change the applied KubeDNS workaround to reflect the current <code>submariner-lighthouse-coredns</code> IP.</li>
 </ul>
 <p>This makes Submariner functional again and work can be continued.</p>
-
+<h2 id="clean-up">Clean Up</h2>
+<p>When you&rsquo;re done, delete your clusters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud container clusters delete cluster-a --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+gcloud container clusters delete cluster-b --zone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;europe-west3-a&#34;</span>
+</code></pre></div>
 
 
 
@@ -2525,19 +2486,19 @@ Once the Nodes are up again, remember to</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1607364656"></script>
-    <script src="/js/perfect-scrollbar.min.js?1607364656"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1607364656"></script>
-    <script src="/js/jquery.sticky.js?1607364656"></script>
-    <script src="/js/featherlight.min.js?1607364656"></script>
-    <script src="/js/highlight.pack.js?1607364656"></script>
+    <script src="/js/clipboard.min.js?1607365772"></script>
+    <script src="/js/perfect-scrollbar.min.js?1607365772"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1607365772"></script>
+    <script src="/js/jquery.sticky.js?1607365772"></script>
+    <script src="/js/featherlight.min.js?1607365772"></script>
+    <script src="/js/highlight.pack.js?1607365772"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1607364656"></script>
-    <script src="/js/learn.js?1607364656"></script>
-    <script src="/js/hugo-learn.js?1607364656"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1607365772"></script>
+    <script src="/js/learn.js?1607365772"></script>
+    <script src="/js/hugo-learn.js?1607365772"></script>
 
-    <link href="/mermaid/mermaid.css?1607364656" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1607364656"></script>
+    <link href="/mermaid/mermaid.css?1607365772" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1607365772"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
