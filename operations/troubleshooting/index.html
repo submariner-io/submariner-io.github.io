@@ -12,20 +12,20 @@
     <title>Troubleshooting :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1607365772" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1607365772" rel="stylesheet">
-    <link href="/css/hybrid.css?1607365772" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1607365772" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1607365772" rel="stylesheet">
-    <link href="/css/auto-complete.css?1607365772" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1607365772" rel="stylesheet">
-    <link href="/css/theme.css?1607365772" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1607365772" rel="stylesheet">
+    <link href="/css/nucleus.css?1607430894" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1607430894" rel="stylesheet">
+    <link href="/css/hybrid.css?1607430894" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1607430894" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1607430894" rel="stylesheet">
+    <link href="/css/auto-complete.css?1607430894" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1607430894" rel="stylesheet">
+    <link href="/css/theme.css?1607430894" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1607430894" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1607365772" rel="stylesheet">
+      <link href="/css/theme-blue.css?1607430894" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1607365772"></script>
+    <script src="/js/jquery-3.3.1.min.js?1607430894"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1607365772"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1607365772"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1607430894"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1607430894"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1607365772"></script>
+<script type="text/javascript" src="/js/search.js?1607430894"></script>
 
     
   </div>
@@ -1469,6 +1469,7 @@
     <li><a href="#overview">Overview</a>
       <ul>
         <li><a href="#pre-requisite">Pre-requisite</a></li>
+        <li><a href="#connectivity-issues">Connectivity Issues</a></li>
         <li><a href="#service-discovery-issues">Service Discovery Issues</a></li>
       </ul>
     </li>
@@ -1519,11 +1520,44 @@ This section will contain information about common deployment issues you can run
 
 #### TBD
 
-### Connectivity Issues
+-->
+<h3 id="connectivity-issues">Connectivity Issues</h3>
+<p>Submariner deployment completed successfully but Services/Pods on one cluster are unable to connect to Services on another cluster. This can
+be due to multiple factors outlined below.</p>
+<h4 id="check-the-connection-statistics">Check the Connection Statistics</h4>
+<p>If you are unable to connect to a remote cluster, check its connection status in the Gateway resource.</p>
+<p><code>kubectl describe Gateway -n submariner-operator</code></p>
+<p>Sample output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   - <span style="color:#66d9ef">endpoint</span>:
+        <span style="color:#66d9ef">backend</span>: libreswan
+        <span style="color:#66d9ef">cable_name</span>: submariner-cable-cluster1<span style="color:#ae81ff">-172-17-0-7</span>
+        <span style="color:#66d9ef">cluster_id</span>: cluster1
+        <span style="color:#66d9ef">healthCheckIP</span>: <span style="color:#ae81ff">10.1.128.0</span>
+        <span style="color:#66d9ef">hostname</span>: cluster1-worker
+        <span style="color:#66d9ef">nat_enabled</span>: <span style="color:#66d9ef">false</span>
+        <span style="color:#66d9ef">private_ip</span>: <span style="color:#ae81ff">172.17.0.7</span>
+        <span style="color:#66d9ef">public_ip</span>: <span style="color:#e6db74">&#34;&#34;</span>
+        <span style="color:#66d9ef">subnets</span>:
+        - <span style="color:#ae81ff">100.1.0.0</span>/<span style="color:#ae81ff">16</span>
+        - <span style="color:#ae81ff">10.1.0.0</span>/<span style="color:#ae81ff">16</span>
+      <span style="color:#66d9ef">latencyRTT</span>:
+        <span style="color:#66d9ef">average</span>: <span style="color:#ae81ff">447.</span>358µs
+        <span style="color:#66d9ef">last</span>: <span style="color:#ae81ff">281.</span>577µs
+        <span style="color:#66d9ef">max</span>: <span style="color:#ae81ff">5.</span>80437ms
+        <span style="color:#66d9ef">min</span>: <span style="color:#ae81ff">158.</span>725µs
+        <span style="color:#66d9ef">stdDev</span>: <span style="color:#ae81ff">364.</span>154µs
+      <span style="color:#66d9ef">status</span>: connected
+      <span style="color:#66d9ef">statusMessage</span>: Connected to <span style="color:#ae81ff">172.17.0.7</span>:<span style="color:#ae81ff">4500</span> - encryption alg=AES_GCM_16, keysize=<span style="color:#ae81ff">128</span>
+        rekey-time=<span style="color:#ae81ff">13444</span>
+</code></pre></div>
+<div class="notices note" ><p>This feature is only available for non-Globalnet deployments at the moment.</p>
+</div>
 
-Submariner deployment completed successfully but Services/Pods on one cluster are unable to connect to Services on another cluster. This can
-be due to multiple factors outlined in the following sections.
-
+<p>The Gateway Engine uses the <code>Health Check IP</code> of the endpoint to verify connectivity.
+The connection <code>Status</code> will be marked as <code>error</code>, if it cannot reach this IP,
+and the <code>Status Message</code> will provide more information about the possible failure reason.
+It also provides the statistics for the connection.</p>
+<!---
 #### IPSec tunnel not created between clusters
 
 TBD
@@ -2455,19 +2489,19 @@ from connected clusters.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1607365772"></script>
-    <script src="/js/perfect-scrollbar.min.js?1607365772"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1607365772"></script>
-    <script src="/js/jquery.sticky.js?1607365772"></script>
-    <script src="/js/featherlight.min.js?1607365772"></script>
-    <script src="/js/highlight.pack.js?1607365772"></script>
+    <script src="/js/clipboard.min.js?1607430894"></script>
+    <script src="/js/perfect-scrollbar.min.js?1607430894"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1607430894"></script>
+    <script src="/js/jquery.sticky.js?1607430894"></script>
+    <script src="/js/featherlight.min.js?1607430894"></script>
+    <script src="/js/highlight.pack.js?1607430894"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1607365772"></script>
-    <script src="/js/learn.js?1607365772"></script>
-    <script src="/js/hugo-learn.js?1607365772"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1607430894"></script>
+    <script src="/js/learn.js?1607430894"></script>
+    <script src="/js/hugo-learn.js?1607430894"></script>
 
-    <link href="/mermaid/mermaid.css?1607365772" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1607365772"></script>
+    <link href="/mermaid/mermaid.css?1607430894" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1607430894"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

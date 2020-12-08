@@ -12,20 +12,20 @@
     <title>Gateway Engine :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1607365772" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1607365772" rel="stylesheet">
-    <link href="/css/hybrid.css?1607365772" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1607365772" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1607365772" rel="stylesheet">
-    <link href="/css/auto-complete.css?1607365772" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1607365772" rel="stylesheet">
-    <link href="/css/theme.css?1607365772" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1607365772" rel="stylesheet">
+    <link href="/css/nucleus.css?1607430894" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1607430894" rel="stylesheet">
+    <link href="/css/hybrid.css?1607430894" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1607430894" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1607430894" rel="stylesheet">
+    <link href="/css/auto-complete.css?1607430894" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1607430894" rel="stylesheet">
+    <link href="/css/theme.css?1607430894" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1607430894" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1607365772" rel="stylesheet">
+      <link href="/css/theme-blue.css?1607430894" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1607365772"></script>
+    <script src="/js/jquery-3.3.1.min.js?1607430894"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1607365772"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1607365772"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1607430894"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1607430894"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1607365772"></script>
+<script type="text/javascript" src="/js/search.js?1607430894"></script>
 
     
   </div>
@@ -1555,6 +1555,15 @@ Gateway node in the cluster.</p>
 <!-- Image Source: https://docs.google.com/presentation/d/180CtHZnr9PP5Rh98VEmkQz3ovc5AGXG9wosoHMLhgaY/edit -->
 <p>The impact on datapath for various scenarios in a kind setup are captured in the
 following <a href="https://docs.google.com/spreadsheets/d/1JsXsyRDDXkp6t55Gm-NP5EggWTyYi2yo27pyuDYwlpc/edit#gid=0">spreadsheet</a>.</p>
+<h4 id="gateway-health-check">Gateway Health Check</h4>
+<p>The Gateway Engine continuously monitors the health of connected clusters.
+It periodically pings each cluster and collects statistics including basic connectivity,
+round trip time (RTT) and average latency. This information is updated in the <code>Gateway</code>
+resource. Whenever the Gateway Engine detects that a ping to a particular cluster has failed,
+its connection status is marked with an error state. Service Discovery uses this information
+to avoid unhealthy clusters during Service discovery.</p>
+<p>The health checking feature can be enabled/disabled via an option on the
+<a href="../../../operations/deployment/subctl/#join-flags-healthcheck"><code>subctl</code></a> join command.</p>
 
 
 
@@ -2297,19 +2306,19 @@ following <a href="https://docs.google.com/spreadsheets/d/1JsXsyRDDXkp6t55Gm-NP5
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1607365772"></script>
-    <script src="/js/perfect-scrollbar.min.js?1607365772"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1607365772"></script>
-    <script src="/js/jquery.sticky.js?1607365772"></script>
-    <script src="/js/featherlight.min.js?1607365772"></script>
-    <script src="/js/highlight.pack.js?1607365772"></script>
+    <script src="/js/clipboard.min.js?1607430894"></script>
+    <script src="/js/perfect-scrollbar.min.js?1607430894"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1607430894"></script>
+    <script src="/js/jquery.sticky.js?1607430894"></script>
+    <script src="/js/featherlight.min.js?1607430894"></script>
+    <script src="/js/highlight.pack.js?1607430894"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1607365772"></script>
-    <script src="/js/learn.js?1607365772"></script>
-    <script src="/js/hugo-learn.js?1607365772"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1607430894"></script>
+    <script src="/js/learn.js?1607430894"></script>
+    <script src="/js/hugo-learn.js?1607430894"></script>
 
-    <link href="/mermaid/mermaid.css?1607365772" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1607365772"></script>
+    <link href="/mermaid/mermaid.css?1607430894" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1607430894"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
