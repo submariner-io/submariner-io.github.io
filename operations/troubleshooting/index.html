@@ -12,20 +12,20 @@
     <title>Troubleshooting :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1607698819" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1607698819" rel="stylesheet">
-    <link href="/css/hybrid.css?1607698819" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1607698819" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1607698819" rel="stylesheet">
-    <link href="/css/auto-complete.css?1607698819" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1607698819" rel="stylesheet">
-    <link href="/css/theme.css?1607698819" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1607698819" rel="stylesheet">
+    <link href="/css/nucleus.css?1607698888" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1607698888" rel="stylesheet">
+    <link href="/css/hybrid.css?1607698888" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1607698888" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1607698888" rel="stylesheet">
+    <link href="/css/auto-complete.css?1607698888" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1607698888" rel="stylesheet">
+    <link href="/css/theme.css?1607698888" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1607698888" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1607698819" rel="stylesheet">
+      <link href="/css/theme-blue.css?1607698888" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1607698819"></script>
+    <script src="/js/jquery-3.3.1.min.js?1607698888"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1607698819"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1607698819"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1607698888"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1607698888"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1607698819"></script>
+<script type="text/javascript" src="/js/search.js?1607698888"></script>
 
     
   </div>
@@ -1601,16 +1601,33 @@ you haven&rsquo;t already.</p>
 Ensure the <code>ServiceExport</code> resource exists and check if its status condition indicates `Exported&rsquo;. Otherwise, its status condition will
 indicate the reason it wasn&rsquo;t exported.</p>
 <p><code>kubectl describe serviceexport -n &lt;service-namespace&gt; &lt;service-name&gt;</code></p>
+<p>Note that you can also use shorthand <code>svcex</code> for <code>serviceexport</code> and <code>svcim</code> for <code>serviceimport</code>.</p>
 <p>Sample output:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: lighthouse.submariner.io/v2alpha1
-<span style="color:#66d9ef">kind</span>: ServiceExport
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: nginx
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">Name</span>:         nginx-demo
+<span style="color:#66d9ef">Namespace</span>:    default
+<span style="color:#66d9ef">Labels</span>:       &lt;none&gt;
+<span style="color:#66d9ef">Annotations</span>:  &lt;none&gt;
+<span style="color:#66d9ef">API Version</span>:  multicluster.x-k8s.io/v1alpha1
+<span style="color:#66d9ef">Kind</span>:         ServiceExport
+<span style="color:#66d9ef">Metadata</span>:
+  <span style="color:#66d9ef">Creation Timestamp</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
+  <span style="color:#66d9ef">Generation</span>:          <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">Resource Version</span>:    <span style="color:#ae81ff">5254</span>
+  <span style="color:#66d9ef">Self Link</span>:           /apis/multicluster.x-k8s.io/v1alpha1/namespaces/default/serviceexports/nginx-demo
+  <span style="color:#66d9ef">UID</span>:                 <span style="color:#ae81ff">77509e43</span>-8fd1<span style="color:#ae81ff">-4173</span>-805c-e03c4581ebbf
 <span style="color:#66d9ef">Status</span>:
   <span style="color:#66d9ef">Conditions</span>:
-    <span style="color:#66d9ef">Message</span>:  Service was successfully synced to the broker
-    <span style="color:#66d9ef">Status</span>:   True
-    <span style="color:#66d9ef">Type</span>:     Exported
+    <span style="color:#66d9ef">Last Transition Time</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
+    <span style="color:#66d9ef">Message</span>:               Awaiting sync of the ServiceImport to the broker
+    <span style="color:#66d9ef">Reason</span>:                AwaitingSync
+    <span style="color:#66d9ef">Status</span>:                False
+    <span style="color:#66d9ef">Type</span>:                  Valid
+    <span style="color:#66d9ef">Last Transition Time</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
+    <span style="color:#66d9ef">Message</span>:               Service was successfully synced to the broker
+    <span style="color:#66d9ef">Reason</span>:
+    <span style="color:#66d9ef">Status</span>:                True
+    <span style="color:#66d9ef">Type</span>:                  Valid
+<span style="color:#66d9ef">Events</span>:                    &lt;none&gt;
 </code></pre></div><h5 id="check-lighthouse-coredns-service">Check Lighthouse CoreDNS Service</h5>
 <p>All cross-cluster service queries are handled by Lighthouse CoreDNS server. First we check if the Lighthouse CoreDNS Service is running
 properly.</p>
@@ -1666,30 +1683,31 @@ service. As described earlier, it will most commonly be an issue with RBAC other
 <p>If the ServiceImport resource was created properly on the cluster, run
 <code>kubectl -n submariner-operator describe serviceimport &lt;your-serviceimport-name&gt;</code>
 and check if it has the correct <code>ClusterID</code> and <code>ServiceIP</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Name:         nginx-default-cluster2
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Name:         nginx-demo-default-cluster2
 Namespace:    submariner-operator
-Labels:       &lt;none&gt;
-Annotations:  origin-name: nginx
+Labels:       lighthouse.submariner.io/sourceCluster=cluster2
+              lighthouse.submariner.io/sourceName=nginx-demo
+              lighthouse.submariner.io/sourceNamespace=default
+              submariner-io/clusterID=cluster2
+Annotations:  cluster-ip: 100.2.33.171
+              origin-name: nginx-demo
               origin-namespace: default
-API Version:  lighthouse.submariner.io/v2alpha1
+API Version:  multicluster.x-k8s.io/v1alpha1
 Kind:         ServiceImport
 Metadata:
-  Creation Timestamp:  2020-07-14T17:27:32Z
+  Creation Timestamp:  2020-11-25T06:21:02Z
   Generation:          1
-  Resource Version:    2790
-  Self Link:           /apis/lighthouse.submariner.io/v2alpha1/namespaces/submariner-operator/serviceimports/nginx-default-cluster2
-  UID:                 4cbe1c2b-c5f7-11ea-9bbe-0242ac110009
+  Resource Version:    5312
+  Self Link:           /apis/multicluster.x-k8s.io/v1alpha1/namespaces/submariner-operator/serviceimports/nginx-demo-default-cluster2
+  UID:                 a4c4abe0-1c84-4118-ae09-760b26f7fe3c
 Spec:
-  Ports:                    &lt;nil&gt;
-  Session Affinity:
-  Session Affinity Config:  &lt;nil&gt;
-  Type:                     ClusterSetIP
-Status:
-  Clusters:
-    Cluster:  cluster2 ==========&gt; ClusterID of cluster where service is running
-    Ips:
-      100.92.43.63     ==========&gt; ServiceIP or GlobalIP of service you&#39;re trying to access
+  Ips:
+    100.2.33.171
+  Ports:
+  Session Affinity Config:
+  Type:  ClusterSetIP
 Events:  &lt;none&gt;
+
 </code></pre></div><p>For headless Service, you need to check <code>EndpointSlice</code> resource.</p>
 <p>If the data is not correct, you can manually edit the ServiceImport resource to set the correct IP as a workaround and create an
 <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant information.</p>
@@ -2489,19 +2507,19 @@ from connected clusters.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1607698819"></script>
-    <script src="/js/perfect-scrollbar.min.js?1607698819"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1607698819"></script>
-    <script src="/js/jquery.sticky.js?1607698819"></script>
-    <script src="/js/featherlight.min.js?1607698819"></script>
-    <script src="/js/highlight.pack.js?1607698819"></script>
+    <script src="/js/clipboard.min.js?1607698888"></script>
+    <script src="/js/perfect-scrollbar.min.js?1607698888"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1607698888"></script>
+    <script src="/js/jquery.sticky.js?1607698888"></script>
+    <script src="/js/featherlight.min.js?1607698888"></script>
+    <script src="/js/highlight.pack.js?1607698888"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1607698819"></script>
-    <script src="/js/learn.js?1607698819"></script>
-    <script src="/js/hugo-learn.js?1607698819"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1607698888"></script>
+    <script src="/js/learn.js?1607698888"></script>
+    <script src="/js/hugo-learn.js?1607698888"></script>
 
-    <link href="/mermaid/mermaid.css?1607698819" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1607698819"></script>
+    <link href="/mermaid/mermaid.css?1607698888" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1607698888"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
