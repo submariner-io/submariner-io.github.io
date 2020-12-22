@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1608214594" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1608214594" rel="stylesheet">
-    <link href="/css/hybrid.css?1608214594" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1608214594" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1608214594" rel="stylesheet">
-    <link href="/css/auto-complete.css?1608214594" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1608214594" rel="stylesheet">
-    <link href="/css/theme.css?1608214594" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1608214594" rel="stylesheet">
+    <link href="/css/nucleus.css?1608629980" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1608629980" rel="stylesheet">
+    <link href="/css/hybrid.css?1608629980" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1608629980" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1608629980" rel="stylesheet">
+    <link href="/css/auto-complete.css?1608629980" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1608629980" rel="stylesheet">
+    <link href="/css/theme.css?1608629980" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1608629980" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1608214594" rel="stylesheet">
+      <link href="/css/theme-blue.css?1608629980" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1608214594"></script>
+    <script src="/js/jquery-3.3.1.min.js?1608629980"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1608214594"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1608214594"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1608629980"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1608629980"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1608214594"></script>
+<script type="text/javascript" src="/js/search.js?1608629980"></script>
 
     
   </div>
@@ -1466,6 +1466,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v080">v0.8.0</a></li>
     <li><a href="#v070-statefulset-support-for-service-discovery-and-benchmark-tooling">v0.7.0 StatefulSet support for service discovery and benchmark tooling</a></li>
     <li><a href="#v060-improved-submariner-high-availability-and-various-lighthouse-enhancements">v0.6.0 Improved Submariner High Availability and various Lighthouse enhancements</a></li>
     <li><a href="#v050-lighthouse-service-discovery-alignment">v0.5.0 Lighthouse service discovery alignment</a></li>
@@ -1503,7 +1504,33 @@
 
 
 
-	<h2 id="v070-statefulset-support-for-service-discovery-and-benchmark-tooling">v0.7.0 StatefulSet support for service discovery and benchmark tooling</h2>
+	<h2 id="v080">v0.8.0</h2>
+<ul>
+<li>Added support for connecting clusters that use the OVNKubernetes CNI plugin in non-Globalnet deployments. Support for
+Globalnet will be available in a future release.</li>
+<li>The active Gateway now performs periodic health checks on the connections to remote clusters, updates the Gateway
+connection status, and adds latency statistics.</li>
+<li>Gateways now export the following connection metrics on TCP port 8080 which can be used with Prometheus. These are
+currently only supported for the Libreswan cable driver:
+<ul>
+<li>The count of bytes transmitted and received between Gateways.</li>
+<li>The number of connections between Gateways and their corresponding status.</li>
+<li>The timestamp of the last successful connection established between Gateways.</li>
+<li>The RTT latency between Gateways.</li>
+</ul>
+</li>
+<li>The Libreswan cable driver is now the default.</li>
+<li>The strongSwan cable driver is deprecated and will be removed in a future release.</li>
+<li>The Lighthouse DNS always returns the IP address of the local exported ClusterIP Service, if available, otherwise it
+load-balances between the same Services exported from other clusters in a round-robin fashion.</li>
+<li>Lighthouse has fully migrated to use the proposed <a href="https://github.com/kubernetes-sigs/mcs-api/">Kubernetes Multicluster Services API</a>
+(<code>ServiceExport</code> and <code>ServiceImport</code>).
+The Lighthouse-specific API is deprecated and will be removed in a future release. On upgrade from v0.7.0, exported
+Services will automatically be migrated to the new CRDs.</li>
+<li>Broker resiliency has been improved. The dataplane is no longer affected in any way if the Broker is unavailable.</li>
+<li>The <code>subctl</code> benchmark tests now accept a verbose flag to enable full logging. Otherwise only the results are presented.</li>
+</ul>
+<h2 id="v070-statefulset-support-for-service-discovery-and-benchmark-tooling">v0.7.0 StatefulSet support for service discovery and benchmark tooling</h2>
 <blockquote>
 <p>This release mainly focused on adding support for StatefulSets in Lighthouse for service discovery and adding new <code>subctl</code>
 commands to benchmark the network performance across clusters.</p>
@@ -2427,19 +2454,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1608214594"></script>
-    <script src="/js/perfect-scrollbar.min.js?1608214594"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1608214594"></script>
-    <script src="/js/jquery.sticky.js?1608214594"></script>
-    <script src="/js/featherlight.min.js?1608214594"></script>
-    <script src="/js/highlight.pack.js?1608214594"></script>
+    <script src="/js/clipboard.min.js?1608629980"></script>
+    <script src="/js/perfect-scrollbar.min.js?1608629980"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1608629980"></script>
+    <script src="/js/jquery.sticky.js?1608629980"></script>
+    <script src="/js/featherlight.min.js?1608629980"></script>
+    <script src="/js/highlight.pack.js?1608629980"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1608214594"></script>
-    <script src="/js/learn.js?1608214594"></script>
-    <script src="/js/hugo-learn.js?1608214594"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1608629980"></script>
+    <script src="/js/learn.js?1608629980"></script>
+    <script src="/js/hugo-learn.js?1608629980"></script>
 
-    <link href="/mermaid/mermaid.css?1608214594" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1608214594"></script>
+    <link href="/mermaid/mermaid.css?1608629980" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1608629980"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
