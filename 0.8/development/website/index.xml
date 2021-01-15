@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Contributing to the Website on Submariner k8s project documentation website</title>
-    <link>0.8/development/website/</link>
+    <link>/0.8/development/website/</link>
     <description>Recent content in Contributing to the Website on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Wed, 19 Feb 2020 22:03:26 +0100</lastBuildDate>
     
-	<atom:link href="0.8/development/website/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/0.8/development/website/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Docs Style Guide</title>
-      <link>0.8/development/website/style_guide/</link>
+      <link>/0.8/development/website/style_guide/</link>
       <pubDate>Wed, 29 Apr 2020 19:09:55 +0200</pubDate>
       
-      <guid>0.8/development/website/style_guide/</guid>
+      <guid>/0.8/development/website/style_guide/</guid>
       <description>Documentation Style Guide This guide is meant to help keep our documentation consistent and ease the contribution and review process.
 Submariner follows the Kubernetes Documentation Style Guide wherever relevant. This is a Submariner-specific extension of those practices.
 Submariner.io Word List A list of Submariner-specific terms and words to be used consistently across the site.

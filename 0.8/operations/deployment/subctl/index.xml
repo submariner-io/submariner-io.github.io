@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>subctl on Submariner k8s project documentation website</title>
-    <link>0.8/operations/deployment/subctl/</link>
+    <link>/0.8/operations/deployment/subctl/</link>
     <description>Recent content in subctl on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     
-	<atom:link href="0.8/operations/deployment/subctl/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/0.8/operations/deployment/subctl/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
