@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>0.8/development/website/style_guide/</loc>
+    <lastmod>2020-04-29T19:09:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/managed-kubernetes/gke/</loc>
+    <lastmod>2020-11-13T17:55:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/development/shipyard/first-time/</loc>
+    <lastmod>2020-04-20T17:12:52+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/development/building-testing/</loc>
+    <lastmod>2020-03-18T16:03:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/kind/</loc>
+    <lastmod>2020-03-17T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/community/code-of-conduct/</loc>
+    <lastmod>2020-02-19T21:43:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/operations/deployment/</loc>
+    <lastmod>2020-02-19T21:25:11+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/architecture/</loc>
+    <lastmod>2020-02-19T21:00:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/</loc>
+    <lastmod>2020-02-19T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/architecture/broker/</loc>
+  </url>
+  
+  <url>
+    <loc>0.8/operations/deployment/subctl/</loc>
+  </url>
+  
+  <url>
+    <loc>0.8/operations/monitoring/</loc>
+    <lastmod>2020-08-12T16:02:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/operations/</loc>
+    <lastmod>2020-08-12T16:02:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/managed-kubernetes/rancher/</loc>
+    <lastmod>2020-05-15T15:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/development/code-review/</loc>
+    <lastmod>2020-05-06T08:19:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/development/shipyard/advanced/</loc>
+    <lastmod>2020-05-05T09:11:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/openshift/aws/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/community/contributor-roles/</loc>
+    <lastmod>2020-02-19T21:43:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/operations/deployment/helm/</loc>
+    <lastmod>2020-02-19T21:25:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/managed-kubernetes/</loc>
+    <lastmod>2020-02-19T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/</loc>
+    <lastmod>2020-02-19T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/architecture/gateway-engine/</loc>
+  </url>
+  
+  <url>
+    <loc>0.8/community/</loc>
+    <lastmod>2020-08-24T11:35:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/operations/troubleshooting/</loc>
+    <lastmod>2020-05-04T19:01:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/openshift/globalnet/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/openshift/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/development/website/</loc>
+    <lastmod>2020-02-19T22:03:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/operations/deployment/calico/</loc>
+  </url>
+  
+  <url>
+    <loc>0.8/community/getting-help/</loc>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/architecture/route-agent/</loc>
+  </url>
+  
+  <url>
+    <loc>0.8/community/releases/</loc>
+    <lastmod>2020-08-24T11:35:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/operations/known-issues/</loc>
+    <lastmod>2020-08-12T16:02:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/development/release-process/</loc>
+    <lastmod>2020-03-18T16:03:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/architecture/service-discovery/</loc>
+    <lastmod>2020-03-02T21:25:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/quickstart/openshift/vsphere-aws/</loc>
+    <lastmod>2020-02-21T13:36:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/development/</loc>
+    <lastmod>2020-02-19T20:24:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/other-resources/</loc>
+    <lastmod>2020-03-09T20:03:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/getting-started/architecture/globalnet/</loc>
+    <lastmod>2020-02-19T21:08:37+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/community/roadmap/</loc>
+    <lastmod>2020-02-19T20:24:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/development/security/</loc>
+  </url>
+  
+  <url>
+    <loc>0.8/development/shipyard/</loc>
+    <lastmod>2020-04-20T17:12:52+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>0.8/</loc>
+    <lastmod>2020-11-13T17:55:18+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>0.8/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>0.8/tags/</loc>
+  </url>
+  
+</urlset>

@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="description" content="Documentation website for the Submariner project">
+<meta name="author" content="The Submariner community">
+
+    <link rel="icon" href="/0.8/images/favicon.png" type="image/png">
+
+    <title>Hybrid vSphere and AWS :: Submariner k8s project documentation website</title>
+
+    
+    <link href="/0.8/css/nucleus.css?1610730515" rel="stylesheet">
+    <link href="/0.8/css/fontawesome-all.min.css?1610730515" rel="stylesheet">
+    <link href="/0.8/css/hybrid.css?1610730515" rel="stylesheet">
+    <link href="/0.8/css/featherlight.min.css?1610730515" rel="stylesheet">
+    <link href="/0.8/css/perfect-scrollbar.min.css?1610730515" rel="stylesheet">
+    <link href="/0.8/css/auto-complete.css?1610730515" rel="stylesheet">
+    <link href="/0.8/css/atom-one-dark-reasonable.css?1610730515" rel="stylesheet">
+    <link href="/0.8/css/theme.css?1610730515" rel="stylesheet">
+    <link href="/0.8/css/hugo-theme.css?1610730515" rel="stylesheet">
+    
+      <link href="/0.8/css/theme-blue.css?1610730515" rel="stylesheet">
+    
+
+    <script src="/0.8/js/jquery-3.3.1.min.js?1610730515"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="0.8/getting-started/quickstart/openshift/vsphere-aws/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/" style="display: block;">
+    <object data="/images/logo-submariner.svg" type="image/svg+xml" style="pointer-events: none;">
+        <span>Your browser doesn't support SVG images</span>
+    </object>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/0.8/js/lunr.min.js?1610730515"></script>
+<script type="text/javascript" src="/0.8/js/auto-complete.js?1610730515"></script>
+<script type="text/javascript">
+    
+        var baseurl = "0.8\/";
+    
+</script>
+<script type="text/javascript" src="/0.8/js/search.js?1610730515"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/" title="Getting Started" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="0.8/getting-started/">
+          <b>1. </b>Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/architecture/" title="Architecture" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/architecture/">
+          Architecture
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/architecture/broker/" title="Broker" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/architecture/broker/">
+          Broker
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/architecture/gateway-engine/" title="Gateway Engine" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/architecture/gateway-engine/">
+          Gateway Engine
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/architecture/route-agent/" title="Route Agent" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/architecture/route-agent/">
+          Route Agent
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/architecture/service-discovery/" title="Service Discovery" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/architecture/service-discovery/">
+          Service Discovery
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/architecture/globalnet/" title="Globalnet Controller" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/architecture/globalnet/">
+          Globalnet Controller
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/" title="Quickstart Guides" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="0.8/getting-started/quickstart/">
+          Quickstart Guides
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/kind/" title="Sandbox Environment (kind)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/quickstart/kind/">
+          Sandbox Environment (kind)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/managed-kubernetes/" title="Managed Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/quickstart/managed-kubernetes/">
+          Managed Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/managed-kubernetes/gke/" title="Google (GKE)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/quickstart/managed-kubernetes/gke/">
+          Google (GKE)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/managed-kubernetes/rancher/" title="Rancher" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/quickstart/managed-kubernetes/rancher/">
+          Rancher
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/openshift/" title="OpenShift" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="0.8/getting-started/quickstart/openshift/">
+          OpenShift
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/openshift/aws/" title="On AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/quickstart/openshift/aws/">
+          On AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/openshift/globalnet/" title="On AWS with Globalnet" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/getting-started/quickstart/openshift/globalnet/">
+          On AWS with Globalnet
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/getting-started/quickstart/openshift/vsphere-aws/" title="Hybrid vSphere and AWS" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="0.8/getting-started/quickstart/openshift/vsphere-aws/">
+          Hybrid vSphere and AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/operations/" title="Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/operations/">
+          <b>2. </b>Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/operations/deployment/" title="Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/operations/deployment/">
+          Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/operations/deployment/subctl/" title="subctl" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/operations/deployment/subctl/">
+          subctl
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/operations/deployment/helm/" title="Helm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/operations/deployment/helm/">
+          Helm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/operations/deployment/calico/" title="Calico CNI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/operations/deployment/calico/">
+          Calico CNI
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/operations/monitoring/" title="Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/operations/monitoring/">
+          Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/operations/troubleshooting/" title="Troubleshooting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/operations/troubleshooting/">
+          Troubleshooting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/operations/known-issues/" title="Known Issues" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/operations/known-issues/">
+          Known Issues
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/community/" title="Community" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/community/">
+          <b>3. </b>Community
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/community/code-of-conduct/" title="Code of Conduct" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/community/code-of-conduct/">
+          Code of Conduct
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/community/contributor-roles/" title="Contributor Roles" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/community/contributor-roles/">
+          Contributor Roles
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/community/getting-help/" title="Getting Help" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/community/getting-help/">
+          Getting Help
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/community/releases/" title="Releases" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/community/releases/">
+          Releases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/community/roadmap/" title="Roadmap" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/community/roadmap/">
+          Roadmap
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/" title="Development" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/">
+          <b>4. </b>Development
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/building-testing/" title="Building and Testing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/building-testing/">
+          Building and Testing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/code-review/" title="Code Review Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/code-review/">
+          Code Review Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/website/" title="Contributing to the Website" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/website/">
+          Contributing to the Website
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="0.8/development/website/style_guide/" title="Docs Style Guide" class="dd-item ">
+        <a href="0.8/development/website/style_guide/">
+        Docs Style Guide
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/release-process/" title="Release Process" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/release-process/">
+          Release Process
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/security/" title="Security Reporting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/security/">
+          Security Reporting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/shipyard/" title="Working with Shipyard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/shipyard/">
+          Working with Shipyard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/shipyard/first-time/" title="Adding Shipyard to a Project" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/shipyard/first-time/">
+          Adding Shipyard to a Project
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/development/shipyard/advanced/" title="Advanced Features" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/development/shipyard/advanced/">
+          Advanced Features
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="0.8/other-resources/" title="Other Resources" class="dd-item 
+        
+        
+        
+        ">
+      <a href="0.8/other-resources/">
+          <b>5. </b>Other Resources
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/submariner-io/"><i class='fab fa-fw fa-github'></i> GitHub</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://kubernetes.slack.com/archives/C010RJV694M"><i class='fab fa-fw fa-slack'></i> Slack</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-users"><i class='fas fa-fw fa-envelope'></i> User mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-dev"><i class='fas fa-fw fa-envelope'></i> Devel mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.youtube.com/channel/UCZ3brSgl2v4boglZoeChClQ/videos"><i class='fas fa-fw fa-video'></i> YouTube</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://twitter.com/submarinerio"><i class='fab fa-fw fa-twitter'></i> Twitter</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://calendar.google.com/calendar?cid=NHFuZGVoOGY0bzZ1ajlvZnBsczh1NWNlZ2tAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"><i class='fas fa-fw fa-calendar'></i> Google Calendar</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <center>
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner-operator/releases" data-icon="octicon-cloud-download" aria-label="Download Submariner/subctl on github">Download</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner" data-icon="octicon-star" data-show-count="true" aria-label="Star submariner-io/submariner on GitHub">Star</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork submariner-io/submariner on GitHub">Fork</a>
+
+</center>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/getting-started/quickstart/openshift/vsphere-aws/_index.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='0.8/'></a> > <a href='0.8/getting-started/'>Getting Started</a> > <a href='0.8/getting-started/quickstart/'>Quickstart Guides</a> > <a href='0.8/getting-started/quickstart/openshift/'>OpenShift</a> > Hybrid vSphere and AWS
+          
+         
+          
+         
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#create-and-deploy-cluster-a-on-vsphere-on-prem">Create and Deploy cluster-a on vSphere (On-Prem)</a></li>
+        <li><a href="#create-and-deploy-cluster-b-on-aws">Create and Deploy cluster-b on AWS</a></li>
+        <li><a href="#submariner-installation">Submariner Installation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Hybrid vSphere and AWS
+            </h1>
+          
+
+        
+
+
+
+
+	<p>This quickstart guide covers the necessary steps to deploy two OpenShift Container Platform (OCP) clusters: one on VMware vSphere with user
+provisioned infrastructure (UPI) and the other one on AWS with full stack automation, also known as installer-provisioned infrastructure
+(IPI). Once the OpenShift clusters are deployed, we deploy Submariner with Service Discovery to interconnect the two clusters.</p>
+
+
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before we begin, the following tools need to be downloaded and added to your <code>$PATH</code>:</p>
+<ol>
+<li><strong>OpenShift installer</strong>, <strong>pull secret</strong>, and <strong>command line interface</strong>. All can be downloaded from
+<a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">here</a>.</li>
+<li><strong>AWS CLI</strong> which can be downloaded from <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">here</a>.</li>
+</ol>
+
+
+
+
+<div class="notices info" ><p>Please ensure that the tools you downloaded above are compatible with your OpenShift Container Platform version. For more information,
+please refer to the official <a href="https://docs.openshift.com/container-platform/">OpenShift documentation</a>.</p>
+</div>
+
+<h3 id="create-and-deploy-cluster-a-on-vsphere-on-prem">Create and Deploy cluster-a on vSphere (On-Prem)</h3>
+<p>In this step you will deploy <strong>cluster-a</strong> using the default IP CIDR ranges:</p>
+<table>
+<thead>
+<tr>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.128.0.0/14</td>
+<td>172.30.0.0/16</td>
+</tr>
+</tbody>
+</table>
+<p>Before you deploy an OpenShift Container Platform cluster that uses user-provisioned infrastructure, you must create the underlying
+infrastructure. Follow the <a href="https://docs.openshift.com/container-platform/">OpenShift documenation</a> for installation instructions on
+supported versions of vSphere.</p>
+<p>Submariner Gateway nodes need to be able to accept IPsec traffic. For on-premises clusters behind corporate firewalls, the default IPsec UDP
+ports might be blocked. To overcome this, Submariner supports NAT Traversal (NAT-T) with the option to set custom non-standard ports.
+In this example, we use UDP 4501 and UDP 501. Ensure that those ports are allowed on the gateway node and on the corporate firewall.</p>
+<p>Submariner also uses VXLAN to encapsulate traffic from the worker and master nodes to the Gateway nodes. Ensure that firewall configuration
+on the vSphere cluster allows 4800/UDP across all nodes in the cluster in both directions.</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UDP</td>
+<td>4800</td>
+<td>Overlay network for inter-cluster traffic</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>4501</td>
+<td>IPsec traffic</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>501</td>
+<td>IPsec traffic</td>
+</tr>
+</tbody>
+</table>
+<p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
+<code>kubeadmin</code> user, display in your terminal.</p>
+<h3 id="create-and-deploy-cluster-b-on-aws">Create and Deploy cluster-b on AWS</h3>
+<h4 id="setup-your-aws-profile">Setup Your AWS Profile</h4>
+<p>Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region,
+and the default output format:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
+AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
+Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
+</code></pre></div><h4 id="create-and-deploy-cluster-b">Create and Deploy cluster-b</h4>
+<p>In this step you will deploy <strong>cluster-b</strong>, modifying the default IP CIDRs to avoid IP address conflicts with <strong>cluster-a</strong>. You can change
+the IP addresses block and prefix based on your requirements. For more information on IPv4 CIDR conversion,
+please check <a href="https://www.ipaddressguide.com/cidr">this page</a>.</p>
+<p>In this example, we will use the following IP ranges:</p>
+<table>
+<thead>
+<tr>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.132.0.0/14</td>
+<td>172.31.0.0/16</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
+</code></pre></div><p>Change the Pod network CIDR from 10.128.0.0/14 to 10.132.0.0/14:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
+</code></pre></div><p>Change the Service network CIDR from 172.30.0.0/16 to 172.31.0.0/16:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
+</code></pre></div><p>And finally deploy the cluster:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
+</code></pre></div><p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
+<code>kubeadmin</code> user, display in your terminal.</p>
+<h4 id="prepare-aws-cluster-for-submariner">Prepare AWS Cluster for Submariner</h4>
+
+
+<p>Submariner Gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec.
+Submariner also uses UDP port 4800 to encapsulate traffic from the worker and master nodes to the Gateway nodes, and TCP port 8080 to
+retrieve metrics from the Gateway nodes.
+Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be
+necessary on one end of the IPsec connection.</p>
+<p><code>prep_for_subm</code> is a script designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments,
+handling the requirements specified above.</p>
+<ul>
+<li>Download the <code>prep_for_subm.sh</code> script and set permissions:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl https://raw.githubusercontent.com/submariner-io/submariner/master/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
+chmod a+x ./prep_for_subm.sh
+</code></pre></div>
+
+
+
+<div class="notices info" ><p>Please note that  <code>oc</code>, <code>aws-cli</code>, <code>terraform</code>, and <code>wget</code> need to be installed before the <code>prep_for_subm.sh</code> script can be run.
+Also note that the script is known to be working with <a href="https://releases.hashicorp.com/terraform/">Terraform</a> version 0.12.
+Maximum compatible version is 0.12.12.</p>
+</div>
+
+
+<div class="notices note" ><p>The script deploys an <code>m5n.large</code> EC2 instance type by default, optimized for improved network throughput and packet rate performance,
+for the Submariner gateway node. Please ensure that the AWS Region you deploy to support this instance type. Alternatively, you can
+customize the AWS instance type as shown below.</p>
+</div>
+
+<ul>
+<li>Modify the IPsec UDP ports and run the <code>prep_for_subm.sh</code> script for <strong>cluster-b</strong>:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export IPSEC_NATT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+export IPSEC_IKE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./prep_for_subm.sh cluster-b <span style="color:#75715e"># respond &#34;yes&#34; when Terraform asks for approval, or otherwise add the -auto-approve flag</span>
+</code></pre></div><h3 id="submariner-installation">Submariner Installation</h3>
+Download the subctl binary and make it available on your PATH.
+
+<div class="highlight">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<code class="language-bash" data-lang="bash">
+curl -Ls https://get.submariner.io | bash
+export PATH=$PATH:~/.local/bin
+echo export PATH=\$PATH:~/.local/bin >> ~/.profile
+</code>
+</pre>
+</div>
+
+<h4 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h4>
+<p>To install Submariner with multi-cluster service discovery, follow the steps below:</p>
+<h5 id="use-cluster-b-aws-as-broker-with-service-discovery-enabled">Use cluster-b (AWS) as Broker with Service Discovery enabled</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig cluster-b/auth/kubeconfig --service-discovery
+</code></pre></div><h5 id="join-cluster-b-aws-and-cluster-a-vsphere-to-the-broker">Join cluster-b (AWS) and cluster-a (vSphere) to the Broker</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --ikeport <span style="color:#ae81ff">501</span> --nattport <span style="color:#ae81ff">4501</span>
+</code></pre></div>
+
+<h4 id="verify-deployment">Verify Deployment</h4>
+<p>To manually verify the deployment, follow the steps below using either a headless or ClusterIP <code>nginx</code> service deployed in <code>cluster-b</code>.</p>
+<h5 id="deploy-clusterip-service">Deploy ClusterIP Service</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
+kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
+kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+subctl export service --namespace default nginx
+</code></pre></div><h5 id="deploy-headless-service">Deploy Headless Service</h5>
+<p>Note that headless Services can only be exported on non-globalnet deployments.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
+kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
+kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span> --cluster-ip<span style="color:#f92672">=</span>None
+subctl export service --namespace default nginx
+</code></pre></div><h5 id="verify">Verify</h5>
+<p>Run <code>nettest</code> from <code>cluster-a</code> to access the <code>nginx</code> service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
+kubectl -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+curl nginx.default.svc.clusterset.local:8080
+</code></pre></div><p>To access a Service in a specific cluster, prefix the query with <code>&lt;cluster-id&gt;</code> as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-a.nginx.default.svc.clusterset.local:8080
+</code></pre></div><h4 id="verify-statefulsets">Verify StatefulSets</h4>
+<p>A StatefulSet uses a headless Service. Create a <code>web.yaml</code> as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: nginx-ss
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#66d9ef">name</span>: web
+  <span style="color:#66d9ef">clusterIP</span>: None
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: StatefulSet
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: web
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">serviceName</span>: <span style="color:#e6db74">&#34;nginx-ss&#34;</span>
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: nginx-ss
+        <span style="color:#66d9ef">image</span>: nginxinc/nginx-unprivileged:stable-alpine
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
+          <span style="color:#66d9ef">name</span>: web
+</code></pre></div><p>Use this yaml to create a StatefulSet <code>web</code> with <code>nginx-ss</code> as the Headless Service.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
+kubectl -n default apply -f web.yaml
+subctl export service -n default nginx-ss
+curl nginx-ss.default.svc.clusterset.local:8080
+</code></pre></div><p>To access the Service in a specific cluster, prefix the query with <code>&lt;cluster-id&gt;</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-a.nginx-ss.default.svc.clusterset.local:8080
+</code></pre></div><p>To access an individual pod in a specific cluster, prefix the query with <code>&lt;pod-hostname&gt;.&lt;cluster-id&gt;</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl web-0.cluster-a.nginx-ss.default.svc.clusterset.local:8080
+</code></pre></div><h4 id="perform-automated-verification">Perform automated verification</h4>
+<p>This will perform automated verifications between the clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify cluster-a/auth/kubeconfig cluster-b/auth/kubeconfig --only service-discovery,connectivity --verbose
+</code></pre></div>
+
+
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="0.8/getting-started/quickstart/openshift/globalnet/" title="On AWS with Globalnet"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="0.8/operations/" title="Operations" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/0.8/js/clipboard.min.js?1610730515"></script>
+    <script src="/0.8/js/perfect-scrollbar.min.js?1610730515"></script>
+    <script src="/0.8/js/perfect-scrollbar.jquery.min.js?1610730515"></script>
+    <script src="/0.8/js/jquery.sticky.js?1610730515"></script>
+    <script src="/0.8/js/featherlight.min.js?1610730515"></script>
+    <script src="/0.8/js/highlight.pack.js?1610730515"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/0.8/js/modernizr.custom-3.6.0.js?1610730515"></script>
+    <script src="/0.8/js/learn.js?1610730515"></script>
+    <script src="/0.8/js/hugo-learn.js?1610730515"></script>
+
+    <link href="/0.8/mermaid/mermaid.css?1610730515" rel="stylesheet" />
+    <script src="/0.8/mermaid/mermaid.js?1610730515"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

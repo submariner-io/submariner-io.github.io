@@ -12,20 +12,20 @@
     <title>Monitoring :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1610728306" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1610728306" rel="stylesheet">
-    <link href="/css/hybrid.css?1610728306" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1610728306" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1610728306" rel="stylesheet">
-    <link href="/css/auto-complete.css?1610728306" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1610728306" rel="stylesheet">
-    <link href="/css/theme.css?1610728306" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1610728306" rel="stylesheet">
+    <link href="/css/nucleus.css?1610730515" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1610730515" rel="stylesheet">
+    <link href="/css/hybrid.css?1610730515" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1610730515" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1610730515" rel="stylesheet">
+    <link href="/css/auto-complete.css?1610730515" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1610730515" rel="stylesheet">
+    <link href="/css/theme.css?1610730515" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1610730515" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1610728306" rel="stylesheet">
+      <link href="/css/theme-blue.css?1610730515" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1610728306"></script>
+    <script src="/js/jquery-3.3.1.min.js?1610730515"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1610728306"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1610728306"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1610730515"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1610730515"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1610728306"></script>
+<script type="text/javascript" src="/js/search.js?1610730515"></script>
 
     
   </div>
@@ -1513,6 +1513,13 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
 <p><code>submariner_gateways</code>: the number of gateways in the cluster</p>
 </li>
 <li>
+<p><code>submariner_gateway_creation_timestamp</code>: timestamp of gateway creation time, with the following labels:</p>
+<ul>
+<li><code>local_cluster</code>: the local cluster name</li>
+<li><code>local_hostname</code>: the local hostname</li>
+</ul>
+</li>
+<li>
 <p><code>submariner_connections</code>: the number of connections to other clusters, with the following labels:</p>
 <ul>
 <li><code>local_cluster</code>: the local cluster name</li>
@@ -1542,6 +1549,12 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
 <p><code>connections</code>: the number of connections and corresponding status by cable driver and cable
 (labels: <code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>,
 <code>status</code>)</p>
+</li>
+<li>
+<p><code>global_IP_availability</code>: count of available global IPs per CIDR (labels: <code>cidr</code>)</p>
+</li>
+<li>
+<p><code>global_IP_allocated</code>: count of global IPs allocated for Pods/Services per CIDR (labels: <code>cidr</code>)</p>
 </li>
 </ul>
 <h3 id="prometheus-operator">Prometheus Operator</h3>
@@ -2321,19 +2334,19 @@ documentation for details.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1610728306"></script>
-    <script src="/js/perfect-scrollbar.min.js?1610728306"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1610728306"></script>
-    <script src="/js/jquery.sticky.js?1610728306"></script>
-    <script src="/js/featherlight.min.js?1610728306"></script>
-    <script src="/js/highlight.pack.js?1610728306"></script>
+    <script src="/js/clipboard.min.js?1610730515"></script>
+    <script src="/js/perfect-scrollbar.min.js?1610730515"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1610730515"></script>
+    <script src="/js/jquery.sticky.js?1610730515"></script>
+    <script src="/js/featherlight.min.js?1610730515"></script>
+    <script src="/js/highlight.pack.js?1610730515"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1610728306"></script>
-    <script src="/js/learn.js?1610728306"></script>
-    <script src="/js/hugo-learn.js?1610728306"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1610730515"></script>
+    <script src="/js/learn.js?1610730515"></script>
+    <script src="/js/hugo-learn.js?1610730515"></script>
 
-    <link href="/mermaid/mermaid.css?1610728306" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1610728306"></script>
+    <link href="/mermaid/mermaid.css?1610730515" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1610730515"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

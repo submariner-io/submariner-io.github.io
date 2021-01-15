@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Service Discovery on Submariner k8s project documentation website</title>
+    <link>0.8/getting-started/architecture/service-discovery/</link>
+    <description>Recent content in Service Discovery on Submariner k8s project documentation website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 02 Mar 2020 21:25:35 +0100</lastBuildDate>
+    
+	<atom:link href="0.8/getting-started/architecture/service-discovery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
