@@ -1,0 +1,2938 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="description" content="Documentation website for the Submariner project">
+<meta name="author" content="The Submariner community">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>User Guide :: Submariner k8s project documentation website</title>
+
+    
+    <link href="/css/nucleus.css?1611078185" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1611078185" rel="stylesheet">
+    <link href="/css/hybrid.css?1611078185" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1611078185" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1611078185" rel="stylesheet">
+    <link href="/css/auto-complete.css?1611078185" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1611078185" rel="stylesheet">
+    <link href="/css/theme.css?1611078185" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1611078185" rel="stylesheet">
+    
+      <link href="/css/theme-blue.css?1611078185" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1611078185"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/operations/usage/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/" style="display: block;">
+    <object data="/images/logo-submariner.svg" type="image/svg+xml" style="pointer-events: none;">
+        <span>Your browser doesn't support SVG images</span>
+    </object>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1611078185"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1611078185"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1611078185"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/" title="Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/">
+          <b>1. </b>Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/architecture/" title="Architecture" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/architecture/">
+          Architecture
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/architecture/broker/" title="Broker" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/architecture/broker/">
+          Broker
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/architecture/gateway-engine/" title="Gateway Engine" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/architecture/gateway-engine/">
+          Gateway Engine
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/architecture/route-agent/" title="Route Agent" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/architecture/route-agent/">
+          Route Agent
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/architecture/service-discovery/" title="Service Discovery" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/architecture/service-discovery/">
+          Service Discovery
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/architecture/globalnet/" title="Globalnet Controller" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/architecture/globalnet/">
+          Globalnet Controller
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/" title="Quickstart Guides" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/">
+          Quickstart Guides
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/kind/" title="Sandbox Environment (kind)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/kind/">
+          Sandbox Environment (kind)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/managed-kubernetes/" title="Managed Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/managed-kubernetes/">
+          Managed Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/managed-kubernetes/gke/" title="Google (GKE)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/managed-kubernetes/gke/">
+          Google (GKE)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/managed-kubernetes/rancher/" title="Rancher" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/managed-kubernetes/rancher/">
+          Rancher
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/openshift/" title="OpenShift" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/openshift/">
+          OpenShift
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/openshift/aws/" title="On AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/openshift/aws/">
+          On AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/openshift/globalnet/" title="On AWS with Globalnet" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/openshift/globalnet/">
+          On AWS with Globalnet
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/openshift/vsphere-aws/" title="Hybrid vSphere and AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/openshift/vsphere-aws/">
+          Hybrid vSphere and AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/" title="Operations" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/operations/">
+          <b>2. </b>Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/" title="Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/">
+          Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/subctl/" title="subctl" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/subctl/">
+          subctl
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/helm/" title="Helm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/helm/">
+          Helm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/deployment/calico/" title="Calico CNI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/deployment/calico/">
+          Calico CNI
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/usage/" title="User Guide" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/operations/usage/">
+          User Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/monitoring/" title="Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/monitoring/">
+          Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/troubleshooting/" title="Troubleshooting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/troubleshooting/">
+          Troubleshooting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/known-issues/" title="Known Issues" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/known-issues/">
+          Known Issues
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/" title="Community" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/">
+          <b>3. </b>Community
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/code-of-conduct/" title="Code of Conduct" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/code-of-conduct/">
+          Code of Conduct
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/contributor-roles/" title="Contributor Roles" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/contributor-roles/">
+          Contributor Roles
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/getting-help/" title="Getting Help" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/getting-help/">
+          Getting Help
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/releases/" title="Releases" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/releases/">
+          Releases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/community/roadmap/" title="Roadmap" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/community/roadmap/">
+          Roadmap
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/" title="Development" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/">
+          <b>4. </b>Development
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/building-testing/" title="Building and Testing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/building-testing/">
+          Building and Testing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/code-review/" title="Code Review Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/code-review/">
+          Code Review Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/website/" title="Contributing to the Website" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/website/">
+          Contributing to the Website
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/development/website/style_guide/" title="Docs Style Guide" class="dd-item ">
+        <a href="/development/website/style_guide/">
+        Docs Style Guide
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/release-process/" title="Release Process" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/release-process/">
+          Release Process
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/security/" title="Security Reporting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/security/">
+          Security Reporting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/shipyard/" title="Working with Shipyard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/shipyard/">
+          Working with Shipyard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/shipyard/first-time/" title="Adding Shipyard to a Project" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/shipyard/first-time/">
+          Adding Shipyard to a Project
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/shipyard/advanced/" title="Advanced Features" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/shipyard/advanced/">
+          Advanced Features
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/other-resources/" title="Other Resources" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/other-resources/">
+          <b>5. </b>Other Resources
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/submariner-io/"><i class='fab fa-fw fa-github'></i> GitHub</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://kubernetes.slack.com/archives/C010RJV694M"><i class='fab fa-fw fa-slack'></i> Slack</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-users"><i class='fas fa-fw fa-envelope'></i> User mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-dev"><i class='fas fa-fw fa-envelope'></i> Devel mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.youtube.com/channel/UCZ3brSgl2v4boglZoeChClQ/videos"><i class='fas fa-fw fa-video'></i> YouTube</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://twitter.com/submarinerio"><i class='fab fa-fw fa-twitter'></i> Twitter</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://calendar.google.com/calendar?cid=NHFuZGVoOGY0bzZ1ajlvZnBsczh1NWNlZ2tAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"><i class='fas fa-fw fa-calendar'></i> Google Calendar</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <center>
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner-operator/releases" data-icon="octicon-cloud-download" aria-label="Download Submariner/subctl on github">Download</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner" data-icon="octicon-star" data-show-count="true" aria-label="Star submariner-io/submariner on GitHub">Star</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork submariner-io/submariner on GitHub">Fork</a>
+
+</center>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/operations/usage/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/operations/'>Operations</a> > User Guide
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#1-validate-the-installation">1. Validate the Installation</a></li>
+        <li><a href="#2-export-services-across-clusters">2. Export Services Across Clusters</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              User Guide
+            </h1>
+          
+
+        
+
+
+
+
+	<h2 id="overview">Overview</h2>
+<p>This guide is intended for users who have a Submariner environment set up and want to verify the installation and learn more about how to
+use Submariner and the main capabilities it provides. This guide assumes that there are two Kubernetes clusters,
+<strong>cluster2</strong> and <strong>cluster3</strong>, forming a cluster set, and that the Broker is deployed into a separate cluster <strong>cluster1</strong>.</p>
+
+<div class="notices tip" ><p>Make sure you have <code>subctl</code> <a href="../deployment/subctl/#installation">set up</a>. Regardless of how Submariner was deployed, <code>subctl</code> can be used
+for various verification and troubleshooting tasks, as shown in this guide.</p>
+</div>
+
+
+<div class="notices note" ><p>This guide focuses on a non-Globalnet Submariner deployment.</p>
+</div>
+
+<h3 id="1-validate-the-installation">1. Validate the Installation</h3>
+<h4 id="on-the-broker">On the Broker</h4>
+<p>The Broker facilitates the exchange of metadata information between the connected clusters, enabling them to discover one another.
+The Broker consists of only a set of Custom Resource Definitions (CRDs); there are no Pods or Services deployed with it.</p>
+<p>This command validates that the Broker namespace has been created in the Broker cluster:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster1/auth/kubeconfig
+$ kubectl config use-context cluster1
+Switched to context <span style="color:#e6db74">&#34;cluster1&#34;</span>.
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get namespace submariner-k8s-broker
+NAME                    STATUS   AGE
+submariner-k8s-broker   Active   5m
+</code></pre></div><p>This command validates that the Submariner CRDs have been created in the Broker cluster:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get crds | grep -iE <span style="color:#e6db74">&#39;submariner|multicluster.x-k8s.io&#39;</span>
+clusters.submariner.io                    2020-11-30T13:49:16Z
+endpoints.submariner.io                   2020-11-30T13:49:16Z
+gateways.submariner.io                    2020-11-30T13:49:16Z
+serviceimports.multicluster.x-k8s.io      2020-11-30T13:52:39Z
+</code></pre></div><p>This command validates that the participating clusters have successfully joined the Broker:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n submariner-k8s-broker get clusters.submariner.io
+NAME       AGE
+cluster2   5m9s
+cluster3   2m9s
+</code></pre></div><h4 id="on-connected-clusters">On Connected Clusters</h4>
+<p>The commands below can be used on either <strong>cluster2</strong> or <strong>cluster3</strong> to verify that the two clusters have successfully formed a cluster set
+and are properly connected to one another. In this example, the commands are being issued on <strong>cluster2</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster2/auth/kubeconfig
+$ kubectl config use-context cluster2
+Switched to context <span style="color:#e6db74">&#34;cluster2&#34;</span>.
+</code></pre></div><p>The command below lists all the Submariner related Pods. Ensure that the STATUS for each is <em>Running</em>, noting that some could have an
+intermediate transient status, like <em>Pending</em> or <em>ContainerCreating</em>, indicating they are still starting up. To continuously monitor the
+Pods, you can specify the <code>--watch</code> flag with the command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n submariner-operator get pods
+NAME                                           READY   STATUS    RESTARTS   AGE
+submariner-gateway-btzrq                       1/1     Running   <span style="color:#ae81ff">0</span>          76s
+submariner-lighthouse-agent-586cf4899-wn747    1/1     Running   <span style="color:#ae81ff">0</span>          75s
+submariner-lighthouse-coredns-c88f64f5-h77kw   1/1     Running   <span style="color:#ae81ff">0</span>          73s
+submariner-lighthouse-coredns-c88f64f5-qlw4x   1/1     Running   <span style="color:#ae81ff">0</span>          73s
+submariner-operator-dcbdf5669-n7jgp            1/1     Running   <span style="color:#ae81ff">0</span>          89s
+submariner-routeagent-bmgbc                    1/1     Running   <span style="color:#ae81ff">0</span>          75s
+submariner-routeagent-rl9nh                    1/1     Running   <span style="color:#ae81ff">0</span>          75s
+submariner-routeagent-wqmzs                    1/1     Running   <span style="color:#ae81ff">0</span>          75s
+</code></pre></div><p>This command verifies on which Kubernetes node the Gateway Engine is running:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get node --selector<span style="color:#f92672">=</span>submariner.io/gateway<span style="color:#f92672">=</span>true -o wide
+NAME              STATUS   ROLES    AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE       KERNEL-VERSION           CONTAINER-RUNTIME
+cluster2-worker   Ready    worker   6h59m   v1.17.0   172.17.0.7    3.81.125.62   Ubuntu 19.10   5.8.18-200.fc32.x86_64   containerd://1.3.2
+</code></pre></div><p>This command verifies the connection between the participating clusters:</p>
+<!-- markdownlint-disable no-trailing-spaces -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ subctl show connections --kubecontext cluster2
+
+Showing information <span style="color:#66d9ef">for</span> cluster <span style="color:#e6db74">&#34;cluster2&#34;</span>:
+GATEWAY                         CLUSTER                 REMOTE IP       CABLE DRIVER        SUBNETS                               STATUS
+cluster3-worker                 cluster3                172.17.0.10     libreswan           100.3.0.0/16, 10.3.0.0/16             connected
+</code></pre></div><p>This command shows detailed information about the Gateway including the connections to other clusters. The section highlighted in bold shows
+the connection information for cluster3, including the connection status and latency statistics:</p>
+<!-- markdownlint-disable no-inline-html -->
+<pre>
+$ kubectl -n submariner-operator describe Gateway
+Name:         cluster2-worker
+Namespace:    submariner-operator
+Labels:       <none>
+Annotations:  update-timestamp: 1606751397
+API Version:  submariner.io/v1
+Kind:         Gateway
+Metadata:
+  Creation Timestamp:  2020-11-30T13:51:39Z
+  Generation:          538
+  Resource Version:    28717
+  Self Link:           /apis/submariner.io/v1/namespaces/submariner-operator/gateways/cluster2-worker
+  UID:                 682f791a-00b5-4f51-8249-80c7c82c4bbf
+Status:
+  <b>Connections:
+    Endpoint:
+      Backend:          libreswan
+      cable_name:       submariner-cable-cluster3-172-17-0-10
+      cluster_id:       cluster3
+      Health Check IP:  10.3.224.0
+      Hostname:         cluster3-worker
+      nat_enabled:      false
+      private_ip:       172.17.0.10
+      public_ip:        
+      Subnets:
+        100.3.0.0/16
+        10.3.0.0/16
+    Latency RTT:
+      Average:       1.16693ms
+      Last:          1.128109ms
+      Max:           1.470344ms
+      Min:           1.110059ms
+      Std Dev:       68.57µs
+      Status:        connected
+    Status Message: </b>
+  Ha Status:         active
+  Local Endpoint:
+    Backend:          libreswan
+    cable_name:       submariner-cable-cluster2-172-17-0-7
+    cluster_id:       cluster2
+    Health Check IP:  10.2.224.0
+    Hostname:         cluster2-worker
+    nat_enabled:      false
+    private_ip:       172.17.0.7
+    public_ip:        
+    Subnets:
+      100.2.0.0/16
+      10.2.0.0/16
+  Status Failure:  
+  Version:         v0.8.0-pre0-1-g5d7f163
+Events:            <none>
+</pre>
+<!-- markdownlint-enable no-trailing-spaces -->
+<!-- markdownlint-enable no-inline-html -->
+<p>To validate that Service Discovery (Lighthouse) is installed properly, check that the <code>ServiceExport</code> and <code>ServiceImport</code> CRDs have been
+deployed in the cluster:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get crds | grep -iE <span style="color:#e6db74">&#39;multicluster.x-k8s.io&#39;</span>
+serviceexports.multicluster.x-k8s.io      2020-11-30T13:50:34Z
+serviceimports.multicluster.x-k8s.io      2020-11-30T13:50:33Z
+</code></pre></div><p>Verify that the <code>submariner-lighthouse-coredns</code> Service is ready:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n submariner-operator get service submariner-lighthouse-coredns
+NAME                            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>   AGE
+submariner-lighthouse-coredns   ClusterIP   100.2.177.123   &lt;none&gt;        53/UDP    126m
+</code></pre></div><p>Verify that CoreDNS was properly configured to forward requests sent for the <code>clusterset.local</code> domain to the to Lighthouse CoreDNS Server
+in the cluster:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n kube-system describe configmap coredns
+Name:         coredns
+Namespace:    kube-system
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+
+Data
+<span style="color:#f92672">====</span>
+Corefile:
+----
+<span style="color:#75715e">#lighthouse-start AUTO-GENERATED SECTION. DO NOT EDIT</span>
+clusterset.local:53 <span style="color:#f92672">{</span>
+    forward . 100.2.177.123
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">#lighthouse-end</span>
+.:53 <span style="color:#f92672">{</span>
+    errors
+    health <span style="color:#f92672">{</span>
+       lameduck 5s
+    <span style="color:#f92672">}</span>
+    ready
+    kubernetes cluster2.local in-addr.arpa ip6.arpa <span style="color:#f92672">{</span>
+       pods insecure
+       fallthrough in-addr.arpa ip6.arpa
+       ttl <span style="color:#ae81ff">30</span>
+    <span style="color:#f92672">}</span>
+    prometheus :9153
+    forward . /etc/resolv.conf
+    cache <span style="color:#ae81ff">30</span>
+    loop
+    reload
+    loadbalance
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Note that <strong>100.2.177.123</strong> is the ClusterIP address of the <code>submariner-lighthouse-coredns</code> Service we verified earlier.</p>
+<h3 id="2-export-services-across-clusters">2. Export Services Across Clusters</h3>
+<p>At this point, we have enabled secure IP communication between the connected clusters and formed the cluster set infrastructure. However,
+further configuration is required in order to signify that a Service should be visible and discoverable to other clusters in the cluster
+set. In following sections, we will define a Service and show how to export it to other clusters.</p>
+<p>This guide uses a simple nginx server for demonstration purposes.</p>
+
+<div class="notices note" ><p>In the example below, we create the nginx resources within the nginx-test namespace. Note that the namespace must be created in both
+clusters for service discovery to work properly.</p>
+</div>
+
+<h4 id="test-clusterip-services">Test ClusterIP Services</h4>
+<h5 id="1-create-an-nginx-deployment-on-cluster3">1. Create an <code>nginx</code> Deployment on <strong>cluster3</strong></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster3/auth/kubeconfig
+$ kubectl config use-context cluster3
+Switched to context <span style="color:#e6db74">&#34;cluster3&#34;</span>.
+</code></pre></div><p>The following commands create an <code>nginx</code> Service in the nginx-test namespace which targets TCP port 8080 on any Pod with the <code>app: nginx</code>
+label and exposes it on an abstracted Service port. When created, the Service is assigned a unique IP address (also called ClusterIP):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create namespace nginx-test
+namespace/nginx-test created
+
+$ kubectl -n nginx-test create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
+deployment.apps/nginx created
+
+$ kubectl -n nginx-test expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+service/nginx exposed
+</code></pre></div><p>Verify that the Service exists and is running:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test get service nginx
+NAME    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>    AGE
+nginx   ClusterIP   100.3.220.176  &lt;none&gt;        8080/TCP   2m41s
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test get pods -l app<span style="color:#f92672">=</span>nginx -o wide
+NAME                     READY   STATUS    RESTARTS   AGE   IP         NODE                NOMINATED NODE   READINESS GATES
+nginx-667744f849-t26s5   1/1     Running   <span style="color:#ae81ff">0</span>          3m    10.3.0.5   cluster3-worker2    &lt;none&gt;           &lt;none&gt;
+</code></pre></div><h5 id="2-export-the-service">2. Export the Service</h5>
+<p>In order to signify that the Service should be visible and discoverable to other clusters in the cluster set, a <code>ServiceExport</code> object
+needs to be created. This is done using the <code>subctl export</code> command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ subctl export service --namespace nginx-test nginx
+Service exported successfully
+</code></pre></div><p>After creation of the <code>ServiceExport</code>, the <code>nginx</code> Service will be exported to other clusters via the Broker. The Status information on the
+<code>ServiceExport</code> object will indicate this:</p>
+<!-- markdownlint-disable no-trailing-spaces -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test describe serviceexports
+Name:         nginx
+Namespace:    nginx-test
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  multicluster.x-k8s.io/v1alpha1
+Kind:         ServiceExport
+Metadata:
+  Creation Timestamp:  2020-12-01T12:35:32Z
+  Generation:          <span style="color:#ae81ff">1</span>
+  Resource Version:    <span style="color:#ae81ff">302209</span>
+  Self Link:           /apis/multicluster.x-k8s.io/v1alpha1/namespaces/nginx-test/serviceexports/nginx
+  UID:                 afe0533c-7cca-4443-9d8a-aee8e888e8bc
+Status:
+  Conditions:
+    Last Transition Time:  2020-12-01T12:35:32Z
+    Message:               Awaiting sync of the ServiceImport to the broker
+    Reason:                AwaitingSync
+    Status:                False
+    Type:                  Valid
+    Last Transition Time:  2020-12-01T12:35:32Z
+    Message:               Service was successfully synced to the broker
+    Reason:                
+    Status:                True
+    Type:                  Valid
+Events:                    &lt;none&gt;
+</code></pre></div><p>Once exported, the Service can be discovered as <code>nginx.nginx-test.svc.clusterset.local</code> across the cluster set.</p>
+<h5 id="3-consume-the-service-on-cluster2">3. Consume the Service on <strong>cluster2</strong></h5>
+<p>Verify that the exported <code>nginx</code> Service was imported to <strong>cluster2</strong> as expected. Submariner (via Lighthouse) automatically creates a
+corresponding <code>ServiceImport</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster2/auth/kubeconfig
+$ kubectl config use-context cluster2
+Switched to context <span style="color:#e6db74">&#34;cluster2&#34;</span>.
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get -n submariner-operator serviceimport
+NAME                        TYPE           IP                AGE
+nginx-nginx-test-cluster3   ClusterSetIP   <span style="color:#f92672">[</span>100.3.220.176<span style="color:#f92672">]</span>   13m
+</code></pre></div><p>Next, run a test Pod on <strong>cluster2</strong> and try to access the <code>nginx</code> Service from within the Pod:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create namespace nginx-test
+namespace/nginx-test created
+
+$ kubectl -n nginx-test  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# curl nginx.nginx-test.svc.clusterset.local:8080
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body <span style="color:#f92672">{</span>
+        width: 35em;
+        margin: <span style="color:#ae81ff">0</span> auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    <span style="color:#f92672">}</span>
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://nginx.org/&#34;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://nginx.com/&#34;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you <span style="color:#66d9ef">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><!-- markdownlint-disable no-hard-tabs -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# dig nginx.nginx-test.svc.clusterset.local
+; &lt;&lt;&gt;&gt; DiG 9.16.6 &lt;&lt;&gt;&gt; nginx.nginx-test.svc.clusterset.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved <span style="color:#66d9ef">for</span> Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; -&gt;&gt;HEADER<span style="color:#e6db74">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ae81ff">34800</span>
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span style="color:#ae81ff">1</span>
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: <span style="color:#ae81ff">4096</span>
+; COOKIE: 6ff7ea72c14ce2d4 <span style="color:#f92672">(</span>echoed<span style="color:#f92672">)</span>
+;; QUESTION SECTION:
+;nginx.nginx-test.svc.clusterset.local. IN	A
+
+;; ANSWER SECTION:
+nginx.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN A	100.3.220.176
+
+;; Query time: <span style="color:#ae81ff">16</span> msec
+;; SERVER: 100.2.0.10#53<span style="color:#f92672">(</span>100.2.0.10<span style="color:#f92672">)</span>
+;; WHEN: Mon Nov <span style="color:#ae81ff">30</span> 17:52:55 UTC <span style="color:#ae81ff">2020</span>
+;; MSG SIZE  rcvd: <span style="color:#ae81ff">125</span>
+</code></pre></div><!-- markdownlint-enable no-hard-tabs -->
+<p>Note that DNS resolution works across the clusters, and that the IP address <strong>100.3.220.176</strong> returned is the same ClusterIP associated with
+the <code>nginx</code> Service on <strong>cluster3</strong>.</p>
+<h5 id="4-create-an-nginx-deployment-on-cluster2">4. Create an <code>nginx</code> Deployment on <strong>cluster2</strong></h5>
+<p>If multiple clusters export a Service with the same name and from the same namespace, it will be recognized as a single logical Service.
+To test this, we will deploy the same <code>nginx</code> Service in the same namespace on <strong>cluster2</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
+deployment.apps/nginx created
+
+$ kubectl -n nginx-test expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+service/nginx exposed
+</code></pre></div><p>Verify the Service exists and is running:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test get service nginx
+NAME    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>    AGE
+nginx   ClusterIP   100.2.29.136   &lt;none&gt;        8080/TCP   1m40s
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test get pods -l app<span style="color:#f92672">=</span>nginx -o wide
+NAME                     READY   STATUS    RESTARTS   AGE   IP           NODE              NOMINATED NODE   READINESS GATES
+nginx-5578584966-d7sj7   1/1     Running   <span style="color:#ae81ff">0</span>          22s   10.2.224.3   cluster2-worker   &lt;none&gt;           &lt;none&gt;
+</code></pre></div><h5 id="5-export-the-service">5. Export the Service</h5>
+<p>As before, use the <code>subctl export</code> command to export the Service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ subctl export service --namespace nginx-test nginx
+Service exported successfully
+</code></pre></div><p>After creation of the <code>ServiceExport</code>, the <code>nginx</code> Service will be exported to other clusters via the Broker. The Status information on the
+<code>ServiceExport</code> object will indicate this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test describe serviceexports
+Name:         nginx
+Namespace:    nginx-test
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  multicluster.x-k8s.io/v1alpha1
+Kind:         ServiceExport
+Metadata:
+  Creation Timestamp:  2020-12-07T17:37:59Z
+  Generation:          <span style="color:#ae81ff">1</span>
+  Resource Version:    <span style="color:#ae81ff">3131</span>
+  Self Link:           /apis/multicluster.x-k8s.io/v1alpha1/namespaces/nginx-test/serviceexports/nginx
+  UID:                 7348eb3c-9558-4dc7-be1d-b0255a2038fd
+Status:
+  Conditions:
+    Last Transition Time:  2020-12-07T17:37:59Z
+    Message:               Awaiting sync of the ServiceImport to the broker
+    Reason:                AwaitingSync
+    Status:                False
+    Type:                  Valid
+    Last Transition Time:  2020-12-07T17:37:59Z
+    Message:               Service was successfully synced to the broker
+    Reason:                
+    Status:                True
+    Type:                  Valid
+Events:                    &lt;none&gt;
+</code></pre></div><h5 id="6-consume-the-service-from-cluster2">6. Consume the Service from <strong>cluster2</strong></h5>
+<p>Run a test Pod on <strong>cluster2</strong> and try to access the <code>nginx</code> Service from within the Pod:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# curl nginx.nginx-test.svc.clusterset.local:8080
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body <span style="color:#f92672">{</span>
+        width: 35em;
+        margin: <span style="color:#ae81ff">0</span> auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    <span style="color:#f92672">}</span>
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://nginx.org/&#34;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://nginx.com/&#34;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you <span style="color:#66d9ef">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><!-- markdownlint-disable no-hard-tabs -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# dig nginx.nginx-test.svc.clusterset.local
+; &lt;&lt;&gt;&gt; DiG 9.16.6 &lt;&lt;&gt;&gt; nginx.nginx-test.svc.clusterset.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved <span style="color:#66d9ef">for</span> Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; -&gt;&gt;HEADER<span style="color:#e6db74">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ae81ff">55022</span>
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span style="color:#ae81ff">1</span>
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: <span style="color:#ae81ff">4096</span>
+; COOKIE: 6f9db9800a9a9779 <span style="color:#f92672">(</span>echoed<span style="color:#f92672">)</span>
+;; QUESTION SECTION:
+;nginx.nginx-test.svc.clusterset.local. IN	A
+
+;; ANSWER SECTION:
+nginx.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN A	100.2.29.136
+
+;; Query time: <span style="color:#ae81ff">5</span> msec
+;; SERVER: 100.3.0.10#53<span style="color:#f92672">(</span>100.3.0.10<span style="color:#f92672">)</span>
+;; WHEN: Tue Dec <span style="color:#ae81ff">01</span> 07:45:48 UTC <span style="color:#ae81ff">2020</span>
+;; MSG SIZE  rcvd: <span style="color:#ae81ff">125</span>
+</code></pre></div><!-- markdownlint-enable no-hard-tabs -->
+
+<div class="notices note" ><p>At this point we have the same <code>nginx</code> Service deployed within the nginx-test namespace on both clusters. Note that DNS resolution works,
+and the IP address <strong>100.2.29.136</strong> returned is the ClusterIP associated with the <em>local</em> nginx Service deployed on <strong>cluster2</strong>. This is
+expected, as Submariner prefers to handle the traffic locally whenever possible.</p>
+</div>
+
+<h4 id="service-discovery-for-services-deployed-to-multiple-clusters">Service Discovery for Services Deployed to Multiple Clusters</h4>
+<p>Submariner follows this logic for service discovery across the cluster set:</p>
+<ul>
+<li>
+<p>If an exported Service is not available in the local cluster, Lighthouse DNS returns the IP address of the ClusterIP Service from one of
+the remote clusters on which the Service was exported.</p>
+</li>
+<li>
+<p>If an exported Service is available in the local cluster, Lighthouse DNS always returns the IP address of the local ClusterIP Service.
+In this example, if a Pod from <strong>cluster2</strong> tries to access the <code>nginx</code> Service as <code>nginx.nginx-test.svc.clusterset.local</code> now, Lighthouse
+DNS resolves the Service as <strong>100.2.29.136</strong> which is the local ClusterIP Service on <strong>cluster2</strong>. Similarly, if a Pod from <strong>cluster3</strong>
+tries to access the <code>nginx</code> Service as <code>nginx.nginx-test.svc.clusterset.local</code>, Lighthouse DNS resolves the Service as <strong>100.3.220.176</strong>
+which is the local ClusterIP Service on <strong>cluster3</strong>.</p>
+</li>
+<li>
+<p>If multiple clusters export a Service with the same name and from the same namespace, Lighthouse DNS load-balances between the clusters
+in a round-robin fashion. If, in our example, a Pod from a third cluster that joined the cluster set tries to access the <code>nginx</code> Service as
+<code>nginx.nginx-test.svc.clusterset.local</code>, Lighthouse will round-robin the DNS responses across <strong>cluster2</strong> and <strong>cluster3</strong>, causing
+requests to be served by both clusters. Note that Lighthouse returns IPs from <em>connected</em> clusters only. Clusters in <em>disconnected</em> state
+are ignored.</p>
+</li>
+<li>
+<p>Applications can always access a Service from a specific cluster by prefixing the DNS query with <code>cluster-id</code> as follows:
+<code>&lt;cluster-id&gt;.&lt;svcname&gt;.&lt;namespace&gt;.svc.clusterset.local</code>. In our example, querying for <code>cluster2.nginx.nginx-test.svc.clusterset.local</code>
+always returns the ClusterIP Service on <strong>cluster2</strong>. Similarly, <code>cluster3.nginx.nginx-test.svc.clusterset.local</code> always returns the
+ClusterIP Service on <strong>cluster3</strong>.</p>
+</li>
+</ul>
+<h4 id="test-statefulset-and-headless-service">Test StatefulSet and Headless Service</h4>
+<p>Submariner also supports Headless Services with StatefulSets, making it possible to access individual Pods via their stable DNS name.
+Kubernetes supports this by introducing stable Pod IDs composed of <code>&lt;pod-name&gt;.&lt;svc-name&gt;.&lt;ns&gt;.svc.cluster.local</code> within a single cluster,
+which Submariner extends to <code>&lt;pod-name&gt;.&lt;cluster-id&gt;.&lt;svc-name&gt;.&lt;ns&gt;.svc.clusterset.local</code> across the cluster set. The Headless Service in
+this case offers one single Service for all the underlying Pods.</p>
+<p>Like a Deployment, a StatefulSet manages Pods that are based on an identical container spec. Unlike a Deployment, a StatefulSet maintains a
+sticky identity for each of its Pods. StatefulSets are typically used for applications that require stable unique network identifiers,
+persistent storage, and ordered deployment and scaling.</p>
+<h5 id="1-create-a-statefulset-and-headless-service-on-cluster3">1. Create a StatefulSet and Headless Service on <strong>cluster3</strong></h5>
+<p><code>kubectl apply</code> the following yaml within the nginx-test namespace:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: v1
+kind: Service
+metadata:
+ name: nginx-ss
+ labels:
+   app.kubernetes.io/instance: nginx-ss
+   app.kubernetes.io/name: nginx-ss
+spec:
+ ports:
+ - port: <span style="color:#ae81ff">80</span>
+   name: web
+ clusterIP: None
+ selector:
+   app.kubernetes.io/instance: nginx-ss
+   app.kubernetes.io/name: nginx-ss
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+ name: web
+spec:
+ serviceName: <span style="color:#e6db74">&#34;nginx-ss&#34;</span>
+ replicas: <span style="color:#ae81ff">2</span>
+ selector:
+   matchLabels:
+       app.kubernetes.io/instance: nginx-ss
+       app.kubernetes.io/name: nginx-ss
+ template:
+   metadata:
+     labels:
+       app.kubernetes.io/instance: nginx-ss
+       app.kubernetes.io/name: nginx-ss
+   spec:
+     containers:
+     - name: nginx-ss
+       image: nginxinc/nginx-unprivileged:stable-alpine
+       ports:
+       - containerPort: <span style="color:#ae81ff">80</span>
+         name: web
+</code></pre></div><p>This specification will create a StatefulSet named <code>web</code> which indicates that two replicas of the <code>nginx</code> container will be launched in
+unique Pods. This also creates a Headless Service called <code>nginx-ss</code> on the nginx-test namespace. Note that Headless Service is requested by
+explicitly specifying &ldquo;None&rdquo; for the clusterIP (.spec.clusterIP).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test apply -f ./nginx-ss.yaml
+service/nginx-ss created
+statefulset.apps/web created
+</code></pre></div><p>Verify the Service and StatefulSet:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test get service nginx-ss
+NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>   AGE
+nginx-ss   ClusterIP   None         &lt;none&gt;        80/TCP    83s
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test describe statefulset web
+Name:               web
+Namespace:          nginx-test
+CreationTimestamp:  Mon, <span style="color:#ae81ff">30</span> Nov <span style="color:#ae81ff">2020</span> 21:53:01 +0200
+Selector:           app.kubernetes.io/instance<span style="color:#f92672">=</span>nginx-ss,app.kubernetes.io/name<span style="color:#f92672">=</span>nginx-ss
+Labels:             &lt;none&gt;
+Annotations:        &lt;none&gt;
+Replicas:           <span style="color:#ae81ff">2</span> desired | <span style="color:#ae81ff">2</span> total
+Update Strategy:    RollingUpdate
+  Partition:        <span style="color:#ae81ff">0</span>
+Pods Status:        <span style="color:#ae81ff">2</span> Running / <span style="color:#ae81ff">0</span> Waiting / <span style="color:#ae81ff">0</span> Succeeded / <span style="color:#ae81ff">0</span> Failed
+Pod Template:
+  Labels:  app.kubernetes.io/instance<span style="color:#f92672">=</span>nginx-ss
+           app.kubernetes.io/name<span style="color:#f92672">=</span>nginx-ss
+  Containers:
+   nginx-ss:
+    Image:        nginxinc/nginx-unprivileged:stable-alpine
+    Port:         80/TCP
+    Host Port:    0/TCP
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Volume Claims:    &lt;none&gt;
+Events:
+  Type    Reason            Age   From                    Message
+  ----    ------            ----  ----                    -------
+  Normal  SuccessfulCreate  94s   statefulset-controller  create Pod web-0 in StatefulSet web successful
+  Normal  SuccessfulCreate  85s   statefulset-controller  create Pod web-1 in StatefulSet web successful
+</code></pre></div><h5 id="2-export-the-service-on-cluster-3">2. Export the Service on <strong>cluster-3</strong></h5>
+<p>As before, use the <code>subctl export</code> command to export the Service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ subctl export service --namespace nginx-test nginx-ss
+Service exported successfully
+</code></pre></div><p>After creation of the <code>ServiceExport</code>, the <code>nginx-ss</code> Service will be exported to other clusters via the Broker. The Status information on
+the <code>ServiceExport</code> object will indicate this:</p>
+<!-- markdownlint-disable no-trailing-spaces -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test describe serviceexport nginx-ss
+Name:         nginx-ss
+Namespace:    nginx-test
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  multicluster.x-k8s.io/v1alpha1
+Kind:         ServiceExport
+Metadata:
+  Creation Timestamp:  2020-11-30T19:59:44Z
+  Generation:          <span style="color:#ae81ff">1</span>
+  Resource Version:    <span style="color:#ae81ff">83431</span>
+  Self Link:           /apis/multicluster.x-k8s.io/v1alpha1/namespaces/nginx-test/serviceexports/nginx-ss
+  UID:                 2c0d6419-6160-431e-990c-8a9993363b10
+Status:
+  Conditions:
+    Last Transition Time:  2020-11-30T19:59:44Z
+    Message:               Awaiting sync of the ServiceImport to the broker
+    Reason:                AwaitingSync
+    Status:                False
+    Type:                  Valid
+    Last Transition Time:  2020-11-30T19:59:44Z
+    Message:               Service was successfully synced to the broker
+    Reason:                
+    Status:                True
+    Type:                  Valid
+Events:                    &lt;none&gt;
+</code></pre></div><p>Once the Service is exported successfully, it can be discovered as <code>nginx-ss.nginx-test.svc.clusterset.local</code> across the cluster set.
+In addition, the individual Pods can be accessed as <code>web-0.cluster3.nginx-ss.nginx-test.svc.clusterset.local</code> and
+<code>web-1.cluster3.nginx-ss.nginx-test.svc.clusterset.local</code>.</p>
+<h5 id="3-consume-the-service-from-cluster2">3. Consume the Service from <strong>cluster2</strong></h5>
+<p>Verify that the exported <code>nginx-ss</code> Service was imported to <strong>cluster2</strong>. Submariner (via Lighthouse) automatically creates a
+corresponding <code>ServiceImport</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster2/auth/kubeconfig
+$ kubectl config use-context cluster2
+Switched to context <span style="color:#e6db74">&#34;cluster2&#34;</span>.
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get -n submariner-operator serviceimport
+NAME                           TYPE           IP                AGE
+nginx-nginx-test-cluster3      ClusterSetIP   <span style="color:#f92672">[</span>100.3.220.176<span style="color:#f92672">]</span>   166m
+nginx-ss-nginx-test-cluster3   Headless                         5m48s
+</code></pre></div><p>Next, run a test Pod on <strong>cluster2</strong> and try to access the <code>nginx-ss</code> Service from within the Pod:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n nginx-test  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+</code></pre></div><!-- markdownlint-disable no-hard-tabs -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# dig nginx-ss.nginx-test.svc.clusterset.local
+
+; &lt;&lt;&gt;&gt; DiG 9.16.6 &lt;&lt;&gt;&gt; nginx-ss.nginx-test.svc.clusterset.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved <span style="color:#66d9ef">for</span> Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; -&gt;&gt;HEADER<span style="color:#e6db74">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ae81ff">19729</span>
+;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: <span style="color:#ae81ff">1</span>
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: <span style="color:#ae81ff">4096</span>
+; COOKIE: 0b17506cb2b4a93b <span style="color:#f92672">(</span>echoed<span style="color:#f92672">)</span>
+;; QUESTION SECTION:
+;nginx-ss.nginx-test.svc.clusterset.local. IN A
+
+;; ANSWER SECTION:
+nginx-ss.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN A	10.3.0.5
+nginx-ss.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN A	10.3.224.3
+
+;; Query time: <span style="color:#ae81ff">1</span> msec
+;; SERVER: 100.2.0.10#53<span style="color:#f92672">(</span>100.2.0.10<span style="color:#f92672">)</span>
+;; WHEN: Mon Nov <span style="color:#ae81ff">30</span> 20:18:08 UTC <span style="color:#ae81ff">2020</span>
+;; MSG SIZE  rcvd: <span style="color:#ae81ff">184</span>
+</code></pre></div><p>You can also access the individual Pods:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# nslookup web-0.cluster3.nginx-ss.nginx-test.svc.clusterset.local
+Server:		100.2.0.10
+Address:	100.2.0.10#53
+
+Name:	web-0.cluster3.nginx-ss.nginx-test.svc.clusterset.local
+Address: 10.3.0.5
+
+bash-5.0# nslookup web-1.cluster3.nginx-ss.nginx-test.svc.clusterset.local
+Server:		100.2.0.10
+Address:	100.2.0.10#53
+
+Name:	web-1.cluster3.nginx-ss.nginx-test.svc.clusterset.local
+Address: 10.3.224.3
+</code></pre></div><!-- markdownlint-enable no-hard-tabs -->
+<h4 id="clean-the-created-resources">Clean the Created Resources</h4>
+<p>To remove the previously created Kubernetes resources, simply delete the nginx-test namespace from both clusters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster2/auth/kubeconfig
+$ kubectl config use-context cluster2
+Switched to context <span style="color:#e6db74">&#34;cluster2&#34;</span>.
+
+$ kubectl delete namespace nginx-test
+namespace <span style="color:#e6db74">&#34;nginx-test&#34;</span> deleted
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster3/auth/kubeconfig
+$ kubectl config use-context cluster3
+Switched to context <span style="color:#e6db74">&#34;cluster3&#34;</span>.
+
+$ kubectl delete namespace nginx-test
+namespace <span style="color:#e6db74">&#34;nginx-test&#34;</span> deleted
+</code></pre></div>
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/operations/deployment/calico/" title="Calico CNI"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/operations/monitoring/" title="Monitoring" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1611078185"></script>
+    <script src="/js/perfect-scrollbar.min.js?1611078185"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1611078185"></script>
+    <script src="/js/jquery.sticky.js?1611078185"></script>
+    <script src="/js/featherlight.min.js?1611078185"></script>
+    <script src="/js/highlight.pack.js?1611078185"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1611078185"></script>
+    <script src="/js/learn.js?1611078185"></script>
+    <script src="/js/hugo-learn.js?1611078185"></script>
+
+    <link href="/mermaid/mermaid.css?1611078185" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1611078185"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
