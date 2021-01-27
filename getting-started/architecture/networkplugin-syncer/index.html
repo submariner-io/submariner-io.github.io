@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Deployment :: Submariner k8s project documentation website</title>
+    <title>Network Plugin Syncer :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1611756366" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/operations/deployment/">
+  <body class="" data-url="/getting-started/architecture/networkplugin-syncer/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -82,7 +82,7 @@
   
     
     <li data-nav-id="/getting-started/" title="Getting Started" class="dd-item 
-        
+        parent
         
         
         ">
@@ -113,7 +113,7 @@
   
     
     <li data-nav-id="/getting-started/architecture/" title="Architecture" class="dd-item 
-        
+        parent
         
         
         ">
@@ -256,8 +256,8 @@
   
     
     <li data-nav-id="/getting-started/architecture/networkplugin-syncer/" title="Network Plugin Syncer" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/getting-started/architecture/networkplugin-syncer/">
@@ -656,7 +656,7 @@
   
     
     <li data-nav-id="/operations/" title="Operations" class="dd-item 
-        parent
+        
         
         
         ">
@@ -687,8 +687,8 @@
   
     
     <li data-nav-id="/operations/deployment/" title="Deployment" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/operations/deployment/">
@@ -1516,7 +1516,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/operations/deployment/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/getting-started/architecture/networkplugin-syncer/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1547,7 +1547,13 @@
             
           
           
-            <a href='/'></a> > <a href='/operations/'>Operations</a> > Deployment
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/getting-started/'>Getting Started</a> > <a href='/getting-started/architecture/'>Architecture</a> > Network Plugin Syncer
+          
+         
           
          
           
@@ -1560,13 +1566,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#installing-subctl">Installing <code>subctl</code></a></li>
-    <li><a href="#deployment-of-the-broker">Deployment of the Broker</a></li>
-    <li><a href="#joining-clusters">Joining clusters</a></li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -1582,7 +1582,7 @@
           
             <h1>
               
-              Deployment
+              Network Plugin Syncer
             </h1>
           
 
@@ -1591,66 +1591,54 @@
 
 
 
-	<p>Submariner provides a Go-based Kubernetes custom controller, called an <a href="https://github.com/submariner-io/submariner-operator">Operator</a>,
-that provides easy API-based installation and management. A command line utility, <em><code>subctl</code></em>, wraps the Operator to aid users with manual
-deployments and easy experimentation. <code>subctl</code> greatly simplifies the deployment of Submariner, and is therefore the recommended deployment
-method. For complete information about <code>subctl</code>, please refer to <a href="subctl">this page</a>.</p>
-<p>In addition to Operator and <code>subctl</code>, Submariner also provides <a href="helm">Helm Charts</a>.</p>
-<h2 id="installing-subctl">Installing <code>subctl</code></h2>
-Download the subctl binary and make it available on your PATH.
+	<p>The Network Plugin Syncer provides a framework for components to interface
+with the configured Kubernetes Container Network Interface (CNI) plugin to
+perform any API/database tasks necessary to facilitate routing cross-cluster
+traffic, like creating API objects that the CNI plugin will process or
+working with the specific CNI databases.</p>
+<p>The detected CNI plugin implementation configured for the cluster
+is received by the Network Plugin Syncer, and executes
+the appropriate plugin handler component, if any.</p>
+<p>The following table highlights the differences with the
+<a href="../route-agent/">Route Agent</a>:</p>
+<!-- markdownlint-disable line-length -->
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">Route Agent</th>
+<th align="left">Network Plugin Syncer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Configures the CNI plugin</td>
+<td align="left"></td>
+<td align="left">x</td>
+</tr>
+<tr>
+<td align="left">Configures low level network elements on the host</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Runs as a Kubernetes Deployment</td>
+<td align="left"></td>
+<td align="left">x</td>
+</tr>
+<tr>
+<td align="left">Runs as a Kubernetes Daemonset on every host</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<!-- markdownlint-enable line-length -->
 
-<div class="highlight">
-  <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-    <code class="language-bash" data-lang="bash">
-      curl -Ls https://get.submariner.io | bash
-      export PATH=$PATH:~/.local/bin
-      echo export PATH=\$PATH:~/.local/bin >> ~/.profile
-    </code>
-  </pre>
+<div class="notices info" ><p>This component is only necessary for specific Kubernetes CNI plugins
+like <a href="./ovn-kubernetes/">OVN Kubernetes</a>.</p>
 </div>
 
-If you have Go installed, you can use that instead:
-
-<div class="highlight">
-  <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-    <code class="language-bash" data-lang="bash">
-      go install github.com/submariner-io/submariner-operator/pkg/subctl
-    </code>
-  </pre>
-</div>
-
-(and ensure your <code>go/bin</code> directory is on
-your <code>PATH</code>).
-
-<h2 id="deployment-of-the-broker">Deployment of the Broker</h2>
-<p>The Broker is a set of Custom Resource Definitions (CRDs) backed by the Kubernetes datastore. The Broker must be deployed on a cluster whose
-Kubernetes API is accessible by all of the participating clusters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt;
-</code></pre></div><p>This will create:</p>
-<ul>
-<li>The <code>submariner-k8s-broker</code> namespace.</li>
-<li>The <code>Endpoint</code> and <code>Cluster</code> CRDs in the cluster.</li>
-<li>A Service Account (SA) in the namespace for subsequent <code>subctl</code> access.</li>
-</ul>
-<p>It also generates the <code>broker-info.subm</code> file which contains the following elements:</p>
-<ul>
-<li>The API endpoint.</li>
-<li>A CA certificate for the API endpoint.</li>
-<li>The Service Account token for accessing the API endpoint.</li>
-<li>A random IPsec PSK which will be stored only in this file.</li>
-<li>Service Discovery settings.</li>
-</ul>
-
-<div class="notices info" ><p>The cluster in which the Broker is deployed can also participate in the dataplane connectivity with other clusters, but it will need to be
-joined (see following step).</p>
-</div>
-
-<h2 id="joining-clusters">Joining clusters</h2>
-<p>For each cluster you want to join, issue the following command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig &lt;PATH-TO-JOINING-CLUSTER&gt; broker-info.subm --clusterid &lt;ID&gt;
-</code></pre></div><p><code>subctl</code> will automatically discover as much as it can, and prompt the user for any missing necessary information.
-Note that each cluster must have a unique cluster ID; the cluster ID can be specified, or otherwise is going to be generated by default
-based on the cluster name in the <code>kubeconfig</code> file.</p>
 
 
 
@@ -1691,8 +1679,6 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -1709,6 +1695,7 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1723,6 +1710,9 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1788,6 +1778,7 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1802,6 +1793,9 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1994,7 +1988,6 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
-                    
                 
                 
 
@@ -2010,7 +2003,6 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
-                    
                 
                 
 
@@ -2025,9 +2017,6 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -2429,10 +2418,10 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/operations/" title="Operations"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/getting-started/architecture/globalnet/" title="Globalnet Controller"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/operations/deployment/subctl/" title="subctl" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/" title="OVN Kubernetes" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

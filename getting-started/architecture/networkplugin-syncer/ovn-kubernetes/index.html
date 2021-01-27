@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Deployment :: Submariner k8s project documentation website</title>
+    <title>OVN Kubernetes :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1611756366" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/operations/deployment/">
+  <body class="" data-url="/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -82,7 +82,7 @@
   
     
     <li data-nav-id="/getting-started/" title="Getting Started" class="dd-item 
-        
+        parent
         
         
         ">
@@ -113,7 +113,7 @@
   
     
     <li data-nav-id="/getting-started/architecture/" title="Architecture" class="dd-item 
-        
+        parent
         
         
         ">
@@ -256,7 +256,7 @@
   
     
     <li data-nav-id="/getting-started/architecture/networkplugin-syncer/" title="Network Plugin Syncer" class="dd-item 
-        
+        parent
         
         
         ">
@@ -287,8 +287,8 @@
   
     
     <li data-nav-id="/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/" title="OVN Kubernetes" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/">
@@ -656,7 +656,7 @@
   
     
     <li data-nav-id="/operations/" title="Operations" class="dd-item 
-        parent
+        
         
         
         ">
@@ -687,8 +687,8 @@
   
     
     <li data-nav-id="/operations/deployment/" title="Deployment" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/operations/deployment/">
@@ -1516,7 +1516,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/operations/deployment/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/master/src/content/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1547,7 +1547,19 @@
             
           
           
-            <a href='/'></a> > <a href='/operations/'>Operations</a> > Deployment
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/getting-started/'>Getting Started</a> > <a href='/getting-started/architecture/'>Architecture</a> > <a href='/getting-started/architecture/networkplugin-syncer/'>Network Plugin Syncer</a> > OVN Kubernetes
+          
+         
+          
+         
           
          
           
@@ -1562,9 +1574,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#installing-subctl">Installing <code>subctl</code></a></li>
-    <li><a href="#deployment-of-the-broker">Deployment of the Broker</a></li>
-    <li><a href="#joining-clusters">Joining clusters</a></li>
+    <li><a href="#the-handler-architecture">The handler architecture</a></li>
   </ul>
 </nav>
     </div>
@@ -1582,7 +1592,7 @@
           
             <h1>
               
-              Deployment
+              OVN Kubernetes
             </h1>
           
 
@@ -1591,66 +1601,37 @@
 
 
 
-	<p>Submariner provides a Go-based Kubernetes custom controller, called an <a href="https://github.com/submariner-io/submariner-operator">Operator</a>,
-that provides easy API-based installation and management. A command line utility, <em><code>subctl</code></em>, wraps the Operator to aid users with manual
-deployments and easy experimentation. <code>subctl</code> greatly simplifies the deployment of Submariner, and is therefore the recommended deployment
-method. For complete information about <code>subctl</code>, please refer to <a href="subctl">this page</a>.</p>
-<p>In addition to Operator and <code>subctl</code>, Submariner also provides <a href="helm">Helm Charts</a>.</p>
-<h2 id="installing-subctl">Installing <code>subctl</code></h2>
-Download the subctl binary and make it available on your PATH.
-
-<div class="highlight">
-  <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-    <code class="language-bash" data-lang="bash">
-      curl -Ls https://get.submariner.io | bash
-      export PATH=$PATH:~/.local/bin
-      echo export PATH=\$PATH:~/.local/bin >> ~/.profile
-    </code>
-  </pre>
-</div>
-
-If you have Go installed, you can use that instead:
-
-<div class="highlight">
-  <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-    <code class="language-bash" data-lang="bash">
-      go install github.com/submariner-io/submariner-operator/pkg/subctl
-    </code>
-  </pre>
-</div>
-
-(and ensure your <code>go/bin</code> directory is on
-your <code>PATH</code>).
-
-<h2 id="deployment-of-the-broker">Deployment of the Broker</h2>
-<p>The Broker is a set of Custom Resource Definitions (CRDs) backed by the Kubernetes datastore. The Broker must be deployed on a cluster whose
-Kubernetes API is accessible by all of the participating clusters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig &lt;PATH-TO-KUBECONFIG-BROKER&gt;
-</code></pre></div><p>This will create:</p>
+	<p>A specific handler component is deployed for the
+<a href="https://github.com/ovn-org/ovn-kubernetes">OVN Kubernetes CNI plugin</a>.</p>
+<p><a href="https://www.ovn.org/en/architecture/">OVN</a> is a project that builds on top
+of Open vSwitch providing a rich high level API for describing virtual
+network components like Logical Routers, Logical Switches, Load balancers,
+Logical Ports. OVN Kubernetes is a Cloud Management System Plugin (CMS plugin)
+in terms of the OVN project.</p>
+<p>The OVN Kubernetes handler watches for Submariner <code>Endpoints</code> and Kubernetes
+<code>Nodes</code> and interfaces with the OVN databases (OVN NorthDB and SouthDB) to store and
+maintain information necessary for Submariner, including:</p>
 <ul>
-<li>The <code>submariner-k8s-broker</code> namespace.</li>
-<li>The <code>Endpoint</code> and <code>Cluster</code> CRDs in the cluster.</li>
-<li>A Service Account (SA) in the namespace for subsequent <code>subctl</code> access.</li>
+<li>
+<p>A logical router named <code>submariner_router</code> that handles the communication
+to remote clusters and has a leg on the network which can talk to the
+<code>ovn-k8s-gw0</code> interface on the Gateway node. This router is pinned to
+the active Gateway chassis.</p>
+</li>
+<li>
+<p>Routing policies added to the existing <code>ovn_cluster_router</code> which redirect
+traffic targeted for remote routers through the <code>submariner_router</code>.</p>
+</li>
+<li>
+<p>A <code>submariner_join</code> logical switch that connects the <code>submariner_router</code>
+with the <code>ovn_cluster_router</code>.</p>
+</li>
 </ul>
-<p>It also generates the <code>broker-info.subm</code> file which contains the following elements:</p>
-<ul>
-<li>The API endpoint.</li>
-<li>A CA certificate for the API endpoint.</li>
-<li>The Service Account token for accessing the API endpoint.</li>
-<li>A random IPsec PSK which will be stored only in this file.</li>
-<li>Service Discovery settings.</li>
-</ul>
-
-<div class="notices info" ><p>The cluster in which the Broker is deployed can also participate in the dataplane connectivity with other clusters, but it will need to be
-joined (see following step).</p>
-</div>
-
-<h2 id="joining-clusters">Joining clusters</h2>
-<p>For each cluster you want to join, issue the following command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig &lt;PATH-TO-JOINING-CLUSTER&gt; broker-info.subm --clusterid &lt;ID&gt;
-</code></pre></div><p><code>subctl</code> will automatically discover as much as it can, and prompt the user for any missing necessary information.
-Note that each cluster must have a unique cluster ID; the cluster ID can be specified, or otherwise is going to be generated by default
-based on the cluster name in the <code>kubeconfig</code> file.</p>
+<h2 id="the-handler-architecture">The handler architecture</h2>
+<p>The following diagram illustrates the OVN Kubernetes handler architecture where the
+blue elements represent the OVN Kubernetes native network elements and the yellow
+elements are introduced by Submariner.</p>
+<p><img src="/images/ovn-kubernetes/submariner-on-ovn-v2.svg" alt="Submariner with OVNKubernetes architecture"></p>
 
 
 
@@ -1691,8 +1672,6 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -1709,6 +1688,7 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1723,6 +1703,9 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1788,6 +1771,7 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1802,6 +1786,7 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
             
                 
+                    
                     
                 
                 
@@ -1822,86 +1807,8 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
                         
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1958,6 +1865,21 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -1983,6 +1905,72 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
             
         
                     
@@ -1994,7 +1982,6 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
-                    
                 
                 
 
@@ -2010,7 +1997,6 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
                 
                     
-                    
                 
                 
 
@@ -2025,9 +2011,6 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -2429,10 +2412,10 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/operations/" title="Operations"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/getting-started/architecture/networkplugin-syncer/" title="Network Plugin Syncer"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/operations/deployment/subctl/" title="subctl" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/getting-started/architecture/route-agent/" title="Route Agent" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
