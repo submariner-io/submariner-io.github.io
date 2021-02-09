@@ -12,20 +12,20 @@
     <title>Code Review Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1612521488" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1612521488" rel="stylesheet">
-    <link href="/css/hybrid.css?1612521488" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1612521488" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1612521488" rel="stylesheet">
-    <link href="/css/auto-complete.css?1612521488" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1612521488" rel="stylesheet">
-    <link href="/css/theme.css?1612521488" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1612521488" rel="stylesheet">
+    <link href="/css/nucleus.css?1612876310" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1612876310" rel="stylesheet">
+    <link href="/css/hybrid.css?1612876310" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1612876310" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1612876310" rel="stylesheet">
+    <link href="/css/auto-complete.css?1612876310" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1612876310" rel="stylesheet">
+    <link href="/css/theme.css?1612876310" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1612876310" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1612521488" rel="stylesheet">
+      <link href="/css/theme-blue.css?1612876310" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1612521488"></script>
+    <script src="/js/jquery-3.3.1.min.js?1612876310"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1612521488"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1612521488"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1612876310"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1612876310"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1612521488"></script>
+<script type="text/javascript" src="/js/search.js?1612876310"></script>
 
     
   </div>
@@ -1572,6 +1572,8 @@
         <li><a href="#dismiss-reviews-after-substantial-changes">Dismiss reviews after substantial changes</a></li>
         <li><a href="#address-all--1s-before-merging">Address all -1s before merging</a></li>
         <li><a href="#update-branch-only-after-required-reviews">Update branch only after required reviews</a></li>
+        <li><a href="#mark-work-in-progress-prs-as-drafts">Mark work-in-progress PRs as drafts</a></li>
+        <li><a href="#use-private-forks-for-debugging-prs-by-running-ci">Use private forks for debugging PRs by running CI</a></li>
       </ul>
     </li>
   </ul>
@@ -1660,6 +1662,19 @@ approval (0/+1 vote) before the PR is merged.</p>
 ready to merge (has <a href="#two-non-author-committer-approvals-required">required reviews</a> and <a href="#address-all--1s-before-merging">no -1s</a>). Unless
 other relevant code has changed, the new job results don&rsquo;t tell us anything new. Since changes are constantly being merged, it&rsquo;s likely
 another merge commit and set of jobs will be necessary right before merging anyway.</p>
+<h3 id="mark-work-in-progress-prs-as-drafts">Mark work-in-progress PRs as drafts</h3>
+<p>To clearly indicate a PR is still under development and not yet ready for review, mark it as a draft. It is not necessary to modify PR
+summaries or commit messages (e.g. &ldquo;WIP&rdquo;, &ldquo;DO NOT MERGE&rdquo;). Keeping the same PR summary keeps email notifications threaded, and using the
+commit message you plan to merge will allow gitlint to verify it. PRs should typically be marked as drafts if any CI is failing that the
+author can fix before asking for code review.</p>
+<p>Please do this when opening the PR: instead of clicking on the “Create pull request” button, click on the drop-down arrow next to it, and
+select “Create draft pull request”. This will avoid notifying code owners; they will be notified when the PR is marked as ready for review.</p>
+<h3 id="use-private-forks-for-debugging-prs-by-running-ci">Use private forks for debugging PRs by running CI</h3>
+<p>If a PR is not expected to pass CI but the author wants to see the results to enable development, use a personal fork to run CI. This avoids
+clogging the GitHub Actions job queue of the Submariner-io GitHub Organization. After the same <code>git push</code> to your personal fork you&rsquo;d
+typically do for a PR, simply choose your fork as the &ldquo;base repository&rdquo; of the PR in GitHub&rsquo;s &ldquo;Open a pull request&rdquo; UI. Make sure your
+fork&rsquo;s main branch is up-to-date. After creating the PR, CI will trigger as usual but the jobs will count towards your personal queue. You
+will need to open a new PR against the main repository once your proposed change is ready for review.</p>
 
 
 
@@ -2454,19 +2469,19 @@ another merge commit and set of jobs will be necessary right before merging anyw
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1612521488"></script>
-    <script src="/js/perfect-scrollbar.min.js?1612521488"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1612521488"></script>
-    <script src="/js/jquery.sticky.js?1612521488"></script>
-    <script src="/js/featherlight.min.js?1612521488"></script>
-    <script src="/js/highlight.pack.js?1612521488"></script>
+    <script src="/js/clipboard.min.js?1612876310"></script>
+    <script src="/js/perfect-scrollbar.min.js?1612876310"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1612876310"></script>
+    <script src="/js/jquery.sticky.js?1612876310"></script>
+    <script src="/js/featherlight.min.js?1612876310"></script>
+    <script src="/js/highlight.pack.js?1612876310"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1612521488"></script>
-    <script src="/js/learn.js?1612521488"></script>
-    <script src="/js/hugo-learn.js?1612521488"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1612876310"></script>
+    <script src="/js/learn.js?1612876310"></script>
+    <script src="/js/hugo-learn.js?1612876310"></script>
 
-    <link href="/mermaid/mermaid.css?1612521488" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1612521488"></script>
+    <link href="/mermaid/mermaid.css?1612876310" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1612876310"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
