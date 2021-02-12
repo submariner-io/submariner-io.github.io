@@ -143,10 +143,6 @@
   </url>
   
   <url>
-    <loc>/0.8/getting-started/architecture/route-agent/</loc>
-  </url>
-  
-  <url>
     <loc>/0.8/community/releases/</loc>
     <lastmod>2020-08-24T11:35:16+02:00</lastmod>
   </url>
@@ -208,6 +204,18 @@
   
   <url>
     <loc>/0.8/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>/0.8/getting-started/architecture/networkplugin-syncer/</loc>
+  </url>
+  
+  <url>
+    <loc>/0.8/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/</loc>
+  </url>
+  
+  <url>
+    <loc>/0.8/getting-started/architecture/route-agent/</loc>
   </url>
   
   <url>

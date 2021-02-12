@@ -12,20 +12,20 @@
     <title>Route Agent :: Submariner k8s project documentation website</title>
 
     
-    <link href="/0.8/css/nucleus.css?1613131543" rel="stylesheet">
-    <link href="/0.8/css/fontawesome-all.min.css?1613131543" rel="stylesheet">
-    <link href="/0.8/css/hybrid.css?1613131543" rel="stylesheet">
-    <link href="/0.8/css/featherlight.min.css?1613131543" rel="stylesheet">
-    <link href="/0.8/css/perfect-scrollbar.min.css?1613131543" rel="stylesheet">
-    <link href="/0.8/css/auto-complete.css?1613131543" rel="stylesheet">
-    <link href="/0.8/css/atom-one-dark-reasonable.css?1613131543" rel="stylesheet">
-    <link href="/0.8/css/theme.css?1613131543" rel="stylesheet">
-    <link href="/0.8/css/hugo-theme.css?1613131543" rel="stylesheet">
+    <link href="/0.8/css/nucleus.css?1613140003" rel="stylesheet">
+    <link href="/0.8/css/fontawesome-all.min.css?1613140003" rel="stylesheet">
+    <link href="/0.8/css/hybrid.css?1613140003" rel="stylesheet">
+    <link href="/0.8/css/featherlight.min.css?1613140003" rel="stylesheet">
+    <link href="/0.8/css/perfect-scrollbar.min.css?1613140003" rel="stylesheet">
+    <link href="/0.8/css/auto-complete.css?1613140003" rel="stylesheet">
+    <link href="/0.8/css/atom-one-dark-reasonable.css?1613140003" rel="stylesheet">
+    <link href="/0.8/css/theme.css?1613140003" rel="stylesheet">
+    <link href="/0.8/css/hugo-theme.css?1613140003" rel="stylesheet">
     
-      <link href="/0.8/css/theme-blue.css?1613131543" rel="stylesheet">
+      <link href="/0.8/css/theme-blue.css?1613140003" rel="stylesheet">
     
 
-    <script src="/0.8/js/jquery-3.3.1.min.js?1613131543"></script>
+    <script src="/0.8/js/jquery-3.3.1.min.js?1613140003"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/0.8/js/lunr.min.js?1613131543"></script>
-<script type="text/javascript" src="/0.8/js/auto-complete.js?1613131543"></script>
+<script type="text/javascript" src="/0.8/js/lunr.min.js?1613140003"></script>
+<script type="text/javascript" src="/0.8/js/auto-complete.js?1613140003"></script>
 <script type="text/javascript">
     
         var baseurl = "\/0.8\/";
     
 </script>
-<script type="text/javascript" src="/0.8/js/search.js?1613131543"></script>
+<script type="text/javascript" src="/0.8/js/search.js?1613140003"></script>
 
     
   </div>
@@ -199,34 +199,6 @@
  
   
     
-    <li data-nav-id="/0.8/getting-started/architecture/route-agent/" title="Route Agent" class="dd-item 
-        parent
-        active
-        
-        ">
-      <a href="/0.8/getting-started/architecture/route-agent/">
-          Route Agent
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
     <li data-nav-id="/0.8/getting-started/architecture/service-discovery/" title="Service Discovery" class="dd-item 
         
         
@@ -262,6 +234,102 @@
         ">
       <a href="/0.8/getting-started/architecture/globalnet/">
           Globalnet Controller
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.8/getting-started/architecture/networkplugin-syncer/" title="Network Plugin Syncer" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.8/getting-started/architecture/networkplugin-syncer/">
+          Network Plugin Syncer
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.8/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/" title="OVN Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.8/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/">
+          OVN Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.8/getting-started/architecture/route-agent/" title="Route Agent" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/0.8/getting-started/architecture/route-agent/">
+          Route Agent
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1470,7 +1538,12 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#kube-proxy-iptables">kube-proxy iptables</a></li>
+    <li><a href="#ovn-kubernetes">OVN Kubernetes</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1495,15 +1568,32 @@
 
 
 
-	<p>The Route Agent component runs on every node in each participating cluster. It is responsible for setting up VXLAN tunnels and routing the
-cross cluster traffic from the node to the cluster’s active Gateway Engine which subsequently sends the traffic to the destination cluster.</p>
-<p>When running on the same node as the active Gateway Engine, Route Agent creates a VXLAN VTEP interface to which Route Agent instances
-running on the other worker nodes in the local cluster connect by establishing a VXLAN tunnel with the VTEP of the active Gateway Engine
-node. The MTU of the VXLAN tunnel is configured based on the MTU of the default interface on the host minus the VXLAN overhead.</p>
-<p>Route Agents use <code>Endpoint</code> resources synced from other clusters to configure routes and to program the necessary iptables rules to enable
-full cross-cluster connectivity.</p>
-<p>When the active Gateway Engine fails and a new Gateway Engine takes over, Route Agents will automatically update the route tables on each
-node to point to the new active Gateway Engine node.</p>
+	<p>The Route Agent component runs on every node in each participating cluster.
+It is responsible for setting up the necessary host network elements on top
+of the existing Kubernetes CNI plugin.</p>
+<p>The Route Agent receives the detected CNI plugin as part of its
+configuration.</p>
+<h2 id="kube-proxy-iptables">kube-proxy iptables</h2>
+<p>For CNI plugins that utilize kube-proxy in iptables mode, the Route Agent is responsible
+for setting up VXLAN tunnels and routing the cross cluster traffic from the node to the
+cluster’s active Gateway Engine which subsequently sends the traffic to the
+destination cluster.</p>
+<p>When running on the same node as the active Gateway Engine, Route Agent
+creates a VXLAN VTEP interface to which Route Agent instances running on
+the other worker nodes in the local cluster connect by establishing a VXLAN
+tunnel with the VTEP of the active Gateway Engine node. The MTU of the VXLAN
+tunnel is configured based on the MTU of the default interface on the host
+minus the VXLAN overhead.</p>
+<p>Route Agents use <code>Endpoint</code> resources synced from other clusters to configure
+routes and to program the necessary iptables rules to enable full cross-cluster
+connectivity.</p>
+<p>When the active Gateway Engine fails and a new Gateway Engine takes over,
+Route Agents will automatically update the route tables on each node to point to
+the new active Gateway Engine node.</p>
+<h2 id="ovn-kubernetes">OVN Kubernetes</h2>
+<p>For the OVN Kubernetes CNI plugin, host network routing is configured on all nodes and,
+on the active Gateway node, IP forwarding is configured between the <code>ovn-k8s-gw0</code>
+and cable interfaces.</p>
 
 
 
@@ -1611,26 +1701,6 @@ node to point to the new active Gateway Engine node.</p>
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -1658,6 +1728,37 @@ node to point to the new active Gateway Engine node.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1665,6 +1766,29 @@ node to point to the new active Gateway Engine node.</p>
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -2233,10 +2357,10 @@ node to point to the new active Gateway Engine node.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/0.8/getting-started/architecture/gateway-engine/" title="Gateway Engine"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/0.8/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/" title="OVN Kubernetes"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/0.8/getting-started/architecture/service-discovery/" title="Service Discovery" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/0.8/getting-started/quickstart/" title="Quickstart Guides" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2246,19 +2370,19 @@ node to point to the new active Gateway Engine node.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/0.8/js/clipboard.min.js?1613131543"></script>
-    <script src="/0.8/js/perfect-scrollbar.min.js?1613131543"></script>
-    <script src="/0.8/js/perfect-scrollbar.jquery.min.js?1613131543"></script>
-    <script src="/0.8/js/jquery.sticky.js?1613131543"></script>
-    <script src="/0.8/js/featherlight.min.js?1613131543"></script>
-    <script src="/0.8/js/highlight.pack.js?1613131543"></script>
+    <script src="/0.8/js/clipboard.min.js?1613140003"></script>
+    <script src="/0.8/js/perfect-scrollbar.min.js?1613140003"></script>
+    <script src="/0.8/js/perfect-scrollbar.jquery.min.js?1613140003"></script>
+    <script src="/0.8/js/jquery.sticky.js?1613140003"></script>
+    <script src="/0.8/js/featherlight.min.js?1613140003"></script>
+    <script src="/0.8/js/highlight.pack.js?1613140003"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/0.8/js/modernizr.custom-3.6.0.js?1613131543"></script>
-    <script src="/0.8/js/learn.js?1613131543"></script>
-    <script src="/0.8/js/hugo-learn.js?1613131543"></script>
+    <script src="/0.8/js/modernizr.custom-3.6.0.js?1613140003"></script>
+    <script src="/0.8/js/learn.js?1613140003"></script>
+    <script src="/0.8/js/hugo-learn.js?1613140003"></script>
 
-    <link href="/0.8/mermaid/mermaid.css?1613131543" rel="stylesheet" />
-    <script src="/0.8/mermaid/mermaid.js?1613131543"></script>
+    <link href="/0.8/mermaid/mermaid.css?1613140003" rel="stylesheet" />
+    <script src="/0.8/mermaid/mermaid.js?1613140003"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
