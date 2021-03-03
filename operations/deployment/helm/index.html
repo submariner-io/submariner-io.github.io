@@ -12,20 +12,20 @@
     <title>Helm :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1614260236" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1614260236" rel="stylesheet">
-    <link href="/css/hybrid.css?1614260236" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1614260236" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1614260236" rel="stylesheet">
-    <link href="/css/auto-complete.css?1614260236" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1614260236" rel="stylesheet">
-    <link href="/css/theme.css?1614260236" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1614260236" rel="stylesheet">
+    <link href="/css/nucleus.css?1614791839" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1614791839" rel="stylesheet">
+    <link href="/css/hybrid.css?1614791839" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1614791839" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1614791839" rel="stylesheet">
+    <link href="/css/auto-complete.css?1614791839" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1614791839" rel="stylesheet">
+    <link href="/css/theme.css?1614791839" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1614791839" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1614260236" rel="stylesheet">
+      <link href="/css/theme-blue.css?1614791839" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1614260236"></script>
+    <script src="/js/jquery-3.3.1.min.js?1614791839"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1614260236"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1614260236"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1614791839"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1614791839"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1614260236"></script>
+<script type="text/javascript" src="/js/search.js?1614791839"></script>
 
     
   </div>
@@ -1615,21 +1615,21 @@
 helm repo add submariner-latest https://submariner-io.github.io/submariner-charts/charts
 </code></pre></div><h3 id="exporting-environment-variables-needed-later">Exporting environment variables needed later</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export BROKER_NS<span style="color:#f92672">=</span>submariner-k8s-broker
+export SUBMARINER_NS<span style="color:#f92672">=</span>submariner-operator
 export SUBMARINER_PSK<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>LC_CTYPE<span style="color:#f92672">=</span>C tr -dc <span style="color:#e6db74">&#39;a-zA-Z0-9&#39;</span> &lt; /dev/urandom | fold -w <span style="color:#ae81ff">64</span> | head -n 1<span style="color:#66d9ef">)</span>
-export SUBMARINER_NS<span style="color:#f92672">=</span>submariner
 </code></pre></div><h3 id="deploying-the-broker">Deploying the Broker</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> submariner-latest/submariner-k8s-broker <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>             --create-namespace <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>             --namespace <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>             --set submariner.serviceDiscovery<span style="color:#f92672">=</span>true
 </code></pre></div><p>Setup more environment variables we will need later for joining clusters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export SUBMARINER_BROKER_URL<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl -n default get endpoints kubernetes <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{.subsets[0].addresses[0].ip}:{.subsets[0].ports[?(@.name==&#39;https&#39;)].port}&#34;</span><span style="color:#66d9ef">)</span>
-export SUBMARINER_BROKER_CA<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> get secrets <span style="color:#ae81ff">\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export SUBMARINER_BROKER_CA<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> get secrets <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{.items[?(@.metadata.annotations[&#39;kubernetes\.io/service-account\.name&#39;]==&#39;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">-client&#39;)].data[&#39;ca\.crt&#39;]}&#34;</span><span style="color:#66d9ef">)</span>
 export SUBMARINER_BROKER_TOKEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> get secrets <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{.items[?(@.metadata.annotations[&#39;kubernetes\.io/service-account\.name&#39;]==&#39;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">-client&#39;)].data.token}&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>       | base64 --decode<span style="color:#66d9ef">)</span>
+export SUBMARINER_BROKER_URL<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl -n default get endpoints kubernetes <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{.subsets[0].addresses[0].ip}:{.subsets[0].ports[?(@.name==&#39;https&#39;)].port}&#34;</span><span style="color:#66d9ef">)</span>
 </code></pre></div><h3 id="joining-a-cluster">Joining a cluster</h3>
 <p>This step needs to be repeated for every cluster you want to connect with Submariner.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig-of-the-cluster-to-join
@@ -1641,7 +1641,7 @@ export SERVICE_CIDR<span style="color:#f92672">=</span>x.x.x.x/x   <span style="
 export GLOBAL_CIDR<span style="color:#f92672">=</span>169.254.x.x/x <span style="color:#75715e"># using an individual non-overlapping</span>
                                  <span style="color:#75715e"># range for each cluster you join.</span>
 </code></pre></div><p>Joining the cluster:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install submariner submariner-latest/submariner <span style="color:#ae81ff">\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install submariner-operator submariner-latest/submariner-operator <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --create-namespace <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --namespace <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SUBMARINER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set ipsec.psk<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SUBMARINER_PSK<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
@@ -1649,26 +1649,20 @@ export GLOBAL_CIDR<span style="color:#f92672">=</span>169.254.x.x/x <span style=
 </span><span style="color:#ae81ff"></span>        --set broker.token<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SUBMARINER_BROKER_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set broker.namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BROKER_NS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set broker.ca<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SUBMARINER_BROKER_CA<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set submariner.clusterId<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CLUSTER_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --set submariner.cableDriver<span style="color:#f92672">=</span>libreswan <span style="color:#ae81ff">\ </span><span style="color:#75715e"># or wireguard</span>
+        --set submariner.clusterId<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CLUSTER_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set submariner.clusterCidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CLUSTER_CIDR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set submariner.serviceCidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SERVICE_CIDR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set submariner.globalCidr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>GLOBAL_CIDR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set serviceAccounts.globalnet.create<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>GLOBALNET<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set submariner.natEnabled<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#ae81ff">\ </span> <span style="color:#75715e"># disable this if no NAT will happen between gateways</span>
-        --set crd.create<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
+        --set brokercrd.create<span style="color:#f92672">=</span>false <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set submariner.serviceDiscovery<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set serviceAccounts.lighthouse.create<span style="color:#f92672">=</span>true
 </code></pre></div><p>Some image override settings you could use</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">        --set globalnet.image.repository<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost:5000/submariner-globalnet&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set globalnet.image.tag<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set globalnet.image.pullPolicy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;IfNotPresent&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set engine.image.repository<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost:5000/submariner&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set engine.image.tag<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set engine.image.pullPolicy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;IfNotPresent&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set routeAgent.image.repository<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost:5000/submariner-route-agent&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set routeAgent.image.tag<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set routeAgent.image.pullPolicy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;IfNotPresent&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>        --set lighthouse.image.repository<span style="color:#f92672">=</span>localhost:5000/lighthouse-agent
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">        --set operator.image.repository<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost:5000/submariner-operator&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --set operator.image.tag<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --set operator.image.pullPolicy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;IfNotPresent&#34;</span>
 </code></pre></div><p>If installing on OpenShift, please also add the Submariner service accounts (SAs) to the
 privileged Security Context Constraint.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc adm policy add-scc-to-user privileged system:serviceaccount:submariner:submariner-routeagent
@@ -2499,19 +2493,19 @@ your <code>PATH</code>).
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1614260236"></script>
-    <script src="/js/perfect-scrollbar.min.js?1614260236"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1614260236"></script>
-    <script src="/js/jquery.sticky.js?1614260236"></script>
-    <script src="/js/featherlight.min.js?1614260236"></script>
-    <script src="/js/highlight.pack.js?1614260236"></script>
+    <script src="/js/clipboard.min.js?1614791839"></script>
+    <script src="/js/perfect-scrollbar.min.js?1614791839"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1614791839"></script>
+    <script src="/js/jquery.sticky.js?1614791839"></script>
+    <script src="/js/featherlight.min.js?1614791839"></script>
+    <script src="/js/highlight.pack.js?1614791839"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1614260236"></script>
-    <script src="/js/learn.js?1614260236"></script>
-    <script src="/js/hugo-learn.js?1614260236"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1614791839"></script>
+    <script src="/js/learn.js?1614791839"></script>
+    <script src="/js/hugo-learn.js?1614791839"></script>
 
-    <link href="/mermaid/mermaid.css?1614260236" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1614260236"></script>
+    <link href="/mermaid/mermaid.css?1614791839" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1614791839"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
