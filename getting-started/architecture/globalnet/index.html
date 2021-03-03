@@ -12,20 +12,20 @@
     <title>Globalnet Controller :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1614791838" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1614791838" rel="stylesheet">
-    <link href="/css/hybrid.css?1614791838" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1614791838" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1614791838" rel="stylesheet">
-    <link href="/css/auto-complete.css?1614791838" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1614791838" rel="stylesheet">
-    <link href="/css/theme.css?1614791838" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1614791838" rel="stylesheet">
+    <link href="/css/nucleus.css?1614792371" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1614792371" rel="stylesheet">
+    <link href="/css/hybrid.css?1614792371" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1614792371" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1614792371" rel="stylesheet">
+    <link href="/css/auto-complete.css?1614792371" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1614792371" rel="stylesheet">
+    <link href="/css/theme.css?1614792371" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1614792371" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1614791838" rel="stylesheet">
+      <link href="/css/theme-blue.css?1614792371" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1614791838"></script>
+    <script src="/js/jquery-3.3.1.min.js?1614792371"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1614791838"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1614791838"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1614792371"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1614792371"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1614791838"></script>
+<script type="text/javascript" src="/js/search.js?1614792371"></script>
 
     
   </div>
@@ -1618,8 +1618,9 @@ subnet from this virtual Global Private Network, configured as new cluster param
 configurable at time of deployment. User can also manually specify GlobalCIDR for each cluster that is joined to the Broker using the flag
 <code>globalnet-cidr</code> passed to <code>subctl join</code> command. If Globalnet is not enabled in the Broker or if a GlobalCIDR is preconfigured in
 the cluster, the supplied globalnet-cidr will be ignored.</p>
-<p>Once configured, each Service and Pod that requires cross-cluster access is allocated an IP, named <code>globalIp</code>, from this <code>GlobalCIDR</code> that
-is annotated on the Pod/Service object. This globalIp is used for all cross-cluster communication to and from a Pod and the globalIp of a
+<p>Once configured, each exported Service and Pod that requires cross-cluster access is allocated an IP, named <code>globalIp</code>,
+from this <code>GlobalCIDR</code> that is annotated on the Pod/Service object.
+This globalIp is used for all cross-cluster communication to and from a Pod and the globalIp of a
 remote Service. Routing and iptable rules are configured to use the globalIp for ingress and egress. All address translations occur on the
 Gateway node.</p>
 <p><img src="/images/globalnet/overlappingcidr-solution.png" alt="Figure 1 - Proposed solution"></p>
@@ -1639,9 +1640,9 @@ It mainly consists of two key components: the IP Address Manager and Globalnet.<
 <p>The IP Address Manager (IPAM) component does the following:</p>
 <ul>
 <li>Creates a pool of IP addresses based on the <code>GlobalCIDR</code> configured on cluster.</li>
-<li>On creation of a Pod/Service, allocates a globalIp from the GlobalIp pool.</li>
-<li>Annotates the Pod/Service with <code>submariner.io/globalIp=&lt;global-ip&gt;</code>.</li>
-<li>On deletion of a Pod/Service, releases its globalIp back to the pool.</li>
+<li>Allocates a globalIp from the GlobalIp pool on creation of a Pod, Service, or ServiceExport.</li>
+<li>Annotates the Pod or exported Service with <code>submariner.io/globalIp=&lt;global-ip&gt;</code>.</li>
+<li>On deletion of a Pod, Service, or ServiceExport, releases its globalIp back to the pool.</li>
 </ul>
 <h4 id="globalnet">Globalnet</h4>
 <p>This component is responsible for programming the routing entries, iptable rules and does the following:</p>
@@ -1651,7 +1652,7 @@ It mainly consists of two key components: the IP Address Manager and Globalnet.<
 on the Gateway Node.</li>
 <li>Whenever a Service is annotated with a globalIp, creates an ingress rule to direct all traffic destined to the Service&rsquo;s globalIp to the
 Service&rsquo;s <code>kube-proxy</code> iptables chain which in turn directs traffic to Service&rsquo;s backend Pods.</li>
-<li>On deletion of pod/service, clean up the rules from the gateway node.</li>
+<li>Clean up the rules from the gateway node on the deletion of a Pod, Service, or ServiceExport.</li>
 </ul>
 <p>Globalnet currently relies on <code>kube-proxy</code> and thus will only work with deployments that use <code>kube-proxy</code>.</p>
 <h3 id="service-discovery---lighthouse">Service Discovery - Lighthouse</h3>
@@ -2454,19 +2455,19 @@ queries for the Service.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1614791838"></script>
-    <script src="/js/perfect-scrollbar.min.js?1614791838"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1614791838"></script>
-    <script src="/js/jquery.sticky.js?1614791838"></script>
-    <script src="/js/featherlight.min.js?1614791838"></script>
-    <script src="/js/highlight.pack.js?1614791838"></script>
+    <script src="/js/clipboard.min.js?1614792371"></script>
+    <script src="/js/perfect-scrollbar.min.js?1614792371"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1614792371"></script>
+    <script src="/js/jquery.sticky.js?1614792371"></script>
+    <script src="/js/featherlight.min.js?1614792371"></script>
+    <script src="/js/highlight.pack.js?1614792371"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1614791838"></script>
-    <script src="/js/learn.js?1614791838"></script>
-    <script src="/js/hugo-learn.js?1614791838"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1614792371"></script>
+    <script src="/js/learn.js?1614792371"></script>
+    <script src="/js/hugo-learn.js?1614792371"></script>
 
-    <link href="/mermaid/mermaid.css?1614791838" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1614791838"></script>
+    <link href="/mermaid/mermaid.css?1614792371" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1614792371"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
