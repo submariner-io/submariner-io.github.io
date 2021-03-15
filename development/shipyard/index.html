@@ -12,20 +12,20 @@
     <title>Working with Shipyard :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1615305304" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1615305304" rel="stylesheet">
-    <link href="/css/hybrid.css?1615305304" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1615305304" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1615305304" rel="stylesheet">
-    <link href="/css/auto-complete.css?1615305304" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1615305304" rel="stylesheet">
-    <link href="/css/theme.css?1615305304" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1615305304" rel="stylesheet">
+    <link href="/css/nucleus.css?1615799544" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1615799544" rel="stylesheet">
+    <link href="/css/hybrid.css?1615799544" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1615799544" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1615799544" rel="stylesheet">
+    <link href="/css/auto-complete.css?1615799544" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1615799544" rel="stylesheet">
+    <link href="/css/theme.css?1615799544" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1615799544" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1615305304" rel="stylesheet">
+      <link href="/css/theme-blue.css?1615799544" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1615305304"></script>
+    <script src="/js/jquery-3.3.1.min.js?1615799544"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615305304"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615305304"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615799544"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615799544"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615305304"></script>
+<script type="text/javascript" src="/js/search.js?1615799544"></script>
 
     
   </div>
@@ -1603,7 +1603,9 @@
       <ul>
         <li><a href="#clusters">Clusters</a></li>
         <li><a href="#deploy">Deploy</a></li>
-        <li><a href="#cleanup">Cleanup</a></li>
+        <li><a href="#cleanclusters">Clean-clusters</a></li>
+        <li><a href="#cleangenerated">Clean-generated</a></li>
+        <li><a href="#clean">Clean</a></li>
         <li><a href="#release">Release</a></li>
       </ul>
     </li>
@@ -1682,7 +1684,9 @@ project&rsquo;s Makefile. For example:</p>
 <ul>
 <li><strong><a href="#clusters">clusters</a>:</strong> Creates the kind-based cluster environment.</li>
 <li><strong><a href="#deploy">deploy</a></strong> : Deploys submariner components in the cluster environment (depends on clusters).</li>
-<li><strong><a href="#cleanup">cleanup</a>:</strong> Deletes the kind environment (if it exists) and any residual resources.</li>
+<li><strong><a href="#cleanclusters">clean-clusters</a>:</strong> Deletes the kind environment (if it exists) and any residual resources.</li>
+<li><strong><a href="#cleangenerated">clean-generated</a>:</strong> Deletes all generated files.</li>
+<li><strong><a href="#clean">clean</a>:</strong> Cleans everything up (running clusters and generated files).</li>
 <li><strong><a href="#release">release</a>:</strong> Uploads the requested image(s) to Quay.io.</li>
 <li><strong>vendor/modules.txt:</strong> Populates go modules (in case go.mod exists in the root directory).</li>
 </ul>
@@ -1707,11 +1711,19 @@ invoke the clusters target to do so):</p>
 <li><strong>DEPLOY_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>deploy.sh</code> script. To get a list of available arguments, run:
 <code>scripts/shared/deploy.sh --help</code></li>
 </ul>
-<h3 id="cleanup">Cleanup</h3>
+<h3 id="cleanclusters">Clean-clusters</h3>
 <p>To clean up all the kind clusters deployed in any of the previous steps, use:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make cleanup
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clean-clusters
 </code></pre></div><p>This command will remove the clusters and any resources that might&rsquo;ve been left in docker that are not needed any more (images, volumes,
 etc).</p>
+<h3 id="cleangenerated">Clean-generated</h3>
+<p>To clean up all generated files, use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clean-generated
+</code></pre></div><p>This will remove any file which can be re-generated and doesn’t need to be tracked.</p>
+<h3 id="clean">Clean</h3>
+<p>To clean everything up, use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clean
+</code></pre></div><p>This removes any running clusters and all generated files.</p>
 <h3 id="release">Release</h3>
 <p>Uploads the built images to Quay.io:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make release release_images<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;image name&gt;&#34;</span>
@@ -2545,19 +2557,19 @@ etc).</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615305304"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615305304"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615305304"></script>
-    <script src="/js/jquery.sticky.js?1615305304"></script>
-    <script src="/js/featherlight.min.js?1615305304"></script>
-    <script src="/js/highlight.pack.js?1615305304"></script>
+    <script src="/js/clipboard.min.js?1615799544"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615799544"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615799544"></script>
+    <script src="/js/jquery.sticky.js?1615799544"></script>
+    <script src="/js/featherlight.min.js?1615799544"></script>
+    <script src="/js/highlight.pack.js?1615799544"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615305304"></script>
-    <script src="/js/learn.js?1615305304"></script>
-    <script src="/js/hugo-learn.js?1615305304"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615799544"></script>
+    <script src="/js/learn.js?1615799544"></script>
+    <script src="/js/hugo-learn.js?1615799544"></script>
 
-    <link href="/mermaid/mermaid.css?1615305304" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615305304"></script>
+    <link href="/mermaid/mermaid.css?1615799544" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615799544"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
