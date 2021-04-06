@@ -12,20 +12,20 @@
     <title>Hybrid vSphere and AWS :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1617622562" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1617622562" rel="stylesheet">
-    <link href="/css/hybrid.css?1617622562" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1617622562" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1617622562" rel="stylesheet">
-    <link href="/css/auto-complete.css?1617622562" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1617622562" rel="stylesheet">
-    <link href="/css/theme.css?1617622562" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1617622562" rel="stylesheet">
+    <link href="/css/nucleus.css?1617691830" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1617691830" rel="stylesheet">
+    <link href="/css/hybrid.css?1617691830" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1617691830" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1617691830" rel="stylesheet">
+    <link href="/css/auto-complete.css?1617691830" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1617691830" rel="stylesheet">
+    <link href="/css/theme.css?1617691830" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1617691830" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1617622562" rel="stylesheet">
+      <link href="/css/theme-blue.css?1617691830" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1617622562"></script>
+    <script src="/js/jquery-3.3.1.min.js?1617691830"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1617622562"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1617622562"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1617691830"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1617691830"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1617622562"></script>
+<script type="text/javascript" src="/js/search.js?1617691830"></script>
 
     
   </div>
@@ -1779,6 +1779,10 @@ customize the AWS instance type as shown below.</p>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export IPSEC_NATT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
 export IPSEC_IKE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
+</code></pre></div><ul>
+<li>To deploy the gateway in HA mode set the ENABLE_HA flag:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export ENABLE_HA<span style="color:#f92672">=</span>true
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./prep_for_subm.sh cluster-b <span style="color:#75715e"># respond &#34;yes&#34; when Terraform asks for approval, or otherwise add the -auto-approve flag</span>
 </code></pre></div><h3 id="submariner-installation">Submariner Installation</h3>
 Download the subctl binary and make it available on your PATH.
@@ -2706,19 +2710,19 @@ curl nginx-ss.default.svc.clusterset.local:8080
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1617622562"></script>
-    <script src="/js/perfect-scrollbar.min.js?1617622562"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1617622562"></script>
-    <script src="/js/jquery.sticky.js?1617622562"></script>
-    <script src="/js/featherlight.min.js?1617622562"></script>
-    <script src="/js/highlight.pack.js?1617622562"></script>
+    <script src="/js/clipboard.min.js?1617691830"></script>
+    <script src="/js/perfect-scrollbar.min.js?1617691830"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1617691830"></script>
+    <script src="/js/jquery.sticky.js?1617691830"></script>
+    <script src="/js/featherlight.min.js?1617691830"></script>
+    <script src="/js/highlight.pack.js?1617691830"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1617622562"></script>
-    <script src="/js/learn.js?1617622562"></script>
-    <script src="/js/hugo-learn.js?1617622562"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1617691830"></script>
+    <script src="/js/learn.js?1617691830"></script>
+    <script src="/js/hugo-learn.js?1617691830"></script>
 
-    <link href="/mermaid/mermaid.css?1617622562" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1617622562"></script>
+    <link href="/mermaid/mermaid.css?1617691830" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1617691830"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
