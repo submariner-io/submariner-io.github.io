@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs Style Guide on Submariner k8s project documentation website</title>
+    <link>/development/website/style-guide/</link>
+    <description>Recent content in Docs Style Guide on Submariner k8s project documentation website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 29 Apr 2020 19:09:55 +0200</lastBuildDate>
+    
+	<atom:link href="/development/website/style-guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
