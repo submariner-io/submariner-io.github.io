@@ -12,20 +12,20 @@
     <title>Code Review Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1618355336" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1618355336" rel="stylesheet">
-    <link href="/css/hybrid.css?1618355336" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1618355336" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1618355336" rel="stylesheet">
-    <link href="/css/auto-complete.css?1618355336" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1618355336" rel="stylesheet">
-    <link href="/css/theme.css?1618355336" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1618355336" rel="stylesheet">
+    <link href="/css/nucleus.css?1618411312" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1618411312" rel="stylesheet">
+    <link href="/css/hybrid.css?1618411312" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1618411312" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1618411312" rel="stylesheet">
+    <link href="/css/auto-complete.css?1618411312" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1618411312" rel="stylesheet">
+    <link href="/css/theme.css?1618411312" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1618411312" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1618355336" rel="stylesheet">
+      <link href="/css/theme-blue.css?1618411312" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1618355336"></script>
+    <script src="/js/jquery-3.3.1.min.js?1618411312"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1618355336"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1618355336"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1618411312"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1618411312"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1618355336"></script>
+<script type="text/javascript" src="/js/search.js?1618411312"></script>
 
     
   </div>
@@ -1639,6 +1639,7 @@
         <li><a href="#update-branch-only-after-required-reviews">Update branch only after required reviews</a></li>
         <li><a href="#mark-work-in-progress-prs-as-drafts">Mark work-in-progress PRs as drafts</a></li>
         <li><a href="#use-private-forks-for-debugging-prs-by-running-ci">Use private forks for debugging PRs by running CI</a></li>
+        <li><a href="#manage-dependency-among-pull-requests">Manage dependency among pull requests</a></li>
       </ul>
     </li>
   </ul>
@@ -1740,6 +1741,11 @@ clogging the GitHub Actions job queue of the Submariner-io GitHub Organization. 
 typically do for a PR, simply choose your fork as the &ldquo;base repository&rdquo; of the PR in GitHub&rsquo;s &ldquo;Open a pull request&rdquo; UI. Make sure your
 fork&rsquo;s main branch is up-to-date. After creating the PR, CI will trigger as usual but the jobs will count towards your personal queue. You
 will need to open a new PR against the main repository once your proposed change is ready for review.</p>
+<h3 id="manage-dependency-among-pull-requests">Manage dependency among pull requests</h3>
+<p>If a PR (child) is dependent on another PR (parent), irrespective of the project, comment on the child PR with the parent PR&rsquo;s number with
+<code>Depends on &lt;Parent PR number&gt;</code> or <code>depends on &lt;Parent PR number&gt;</code>. This will trigger a <code>PR Dependencies/Check Dependencies</code> workflow. The
+workflow will add a <code>dependent</code> label to the child PR. The workflow will fail until the parent PR is merged and will pass once the parent
+PR is merged. This will prevent merging the child PR until the parent PR is merged.</p>
 
 
 
@@ -2568,19 +2574,19 @@ will need to open a new PR against the main repository once your proposed change
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1618355336"></script>
-    <script src="/js/perfect-scrollbar.min.js?1618355336"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1618355336"></script>
-    <script src="/js/jquery.sticky.js?1618355336"></script>
-    <script src="/js/featherlight.min.js?1618355336"></script>
-    <script src="/js/highlight.pack.js?1618355336"></script>
+    <script src="/js/clipboard.min.js?1618411312"></script>
+    <script src="/js/perfect-scrollbar.min.js?1618411312"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1618411312"></script>
+    <script src="/js/jquery.sticky.js?1618411312"></script>
+    <script src="/js/featherlight.min.js?1618411312"></script>
+    <script src="/js/highlight.pack.js?1618411312"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1618355336"></script>
-    <script src="/js/learn.js?1618355336"></script>
-    <script src="/js/hugo-learn.js?1618355336"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1618411312"></script>
+    <script src="/js/learn.js?1618411312"></script>
+    <script src="/js/hugo-learn.js?1618411312"></script>
 
-    <link href="/mermaid/mermaid.css?1618355336" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1618355336"></script>
+    <link href="/mermaid/mermaid.css?1618411312" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1618411312"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
