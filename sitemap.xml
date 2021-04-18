@@ -183,6 +183,10 @@
   </url>
   
   <url>
+    <loc>/development/security/reporting/</loc>
+  </url>
+  
+  <url>
     <loc>/operations/cleanup/</loc>
     <lastmod>2020-12-23T21:25:11+01:00</lastmod>
   </url>
@@ -200,6 +204,10 @@
   <url>
     <loc>/community/roadmap/</loc>
     <lastmod>2020-02-19T20:24:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/development/security/containers/</loc>
   </url>
   
   <url>
