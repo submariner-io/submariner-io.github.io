@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1618783631" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1618783631" rel="stylesheet">
-    <link href="/css/hybrid.css?1618783631" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1618783631" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1618783631" rel="stylesheet">
-    <link href="/css/auto-complete.css?1618783631" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1618783631" rel="stylesheet">
-    <link href="/css/theme.css?1618783631" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1618783631" rel="stylesheet">
+    <link href="/css/nucleus.css?1618955955" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1618955955" rel="stylesheet">
+    <link href="/css/hybrid.css?1618955955" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1618955955" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1618955955" rel="stylesheet">
+    <link href="/css/auto-complete.css?1618955955" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1618955955" rel="stylesheet">
+    <link href="/css/theme.css?1618955955" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1618955955" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1618783631" rel="stylesheet">
+      <link href="/css/theme-blue.css?1618955955" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1618783631"></script>
+    <script src="/js/jquery-3.3.1.min.js?1618955955"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1618783631"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1618783631"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1618955955"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1618955955"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1618783631"></script>
+<script type="text/javascript" src="/js/search.js?1618955955"></script>
 
     
   </div>
@@ -1826,8 +1826,8 @@ contains the following details:</p>
 <td align="left">Image version</td>
 </tr>
 <tr>
-<td align="left"><code>--service-discovery</code></td>
-<td align="left">Enable Multi Cluster Service Discovery (default true)</td>
+<td align="left"><code>--components &lt;strings&gt;</code></td>
+<td align="left">Comma-separated list of components to be installed - any of <code>service-discovery</code>,<code>connectivity</code>. The default is: <code>service-discovery</code>,<code>connectivity</code></td>
 </tr>
 <tr>
 <td align="left"><code>--globalnet</code></td>
@@ -1836,6 +1836,10 @@ contains the following details:</p>
 <tr>
 <td align="left"><code>--globalnet-cidr-range</code> <code>&lt;string&gt;</code></td>
 <td align="left">Global CIDR supernet range for allocating GlobalCIDRs to each cluster (default &ldquo;169.254.0.0/16&rdquo;)</td>
+</tr>
+<tr>
+<td align="left"><code>--globalnet-cluster-size</code> <code>&lt;value&gt;</code></td>
+<td align="left">Default cluster size for GlobalCIDR allocated to each cluster (amount of global IPs) (default 8192)</td>
 </tr>
 <tr>
 <td align="left"><code>--ipsec-psk-from</code> <code>&lt;string&gt;</code></td>
@@ -3104,19 +3108,19 @@ Submariner from working properly.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1618783631"></script>
-    <script src="/js/perfect-scrollbar.min.js?1618783631"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1618783631"></script>
-    <script src="/js/jquery.sticky.js?1618783631"></script>
-    <script src="/js/featherlight.min.js?1618783631"></script>
-    <script src="/js/highlight.pack.js?1618783631"></script>
+    <script src="/js/clipboard.min.js?1618955955"></script>
+    <script src="/js/perfect-scrollbar.min.js?1618955955"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1618955955"></script>
+    <script src="/js/jquery.sticky.js?1618955955"></script>
+    <script src="/js/featherlight.min.js?1618955955"></script>
+    <script src="/js/highlight.pack.js?1618955955"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1618783631"></script>
-    <script src="/js/learn.js?1618783631"></script>
-    <script src="/js/hugo-learn.js?1618783631"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1618955955"></script>
+    <script src="/js/learn.js?1618955955"></script>
+    <script src="/js/hugo-learn.js?1618955955"></script>
 
-    <link href="/mermaid/mermaid.css?1618783631" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1618783631"></script>
+    <link href="/mermaid/mermaid.css?1618955955" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1618955955"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
