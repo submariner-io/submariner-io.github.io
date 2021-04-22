@@ -158,7 +158,7 @@
 	"title": "Quickstart Guides",
 	"tags": [],
 	"description": "",
-	"content": " Sandbox Environment (kind) Managed Kubernetes  Google (GKE) Rancher   OpenShift  On AWS On AWS with Globalnet Hybrid vSphere and AWS    "
+	"content": " Sandbox Environment (kind) K3s Managed Kubernetes  Google (GKE) Rancher   OpenShift  On AWS On AWS with Globalnet Hybrid vSphere and AWS    "
 },
 {
 	"uri": "/getting-started/architecture/gateway-engine/",
