@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1619653468" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1619653468" rel="stylesheet">
-    <link href="/css/hybrid.css?1619653468" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1619653468" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1619653468" rel="stylesheet">
-    <link href="/css/auto-complete.css?1619653468" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1619653468" rel="stylesheet">
-    <link href="/css/theme.css?1619653468" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1619653468" rel="stylesheet">
+    <link href="/css/nucleus.css?1619680457" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1619680457" rel="stylesheet">
+    <link href="/css/hybrid.css?1619680457" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1619680457" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1619680457" rel="stylesheet">
+    <link href="/css/auto-complete.css?1619680457" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1619680457" rel="stylesheet">
+    <link href="/css/theme.css?1619680457" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1619680457" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1619653468" rel="stylesheet">
+      <link href="/css/theme-blue.css?1619680457" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1619653468"></script>
+    <script src="/js/jquery-3.3.1.min.js?1619680457"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1619653468"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1619653468"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1619680457"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1619680457"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1619653468"></script>
+<script type="text/javascript" src="/js/search.js?1619680457"></script>
 
     
   </div>
@@ -1715,7 +1715,7 @@
         <li><a href="#show"><code>show</code></a></li>
         <li><a href="#verify"><code>verify</code></a></li>
         <li><a href="#benchmark"><code>benchmark</code></a></li>
-        <li><a href="#validate"><code>validate</code></a></li>
+        <li><a href="#diagnose"><code>diagnose</code></a></li>
         <li><a href="#gather"><code>gather</code></a></li>
         <li><a href="#version"><code>version</code></a></li>
       </ul>
@@ -2154,16 +2154,15 @@ When running <code>benchmark latency</code>, two types of tests will be executed
 </tbody>
 </table>
 <!-- markdownlint-enable line-length -->
-<h3 id="validate"><code>validate</code></h3>
-<p>The <code>subctl validate</code> is a diagnostic tool that can be used to validate the Submariner deployment.</p>
-<p>This tool can be helpful to detect issues with the Submariner deployment or some configurations in the cluster that may prevent
-Submariner from working properly.</p>
-<p>Below is a list of available validate commands:</p>
+<h3 id="diagnose"><code>diagnose</code></h3>
+<p>The <code>subctl diagnose</code> command is a tool that runs various checks to help diagnose issues in a Submariner deployment or some configurations
+in the cluster that may prevent Submariner from working properly.</p>
+<p>Below is a list of available sub-commands:</p>
 <!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
-<th align="left">Validate command</th>
+<th align="left">Diagnose command</th>
 <th align="left">Description</th>
 <th align="left">Flags</th>
 <th align="left">Flags Description</th>
@@ -2178,13 +2177,13 @@ Submariner from working properly.</p>
 </tr>
 <tr>
 <td align="left"><code>connections</code></td>
-<td align="left">checks that the gateway connections are all established</td>
+<td align="left">checks that the Gateway connections to other clusters are all established</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td align="left"><code>k8s-version</code></td>
-<td align="left">checks whether or not Submariner can be deployed on the Kubernetes version</td>
+<td align="left">checks if Submariner can be deployed on the Kubernetes version</td>
 <td></td>
 <td></td>
 </tr>
@@ -2196,38 +2195,38 @@ Submariner from working properly.</p>
 </tr>
 <tr>
 <td align="left"><code>cni</code></td>
-<td align="left">checks whether or not the detected CNI network plugin is supported by Submariner</td>
+<td align="left">checks if the detected CNI network plugin is supported by Submariner</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td align="left"><code>firewall vxlan [flags]</code></td>
-<td align="left">checks whether the firewall configuration allows traffic via the Submariner VxLAN interface</td>
+<td align="left">checks if the firewall configuration allows traffic via the Submariner VXLAN interface</td>
 <td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code></td>
 <td align="left">Timeout in seconds while validating the connection attempt</td>
 </tr>
 <tr>
 <td align="left"><code>firewall metrics [flags]</code></td>
-<td align="left">checks whether firewall configuration allows metrics to be read from the Gateway nodes</td>
+<td align="left">checks if the firewall configuration allows metrics to be accessed from the Gateway nodes</td>
 <td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code></td>
 <td align="left">Timeout in seconds while validating the connection attempt</td>
 </tr>
 <tr>
 <td align="left"><code>firewall tunnel &lt;localkubeconfig&gt; &lt;remotekubeconfig&gt; [flags]</code></td>
-<td align="left">checks whether firewall configuration allows tunnels on Gateway node</td>
+<td align="left">checks if the firewall configuration allows tunnels to be configured on the Gateway nodes</td>
 <td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code>, <code>--verbose</code></td>
 <td align="left">Timeout in seconds while validating the connection attempt. Produce verbose logs during validation</td>
 </tr>
 <tr>
 <td align="left"><code>all</code></td>
-<td align="left">Executes all the validation sub-commands (except for <code>firewall tunnel</code> as it requires two kubeconfigs) and reports any issues from the deployment</td>
+<td align="left">runs all diagnostic checks (except those requiring two kubecontexts)</td>
 <td align="left"></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <!-- markdownlint-enable line-length -->
-<h4 id="validate-flags"><code>validate</code> flags</h4>
+<h4 id="diagnose-flags"><code>diagnose</code> flags</h4>
 <table>
 <thead>
 <tr>
@@ -3158,19 +3157,19 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1619653468"></script>
-    <script src="/js/perfect-scrollbar.min.js?1619653468"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1619653468"></script>
-    <script src="/js/jquery.sticky.js?1619653468"></script>
-    <script src="/js/featherlight.min.js?1619653468"></script>
-    <script src="/js/highlight.pack.js?1619653468"></script>
+    <script src="/js/clipboard.min.js?1619680457"></script>
+    <script src="/js/perfect-scrollbar.min.js?1619680457"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1619680457"></script>
+    <script src="/js/jquery.sticky.js?1619680457"></script>
+    <script src="/js/featherlight.min.js?1619680457"></script>
+    <script src="/js/highlight.pack.js?1619680457"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1619653468"></script>
-    <script src="/js/learn.js?1619653468"></script>
-    <script src="/js/hugo-learn.js?1619653468"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1619680457"></script>
+    <script src="/js/learn.js?1619680457"></script>
+    <script src="/js/hugo-learn.js?1619680457"></script>
 
-    <link href="/mermaid/mermaid.css?1619653468" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1619653468"></script>
+    <link href="/mermaid/mermaid.css?1619680457" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1619680457"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
