@@ -12,20 +12,20 @@
     <title>K3s :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1619783439" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1619783439" rel="stylesheet">
-    <link href="/css/hybrid.css?1619783439" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1619783439" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1619783439" rel="stylesheet">
-    <link href="/css/auto-complete.css?1619783439" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1619783439" rel="stylesheet">
-    <link href="/css/theme.css?1619783439" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1619783439" rel="stylesheet">
+    <link href="/css/nucleus.css?1619787046" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1619787046" rel="stylesheet">
+    <link href="/css/hybrid.css?1619787046" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1619787046" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1619787046" rel="stylesheet">
+    <link href="/css/auto-complete.css?1619787046" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1619787046" rel="stylesheet">
+    <link href="/css/theme.css?1619787046" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1619787046" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1619783439" rel="stylesheet">
+      <link href="/css/theme-blue.css?1619787046" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1619783439"></script>
+    <script src="/js/jquery-3.3.1.min.js?1619787046"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1619783439"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1619783439"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1619787046"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1619787046"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1619783439"></script>
+<script type="text/javascript" src="/js/search.js?1619787046"></script>
 
     
   </div>
@@ -1783,20 +1783,26 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC<span style="color:#f92672">=</sp
 </div>
 
 <p>The kubeconfig file needs to be modified to set the Kubernetes API endpoint to the public IP of node-a,
-which is obtained from the first field yielded by <code>hostname -I</code>.</p>
+which is obtained from the first field yielded by <code>hostname -I</code>, and to give the context a name other
+than “default”. (This uses <a href="https://github.com/mikefarah/yq/">yq</a> v4.7.0 or later.)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp /etc/rancher/k3s/k3s.yaml kubeconfig.cluster-a
-IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>hostname -I | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span>
-sed -i <span style="color:#e6db74">&#39;s/127.0.0.1/&#39;</span>$IP<span style="color:#e6db74">&#39;/&#39;</span> kubeconfig.cluster-a
+export IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>hostname -I | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span>
+yq -i eval <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#e6db74">&#39;.clusters[].cluster.server |= sub(&#34;127.0.0.1&#34;, env(IP)) | .contexts[].name = &#34;cluster-a&#34; | .current-context = &#34;cluster-a&#34;&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>kubeconfig.cluster-a
 </code></pre></div><h4 id="deploy-cluster-b-on-node-b">Deploy cluster-b on node-b</h4>
 <p>In this step you will deploy K3s on node-b using the the <strong>cluster-b</strong> CIDRs.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">POD_CIDR<span style="color:#f92672">=</span>10.144.0.0/16
 SERVICE_CIDR<span style="color:#f92672">=</span>10.145.0.0/16
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--cluster-cidr </span>$POD_CIDR<span style="color:#e6db74"> --service-cidr </span>$SERVICE_CIDR<span style="color:#e6db74">&#34;</span> sh -s -
 </code></pre></div><p>The kubeconfig file needs to be modified to set the Kubernetes API endpoint to the public IP of node-b,
-which is obtained from the first field yielded by <code>hostname -I</code>.</p>
+which is obtained from the first field yielded by <code>hostname -I</code>, and to give the context a name other
+than “default”.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp /etc/rancher/k3s/k3s.yaml kubeconfig.cluster-b
-IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>hostname -I | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span>
-sed -i <span style="color:#e6db74">&#39;s/127.0.0.1/&#39;</span>$IP<span style="color:#e6db74">&#39;/&#39;</span> kubeconfig.cluster-b
+export IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>hostname -I | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span>
+yq -i eval <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#e6db74">&#39;.clusters[].cluster.server |= sub(&#34;127.0.0.1&#34;, env(IP)) | .contexts[].name = &#34;cluster-b&#34; | .current-context = &#34;cluster-b&#34;&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>kubeconfig.cluster-b
 </code></pre></div><p>Next, copy kubeconfig.cluster-b to node-a.</p>
 <h4 id="install-subctl-on-node-a">Install <code>subctl</code> on node-a</h4>
 Download the subctl binary and make it available on your PATH.
@@ -1835,7 +1841,7 @@ your <code>PATH</code>).
 <h4 id="verify-automatically-with-subctl">Verify Automatically with <code>subctl</code></h4>
 <p>This will perform automated verifications between the clusters.</p>
 <!-- markdownlint-disable line-length -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl verify kubeconfig.cluster-a kubeconfig.cluster-b --only service-discovery,connectivity --verbose
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-a:kubeconfig.cluster-b subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connectivity --verbose
 </code></pre></div><!-- markdownlint-enable line-length -->
 <h4 id="verify-manually">Verify Manually</h4>
 <p>To manually verify the deployment, follow the steps below using either a headless or ClusterIP <code>nginx</code> service deployed in <code>cluster-b</code>.</p>
@@ -2711,19 +2717,19 @@ curl nginx.default.svc.clusterset.local
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1619783439"></script>
-    <script src="/js/perfect-scrollbar.min.js?1619783439"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1619783439"></script>
-    <script src="/js/jquery.sticky.js?1619783439"></script>
-    <script src="/js/featherlight.min.js?1619783439"></script>
-    <script src="/js/highlight.pack.js?1619783439"></script>
+    <script src="/js/clipboard.min.js?1619787046"></script>
+    <script src="/js/perfect-scrollbar.min.js?1619787046"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1619787046"></script>
+    <script src="/js/jquery.sticky.js?1619787046"></script>
+    <script src="/js/featherlight.min.js?1619787046"></script>
+    <script src="/js/highlight.pack.js?1619787046"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1619783439"></script>
-    <script src="/js/learn.js?1619783439"></script>
-    <script src="/js/hugo-learn.js?1619783439"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1619787046"></script>
+    <script src="/js/learn.js?1619787046"></script>
+    <script src="/js/hugo-learn.js?1619787046"></script>
 
-    <link href="/mermaid/mermaid.css?1619783439" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1619783439"></script>
+    <link href="/mermaid/mermaid.css?1619787046" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1619787046"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
