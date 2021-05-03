@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1619787045" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1619787045" rel="stylesheet">
-    <link href="/css/hybrid.css?1619787045" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1619787045" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1619787045" rel="stylesheet">
-    <link href="/css/auto-complete.css?1619787045" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1619787045" rel="stylesheet">
-    <link href="/css/theme.css?1619787045" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1619787045" rel="stylesheet">
+    <link href="/css/nucleus.css?1620034332" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1620034332" rel="stylesheet">
+    <link href="/css/hybrid.css?1620034332" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1620034332" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1620034332" rel="stylesheet">
+    <link href="/css/auto-complete.css?1620034332" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1620034332" rel="stylesheet">
+    <link href="/css/theme.css?1620034332" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1620034332" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1619787045" rel="stylesheet">
+      <link href="/css/theme-blue.css?1620034332" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1619787045"></script>
+    <script src="/js/jquery-3.3.1.min.js?1620034332"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1619787045"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1619787045"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1620034332"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1620034332"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1619787045"></script>
+<script type="text/javascript" src="/js/search.js?1620034332"></script>
 
     
   </div>
@@ -1695,6 +1695,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v090">v0.9.0</a></li>
     <li><a href="#v081">v0.8.1</a></li>
     <li><a href="#v080">v0.8.0</a></li>
     <li><a href="#v070-statefulset-support-for-service-discovery-and-benchmark-tooling">v0.7.0 StatefulSet support for service discovery and benchmark tooling</a></li>
@@ -1734,7 +1735,38 @@
 
 
 
-	<h2 id="v081">v0.8.1</h2>
+	<h2 id="v090">v0.9.0</h2>
+<ul>
+<li>The gateway Pod has been renamed from <code>submariner</code> to <code>submariner-gateway</code>.</li>
+<li>The Helm charts now use Submariner&rsquo;s Operator to deploy and manage Submariner.</li>
+<li>Broker creation is now managed by the Operator instead of <code>subctl</code>.</li>
+<li>Each Submariner Pod now has its own service account with appropriate privileges.</li>
+<li>The Lighthouse CoreDNS server metrics are now exposed.</li>
+<li>The <code>submariner_connections</code> metric is renamed to <code>submariner_requested_connections</code>.</li>
+<li>The <code>service-discovery</code> flag of <code>subctl deploy-broker</code> has been deprecated in favor of the <code>components</code> flag.</li>
+<li>For cases in which cross-cluster connectivity is provided without Submariner, <code>subctl</code> can now just deploy
+Service Discovery.</li>
+<li>Improved Service CIDR discovery for K3s deployments.</li>
+<li>All Submariner Prometheus metrics are now prefixed with <code>submariner_</code>.</li>
+<li>With Globalnet deployments, Global IPs are now assigned to exported Services only. Previously, Globalnet annotated
+every Service in the cluster, whether or not it was exported.</li>
+<li>The name of the CoreDNS custom ConfigMap for service discovery can now be specified on <code>subctl join</code>.</li>
+<li>The <code>strongswan</code> cable driver that was deprecated in the v0.8.0 release is now removed.</li>
+<li>The Lighthouse-specific API is now removed in favor of <a href="https://github.com/kubernetes-sigs/mcs-api/">Kubernetes Multicluster Services API</a>.</li>
+<li>A new tool, <a href="https://submariner.io/operations/deployment/subctl/#diagnose">subctl diagnose</a>, was added that detects issues with the
+Submariner deployment that may prevent it from working properly.</li>
+<li><code>subctl</code> commands now check if the <code>subctl</code> version is compatible with the deployed Submariner version.</li>
+<li>New flags, <code>repository</code> and <code>version</code>, were added to the <code>subctl deploy-broker</code> command.</li>
+<li>New Lighthouse metrics were added that track the number of services imported from and exported to other clusters.</li>
+<li><code>subctl show connections</code> now also shows <code>average rtt</code> values.</li>
+<li>A new tool, <a href="https://submariner.io/operations/deployment/subctl/#gather">subctl gather</a>, was added that collects various information
+from clusters to aid in troubleshooting a Submariner deployment.</li>
+<li>Each gateway can now use a different port for IPsec/WireGuard communication via the <code>gateway.submariner.io/udp-port</code> node label.</li>
+<li>Gateways now implement a NAT-Traversal (NAT-T) discovery protocol that can be enabled via the <code>gateway.submariner.io/natt-discovery-port</code>
+node label.</li>
+<li>A cluster can now be configured in IPsec server mode via the <code>preferred-server</code> flag on <code>subctl join</code>.</li>
+</ul>
+<h2 id="v081">v0.8.1</h2>
 <ul>
 <li>Submariner Gateway Health Check is now supported with Globalnet deployments.</li>
 <li>Support deploying OVN in kind using <code>make clusters using=ovn</code> for E2E testing and development environments.</li>
@@ -2815,19 +2847,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1619787045"></script>
-    <script src="/js/perfect-scrollbar.min.js?1619787045"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1619787045"></script>
-    <script src="/js/jquery.sticky.js?1619787045"></script>
-    <script src="/js/featherlight.min.js?1619787045"></script>
-    <script src="/js/highlight.pack.js?1619787045"></script>
+    <script src="/js/clipboard.min.js?1620034332"></script>
+    <script src="/js/perfect-scrollbar.min.js?1620034332"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1620034332"></script>
+    <script src="/js/jquery.sticky.js?1620034332"></script>
+    <script src="/js/featherlight.min.js?1620034332"></script>
+    <script src="/js/highlight.pack.js?1620034332"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1619787045"></script>
-    <script src="/js/learn.js?1619787045"></script>
-    <script src="/js/hugo-learn.js?1619787045"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1620034332"></script>
+    <script src="/js/learn.js?1620034332"></script>
+    <script src="/js/hugo-learn.js?1620034332"></script>
 
-    <link href="/mermaid/mermaid.css?1619787045" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1619787045"></script>
+    <link href="/mermaid/mermaid.css?1620034332" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1620034332"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
