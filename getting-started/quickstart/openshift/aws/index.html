@@ -12,20 +12,20 @@
     <title>On AWS :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1620224182" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1620224182" rel="stylesheet">
-    <link href="/css/hybrid.css?1620224182" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1620224182" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1620224182" rel="stylesheet">
-    <link href="/css/auto-complete.css?1620224182" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1620224182" rel="stylesheet">
-    <link href="/css/theme.css?1620224182" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1620224182" rel="stylesheet">
+    <link href="/css/nucleus.css?1620564337" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1620564337" rel="stylesheet">
+    <link href="/css/hybrid.css?1620564337" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1620564337" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1620564337" rel="stylesheet">
+    <link href="/css/auto-complete.css?1620564337" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1620564337" rel="stylesheet">
+    <link href="/css/theme.css?1620564337" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1620564337" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1620224182" rel="stylesheet">
+      <link href="/css/theme-blue.css?1620564337" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1620224182"></script>
+    <script src="/js/jquery-3.3.1.min.js?1620564337"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,6 +34,8 @@
       
     </style>
     
+<link href="/css/fixes.css?1620564337" rel="stylesheet">
+
   </head>
   <body class="" data-url="/getting-started/quickstart/openshift/aws/">
     <nav id="sidebar" class="showVisitedLinks">
@@ -56,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1620224182"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1620224182"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1620564337"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1620564337"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1620224182"></script>
+<script type="text/javascript" src="/js/search.js?1620564337"></script>
 
     
   </div>
@@ -1829,53 +1831,48 @@ please check <a href="https://account.arin.net/public/cidrCalculator">this page<
 
 </p>
 <h3 id="prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</h3>
-
-
-<p>Submariner Gateway nodes need to be able to accept traffic over UDP ports (4500 and 500 by default) when using IPsec.
+<p>Submariner Gateway nodes need to be able to accept traffic over UDP ports (4500 and 4490 by default).
 Submariner also uses UDP port 4800 to encapsulate traffic from the worker and master nodes to the Gateway nodes, and TCP port 8080 to
 retrieve metrics from the Gateway nodes.
 Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be
-necessary on one end of the IPsec connection.</p>
-<p><code>prep_for_subm</code> is a script designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments,
+necessary on one end of the tunnel connection.</p>
+<p><code>subctl cloud prepare</code> is a command designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments,
 handling the requirements specified above.</p>
-<ul>
-<li>Download the <code>prep_for_subm.sh</code> script and set permissions:</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl https://raw.githubusercontent.com/submariner-io/submariner/devel/tools/openshift/ocp-ipi-aws/prep_for_subm.sh -L -O
-chmod a+x ./prep_for_subm.sh
-</code></pre></div>
-
-
-
-<div class="notices info" ><p>Please note that  <code>oc</code>, <code>aws-cli</code>, <code>terraform</code>, and <code>wget</code> need to be installed before the <code>prep_for_subm.sh</code> script can be run.
-Also note that the script is known to be working with <a href="https://releases.hashicorp.com/terraform/">Terraform</a> version 0.12.
-Maximum compatible version is 0.12.12.</p>
+<div class="notices note">
+<p>The default EC2 instance type for the Submariner gateway node is <code>m5n.large</code>,
+optimized for improved network throughput and packet rate performance.
+Please ensure that the AWS Region you deploy to supports this instance type.
+Alternatively, you can choose to deploy using a different instance type.</p>
 </div>
-
-
-<div class="notices note" ><p>The script deploys an <code>m5n.large</code> EC2 instance type by default, optimized for improved network throughput and packet rate performance,
-for the Submariner gateway node. Please ensure that the AWS Region you deploy to supports this instance type. Alternatively, you can
-customize the AWS instance type as shown below.</p>
-</div>
-
-
-
+<div class="notices warning">
+<p>The following permissions need to be enabled in IAM on the <code>openshift-machine-api</code> user for your cluster:</p>
 <ul>
-<li>Run the <code>prep_for_subm.sh</code> script for <strong>cluster-a</strong> and <strong>cluster-b</strong>:</li>
+<li>CreateTags</li>
+<li>DeleteTags</li>
+<li>CreateSecurityGroup</li>
+<li>DeleteSecurityGroup</li>
+<li>AuthorizeSecurityGroupIngress</li>
+<li>RevokeSecurityGroupIngress</li>
+<li>DescribeInstanceTypeOfferings</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./prep_for_subm.sh cluster-a <span style="color:#75715e"># respond &#34;yes&#34; when Terraform asks for approval, or otherwise add the -auto-approve flag</span>
-./prep_for_subm.sh cluster-b <span style="color:#75715e"># respond &#34;yes&#34; when Terraform asks for approval, or otherwise add the -auto-approve flag</span>
-</code></pre></div><p>Note that certain parameters, such as the IPsec UDP ports and AWS instance type for the gateway,
-can be customized before running the script. For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export IPSEC_NATT_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
-export IPSEC_IKE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">501</span>
-export GW_INSTANCE_TYPE<span style="color:#f92672">=</span>m4.xlarge
-</code></pre></div><p>Submariner gateway can be deployed in HA mode by setting the ENABLE_HA flag:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export ENABLE_HA<span style="color:#f92672">=</span>true
-</code></pre></div>
-
-
-<h3 id="install-subctl">Install <code>subctl</code></h3>
+</div>
+<p>You need to extract your infra ID and region in order to use the command.
+Its possible to extract them from the <code>metadata.json</code> file that the OpenShift Installer created:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">metadata_file<span style="color:#f92672">=</span>&lt;path/to&gt;/metadata.json
+infra_id<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>jq -r .infraID $metadata_file<span style="color:#66d9ef">)</span>
+region<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>jq -r .aws.region $metadata_file<span style="color:#66d9ef">)</span>
+</code></pre></div><p>Run the command for <strong>cluster-a</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
+subctl cloud prepare aws --infra-id $infra_id --region $region 
+</code></pre></div><p>Run the command for <strong>cluster-b</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
+subctl cloud prepare aws --infra-id $infra_id --region $region 
+</code></pre></div><p>Note that certain parameters, such as the tunnel UDP port and AWS instance type for the gateway,
+can be customized. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl cloud prepare aws --infraid $infra_id --region $region --natt-port <span style="color:#ae81ff">4501</span> --gateway-instance m4.xlarge
+</code></pre></div><p>Submariner can be deployed in HA mode by setting the <code>gateways</code> flag:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl cloud prepare aws --infraid $infra_id --region $region --gateways <span style="color:#ae81ff">3</span>
+</code></pre></div><h3 id="install-subctl">Install <code>subctl</code></h3>
 <p>Download the subctl binary and make it available on your PATH.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Ls https://get.submariner.io | bash
 export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
@@ -2833,19 +2830,19 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1620224182"></script>
-    <script src="/js/perfect-scrollbar.min.js?1620224182"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1620224182"></script>
-    <script src="/js/jquery.sticky.js?1620224182"></script>
-    <script src="/js/featherlight.min.js?1620224182"></script>
-    <script src="/js/highlight.pack.js?1620224182"></script>
+    <script src="/js/clipboard.min.js?1620564337"></script>
+    <script src="/js/perfect-scrollbar.min.js?1620564337"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1620564337"></script>
+    <script src="/js/jquery.sticky.js?1620564337"></script>
+    <script src="/js/featherlight.min.js?1620564337"></script>
+    <script src="/js/highlight.pack.js?1620564337"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1620224182"></script>
-    <script src="/js/learn.js?1620224182"></script>
-    <script src="/js/hugo-learn.js?1620224182"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1620564337"></script>
+    <script src="/js/learn.js?1620564337"></script>
+    <script src="/js/hugo-learn.js?1620564337"></script>
 
-    <link href="/mermaid/mermaid.css?1620224182" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1620224182"></script>
+    <link href="/mermaid/mermaid.css?1620564337" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1620564337"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
