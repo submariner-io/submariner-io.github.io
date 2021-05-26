@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1622025770" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1622025770" rel="stylesheet">
-    <link href="/css/hybrid.css?1622025770" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1622025770" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1622025770" rel="stylesheet">
-    <link href="/css/auto-complete.css?1622025770" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1622025770" rel="stylesheet">
-    <link href="/css/theme.css?1622025770" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1622025770" rel="stylesheet">
+    <link href="/css/nucleus.css?1622036534" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1622036534" rel="stylesheet">
+    <link href="/css/hybrid.css?1622036534" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1622036534" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1622036534" rel="stylesheet">
+    <link href="/css/auto-complete.css?1622036534" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1622036534" rel="stylesheet">
+    <link href="/css/theme.css?1622036534" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1622036534" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1622025770" rel="stylesheet">
+      <link href="/css/theme-blue.css?1622036534" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1622025770"></script>
+    <script src="/js/jquery-3.3.1.min.js?1622036534"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1622025770" rel="stylesheet">
+<link href="/css/fixes.css?1622036534" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/release-process/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1622025770"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1622025770"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1622036534"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1622036534"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1622025770"></script>
+<script type="text/javascript" src="/js/search.js?1622036534"></script>
 
     
   </div>
@@ -1717,7 +1717,7 @@
         <li><a href="#step-0-create-a-stable-branch-if-necessary">Step 0: Create a stable branch (if necessary)</a></li>
         <li><a href="#step-1-create-release-for-the-shipyard-project">Step 1: Create release for the <code>shipyard</code> project</a></li>
         <li><a href="#step-2-create-release-for-the-admiral-project">Step 2: Create release for the <code>admiral</code> project</a></li>
-        <li><a href="#step-3-create-releases-for-the-lighthouse-and-submariner-projects">Step 3: Create releases for the <code>lighthouse</code> and <code>submariner</code> projects</a></li>
+        <li><a href="#step-3-create-releases-for-the-cloud-prepare-lighthouse-and-submariner-projects">Step 3: Create releases for the <code>cloud-prepare</code>, <code>lighthouse</code> and <code>submariner</code> projects</a></li>
         <li><a href="#step-4-create-the-product-release">Step 4: Create the product release</a></li>
         <li><a href="#step-5-add-release-notes">Step 5: Add release notes</a></li>
         <li><a href="#step-6-verify-the-release">Step 6: Verify the release</a></li>
@@ -1757,11 +1757,12 @@ Submariner projects and their repositories and are familiar with Git and GitHub.
 <p>The Submariner projects have a dependency hierarchy with respect to their Go libraries and Docker images.
 Therefore the releases for each individual project must be created in a specific order.</p>
 <p>The Go dependency hierarchy flow is as follows:</p>
-<p><code>shipyard</code> &lt;- <code>admiral</code> &lt;- <code>[submariner, lighthouse]</code> &lt;- <code>submariner-operator</code></p>
+<p><code>shipyard</code> &lt;- <code>admiral</code> &lt;- <code>[submariner, lighthouse, cloud-prepare]</code> &lt;- <code>submariner-operator</code></p>
 <p>Note that the <code>submariner</code> and <code>lighthouse</code> projects are siblings and thus do not depend on one another. Also the
-<code>submariner-operator</code> components expect that <code>lighthouse</code> and <code>submariner</code> are aligned on the same exact version.</p>
+<code>submariner-operator</code> components expect that <code>lighthouse</code> and <code>submariner</code> are aligned on the same exact version.
+The cloud-prepare library is consumed by the operator as well.</p>
 <p>The Docker image dependency hierarchy flow is as follows:</p>
-<p><code>subctl binary</code> &lt;- <code>shipyard dapper base image</code> &lt;- <code>[admiral, submariner, lighthouse, submariner-operator]</code></p>
+<p><code>subctl binary</code> &lt;- <code>shipyard dapper base image</code> &lt;- <code>[admiral, cloud-prepare, submariner, lighthouse, submariner-operator]</code></p>
 <p>The Dapper base image that is provided by <code>shipyard</code> for building and E2E tests in all of the other projects pulls in the
 <code>subctl</code> binary.</p>
 <h2 id="release-versions">Release versions</h2>
@@ -1874,21 +1875,22 @@ the latest commit ID hash:</p>
 <p>Once the pull request is merged, it will trigger a CI job to create an
 <a href="https://github.com/submariner-io/admiral/releases">admiral release</a> and pull requests in the consuming projects to pin them
 to the new version in preparation for the subsequent steps.</p>
-<h3 id="step-3-create-releases-for-the-lighthouse-and-submariner-projects">Step 3: Create releases for the <code>lighthouse</code> and <code>submariner</code> projects</h3>
-<p>Once the pull requests to pin the <code>lighthouse</code> and <code>submariner</code> projects to the new <code>admiral</code> version are merged:</p>
+<h3 id="step-3-create-releases-for-the-cloud-prepare-lighthouse-and-submariner-projects">Step 3: Create releases for the <code>cloud-prepare</code>, <code>lighthouse</code> and <code>submariner</code> projects</h3>
+<p>Once the pull requests to pin the <code>cloud-prepare</code>, <code>lighthouse</code> and <code>submariner</code> projects to the new <code>admiral</code> version are merged:</p>
 <ol>
 <li>
 <p>On your releases repository fork, either reuse the previous branch or create a new one.</p>
 </li>
 <li>
-<p>Edit the release yaml file (<code>v0.8.0.yaml</code>). Update the <code>status</code> field to <code>projects</code> and add the <code>submariner</code> and
+<p>Edit the release yaml file (<code>v0.8.0.yaml</code>). Update the <code>status</code> field to <code>projects</code> and add the <code>submariner</code>, <code>cloud-prepare</code> and
 <code>lighthouse</code> components with their latest commit ID hashes:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">-status: admiral
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+status: projects
 </span><span style="color:#a6e22e"></span> components:
    shipyard: &lt;hash goes here&gt;
    admiral: &lt;hash goes here&gt;
-<span style="color:#a6e22e">+  lighthouse: &lt;hash goes here&gt;
+<span style="color:#a6e22e">+  cloud-prepare: &lt;hash goes here&gt;
+</span><span style="color:#a6e22e">+  lighthouse: &lt;hash goes here&gt;
 </span><span style="color:#a6e22e">+  submariner: &lt;hash goes here&gt;
 </span></code></pre></div></li>
 <li>
@@ -1896,6 +1898,7 @@ to the new version in preparation for the subsequent steps.</p>
 </li>
 </ol>
 <p>Once the pull request is merged, it will trigger a CI job to create
+<a href="https://github.com/submariner-io/cloud-prepare/releases">cloud-prepare</a>,
 <a href="https://github.com/submariner-io/lighthouse/releases">lighthouse</a> and
 <a href="https://github.com/submariner-io/submariner/releases">submariner</a> releases and a pull request to pin the consuming
 <code>submariner-operator</code> project to the new version.</p>
@@ -1928,6 +1931,7 @@ and <code>submariner-charts</code> components with their latest commit ID hashes
 </span><span style="color:#a6e22e"></span> components:
    shipyard: &lt;hash goes here&gt;
    admiral: &lt;hash goes here&gt;
+   cloud-prepare: &lt;hash goes here&gt;
    lighthouse: &lt;hash goes here&gt;
    submariner: &lt;hash goes here&gt;
 <span style="color:#a6e22e">+  submariner-charts: &lt;hash goes here&gt;
@@ -2878,19 +2882,19 @@ and create a new PR on <a href="https://github.com/operator-framework/community-
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1622025770"></script>
-    <script src="/js/perfect-scrollbar.min.js?1622025770"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1622025770"></script>
-    <script src="/js/jquery.sticky.js?1622025770"></script>
-    <script src="/js/featherlight.min.js?1622025770"></script>
-    <script src="/js/highlight.pack.js?1622025770"></script>
+    <script src="/js/clipboard.min.js?1622036534"></script>
+    <script src="/js/perfect-scrollbar.min.js?1622036534"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1622036534"></script>
+    <script src="/js/jquery.sticky.js?1622036534"></script>
+    <script src="/js/featherlight.min.js?1622036534"></script>
+    <script src="/js/highlight.pack.js?1622036534"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1622025770"></script>
-    <script src="/js/learn.js?1622025770"></script>
-    <script src="/js/hugo-learn.js?1622025770"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1622036534"></script>
+    <script src="/js/learn.js?1622036534"></script>
+    <script src="/js/hugo-learn.js?1622036534"></script>
 
-    <link href="/mermaid/mermaid.css?1622025770" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1622025770"></script>
+    <link href="/mermaid/mermaid.css?1622036534" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1622036534"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
