@@ -12,20 +12,20 @@
     <title>On AWS with Globalnet :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1622085041" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1622085041" rel="stylesheet">
-    <link href="/css/hybrid.css?1622085041" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1622085041" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1622085041" rel="stylesheet">
-    <link href="/css/auto-complete.css?1622085041" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1622085041" rel="stylesheet">
-    <link href="/css/theme.css?1622085041" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1622085041" rel="stylesheet">
+    <link href="/css/nucleus.css?1622102704" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1622102704" rel="stylesheet">
+    <link href="/css/hybrid.css?1622102704" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1622102704" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1622102704" rel="stylesheet">
+    <link href="/css/auto-complete.css?1622102704" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1622102704" rel="stylesheet">
+    <link href="/css/theme.css?1622102704" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1622102704" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1622085041" rel="stylesheet">
+      <link href="/css/theme-blue.css?1622102704" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1622085041"></script>
+    <script src="/js/jquery-3.3.1.min.js?1622102704"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1622085041" rel="stylesheet">
+<link href="/css/fixes.css?1622102704" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/quickstart/openshift/globalnet/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1622085041"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1622085041"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1622102704"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1622102704"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1622085041"></script>
+<script type="text/javascript" src="/js/search.js?1622102704"></script>
 
     
   </div>
@@ -1722,8 +1722,8 @@
       <ul>
         <li><a href="#create-and-deploy-cluster-a">Create and Deploy cluster-a</a></li>
         <li><a href="#create-and-deploy-cluster-b">Create and Deploy cluster-b</a></li>
-        <li><a href="#prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</a></li>
         <li><a href="#install-subctl">Install <code>subctl</code></a></li>
+        <li><a href="#prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</a></li>
         <li><a href="#install-submariner-with-service-discovery-and-globalnet">Install Submariner with Service Discovery and Globalnet</a></li>
       </ul>
     </li>
@@ -1827,6 +1827,14 @@ Default output format <span style="color:#f92672">[</span>None<span style="color
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
 </code></pre></div><p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
 <code>kubeadmin</code> user, display in your terminal.</p>
+<h3 id="install-subctl">Install <code>subctl</code></h3>
+<p>Download the subctl binary and make it available on your PATH.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Ls https://get.submariner.io | bash
+export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
+echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:~/.local/bin &gt;&gt; ~/.profile
+</code></pre></div><p>If you have Go installed, you can use that instead:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go install github.com/submariner-io/submariner-operator/pkg/subctl
+</code></pre></div><p>(and ensure your <code>go/bin</code> directory is on your <code>PATH</code>).</p>
 <h3 id="prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</h3>
 <p>Submariner Gateway nodes need to be able to accept traffic over UDP ports (4500 and 4490 by default).
 Submariner also uses UDP port 4800 to encapsulate traffic from the worker and master nodes to the Gateway nodes, and TCP port 8080 to
@@ -1857,15 +1865,7 @@ can be customized. For example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl cloud prepare aws --infraid $infra_id --region $region --natt-port <span style="color:#ae81ff">4501</span> --gateway-instance m4.xlarge
 </code></pre></div><p>Submariner can be deployed in HA mode by setting the <code>gateways</code> flag:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl cloud prepare aws --infraid $infra_id --region $region --gateways <span style="color:#ae81ff">3</span>
-</code></pre></div><h3 id="install-subctl">Install <code>subctl</code></h3>
-<p>Download the subctl binary and make it available on your PATH.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Ls https://get.submariner.io | bash
-export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
-echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:~/.local/bin &gt;&gt; ~/.profile
-</code></pre></div><p>If you have Go installed, you can use that instead:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go install github.com/submariner-io/submariner-operator/pkg/subctl
-</code></pre></div><p>(and ensure your <code>go/bin</code> directory is on your <code>PATH</code>).</p>
-<h3 id="install-submariner-with-service-discovery-and-globalnet">Install Submariner with Service Discovery and Globalnet</h3>
+</code></pre></div><h3 id="install-submariner-with-service-discovery-and-globalnet">Install Submariner with Service Discovery and Globalnet</h3>
 <p>To install Submariner with multi-cluster service discovery and support for overlapping CIDRs follow the steps below.</p>
 <h4 id="use-cluster-a-as-broker-with-service-discovery-and-globalnet-enabled">Use cluster-a as Broker with service discovery and globalnet enabled</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker  --kubeconfig cluster-a/auth/kubeconfig --globalnet
@@ -2818,19 +2818,19 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1622085041"></script>
-    <script src="/js/perfect-scrollbar.min.js?1622085041"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1622085041"></script>
-    <script src="/js/jquery.sticky.js?1622085041"></script>
-    <script src="/js/featherlight.min.js?1622085041"></script>
-    <script src="/js/highlight.pack.js?1622085041"></script>
+    <script src="/js/clipboard.min.js?1622102704"></script>
+    <script src="/js/perfect-scrollbar.min.js?1622102704"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1622102704"></script>
+    <script src="/js/jquery.sticky.js?1622102704"></script>
+    <script src="/js/featherlight.min.js?1622102704"></script>
+    <script src="/js/highlight.pack.js?1622102704"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1622085041"></script>
-    <script src="/js/learn.js?1622085041"></script>
-    <script src="/js/hugo-learn.js?1622085041"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1622102704"></script>
+    <script src="/js/learn.js?1622102704"></script>
+    <script src="/js/hugo-learn.js?1622102704"></script>
 
-    <link href="/mermaid/mermaid.css?1622085041" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1622085041"></script>
+    <link href="/mermaid/mermaid.css?1622102704" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1622102704"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
