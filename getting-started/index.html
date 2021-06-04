@@ -12,20 +12,20 @@
     <title>Getting Started :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1622132499" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1622132499" rel="stylesheet">
-    <link href="/css/hybrid.css?1622132499" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1622132499" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1622132499" rel="stylesheet">
-    <link href="/css/auto-complete.css?1622132499" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1622132499" rel="stylesheet">
-    <link href="/css/theme.css?1622132499" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1622132499" rel="stylesheet">
+    <link href="/css/nucleus.css?1622793288" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1622793288" rel="stylesheet">
+    <link href="/css/hybrid.css?1622793288" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1622793288" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1622793288" rel="stylesheet">
+    <link href="/css/auto-complete.css?1622793288" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1622793288" rel="stylesheet">
+    <link href="/css/theme.css?1622793288" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1622793288" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1622132499" rel="stylesheet">
+      <link href="/css/theme-blue.css?1622793288" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1622132499"></script>
+    <script src="/js/jquery-3.3.1.min.js?1622793288"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1622132499" rel="stylesheet">
+<link href="/css/fixes.css?1622793288" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1622132499"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1622132499"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1622793288"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1622793288"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1622132499"></script>
+<script type="text/javascript" src="/js/search.js?1622793288"></script>
 
     
   </div>
@@ -875,6 +875,34 @@
         ">
       <a href="/operations/monitoring/">
           Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/nat-traversal/" title="NAT Traversal" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/nat-traversal/">
+          NAT Traversal
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1757,11 +1785,12 @@ clusters; this can be one of your connected clusters, or a dedicated cluster.</l
 <li>Minimum supported Kubernetes version is 1.17.</li>
 <li>Non-overlapping Pod and Service CIDRs between clusters. This is to prevent routing conflicts. For cases where addresses <strong>do
 overlap</strong>, <a href="./architecture/globalnet">Globalnet</a> can be set up.</li>
-<li>IP reachability between the gateway nodes. When connecting two clusters, at least one of the clusters should have a publicly routable
-IP address designated to the Gateway node. This is needed for creating the IPsec tunnel between the clusters. The default ports used by
-IPsec are 4500/UDP and 500/UDP and by wireguard, 4500/UDP.
+<li>IP reachability between the gateway nodes. When connecting two clusters, the gateways must have at least one-way connectivity
+to each other on their public or private IP address and encapsulation port. This is needed for creating the tunnels between
+the clusters. The default encapsulation port is 4500/UDP, for <a href="./../operations/nat-traversal">NAT Traversal</a> discovery port
+4490/UDP is used.
 For clusters behind corporate firewalls that block the default ports, Submariner also supports NAT Traversal
-(NAT-T) with the option to set custom non-standard ports like 4501/UDP and 501/UDP.</li>
+(NAT-T) with the option to set custom non-standard ports like 4501/UDP.</li>
 <li>Submariner uses UDP port 4800 to encapsulate Pod traffic from worker and master nodes to the Gateway nodes. This is required in order to
 preserve the source IP addresses of the Pods. Ensure that firewall configuration allows 4800/UDP across all nodes in the cluster in both
 directions.</li>
@@ -2341,6 +2370,22 @@ method.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -2680,19 +2725,19 @@ method.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1622132499"></script>
-    <script src="/js/perfect-scrollbar.min.js?1622132499"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1622132499"></script>
-    <script src="/js/jquery.sticky.js?1622132499"></script>
-    <script src="/js/featherlight.min.js?1622132499"></script>
-    <script src="/js/highlight.pack.js?1622132499"></script>
+    <script src="/js/clipboard.min.js?1622793288"></script>
+    <script src="/js/perfect-scrollbar.min.js?1622793288"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1622793288"></script>
+    <script src="/js/jquery.sticky.js?1622793288"></script>
+    <script src="/js/featherlight.min.js?1622793288"></script>
+    <script src="/js/highlight.pack.js?1622793288"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1622132499"></script>
-    <script src="/js/learn.js?1622132499"></script>
-    <script src="/js/hugo-learn.js?1622132499"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1622793288"></script>
+    <script src="/js/learn.js?1622793288"></script>
+    <script src="/js/hugo-learn.js?1622793288"></script>
 
-    <link href="/mermaid/mermaid.css?1622132499" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1622132499"></script>
+    <link href="/mermaid/mermaid.css?1622793288" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1622793288"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
