@@ -1,0 +1,3384 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="description" content="Documentation website for the Submariner project">
+<meta name="author" content="The Submariner community">
+
+    <link rel="icon" href="/0.9/images/favicon.png" type="image/png">
+
+    <title>NAT Traversal :: Submariner k8s project documentation website</title>
+
+    
+    <link href="/0.9/css/nucleus.css?1622797017" rel="stylesheet">
+    <link href="/0.9/css/fontawesome-all.min.css?1622797017" rel="stylesheet">
+    <link href="/0.9/css/hybrid.css?1622797017" rel="stylesheet">
+    <link href="/0.9/css/featherlight.min.css?1622797017" rel="stylesheet">
+    <link href="/0.9/css/perfect-scrollbar.min.css?1622797017" rel="stylesheet">
+    <link href="/0.9/css/auto-complete.css?1622797017" rel="stylesheet">
+    <link href="/0.9/css/atom-one-dark-reasonable.css?1622797017" rel="stylesheet">
+    <link href="/0.9/css/theme.css?1622797017" rel="stylesheet">
+    <link href="/0.9/css/hugo-theme.css?1622797017" rel="stylesheet">
+    
+      <link href="/0.9/css/theme-blue.css?1622797017" rel="stylesheet">
+    
+
+    <script src="/0.9/js/jquery-3.3.1.min.js?1622797017"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+<link href="/0.9/css/fixes.css?1622797017" rel="stylesheet">
+
+  </head>
+  <body class="" data-url="/0.9/operations/nat-traversal/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/" style="display: block;">
+    <object data="/images/logo-submariner.svg" type="image/svg+xml" style="pointer-events: none;">
+        <span>Your browser doesn't support SVG images</span>
+    </object>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/0.9/js/lunr.min.js?1622797017"></script>
+<script type="text/javascript" src="/0.9/js/auto-complete.js?1622797017"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/0.9\/";
+    
+</script>
+<script type="text/javascript" src="/0.9/js/search.js?1622797017"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/" title="Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/">
+          <b>1. </b>Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/architecture/" title="Architecture" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/architecture/">
+          Architecture
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/architecture/broker/" title="Broker" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/architecture/broker/">
+          Broker
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/architecture/gateway-engine/" title="Gateway Engine" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/architecture/gateway-engine/">
+          Gateway Engine
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/architecture/service-discovery/" title="Service Discovery" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/architecture/service-discovery/">
+          Service Discovery
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/architecture/globalnet/" title="Globalnet Controller" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/architecture/globalnet/">
+          Globalnet Controller
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/architecture/networkplugin-syncer/" title="Network Plugin Syncer" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/architecture/networkplugin-syncer/">
+          Network Plugin Syncer
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/" title="OVN Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/">
+          OVN Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/architecture/route-agent/" title="Route Agent" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/architecture/route-agent/">
+          Route Agent
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/" title="Quickstart Guides" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/">
+          Quickstart Guides
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/kind/" title="Sandbox Environment (kind)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/kind/">
+          Sandbox Environment (kind)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/k3s/" title="K3s" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/k3s/">
+          K3s
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/managed-kubernetes/" title="Managed Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/managed-kubernetes/">
+          Managed Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/managed-kubernetes/gke/" title="Google (GKE)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/managed-kubernetes/gke/">
+          Google (GKE)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/managed-kubernetes/rancher/" title="Rancher" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/managed-kubernetes/rancher/">
+          Rancher
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/openshift/" title="OpenShift" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/openshift/">
+          OpenShift
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/openshift/aws/" title="On AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/openshift/aws/">
+          On AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/openshift/globalnet/" title="On AWS with Globalnet" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/openshift/globalnet/">
+          On AWS with Globalnet
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/getting-started/quickstart/openshift/vsphere-aws/" title="Hybrid vSphere and AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/getting-started/quickstart/openshift/vsphere-aws/">
+          Hybrid vSphere and AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/" title="Operations" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/0.9/operations/">
+          <b>2. </b>Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/deployment/" title="Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/deployment/">
+          Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/deployment/subctl/" title="subctl" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/deployment/subctl/">
+          subctl
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/deployment/helm/" title="Helm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/deployment/helm/">
+          Helm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/deployment/calico/" title="Calico CNI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/deployment/calico/">
+          Calico CNI
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/usage/" title="User Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/usage/">
+          User Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/monitoring/" title="Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/monitoring/">
+          Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/nat-traversal/" title="NAT Traversal" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/0.9/operations/nat-traversal/">
+          NAT Traversal
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/troubleshooting/" title="Troubleshooting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/troubleshooting/">
+          Troubleshooting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/known-issues/" title="Known Issues" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/known-issues/">
+          Known Issues
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/operations/cleanup/" title="Uninstalling Submariner" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/operations/cleanup/">
+          Uninstalling Submariner
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/community/" title="Community" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/community/">
+          <b>3. </b>Community
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/community/code-of-conduct/" title="Code of Conduct" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/community/code-of-conduct/">
+          Code of Conduct
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/community/contributor-roles/" title="Contributor Roles" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/community/contributor-roles/">
+          Contributor Roles
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/community/getting-help/" title="Getting Help" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/community/getting-help/">
+          Getting Help
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/community/releases/" title="Releases" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/community/releases/">
+          Releases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/community/roadmap/" title="Roadmap" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/community/roadmap/">
+          Roadmap
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/" title="Development" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/">
+          <b>4. </b>Development
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/building-testing/" title="Building and Testing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/building-testing/">
+          Building and Testing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/code-review/" title="Code Review Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/code-review/">
+          Code Review Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/website/" title="Contributing to the Website" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/website/">
+          Contributing to the Website
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/website/style-guide/" title="Docs Style Guide" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/website/style-guide/">
+          Docs Style Guide
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/release-process/" title="Release Process" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/release-process/">
+          Release Process
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/security/" title="Security" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/security/">
+          Security
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/security/reporting/" title="Security Reporting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/security/reporting/">
+          Security Reporting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/security/containers/" title="Container Requirements" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/security/containers/">
+          Container Requirements
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/shipyard/" title="Working with Shipyard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/shipyard/">
+          Working with Shipyard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/shipyard/first-time/" title="Adding Shipyard to a Project" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/shipyard/first-time/">
+          Adding Shipyard to a Project
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/development/shipyard/advanced/" title="Advanced Features" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/development/shipyard/advanced/">
+          Advanced Features
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/0.9/other-resources/" title="Other Resources" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/0.9/other-resources/">
+          <b>5. </b>Other Resources
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/submariner-io/"><i class='fab fa-fw fa-github'></i> GitHub</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://kubernetes.slack.com/archives/C010RJV694M"><i class='fab fa-fw fa-slack'></i> Slack</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-users"><i class='fas fa-fw fa-envelope'></i> User mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://bit.ly/submariner-dev"><i class='fas fa-fw fa-envelope'></i> Devel mailing list</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.youtube.com/channel/UCZ3brSgl2v4boglZoeChClQ/videos"><i class='fas fa-fw fa-video'></i> YouTube</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://twitter.com/submarinerio"><i class='fab fa-fw fa-twitter'></i> Twitter</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://calendar.google.com/calendar?cid=NHFuZGVoOGY0bzZ1ajlvZnBsczh1NWNlZ2tAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"><i class='fas fa-fw fa-calendar'></i> Google Calendar</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <center>
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner-operator/releases" data-icon="octicon-cloud-download" aria-label="Download Submariner/subctl on github">Download</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner" data-icon="octicon-star" data-show-count="true" aria-label="Star submariner-io/submariner on GitHub">Star</a>
+
+    
+    <a class="github-button" href="https://github.com/submariner-io/submariner/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork submariner-io/submariner on GitHub">Fork</a>
+
+    <p>Copyright © The Submariner Contributors</p>
+
+    <p>The Linux Foundation® (TLF) has registered trademarks and uses trademarks. For a list of TLF trademarks, see <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage</a></p>
+
+    <p><a href="https://www.cncf.io">
+        <img class="cncf-logo" src="https://raw.githubusercontent.com/cncf/artwork/master/other/cncf/horizontal/white/cncf-white.svg" alt="Cloud Native Computing Foundation">
+    </a>
+    Submariner is a <a href="https://www.cncf.io">Cloud Native Computing Foundation</a> sandbox project.</p>
+
+</center>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/operations/nat-traversal/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/0.9/'></a> > <a href='/0.9/operations/'>Operations</a> > NAT Traversal
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#basic-overview">Basic Overview</a>
+      <ul>
+        <li><a href="#public-vs-private-ip">Public vs Private IP</a></li>
+        <li><a href="#reachability">Reachability</a></li>
+        <li><a href="#ip-selection-algorithm">IP Selection Algorithm</a></li>
+        <li><a href="#port-selection">Port Selection</a></li>
+      </ul>
+    </li>
+    <li><a href="#udp-dataplane-protocol-ipsec--wireguard">UDP Dataplane Protocol (IPsec &amp; WireGuard)</a></li>
+    <li><a href="#ipsec">IPsec</a>
+      <ul>
+        <li><a href="#esp-or-udp-encapsulation">ESP or UDP Encapsulation</a></li>
+      </ul>
+    </li>
+    <li><a href="#practical-examples">Practical Examples</a>
+      <ul>
+        <li><a href="#all-private-and-routed">All Private and Routed</a></li>
+        <li><a href="#all-public-cloud-with-some-private-reachability">All Public Cloud, with Some Private Reachability</a></li>
+        <li><a href="#public-cloud-vs-on-premises">Public Cloud vs On-Premises</a></li>
+        <li><a href="#multiple-on-premise-sites">Multiple on-premise sites</a></li>
+        <li><a href="#double-nat-traversal">Double NAT Traversal</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              NAT Traversal
+            </h1>
+          
+
+        
+
+
+
+
+	<h2 id="basic-overview">Basic Overview</h2>
+<p>Submariner establishes the dataplane tunnels between clusters over port
+<code>4500/UDP</code> by default. This port can be customized per cluster and per gateway
+and is published as part of the <code>Endpoint</code> objects.</p>
+<h3 id="public-vs-private-ip">Public vs Private IP</h3>
+<p><code>Endpoint</code> objects publish both a <code>PrivateIP</code> and a <code>PublicIP</code>. The <code>PrivateIP</code> is the IP assigned
+to an interface on the gateway node where the <code>Endpoint</code> originated. The <code>PublicIP</code> is the source
+IP for the packets sent from the gateway to the Internet which is discovered by default via
+<a href="https://ipify.org">ipify.org</a>, or <a href="https://my-ip.io">my-ip.io</a> and <a href="https://seeip.org">seeip.org</a>
+fallbacks.</p>
+<p>Alternative methods can be configured on each gateway Node via the <code>gateway.submariner.io/public-ip</code> annotation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl annotate node $GW gateway.submariner.io/public-ip<span style="color:#f92672">=</span>&lt;resolver&gt;,<span style="color:#f92672">[</span>resolver...<span style="color:#f92672">]</span>
+</code></pre></div><p>Resolvers are evaluated one by one, using the result of the first one to succeed.
+<code>&lt;resolver&gt;</code> should be written in the following form: <code>method:parameter</code>, and the
+following methods are implemented:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Method</th>
+<th align="left">Parameter</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">api</td>
+<td align="left">HTTPS endpoint to contact, for example api.ipify.org</td>
+<td align="left">The result body is inspected looking for the IP address</td>
+</tr>
+<tr>
+<td align="left">lb</td>
+<td align="left">LoadBalancer Service name in the submariner-operator namespace</td>
+<td align="left">A network load balancer should be used</td>
+</tr>
+<tr>
+<td align="left">ipv4</td>
+<td align="left">Fixed IPv4 address used as public IP</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">dns</td>
+<td align="left">FQDN DNS entry to be resolved</td>
+<td align="left">The A entry of the FQDN will be resolved and used</td>
+</tr>
+</tbody>
+</table>
+<p>For example, when using a fixed public IPv4 address for a gateway, this can be used:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl annotate node $GW gateway.submariner.io/public-ip<span style="color:#f92672">=</span>ipv4:1.2.3.4
+</code></pre></div><h3 id="reachability">Reachability</h3>
+<p>For two gateway <code>Endpoints</code> to connect to one another, at least one of them should be reachable
+either on its public or private IP address and the firewall configuration should allow the
+tunnel encapsulation port.
+If one of the clusters is designated as a <em>preferred server</em>, then only its <code>Endpoint</code> needs
+to be reachable to the other endpoints. This can be accomplished by joining the cluster
+in preferred server mode.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig A --preferred-server ... broker_info.subm
+</code></pre></div><p>Each gateway implements a UDP NAT-T discovery protocol where each gateway queries the
+gateways of the remote clusters on both the public and private IPs in order to
+determine the most suitable IP and its NAT characteristics to use for the tunnel
+connections, with a preference for the private IP.</p>
+<p>This protocol is enabled by default on port <code>4490/UDP</code> and can assign non default
+ports by annotating the gateway nodes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl annotate node $GW gateway.submariner.io/natt-discovery-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4490</span>
+</code></pre></div><p>If the NATT discovery protocol fails to determine reachability between two endpoints then it
+falls back to the NAT setting specified on join (the <code>natEnabled</code> field of the <code>Submariner</code> object or the
+<code>--natt</code> parameter of <code>subctl</code>), that is, if NAT is enabled, the public IP is used otherwise the private IP
+is used.</p>
+<h3 id="ip-selection-algorithm">IP Selection Algorithm</h3>
+<p>The following flow chart describes the IP selection algorithm:</p>
+<!-- source: https://app.diagrams.net/#G1e_M84l8iQH6U4QqD3-Jw2ypIWiRfLQkk -->
+<p><img src="/images/natt/public_private_selection_algorithm.svg" alt="Public/Private IP selection"></p>
+<h3 id="port-selection">Port Selection</h3>
+<p>If the gateways of a cluster don&rsquo;t have public floating or elastic IPs assigned
+to them then it&rsquo;s recommended to use a separate UDP port for every node marked
+as a gateway. This will allow eventual port mapping on a router
+when communicating to clusters on remote sites with no direct routing.</p>
+
+<div class="notices note" ><p>If a cluster is behind a router which will NAT the traffic, it&rsquo;s recommended to
+map the open ports into the gateway node private IPs, see the port mapping
+section. It could temporarily work without mapping, because most routers when
+performing NAT to the external network will not randomize or modify the source
+port of packets, but <strong>this will happen as soon as two connections collide
+over the same source port</strong>.</p>
+</div>
+
+<h2 id="udp-dataplane-protocol-ipsec--wireguard">UDP Dataplane Protocol (IPsec &amp; WireGuard)</h2>
+<p>By default, Submariner uses the <code>4500/UDP</code> port for the dataplane. This can be changed
+cluster-wide via the <code>--nattport</code> flag on join although it&rsquo;s possible to specify
+the port to be used per gateway node:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl annotate node $GW gateway.submariner.io/udp-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+</code></pre></div><p>This allows individual gateways on the cluster to have different port numbers,
+hence allowing individual port-mapping if a public IP is shared.</p>
+<h2 id="ipsec">IPsec</h2>
+<h3 id="esp-or-udp-encapsulation">ESP or UDP Encapsulation</h3>
+<p>IPsec in the Libreswan cable driver will be configured for the more performant ESP protocol
+whenever possible, which is normally when NAT is not detected and connectivity over the private IP is possible.</p>
+<p>If your network and routers filter the <code>IP&gt;ESP</code> packets, encapsulation can be forced
+by using the <code>--force-udp-encaps</code> during <code>subctl</code> join.</p>
+<h2 id="practical-examples">Practical Examples</h2>
+<h3 id="all-private-and-routed">All Private and Routed</h3>
+<p>This is the simplest practical case where all gateways can contact
+all other gateways via routing on their private IPs and no NAT is needed.</p>
+<!-- source: https://app.diagrams.net/#G1IORJ9qW95qJ15P6Xk6idEfI4jj9Uo84l -->
+<p><img src="/images/natt/nat_scenario_all_private_routed.svg" alt="All private and routed"></p>
+<p>The NATT discovery protocol will determine that the private IPs are preferred, and
+will try to avoid using NAT.</p>
+<h3 id="all-public-cloud-with-some-private-reachability">All Public Cloud, with Some Private Reachability</h3>
+<p>In this case case, the gateways for clusters A and B have direct reachability
+over their private IPs (10.0.0.1 and 10.1.0.1) possibly with large MTU capabilities.  The
+same is true for clusters C and D (192.168.0.4 and 192.168.128.4).</p>
+<p>Between any other pair of clusters reachability is only possible over
+their public IPs and the IP packets will undergo DNAT + SNAT translation at the
+border via the elastic or floating IP and also, while on transit via the public
+network, the MTU will be limited to 1500 bytes or less.</p>
+<!-- source: https://app.diagrams.net/#G1IORJ9qW95qJ15P6Xk6idEfI4jj9Uo84l -->
+<p><img src="/images/natt/nat_scenario_all_public.svg" alt="Public vs on-premises"></p>
+<h4 id="endpoints">Endpoints</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Endpoint</th>
+<th align="left">Private IP</th>
+<th align="left">Public IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">10.0.0.1</td>
+<td align="left">1.1.1.1</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">10.1.0.1</td>
+<td align="left">1.1.1.2</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">192.168.0.4</td>
+<td align="left">2.1.1.1</td>
+</tr>
+<tr>
+<td align="left">D</td>
+<td align="left">192.168.128.4</td>
+<td align="left">2.1.1.2</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connections">Connections</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Left Cluster</th>
+<th align="left">Left IP</th>
+<th align="left">Left Port</th>
+<th align="left">Right Cluster</th>
+<th align="left">Right IP</th>
+<th align="left">Right Port</th>
+<th align="left">NAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">10.0.0.1</td>
+<td align="left">4500</td>
+<td align="left">B</td>
+<td align="left">10.1.0.1</td>
+<td align="left">4500</td>
+<td align="left">no</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">192.168.0.4</td>
+<td align="left">4500</td>
+<td align="left">D</td>
+<td align="left">192.168.128.4</td>
+<td align="left">4500</td>
+<td align="left">no</td>
+</tr>
+<tr>
+<td align="left">A</td>
+<td align="left">1.1.1.1</td>
+<td align="left">4500</td>
+<td align="left">C</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4500</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">A</td>
+<td align="left">1.1.1.1</td>
+<td align="left">4500</td>
+<td align="left">D</td>
+<td align="left">2.1.1.2</td>
+<td align="left">4500</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">1.1.1.2</td>
+<td align="left">4500</td>
+<td align="left">C</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4500</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">1.1.1.2</td>
+<td align="left">4500</td>
+<td align="left">D</td>
+<td align="left">2.1.1.2</td>
+<td align="left">4500</td>
+<td align="left">yes</td>
+</tr>
+</tbody>
+</table>
+<p>The default configuration for the NAT-T discovery protocol will detect the IPs to use, make
+sure that the gateways have port 4490/udp open, as well as the encapsulation port <code>4500/udp</code>.</p>
+<h3 id="public-cloud-vs-on-premises">Public Cloud vs On-Premises</h3>
+<p>In this case case, A &amp; B cluster gateways have direct reachability over their private
+IPs (10.0.0.1 and 10.1.0.1) possibly with large MTU capabilities. The
+same is true for the C &amp; D cluster gateways (192.168.0.4 and 192.168.128.4).</p>
+<p>Between all other cluster pairs reachability is only possible over
+their public IPs, the IP packets from A &amp; B will undergo DNAT + SNAT translation at the
+border via the elastic or floating IP,  the packets from C &amp; D will undergo SNAT translation
+to the public IP of the router 2.1.1.1 and also, while on transit via the public
+network, the MTU will be limited to 1500 bytes or less.</p>
+<!-- source: https://app.diagrams.net/#G1tUJ3DOdaM1krgxrWXQ82zpIcdsh4liLv -->
+<p><img src="/images/natt/nat_scenarios_1.svg" alt="Public vs on-premises"></p>
+<h4 id="endpoints-for-public-cloud-to-on-premises">Endpoints for Public Cloud to On-Premises</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Endpoint</th>
+<th align="left">Private IP</th>
+<th align="left">Public IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">10.0.0.1</td>
+<td align="left">1.1.1.1</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">10.1.0.1</td>
+<td align="left">1.1.1.2</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">192.168.0.4</td>
+<td align="left">2.1.1.1</td>
+</tr>
+<tr>
+<td align="left">D</td>
+<td align="left">192.168.128.4</td>
+<td align="left">2.1.1.1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connections-for-public-cloud-to-on-premises">Connections for Public Cloud to On-Premises</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Left Cluster</th>
+<th align="left">Left IP</th>
+<th align="left">Left Port</th>
+<th align="left">Right Cluster</th>
+<th align="left">Right IP</th>
+<th align="left">Right Port</th>
+<th align="left">NAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">10.0.0.1</td>
+<td align="left">4500</td>
+<td align="left">B</td>
+<td align="left">10.1.0.1</td>
+<td align="left">4500</td>
+<td align="left">no</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">192.168.0.4</td>
+<td align="left">4501</td>
+<td align="left">D</td>
+<td align="left">192.168.128.4</td>
+<td align="left">4502</td>
+<td align="left">no</td>
+</tr>
+<tr>
+<td align="left">A</td>
+<td align="left">1.1.1.1</td>
+<td align="left">4500</td>
+<td align="left">C</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">A</td>
+<td align="left">1.1.1.1</td>
+<td align="left">4500</td>
+<td align="left">D</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">1.1.1.2</td>
+<td align="left">4500</td>
+<td align="left">C</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">1.1.1.2</td>
+<td align="left">4500</td>
+<td align="left">D</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">yes</td>
+</tr>
+</tbody>
+</table>
+<p>The recommended configuration for the gateways behind the on-premises router which has
+a single external IP with no IP routing or mapping to the private network is to have a
+dedicated and distinct port number for the NATT discovery protocol (as well as the encapsulation)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl annotate node $GWC --kubeconfig C gateway.submariner.io/natt-discovery-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4491</span>
+kubectl annotate node $GWC --kubeconfig C gateway.submariner.io/udp-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+kubectl annotate node $GWD --kubeconfig D gateway.submariner.io/natt-discovery-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4492</span>
+kubectl annotate node $GWD --kubeconfig D gateway.submariner.io/udp-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4502</span>
+
+<span style="color:#75715e"># restart the gateways to pick up the new setting</span>
+<span style="color:#66d9ef">for</span> cluster in C D;
+<span style="color:#66d9ef">do</span>
+  kubectl delete pod -n submariner-operator -l app<span style="color:#f92672">=</span>submariner-gateway --kubeconfig $cluster
+<span style="color:#66d9ef">done</span>
+</code></pre></div>
+<div class="notices warning" ><p>If <strong>HA</strong> is configured on the on-premise clusters, <strong>each gateway</strong> behind the 2.1.1.1 router
+<strong>should have a dedicated UDP port</strong>. For example if we had two clusters and two gateways on each
+cluster, four ports would be necessary.</p>
+</div>
+
+<h4 id="router-port-mapping">Router Port Mapping</h4>
+<p>Under this configuration it&rsquo;s important to map the UDP ports on the 2.1.1.1 router to the private
+IPs of the gateways.</p>
+<table>
+<thead>
+<tr>
+<th align="left">External IP</th>
+<th align="left">Port</th>
+<th align="left">Internal IP</th>
+<th align="left">Port</th>
+<th align="left">Protocol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">192.168.0.4</td>
+<td align="left">4501</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">2.1.1.1</td>
+<td align="left">4491</td>
+<td align="left">192.168.0.4</td>
+<td align="left">4491</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">2.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">192.168.128.4</td>
+<td align="left">4502</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">2.1.1.1</td>
+<td align="left">4492</td>
+<td align="left">192.168.128.4</td>
+<td align="left">4492</td>
+<td align="left">UDP</td>
+</tr>
+</tbody>
+</table>
+
+<div class="notices note" ><p>Without port mapping it&rsquo;s entirely possible that the connectivity will be established without
+issues. This can happen because the router&rsquo;s NAT will not generally modify the source port
+of the outgoing UDP packets, and future packets arriving on this port will be redirected to the
+internal IP which initiated connectivity. However if the 2.1.1.1 router randomizes the source port on
+NAT or if other applications on the internal network were already using the 4501-4502 or 4491-4492
+ports, the remote ends would not be able to contact gateway C or D over the expected ports.</p>
+</div>
+
+<h4 id="alternative-to-port-mapping">Alternative to Port Mapping</h4>
+<p>If port mapping is not possible, we can enable a server/client model for connections
+where we designate the clusters with a dedicated public IP or the clusters with the
+ability to get mapped ports as <strong>preferred servers</strong>. In this way, only the non-preferred
+server clusters will initiate connections to the preferred server clusters.</p>
+<p>For example, given clusters A, B, C, and D, we designate A and B as preferred servers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig A --preferred-server .... broker_info.subm
+subctl join --kubeconfig B --preferred-server .... broker_info.subm
+</code></pre></div><p>This means that the gateways for clusters A and B will negotiate which one will be the server
+based on the <code>Endpoint</code> names. Clusters C and D will connect to clusters A and B as clients.
+Clusters C and D will connect normally.</p>
+<h3 id="multiple-on-premise-sites">Multiple on-premise sites</h3>
+<p>In this case case, A &amp; B cluster gateways have direct reachability over their private
+IPs (10.0.0.1 and 10.1.0.1) possibly with large MTU capabilities. The
+same is true for the C &amp; D cluster gateways (192.168.0.4 and 192.168.128.4).</p>
+<p>Between all other cluster pairs reachability is only possible over
+their public IPs, the IP packets from A,B,C &amp; D will undergo SNAT translation at the
+border with the public network also, while on transit via the public
+network the MTU will be limited to 1500 bytes or less.</p>
+<!-- source: https://app.diagrams.net/#G1Nrbs6Kx3yuP23YlIfSbLIgXPRcmVjSMy -->
+<p><img src="/images/natt/nat_scenarios_2.svg" alt="on-premises vs on-premises"></p>
+<h4 id="endpoints-for-multiple-on-premises">Endpoints for Multiple On-Premises</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Endpoint</th>
+<th align="left">Private IP</th>
+<th align="left">Public IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">10.0.0.1</td>
+<td align="left">1.1.1.1</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">10.1.0.1</td>
+<td align="left">1.1.1.1</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">192.168.0.4</td>
+<td align="left">2.1.1.1</td>
+</tr>
+<tr>
+<td align="left">D</td>
+<td align="left">192.168.128.4</td>
+<td align="left">2.1.1.1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connections-for-multiple-on-premises">Connections for Multiple On-Premises</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Left Cluster</th>
+<th align="left">Left IP</th>
+<th align="left">Left Port</th>
+<th align="left">Right Cluster</th>
+<th align="left">Right IP</th>
+<th align="left">Right Port</th>
+<th align="left">NAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">10.0.0.1</td>
+<td align="left">4501</td>
+<td align="left">B</td>
+<td align="left">10.1.0.1</td>
+<td align="left">4502</td>
+<td align="left">no</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">192.168.0.4</td>
+<td align="left">4501</td>
+<td align="left">D</td>
+<td align="left">192.168.128.4</td>
+<td align="left">4502</td>
+<td align="left">no</td>
+</tr>
+<tr>
+<td align="left">A</td>
+<td align="left">1.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">C</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">A</td>
+<td align="left">1.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">D</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">1.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">C</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">yes</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">1.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">D</td>
+<td align="left">2.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">yes</td>
+</tr>
+</tbody>
+</table>
+<p>Every gateway must have its own port number for NATT discovery, as well as for encapsulation,
+and the ports on the NAT gateway should be mapped to the internal IPs and ports of the gateways.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl annotate node $GWA --kubeconfig A gateway.submariner.io/natt-discovery-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4491</span>
+kubectl annotate node $GWA --kubeconfig A gateway.submariner.io/udp-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+kubectl annotate node $GWB --kubeconfig B gateway.submariner.io/natt-discovery-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4492</span>
+kubectl annotate node $GWB --kubeconfig B gateway.submariner.io/udp-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4502</span>
+kubectl annotate node $GWC --kubeconfig C gateway.submariner.io/natt-discovery-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4491</span>
+kubectl annotate node $GWC --kubeconfig C gateway.submariner.io/udp-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4501</span>
+kubectl annotate node $GWD --kubeconfig D gateway.submariner.io/natt-discovery-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4492</span>
+kubectl annotate node $GWD --kubeconfig D gateway.submariner.io/udp-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4502</span>
+
+<span style="color:#75715e"># restart the gateways to pick up the new setting</span>
+<span style="color:#66d9ef">for</span> cluster in A B C D;
+<span style="color:#66d9ef">do</span>
+  kubectl delete pod -n submariner-operator -l app<span style="color:#f92672">=</span>submariner-gateway --kubeconfig $cluster
+<span style="color:#66d9ef">done</span>
+</code></pre></div>
+<div class="notices warning" ><p>If <strong>HA</strong> is configured on the on-premises clusters, <strong>each gateway</strong> behind the routers
+<strong>should have a dedicated UDP port</strong>. For example if we had two clusters and two gateways on each network,
+four ports would be necessary.</p>
+</div>
+
+<h4 id="router-port-mapping-for-multiple-on-oremises">Router Port Mapping for Multiple On-Oremises</h4>
+<p>Under this configuration it&rsquo;s important to map the UDP ports on the 2.1.1.1 router to the private
+IPs of the gateways.</p>
+<h5 id="on-the-2111-router">On the 2.1.1.1 router</h5>
+<table>
+<thead>
+<tr>
+<th align="left">External IP</th>
+<th align="left">Port</th>
+<th align="left">Internal IP</th>
+<th align="left">Port</th>
+<th align="left">Protocol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">192.168.0.4</td>
+<td align="left">4501</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">2.1.1.1</td>
+<td align="left">4491</td>
+<td align="left">192.168.0.4</td>
+<td align="left">4491</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">2.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">192.168.128.4</td>
+<td align="left">4502</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">2.1.1.1</td>
+<td align="left">4492</td>
+<td align="left">192.168.128.4</td>
+<td align="left">4492</td>
+<td align="left">UDP</td>
+</tr>
+</tbody>
+</table>
+<h5 id="on-the-1111-router">On the 1.1.1.1 router</h5>
+<table>
+<thead>
+<tr>
+<th align="left">External IP</th>
+<th align="left">Port</th>
+<th align="left">Internal IP</th>
+<th align="left">Port</th>
+<th align="left">Protocol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1.1.1.1</td>
+<td align="left">4501</td>
+<td align="left">10.0.0.1</td>
+<td align="left">4501</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">1.1.1.1</td>
+<td align="left">4491</td>
+<td align="left">10.0.0.1</td>
+<td align="left">4491</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">1.1.1.1</td>
+<td align="left">4502</td>
+<td align="left">10.1.0.1</td>
+<td align="left">4502</td>
+<td align="left">UDP</td>
+</tr>
+<tr>
+<td align="left">1.1.1.1</td>
+<td align="left">4492</td>
+<td align="left">10.1.0.1</td>
+<td align="left">4492</td>
+<td align="left">UDP</td>
+</tr>
+</tbody>
+</table>
+
+<div class="notices note" ><p>Without port mapping it&rsquo;s entirely possible that the connectivity will be established without
+issues, this happens due to the fact that route&rsquo;s NAT will not generally modify the src port
+of the outgoing UDP packets, and future packets arriving this port will be redirected to the
+internal IP which initiated connectivity, but if the 2.1.1.1 router randomizes the source port on
+NAT, or if other applications on the internal network were already using the 4501-4502,4491-4492
+ports, the remote ends would not be able to contact gateway C or D over the expected ports.</p>
+</div>
+
+<h3 id="double-nat-traversal">Double NAT Traversal</h3>
+<p>In this case case, A &amp; B cluster gateways have direct reachability over their private
+IPs (10.0.0.1 and 10.1.0.1) possibly with large MTU capabilities, while between cluster
+C and D (192.168.0.4 and 192.168.0.4 too), reachability over the private IPs is not possible
+but it would be possible over the private floating IPs 10.2.0.1 and 10.2.0.2. However Submariner
+is unable to detect such floating IPs.</p>
+<!-- source: https://app.diagrams.net/#G1VTxw02pmAgE1WeGX5vWfSswZNciK-5AC -->
+<p><img src="/images/natt/double_nat_scenario.svg" alt="on-premises vs on-premises"></p>
+<h4 id="endpoints-for-double-nat">Endpoints for Double NAT</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Endpoint</th>
+<th align="left">Private IP</th>
+<th align="left">Public IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">10.0.0.1</td>
+<td align="left">1.1.1.1</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">10.1.0.1</td>
+<td align="left">1.1.1.1</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">192.168.0.4</td>
+<td align="left">2.1.1.1</td>
+</tr>
+<tr>
+<td align="left">D</td>
+<td align="left">192.168.0.4</td>
+<td align="left">2.1.1.1</td>
+</tr>
+</tbody>
+</table>
+<p>A problem will exist between C &amp; D because they can&rsquo;t reach each other neither on 2.1.1.1
+or ther IPs since the private CIDRs overlap.</p>
+<p>This is a complicated topology that is still not supported in Submariner. Possible solutions to this could be:</p>
+<ul>
+<li>
+<p>Modifying the CIDRs of the virtual networks for clusters C &amp; D, and then
+peer the virtual routers of those virtual networks to perform routing between C &amp; D. Then
+C &amp; D would be able to connect over the private IPs to each other.</p>
+</li>
+<li>
+<p>Support manual addition of multiple IPs per gateway, so
+each Endpoint would simply expose a list of IPs with preference instead of just a Public/Private
+IP.</p>
+</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/0.9/operations/monitoring/" title="Monitoring"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/0.9/operations/troubleshooting/" title="Troubleshooting" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/0.9/js/clipboard.min.js?1622797017"></script>
+    <script src="/0.9/js/perfect-scrollbar.min.js?1622797017"></script>
+    <script src="/0.9/js/perfect-scrollbar.jquery.min.js?1622797017"></script>
+    <script src="/0.9/js/jquery.sticky.js?1622797017"></script>
+    <script src="/0.9/js/featherlight.min.js?1622797017"></script>
+    <script src="/0.9/js/highlight.pack.js?1622797017"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/0.9/js/modernizr.custom-3.6.0.js?1622797017"></script>
+    <script src="/0.9/js/learn.js?1622797017"></script>
+    <script src="/0.9/js/hugo-learn.js?1622797017"></script>
+
+    <link href="/0.9/mermaid/mermaid.css?1622797017" rel="stylesheet" />
+    <script src="/0.9/mermaid/mermaid.js?1622797017"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
