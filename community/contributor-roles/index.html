@@ -12,20 +12,20 @@
     <title>Contributor Roles :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1622797016" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1622797016" rel="stylesheet">
-    <link href="/css/hybrid.css?1622797016" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1622797016" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1622797016" rel="stylesheet">
-    <link href="/css/auto-complete.css?1622797016" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1622797016" rel="stylesheet">
-    <link href="/css/theme.css?1622797016" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1622797016" rel="stylesheet">
+    <link href="/css/nucleus.css?1623083221" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1623083221" rel="stylesheet">
+    <link href="/css/hybrid.css?1623083221" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1623083221" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1623083221" rel="stylesheet">
+    <link href="/css/auto-complete.css?1623083221" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1623083221" rel="stylesheet">
+    <link href="/css/theme.css?1623083221" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1623083221" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1622797016" rel="stylesheet">
+      <link href="/css/theme-blue.css?1623083221" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1622797016"></script>
+    <script src="/js/jquery-3.3.1.min.js?1623083221"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1622797016" rel="stylesheet">
+<link href="/css/fixes.css?1623083221" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/contributor-roles/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1622797016"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1622797016"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1623083221"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1623083221"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1622797016"></script>
+<script type="text/javascript" src="/js/search.js?1623083221"></script>
 
     
   </div>
@@ -1751,6 +1751,7 @@
     <li><a href="#project-owner">Project Owner</a>
       <ul>
         <li><a href="#owner-requirements">Owner Requirements</a></li>
+        <li><a href="#owner-removal-and-future-elected-governance">Owner Removal and Future Elected Governance</a></li>
         <li><a href="#owner-responsibilities-and-privileges">Owner Responsibilities and Privileges</a></li>
       </ul>
     </li>
@@ -1791,6 +1792,8 @@ a &ldquo;project&rdquo; per repository.</strong></li>
 <li><strong>We hope to eventually move to Kubernetes OWNERS and Prow, but until we do so we
 can&rsquo;t support advanced role-based automation (reviewers vs approvers;
 PR workflow commands like /okay-to-test, /lgtm, /approved).</strong></li>
+<li><strong>Project Owners are given responsibility for some tasks that are handled by dedicated teams in Kubernetes (security responses, Code of
+Conduct violations, and managing project funds). Submariner aspires to create dedicated teams for these tasks as the community grows.</strong></li>
 </ul>
 <hr>
 <p>This doc outlines the various responsibilities of contributor roles in
@@ -1897,6 +1900,7 @@ reviews</li>
 </ul>
 <p><strong>Note:</strong> Members who frequently contribute code are expected to proactively
 perform code reviews and work towards becoming a committer.</p>
+<p>Members can be removed by stepping down or by two thirds vote of Project Owners.</p>
 <h2 id="committers">Committers</h2>
 <p>Committers are able to review code for quality and correctness on some part of
 the project. They are knowledgeable about both the codebase and software
@@ -1954,6 +1958,7 @@ backwards / forwards compatibility, API and flag definitions, etc</li>
 <li>Demonstrate sound technical judgement</li>
 <li>Mentor contributors and reviewers</li>
 </ul>
+<p>Committers can be removed by stepping down or by two thirds vote of Project Owners.</p>
 <h2 id="project-owner">Project Owner</h2>
 <p>Project owners are the technical authority for the Submariner project. They
 <em>MUST</em> have demonstrated both good judgement and responsibility towards the
@@ -1979,7 +1984,19 @@ meetings)</li>
 </li>
 <li>Directly contributed to the project through implementation and / or review</li>
 </ul>
-<h3 id="owner-responsibilities-and-privileges">Owner Responsibilities and Privileges</h3>
+<h3 id="owner-removal-and-future-elected-governance">Owner Removal and Future Elected Governance</h3>
+<p>Removal of Project Owners is currently frozen except for stepping down or violations of the Code of Conduct. This is a temporary governance
+step to define a removal process for extreme cases while protecting the project from dominance by a company. Once the Submariner community
+is diverse enough to replace Project Owners with an elected governance system, the project should do so. If the project hasn&rsquo;t replaced
+Project Owners with elected governance by June 1st 2023, and if there are committers from at least three different companies, the project
+defaults to replacing Project Owners with a Technical Steering Committee elected by <a href="https://wiki.opendaylight.org/display/ODL/TSC+Election+Process">OpenDaylight&rsquo;s TSC Election
+System</a> with a single Committer at Large Represented Group (defined below)
+and a 49% company cap.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Min Seats: 5
+Max Seats: 5
+Voters: Submariner Committers
+Duplicate Voter Strategy: Vote-per-Person
+</code></pre></div><h3 id="owner-responsibilities-and-privileges">Owner Responsibilities and Privileges</h3>
 <p>The following apply to people who would be an owner:</p>
 <ul>
 <li>Make and approve technical design decisions for the project</li>
@@ -1995,6 +2012,9 @@ meetings)</li>
 <li>Ensure a healthy process for discussion and decision making is in place</li>
 <li>Work with other project owners to maintain the project&rsquo;s overall health and
 success holistically</li>
+<li>Receive security disclosures and ensure an adequate response.</li>
+<li>Receive reports of Code of Conduct violations and ensure an adequate response.</li>
+<li>Decide how funds raised by the project are spent.</li>
 </ul>
 
 
@@ -2874,19 +2894,19 @@ success holistically</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1622797016"></script>
-    <script src="/js/perfect-scrollbar.min.js?1622797016"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1622797016"></script>
-    <script src="/js/jquery.sticky.js?1622797016"></script>
-    <script src="/js/featherlight.min.js?1622797016"></script>
-    <script src="/js/highlight.pack.js?1622797016"></script>
+    <script src="/js/clipboard.min.js?1623083221"></script>
+    <script src="/js/perfect-scrollbar.min.js?1623083221"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1623083221"></script>
+    <script src="/js/jquery.sticky.js?1623083221"></script>
+    <script src="/js/featherlight.min.js?1623083221"></script>
+    <script src="/js/highlight.pack.js?1623083221"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1622797016"></script>
-    <script src="/js/learn.js?1622797016"></script>
-    <script src="/js/hugo-learn.js?1622797016"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1623083221"></script>
+    <script src="/js/learn.js?1623083221"></script>
+    <script src="/js/hugo-learn.js?1623083221"></script>
 
-    <link href="/mermaid/mermaid.css?1622797016" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1622797016"></script>
+    <link href="/mermaid/mermaid.css?1623083221" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1623083221"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
