@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1623339007" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1623339007" rel="stylesheet">
-    <link href="/css/hybrid.css?1623339007" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1623339007" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1623339007" rel="stylesheet">
-    <link href="/css/auto-complete.css?1623339007" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1623339007" rel="stylesheet">
-    <link href="/css/theme.css?1623339007" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1623339007" rel="stylesheet">
+    <link href="/css/nucleus.css?1623774689" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1623774689" rel="stylesheet">
+    <link href="/css/hybrid.css?1623774689" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1623774689" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1623774689" rel="stylesheet">
+    <link href="/css/auto-complete.css?1623774689" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1623774689" rel="stylesheet">
+    <link href="/css/theme.css?1623774689" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1623774689" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1623339007" rel="stylesheet">
+      <link href="/css/theme-blue.css?1623774689" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1623339007"></script>
+    <script src="/js/jquery-3.3.1.min.js?1623774689"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1623339007" rel="stylesheet">
+<link href="/css/fixes.css?1623774689" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/release-process/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1623339007"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1623339007"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1623774689"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1623774689"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1623339007"></script>
+<script type="text/javascript" src="/js/search.js?1623774689"></script>
 
     
   </div>
@@ -1742,7 +1742,7 @@
     </li>
     <li><a href="#create-submariner-product-release">Create Submariner product release</a>
       <ul>
-        <li><a href="#step-0-create-a-stable-branch-if-necessary">Step 0: Create a stable branch (if necessary)</a></li>
+        <li><a href="#sometimes-create-stable-branches-for-stable-releases">Sometimes: Create stable branches for stable releases</a></li>
         <li><a href="#step-1-create-release-for-the-shipyard-project">Step 1: Create release for the <code>shipyard</code> project</a></li>
         <li><a href="#step-2-create-release-for-the-admiral-project">Step 2: Create release for the <code>admiral</code> project</a></li>
         <li><a href="#step-3-create-releases-for-the-cloud-prepare-lighthouse-and-submariner-projects">Step 3: Create releases for the <code>cloud-prepare</code>, <code>lighthouse</code> and <code>submariner</code> projects</a></li>
@@ -1819,18 +1819,18 @@ of the file list heading which indicates a job is in progress. You can click it 
 for the job listed but the important one is <code>Release Images</code>. When complete, the indicator icon will change to either a
 green check mark on success or a red X on failure. A failure likely means the artifacts were not published to Quay, in
 which case select the failed check, inspect the logs, correct the issue and re-run the job.</p>
-<h3 id="step-0-create-a-stable-branch-if-necessary">Step 0: Create a stable branch (if necessary)</h3>
-<p>If you&rsquo;re creating a new stable release, the release automation process can create the stable branches. To do so,
-navigate to the <a href="https://github.com/submariner-io/releases">releases</a> repository and fork it.</p>
+<h3 id="sometimes-create-stable-branches-for-stable-releases">Sometimes: Create stable branches for stable releases</h3>
+<p>If you&rsquo;re creating a stable release, you need to create a stable branch for backports in each repository. Milestone releases don&rsquo;t receive
+backports and therefore don&rsquo;t need branches.</p>
+<p>The release automation process can create stable branches for you. To do so, navigate to the
+<a href="https://github.com/submariner-io/releases">releases</a> repository.</p>
 <ol>
-<li>
-<p>Create a new branch for the intended release.</p>
-</li>
 <li>
 <p>Create a new file in the <code>releases</code> directory (you can copy the <code>example.yaml</code> file). For our example, we&rsquo;ll name it <code>v0.8.0.yaml</code>.</p>
 </li>
 <li>
-<p>Fill in the general fields for the release with the <code>status</code> field set to <code>branch</code>.</p>
+<p>Fill in the <code>version</code>/<code>name</code>/<code>branch</code> fields for the release, following the naming scheme below. The <code>status</code> field must be set to
+<code>branch</code> for this phase.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">version</span>: v0<span style="color:#ae81ff">.8.0</span>
 <span style="color:#66d9ef">name</span>: <span style="color:#ae81ff">0.8.0</span>
 <span style="color:#66d9ef">branch</span>: release<span style="color:#ae81ff">-0.8</span>
@@ -1843,11 +1843,8 @@ navigate to the <a href="https://github.com/submariner-io/releases">releases</a>
 <p>Once the pull request is merged, it will trigger a CI job to create the stable branches and pin them to Shipyard on that stable
 branch.</p>
 <h3 id="step-1-create-release-for-the-shipyard-project">Step 1: Create release for the <code>shipyard</code> project</h3>
-<p>Navigate to the <a href="https://github.com/submariner-io/releases">releases</a> repository and fork it.</p>
+<p>Navigate to the <a href="https://github.com/submariner-io/releases">releases</a> repository.</p>
 <ol>
-<li>
-<p>Create a new branch for the intended release.</p>
-</li>
 <li>
 <p>Create a new file in the <code>releases</code> directory (you can copy the <code>example.yaml file</code>). For our example, we&rsquo;ll name it <code>v0.8.0.yaml</code>.</p>
 </li>
@@ -1858,7 +1855,7 @@ the <a href="https://github.com/submariner-io/shipyard">shipyard project</a>. Th
 commit on the devel branch including the first 7 hex digits of the commit ID hash.</p>
 <p>If this is not a final release, set the <code>pre-release</code> field to <code>true</code> (that is uncomment the <code>pre-release</code> line below).
 This includes release candidates. This is important so it is not labeled as the Latest release in GitHub.</p>
-<p>When releasing on a stable branch, make sure to specify the branch as outlined below.</p>
+<p>When releasing on a stable branch, make sure to specify the branch as outlined below. Otherwise, omit it.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">version</span>: v0<span style="color:#ae81ff">.8.0</span>
 <span style="color:#66d9ef">name</span>: <span style="color:#ae81ff">0.8.0</span>
 <span style="color:#75715e">#pre-release: true</span>
@@ -2926,19 +2923,19 @@ and create a new PR on <a href="https://github.com/operator-framework/community-
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1623339007"></script>
-    <script src="/js/perfect-scrollbar.min.js?1623339007"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1623339007"></script>
-    <script src="/js/jquery.sticky.js?1623339007"></script>
-    <script src="/js/featherlight.min.js?1623339007"></script>
-    <script src="/js/highlight.pack.js?1623339007"></script>
+    <script src="/js/clipboard.min.js?1623774689"></script>
+    <script src="/js/perfect-scrollbar.min.js?1623774689"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1623774689"></script>
+    <script src="/js/jquery.sticky.js?1623774689"></script>
+    <script src="/js/featherlight.min.js?1623774689"></script>
+    <script src="/js/highlight.pack.js?1623774689"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1623339007"></script>
-    <script src="/js/learn.js?1623339007"></script>
-    <script src="/js/hugo-learn.js?1623339007"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1623774689"></script>
+    <script src="/js/learn.js?1623774689"></script>
+    <script src="/js/hugo-learn.js?1623774689"></script>
 
-    <link href="/mermaid/mermaid.css?1623339007" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1623339007"></script>
+    <link href="/mermaid/mermaid.css?1623774689" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1623774689"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
