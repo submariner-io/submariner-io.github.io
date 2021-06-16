@@ -12,20 +12,20 @@
     <title>Sandbox Environment (kind) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1623774689" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1623774689" rel="stylesheet">
-    <link href="/css/hybrid.css?1623774689" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1623774689" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1623774689" rel="stylesheet">
-    <link href="/css/auto-complete.css?1623774689" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1623774689" rel="stylesheet">
-    <link href="/css/theme.css?1623774689" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1623774689" rel="stylesheet">
+    <link href="/css/nucleus.css?1623832198" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1623832198" rel="stylesheet">
+    <link href="/css/hybrid.css?1623832198" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1623832198" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1623832198" rel="stylesheet">
+    <link href="/css/auto-complete.css?1623832198" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1623832198" rel="stylesheet">
+    <link href="/css/theme.css?1623832198" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1623832198" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1623774689" rel="stylesheet">
+      <link href="/css/theme-blue.css?1623832198" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1623774689"></script>
+    <script src="/js/jquery-3.3.1.min.js?1623832198"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1623774689" rel="stylesheet">
+<link href="/css/fixes.css?1623832198" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/quickstart/kind/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1623774689"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1623774689"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1623832198"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1623832198"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1623774689"></script>
+<script type="text/javascript" src="/js/search.js?1623832198"></script>
 
     
   </div>
@@ -1789,7 +1789,7 @@ uses kind to demonstrate deployment and operation of Submariner in three Kuberne
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/submariner-io/submariner
 cd submariner
 make deploy
-</code></pre></div><p>By default, the automation configuration in the main submariner-io/submariner repository deploys three clusters, with cluster1 configured as
+</code></pre></div><p>By default, the automation configuration in the main submariner-io/submariner repository deploys two clusters, with cluster1 configured as
 the Broker. See the <a href="https://github.com/submariner-io/submariner/blob/devel/scripts/cluster_settings">cluster-settings</a> file for details.</p>
 <h3 id="deploy-manually">Deploy Manually</h3>
 <p>If you wish to try out Submariner deployment manually, an easy option is to create kind clusters using our scripts and deploy Submariner
@@ -1799,18 +1799,16 @@ with <a href="../../../operations/deployment/subctl"><code>subctl</code></a>.</p
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/submariner-io/submariner
 cd submariner
 make clusters
-</code></pre></div><p>This creates three Kubernetes clusters: cluster1, cluster2 and cluster3. To see the list of kind clusters, use the following command:</p>
+</code></pre></div><p>This creates three Kubernetes clusters: cluster1 and cluster2. To see the list of kind clusters, use the following command:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kind get clusters
 cluster1
 cluster2
-cluster3
 </code></pre></div><!-- markdownlint-disable no-trailing-spaces -->
 <p>To list the local Kubernetes contexts, use the following command:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl config get-contexts
 CURRENT   NAME       CLUSTER    AUTHINFO   NAMESPACE
-          cluster1   cluster1   cluster1   
-          cluster2   cluster2   cluster2   
-*         cluster3   cluster3   cluster3
+          cluster1   cluster1   cluster1      
+*         cluster2   cluster2   cluster2
 </code></pre></div><!-- markdownlint-enable no-trailing-spaces -->
 <p>Since multiple clusters are running, you need to choose which cluster <code>kubectl</code> talks to. You can set a default cluster for <code>kubectl</code> by
 setting the current context in the Kubernetes kubeconfig file. Additionally, you can run the following command to set the current context
@@ -1830,34 +1828,34 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
 </code></pre></div><p>(and ensure your <code>go/bin</code> directory is on your <code>PATH</code>).</p>
 <h4 id="use-cluster1-as-broker">Use cluster1 as Broker</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig output/kubeconfigs/kind-config-cluster1
-</code></pre></div><h4 id="join-cluster2-and-cluster3-to-the-broker">Join cluster2 and cluster3 to the Broker</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig output/kubeconfigs/kind-config-cluster2 broker-info.subm --clusterid cluster2 --natt<span style="color:#f92672">=</span>false
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig output/kubeconfigs/kind-config-cluster3 broker-info.subm --clusterid cluster3 --natt<span style="color:#f92672">=</span>false
+</code></pre></div><h4 id="join-cluster1-and-cluster2-to-the-broker">Join cluster1 and cluster2 to the Broker</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig output/kubeconfigs/kind-config-cluster1 broker-info.subm --clusterid cluster1 --natt<span style="color:#f92672">=</span>false
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig output/kubeconfigs/kind-config-cluster2 broker-info.subm --clusterid cluster2 --natt<span style="color:#f92672">=</span>false
 </code></pre></div><p>You now have a Submariner environment that you can experiment with.</p>
 <h3 id="verify-deployment">Verify Deployment</h3>
 <h4 id="verify-automatically-with-subctl">Verify Automatically with <code>subctl</code></h4>
 <p>This will perform automated verifications between the clusters.</p>
 <!-- markdownlint-disable line-length -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>output/kubeconfigs/kind-config-cluster1:output/kubeconfigs/kind-config-cluster2:output/kubeconfigs/kind-config-cluster3
-subctl verify --kubecontexts cluster2,cluster3 --only service-discovery,connectivity --verbose
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>output/kubeconfigs/kind-config-cluster1:output/kubeconfigs/kind-config-cluster2
+subctl verify --kubecontexts cluster1,cluster2 --only service-discovery,connectivity --verbose
 </code></pre></div><!-- markdownlint-enable line-length -->
 <h4 id="verify-manually">Verify Manually</h4>
-<p>To manually verify the deployment, follow the steps below using either a headless or ClusterIP <code>nginx</code> service deployed in <code>cluster3</code>.</p>
+<p>To manually verify the deployment, follow the steps below using either a headless or ClusterIP <code>nginx</code> service deployed in <code>cluster2</code>.</p>
 <h5 id="deploy-clusterip-service">Deploy ClusterIP Service</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 create deployment nginx --image<span style="color:#f92672">=</span>nginx
-kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
-subctl export service --kubeconfig output/kubeconfigs/kind-config-cluster3 --namespace default nginx
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 create deployment nginx --image<span style="color:#f92672">=</span>nginx
+kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
+subctl export service --kubeconfig output/kubeconfigs/kind-config-cluster2 --namespace default nginx
 </code></pre></div><h5 id="deploy-headless-service">Deploy Headless Service</h5>
 
 <div class="notices note" ><p>Headless Services can only be exported on non-Globalnet deployments.</p>
 </div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 create deployment nginx --image<span style="color:#f92672">=</span>nginx
-kubectl --kubeconfig output/kubeconfigs/kind-config-cluster3 expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span> --cluster-ip<span style="color:#f92672">=</span>None
-subctl export service --kubeconfig output/kubeconfigs/kind-config-cluster3 --namespace default nginx
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 create deployment nginx --image<span style="color:#f92672">=</span>nginx
+kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span> --cluster-ip<span style="color:#f92672">=</span>None
+subctl export service --kubeconfig output/kubeconfigs/kind-config-cluster2 --namespace default nginx
 </code></pre></div><h5 id="verify">Verify</h5>
-<p>Run <code>nettest</code> from <code>cluster2</code> to access the <code>nginx</code> service:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster2 -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
+<p>Run <code>nettest</code> from <code>cluster1</code> to access the <code>nginx</code> service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig output/kubeconfigs/kind-config-cluster1 -n default  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
 curl nginx.default.svc.clusterset.local
 </code></pre></div><h3 id="cleanup">Cleanup</h3>
@@ -2739,19 +2737,19 @@ curl nginx.default.svc.clusterset.local
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1623774689"></script>
-    <script src="/js/perfect-scrollbar.min.js?1623774689"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1623774689"></script>
-    <script src="/js/jquery.sticky.js?1623774689"></script>
-    <script src="/js/featherlight.min.js?1623774689"></script>
-    <script src="/js/highlight.pack.js?1623774689"></script>
+    <script src="/js/clipboard.min.js?1623832198"></script>
+    <script src="/js/perfect-scrollbar.min.js?1623832198"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1623832198"></script>
+    <script src="/js/jquery.sticky.js?1623832198"></script>
+    <script src="/js/featherlight.min.js?1623832198"></script>
+    <script src="/js/highlight.pack.js?1623832198"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1623774689"></script>
-    <script src="/js/learn.js?1623774689"></script>
-    <script src="/js/hugo-learn.js?1623774689"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1623832198"></script>
+    <script src="/js/learn.js?1623832198"></script>
+    <script src="/js/hugo-learn.js?1623832198"></script>
 
-    <link href="/mermaid/mermaid.css?1623774689" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1623774689"></script>
+    <link href="/mermaid/mermaid.css?1623832198" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1623832198"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
