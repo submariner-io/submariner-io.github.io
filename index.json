@@ -224,6 +224,13 @@
 	"content": "Talk to Us We would love to hear from you, how you are using Submariner, and what we can do to make it better.\nGitHub Check out Submariner\u0026rsquo;s GitHub and consider contributing. Pick up an issue to work on or propose an enhancement by reporting a new issue; once your code is ready to be reviewed, you can propose a pull request. You can find a good guide about the GitHub workflow here.\nSlack Share your ideas in the #submariner channel in Kubernetes\u0026rsquo; Slack. If you need it, you can request an invite to Kubernetes\u0026rsquo; Slack instance.\nCommunity Calendar Submariner\u0026rsquo;s meetings are open to everyone. All meetings are documented on Submariner\u0026rsquo;s Community Calendar. The bi-weekly Submariner Users \u0026amp; Community Meeting (Tuesdays at 5:00pm CET) is a good place to start.\nMailing List Join the submariner-dev or submariner-users mailing lists.\n"
 },
 {
+	"uri": "/development/licenses/",
+	"title": "Licenses",
+	"tags": [],
+	"description": "",
+	"content": "Content contributed to the Submariner project must be made available under one of two licenses.\nContributions to projects other than the website These must be made available under the Apache License, version 2.0. Go files must start with the following header:\n/* SPDX-License-Identifier: Apache-2.0 Copyright Contributors to the Submariner project. Licensed under the Apache License, Version 2.0 (the \u0026#34;License\u0026#34;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \u0026#34;AS IS\u0026#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. */ This is enforced by our CI.\nContributions to the website Contributions to the website must be made available under the Creative Commons Attribution 4.0 International license (CC BY 4.0).\n"
+},
+{
 	"uri": "/community/releases/",
 	"title": "Releases",
 	"tags": [],
@@ -263,7 +270,7 @@
 	"title": "Development",
 	"tags": [],
 	"description": "",
-	"content": " Building and Testing Code Review Guide Contributing to the Website  Docs Style Guide   Release Process Security  Security Reporting Container Requirements   Working with Shipyard  Adding Shipyard to a Project Advanced Features    "
+	"content": " Building and Testing Code Review Guide Contributing to the Website  Docs Style Guide   Licenses Release Process Security  Security Reporting Container Requirements   Working with Shipyard  Adding Shipyard to a Project Advanced Features    "
 },
 {
 	"uri": "/development/security/reporting/",
