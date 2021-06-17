@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1623835685" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1623835685" rel="stylesheet">
-    <link href="/css/hybrid.css?1623835685" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1623835685" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1623835685" rel="stylesheet">
-    <link href="/css/auto-complete.css?1623835685" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1623835685" rel="stylesheet">
-    <link href="/css/theme.css?1623835685" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1623835685" rel="stylesheet">
+    <link href="/css/nucleus.css?1623944840" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1623944840" rel="stylesheet">
+    <link href="/css/hybrid.css?1623944840" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1623944840" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1623944840" rel="stylesheet">
+    <link href="/css/auto-complete.css?1623944840" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1623944840" rel="stylesheet">
+    <link href="/css/theme.css?1623944840" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1623944840" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1623835685" rel="stylesheet">
+      <link href="/css/theme-blue.css?1623944840" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1623835685"></script>
+    <script src="/js/jquery-3.3.1.min.js?1623944840"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1623835685" rel="stylesheet">
+<link href="/css/fixes.css?1623944840" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/release-process/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1623835685"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1623835685"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1623944840"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1623944840"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1623835685"></script>
+<script type="text/javascript" src="/js/search.js?1623944840"></script>
 
     
   </div>
@@ -1762,23 +1762,19 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#project-dependencies">Project dependencies</a></li>
-    <li><a href="#release-versions">Release versions</a>
+    <li><a href="#ordering">Ordering</a></li>
+    <li><a href="#versions">Versions</a></li>
+    <li><a href="#create-release">Create Release</a>
       <ul>
-        <li><a href="#stable-branches-and-versions">Stable branches and versions</a></li>
-      </ul>
-    </li>
-    <li><a href="#create-submariner-product-release">Create Submariner product release</a>
-      <ul>
-        <li><a href="#sometimes-create-stable-branches-for-stable-releases">Sometimes: Create stable branches for stable releases</a></li>
-        <li><a href="#step-1-create-release-for-the-shipyard-project">Step 1: Create release for the <code>shipyard</code> project</a></li>
-        <li><a href="#step-2-create-release-for-the-admiral-project">Step 2: Create release for the <code>admiral</code> project</a></li>
-        <li><a href="#step-3-create-releases-for-the-cloud-prepare-lighthouse-and-submariner-projects">Step 3: Create releases for the <code>cloud-prepare</code>, <code>lighthouse</code> and <code>submariner</code> projects</a></li>
-        <li><a href="#step-4-create-the-product-release">Step 4: Create the product release</a></li>
-        <li><a href="#step-5-add-release-notes">Step 5: Add release notes</a></li>
-        <li><a href="#step-6-verify-the-release">Step 6: Verify the release</a></li>
-        <li><a href="#step-7-update-the-submariner-operator-on-operatorhubio">Step 7: Update the Submariner Operator on OperatorHub.io</a></li>
-        <li><a href="#step-8-announce-the-release">Step 8: Announce the release</a></li>
+        <li><a href="#final-releases-add-release-notes">Final Releases: Add Release Notes</a></li>
+        <li><a href="#stable-releases-create-stable-branches">Stable Releases: Create Stable Branches</a></li>
+        <li><a href="#step-1-create-shipyard-release">Step 1: Create Shipyard Release</a></li>
+        <li><a href="#step-2-create-admiral-release">Step 2: Create Admiral Release</a></li>
+        <li><a href="#step-3-create-cloud-prepare-lighthouse-and-submariner-releases">Step 3: Create cloud-prepare, Lighthouse, and Submariner Releases</a></li>
+        <li><a href="#step-4-create-operator-and-charts-releases">Step 4: Create Operator and Charts Releases</a></li>
+        <li><a href="#step-5-verify-release">Step 5: Verify Release</a></li>
+        <li><a href="#step-6-update-operatorhubio">Step 6: Update OperatorHub.io</a></li>
+        <li><a href="#step-7-announce-release">Step 7: Announce Release</a></li>
       </ul>
     </li>
   </ul>
@@ -1807,34 +1803,27 @@
 
 
 
-	<p>This section describes how to create a Submariner product release. It is assumed that you are familiar with the various
-Submariner projects and their repositories and are familiar with Git and GitHub.</p>
-<h2 id="project-dependencies">Project dependencies</h2>
-<p>The Submariner projects have a dependency hierarchy with respect to their Go libraries and Docker images.
-Therefore the releases for each individual project must be created in a specific order.</p>
-<p>The Go dependency hierarchy flow is as follows:</p>
-<p><code>shipyard</code> &lt;- <code>admiral</code> &lt;- <code>[submariner, lighthouse, cloud-prepare]</code> &lt;- <code>submariner-operator</code></p>
-<p>Note that the <code>submariner</code> and <code>lighthouse</code> projects are siblings and thus do not depend on one another. Also the
-<code>submariner-operator</code> components expect that <code>lighthouse</code> and <code>submariner</code> are aligned on the same exact version.
-The cloud-prepare library is consumed by the operator as well.</p>
-<p>The Docker image dependency hierarchy flow is as follows:</p>
-<p><code>subctl binary</code> &lt;- <code>shipyard dapper base image</code> &lt;- <code>[admiral, cloud-prepare, submariner, lighthouse, submariner-operator]</code></p>
-<p>The Dapper base image that is provided by <code>shipyard</code> for building and E2E tests in all of the other projects pulls in the
-<code>subctl</code> binary.</p>
-<h2 id="release-versions">Release versions</h2>
-<p>The <code>vx.x.x</code> version format is used for the git projects while <code>x.x.x</code> is used for Docker images.</p>
-<p>The typical workflow is to first create release candidate(s) for testing before creating the final release. The suggested
-naming convention is to append <code>-rcN</code> to the final version, for example <code>v0.8.0-rc0</code>, <code>v0.8.0-rc1</code> etc.</p>
-<p>Sometimes you may want to create a specific project release for testing prior to creating a release candidate. In this
-case, the suggested naming convention is to append <code>-preN</code>.</p>
-<h3 id="stable-branches-and-versions">Stable branches and versions</h3>
-<p>Stable branches will be maintained for major and minor versions. For example, versions v0.8.0, v0.8.1 and
-any other 0.8.x releases will all be maintained and released on the <code>release-0.8</code> branch.</p>
-<p>The automated release process described here can also create these stable branches when necessary.
-The branch should be specified in the release YAML file. If a stable branch isn&rsquo;t specified, the development branch is used.</p>
-<h2 id="create-submariner-product-release">Create Submariner product release</h2>
-<p>The following sections outline the steps to be taken in order to create a full Submariner product release. As an example,
-we&rsquo;ll use version <code>v0.8.0</code>.</p>
+	<p>These docs describe how to create a Submariner release.</p>
+<h2 id="ordering">Ordering</h2>
+<p>Submariner&rsquo;s projects have a dependency hierarchy among their Go libraries and container images, which drives their release order.</p>
+<p>The Go dependency hierarchy is:</p>
+<p><code>shipyard</code> &lt;- <code>admiral</code> &lt;- [<code>submariner</code>, <code>lighthouse</code>, <code>cloud-prepare</code>] &lt;- <code>submariner-operator</code></p>
+<p>The container image dependency hierarchy is:</p>
+<p><code>subctl</code> binary &lt;- <code>shipyard-dapper-base</code> image &lt;- [<code>admiral</code>, <code>cloud-prepare</code>, <code>submariner</code>, <code>lighthouse</code>, <code>submariner-operator</code>]</p>
+<p>Projects in brackets are siblings and do not depend on each other. Dependencies of siblings require all siblings to have aligned versions.</p>
+<h2 id="versions">Versions</h2>
+<p>Version numbers are required to be formatted following the schema norms where they are used.</p>
+<ul>
+<li>Git: <code>vx.y.z</code> (example: <code>v0.8.0</code>)</li>
+<li>Containers: <code>x.y.z</code> (example: <code>0.8.0</code>)</li>
+<li>Stable branches: <code>release-x.y</code> (example: <code>release-0.8</code>)</li>
+<li>Milestone releases: Append <code>-mN</code> starting at 1 (example: <code>v0.8.0-m1</code>)</li>
+<li>Release candidates: Append <code>-rcN</code> starting at 0 (example: <code>v0.8.0-rc0</code>)</li>
+<li>Single-project testing release: Append <code>-preN</code> starting at 0 (example: <code>v0.8.0-pre0</code>)</li>
+<li>Release errors: Append <code>.N</code> starting at 1 (example: <code>v0.8.0-m1.1</code>)</li>
+</ul>
+<h2 id="create-release">Create Release</h2>
+<p>The following sections are an ordered series of steps to create a Submariner relese.</p>
 <p>The release process is mostly automated and uses a YAML file created in the releases repository that describes the release.
 This file is updated for each step in the release process.</p>
 <p>Once the changes for a step are reviewed and merged, a CI job will run to create the release(s) for the step and create the
@@ -1844,10 +1833,15 @@ merged, you can continue onto the next step.</p>
 This will take several minutes. You can monitor the progress from the project&rsquo;s main page. In the branches/tags pull-down
 above the file list heading, select the tag for the new version. A small yellow circle icon should be present to the right
 of the file list heading which indicates a job is in progress. You can click it to see details. There may be several checks
-for the job listed but the important one is <code>Release Images</code>. When complete, the indicator icon will change to either a
+for the job listed but the important one is &ldquo;Release Images&rdquo;. When complete, the indicator icon will change to either a
 green check mark on success or a red X on failure. A failure likely means the artifacts were not published to Quay, in
 which case select the failed check, inspect the logs, correct the issue and re-run the job.</p>
-<h3 id="sometimes-create-stable-branches-for-stable-releases">Sometimes: Create stable branches for stable releases</h3>
+<h3 id="final-releases-add-release-notes">Final Releases: Add Release Notes</h3>
+<p>If you&rsquo;re creating a release meant for general consumption, not a milestone or release candidate, <a href="../../community/releases/">release notes</a>
+must also be created.</p>
+<p>It&rsquo;s best to start working with the broader community to create release notes well before the release. Create a PR to start the process, and
+work with contributors to get everything added and reviewed.</p>
+<h3 id="stable-releases-create-stable-branches">Stable Releases: Create Stable Branches</h3>
 <p>If you&rsquo;re creating a stable release, you need to create a stable branch for backports in each repository. Milestone releases don&rsquo;t receive
 backports and therefore don&rsquo;t need branches.</p>
 <p>The release automation process can create stable branches for you. To do so, navigate to the
@@ -1865,12 +1859,12 @@ backports and therefore don&rsquo;t need branches.</p>
 <span style="color:#66d9ef">status</span>: branch
 </code></pre></div></li>
 <li>
-<p>Commit the new file, create a new pull request, and have it reviewed and merged.</p>
+<p>Commit your changes, create a pull request, and have it reviewed.</p>
 </li>
 </ol>
 <p>Once the pull request is merged, it will trigger a CI job to create the stable branches and pin them to Shipyard on that stable
 branch.</p>
-<h3 id="step-1-create-release-for-the-shipyard-project">Step 1: Create release for the <code>shipyard</code> project</h3>
+<h3 id="step-1-create-shipyard-release">Step 1: Create Shipyard Release</h3>
 <p>Navigate to the <a href="https://github.com/submariner-io/releases">releases</a> repository.</p>
 <ol>
 <li>
@@ -1893,25 +1887,25 @@ This includes release candidates. This is important so it is not labeled as the 
   <span style="color:#66d9ef">shipyard</span>: &lt;hash goes here&gt;
 </code></pre></div></li>
 <li>
-<p>Commit the new files, create a new pull request, and have it reviewed and merged.</p>
+<p>Commit your changes, create a pull request, and have it reviewed.</p>
+</li>
+<li>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml">releases/release job</a> passed.</li>
+<li>The <a href="https://github.com/submariner-io/shipyard/releases">Shipyard release</a> was created.</li>
+<li>The <a href="https://github.com/submariner-io/shipyard/releases">submariner/shipyard-dapper-base image</a> is on Quay.</li>
+</ul>
+</li>
+<li>
+<p>Pull requests will be created for projects that consume Shipyard to update them to the new version in preparation for the subsequent
+steps. The automation will leave a comment with a list of them. Make sure all those PRs are merged and their release jobs pass.</p>
 </li>
 </ol>
-<p>Once the pull request is merged, it will trigger a CI job to create a
-<a href="https://github.com/submariner-io/submariner-operator/releases">shipyard release</a> and build the Dapper base image. In addition,
-it creates pull requests in the projects that consume <code>shipyard</code> to update them to the new version in preparation for the
-subsequent steps.</p>
-<p>On successful completion, the generated image version (<code>0.8.0</code>) should be available on Quay here:</p>
-<blockquote>
-<p><a href="https://quay.io/repository/submariner/shipyard-dapper-base?tab=tags">https://quay.io/repository/submariner/shipyard-dapper-base?tab=tags</a></p>
-</blockquote>
-<h3 id="step-2-create-release-for-the-admiral-project">Step 2: Create release for the <code>admiral</code> project</h3>
-<p>Once the pull request to pin the <code>admiral</code> project to the new <code>shipyard</code> version is merged, we can proceed to updating the
-release YAML file to create an <code>admiral</code> release.</p>
+<h3 id="step-2-create-admiral-release">Step 2: Create Admiral Release</h3>
+<p>Once the pull request to pin Admiral to the new Shipyard version is merged, we can proceed to updating the
+release YAML file to create an Admiral release.</p>
 <ol>
-<li>
-<p>On your releases repository fork, you can either reuse the previous branch or create a new one. For the former, be sure
-to first rebase the branch on the latest upstream.</p>
-</li>
 <li>
 <p>Edit the release yaml file (<code>v0.8.0.yaml</code>). Update the <code>status</code> field to <code>admiral</code> and add the <code>admiral</code> component with
 the latest commit ID hash:</p>
@@ -1922,21 +1916,26 @@ the latest commit ID hash:</p>
 <span style="color:#a6e22e">+  admiral: &lt;hash goes here&gt;
 </span></code></pre></div></li>
 <li>
-<p>Commit the modified file, create a new pull request, and have it reviewed and merged.</p>
+<p>Commit your changes, create a pull request, and have it reviewed.</p>
+</li>
+<li>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml">releases/release job</a> passed.</li>
+<li>The <a href="https://github.com/submariner-io/admiral/releases">Admiral release</a> was created.</li>
+</ul>
+</li>
+<li>
+<p>Pull requests will be created for projects that consume Admiral to update them to the new version in preparation for the subsequent
+steps. The automation will leave a comment with a list of them. Make sure all those PRs are merged and their release jobs pass.</p>
 </li>
 </ol>
-<p>Once the pull request is merged, it will trigger a CI job to create an
-<a href="https://github.com/submariner-io/admiral/releases">admiral release</a> and pull requests in the consuming projects to pin them
-to the new version in preparation for the subsequent steps.</p>
-<h3 id="step-3-create-releases-for-the-cloud-prepare-lighthouse-and-submariner-projects">Step 3: Create releases for the <code>cloud-prepare</code>, <code>lighthouse</code> and <code>submariner</code> projects</h3>
-<p>Once the pull requests to pin the <code>cloud-prepare</code>, <code>lighthouse</code> and <code>submariner</code> projects to the new <code>admiral</code> version are merged:</p>
+<h3 id="step-3-create-cloud-prepare-lighthouse-and-submariner-releases">Step 3: Create cloud-prepare, Lighthouse, and Submariner Releases</h3>
+<p>Once the pull requests to pin the cloud-prepare, Lighthouse and Submariner projects to the new Admiral version are merged:</p>
 <ol>
 <li>
-<p>On your releases repository fork, either reuse the previous branch or create a new one.</p>
-</li>
-<li>
-<p>Edit the release yaml file (<code>v0.8.0.yaml</code>). Update the <code>status</code> field to <code>projects</code> and add the <code>submariner</code>, <code>cloud-prepare</code> and
-<code>lighthouse</code> components with their latest commit ID hashes:</p>
+<p>Update the release YAML file <code>status</code> field to <code>projects</code> and add the <code>submariner</code>, <code>cloud-prepare</code> and <code>lighthouse</code> components with
+their latest commit ID hashes:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">-status: admiral
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+status: projects
 </span><span style="color:#a6e22e"></span> components:
@@ -1947,38 +1946,35 @@ to the new version in preparation for the subsequent steps.</p>
 </span><span style="color:#a6e22e">+  submariner: &lt;hash goes here&gt;
 </span></code></pre></div></li>
 <li>
-<p>Commit the modified file, create a new pull request, and have it reviewed and merged.</p>
+<p>Commit your changes, create a pull request, and have it reviewed.</p>
+</li>
+<li>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml">releases/release job</a> passed.</li>
+<li>The <a href="https://github.com/submariner-io/cloud-prepare/releases">cloud-prepare release</a> was created.</li>
+<li>The <a href="https://github.com/submariner-io/lighthouse/releases">Lighthouse release</a> was created.</li>
+<li>The <a href="https://github.com/submariner-io/submariner/releases">Submariner release</a> was created.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner?tab=tags">submariner/submariner image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner-route-agent?tab=tags">submariner/submariner-route-agent image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner-globalnet?tab=tags">submariner/submariner-globalnet image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner-networkplugin-syncer?tab=tags">submariner/submariner-networkplugin-syncer image</a>
+is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/lighthouse-agent?tab=tags">submariner/lighthouse-agent image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/lighthouse-coredns?tab=tags">submariner/lighthouse-coredns image</a> is on Quay.</li>
+</ul>
+</li>
+<li>
+<p>Automation will create a pull request to pin submariner-operator to the released versions. Make sure that PRs is merged and the release
+job passes.</p>
 </li>
 </ol>
-<p>Once the pull request is merged, it will trigger a CI job to create
-<a href="https://github.com/submariner-io/cloud-prepare/releases">cloud-prepare</a>,
-<a href="https://github.com/submariner-io/lighthouse/releases">lighthouse</a> and
-<a href="https://github.com/submariner-io/submariner/releases">submariner</a> releases and a pull request to pin the consuming
-<code>submariner-operator</code> project to the new version.</p>
-<p>On successful completion, the new image versions (<code>0.8.0</code>) should be available on Quay.</p>
-<!-- markdownlint-disable no-inline-html -->
-<p>For <code>submariner</code>:</p>
-<blockquote>
-<p><a href="https://quay.io/repository/submariner/submariner?tab=tags">https://quay.io/repository/submariner/submariner?tab=tags</a> <br>
-<a href="https://quay.io/repository/submariner/submariner-route-agent?tab=tags">https://quay.io/repository/submariner/submariner-route-agent?tab=tags</a> <br>
-<a href="https://quay.io/repository/submariner/submariner-globalnet?tab=tags">https://quay.io/repository/submariner/submariner-globalnet?tab=tags</a> <br>
-<a href="https://quay.io/repository/submariner/submariner-networkplugin-syncer?tab=tags">https://quay.io/repository/submariner/submariner-networkplugin-syncer?tab=tags</a></p>
-</blockquote>
-<p>For <code>lighthouse</code>:</p>
-<blockquote>
-<p><a href="https://quay.io/repository/submariner/lighthouse-agent?tab=tags">https://quay.io/repository/submariner/lighthouse-agent?tab=tags</a> <br>
-<a href="https://quay.io/repository/submariner/lighthouse-coredns?tab=tags">https://quay.io/repository/submariner/lighthouse-coredns?tab=tags</a></p>
-</blockquote>
-<!-- markdownlint-enable no-inline-html -->
-<h3 id="step-4-create-the-product-release">Step 4: Create the product release</h3>
-<p>Once the pull request to pin the <code>submariner-operator</code> has been merged, we can create the final product release:</p>
+<h3 id="step-4-create-operator-and-charts-releases">Step 4: Create Operator and Charts Releases</h3>
+<p>Once the pull request to pin submariner-operator has been merged, we can create the final release:</p>
 <ol>
 <li>
-<p>On your releases repository fork, either reuse the previous branch or create a new one.</p>
-</li>
-<li>
-<p>Edit the release yaml file (<code>v0.8.0.yaml</code>). Update the <code>status</code> field to <code>released</code> and add the <code>submariner-operator</code>
-and <code>submariner-charts</code> components with their latest commit ID hashes:</p>
+<p>Update the release YAML file <code>status</code> field to <code>released</code>. Add the <code>submariner-operator</code> and <code>submariner-charts</code> components with their
+latest commit ID hashes.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">-status: projects
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+status: released
 </span><span style="color:#a6e22e"></span> components:
@@ -1991,88 +1987,78 @@ and <code>submariner-charts</code> components with their latest commit ID hashes
 </span><span style="color:#a6e22e">+  submariner-operator: &lt;hash goes here&gt;
 </span></code></pre></div></li>
 <li>
-<p>Commit the modified file, create a new pull request, and have it reviewed and merged.</p>
-</li>
-</ol>
-<p>Once the pull request is merged, it will trigger a CI job to generate and tag the <code>submariner-operator</code> image which should be
-made available on Quay here:</p>
-<blockquote>
-<p><a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">https://quay.io/repository/submariner/submariner-operator?tab=tags</a></p>
-</blockquote>
-<p>The final product release will be created on the <a href="https://github.com/submariner-io/releases/releases">releases repository</a>
-with a job triggered to publish the <code>subctl</code> binaries for the various platforms. These should be listed under the <code>Assets</code>
-section for the new release. If not then the job failed so correct the issue and re-run the job.</p>
-<p>If the release wasn&rsquo;t marked as a <code>pre-release</code>, the release job will also create pull requests in each consuming project
-to unpin the <code>shipyard</code> Dapper base image version, that is set it back to <code>devel</code>. For ongoing development we want each
-project to automatically pick up the latest changes to the base image.</p>
-<h3 id="step-5-add-release-notes">Step 5: Add release notes</h3>
-<p>If this is a final release, add a section for it on this website&rsquo;s <a href="../../community/releases/">release notes</a> page.</p>
-<ol>
-<li>
-<p>Clone the <a href="https://github.com/submariner-io/submariner-website">submariner-website</a> project.</p>
+<p>Commit your changes, create a pull request, and have it reviewed.</p>
 </li>
 <li>
-<p>Open <code>src/content/releases/_index.en.md</code> and make changes.</p>
-</li>
-<li>
-<p>Commit the changes, create a pull request, and have it reviewed and merged.</p>
-</li>
-</ol>
-<p>Alternatively you can edit the file and create a pull request directly on GitHub
-<a href="https://github.com/submariner-io/submariner-website/edit/devel/src/content/community/releases/_index.en.md">here</a></p>
-<h3 id="step-6-verify-the-release">Step 6: Verify the release</h3>
-<p>You can follow any of the <a href="../../getting-started/quickstart">quick start guides</a>.</p>
-<h3 id="step-7-update-the-submariner-operator-on-operatorhubio">Step 7: Update the Submariner Operator on OperatorHub.io</h3>
-<p>The <a href="https://github.com/operator-framework/community-operators">community-operators</a> Git repository
-is the source for sharing Kubernetes Operators with the broader community. This repository is split into two sections:</p>
+<p><strong>Verify</strong>:</p>
 <ul>
-<li>Operators for deployment to a vanilla Kubernetes environment (upstream-community-operators).
-These are shared with the Kubernetes community via <a href="https://operatorhub.io/">OperatorHub.io</a>.</li>
-<li>Operators for deployment to OpenShift (community-operators)</li>
+<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml">releases/release job</a> passed.</li>
+<li>The <a href="https://github.com/submariner-io/releases/releases"><code>subctl</code> artifacts</a> were released</li>
+<li>The <a href="https://github.com/submariner-io/submariner-operator/releases">submariner-operator release</a> was created.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">submariner/submariner-operator image</a> is on Quay.</li>
 </ul>
-<p>Here we are going to update the Submariner Operator on OperatorHub.io. OpenShift users will find the Operator in the
-official Red Hat catalog.</p>
-<p>To publish the Submariner Operator to the community, perform the following steps:</p>
+</li>
+<li>
+<p>If the release wasn&rsquo;t marked as a <code>pre-release</code>, the releases/release job will also create pull requests in each consuming project to
+unpin the Shipyard Dapper base image version, that is set it back to <code>devel</code>. For ongoing development we want each project to
+automatically pick up the latest changes to the base image.</p>
+</li>
+</ol>
+<h3 id="step-5-verify-release">Step 5: Verify Release</h3>
+<p>You can follow any of the <a href="../../getting-started/quickstart">quick start guides</a>.</p>
+<h3 id="step-6-update-operatorhubio">Step 6: Update OperatorHub.io</h3>
+<p>The <a href="https://github.com/operator-framework/community-operators">operator-framework/community-operators</a> Git repository
+is a source for sharing Kubernetes Operators with the broader community. This repository is split into two sections:</p>
+<ul>
+<li>Operators for deployment to a vanilla Kubernetes environment (<code>upstream-community-operators</code>).
+These are shared with the Kubernetes community via <a href="https://operatorhub.io/">OperatorHub.io</a>.</li>
+<li>Operators for deployment to OpenShift (<code>community-operators</code>)</li>
+</ul>
+<p>We only need to update Submariner&rsquo;s Operator on OperatorHub.io. OpenShift users will find Submariner&rsquo;s Operator in the official Red Hat
+catalog.</p>
 <ol>
 <li>
-<p>Clone the <a href="https://github.com/submariner-io/submariner-operator">submariner-operator</a> project</p>
+<p>Clone the <a href="https://github.com/submariner-io/submariner-operator">submariner-operator</a> repository.</p>
 </li>
 <li>
-<p>Make sure you have operator-sdk v1 installed on your machine
-otherwise follow <a href="https://v1-0-x.sdk.operatorframework.io/docs/installation/install-operator-sdk/">this guide</a></p>
+<p>Make sure you have <a href="https://v1-0-x.sdk.operatorframework.io/docs/installation/install-operator-sdk/"><code>operator-sdk</code> v1 installed</a>.</p>
 </li>
 <li>
-<p>Generate new package manifests by running the command:</p>
+<p>Generate new package manifests:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make packagemanifests VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>new_version<span style="color:#e6db74">}</span> FROM_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>previous_version<span style="color:#e6db74">}</span> CHANNEL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>channel<span style="color:#e6db74">}</span>
-</code></pre></div><p>the generated package output should be located in <code>/packagemanifests/${VERSION}/</code></p>
+</code></pre></div><p>Generated package manifests should be in <code>/packagemanifests/${VERSION}/</code>.</p>
 </li>
 <li>
-<p>Fork and clone <a href="https://github.com/operator-framework/community-operators">community-operators</a> project.</p>
+<p>Fork and clone the <a href="https://github.com/operator-framework/community-operators">operator-framework/community-operators</a> repository.</p>
 </li>
 <li>
 <p>Update the Kubernetes Operator:</p>
 <ul>
-<li>copy the generated package from step 3 into <code>upstream-community-operators/submariner</code></li>
-<li>copy the generated package definition <code>/packagemanifests/submariner.package.yaml</code>
+<li>Copy the generated package from Step 3 into <code>upstream-community-operators/submariner</code></li>
+<li>Copy the generated package definition <code>/packagemanifests/submariner.package.yaml</code>
 into <code>upstream-community-operators/submariner/</code></li>
-<li>test the Operator by running the command: <code>make operator.test OP_PATH=upstream-community-operators/submariner</code></li>
-<li>preview the Operator on <a href="https://operatorhub.io/preview">OperatorHub.io</a></li>
-<li>once everything is fine, review this
+<li>Test the Operator by running: <code>make operator.test OP_PATH=upstream-community-operators/submariner</code></li>
+<li>Preview the Operator on <a href="https://operatorhub.io/preview">OperatorHub.io</a></li>
+<li>Once everything is fine, review this
 <a href="https://github.com/operator-framework/community-operators/blob/master/docs/pull_request_template.md">checklist</a>
-and create a new PR on <a href="https://github.com/operator-framework/community-operators">community-operators</a></li>
+and create a new PR on <a href="https://github.com/operator-framework/community-operators">operator-framework/community-operators</a></li>
 </ul>
 </li>
 </ol>
-<h3 id="step-8-announce-the-release">Step 8: Announce the release</h3>
-<h4 id="via-e-mail">Via E-Mail</h4>
+<h3 id="step-7-announce-release">Step 7: Announce Release</h3>
+<h4 id="e-mail">E-Mail</h4>
+<p>Once the release and release notes are published, make an announcement to both Submariner mailing lists.</p>
 <ul>
-<li><a href="https://bit.ly/submariner-dev">https://bit.ly/submariner-dev</a></li>
-<li><a href="https://bit.ly/submariner-users">https://bit.ly/submariner-users</a></li>
+<li><a href="https://groups.google.com/g/submariner-dev">submariner-dev</a></li>
+<li><a href="https://groups.google.com/g/submariner-users">submariner-users</a></li>
 </ul>
-<h4 id="via-twitter">Via Twitter</h4>
+<p>See the <a href="https://groups.google.com/g/submariner-users/c/2F8Fzvi4mS4">v0.8.0 email example</a>.</p>
+<h4 id="twitter">Twitter</h4>
+<p>Synthesize the release notes and summarize the key points in a Tweet. Link to the release notes for details.</p>
 <ul>
-<li><a href="https://twitter.com/submarinerio">https://twitter.com/submarinerio</a></li>
+<li><a href="https://twitter.com/submarinerio">@submarinerio</a></li>
 </ul>
+<p>See the <a href="https://twitter.com/submarinerio/status/1341347551396687872">v0.8.0 Tweet example</a>.</p>
 
 
 
@@ -2967,19 +2953,19 @@ and create a new PR on <a href="https://github.com/operator-framework/community-
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1623835685"></script>
-    <script src="/js/perfect-scrollbar.min.js?1623835685"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1623835685"></script>
-    <script src="/js/jquery.sticky.js?1623835685"></script>
-    <script src="/js/featherlight.min.js?1623835685"></script>
-    <script src="/js/highlight.pack.js?1623835685"></script>
+    <script src="/js/clipboard.min.js?1623944840"></script>
+    <script src="/js/perfect-scrollbar.min.js?1623944840"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1623944840"></script>
+    <script src="/js/jquery.sticky.js?1623944840"></script>
+    <script src="/js/featherlight.min.js?1623944840"></script>
+    <script src="/js/highlight.pack.js?1623944840"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1623835685"></script>
-    <script src="/js/learn.js?1623835685"></script>
-    <script src="/js/hugo-learn.js?1623835685"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1623944840"></script>
+    <script src="/js/learn.js?1623944840"></script>
+    <script src="/js/hugo-learn.js?1623944840"></script>
 
-    <link href="/mermaid/mermaid.css?1623835685" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1623835685"></script>
+    <link href="/mermaid/mermaid.css?1623944840" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1623944840"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
