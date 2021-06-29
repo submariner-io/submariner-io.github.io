@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/development/backports/</loc>
+    <lastmod>2021-06-21T16:03:26+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/development/website/style-guide/</loc>
     <lastmod>2020-04-29T19:09:55+02:00</lastmod>
   </url>
@@ -231,7 +236,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2021-06-09T13:52:26+02:00</lastmod>
+    <lastmod>2021-06-21T16:03:26+02:00</lastmod>
     <priority>0</priority>
   </url>
   
