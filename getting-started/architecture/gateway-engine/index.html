@@ -12,20 +12,20 @@
     <title>Gateway Engine :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1625489586" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1625489586" rel="stylesheet">
-    <link href="/css/hybrid.css?1625489586" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1625489586" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1625489586" rel="stylesheet">
-    <link href="/css/auto-complete.css?1625489586" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1625489586" rel="stylesheet">
-    <link href="/css/theme.css?1625489586" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1625489586" rel="stylesheet">
+    <link href="/css/nucleus.css?1625578903" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1625578903" rel="stylesheet">
+    <link href="/css/hybrid.css?1625578903" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1625578903" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1625578903" rel="stylesheet">
+    <link href="/css/auto-complete.css?1625578903" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1625578903" rel="stylesheet">
+    <link href="/css/theme.css?1625578903" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1625578903" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1625489586" rel="stylesheet">
+      <link href="/css/theme-blue.css?1625578903" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1625489586"></script>
+    <script src="/js/jquery-3.3.1.min.js?1625578903"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1625489586" rel="stylesheet">
+<link href="/css/fixes.css?1625578903" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/architecture/gateway-engine/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1625489586"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1625489586"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1625578903"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1625578903"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1625489586"></script>
+<script type="text/javascript" src="/js/search.js?1625578903"></script>
 
     
   </div>
@@ -583,6 +583,34 @@
         ">
       <a href="/getting-started/quickstart/openshift/aws/">
           On AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/quickstart/openshift/aws-lb/" title="On AWS (LoadBalancer mode)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/getting-started/quickstart/openshift/aws-lb/">
+          On AWS (LoadBalancer mode)
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1799,6 +1827,8 @@
     <li>
       <ul>
         <li></li>
+        <li><a href="#load-balancer-mode">Load Balancer mode</a></li>
+        <li><a href="#preferred-server-mode">Preferred-server mode</a></li>
       </ul>
     </li>
   </ul>
@@ -1887,6 +1917,35 @@ its connection status is marked with an error state. Service Discovery uses this
 to avoid unhealthy clusters during Service discovery.</p>
 <p>The health checking feature can be enabled/disabled via an option on the
 <a href="../../../operations/deployment/subctl/#join-flags-healthcheck"><code>subctl</code></a> join command.</p>
+<h3 id="load-balancer-mode">Load Balancer mode</h3>
+
+<div class="notices info" ><p>The load balancer mode is still experimental, and is yet to be tested in all cloud providers nor in different failover scenarios.</p>
+</div>
+
+<p>The load balancer mode is designed to simplify the deployment of Submariner in cloud environments
+where worker nodes don&rsquo;t have a dedicated public IP available.</p>
+<p>When enabled for a cluster during <a href="../../../operations/deployment/subctl/#join-flags-general"><code>subctl join</code></a>,
+the operator will create a LoadBalancer type Service exposing both the encapsulation dataplane port
+as well as the NAT-T discovery port. This load balancer targets Pods labeled with
+<code>gateway.submariner.io/status=active</code> and <code>app=submariner-gateway</code>.</p>
+<p>When the LoadBalancer mode is enabled, the <code>preferred-server</code> mode is enabled automatically for
+the cluster, as IPsec is incompatible with the bi-directional connection mode and the
+load balancers and client/server connectivity is necessary.</p>
+<p><img src="/images/high-availability/HA_Cluster_LB1.png" alt="Figure 3 - Gateway behind load balancer"></p>
+<p>If a failover occurred, the load balancer would update to the new available and active
+gateway endpoints.</p>
+<p><img src="/images/high-availability/HA_Cluster_LB2.png" alt="Figure 4 - Gateway behind load balancer failover"></p>
+<h3 id="preferred-server-mode">Preferred-server mode</h3>
+<p>This mode is specific to the libreswan cable-driver which is based on IPsec. Other cable drivers ignore
+this setting.</p>
+<p>When enabled for a cluster during <a href="../../../operations/deployment/subctl/#join-flags-general"><code>subctl join</code></a>,
+the gateway will try to establish connection with other clusters by configuring the IPsec connection
+in server mode, and waiting for remote connections.</p>
+<p>Remote clusters will identify the <code>preferred-server</code> mode of this cluster, and attempt the connection.
+This is useful in environments where on-premises clusters don&rsquo;t have access to port mapping.</p>
+<p>When both sides of a connection are in <code>preferred-server</code> mode, they will compare the endpoint cable
+names to decide which one will be server and which one will be client. When cable names are ordered
+alphabetically, the first one will be the client, the second one will be the server.</p>
 
 
 
@@ -2189,6 +2248,22 @@ to avoid unhealthy clusters during Service discovery.</p>
                     
                     
 
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
                         
             
@@ -2795,19 +2870,19 @@ to avoid unhealthy clusters during Service discovery.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1625489586"></script>
-    <script src="/js/perfect-scrollbar.min.js?1625489586"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1625489586"></script>
-    <script src="/js/jquery.sticky.js?1625489586"></script>
-    <script src="/js/featherlight.min.js?1625489586"></script>
-    <script src="/js/highlight.pack.js?1625489586"></script>
+    <script src="/js/clipboard.min.js?1625578903"></script>
+    <script src="/js/perfect-scrollbar.min.js?1625578903"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1625578903"></script>
+    <script src="/js/jquery.sticky.js?1625578903"></script>
+    <script src="/js/featherlight.min.js?1625578903"></script>
+    <script src="/js/highlight.pack.js?1625578903"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1625489586"></script>
-    <script src="/js/learn.js?1625489586"></script>
-    <script src="/js/hugo-learn.js?1625489586"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1625578903"></script>
+    <script src="/js/learn.js?1625578903"></script>
+    <script src="/js/hugo-learn.js?1625578903"></script>
 
-    <link href="/mermaid/mermaid.css?1625489586" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1625489586"></script>
+    <link href="/mermaid/mermaid.css?1625578903" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1625578903"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
