@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1627299029" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1627299029" rel="stylesheet">
-    <link href="/css/hybrid.css?1627299029" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1627299029" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1627299029" rel="stylesheet">
-    <link href="/css/auto-complete.css?1627299029" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1627299029" rel="stylesheet">
-    <link href="/css/theme.css?1627299029" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1627299029" rel="stylesheet">
+    <link href="/css/nucleus.css?1627396543" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1627396543" rel="stylesheet">
+    <link href="/css/hybrid.css?1627396543" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1627396543" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1627396543" rel="stylesheet">
+    <link href="/css/auto-complete.css?1627396543" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1627396543" rel="stylesheet">
+    <link href="/css/theme.css?1627396543" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1627396543" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1627299029" rel="stylesheet">
+      <link href="/css/theme-blue.css?1627396543" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1627299029"></script>
+    <script src="/js/jquery-3.3.1.min.js?1627396543"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1627299029" rel="stylesheet">
+<link href="/css/fixes.css?1627396543" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/release-process/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1627299029"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1627299029"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1627396543"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1627396543"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1627299029"></script>
+<script type="text/javascript" src="/js/search.js?1627396543"></script>
 
     
   </div>
@@ -1818,17 +1818,23 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#ordering">Ordering</a></li>
-    <li><a href="#versions">Versions</a></li>
-    <li><a href="#create-release">Create Release</a>
+    <li><a href="#release-concepts">Release Concepts</a>
       <ul>
-        <li><a href="#final-releases-add-release-notes">Final Releases: Add Release Notes</a></li>
+        <li><a href="#project-release-order">Project Release Order</a></li>
+        <li><a href="#choosing-versions">Choosing Versions</a></li>
+        <li><a href="#creating-releases">Creating Releases</a></li>
+        <li><a href="#release-notes-final-releases">Release Notes (Final Releases)</a></li>
+      </ul>
+    </li>
+    <li><a href="#automated-release-creation-process">Automated Release Creation Process</a></li>
+    <li><a href="#manual-release-creation-process">Manual Release Creation Process</a>
+      <ul>
         <li><a href="#stable-releases-create-stable-branches">Stable Releases: Create Stable Branches</a></li>
         <li><a href="#step-1-create-shipyard-release">Step 1: Create Shipyard Release</a></li>
         <li><a href="#step-2-create-admiral-release">Step 2: Create Admiral Release</a></li>
         <li><a href="#step-3-create-cloud-prepare-lighthouse-and-submariner-releases">Step 3: Create cloud-prepare, Lighthouse, and Submariner Releases</a></li>
         <li><a href="#step-4-create-operator-and-charts-releases">Step 4: Create Operator and Charts Releases</a></li>
-        <li><a href="#step-5-verify-release">Step 5: Verify Release</a></li>
+        <li><a href="#verify">Step 5: Verify Release</a></li>
         <li><a href="#step-6-update-operatorhubio">Step 6: Update OperatorHub.io</a></li>
         <li><a href="#step-7-announce-release">Step 7: Announce Release</a></li>
       </ul>
@@ -1860,14 +1866,15 @@
 
 
 	<p>These docs describe how to create a Submariner release.</p>
-<h2 id="ordering">Ordering</h2>
+<h2 id="release-concepts">Release Concepts</h2>
+<h3 id="project-release-order">Project Release Order</h3>
 <p>Submariner&rsquo;s projects have a dependency hierarchy among their Go libraries and container images, which drives their release order.</p>
 <p>The Go dependency hierarchy is:</p>
 <p><code>shipyard</code> &lt;- <code>admiral</code> &lt;- [<code>submariner</code>, <code>lighthouse</code>, <code>cloud-prepare</code>] &lt;- <code>submariner-operator</code></p>
 <p>The container image dependency hierarchy is:</p>
 <p><code>subctl</code> binary &lt;- <code>shipyard-dapper-base</code> image &lt;- [<code>admiral</code>, <code>cloud-prepare</code>, <code>submariner</code>, <code>lighthouse</code>, <code>submariner-operator</code>]</p>
 <p>Projects in brackets are siblings and do not depend on each other. Dependencies of siblings require all siblings to have aligned versions.</p>
-<h2 id="versions">Versions</h2>
+<h3 id="choosing-versions">Choosing Versions</h3>
 <p>Version numbers are required to be formatted following the schema norms where they are used.</p>
 <ul>
 <li>Git: <code>vx.y.z</code> (example: <code>v0.8.0</code>)</li>
@@ -1878,7 +1885,7 @@
 <li>Single-project testing release: Append <code>-preN</code> starting at 0 (example: <code>v0.8.0-pre0</code>)</li>
 <li>Release errors: Append <code>.N</code> starting at 1 (example: <code>v0.8.0-m1.1</code>)</li>
 </ul>
-<h2 id="create-release">Create Release</h2>
+<h3 id="creating-releases">Creating Releases</h3>
 <p>The following sections are an ordered series of steps to create a Submariner relese.</p>
 <p>The release process is mostly automated and uses a YAML file created in the releases repository that describes the release.
 This file is updated for each step in the release process.</p>
@@ -1892,11 +1899,37 @@ of the file list heading which indicates a job is in progress. You can click it 
 for the job listed but the important one is &ldquo;Release Images&rdquo;. When complete, the indicator icon will change to either a
 green check mark on success or a red X on failure. A failure likely means the artifacts were not published to Quay, in
 which case select the failed check, inspect the logs, correct the issue and re-run the job.</p>
-<h3 id="final-releases-add-release-notes">Final Releases: Add Release Notes</h3>
+<h3 id="release-notes-final-releases">Release Notes (Final Releases)</h3>
 <p>If you&rsquo;re creating a release meant for general consumption, not a milestone or release candidate, <a href="../../community/releases/">release notes</a>
 must also be created.</p>
 <p>It&rsquo;s best to start working with the broader community to create release notes well before the release. Create a PR to start the process, and
 work with contributors to get everything added and reviewed.</p>
+<h2 id="automated-release-creation-process">Automated Release Creation Process</h2>
+<p>Most of the release can be done in a series of mostly-automated steps. After each step, a Pull Request is sent with the correct YAML
+content for the release, this needs to be reviewed. Once the pull request is merged, the release process will continue automatically
+and the next step can be initiated shortly after making sure the release jobs on the <code>releases</code> and any participating repositories are done.</p>
+
+<div class="notices info" ><p>You need to set <code>GITHUB_TOKEN</code> environment variable to a <a href="https://github.com/settings/tokens">Personal Access Token</a> you create.
+The token needs at least <code>public_repo</code> scope for the automated release to work.</p>
+</div>
+
+<p>To run the automated release, simply clone the <a href="https://github.com/submariner-io/releases">releases</a> repository and execute:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make release VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.8.0&#34;</span>
+</code></pre></div><p>Make sure to specify the proper version you&rsquo;re intending to release (e.g. for rc0 specify <code>VERSION=&quot;0.8.0-rc0&quot;</code>).</p>
+<p>By default, the action will try to push to the GitHub account used in the <code>origin</code> remote.
+If you want to use a specific GitHub account, set <code>GITHUB_ACTOR</code> to the desired account, e.g.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make release VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.8.0&#34;</span> GITHUB_ACTOR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;octocat&#34;</span>
+</code></pre></div>
+<div class="notices tip" ><p>You can run the process without pushing the PR automatically (obviating the need to set <code>GITHUB_TOKEN</code>).
+To do so, run the <code>make</code> command with <code>dryrun=true</code>.</p>
+</div>
+
+<p>The command runs, gathers the data for the release, updates the release YAML and pushes it for review. Once the review process is done,
+and the automated release steps on the CI have finished successfully, simply <strong>run the same command again to advance to the next stage</strong>.</p>
+<p>Once there isn&rsquo;t anything else to do, the command will inform you. At this point, continue manually with any steps not automated yet,
+starting with <a href="#verify">Verify Release</a>.</p>
+<h2 id="manual-release-creation-process">Manual Release Creation Process</h2>
+<p>These instructions are here as a backup in case the automated creation process has problems, and to serve as a guide.</p>
 <h3 id="stable-releases-create-stable-branches">Stable Releases: Create Stable Branches</h3>
 <p>If you&rsquo;re creating a stable release, you need to create a stable branch for backports in each repository. Milestone releases don&rsquo;t receive
 backports and therefore don&rsquo;t need branches.</p>
@@ -2060,7 +2093,7 @@ unpin the Shipyard Dapper base image version, that is set it back to <code>devel
 automatically pick up the latest changes to the base image.</p>
 </li>
 </ol>
-<h3 id="step-5-verify-release">Step 5: Verify Release</h3>
+<h3 id="verify">Step 5: Verify Release</h3>
 <p>You can follow any of the <a href="../../getting-started/quickstart">quick start guides</a>.</p>
 <h3 id="step-6-update-operatorhubio">Step 6: Update OperatorHub.io</h3>
 <p>The <a href="https://github.com/operator-framework/community-operators">operator-framework/community-operators</a> Git repository
@@ -3041,19 +3074,19 @@ and create a new PR on <a href="https://github.com/operator-framework/community-
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1627299030"></script>
-    <script src="/js/perfect-scrollbar.min.js?1627299030"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1627299030"></script>
-    <script src="/js/jquery.sticky.js?1627299030"></script>
-    <script src="/js/featherlight.min.js?1627299030"></script>
-    <script src="/js/highlight.pack.js?1627299030"></script>
+    <script src="/js/clipboard.min.js?1627396543"></script>
+    <script src="/js/perfect-scrollbar.min.js?1627396543"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1627396543"></script>
+    <script src="/js/jquery.sticky.js?1627396543"></script>
+    <script src="/js/featherlight.min.js?1627396543"></script>
+    <script src="/js/highlight.pack.js?1627396543"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1627299030"></script>
-    <script src="/js/learn.js?1627299030"></script>
-    <script src="/js/hugo-learn.js?1627299030"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1627396543"></script>
+    <script src="/js/learn.js?1627396543"></script>
+    <script src="/js/hugo-learn.js?1627396543"></script>
 
-    <link href="/mermaid/mermaid.css?1627299030" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1627299030"></script>
+    <link href="/mermaid/mermaid.css?1627396543" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1627396543"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
