@@ -12,20 +12,20 @@
     <title>User Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1628866141" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1628866141" rel="stylesheet">
-    <link href="/css/hybrid.css?1628866141" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1628866141" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1628866141" rel="stylesheet">
-    <link href="/css/auto-complete.css?1628866141" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1628866141" rel="stylesheet">
-    <link href="/css/theme.css?1628866141" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1628866141" rel="stylesheet">
+    <link href="/css/nucleus.css?1628869264" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1628869264" rel="stylesheet">
+    <link href="/css/hybrid.css?1628869264" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1628869264" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1628869264" rel="stylesheet">
+    <link href="/css/auto-complete.css?1628869264" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1628869264" rel="stylesheet">
+    <link href="/css/theme.css?1628869264" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1628869264" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1628866141" rel="stylesheet">
+      <link href="/css/theme-blue.css?1628869264" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1628866141"></script>
+    <script src="/js/jquery-3.3.1.min.js?1628869264"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1628866141" rel="stylesheet">
+<link href="/css/fixes.css?1628869264" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/usage/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1628866141"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1628866141"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1628869264"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1628869264"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1628866141"></script>
+<script type="text/javascript" src="/js/search.js?1628869264"></script>
 
     
   </div>
@@ -2033,15 +2033,35 @@ clusters for service discovery to work properly.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster3/auth/kubeconfig
 $ kubectl config use-context cluster3
 Switched to context <span style="color:#e6db74">&#34;cluster3&#34;</span>.
-</code></pre></div><p>The following commands create an <code>nginx</code> Service in the nginx-test namespace which targets TCP port 8080 on any Pod with the <code>app: nginx</code>
-label and exposes it on an abstracted Service port. When created, the Service is assigned a unique IP address (also called ClusterIP):</p>
+</code></pre></div><p>The following commands create an <code>nginx</code> Service in the <code>nginx-test</code> namespace which targets TCP port 8080, with name http,
+on any Pod with the <code>app: nginx</code> label and exposes it on an abstracted Service port. When created, the Service is assigned
+a unique IP address (also called <code>ClusterIP</code>):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create namespace nginx-test
 namespace/nginx-test created
 
 $ kubectl -n nginx-test create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
 deployment.apps/nginx created
-
-$ kubectl -n nginx-test expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+</code></pre></div><p><code>kubectl apply</code> the following YAML within the  <code>nginx-test</code> namespace to create the service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: nginx-test
+spec:
+  ports:
+  - name: http
+    port: <span style="color:#ae81ff">8080</span>
+    protocol: TCP
+    targetPort: <span style="color:#ae81ff">8080</span>
+  selector:
+    app: nginx
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: <span style="color:#f92672">{}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test apply -f nginx-svc.yaml
 service/nginx exposed
 </code></pre></div><p>Verify that the Service exists and is running:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test get service nginx
@@ -2150,6 +2170,29 @@ nginx.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN A
 ;; SERVER: 100.2.0.10#53<span style="color:#f92672">(</span>100.2.0.10<span style="color:#f92672">)</span>
 ;; WHEN: Mon Nov <span style="color:#ae81ff">30</span> 17:52:55 UTC <span style="color:#ae81ff">2020</span>
 ;; MSG SIZE  rcvd: <span style="color:#ae81ff">125</span>
+</code></pre></div><!-- markdownlint-disable no-hard-tabs -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">; &lt;&lt;&gt;&gt; DiG 9.16.6 &lt;&lt;&gt;&gt; SRV _http._tcp.nginx.nginx-test.svc.clusterset.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved <span style="color:#66d9ef">for</span> Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; -&gt;&gt;HEADER<span style="color:#e6db74">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ae81ff">21993</span>
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span style="color:#ae81ff">1</span>
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: <span style="color:#ae81ff">4096</span>
+; COOKIE: 3f6018af2626ebd2 <span style="color:#f92672">(</span>echoed<span style="color:#f92672">)</span>
+;; QUESTION SECTION:
+;_http._tcp.nginx.nginx-test.svc.clusterset.local. IN SRV
+
+;; ANSWER SECTION:
+_http._tcp.nginx.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN SRV <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">8080</span> nginx.nginx-test.svc.clusterset.local.
+
+;; Query time: <span style="color:#ae81ff">3</span> msec
+;; SERVER: 100.2.0.10#53<span style="color:#f92672">(</span>100.2.0.10<span style="color:#f92672">)</span>
+;; WHEN: Fri Jul <span style="color:#ae81ff">23</span> 07:35:51 UTC <span style="color:#ae81ff">2021</span>
+;; MSG SIZE  rcvd: <span style="color:#ae81ff">194</span>
 </code></pre></div><!-- markdownlint-enable no-hard-tabs -->
 <p>Note that DNS resolution works across the clusters, and that the IP address <strong>100.3.220.176</strong> returned is the same ClusterIP associated with
 the <code>nginx</code> Service on <strong>cluster3</strong>.</p>
@@ -2158,8 +2201,27 @@ the <code>nginx</code> Service on <strong>cluster3</strong>.</p>
 To test this, we will deploy the same <code>nginx</code> Service in the same namespace on <strong>cluster2</strong>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
 deployment.apps/nginx created
-
-$ kubectl -n nginx-test expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+</code></pre></div><p><code>kubectl apply</code> the following YAML within the <code>nginx-test</code> namespace to create the service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: nginx-test
+spec:
+  ports:
+  - name: http
+    port: <span style="color:#ae81ff">8080</span>
+    protocol: TCP
+    targetPort: <span style="color:#ae81ff">8080</span>
+  selector:
+    app: nginx
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: <span style="color:#f92672">{}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test apply -f nginx-svc.yaml
 service/nginx exposed
 </code></pre></div><p>Verify the Service exists and is running:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test get service nginx
@@ -2255,6 +2317,31 @@ nginx.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN A
 ;; WHEN: Tue Dec <span style="color:#ae81ff">01</span> 07:45:48 UTC <span style="color:#ae81ff">2020</span>
 ;; MSG SIZE  rcvd: <span style="color:#ae81ff">125</span>
 </code></pre></div><!-- markdownlint-enable no-hard-tabs -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# dig SRV _http._tcp.nginx.nginx-test.svc.clusterset.local
+
+; &lt;&lt;&gt;&gt; DiG 9.16.6 &lt;&lt;&gt;&gt; SRV _http._tcp.nginx.nginx-test.svc.clusterset.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved <span style="color:#66d9ef">for</span> Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; -&gt;&gt;HEADER<span style="color:#e6db74">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ae81ff">19656</span>
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span style="color:#ae81ff">1</span>
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: <span style="color:#ae81ff">4096</span>
+; COOKIE: 8fe1ebfcf9165a8d <span style="color:#f92672">(</span>echoed<span style="color:#f92672">)</span>
+;; QUESTION SECTION:
+;_http._tcp.nginx.nginx-test.svc.clusterset.local. IN SRV
+
+;; ANSWER SECTION:
+_http._tcp.nginx.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN SRV <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">8080</span> nginx.nginx-test.svc.clusterset.local.
+
+;; Query time: <span style="color:#ae81ff">16</span> msec
+;; SERVER: 100.2.0.10#53<span style="color:#f92672">(</span>100.2.0.10<span style="color:#f92672">)</span>
+;; WHEN: Fri Jul <span style="color:#ae81ff">23</span> 09:11:21 UTC <span style="color:#ae81ff">2021</span>
+;; MSG SIZE  rcvd: <span style="color:#ae81ff">194</span>
+</code></pre></div><!-- markdownlint-enable no-hard-tabs -->
 
 <div class="notices note" ><p>At this point we have the same <code>nginx</code> Service deployed within the nginx-test namespace on both clusters. Note that DNS resolution works,
 and the IP address <strong>100.2.29.136</strong> returned is the ClusterIP associated with the <em>local</em> nginx Service deployed on <strong>cluster2</strong>. This is
@@ -2266,7 +2353,8 @@ expected, as Submariner prefers to handle the traffic locally whenever possible.
 <ul>
 <li>
 <p>If an exported Service is not available in the local cluster, Lighthouse DNS returns the IP address of the ClusterIP Service from one of
-the remote clusters on which the Service was exported.</p>
+the remote clusters on which the Service was exported. If it is an SRV query, an SRV record with port and domain name corresponding to
+the ClusterIP will be returned.</p>
 </li>
 <li>
 <p>If an exported Service is available in the local cluster, Lighthouse DNS always returns the IP address of the local ClusterIP Service.
@@ -2451,6 +2539,31 @@ nginx-ss.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> I
 ;; SERVER: 100.2.0.10#53<span style="color:#f92672">(</span>100.2.0.10<span style="color:#f92672">)</span>
 ;; WHEN: Mon Nov <span style="color:#ae81ff">30</span> 20:18:08 UTC <span style="color:#ae81ff">2020</span>
 ;; MSG SIZE  rcvd: <span style="color:#ae81ff">184</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# dig SRV _web._tcp.nginx-ss.nginx-test.svc.clusterset.local
+
+; &lt;&lt;&gt;&gt; DiG 9.16.6 &lt;&lt;&gt;&gt; SRV _web._tcp.nginx-ss.nginx-test.svc.clusterset.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved <span style="color:#66d9ef">for</span> Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; -&gt;&gt;HEADER<span style="color:#e6db74">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ae81ff">16402</span>
+;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: <span style="color:#ae81ff">1</span>
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: <span style="color:#ae81ff">4096</span>
+; COOKIE: cf1e04578842eb5b <span style="color:#f92672">(</span>echoed<span style="color:#f92672">)</span>
+;; QUESTION SECTION:
+;_web._tcp.nginx-ss.nginx-test.svc.clusterset.local. IN SRV
+
+;; ANSWER SECTION:
+_web._tcp.nginx-ss.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN SRV <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">80</span> web-0.cluster3.nginx-ss.nginx-test.svc.clusterset.local.
+_web._tcp.nginx-ss.nginx-test.svc.clusterset.local. <span style="color:#ae81ff">5</span> IN SRV <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">80</span> web-1.cluster3.nginx-ss.nginx-test.svc.clusterset.local.
+
+;; Query time: <span style="color:#ae81ff">2</span> msec
+;; SERVER: 100.2.0.10#53<span style="color:#f92672">(</span>100.2.0.10<span style="color:#f92672">)</span>
+;; WHEN: Fri Jul <span style="color:#ae81ff">23</span> 07:38:03 UTC <span style="color:#ae81ff">2021</span>
+;; MSG SIZE  rcvd: <span style="color:#ae81ff">341</span>
 </code></pre></div><p>You can also access the individual Pods:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# nslookup web-0.cluster3.nginx-ss.nginx-test.svc.clusterset.local
 Server:		100.2.0.10
@@ -2465,6 +2578,13 @@ Address:	100.2.0.10#53
 
 Name:	web-1.cluster3.nginx-ss.nginx-test.svc.clusterset.local
 Address: 10.3.224.3
+</code></pre></div><p>In case of SRV you can access pod from individual clusters but not the pods direcly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# nslookup -q<span style="color:#f92672">=</span>SRV  _web._tcp.cluster3.nginx-ss.nginx-test.svc.clusterset.local
+Server:		100.2.0.10
+Address:	100.2.0.10#53
+
+_web._tcp.cluster3.nginx-ss.nginx-test.svc.clusterset.local	service <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">80</span> web-0.cluster3.nginx-ss.nginx-test.svc.clusterset.local.
+_web._tcp.cluster3.nginx-ss.nginx-test.svc.clusterset.local	service <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">80</span> web-1.cluster3.nginx-ss.nginx-test.svc.clusterset.local.
 </code></pre></div><!-- markdownlint-enable no-hard-tabs -->
 <h4 id="clean-the-created-resources">Clean the Created Resources</h4>
 <p>To remove the previously created Kubernetes resources, simply delete the nginx-test namespace from both clusters:</p>
@@ -3406,19 +3526,19 @@ namespace <span style="color:#e6db74">&#34;nginx-test&#34;</span> deleted
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1628866141"></script>
-    <script src="/js/perfect-scrollbar.min.js?1628866141"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1628866141"></script>
-    <script src="/js/jquery.sticky.js?1628866141"></script>
-    <script src="/js/featherlight.min.js?1628866141"></script>
-    <script src="/js/highlight.pack.js?1628866141"></script>
+    <script src="/js/clipboard.min.js?1628869264"></script>
+    <script src="/js/perfect-scrollbar.min.js?1628869264"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1628869264"></script>
+    <script src="/js/jquery.sticky.js?1628869264"></script>
+    <script src="/js/featherlight.min.js?1628869264"></script>
+    <script src="/js/highlight.pack.js?1628869264"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1628866141"></script>
-    <script src="/js/learn.js?1628866141"></script>
-    <script src="/js/hugo-learn.js?1628866141"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1628869264"></script>
+    <script src="/js/learn.js?1628869264"></script>
+    <script src="/js/hugo-learn.js?1628869264"></script>
 
-    <link href="/mermaid/mermaid.css?1628866141" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1628866141"></script>
+    <link href="/mermaid/mermaid.css?1628869264" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1628869264"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
