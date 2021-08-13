@@ -12,20 +12,20 @@
     <title>Troubleshooting :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1628651214" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1628651214" rel="stylesheet">
-    <link href="/css/hybrid.css?1628651214" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1628651214" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1628651214" rel="stylesheet">
-    <link href="/css/auto-complete.css?1628651214" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1628651214" rel="stylesheet">
-    <link href="/css/theme.css?1628651214" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1628651214" rel="stylesheet">
+    <link href="/css/nucleus.css?1628866141" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1628866141" rel="stylesheet">
+    <link href="/css/hybrid.css?1628866141" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1628866141" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1628866141" rel="stylesheet">
+    <link href="/css/auto-complete.css?1628866141" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1628866141" rel="stylesheet">
+    <link href="/css/theme.css?1628866141" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1628866141" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1628651214" rel="stylesheet">
+      <link href="/css/theme-blue.css?1628866141" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1628651214"></script>
+    <script src="/js/jquery-3.3.1.min.js?1628866141"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1628651214" rel="stylesheet">
+<link href="/css/fixes.css?1628866141" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/troubleshooting/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1628651214"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1628651214"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1628866141"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1628866141"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1628651214"></script>
+<script type="text/javascript" src="/js/search.js?1628866141"></script>
 
     
   </div>
@@ -1863,7 +1863,7 @@ again.</p>
 <p>Run <code>kubectl get services -n &lt;service-namespace&gt; | grep &lt;service-name&gt;</code> to get information about the service you&rsquo;re trying to access. This
 will provide you with the Service <em>Name</em>, <em>Namespace</em> and <em>ServiceIP</em>. If <strong>Globalnet</strong> is enabled, you will also need the <em>globalIp</em> of the
 service by running</p>
-<p><code>kubectl get service &lt;service-name&gt; -o jsonpath='{.metadata.annotations.submariner\.io/globalIp}'</code></p>
+<p><code>kubectl get globalingressip &lt;service-name&gt;'</code></p>
 <!---
 
 ### Deployment Issues
@@ -1901,11 +1901,7 @@ be due to multiple factors outlined below.</p>
       <span style="color:#66d9ef">status</span>: connected
       <span style="color:#66d9ef">statusMessage</span>: Connected to <span style="color:#ae81ff">172.17.0.7</span>:<span style="color:#ae81ff">4500</span> - encryption alg=AES_GCM_16, keysize=<span style="color:#ae81ff">128</span>
         rekey-time=<span style="color:#ae81ff">13444</span>
-</code></pre></div>
-<div class="notices note" ><p>This feature is only available for non-Globalnet deployments at the moment.</p>
-</div>
-
-<p>The Gateway Engine uses the <code>Health Check IP</code> of the endpoint to verify connectivity.
+</code></pre></div><p>The Gateway Engine uses the <code>Health Check IP</code> of the endpoint to verify connectivity.
 The connection <code>Status</code> will be marked as <code>error</code>, if it cannot reach this IP,
 and the <code>Status Message</code> will provide more information about the possible failure reason.
 It also provides the statistics for the connection.</p>
@@ -3041,19 +3037,19 @@ from connected clusters.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1628651214"></script>
-    <script src="/js/perfect-scrollbar.min.js?1628651214"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1628651214"></script>
-    <script src="/js/jquery.sticky.js?1628651214"></script>
-    <script src="/js/featherlight.min.js?1628651214"></script>
-    <script src="/js/highlight.pack.js?1628651214"></script>
+    <script src="/js/clipboard.min.js?1628866141"></script>
+    <script src="/js/perfect-scrollbar.min.js?1628866141"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1628866141"></script>
+    <script src="/js/jquery.sticky.js?1628866141"></script>
+    <script src="/js/featherlight.min.js?1628866141"></script>
+    <script src="/js/highlight.pack.js?1628866141"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1628651214"></script>
-    <script src="/js/learn.js?1628651214"></script>
-    <script src="/js/hugo-learn.js?1628651214"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1628866141"></script>
+    <script src="/js/learn.js?1628866141"></script>
+    <script src="/js/hugo-learn.js?1628866141"></script>
 
-    <link href="/mermaid/mermaid.css?1628651214" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1628651214"></script>
+    <link href="/mermaid/mermaid.css?1628866141" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1628866141"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
