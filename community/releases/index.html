@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1628869263" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1628869263" rel="stylesheet">
-    <link href="/css/hybrid.css?1628869263" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1628869263" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1628869263" rel="stylesheet">
-    <link href="/css/auto-complete.css?1628869263" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1628869263" rel="stylesheet">
-    <link href="/css/theme.css?1628869263" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1628869263" rel="stylesheet">
+    <link href="/css/nucleus.css?1629119363" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1629119363" rel="stylesheet">
+    <link href="/css/hybrid.css?1629119363" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1629119363" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1629119363" rel="stylesheet">
+    <link href="/css/auto-complete.css?1629119363" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1629119363" rel="stylesheet">
+    <link href="/css/theme.css?1629119363" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1629119363" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1628869263" rel="stylesheet">
+      <link href="/css/theme-blue.css?1629119363" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1628869263"></script>
+    <script src="/js/jquery-3.3.1.min.js?1629119363"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1628869263" rel="stylesheet">
+<link href="/css/fixes.css?1629119363" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1628869263"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1628869263"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1629119363"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1629119363"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1628869263"></script>
+<script type="text/javascript" src="/js/search.js?1629119363"></script>
 
     
   </div>
@@ -1818,6 +1818,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0101">v0.10.1</a></li>
     <li><a href="#v091">v0.9.1</a></li>
     <li><a href="#v090">v0.9.0</a></li>
     <li><a href="#v081">v0.8.1</a></li>
@@ -1859,7 +1860,36 @@
 
 
 
-	<h2 id="v091">v0.9.1</h2>
+	<h2 id="v0101">v0.10.1</h2>
+<ul>
+<li>Inter-connecting clusters with overlapping CIDRs (Globalnet):
+<ul>
+<li>The initial Globanet implementation is deprecated in favor of a new implementation which is more performant and scalable.
+Globalnet now allows users to explicitly request global IPs at the cluster level, for specific namespaces, or for specific
+Pods. The new Globalnet implementation is not backward-compatible with the initial Globalnet solution and there is no
+upgrade path.</li>
+<li>Globalnet now supports headless Services.</li>
+<li>The default <code>globalnetCIDR</code> range is changed from 169.254.0.0/16 to 242.0.0.0/8 and each cluster is allocated 64K Global IPs.</li>
+<li>Globalnet no longer annotates Pods and Services with global IPs but stores this information in <code>ClusterGlobalEgressIP</code>,
+<code>GlobalEgressIP</code>, and <code>GlobalIngressIP</code> resources.</li>
+</ul>
+</li>
+<li>A new experimental load balancer mode was introduced which is designed to simplify the deployment of Submariner in cloud
+environments where worker nodes do not have access to a dedicated public IP. In this mode, the Submariner Operator creates a
+LoadBalancer Service that exposes both the encapsulation dataplane port as well as the NAT-T discovery port. This mode can be
+enabled by using <code>subctl join --load-balancer</code>.</li>
+<li>Submariner now supports inter-cluster connections based on the VXLAN protocol. This is useful in cases where encryption,
+such as with IPsec or WireGuard, is not desired, for example on connections that are already encrypted where the overhead
+of double encryption is not necesssary or performant. This can be enabled by setting the <code>--cable-driver vxlan</code> option
+during <code>subctl join</code>.</li>
+<li>Submariner now supports SRV DNS queries for both ClusterIP and Headless Services. This facilitates Service discovery using
+port name and protocol. For a ClusterIP Service, this resolves to the port number and the domain name. For a Headless Service,
+the name resolves to multiple answers, one for each Pod backing the Service.</li>
+<li>Improved the Submariner integration with the Calico CNI.</li>
+<li><code>subctl benchmark latency</code> and <code>subctl benchmark throughput</code> now take a new flag <code>--kubecontexts</code> as input instead of
+two kubeconfig files.</li>
+</ul>
+<h2 id="v091">v0.9.1</h2>
 <ul>
 <li>The <code>--kubecontext</code> flag in <code>subctl</code> commands now works properly.</li>
 <li>Simplified <code>subctl cloud prepare aws</code> to extract the credentials, infrastructure ID, and region from a local configuration file (if available).</li>
@@ -3041,19 +3071,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1628869263"></script>
-    <script src="/js/perfect-scrollbar.min.js?1628869263"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1628869263"></script>
-    <script src="/js/jquery.sticky.js?1628869263"></script>
-    <script src="/js/featherlight.min.js?1628869263"></script>
-    <script src="/js/highlight.pack.js?1628869263"></script>
+    <script src="/js/clipboard.min.js?1629119363"></script>
+    <script src="/js/perfect-scrollbar.min.js?1629119363"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1629119363"></script>
+    <script src="/js/jquery.sticky.js?1629119363"></script>
+    <script src="/js/featherlight.min.js?1629119363"></script>
+    <script src="/js/highlight.pack.js?1629119363"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1628869263"></script>
-    <script src="/js/learn.js?1628869263"></script>
-    <script src="/js/hugo-learn.js?1628869263"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1629119363"></script>
+    <script src="/js/learn.js?1629119363"></script>
+    <script src="/js/hugo-learn.js?1629119363"></script>
 
-    <link href="/mermaid/mermaid.css?1628869263" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1628869263"></script>
+    <link href="/mermaid/mermaid.css?1629119363" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1629119363"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
