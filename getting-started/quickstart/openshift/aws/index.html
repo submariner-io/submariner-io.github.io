@@ -12,20 +12,20 @@
     <title>On AWS :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1629125682" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1629125682" rel="stylesheet">
-    <link href="/css/hybrid.css?1629125682" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1629125682" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1629125682" rel="stylesheet">
-    <link href="/css/auto-complete.css?1629125682" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1629125682" rel="stylesheet">
-    <link href="/css/theme.css?1629125682" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1629125682" rel="stylesheet">
+    <link href="/css/nucleus.css?1629127586" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1629127586" rel="stylesheet">
+    <link href="/css/hybrid.css?1629127586" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1629127586" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1629127586" rel="stylesheet">
+    <link href="/css/auto-complete.css?1629127586" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1629127586" rel="stylesheet">
+    <link href="/css/theme.css?1629127586" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1629127586" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1629125682" rel="stylesheet">
+      <link href="/css/theme-blue.css?1629127586" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1629125682"></script>
+    <script src="/js/jquery-3.3.1.min.js?1629127586"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1629125682" rel="stylesheet">
+<link href="/css/fixes.css?1629127586" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/quickstart/openshift/aws/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1629125682"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1629125682"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1629127586"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1629127586"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1629125682"></script>
+<script type="text/javascript" src="/js/search.js?1629127586"></script>
 
     
   </div>
@@ -2068,7 +2068,11 @@ curl nginx-ss.default.svc.clusterset.local:8080
 </code></pre></div><p>To access an individual pod in a specific cluster, prefix the query with <code>&lt;pod-hostname&gt;.&lt;cluster-id&gt;</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl web-0.cluster-a.nginx-ss.default.svc.clusterset.local:8080
 </code></pre></div><h4 id="perform-automated-verification">Perform automated verification</h4>
-<p>This will perform automated verifications between the clusters.</p>
+<p>The contexts on both config files are named <code>admin</code> and need to be modified before running the <code>verify</code> command.
+Here is how this can be done using <a href="http://mikefarah.github.io/yq/">yq</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yq e -i <span style="color:#e6db74">&#39;.contexts[0].name = &#34;cluster-a&#34; | .current-context = &#34;cluster-a&#34;&#39;</span> cluster-a/auth/kubeconfig
+yq e -i <span style="color:#e6db74">&#39;.contexts[0].name = &#34;cluster-b&#34; | .current-context = &#34;cluster-a&#34;&#39;</span> cluster-b/auth/kubeconfig
+</code></pre></div><p>This will perform automated verifications between the clusters.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig:cluster-b/auth/kubeconfig
 subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connectivity --verbose
 </code></pre></div>
@@ -3002,19 +3006,19 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1629125682"></script>
-    <script src="/js/perfect-scrollbar.min.js?1629125682"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1629125682"></script>
-    <script src="/js/jquery.sticky.js?1629125682"></script>
-    <script src="/js/featherlight.min.js?1629125682"></script>
-    <script src="/js/highlight.pack.js?1629125682"></script>
+    <script src="/js/clipboard.min.js?1629127586"></script>
+    <script src="/js/perfect-scrollbar.min.js?1629127586"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1629127586"></script>
+    <script src="/js/jquery.sticky.js?1629127586"></script>
+    <script src="/js/featherlight.min.js?1629127586"></script>
+    <script src="/js/highlight.pack.js?1629127586"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1629125682"></script>
-    <script src="/js/learn.js?1629125682"></script>
-    <script src="/js/hugo-learn.js?1629125682"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1629127586"></script>
+    <script src="/js/learn.js?1629127586"></script>
+    <script src="/js/hugo-learn.js?1629127586"></script>
 
-    <link href="/mermaid/mermaid.css?1629125682" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1629125682"></script>
+    <link href="/mermaid/mermaid.css?1629127586" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1629127586"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
