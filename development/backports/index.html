@@ -12,20 +12,20 @@
     <title>Backports :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1632145824" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1632145824" rel="stylesheet">
-    <link href="/css/hybrid.css?1632145824" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1632145824" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1632145824" rel="stylesheet">
-    <link href="/css/auto-complete.css?1632145824" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1632145824" rel="stylesheet">
-    <link href="/css/theme.css?1632145824" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1632145824" rel="stylesheet">
+    <link href="/css/nucleus.css?1632336016" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1632336016" rel="stylesheet">
+    <link href="/css/hybrid.css?1632336016" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1632336016" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1632336016" rel="stylesheet">
+    <link href="/css/auto-complete.css?1632336016" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1632336016" rel="stylesheet">
+    <link href="/css/theme.css?1632336016" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1632336016" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1632145824" rel="stylesheet">
+      <link href="/css/theme-blue.css?1632336016" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1632145824"></script>
+    <script src="/js/jquery-3.3.1.min.js?1632336016"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1632145824" rel="stylesheet">
+<link href="/css/fixes.css?1632336016" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/backports/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1632145824"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1632145824"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1632336016"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1632336016"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1632145824"></script>
+<script type="text/javascript" src="/js/search.js?1632336016"></script>
 
     
   </div>
@@ -1866,22 +1866,24 @@ Issues should <em>not</em> be labeled, they are liable to be overlooked or lack 
 <p>Backports should only be handled once the reference pull request is merged.
 This ensures that commit identifiers will remain stable during the backport process and for later history.</p>
 <h3 id="standalone-pull-requests">Standalone pull requests</h3>
-<p>Update your local clone of the relevant repository, and identify the commit(s) which need to be backported
-(all the commits listed in the pull request, as merged).
-If multiple commits are involved, it is expected that they will be consecutive (since they were part of the same pull request).</p>
-<p>Check out a new backport branch based on the <em>target</em> branch;
-for example, to backport PR 1431 in the operator to the 0.9 release branch:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout -b backport-1431-0.9 origin/release-0.9
-</code></pre></div><p>Then, cherry pick the commits:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git cherry-pick -x 0448fcd60972da03c84c345c24c2cf1c34b6b42b
-</code></pre></div><p>The <code>-x</code> option ensures that the commit is referenced in the resulting commit message.</p>
-<p>If necessary, resolve any conflicts which occur, and conclude with</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git cherry-pick --continue
-</code></pre></div><p>Push the resulting branch and open a new pull request; add “Backport: ” to the pull request description to identify it as a backport.
-(Do not use the “backport” label here; that doesn’t identify backports, it identifies requested backports.)
-On the original pull request, add a comment referencing the new pull request and identifying it as a backport to the relevant release.</p>
-<p>Once <em>all</em> the requested backports of the original pull request have been handled, add the “backport-handled” label.
-This will result in the pull request disappearing from the list of pending backports.</p>
+<p>Backporting a pull request (PR) is automated by running:</p>
+<p><code>make backport release=&lt;release-branch&gt; pr=&lt;PR to cherry-pick&gt;</code></p>
+<p>The <code>make</code> target runs a script,
+<a href="https://github.com/submariner-io/shipyard/blob/devel/scripts/shared/backport.sh">backport.sh</a>, originally developed by the <a href="https://github.com/kubernetes/kubernetes/blob/master/hack/cherry_pick_pull.sh">Kubernetes community</a>.</p>
+<p>The script does the following:</p>
+<ol>
+<li>Cherry-picks the commits from the PR onto <code>&lt;remote branch&gt;</code>.</li>
+<li>Creates a PR on <code>&lt;release-branch&gt;</code> with the title <code>Automated backport of &lt;original PR number&gt;: &lt;original PR title&gt;</code>.</li>
+<li>Adds the <code>backport-handled</code> label to the original PR and the <code>automated-backport</code> label to the backported PR.</li>
+</ol>
+<p>The <code>DRY_RUN</code> environment variable can be set to skip creating the PR. When set, it leaves you in a branch containing the commits that were cherry-picked.</p>
+<p>Multiple PRs can be backported together by passing a comma-separated list of PR numbers, eg <code>pr=630,631</code>.</p>
+<p>The script uses the following environment variables. Please change them according to your setup.</p>
+<ul>
+<li><code>UPSTREAM_REMOTE</code>: the remote for the upstream repository. Defaults to <code>origin</code>.</li>
+<li><code>FORK_REMOTE</code>: the remote for your forked repository. Defaults to <code>GITHUB_USER</code>.</li>
+<li><code>GITHUB_USER</code>: needs to be set to your GitHub username.</li>
+</ul>
 <h3 id="pull-requests-requiring-dependent-backports">Pull requests requiring dependent backports</h3>
 <!-- TODO skitt document dependent backports -->
 <h2 id="reviewing-backports">Reviewing backports</h2>
@@ -2813,19 +2815,19 @@ an entirely new pull request, which might not be a backport candidate.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1632145824"></script>
-    <script src="/js/perfect-scrollbar.min.js?1632145824"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1632145824"></script>
-    <script src="/js/jquery.sticky.js?1632145824"></script>
-    <script src="/js/featherlight.min.js?1632145824"></script>
-    <script src="/js/highlight.pack.js?1632145824"></script>
+    <script src="/js/clipboard.min.js?1632336016"></script>
+    <script src="/js/perfect-scrollbar.min.js?1632336016"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1632336016"></script>
+    <script src="/js/jquery.sticky.js?1632336016"></script>
+    <script src="/js/featherlight.min.js?1632336016"></script>
+    <script src="/js/highlight.pack.js?1632336016"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1632145824"></script>
-    <script src="/js/learn.js?1632145824"></script>
-    <script src="/js/hugo-learn.js?1632145824"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1632336016"></script>
+    <script src="/js/learn.js?1632336016"></script>
+    <script src="/js/hugo-learn.js?1632336016"></script>
 
-    <link href="/mermaid/mermaid.css?1632145824" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1632145824"></script>
+    <link href="/mermaid/mermaid.css?1632336016" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1632336016"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
