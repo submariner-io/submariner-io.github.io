@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1633434749" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1633434749" rel="stylesheet">
-    <link href="/css/hybrid.css?1633434749" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1633434749" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1633434749" rel="stylesheet">
-    <link href="/css/auto-complete.css?1633434749" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1633434749" rel="stylesheet">
-    <link href="/css/theme.css?1633434749" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1633434749" rel="stylesheet">
+    <link href="/css/nucleus.css?1634048187" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1634048187" rel="stylesheet">
+    <link href="/css/hybrid.css?1634048187" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1634048187" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1634048187" rel="stylesheet">
+    <link href="/css/auto-complete.css?1634048187" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1634048187" rel="stylesheet">
+    <link href="/css/theme.css?1634048187" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1634048187" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1633434749" rel="stylesheet">
+      <link href="/css/theme-blue.css?1634048187" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1633434749"></script>
+    <script src="/js/jquery-3.3.1.min.js?1634048187"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1633434749" rel="stylesheet">
+<link href="/css/fixes.css?1634048187" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1633434749"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1633434749"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1634048187"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1634048187"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1633434749"></script>
+<script type="text/javascript" src="/js/search.js?1634048187"></script>
 
     
   </div>
@@ -1840,6 +1840,7 @@
         <li><a href="#benchmark"><code>benchmark</code></a></li>
         <li><a href="#diagnose"><code>diagnose</code></a></li>
         <li><a href="#gather"><code>gather</code></a></li>
+        <li><a href="#cloud"><code>cloud</code></a></li>
         <li><a href="#version"><code>version</code></a></li>
       </ul>
     </li>
@@ -2407,6 +2408,254 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <p><code>subctl gather --kubecontexts cluster-east,cluster-west --module operator,connectivity --type logs</code></p>
 <h5 id="gather-broker-and-service-discovery-resources-from-all-clusters"><code>gather</code> broker and service-discovery resources from all clusters</h5>
 <p><code>subctl gather --module broker,service-discovery --type resources</code></p>
+<h3 id="cloud"><code>cloud</code></h3>
+<h4 id="cloud-prepare"><code>cloud prepare</code></h4>
+<p><code>subctl cloud prepare [flags]</code></p>
+<p>This command prepares the underlying cloud infrastructure for Submariner installation.</p>
+<h4 id="prepare-aws"><code>prepare aws</code></h4>
+<p><code>subctl cloud prepare aws [flags]</code></p>
+<p>This command prepares an OpenShift installer-provisioned infrastructure (IPI) on AWS cloud for Submariner installation.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS credentials configuration file (default <code>$HOME/.aws/credentials</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>--gateway-instance</code> <code>&lt;string&gt;</code></td>
+<td align="left">Type of gateway instance machine (default <code>c5d.large</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
+<td align="left">Number of dedicated gateways to deploy (default 1)</td>
+</tr>
+<tr>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS infra ID</td>
+</tr>
+<tr>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read AWS infra ID and region from</td>
+</tr>
+<tr>
+<td align="left"><code>--profile</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS profile to use for credentials</td>
+</tr>
+<tr>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS region</td>
+</tr>
+<tr>
+<td align="left"><code>--metrics-port</code> <code>&lt;int&gt;</code></td>
+<td align="left">Metrics port (default 8080)</td>
+</tr>
+<tr>
+<td align="left"><code>--nat-discovery-port</code> <code>&lt;int&gt;</code></td>
+<td align="left">NAT discovery port (default 4490)</td>
+</tr>
+<tr>
+<td align="left"><code>--natt-port</code> <code>&lt;int&gt;</code></td>
+<td align="left">IPsec NAT Traversal port (default 4500)</td>
+</tr>
+<tr>
+<td align="left"><code>--vxlan-port</code> <code>&lt;int&gt;</code></td>
+<td align="left">Internal VXLAN port (default 4800)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="prepare-gcp"><code>prepare gcp</code></h4>
+<p><code>subctl cloud prepare gcp [flags]</code></p>
+<p>This command prepares an OpenShift installer-provisioned infrastructure (IPI) on GCP cloud for Submariner installation.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP credentials configuration file (default <code>$HOME/.gcp/osServiceAccount.json</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>--dedicated-gateway</code></td>
+<td align="left">Whether a dedicated gateway node has to be deployed (default false)</td>
+</tr>
+<tr>
+<td align="left"><code>--gateway-instance</code> <code>&lt;string&gt;</code></td>
+<td align="left">Type of gateway instance machine (default <code>n1-standard-4</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
+<td align="left">Number of dedicated gateways to deploy (default 1)</td>
+</tr>
+<tr>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP infra ID</td>
+</tr>
+<tr>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read GCP infra ID and region from</td>
+</tr>
+<tr>
+<td align="left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP project ID</td>
+</tr>
+<tr>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP region</td>
+</tr>
+<tr>
+<td align="left"><code>--metrics-port</code> <code>&lt;int&gt;</code></td>
+<td align="left">Metrics port (default 8080)</td>
+</tr>
+<tr>
+<td align="left"><code>--nat-discovery-port</code> <code>&lt;int&gt;</code></td>
+<td align="left">NAT discovery port (default 4490)</td>
+</tr>
+<tr>
+<td align="left"><code>--natt-port</code> <code>&lt;int&gt;</code></td>
+<td align="left">IPsec NAT Traversal port (default 4500)</td>
+</tr>
+<tr>
+<td align="left"><code>--vxlan-port</code> <code>&lt;int&gt;</code></td>
+<td align="left">Internal VXLAN port (default 4800)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="prepare-generic-flags"><code>prepare generic</code> flags</h4>
+<p>This command prepares a generic cluster for Submariner installation. It assumes that the cloud already has the necessary
+firewall ports opened and will only label the required number of gateway nodes for Submariner installation.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
+<td align="left">Number of dedicated gateways to deploy (default 1)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="prepare-global-flags"><code>prepare</code> global flags</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
+<td align="left">Absolute path(s) to the kubeconfig file(s)</td>
+</tr>
+<tr>
+<td align="left"><code>--kubecontexts</code> <code>&lt;string&gt;</code></td>
+<td align="left">Comma separated list of kube contexts to use. By default all contexts referenced by kubeconfig are used</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cloud-cleanup"><code>cloud cleanup</code></h4>
+<p>This command cleans up the cloud after Submariner uninstallation.</p>
+<h4 id="cleanup-aws"><code>cleanup aws</code></h4>
+<p><code>subctl cloud cleanup aws [flags]</code></p>
+<p>This command cleans up an OpenShift installer-provisioned infrastructure (IPI) on AWS-based cloud after Submariner uninstallation.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS credentials configuration file (default <code>$HOME/.aws/credentials</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS infra ID</td>
+</tr>
+<tr>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read AWS infra ID and region from</td>
+</tr>
+<tr>
+<td align="left"><code>--profile</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS profile to use for credentials</td>
+</tr>
+<tr>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS region</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cleanup-gcp"><code>cleanup gcp</code></h4>
+<p><code>subctl cloud cleanup gcp [flags]</code></p>
+<p>This command cleans up an installer-provisioned infrastructure (IPI) on GCP-based cloud after Submariner uninstallation.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP Credentials configuration file (default <code>$HOME/.gcp/osServiceAccount.json</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP infra ID</td>
+</tr>
+<tr>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read GCP infra ID and region from</td>
+</tr>
+<tr>
+<td align="left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP project ID</td>
+</tr>
+<tr>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP region</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cleanup-generic"><code>cleanup generic</code></h4>
+<p><code>subctl cloud cleanup generic [flags]</code></p>
+<p>This command removes the labels from gateway nodes after Submariner uninstallation.</p>
+<h4 id="cleanup-flags"><code>cleanup</code> flags</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
+<td align="left">Absolute path(s) to the kubeconfig file(s)</td>
+</tr>
+<tr>
+<td align="left"><code>--kubecontexts</code> <code>&lt;string&gt;</code></td>
+<td align="left">kubeconfig context to use</td>
+</tr>
+</tbody>
+</table>
 <h3 id="version"><code>version</code></h3>
 <p><code>subctl version</code></p>
 <p>Prints the version details for the <code>subctl</code> binary.</p>
@@ -3334,19 +3583,19 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1633434749"></script>
-    <script src="/js/perfect-scrollbar.min.js?1633434749"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1633434749"></script>
-    <script src="/js/jquery.sticky.js?1633434749"></script>
-    <script src="/js/featherlight.min.js?1633434749"></script>
-    <script src="/js/highlight.pack.js?1633434749"></script>
+    <script src="/js/clipboard.min.js?1634048187"></script>
+    <script src="/js/perfect-scrollbar.min.js?1634048187"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1634048187"></script>
+    <script src="/js/jquery.sticky.js?1634048187"></script>
+    <script src="/js/featherlight.min.js?1634048187"></script>
+    <script src="/js/highlight.pack.js?1634048187"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1633434749"></script>
-    <script src="/js/learn.js?1633434749"></script>
-    <script src="/js/hugo-learn.js?1633434749"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1634048187"></script>
+    <script src="/js/learn.js?1634048187"></script>
+    <script src="/js/hugo-learn.js?1634048187"></script>
 
-    <link href="/mermaid/mermaid.css?1633434749" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1633434749"></script>
+    <link href="/mermaid/mermaid.css?1634048187" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1634048187"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
