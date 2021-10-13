@@ -12,20 +12,20 @@
     <title>Troubleshooting :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1634048187" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1634048187" rel="stylesheet">
-    <link href="/css/hybrid.css?1634048187" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1634048187" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1634048187" rel="stylesheet">
-    <link href="/css/auto-complete.css?1634048187" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1634048187" rel="stylesheet">
-    <link href="/css/theme.css?1634048187" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1634048187" rel="stylesheet">
+    <link href="/css/nucleus.css?1634102332" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1634102332" rel="stylesheet">
+    <link href="/css/hybrid.css?1634102332" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1634102332" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1634102332" rel="stylesheet">
+    <link href="/css/auto-complete.css?1634102332" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1634102332" rel="stylesheet">
+    <link href="/css/theme.css?1634102332" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1634102332" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1634048187" rel="stylesheet">
+      <link href="/css/theme-blue.css?1634102332" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1634048187"></script>
+    <script src="/js/jquery-3.3.1.min.js?1634102332"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1634048187" rel="stylesheet">
+<link href="/css/fixes.css?1634102332" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/troubleshooting/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1634048187"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1634048187"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1634102332"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1634102332"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1634048187"></script>
+<script type="text/javascript" src="/js/search.js?1634102332"></script>
 
     
   </div>
@@ -1818,7 +1818,9 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#overview">Overview</a>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#automated-troubleshooting">Automated Troubleshooting</a></li>
+    <li><a href="#manual-troubleshooting">Manual Troubleshooting</a>
       <ul>
         <li><a href="#pre-requisite">Pre-requisite</a></li>
         <li><a href="#connectivity-issues">Connectivity Issues</a></li>
@@ -1858,6 +1860,21 @@ again.</p>
 <p>Basic familiarity with the Submariner components and architecture will be helpful when troubleshooting so please review the
 <a href="../../getting-started/architecture">Architecture</a> section.</p>
 <p>The guide has been broken into different sections for easy navigation.</p>
+<h2 id="automated-troubleshooting">Automated Troubleshooting</h2>
+<p>Use the <code>subctl</code> utility to automate troubleshooting and collecting debugging information.</p>
+<p>Install subctl:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -Ls https://get.submariner.io | VERSION<span style="color:#f92672">=</span>&lt;your Submariner version&gt; bash
+</code></pre></div><p>Make sure <code>KUBECONFIG</code> is set to point at your connected clusters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">export KUBECONFIG<span style="color:#f92672">=</span>&lt;paths&gt;
+</code></pre></div><p>Get an idea of what&rsquo;s failing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">subctl diagnose all
+subctl diagnose firewall inter-cluster
+</code></pre></div><p>Collect details about an issue you&rsquo;d like help with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">subctl gather
+tar cfz submariner-&lt;timestamp&gt;.tar.gz submariner-&lt;timestamp&gt;
+</code></pre></div><p>When reporting an issue, it may also help to include the information in the
+<a href="https://github.com/submariner-io/submariner/issues/new?assignees=&amp;labels=bug&amp;template=bug-report.md"><code>bug-report.md</code> template</a>.</p>
+<h2 id="manual-troubleshooting">Manual Troubleshooting</h2>
 <h3 id="pre-requisite">Pre-requisite</h3>
 <p>Before we begin troubleshooting, run <code>subctl version</code> to obtain which version of the Submariner components you are running.</p>
 <p>Run <code>kubectl get services -n &lt;service-namespace&gt; | grep &lt;service-name&gt;</code> to get information about the service you&rsquo;re trying to access. This
@@ -3037,19 +3054,19 @@ from connected clusters.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1634048187"></script>
-    <script src="/js/perfect-scrollbar.min.js?1634048187"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1634048187"></script>
-    <script src="/js/jquery.sticky.js?1634048187"></script>
-    <script src="/js/featherlight.min.js?1634048187"></script>
-    <script src="/js/highlight.pack.js?1634048187"></script>
+    <script src="/js/clipboard.min.js?1634102332"></script>
+    <script src="/js/perfect-scrollbar.min.js?1634102332"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1634102332"></script>
+    <script src="/js/jquery.sticky.js?1634102332"></script>
+    <script src="/js/featherlight.min.js?1634102332"></script>
+    <script src="/js/highlight.pack.js?1634102332"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1634048187"></script>
-    <script src="/js/learn.js?1634048187"></script>
-    <script src="/js/hugo-learn.js?1634048187"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1634102332"></script>
+    <script src="/js/learn.js?1634102332"></script>
+    <script src="/js/hugo-learn.js?1634102332"></script>
 
-    <link href="/mermaid/mermaid.css?1634048187" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1634048187"></script>
+    <link href="/mermaid/mermaid.css?1634102332" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1634102332"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
