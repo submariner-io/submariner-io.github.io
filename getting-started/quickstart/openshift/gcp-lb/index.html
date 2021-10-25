@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>On AWS (LoadBalancer mode) :: Submariner k8s project documentation website</title>
+    <title>On GCP (LoadBalancer mode) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1635171756" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1635171756" rel="stylesheet">
-    <link href="/css/hybrid.css?1635171756" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1635171756" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1635171756" rel="stylesheet">
-    <link href="/css/auto-complete.css?1635171756" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1635171756" rel="stylesheet">
-    <link href="/css/theme.css?1635171756" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1635171756" rel="stylesheet">
+    <link href="/css/nucleus.css?1635171986" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1635171986" rel="stylesheet">
+    <link href="/css/hybrid.css?1635171986" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1635171986" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1635171986" rel="stylesheet">
+    <link href="/css/auto-complete.css?1635171986" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1635171986" rel="stylesheet">
+    <link href="/css/theme.css?1635171986" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1635171986" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1635171756" rel="stylesheet">
+      <link href="/css/theme-blue.css?1635171986" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1635171756"></script>
+    <script src="/js/jquery-3.3.1.min.js?1635171986"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,10 +34,10 @@
       
     </style>
     
-<link href="/css/fixes.css?1635171756" rel="stylesheet">
+<link href="/css/fixes.css?1635171986" rel="stylesheet">
 
   </head>
-  <body class="" data-url="/getting-started/quickstart/openshift/aws-lb/">
+  <body class="" data-url="/getting-started/quickstart/openshift/gcp-lb/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1635171756"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1635171756"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1635171986"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1635171986"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1635171756"></script>
+<script type="text/javascript" src="/js/search.js?1635171986"></script>
 
     
   </div>
@@ -604,13 +604,13 @@
  
   
     
-    <li data-nav-id="/getting-started/quickstart/openshift/aws-lb/" title="On AWS (LoadBalancer mode)" class="dd-item 
+    <li data-nav-id="/getting-started/quickstart/openshift/gcp-lb/" title="On GCP (LoadBalancer mode)" class="dd-item 
         parent
         active
         
         ">
-      <a href="/getting-started/quickstart/openshift/aws-lb/">
-          On AWS (LoadBalancer mode)
+      <a href="/getting-started/quickstart/openshift/gcp-lb/">
+          On GCP (LoadBalancer mode)
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1772,7 +1772,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/getting-started/quickstart/openshift/aws-lb/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/getting-started/quickstart/openshift/gcp-lb/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1811,7 +1811,7 @@
             
           
           
-            <a href='/'></a> > <a href='/getting-started/'>Getting Started</a> > <a href='/getting-started/quickstart/'>Quickstart Guides</a> > <a href='/getting-started/quickstart/openshift/'>OpenShift</a> > On AWS (LoadBalancer mode)
+            <a href='/'></a> > <a href='/getting-started/'>Getting Started</a> > <a href='/getting-started/quickstart/'>Quickstart Guides</a> > <a href='/getting-started/quickstart/openshift/'>OpenShift</a> > On GCP (LoadBalancer mode)
           
          
           
@@ -1833,7 +1833,7 @@
     <li>
       <ul>
         <li><a href="#install-subctl">Install <code>subctl</code></a></li>
-        <li><a href="#prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</a></li>
+        <li><a href="#prepare-gcp-clusters-for-submariner">Prepare GCP Clusters for Submariner</a></li>
         <li><a href="#install-submariner-with-service-discovery">Install Submariner with Service Discovery</a></li>
       </ul>
     </li>
@@ -1854,7 +1854,7 @@
           
             <h1>
               
-              On AWS (LoadBalancer mode)
+              On GCP (LoadBalancer mode)
             </h1>
           
 
@@ -1864,7 +1864,7 @@
 
 
 	<p>This quickstart guide covers the necessary steps to deploy two OpenShift Container Platform (OCP)
-clusters on AWS leveraging a cloud network load balancer service in front of the Submariner gateways.</p>
+clusters on GCP leveraging a cloud network load balancer service in front of the Submariner gateways.</p>
 <p>The main benefit of this mode is that there is no need to dedicate specialized nodes with a public IP
 address to act as gateways. The administrator only needs to manually label any existing
 node or nodes in each cluster as Submariner gateways, and the submariner-operator will take care of creating a LoadBalancer
@@ -1881,7 +1881,7 @@ measured the impact on HA failover times.</p>
 <ol>
 <li><strong>OpenShift installer</strong>, <strong>pull secret</strong>, and <strong>command line interface</strong>. All can be downloaded from
 <a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">here</a>.</li>
-<li><strong>AWS CLI</strong> which can be downloaded from <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">here</a>.</li>
+<li><strong>GCP CLI</strong> which can be downloaded from <a href="https://cloud.google.com/sdk/gcloud">here</a>.</li>
 </ol>
 
 
@@ -1893,15 +1893,11 @@ please refer to the official <a href="https://docs.openshift.com/container-platf
 
 <p>
 
-<h3 id="setup-your-aws-profile">Setup Your AWS Profile</h3>
-<p>Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region,
-and the default output format:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
-AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
-</code></pre></div>
+<h3 id="setup-your-gcp-profile">Setup Your GCP Profile</h3>
+<p>Configure the GCP Credentials like project_id, private_key etc in ~/.gcp/osServiceAccount.json file.
+Please refer to the official
+<a href="https://docs.openshift.com/container-platform/4.8/installing/installing_gcp/installing-gcp-account.html#installing-gcp-account">doc</a>
+for detailed instructions
 
 
 
@@ -1965,22 +1961,20 @@ echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">
 </code></pre></div><p>If you have Go installed, you can use that instead:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go install github.com/submariner-io/submariner-operator/pkg/subctl
 </code></pre></div><p>(and ensure your <code>go/bin</code> directory is on your <code>PATH</code>).</p>
-<h3 id="prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</h3>
+<h3 id="prepare-gcp-clusters-for-submariner">Prepare GCP Clusters for Submariner</h3>
 <p>Submariner Gateway nodes need to be able to accept traffic over UDP ports (4500 and 4490 by default).
 Submariner also uses UDP port 4800 to encapsulate traffic from the worker and master nodes to the Gateway nodes, and TCP port 8080 to
 retrieve metrics from the Gateway nodes.
 Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be
 necessary on one end of the tunnel connection.</p>
-<p><code>subctl cloud prepare</code> is a command designed to update your OpenShift installer provisioned AWS infrastructure for Submariner deployments,
+<p><code>subctl cloud prepare</code> is a command designed to update your OpenShift installer provisioned infrastructure for Submariner deployments,
 handling the requirements specified above.</p>
 <p>Run the command for <strong>cluster-a</strong>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
-subctl cloud prepare aws --ocp-metadata cluster-a/metadata.json --disable-gateways
-kubectl label node $gateway submariner.io/gateway<span style="color:#f92672">=</span>true
+subctl cloud prepare gcp --ocp-metadata cluster-a/metadata.json
 </code></pre></div><p>Run the command for <strong>cluster-b</strong>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
-subctl cloud prepare aws --ocp-metadata cluster-b/metadata.json --disable-gateways
-kubectl label node $gateway submariner.io/gateway<span style="color:#f92672">=</span>true
+subctl cloud prepare gcp --ocp-metadata cluster-b/metadata.json
 </code></pre></div><h3 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h3>
 <p>To install Submariner with multi-cluster Service Discovery follow the steps below:</p>
 <h4 id="use-cluster-a-as-broker">Use cluster-a as Broker</h4>
@@ -3001,19 +2995,19 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1635171756"></script>
-    <script src="/js/perfect-scrollbar.min.js?1635171756"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1635171756"></script>
-    <script src="/js/jquery.sticky.js?1635171756"></script>
-    <script src="/js/featherlight.min.js?1635171756"></script>
-    <script src="/js/highlight.pack.js?1635171756"></script>
+    <script src="/js/clipboard.min.js?1635171986"></script>
+    <script src="/js/perfect-scrollbar.min.js?1635171986"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1635171986"></script>
+    <script src="/js/jquery.sticky.js?1635171986"></script>
+    <script src="/js/featherlight.min.js?1635171986"></script>
+    <script src="/js/highlight.pack.js?1635171986"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1635171756"></script>
-    <script src="/js/learn.js?1635171756"></script>
-    <script src="/js/hugo-learn.js?1635171756"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1635171986"></script>
+    <script src="/js/learn.js?1635171986"></script>
+    <script src="/js/hugo-learn.js?1635171986"></script>
 
-    <link href="/mermaid/mermaid.css?1635171756" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1635171756"></script>
+    <link href="/mermaid/mermaid.css?1635171986" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1635171986"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
