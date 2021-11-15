@@ -12,20 +12,20 @@
     <title>Advanced Features :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1635851548" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1635851548" rel="stylesheet">
-    <link href="/css/hybrid.css?1635851548" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1635851548" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1635851548" rel="stylesheet">
-    <link href="/css/auto-complete.css?1635851548" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1635851548" rel="stylesheet">
-    <link href="/css/theme.css?1635851548" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1635851548" rel="stylesheet">
+    <link href="/css/nucleus.css?1636965399" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1636965399" rel="stylesheet">
+    <link href="/css/hybrid.css?1636965399" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1636965399" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1636965399" rel="stylesheet">
+    <link href="/css/auto-complete.css?1636965399" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1636965399" rel="stylesheet">
+    <link href="/css/theme.css?1636965399" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1636965399" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1635851548" rel="stylesheet">
+      <link href="/css/theme-blue.css?1636965399" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1635851548"></script>
+    <script src="/js/jquery-3.3.1.min.js?1636965399"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1635851548" rel="stylesheet">
+<link href="/css/fixes.css?1636965399" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/shipyard/advanced/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1635851548"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1635851548"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1636965399"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1636965399"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1635851548"></script>
+<script type="text/javascript" src="/js/search.js?1636965399"></script>
 
     
   </div>
@@ -1876,41 +1876,39 @@ caching capabilities to speed up local and pull request CI builds, by utilizing 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">${</span>SCRIPTS_DIR<span style="color:#e6db74">}</span>/build_image.sh -i submariner -f package/Dockerfile
 </code></pre></div><h2 id="deployment-scripts-features">Deployment Scripts Features</h2>
 <h3 id="per-cluster-settings">Per Cluster Settings</h3>
-<p>Shipyard supports specifying different settings for each deployed cluster. A default <code>cluster_settings</code> is supplied in the image, so any
-custom settings override those. The settings are sent to supporting scripts using a <code>--cluster_settings</code> flag.</p>
-<p>Currently, the following settings are supported:</p>
+<p>Shipyard supports specifying different settings for each deployed cluster. The settings are sent to supporting scripts using a
+<code>--settings</code> flag.</p>
+<p>The settings are specified in a YAML file, where default and per cluster settings can be provided. All clusters are listed under the
+<code>clusters</code> key, and each cluster can have specific deployment settings. All cluster specific settings (except <code>broker</code>) can be specified
+on the root of the settings file to determine defaults.</p>
+<p>The possible settings are:</p>
 <ul>
-<li>
-<p><strong>clusters:</strong> An array of the clusters to deploy.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">clusters<span style="color:#f92672">=(</span>cluster1,cluster2<span style="color:#f92672">)</span>
-</code></pre></div></li>
-<li>
-<p><strong>cluster_nodes:</strong> A map of cluster names to a space separated string, representing a list of nodes to deploy. Supported values are
-<code>control-plane</code> and <code>worker</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cluster_nodes<span style="color:#f92672">[</span>cluster1<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker&#34;</span>
-cluster_nodes<span style="color:#f92672">[</span>cluster2<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker worker&#34;</span>
-</code></pre></div></li>
-<li>
-<p><strong>cluster_subm:</strong> A map of cluster names to values specifying if Submariner should be installed. Set to <code>true</code> to have Submariner
-installed, or to <code>false</code> to skip the installation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cluster_subm<span style="color:#f92672">[</span>cluster1<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;false&#34;</span>
-cluster_subm<span style="color:#f92672">[</span>cluster2<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;true&#34;</span>
-</code></pre></div></li>
+<li><strong>broker</strong>: Special key to mark the broker, set to anything to select a broker. By default, the first cluster is selected.</li>
+<li><strong>cni</strong>: Which CNI to deploy on the cluster, currently supports <code>weave</code> and <code>ovn</code> (leave empty or unset for <code>kindnet</code>).</li>
+<li><strong>nodes</strong>: A space separated list of nodes to deploy, supported types are <code>control-plane</code> and <code>worker</code>.</li>
+<li><strong>submariner</strong>: If Submariner should be deployed, set to <code>true</code>. Otherwise, leave unset (or set to <code>false</code> explicitly).</li>
 </ul>
-<h4 id="example-custom-per-cluster-settings">Example: Custom Per Cluster Settings</h4>
-<p>As an example, in order to customize the clusters to have two workers, and no submariner on the 1st cluster, create a <code>cluster_settings</code>
-file in the project:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cluster_nodes<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cluster1&#39;</span><span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane&#34;</span>
-cluster_nodes<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cluster2&#39;</span><span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker worker&#34;</span>
-cluster_nodes<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cluster3&#39;</span><span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;control-plane worker worker&#34;</span>
-cluster_subm<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cluster1&#39;</span><span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;false&#34;</span>
-</code></pre></div><p>Then, to apply these settings, add this snippet to the Makefile:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile">CLUSTER_SETTINGS_FLAG <span style="color:#f92672">=</span> --cluster_settings <span style="color:#66d9ef">$(</span>DAPPER_SOURCE<span style="color:#66d9ef">)</span>/path/to/cluster_settings
-CLUSTERS_ARGS <span style="color:#f92672">+=</span> <span style="color:#66d9ef">$(</span>CLUSTER_SETTINGS_FLAG<span style="color:#66d9ef">)</span>
-DEPLOY_ARGS <span style="color:#f92672">+=</span> <span style="color:#66d9ef">$(</span>CLUSTER_SETTINGS_FLAG<span style="color:#66d9ef">)</span>
-</code></pre></div><p>The path to <code>cluster_settings</code> should be specified relative to the project root; this ends up available in the build container in the
-directory referenced by <code>$DAPPER_SOURCE</code>.</p>
-<h3 id="clusters-deployment-customization">Clusters Deployment Customization</h3>
+<p>For example, a basic settings file that deploys a couple of clusters with weave CNI:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">cni</span>: weave
+<span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">nodes</span>: control-plane worker worker
+<span style="color:#66d9ef">clusters</span>:
+  <span style="color:#66d9ef">cluster1</span>:
+  <span style="color:#66d9ef">cluster2</span>:
+</code></pre></div><p>The following settings file deploys two clusters with one control node and two workers, with weave and Submariner. The third cluster
+will host the broker and as such needs no CNI, only a worker node, and no Submariner deployment:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">cni</span>: weave
+<span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">nodes</span>: control-plane worker worker
+<span style="color:#66d9ef">clusters</span>:
+  <span style="color:#66d9ef">cluster1</span>:
+  <span style="color:#66d9ef">cluster2</span>:
+  <span style="color:#66d9ef">cluster3</span>:
+    <span style="color:#66d9ef">broker</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">cni</span>:
+    <span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">false</span>
+    <span style="color:#66d9ef">nodes</span>: control-plane
+</code></pre></div><h3 id="clusters-deployment-customization">Clusters Deployment Customization</h3>
 <p>It&rsquo;s possible to supply extra flags when calling <code>make clusters</code> via a make variable <code>CLUSTERS_ARGS</code> (or an environment variable with the
 same name). These flags affect how the clusters are deployed (and possibly influence how Submariner works).</p>
 <p>Flags of note:</p>
@@ -2889,19 +2887,19 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool helm --deploytool
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1635851548"></script>
-    <script src="/js/perfect-scrollbar.min.js?1635851548"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1635851548"></script>
-    <script src="/js/jquery.sticky.js?1635851548"></script>
-    <script src="/js/featherlight.min.js?1635851548"></script>
-    <script src="/js/highlight.pack.js?1635851548"></script>
+    <script src="/js/clipboard.min.js?1636965399"></script>
+    <script src="/js/perfect-scrollbar.min.js?1636965399"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1636965399"></script>
+    <script src="/js/jquery.sticky.js?1636965399"></script>
+    <script src="/js/featherlight.min.js?1636965399"></script>
+    <script src="/js/highlight.pack.js?1636965399"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1635851548"></script>
-    <script src="/js/learn.js?1635851548"></script>
-    <script src="/js/hugo-learn.js?1635851548"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1636965399"></script>
+    <script src="/js/learn.js?1636965399"></script>
+    <script src="/js/hugo-learn.js?1636965399"></script>
 
-    <link href="/mermaid/mermaid.css?1635851548" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1635851548"></script>
+    <link href="/mermaid/mermaid.css?1636965399" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1636965399"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
