@@ -12,20 +12,20 @@
     <title>K3s :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1640604913" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1640604913" rel="stylesheet">
-    <link href="/css/hybrid.css?1640604913" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1640604913" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1640604913" rel="stylesheet">
-    <link href="/css/auto-complete.css?1640604913" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1640604913" rel="stylesheet">
-    <link href="/css/theme.css?1640604913" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1640604913" rel="stylesheet">
+    <link href="/css/nucleus.css?1640623838" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1640623838" rel="stylesheet">
+    <link href="/css/hybrid.css?1640623838" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1640623838" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1640623838" rel="stylesheet">
+    <link href="/css/auto-complete.css?1640623838" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1640623838" rel="stylesheet">
+    <link href="/css/theme.css?1640623838" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1640623838" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1640604913" rel="stylesheet">
+      <link href="/css/theme-blue.css?1640623838" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1640604913"></script>
+    <script src="/js/jquery-3.3.1.min.js?1640623838"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1640604913" rel="stylesheet">
+<link href="/css/fixes.css?1640623838" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/quickstart/k3s/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1640604913"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1640604913"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1640623838"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1640623838"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1640604913"></script>
+<script type="text/javascript" src="/js/search.js?1640623838"></script>
 
     
   </div>
@@ -1936,7 +1936,8 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC<span style="color:#f92672">=</sp
 <p>The kubeconfig file needs to be modified to set the Kubernetes API endpoint to the public IP of node-a,
 which is obtained from the first field yielded by <code>hostname -I</code>, and to give the context a name other
 than “default”. (This uses <a href="https://github.com/mikefarah/yq/">yq</a> v4.7.0 or later.)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp /etc/rancher/k3s/k3s.yaml kubeconfig.cluster-a
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp /etc/rancher/k3s/k3s.yaml kubeconfig.cluster-a
+sudo chown <span style="color:#66d9ef">$(</span>id -u<span style="color:#66d9ef">)</span>:<span style="color:#66d9ef">$(</span>id -g<span style="color:#66d9ef">)</span> kubeconfig.cluster-a
 export IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>hostname -I | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span>
 yq -i eval <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span><span style="color:#e6db74">&#39;.clusters[].cluster.server |= sub(&#34;127.0.0.1&#34;, env(IP)) | .contexts[].name = &#34;cluster-a&#34; | .current-context = &#34;cluster-a&#34;&#39;</span> <span style="color:#ae81ff">\
@@ -1949,7 +1950,8 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC<span style="color:#f92672">=</sp
 </code></pre></div><p>The kubeconfig file needs to be modified to set the Kubernetes API endpoint to the public IP of node-b,
 which is obtained from the first field yielded by <code>hostname -I</code>, and to give the context a name other
 than “default”.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp /etc/rancher/k3s/k3s.yaml kubeconfig.cluster-b
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp /etc/rancher/k3s/k3s.yaml kubeconfig.cluster-b
+sudo chown <span style="color:#66d9ef">$(</span>id -u<span style="color:#66d9ef">)</span>:<span style="color:#66d9ef">$(</span>id -g<span style="color:#66d9ef">)</span> kubeconfig.cluster-b
 export IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>hostname -I | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span>
 yq -i eval <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span><span style="color:#e6db74">&#39;.clusters[].cluster.server |= sub(&#34;127.0.0.1&#34;, env(IP)) | .contexts[].name = &#34;cluster-b&#34; | .current-context = &#34;cluster-b&#34;&#39;</span> <span style="color:#ae81ff">\
@@ -2931,19 +2933,19 @@ curl nginx.default.svc.clusterset.local
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1640604913"></script>
-    <script src="/js/perfect-scrollbar.min.js?1640604913"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1640604913"></script>
-    <script src="/js/jquery.sticky.js?1640604913"></script>
-    <script src="/js/featherlight.min.js?1640604913"></script>
-    <script src="/js/highlight.pack.js?1640604913"></script>
+    <script src="/js/clipboard.min.js?1640623838"></script>
+    <script src="/js/perfect-scrollbar.min.js?1640623838"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1640623838"></script>
+    <script src="/js/jquery.sticky.js?1640623838"></script>
+    <script src="/js/featherlight.min.js?1640623838"></script>
+    <script src="/js/highlight.pack.js?1640623838"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1640604913"></script>
-    <script src="/js/learn.js?1640604913"></script>
-    <script src="/js/hugo-learn.js?1640604913"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1640623838"></script>
+    <script src="/js/learn.js?1640623838"></script>
+    <script src="/js/hugo-learn.js?1640623838"></script>
 
-    <link href="/mermaid/mermaid.css?1640604913" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1640604913"></script>
+    <link href="/mermaid/mermaid.css?1640623838" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1640623838"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
