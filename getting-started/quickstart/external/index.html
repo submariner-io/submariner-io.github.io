@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Broker :: Submariner k8s project documentation website</title>
+    <title>External Network (Experimental) :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1640604913" rel="stylesheet">
@@ -37,7 +37,7 @@
 <link href="/css/fixes.css?1640604913" rel="stylesheet">
 
   </head>
-  <body class="" data-url="/getting-started/architecture/broker/">
+  <body class="" data-url="/getting-started/quickstart/external/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -115,7 +115,7 @@
   
     
     <li data-nav-id="/getting-started/architecture/" title="Architecture" class="dd-item 
-        parent
+        
         
         
         ">
@@ -146,8 +146,8 @@
   
     
     <li data-nav-id="/getting-started/architecture/broker/" title="Broker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/getting-started/architecture/broker/">
@@ -363,7 +363,7 @@
   
     
     <li data-nav-id="/getting-started/quickstart/" title="Quickstart Guides" class="dd-item 
-        
+        parent
         
         
         ">
@@ -698,8 +698,8 @@
   
     
     <li data-nav-id="/getting-started/quickstart/external/" title="External Network (Experimental)" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/getting-started/quickstart/external/">
@@ -1800,7 +1800,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/getting-started/architecture/broker/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/getting-started/quickstart/external/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1835,7 +1835,7 @@
             
           
           
-            <a href='/'></a> > <a href='/getting-started/'>Getting Started</a> > <a href='/getting-started/architecture/'>Architecture</a> > Broker
+            <a href='/'></a> > <a href='/getting-started/'>Getting Started</a> > <a href='/getting-started/quickstart/'>Quickstart Guides</a> > External Network (Experimental)
           
          
           
@@ -1850,7 +1850,18 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#setup-submariner">Setup Submariner</a></li>
+        <li><a href="#set-up-non-cluster-hosts">Set up non-cluster hosts</a></li>
+        <li><a href="#verify-deployment">Verify Deployment</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1866,7 +1877,7 @@
           
             <h1>
               
-              Broker
+              External Network (Experimental)
             </h1>
           
 
@@ -1875,28 +1886,377 @@
 
 
 
-	<p>Submariner uses a central Broker component to facilitate the exchange of metadata
-information between Gateway Engines deployed in participating clusters. The Broker is
-basically a set of Custom Resource Definitions (CRDs) backed by the Kubernetes datastore.
-The Broker also defines a ServiceAccount and RBAC components to enable other Submariner
-components to securely access the Broker&rsquo;s API. There are no Pods or Services deployed
-with the Broker.</p>
-<p>Submariner defines two CRDs that are exchanged via the Broker: <code>Endpoint</code> and <code>Cluster</code>.
-The <code>Endpoint</code> CRD contains the information about the active Gateway Engine in a cluster,
-such as its IP, needed for clusters to connect to one another. The <code>Cluster</code> CRD contains
-static information about the originating cluster, such as its Service and Pod CIDRs.</p>
-<p>The Broker is a singleton component that is deployed on a cluster whose Kubernetes API must
-be accessible by all of the participating clusters. If there is a mix of on-premises and
-public clusters, the Broker can be deployed on a public cluster. The Broker cluster may be
-one of the participating clusters or a standalone cluster without the other Submariner
-components deployed. The Gateway Engine components deployed in each participating cluster are
-configured with the information to securely connect to the Broker cluster&rsquo;s API.</p>
-<p>The availability of the Broker cluster does not affect the operation of the dataplane on the
-participating clusters, that is the dataplane will continue to route traffic using the last known
-information while the Broker is unavailable. However, during this time, control plane components
-will be unable to advertise new or updated information to other clusters and learn about new or updated
-information from other clusters. When connection is re-established to the Broker, each component will
-automatically re-synchronize its local information with the Broker and update the dataplane if necessary.</p>
+	<p>This guide covers experimenting with the external network use case.
+In this use case, pods running in a Kubernetes cluster can access external applications outside of the cluster and vice versa
+by using DNS resolution supported by Lighthouse or manually using the Globalnet ingress IPs.
+In addition to providing connectivity, the source IP of traffic is also preserved.</p>
+
+<div class="notices warning" ><p><strong>This feature is experimental.</strong> The configuration mechanism and observed behavior may change.</p>
+</div>
+
+<h3 id="prerequisites">Prerequisites</h3>
+<ol>
+<li>
+<p>Prepare:</p>
+<ul>
+<li>Two or more Kubernetes clusters</li>
+<li>One or more non-cluster hosts that exist in the same network segment to one of the Kubernetes clusters</li>
+</ul>
+<p>In this guide, we will use the following Kubernetes clusters and non-cluster host.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>IP</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cluster-a</td>
+<td>192.168.122.26</td>
+<td>Single-node cluster</td>
+</tr>
+<tr>
+<td>cluster-b</td>
+<td>192.168.122.27</td>
+<td>Single-node cluster</td>
+</tr>
+<tr>
+<td>test-vm</td>
+<td>192.168.122.142</td>
+<td>Linux host</td>
+</tr>
+</tbody>
+</table>
+<p>In this example, everything is deployed in the 192.168.122.0/24 segment.
+However, it is only required that cluster-a and test-vm are in the same segment.
+Other clusters, cluster-b and any additional clusters, can be deployed in different segments or even in any other networks in the internet.
+Also, clusters can be multi-node clusters.</p>
+<p>Subnets of non-cluster hosts should be distinguished from those of the clusters to easily specify the external network CIDR.
+In this example, cluster-a and cluster-b belong to 192.168.122.0/25 and test-vm belongs to 192.168.122.128/25.
+Therefore, the external network CIDR for this configuration is 192.168.122.128/25.
+In test environments with just one host, an external network CIDR like 192.168.122.142/32 can be specified.
+However, design of the subnets need to be considered when more hosts are used.</p>
+</li>
+<li>
+<p>Choose the Pod CIDR and the Service CIDR for Kubernetes clusters and deply them.</p>
+<p>In this guide, we will use the following CIDRs:</p>
+<table>
+<thead>
+<tr>
+<th>Cluster</th>
+<th>Pod CIDR</th>
+<th>Service CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cluster-a</td>
+<td>10.42.0.0/24</td>
+<td>10.43.0.0/16</td>
+</tr>
+<tr>
+<td>cluster-b</td>
+<td>10.42.0.0/24</td>
+<td>10.43.0.0/16</td>
+</tr>
+</tbody>
+</table>
+<p>Note that we will use Globalnet in this guide, therefore overlapping CIDRs are supported.
+One of the easiest way to create this environment will be to deploy two K3s clusters by the steps described
+<a href="https://submariner.io/getting-started/quickstart/k3s/">here</a> until &ldquo;Deploy cluster-b on node-b&rdquo;,
+with modifying deploy commands to just <code>curl -sfL https://get.k3s.io | sh -</code> to use default CIDR.</p>
+</li>
+</ol>
+
+<div class="notices note" ><p>In this configuration, global IPs are used to access between the gateway node and non-cluster hosts,
+which means packets are sent to IP addresses that are not part of the actual network segment.
+To make such packets not to be dropped, anti-spoofing rules need to be disabled for the hosts and the gateway node.</p>
+</div>
+
+<h3 id="setup-submariner">Setup Submariner</h3>
+<h4 id="ensure-kubeconfig-files">Ensure kubeconfig files</h4>
+<p>Ensure that kubeconfig files for both clusters are available.
+This guide assumes cluster-a&rsquo;s kubeconfig file is named <code>kubeconfig.cluster-a</code> and cluster-b&rsquo;s is named <code>kubeconfig.cluster-b</code>.</p>
+<h4 id="install-subctl">Install <code>subctl</code></h4>
+<p>Download the subctl binary and make it available on your PATH.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Ls https://get.submariner.io | bash
+export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
+echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:~/.local/bin &gt;&gt; ~/.profile
+</code></pre></div><p>If you have Go and the <a href="https://github.com/submariner-io/submariner-operator">source code</a>, you can build and install subctl instead:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd go/src/submariner-io/submariner-operator
+go install github.com/submariner-io/submariner-operator/pkg/subctl
+</code></pre></div><p>(and ensure your <code>go/bin</code> directory is on your <code>PATH</code>).</p>
+<h4 id="use-cluster-a-as-the-broker-with-globalnet-enabled">Use cluster-a as the Broker with Globalnet enabled</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig kubeconfig.cluster-a --globalnet
+</code></pre></div><h4 id="join-cluster-a-to-the-broker-with-external-cidr-added-as-cluster-cidr">Join cluster-a to the Broker with external CIDR added as cluster CIDR</h4>
+<p>Carefully review the <code>CLUSTER_CIDR</code> and <code>EXTERNAL_CIDR</code> and run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLUSTER_CIDR<span style="color:#f92672">=</span>10.42.0.0/24
+EXTERNAL_CIDR<span style="color:#f92672">=</span>192.168.122.128/25
+subctl join --kubeconfig kubeconfig.cluster-a broker-info.subm --clusterid cluster-a --natt<span style="color:#f92672">=</span>false --clustercidr<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>CLUSTER_CIDR<span style="color:#e6db74">}</span>,<span style="color:#e6db74">${</span>EXTERNAL_CIDR<span style="color:#e6db74">}</span>
+</code></pre></div><h4 id="join-cluster-b-to-the-broker">Join cluster-b to the Broker</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig kubeconfig.cluster-b broker-info.subm --clusterid cluster-b --natt<span style="color:#f92672">=</span>false
+</code></pre></div><h4 id="deploy-dns-server-on-cluster-a-for-non-cluster-hosts">Deploy DNS server on cluster-a for non-cluster hosts</h4>
+<p>Create a list of upstream DNS servers as <code>upstreamservers</code>:</p>
+<p>Note that <code>dnsip</code> is the IP of DNS server for the test-vm, which is defined as <code>nameserver</code> in <code>/etc/resolve.conf</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dnsip<span style="color:#f92672">=</span>192.168.122.1
+lighthousednsip<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl get svc --kubeconfig kubeconfig.cluster-a -n submariner-operator submariner-lighthouse-coredns -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.spec.clusterIP}&#39;</span><span style="color:#66d9ef">)</span>
+
+cat <span style="color:#e6db74">&lt;&lt; EOF &gt; upstreamservers
+</span><span style="color:#e6db74">server=/svc.clusterset.local/$lighthousednsip
+</span><span style="color:#e6db74">server=$dnsip
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><p>Create configmap of the list:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-a
+kubectl create configmap external-dnsmasq -n submariner-operator --from-file<span style="color:#f92672">=</span>upstreamservers
+</code></pre></div><p>Create a <code>dns.yaml</code> as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: external-dns-cluster-a
+  <span style="color:#66d9ef">namespace</span>: submariner-operator
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: external-dns-cluster-a
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+      <span style="color:#66d9ef">app</span>: external-dns-cluster-a
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">app</span>: external-dns-cluster-a
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: dnsmasq
+        <span style="color:#66d9ef">image</span>: registry.access.redhat.com/ubi8/ubi-minimal:latest
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">53</span>
+        <span style="color:#66d9ef">command</span>: [ <span style="color:#e6db74">&#34;/bin/sh&#34;</span>, <span style="color:#e6db74">&#34;-c&#34;</span>, <span style="color:#e6db74">&#34;microdnf install -y dnsmasq; ln -s /upstreamservers /etc/dnsmasq.d/upstreamservers; dnsmasq -k&#34;</span> ]
+        <span style="color:#66d9ef">volumeMounts</span>:
+        - <span style="color:#66d9ef">name</span>: upstreamservers
+          <span style="color:#66d9ef">mountPath</span>: /upstreamservers
+      <span style="color:#66d9ef">volumes</span>:
+        - <span style="color:#66d9ef">name</span>: upstreamservers
+          <span style="color:#66d9ef">configMap</span>:
+            <span style="color:#66d9ef">name</span>: external-dnsmasq
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">namespace</span>: submariner-operator
+  <span style="color:#66d9ef">name</span>: external-dns-cluster-a
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">name</span>: udp
+    <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">53</span>
+    <span style="color:#66d9ef">protocol</span>: UDP
+    <span style="color:#66d9ef">targetPort</span>: <span style="color:#ae81ff">53</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app</span>: external-dns-cluster-a
+</code></pre></div><p>Use this YAML to create DNS server, and assign global ingress IP:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f dns.yaml
+subctl export service -n submariner-operator external-dns-cluster-a
+</code></pre></div><p>Check global ingress IP:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig kubeconfig.cluster-a get globalingressip external-dns-cluster-a -n submariner-operator
+NAME                     IP
+external-dns-cluster-a   242.0.255.251
+</code></pre></div><h3 id="set-up-non-cluster-hosts">Set up non-cluster hosts</h3>
+<p>Modify routing for global CIDR on test-vm:</p>
+<p>Note that <code>subm_gw_ip</code> is the gateway node IP of the cluster in the same network segment of the hosts.
+In the case of the example of this guide, it is the node IP of cluster-a.
+Also, 242.0.0.0/8 is the default globalCIDR.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subm_gw_ip<span style="color:#f92672">=</span>192.168.122.26
+ip r add 242.0.0.0/8 via <span style="color:#e6db74">${</span>subm_gw_ip<span style="color:#e6db74">}</span>
+</code></pre></div><p>To persist above configuration across reboot, check the document for each Linux distribution.
+For example, on Centos 7, to set presistent route for eth0, below command is required:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#34;242.0.0.0/8 via </span><span style="color:#e6db74">${</span>subm_gw_ip<span style="color:#e6db74">}</span><span style="color:#e6db74"> dev eth0&#34;</span> &gt;&gt; /etc/sysconfig/network-scripts/route-eth0
+</code></pre></div><p>Modify <code>/etc/resolv.conf</code> to change DNS server for the host on test-vm:</p>
+<p>For example)</p>
+<ul>
+<li>Before:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nameserver 192.168.122.1
+</code></pre></div><ul>
+<li>After:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nameserver 242.0.255.251
+</code></pre></div><p>Check that the DNS server itself can be resolved:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nslookup external-dns-cluster-a.submariner-operator.svc.clusterset.local
+Server:         242.0.255.251
+Address:        242.0.255.251#53
+
+Name:   external-dns-cluster-a.submariner-operator.svc.clusterset.local
+Address: 10.43.162.46
+</code></pre></div><h3 id="verify-deployment">Verify Deployment</h3>
+<h4 id="verify-manually">Verify Manually</h4>
+<h5 id="deploy-http-server-on-hosts">Deploy HTTP server on hosts</h5>
+<p>Run on test-vm:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Python 2.x:</span>
+python -m SimpleHTTPServer <span style="color:#ae81ff">80</span>
+<span style="color:#75715e"># Python 3.x:</span>
+python -m http.server <span style="color:#ae81ff">80</span>
+</code></pre></div><h5 id="verify-access-to-external-hosts-from-clusters">Verify access to External hosts from clusters</h5>
+<p>Create Service, Endpoints, ServiceExport to access the test-vm from cluster-a:</p>
+<p>Note that <code>Endpoints.subsets.addresses</code> needs to be modified to IP of test-vm.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-a
+cat <span style="color:#e6db74">&lt;&lt; EOF | kubectl apply -f -
+</span><span style="color:#e6db74">apiVersion: v1
+</span><span style="color:#e6db74">kind: Service
+</span><span style="color:#e6db74">metadata:
+</span><span style="color:#e6db74">  name: test-vm
+</span><span style="color:#e6db74">spec:
+</span><span style="color:#e6db74">  ports:
+</span><span style="color:#e6db74">    - protocol: TCP
+</span><span style="color:#e6db74">      port: 80
+</span><span style="color:#e6db74">      targetPort: 80
+</span><span style="color:#e6db74">EOF</span>
+
+cat <span style="color:#e6db74">&lt;&lt; EOF | kubectl apply -f -
+</span><span style="color:#e6db74">apiVersion: v1
+</span><span style="color:#e6db74">kind: Endpoints
+</span><span style="color:#e6db74">metadata:
+</span><span style="color:#e6db74">  name: test-vm
+</span><span style="color:#e6db74">subsets:
+</span><span style="color:#e6db74">  - addresses:
+</span><span style="color:#e6db74">      - ip: 192.168.122.142
+</span><span style="color:#e6db74">    ports:
+</span><span style="color:#e6db74">      - port: 80
+</span><span style="color:#e6db74">EOF</span>
+
+subctl export service -n default test-vm
+</code></pre></div><p>Check global ingress IP for test-vm, on cluster-a:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get globalingressip test-vm
+NAME      IP
+test-vm   242.0.255.253
+</code></pre></div><p>Verify access to test-vm from clusters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-a
+kubectl -n default run tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- bash
+curl 242.0.255.253
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
+kubectl -n default run tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- bash
+curl 242.0.255.253
+</code></pre></div><p>On test-vm, check the console log of HTTP server that there are accesses from pods</p>
+
+<div class="notices note" ><p>Currently, <strong>headless</strong> service without selector is not supported for Globalnet,
+therefore service without selector needs to be used.
+This feature is under discussion in <a href="https://github.com/submariner-io/submariner/issues/1537">submariner-io/submariner#1537</a>.</p>
+</div>
+
+
+<div class="notices note" ><p>Currently, DNS resolution for service without selector is not supported,
+therefore global IPs need to be used to access to the external hosts.
+This feature is under discussion in <a href="https://github.com/submariner-io/lighthouse/issues/603">submariner-io/lighthouse#603</a>.
+Note that there is a workaround to make it resolvable by manually creating endpointslice, as described <a href="https://github.com/submariner-io/lighthouse/issues/603#issuecomment-901944297">here</a>.</p>
+</div>
+
+<h5 id="verify-access-to-deployment-from-non-cluster-hosts">Verify access to Deployment from non-cluster hosts</h5>
+<p>Create Deployment in cluster-b:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
+kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>k8s.gcr.io/nginx-slim:0.8
+kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
+subctl export service --namespace default nginx
+</code></pre></div><p>From test-vm, verify access:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl nginx.default.svc.clusterset.local
+</code></pre></div><p>Check the console log of HTTP server that there is access from test-vm:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl logs -l app<span style="color:#f92672">=</span>nginx
+</code></pre></div><h5 id="verify-access-to-statefulset-from-non-cluster-hosts">Verify access to Statefulset from non-cluster hosts</h5>
+<p>A <code>StatefulSet</code> uses a headless <code>Service</code>. Create a <code>web.yaml</code> file as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: nginx-ss
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#66d9ef">name</span>: web
+  <span style="color:#66d9ef">clusterIP</span>: None
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: StatefulSet
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: web
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">serviceName</span>: <span style="color:#e6db74">&#34;nginx-ss&#34;</span>
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
+        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: nginx-ss
+        <span style="color:#66d9ef">image</span>: k8s.gcr.io/nginx-slim:<span style="color:#ae81ff">0.8</span>
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
+          <span style="color:#66d9ef">name</span>: web
+</code></pre></div><p>Apply the above YAML to create a web <code>StatefulSet</code> with nginx-ss as the headless service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
+kubectl -n default apply -f web.yaml
+subctl export service -n default nginx-ss
+</code></pre></div><p>From test-vm, verify access:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl nginx-ss.default.svc.clusterset.local
+curl cluster-b.nginx-ss.default.svc.clusterset.local
+curl web-0.cluster-b.nginx-ss.default.svc.clusterset.local
+curl web-1.cluster-b.nginx-ss.default.svc.clusterset.local
+</code></pre></div><p>Check the console log of the HTTP server to verify there are accesses from test-vm:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl logs web-0
+kubectl logs web-1
+</code></pre></div><h5 id="verify-source-ip-of-the-access-from-statefulset">Verify source IP of the access from Statefulset</h5>
+<p>Confirm the global egress IPs for each pod managed by Statefulset:</p>
+<ul>
+<li>From Cluster:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
+kubectl get globalingressip | grep web
+pod-web-0     242.1.255.251
+pod-web-1     242.1.255.250
+</code></pre></div><ul>
+<li>From Hosts:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nslookup web-0.cluster-b.nginx-ss.default.svc.clusterset.local
+Server:         242.0.255.251
+Address:        242.0.255.251#53
+
+Name:   web-0.cluster-b.nginx-ss.default.svc.clusterset.local
+Address: 242.1.255.251
+
+nslookup web-1.cluster-b.nginx-ss.default.svc.clusterset.local
+Server:         242.0.255.251
+Address:        242.0.255.251#53
+
+Name:   web-1.cluster-b.nginx-ss.default.svc.clusterset.local
+Address: 242.1.255.250
+</code></pre></div><p>Verify the source IP of each access from each pod to test-vm is the same to its global egress IP:</p>
+<ul>
+<li>Access from web-0</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
+kubectl exec -it web-0 -- bash
+curl 242.0.255.253
+exit
+</code></pre></div><ul>
+<li>Access from web-1</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
+kubectl exec -it web-1 -- bash
+curl 242.0.255.253
+exit
+</code></pre></div><ul>
+<li>Check the console log in test-vm</li>
+</ul>
 
 
 
@@ -1953,239 +2313,8 @@ automatically re-synchronize its local information with the Broker and update th
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -2261,6 +2390,37 @@ automatically re-synchronize its local information with the Broker and update th
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -2283,6 +2443,38 @@ automatically re-synchronize its local information with the Broker and update th
             
         
                     
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -2290,6 +2482,180 @@ automatically re-synchronize its local information with the Broker and update th
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -2821,10 +3187,10 @@ automatically re-synchronize its local information with the Broker and update th
 	 
 	 
 		
-			<a class="nav nav-prev" href="/getting-started/architecture/" title="Architecture"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/getting-started/quickstart/openshift/vsphere-aws/" title="Hybrid vSphere and AWS"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/getting-started/architecture/gateway-engine/" title="Gateway Engine" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/operations/" title="Operations" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
