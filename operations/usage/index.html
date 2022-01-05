@@ -12,20 +12,20 @@
     <title>User Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1641318720" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1641318720" rel="stylesheet">
-    <link href="/css/hybrid.css?1641318720" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1641318720" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1641318720" rel="stylesheet">
-    <link href="/css/auto-complete.css?1641318720" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1641318720" rel="stylesheet">
-    <link href="/css/theme.css?1641318720" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1641318720" rel="stylesheet">
+    <link href="/css/nucleus.css?1641376049" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1641376049" rel="stylesheet">
+    <link href="/css/hybrid.css?1641376049" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1641376049" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1641376049" rel="stylesheet">
+    <link href="/css/auto-complete.css?1641376049" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1641376049" rel="stylesheet">
+    <link href="/css/theme.css?1641376049" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1641376049" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1641318720" rel="stylesheet">
+      <link href="/css/theme-blue.css?1641376049" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1641318720"></script>
+    <script src="/js/jquery-3.3.1.min.js?1641376049"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1641318720" rel="stylesheet">
+<link href="/css/fixes.css?1641376049" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/usage/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1641318720"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1641318720"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1641376049"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1641376049"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1641318720"></script>
+<script type="text/javascript" src="/js/search.js?1641376049"></script>
 
     
   </div>
@@ -2146,8 +2146,7 @@ nginx-nginx-test-cluster3   ClusterSetIP   <span style="color:#f92672">[</span>1
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create namespace nginx-test
 namespace/nginx-test created
 
-$ kubectl -n nginx-test  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+$ kubectl run -n nginx-test tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# curl nginx.nginx-test.svc.clusterset.local:8080
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -2292,8 +2291,7 @@ Status:
 Events:                    &lt;none&gt;
 </code></pre></div><h5 id="6-consume-the-service-from-cluster2">6. Consume the Service from <strong>cluster2</strong></h5>
 <p>Run a test Pod on <strong>cluster2</strong> and try to access the <code>nginx</code> Service from within the Pod:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n nginx-test  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl run -n nginx-test tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# curl nginx.nginx-test.svc.clusterset.local:8080
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -2539,8 +2537,7 @@ NAME                           TYPE           IP                AGE
 nginx-nginx-test-cluster3      ClusterSetIP   <span style="color:#f92672">[</span>100.3.220.176<span style="color:#f92672">]</span>   166m
 nginx-ss-nginx-test-cluster3   Headless                         5m48s
 </code></pre></div><p>Next, run a test Pod on <strong>cluster2</strong> and try to access the <code>nginx-ss</code> Service from within the Pod:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n nginx-test  run --generator<span style="color:#f92672">=</span>run-pod/v1 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl run -n nginx-test tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
 </code></pre></div><!-- markdownlint-disable no-hard-tabs -->
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash-5.0# dig nginx-ss.nginx-test.svc.clusterset.local
 
@@ -3570,19 +3567,19 @@ namespace <span style="color:#e6db74">&#34;nginx-test&#34;</span> deleted
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1641318720"></script>
-    <script src="/js/perfect-scrollbar.min.js?1641318720"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1641318720"></script>
-    <script src="/js/jquery.sticky.js?1641318720"></script>
-    <script src="/js/featherlight.min.js?1641318720"></script>
-    <script src="/js/highlight.pack.js?1641318720"></script>
+    <script src="/js/clipboard.min.js?1641376049"></script>
+    <script src="/js/perfect-scrollbar.min.js?1641376049"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1641376049"></script>
+    <script src="/js/jquery.sticky.js?1641376049"></script>
+    <script src="/js/featherlight.min.js?1641376049"></script>
+    <script src="/js/highlight.pack.js?1641376049"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1641318720"></script>
-    <script src="/js/learn.js?1641318720"></script>
-    <script src="/js/hugo-learn.js?1641318720"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1641376049"></script>
+    <script src="/js/learn.js?1641376049"></script>
+    <script src="/js/hugo-learn.js?1641376049"></script>
 
-    <link href="/mermaid/mermaid.css?1641318720" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1641318720"></script>
+    <link href="/mermaid/mermaid.css?1641376049" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1641376049"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
