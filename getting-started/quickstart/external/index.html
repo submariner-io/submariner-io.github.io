@@ -12,20 +12,20 @@
     <title>External Network (Experimental) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1642088462" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1642088462" rel="stylesheet">
-    <link href="/css/hybrid.css?1642088462" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1642088462" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1642088462" rel="stylesheet">
-    <link href="/css/auto-complete.css?1642088462" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1642088462" rel="stylesheet">
-    <link href="/css/theme.css?1642088462" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1642088462" rel="stylesheet">
+    <link href="/css/nucleus.css?1642092748" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1642092748" rel="stylesheet">
+    <link href="/css/hybrid.css?1642092748" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1642092748" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1642092748" rel="stylesheet">
+    <link href="/css/auto-complete.css?1642092748" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1642092748" rel="stylesheet">
+    <link href="/css/theme.css?1642092748" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1642092748" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1642088462" rel="stylesheet">
+      <link href="/css/theme-blue.css?1642092748" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1642088462"></script>
+    <script src="/js/jquery-3.3.1.min.js?1642092748"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1642088462" rel="stylesheet">
+<link href="/css/fixes.css?1642092748" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/quickstart/external/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1642088462"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1642088462"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1642092748"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1642092748"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1642088462"></script>
+<script type="text/javascript" src="/js/search.js?1642092748"></script>
 
     
   </div>
@@ -1990,6 +1990,16 @@ go install github.com/submariner-io/submariner-operator/pkg/subctl
 </code></pre></div><p>(and ensure your <code>go/bin</code> directory is on your <code>PATH</code>).</p>
 <h4 id="use-cluster-a-as-the-broker-with-globalnet-enabled">Use cluster-a as the Broker with Globalnet enabled</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig kubeconfig.cluster-a --globalnet
+</code></pre></div><h4 id="label-gateway-nodes">Label gateway nodes</h4>
+<p>When Submariner joins a cluster to the broker via the <code>subctl join</code> command, it chooses a node on which to install the
+gateway by labeling it appropriately. By default, Submariner uses a worker node for the gateway; if there are no worker
+nodes, then no gateway is installed unless a node is manually labeled as a gateway. Since we are deploying k3s all-in-one
+nodes, there are no worker nodes, so it is necessary to label the single node as a gateway. By default, the node name is
+the hostname. In this example, the hostnames are &ldquo;cluster-a&rdquo; and &ldquo;cluster-b&rdquo;, respectively.</p>
+<p>Execute the following on cluster-a:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl label node cluster-a submariner.io/gateway<span style="color:#f92672">=</span>true
+</code></pre></div><p>Execute the following on cluster-b:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl label node cluster-b submariner.io/gateway<span style="color:#f92672">=</span>true
 </code></pre></div><h4 id="join-cluster-a-to-the-broker-with-external-cidr-added-as-cluster-cidr">Join cluster-a to the Broker with external CIDR added as cluster CIDR</h4>
 <p>Carefully review the <code>CLUSTER_CIDR</code> and <code>EXTERNAL_CIDR</code> and run:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLUSTER_CIDR<span style="color:#f92672">=</span>10.42.0.0/24
@@ -3203,19 +3213,19 @@ exit
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1642088462"></script>
-    <script src="/js/perfect-scrollbar.min.js?1642088462"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1642088462"></script>
-    <script src="/js/jquery.sticky.js?1642088462"></script>
-    <script src="/js/featherlight.min.js?1642088462"></script>
-    <script src="/js/highlight.pack.js?1642088462"></script>
+    <script src="/js/clipboard.min.js?1642092748"></script>
+    <script src="/js/perfect-scrollbar.min.js?1642092748"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1642092748"></script>
+    <script src="/js/jquery.sticky.js?1642092748"></script>
+    <script src="/js/featherlight.min.js?1642092748"></script>
+    <script src="/js/highlight.pack.js?1642092748"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1642088462"></script>
-    <script src="/js/learn.js?1642088462"></script>
-    <script src="/js/hugo-learn.js?1642088462"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1642092748"></script>
+    <script src="/js/learn.js?1642092748"></script>
+    <script src="/js/hugo-learn.js?1642092748"></script>
 
-    <link href="/mermaid/mermaid.css?1642088462" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1642088462"></script>
+    <link href="/mermaid/mermaid.css?1642092748" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1642092748"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
