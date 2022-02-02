@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1643624009" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1643624009" rel="stylesheet">
-    <link href="/css/hybrid.css?1643624009" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1643624009" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1643624009" rel="stylesheet">
-    <link href="/css/auto-complete.css?1643624009" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1643624009" rel="stylesheet">
-    <link href="/css/theme.css?1643624009" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1643624009" rel="stylesheet">
+    <link href="/css/nucleus.css?1643812124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1643812124" rel="stylesheet">
+    <link href="/css/hybrid.css?1643812124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1643812124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1643812124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1643812124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1643812124" rel="stylesheet">
+    <link href="/css/theme.css?1643812124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1643812124" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1643624009" rel="stylesheet">
+      <link href="/css/theme-blue.css?1643812124" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1643624009"></script>
+    <script src="/js/jquery-3.3.1.min.js?1643812124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1643624009" rel="stylesheet">
+<link href="/css/fixes.css?1643812124" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/release-process/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1643624009"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1643624009"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1643812124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1643812124"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1643624009"></script>
+<script type="text/javascript" src="/js/search.js?1643812124"></script>
 
     
   </div>
@@ -1914,8 +1914,9 @@
 <li>Release errors: Append <code>.N</code> starting at 1 (example: <code>v0.8.0-m1.1</code>)</li>
 </ul>
 <h3 id="creating-releases">Creating Releases</h3>
-<p>The following sections are an ordered series of steps to create a Submariner relese.</p>
-<p>The release process is mostly automated and uses a YAML file created in the releases repository that describes the release.
+<p>The following sections are an ordered series of steps to create a Submariner release.</p>
+<p>The release process is mostly automated and uses a YAML file created in the
+<a href="https://github.com/submariner-io/releases">releases repository</a> that describes the release.
 This file is updated for each step in the release process.</p>
 <p>Once the changes for a step are reviewed and merged, a CI job will run to create the release(s) for the step and create the
 required pull requests in preparation for the next step to be reviewed and merged. Once all these pull requests have been
@@ -1955,7 +1956,10 @@ To do so, run the <code>make</code> command with <code>dryrun=true</code>.</p>
 </div>
 
 <p>The command runs, gathers the data for the release, updates the release YAML and pushes it for review. Once the review process is done,
-and the automated release steps on the CI have finished successfully, simply <strong>run the same command again to advance to the next stage</strong>.</p>
+merge the PR. Pull requests will then be created for all dependent projects to update them to the new version. The automation
+will leave a comment with a list of the version-bump PRs for dependent project in the release PR that was just merged. Make sure all those
+PRs are merged and their release jobs pass (see the Actions tab of the repository on GitHub) then <strong>proceed to the next release phase by
+running the same command again</strong>.</p>
 <p>Once there isn&rsquo;t anything else to do, the command will inform you. At this point, continue manually with any steps not automated yet,
 starting with <a href="#verify">Verify Release</a>.</p>
 <h2 id="manual-release-creation-process">Manual Release Creation Process</h2>
@@ -3131,19 +3135,19 @@ and create a new PR on <a href="https://github.com/k8s-operatorhub/community-ope
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1643624009"></script>
-    <script src="/js/perfect-scrollbar.min.js?1643624009"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1643624009"></script>
-    <script src="/js/jquery.sticky.js?1643624009"></script>
-    <script src="/js/featherlight.min.js?1643624009"></script>
-    <script src="/js/highlight.pack.js?1643624009"></script>
+    <script src="/js/clipboard.min.js?1643812124"></script>
+    <script src="/js/perfect-scrollbar.min.js?1643812124"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1643812124"></script>
+    <script src="/js/jquery.sticky.js?1643812124"></script>
+    <script src="/js/featherlight.min.js?1643812124"></script>
+    <script src="/js/highlight.pack.js?1643812124"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1643624009"></script>
-    <script src="/js/learn.js?1643624009"></script>
-    <script src="/js/hugo-learn.js?1643624009"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1643812124"></script>
+    <script src="/js/learn.js?1643812124"></script>
+    <script src="/js/hugo-learn.js?1643812124"></script>
 
-    <link href="/mermaid/mermaid.css?1643624009" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1643624009"></script>
+    <link href="/mermaid/mermaid.css?1643812124" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1643812124"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
