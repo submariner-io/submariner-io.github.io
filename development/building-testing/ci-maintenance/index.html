@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>On AWS :: Submariner k8s project documentation website</title>
+    <title>CI/CD Maintenance :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1645441420" rel="stylesheet">
@@ -37,7 +37,7 @@
 <link href="/css/fixes.css?1645441420" rel="stylesheet">
 
   </head>
-  <body class="" data-url="/getting-started/quickstart/openshift/aws/">
+  <body class="" data-url="/development/building-testing/ci-maintenance/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -84,7 +84,7 @@
   
     
     <li data-nav-id="/getting-started/" title="Getting Started" class="dd-item 
-        parent
+        
         
         
         ">
@@ -363,7 +363,7 @@
   
     
     <li data-nav-id="/getting-started/quickstart/" title="Quickstart Guides" class="dd-item 
-        parent
+        
         
         
         ">
@@ -546,7 +546,7 @@
   
     
     <li data-nav-id="/getting-started/quickstart/openshift/" title="OpenShift" class="dd-item 
-        parent
+        
         
         
         ">
@@ -577,8 +577,8 @@
   
     
     <li data-nav-id="/getting-started/quickstart/openshift/aws/" title="On AWS" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/getting-started/quickstart/openshift/aws/">
@@ -1250,7 +1250,7 @@
   
     
     <li data-nav-id="/development/" title="Development" class="dd-item 
-        
+        parent
         
         
         ">
@@ -1309,7 +1309,7 @@
   
     
     <li data-nav-id="/development/building-testing/" title="Building and Testing" class="dd-item 
-        
+        parent
         
         
         ">
@@ -1340,8 +1340,8 @@
   
     
     <li data-nav-id="/development/building-testing/ci-maintenance/" title="CI/CD Maintenance" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/development/building-testing/ci-maintenance/">
@@ -1840,7 +1840,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/getting-started/quickstart/openshift/aws/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/development/building-testing/ci-maintenance/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1875,13 +1875,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/'></a> > <a href='/getting-started/'>Getting Started</a> > <a href='/getting-started/quickstart/'>Quickstart Guides</a> > <a href='/getting-started/quickstart/openshift/'>OpenShift</a> > On AWS
-          
-         
+            <a href='/'></a> > <a href='/development/'>Development</a> > <a href='/development/building-testing/'>Building and Testing</a> > CI/CD Maintenance
           
          
           
@@ -1898,13 +1892,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#install-subctl">Install <code>subctl</code></a></li>
-        <li><a href="#prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</a></li>
-        <li><a href="#install-submariner-with-service-discovery">Install Submariner with Service Discovery</a></li>
-      </ul>
-    </li>
+    <li><a href="#kubernetes-versions">Kubernetes Versions</a></li>
   </ul>
 </nav>
     </div>
@@ -1922,7 +1910,7 @@
           
             <h1>
               
-              On AWS
+              CI/CD Maintenance
             </h1>
           
 
@@ -1931,217 +1919,44 @@
 
 
 
-	<p>This quickstart guide covers the necessary steps to deploy two OpenShift Container Platform (OCP) clusters on AWS with
-full stack automation, also known as installer-provisioned infrastructure (IPI). Once the OpenShift clusters are deployed, we deploy
-Submariner with Service Discovery to interconnect the two clusters. Note that this guide focuses on Submariner deployment on clusters with
-non-overlapping Pod and Service CIDRs. For connecting clusters with overlapping CIDRs, please refer to the
-<a href="../globalnet/">Submariner with Globalnet guide</a>.</p>
-
-
-<h3 id="prerequisites">Prerequisites</h3>
-<p>Before we begin, the following tools need to be downloaded and added to your <code>$PATH</code>:</p>
-<ol>
-<li><strong>OpenShift installer</strong>, <strong>pull secret</strong>, and <strong>command line interface</strong>. All can be downloaded from
-<a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned">here</a>.</li>
-<li><strong>AWS CLI</strong> which can be downloaded from <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">here</a>.</li>
-</ol>
-
-
-
-
-<div class="notices info" ><p>Please ensure that the tools you downloaded above are compatible with your OpenShift Container Platform version. For more information,
-please refer to the official <a href="https://docs.openshift.com/container-platform/">OpenShift documentation</a>.</p>
-</div>
-
-<p>
-
-<h3 id="setup-your-aws-profile">Setup Your AWS Profile</h3>
-<p>Configure the AWS CLI with the settings required to interact with AWS. These include your security credentials, the default AWS Region,
-and the default output format:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
-AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: ....
-Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: text
-</code></pre></div>
-
-
-
-
-<h3 id="create-and-deploy-cluster-a">Create and Deploy cluster-a</h3>
-<p>In this step you will deploy <strong>cluster-a</strong> using the default IP CIDR ranges:</p>
+	<p>This page documents the maintenance of Submariner&rsquo;s CI/CD for developers.</p>
+<h2 id="kubernetes-versions">Kubernetes Versions</h2>
+<p>The versions of Kubernetes tested in Submariner&rsquo;s CI need to be updated for new <a href="https://kubernetes.io/releases/">Kubernetes releases</a>.</p>
+<p>Submariner&rsquo;s policy is to support all versions upstream-Kubernetes supports and no EOL versions.</p>
+<p>The versions that should be used in CI are described below.</p>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
-<th>Pod CIDR</th>
-<th>Service CIDR</th>
+<th align="left">CI</th>
+<th align="left">Kubernetes Version</th>
+<th align="left">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>10.128.0.0/14</td>
-<td>172.30.0.0/16</td>
+<td align="left">Most CI</td>
+<td align="left">Latest</td>
+<td align="left">CI should run against the latest Kubernetes version by default.</td>
+</tr>
+<tr>
+<td align="left">Basic Kubernetes Support</td>
+<td align="left">All non-latest supported versions</td>
+<td align="left">One defaults-only E2E for each non-latest supported Kubernetes version.</td>
+</tr>
+<tr>
+<td align="left">Full Kubernetes Support</td>
+<td align="left">All non-latest supported versions</td>
+<td align="left">Workflow to run all CI for all of the currently-supported, non-latest Kubernetes versions. Run periodically, on releases, or manually by adding the <code>e2e-all-k8s</code> label.</td>
+</tr>
+<tr>
+<td align="left">Unsupported Kubernetes Cut-off</td>
+<td align="left">Oldest working version</td>
+<td align="left">One defaults-only E2E for the oldest Kubernetes version known to work with Submariner. This tests the cut-off version used by <code>subctl</code> to prevent installing Submariner in environments that are known to be unsupported.</td>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-a
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-a
-</code></pre></div><p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
-<code>kubeadmin</code> user, display in your terminal.</p>
-<h3 id="create-and-deploy-cluster-b">Create and Deploy cluster-b</h3>
-<p>In this step you will deploy <strong>cluster-b</strong>, modifying the default IP CIDRs to avoid IP address conflicts with <strong>cluster-a</strong>. You can change
-the IP addresses block and prefix based on your requirements. For more information on IPv4 CIDR conversion,
-please check <a href="https://account.arin.net/public/cidrCalculator">this page</a>.</p>
-<p>In this example, we will use the following IP ranges:</p>
-<table>
-<thead>
-<tr>
-<th>Pod CIDR</th>
-<th>Service CIDR</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10.132.0.0/14</td>
-<td>172.31.0.0/16</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create install-config --dir cluster-b
-</code></pre></div><p>Change the Pod network CIDR from 10.128.0.0/14 to 10.132.0.0/14:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/10.128.0.0/10.132.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>Change the Service network CIDR from 172.30.0.0/16 to 172.31.0.0/16:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/172.30.0.0/172.31.0.0/g&#39;</span> cluster-b/install-config.yaml
-</code></pre></div><p>And finally deploy the cluster:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openshift-install create cluster --dir cluster-b
-</code></pre></div><p>When the cluster deployment completes, directions for accessing your cluster, including a link to its web console and credentials for the
-<code>kubeadmin</code> user, display in your terminal.</p>
-
-
-</p>
-<h3 id="install-subctl">Install <code>subctl</code></h3>
-<p>Download the subctl binary and make it available on your PATH.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Ls https://get.submariner.io | bash
-export PATH<span style="color:#f92672">=</span>$PATH:~/.local/bin
-echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:~/.local/bin &gt;&gt; ~/.profile
-</code></pre></div><p>If you have Go and the <a href="https://github.com/submariner-io/submariner-operator">source code</a>, you can build and install subctl instead:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd go/src/submariner-io/submariner-operator
-go install github.com/submariner-io/submariner-operator/pkg/subctl
-</code></pre></div><p>(and ensure your <code>go/bin</code> directory is on your <code>PATH</code>).</p>
-<h3 id="prepare-aws-clusters-for-submariner">Prepare AWS Clusters for Submariner</h3>
-<p>Submariner Gateway nodes need to be able to accept traffic over UDP ports (4500 and 4490 by default).
-Submariner also uses UDP port 4800 to encapsulate traffic from the worker and master nodes to the Gateway nodes, and TCP port 8080 to
-retrieve metrics from the Gateway nodes.
-Additionally, the default OpenShift deployment does not allow assigning an elastic public IP to existing worker nodes, which may be
-necessary on one end of the tunnel connection.</p>
-<p><code>subctl cloud prepare</code> is a command designed to update your OpenShift installer provisioned infrastructure for Submariner deployments,
-handling the requirements specified above.</p>
-<div class="notices note">
-<p>The default EC2 instance type for the Submariner gateway node is <code>c5d.large</code>,
-optimized for better CPU which is found to be a bottleneck for IPsec and Wireguard drivers.
-Please ensure that the AWS Region you deploy to supports this instance type.
-Alternatively, you can choose to deploy using a different instance type.</p>
-</div>
-<p>Prepare OpenShift-on-AWS <strong>cluster-a</strong> for Submariner:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
-subctl cloud prepare aws --ocp-metadata path/to/cluster-a/metadata.json 
-</code></pre></div><p>Prepare OpenShift-on-AWS <strong>cluster-b</strong> for Submariner:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
-subctl cloud prepare aws --ocp-metadata path/to/cluster-b/metadata.json 
-</code></pre></div><p>Note that certain parameters, such as the tunnel UDP port and AWS instance type for the gateway,
-can be customized. For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl cloud prepare aws --ocp-metadata path/to/metadata.json --natt-port <span style="color:#ae81ff">4501</span> --gateway-instance m4.xlarge
-</code></pre></div><p>Submariner can be deployed in HA mode by setting the <code>gateways</code> flag:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl cloud prepare aws --ocp-metadata path/to/metadata.json --gateways <span style="color:#ae81ff">3</span>
-</code></pre></div><h3 id="install-submariner-with-service-discovery">Install Submariner with Service Discovery</h3>
-<p>To install Submariner with multi-cluster Service Discovery follow the steps below:</p>
-<h4 id="use-cluster-a-as-broker">Use cluster-a as Broker</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --kubeconfig cluster-a/auth/kubeconfig
-</code></pre></div><h4 id="join-cluster-a-and-cluster-b-to-the-broker">Join cluster-a and cluster-b to the Broker</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-a/auth/kubeconfig broker-info.subm --clusterid cluster-a
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --kubeconfig cluster-b/auth/kubeconfig broker-info.subm --clusterid cluster-b
-</code></pre></div>
-
-<h4 id="verify-deployment">Verify Deployment</h4>
-<p>To manually verify the deployment, follow the steps below using either a headless or ClusterIP <code>nginx</code> service deployed in <code>cluster-b</code>.</p>
-<h5 id="deploy-clusterip-service">Deploy ClusterIP Service</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
-kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
-kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
-subctl export service --namespace default nginx
-</code></pre></div><h5 id="deploy-headless-service">Deploy Headless Service</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-b/auth/kubeconfig
-kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>nginxinc/nginx-unprivileged:stable-alpine
-kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span> --cluster-ip<span style="color:#f92672">=</span>None
-subctl export service --namespace default nginx
-</code></pre></div><h5 id="verify">Verify</h5>
-<p>Run <code>nettest</code> from <code>cluster-a</code> to access the <code>nginx</code> service:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
-kubectl -n default run tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
-curl nginx.default.svc.clusterset.local:8080
-</code></pre></div><p>To access a Service in a specific cluster, prefix the query with <code>&lt;cluster-id&gt;</code> as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-b.nginx.default.svc.clusterset.local:8080
-</code></pre></div><h4 id="verify-statefulsets">Verify StatefulSets</h4>
-<p>A StatefulSet uses a headless Service. Create a <code>web.yaml</code> as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Service
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: nginx-ss
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">ports</span>:
-  - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
-    <span style="color:#66d9ef">name</span>: web
-  <span style="color:#66d9ef">clusterIP</span>: None
-  <span style="color:#66d9ef">selector</span>:
-    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
----
-<span style="color:#66d9ef">apiVersion</span>: apps/v1
-<span style="color:#66d9ef">kind</span>: StatefulSet
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: web
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">serviceName</span>: <span style="color:#e6db74">&#34;nginx-ss&#34;</span>
-  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
-  <span style="color:#66d9ef">selector</span>:
-    <span style="color:#66d9ef">matchLabels</span>:
-        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-  <span style="color:#66d9ef">template</span>:
-    <span style="color:#66d9ef">metadata</span>:
-      <span style="color:#66d9ef">labels</span>:
-        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-    <span style="color:#66d9ef">spec</span>:
-      <span style="color:#66d9ef">containers</span>:
-      - <span style="color:#66d9ef">name</span>: nginx-ss
-        <span style="color:#66d9ef">image</span>: nginxinc/nginx-unprivileged:stable-alpine
-        <span style="color:#66d9ef">ports</span>:
-        - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
-          <span style="color:#66d9ef">name</span>: web
-</code></pre></div><p>Use this yaml to create a StatefulSet <code>web</code> with <code>nginx-ss</code> as the Headless Service.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
-kubectl -n default apply -f web.yaml
-subctl export service -n default nginx-ss
-curl nginx-ss.default.svc.clusterset.local:8080
-</code></pre></div><p>To access the Service in a specific cluster, prefix the query with <code>&lt;cluster-id&gt;</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-a.nginx-ss.default.svc.clusterset.local:8080
-</code></pre></div><p>To access an individual pod in a specific cluster, prefix the query with <code>&lt;pod-hostname&gt;.&lt;cluster-id&gt;</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl web-0.cluster-a.nginx-ss.default.svc.clusterset.local:8080
-</code></pre></div><h4 id="perform-automated-verification">Perform automated verification</h4>
-<p>The contexts on both config files are named <code>admin</code> and need to be modified before running the <code>verify</code> command.
-Here is how this can be done using <a href="http://mikefarah.github.io/yq/">yq</a>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yq e -i <span style="color:#e6db74">&#39;.contexts[0].name = &#34;cluster-a&#34; | .current-context = &#34;cluster-a&#34;&#39;</span> cluster-a/auth/kubeconfig
-yq e -i <span style="color:#e6db74">&#39;.contexts[0].name = &#34;cluster-b&#34; | .current-context = &#34;cluster-a&#34;&#39;</span> cluster-b/auth/kubeconfig
-</code></pre></div><p>This will perform automated verifications between the clusters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig:cluster-b/auth/kubeconfig
-subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connectivity --verbose
-</code></pre></div>
-
-
+<!-- markdownlint-enable line-length -->
 
 
 
@@ -2182,22 +1997,6 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
                         
                         
                     
@@ -2221,11 +2020,10 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
 
                     
                     
+                        
+                    
                     
 
-                    
-            
-        
                     
                         
             
@@ -2263,94 +2061,6 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -2410,6 +2120,9 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
         
                     
+            
+        
+                    
                         
             
             
@@ -2434,7 +2147,6 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
                 
                     
-                    
                 
                 
 
@@ -2449,7 +2161,6 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
             
                 
-                    
                     
                 
                 
@@ -2467,8 +2178,102 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                         
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -2821,6 +2626,7 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
                 
                     
+                    
                 
                 
 
@@ -2835,6 +2641,9 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -2852,6 +2661,7 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
                 
                     
+                    
                 
                 
 
@@ -2866,6 +2676,7 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
             
                 
+                    
                     
                 
                 
@@ -2885,6 +2696,9 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -3091,10 +2905,10 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
 	 
 	 
 		
-			<a class="nav nav-prev" href="/getting-started/quickstart/openshift/" title="OpenShift"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/development/building-testing/" title="Building and Testing"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/getting-started/quickstart/openshift/gcp-lb/" title="On GCP (LoadBalancer mode)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/development/code-review/" title="Code Review Guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
