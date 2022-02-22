@@ -12,20 +12,20 @@
     <title>Deployment :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1645519690" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1645519690" rel="stylesheet">
-    <link href="/css/hybrid.css?1645519690" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1645519690" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1645519690" rel="stylesheet">
-    <link href="/css/auto-complete.css?1645519690" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1645519690" rel="stylesheet">
-    <link href="/css/theme.css?1645519690" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1645519690" rel="stylesheet">
+    <link href="/css/nucleus.css?1645523579" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1645523579" rel="stylesheet">
+    <link href="/css/hybrid.css?1645523579" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1645523579" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1645523579" rel="stylesheet">
+    <link href="/css/auto-complete.css?1645523579" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1645523579" rel="stylesheet">
+    <link href="/css/theme.css?1645523579" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1645523579" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1645519690" rel="stylesheet">
+      <link href="/css/theme-blue.css?1645523579" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1645519690"></script>
+    <script src="/js/jquery-3.3.1.min.js?1645523579"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1645519690" rel="stylesheet">
+<link href="/css/fixes.css?1645523579" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1645519690"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1645519690"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1645523579"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1645523579"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1645519690"></script>
+<script type="text/javascript" src="/js/search.js?1645523579"></script>
 
     
   </div>
@@ -1915,11 +1915,10 @@
 
 
 
-	<p>Submariner provides a Go-based Kubernetes custom controller, called an <a href="https://github.com/submariner-io/submariner-operator">Operator</a>,
-that provides easy API-based installation and management. A command line utility, <em><code>subctl</code></em>, wraps the Operator to aid users with manual
-deployments and easy experimentation. <code>subctl</code> greatly simplifies the deployment of Submariner, and is therefore the recommended deployment
-method. For complete information about <code>subctl</code>, please refer to <a href="subctl">this page</a>.</p>
-<p>In addition to Operator and <code>subctl</code>, Submariner also provides <a href="helm">Helm Charts</a>.</p>
+	<p>Submariner is always deployed using a Go-based Kubernetes custom controller, called an
+<a href="https://github.com/submariner-io/submariner-operator">Operator</a>, that provides API-based installation and management. Deployment tools like
+the <a href="subctl"><em><code>subctl</code></em> command line utility</a> and <a href="helm">Helm charts</a> wrap the Operator. The recommended deployment method is <code>subctl</code>, as
+it is currently the default in CI and provides diagnostic features.</p>
 <h2 id="installing-subctl">Installing <code>subctl</code></h2>
 <p>Download the subctl binary and make it available on your PATH.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Ls https://get.submariner.io | bash
@@ -2919,19 +2918,19 @@ based on the cluster name in the <code>kubeconfig</code> file.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1645519690"></script>
-    <script src="/js/perfect-scrollbar.min.js?1645519690"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1645519690"></script>
-    <script src="/js/jquery.sticky.js?1645519690"></script>
-    <script src="/js/featherlight.min.js?1645519690"></script>
-    <script src="/js/highlight.pack.js?1645519690"></script>
+    <script src="/js/clipboard.min.js?1645523579"></script>
+    <script src="/js/perfect-scrollbar.min.js?1645523579"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1645523579"></script>
+    <script src="/js/jquery.sticky.js?1645523579"></script>
+    <script src="/js/featherlight.min.js?1645523579"></script>
+    <script src="/js/highlight.pack.js?1645523579"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1645519690"></script>
-    <script src="/js/learn.js?1645519690"></script>
-    <script src="/js/hugo-learn.js?1645519690"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1645523579"></script>
+    <script src="/js/learn.js?1645523579"></script>
+    <script src="/js/hugo-learn.js?1645523579"></script>
 
-    <link href="/mermaid/mermaid.css?1645519690" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1645519690"></script>
+    <link href="/mermaid/mermaid.css?1645523579" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1645523579"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
