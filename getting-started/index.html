@@ -12,20 +12,20 @@
     <title>Getting Started :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1645548719" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1645548719" rel="stylesheet">
-    <link href="/css/hybrid.css?1645548719" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1645548719" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1645548719" rel="stylesheet">
-    <link href="/css/auto-complete.css?1645548719" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1645548719" rel="stylesheet">
-    <link href="/css/theme.css?1645548719" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1645548719" rel="stylesheet">
+    <link href="/css/nucleus.css?1646040499" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1646040499" rel="stylesheet">
+    <link href="/css/hybrid.css?1646040499" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1646040499" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1646040499" rel="stylesheet">
+    <link href="/css/auto-complete.css?1646040499" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1646040499" rel="stylesheet">
+    <link href="/css/theme.css?1646040499" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1646040499" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1645548719" rel="stylesheet">
+      <link href="/css/theme-blue.css?1646040499" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1645548719"></script>
+    <script src="/js/jquery-3.3.1.min.js?1646040499"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1645548719" rel="stylesheet">
+<link href="/css/fixes.css?1646040499" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1645548719"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1645548719"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1646040499"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1646040499"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1645548719"></script>
+<script type="text/javascript" src="/js/search.js?1646040499"></script>
 
     
   </div>
@@ -1919,7 +1919,7 @@
 <p>Submariner consists of several main components that work in conjunction to securely connect workloads across multiple Kubernetes clusters.
 For more information about Submariner&rsquo;s architecture, please refer to the <a href="./architecture">Architecture</a> section.</p>
 <h3 id="the-broker">The Broker</h3>
-<p>The Broker is an API to which all participating clusters are given access to, and where two objects are exchanged via CRDs:</p>
+<p>The Broker is an API that all participating clusters are given access to, and where two objects are exchanged via CRDs:</p>
 <ul>
 <li>Cluster(.submariner.io): defines a participating cluster and its IP CIDRs.</li>
 <li>Endpoint(.submariner.io): defines a connection endpoint to a cluster, and the reachable cluster IPs from the endpoint.</li>
@@ -2000,9 +2000,8 @@ following network (CNI) Plugins:</p>
 <p>Submariner supports all currently-supported Kubernetes versions, as determined by <a href="https://kubernetes.io/releases/">the Kubernetes release policy</a>.</p>
 <h2 id="deployment">Deployment</h2>
 <p>Submariner is deployed and managed using its Operator. <a href="https://github.com/submariner-io/submariner-operator">Submariner&rsquo;s Operator</a> can be
-deployed using <a href="../operations/deployment">subctl</a>, <a href="../operations/deployment/helm">Helm</a>, or directly.</p>
-<p><code>subctl</code> is the recommended deployment method because it has the most refined deployment user experience and additionally provides testing
-and bug-diagnosing capabilities.</p>
+deployed using <a href="../operations/deployment">subctl</a> or <a href="../operations/deployment/helm">Helm</a>.</p>
+<p>The recommended deployment method is <code>subctl</code>, as it is currently the default in CI and provides diagnostic features.</p>
 
 
 
@@ -2956,19 +2955,19 @@ and bug-diagnosing capabilities.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1645548719"></script>
-    <script src="/js/perfect-scrollbar.min.js?1645548719"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1645548719"></script>
-    <script src="/js/jquery.sticky.js?1645548719"></script>
-    <script src="/js/featherlight.min.js?1645548719"></script>
-    <script src="/js/highlight.pack.js?1645548719"></script>
+    <script src="/js/clipboard.min.js?1646040499"></script>
+    <script src="/js/perfect-scrollbar.min.js?1646040499"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1646040499"></script>
+    <script src="/js/jquery.sticky.js?1646040499"></script>
+    <script src="/js/featherlight.min.js?1646040499"></script>
+    <script src="/js/highlight.pack.js?1646040499"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1645548719"></script>
-    <script src="/js/learn.js?1645548719"></script>
-    <script src="/js/hugo-learn.js?1645548719"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1646040499"></script>
+    <script src="/js/learn.js?1646040499"></script>
+    <script src="/js/hugo-learn.js?1646040499"></script>
 
-    <link href="/mermaid/mermaid.css?1645548719" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1645548719"></script>
+    <link href="/mermaid/mermaid.css?1646040499" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1646040499"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
