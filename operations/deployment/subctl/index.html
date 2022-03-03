@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1646322413" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1646322413" rel="stylesheet">
-    <link href="/css/hybrid.css?1646322413" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1646322413" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1646322413" rel="stylesheet">
-    <link href="/css/auto-complete.css?1646322413" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1646322413" rel="stylesheet">
-    <link href="/css/theme.css?1646322413" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1646322413" rel="stylesheet">
+    <link href="/css/nucleus.css?1646325440" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1646325440" rel="stylesheet">
+    <link href="/css/hybrid.css?1646325440" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1646325440" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1646325440" rel="stylesheet">
+    <link href="/css/auto-complete.css?1646325440" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1646325440" rel="stylesheet">
+    <link href="/css/theme.css?1646325440" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1646325440" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1646322413" rel="stylesheet">
+      <link href="/css/theme-blue.css?1646325440" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1646322413"></script>
+    <script src="/js/jquery-3.3.1.min.js?1646325440"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1646322413" rel="stylesheet">
+<link href="/css/fixes.css?1646325440" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1646322413"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1646322413"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1646325440"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1646325440"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1646322413"></script>
+<script type="text/javascript" src="/js/search.js?1646325440"></script>
 
     
   </div>
@@ -1902,6 +1902,7 @@
       <ul>
         <li><a href="#deploy-broker"><code>deploy-broker</code></a></li>
         <li><a href="#export"><code>export</code></a></li>
+        <li><a href="#unexport"><code>unexport</code></a></li>
         <li><a href="#join"><code>join</code></a></li>
         <li><a href="#show"><code>show</code></a></li>
         <li><a href="#verify"><code>verify</code></a></li>
@@ -2051,7 +2052,35 @@ discoverable from other clusters in the Submariner deployment.</p>
 </tr>
 <tr>
 <td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
-<td align="left">Namespace in which the Service to be exported belongs</td>
+<td align="left">Namespace to use</td>
+</tr>
+</tbody>
+</table>
+<p>If no <code>namespace</code> flag is specified, it uses the default namespace from the current context, if present, otherwise it uses <code>default</code>.</p>
+<h3 id="unexport"><code>unexport</code></h3>
+<h4 id="unexport-service"><code>unexport service</code></h4>
+<p><code>subctl unexport service [flags] &lt;name&gt;</code> removes the <code>ServiceExport</code> resource with the given name which in turn stops the Service of the
+same name from being exported to other clusters.</p>
+<h4 id="unexport-service-flags"><code>unexport service</code> flags</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
+<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left">Kubeconfig context to use</td>
+</tr>
+<tr>
+<td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left">Namespace to use</td>
 </tr>
 </tbody>
 </table>
@@ -3705,19 +3734,19 @@ firewall ports opened and will only label the required number of gateway nodes f
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1646322413"></script>
-    <script src="/js/perfect-scrollbar.min.js?1646322413"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1646322413"></script>
-    <script src="/js/jquery.sticky.js?1646322413"></script>
-    <script src="/js/featherlight.min.js?1646322413"></script>
-    <script src="/js/highlight.pack.js?1646322413"></script>
+    <script src="/js/clipboard.min.js?1646325440"></script>
+    <script src="/js/perfect-scrollbar.min.js?1646325440"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1646325440"></script>
+    <script src="/js/jquery.sticky.js?1646325440"></script>
+    <script src="/js/featherlight.min.js?1646325440"></script>
+    <script src="/js/highlight.pack.js?1646325440"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1646322413"></script>
-    <script src="/js/learn.js?1646322413"></script>
-    <script src="/js/hugo-learn.js?1646322413"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1646325440"></script>
+    <script src="/js/learn.js?1646325440"></script>
+    <script src="/js/hugo-learn.js?1646325440"></script>
 
-    <link href="/mermaid/mermaid.css?1646322413" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1646322413"></script>
+    <link href="/mermaid/mermaid.css?1646325440" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1646325440"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
