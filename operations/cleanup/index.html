@@ -12,20 +12,20 @@
     <title>Uninstalling Submariner :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1646647803" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1646647803" rel="stylesheet">
-    <link href="/css/hybrid.css?1646647803" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1646647803" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1646647803" rel="stylesheet">
-    <link href="/css/auto-complete.css?1646647803" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1646647803" rel="stylesheet">
-    <link href="/css/theme.css?1646647803" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1646647803" rel="stylesheet">
+    <link href="/css/nucleus.css?1646741365" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1646741365" rel="stylesheet">
+    <link href="/css/hybrid.css?1646741365" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1646741365" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1646741365" rel="stylesheet">
+    <link href="/css/auto-complete.css?1646741365" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1646741365" rel="stylesheet">
+    <link href="/css/theme.css?1646741365" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1646741365" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1646647803" rel="stylesheet">
+      <link href="/css/theme-blue.css?1646741365" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1646647803"></script>
+    <script src="/js/jquery-3.3.1.min.js?1646741365"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1646647803" rel="stylesheet">
+<link href="/css/fixes.css?1646741365" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/cleanup/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1646647803"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1646647803"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1646741365"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1646741365"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1646647803"></script>
+<script type="text/javascript" src="/js/search.js?1646741365"></script>
 
     
   </div>
@@ -1884,7 +1884,12 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#automated-uninstall">Automated Uninstall</a></li>
+    <li><a href="#manual-uninstall">Manual Uninstall</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1909,7 +1914,43 @@
 
 
 
-	<p>To properly uninstall Submariner from a cluster, follow the steps below:</p>
+	<p>Starting with Submariner 0.12, the recommended way to uninstall Submariner is via the <a href="#automated-uninstall"><code>subctl uninstall</code></a> command.
+This will automatically remove Submariner and its components from a given cluster. For previous versions, Submariner would need to be
+<a href="#manual-uninstall">uninstalled manually</a>.</p>
+<h2 id="automated-uninstall">Automated Uninstall</h2>
+<p>Issue the <a href="../deployment/subctl/#uninstall"><code>subctl uninstall</code></a> command against the cluster you want to uninstall Submariner from. Example
+output:</p>
+<!-- markdownlint-disable no-trailing-spaces -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ subctl uninstall --kubeconfig output/kubeconfigs/cluster1
+
+? This will completely uninstall Submariner from the cluster cluster1. Are you sure you want to <span style="color:#66d9ef">continue</span>? Yes
+ ✓ Checking <span style="color:#66d9ef">if</span> the connectivity component is installed
+ ✓ The connectivity component is installed
+ ✓ Deleting the Submariner resource - this may take some time
+ ✓ Deleting the Submariner cluster roles and bindings
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariner-diagnose&#34;</span> cluster role and binding
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariner-gateway&#34;</span> cluster role and binding
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariner-globalnet&#34;</span> cluster role and binding
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariner-lighthouse-agent&#34;</span> cluster role and binding
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariner-lighthouse-coredns&#34;</span> cluster role and binding
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariner-networkplugin-syncer&#34;</span> cluster role and binding
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariner-operator&#34;</span> cluster role and binding
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariner-routeagent&#34;</span> cluster role and binding
+ ✓ Deleting the Submariner namespace <span style="color:#e6db74">&#34;submariner-operator&#34;</span>
+ ✓ Deleting the broker namespace <span style="color:#e6db74">&#34;submariner-k8s-broker&#34;</span>
+ ✓ Deleting the Submariner custom resource definitions
+ ✓ Deleted the <span style="color:#e6db74">&#34;brokers.submariner.io&#34;</span> custom resource definition
+ ✓ Deleted the <span style="color:#e6db74">&#34;clusterglobalegressips.submariner.io&#34;</span> custom resource definition
+ ✓ Deleted the <span style="color:#e6db74">&#34;clusters.submariner.io&#34;</span> custom resource definition
+ ✓ Deleted the <span style="color:#e6db74">&#34;endpoints.submariner.io&#34;</span> custom resource definition
+ ✓ Deleted the <span style="color:#e6db74">&#34;gateways.submariner.io&#34;</span> custom resource definition
+ ✓ Deleted the <span style="color:#e6db74">&#34;globalegressips.submariner.io&#34;</span> custom resource definition
+ ✓ Deleted the <span style="color:#e6db74">&#34;globalingressips.submariner.io&#34;</span> custom resource definition
+ ✓ Deleted the <span style="color:#e6db74">&#34;servicediscoveries.submariner.io&#34;</span> custom resource definition
+ ✓ Deleted the <span style="color:#e6db74">&#34;submariners.submariner.io&#34;</span> custom resource definition
+ ✓ Unlabeling gateway nodes
+</code></pre></div><h2 id="manual-uninstall">Manual Uninstall</h2>
+<p>To manually uninstall Submariner from a cluster, follow the steps below:</p>
 
 <div class="notices note" ><p>Make sure KUBECONFIG for all participating clusters is exported and all participating clusters are accessible via kubectl.</p>
 </div>
@@ -2979,19 +3020,19 @@ annotations from all the Pods and Services.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1646647803"></script>
-    <script src="/js/perfect-scrollbar.min.js?1646647803"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1646647803"></script>
-    <script src="/js/jquery.sticky.js?1646647803"></script>
-    <script src="/js/featherlight.min.js?1646647803"></script>
-    <script src="/js/highlight.pack.js?1646647803"></script>
+    <script src="/js/clipboard.min.js?1646741365"></script>
+    <script src="/js/perfect-scrollbar.min.js?1646741365"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1646741365"></script>
+    <script src="/js/jquery.sticky.js?1646741365"></script>
+    <script src="/js/featherlight.min.js?1646741365"></script>
+    <script src="/js/highlight.pack.js?1646741365"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1646647803"></script>
-    <script src="/js/learn.js?1646647803"></script>
-    <script src="/js/hugo-learn.js?1646647803"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1646741365"></script>
+    <script src="/js/learn.js?1646741365"></script>
+    <script src="/js/hugo-learn.js?1646741365"></script>
 
-    <link href="/mermaid/mermaid.css?1646647803" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1646647803"></script>
+    <link href="/mermaid/mermaid.css?1646741365" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1646741365"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
