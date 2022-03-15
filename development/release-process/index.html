@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1647355086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1647355086" rel="stylesheet">
-    <link href="/css/hybrid.css?1647355086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1647355086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1647355086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1647355086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1647355086" rel="stylesheet">
-    <link href="/css/theme.css?1647355086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1647355086" rel="stylesheet">
+    <link href="/css/nucleus.css?1647358541" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1647358541" rel="stylesheet">
+    <link href="/css/hybrid.css?1647358541" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1647358541" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1647358541" rel="stylesheet">
+    <link href="/css/auto-complete.css?1647358541" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1647358541" rel="stylesheet">
+    <link href="/css/theme.css?1647358541" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1647358541" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1647355086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1647358541" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1647355086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1647358541"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1647355086" rel="stylesheet">
+<link href="/css/fixes.css?1647358541" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/release-process/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1647355086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1647355086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1647358541"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1647358541"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1647355086"></script>
+<script type="text/javascript" src="/js/search.js?1647358541"></script>
 
     
   </div>
@@ -2040,7 +2040,7 @@ branch.</p>
 <li>
 <p>Fill in the general fields for the release with the <code>status</code> field set to <code>shipyard</code>. Also add the <code>shipyard</code> component with
 the hash of the desired or latest commit ID on which to base the release. To obtain the latest, first navigate to
-the <a href="https://github.com/submariner-io/shipyard">shipyard project</a>. The heading above the file list shows the latest
+the <a href="https://github.com/submariner-io/shipyard">Shipyard project</a>. The heading above the file list shows the latest
 commit on the devel branch including the first 7 hex digits of the commit ID hash.</p>
 <p>If this is not a final release, set the <code>pre-release</code> field to <code>true</code> (that is uncomment the <code>pre-release</code> line below).
 This includes release candidates. This is important so it is not labeled as the Latest release in GitHub.</p>
@@ -2059,9 +2059,9 @@ This includes release candidates. This is important so it is not labeled as the 
 <li>
 <p><strong>Verify</strong>:</p>
 <ul>
-<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml">releases/release job</a> passed.</li>
+<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml"><code>releases/release</code> job</a> passed.</li>
 <li>The <a href="https://github.com/submariner-io/shipyard/releases">Shipyard release</a> was created.</li>
-<li>The <a href="https://github.com/submariner-io/shipyard/releases">submariner/shipyard-dapper-base image</a> is on Quay.</li>
+<li>The <a href="https://github.com/submariner-io/shipyard/releases"><code>submariner/shipyard-dapper-base</code> image</a> is on Quay.</li>
 </ul>
 </li>
 <li>
@@ -2118,26 +2118,26 @@ their latest commit ID hashes:</p>
 <li>
 <p><strong>Verify</strong>:</p>
 <ul>
-<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml">releases/release job</a> passed.</li>
-<li>The <a href="https://github.com/submariner-io/cloud-prepare/releases">cloud-prepare release</a> was created.</li>
+<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml"><code>releases/release</code> job</a> passed.</li>
+<li>The <a href="https://github.com/submariner-io/cloud-prepare/releases"><code>cloud-prepare</code> release</a> was created.</li>
 <li>The <a href="https://github.com/submariner-io/lighthouse/releases">Lighthouse release</a> was created.</li>
 <li>The <a href="https://github.com/submariner-io/submariner/releases">Submariner release</a> was created.</li>
-<li>The <a href="https://quay.io/repository/submariner/submariner-gateway?tab=tags">submariner/submariner-gateway image</a> is on Quay.</li>
-<li>The <a href="https://quay.io/repository/submariner/submariner-route-agent?tab=tags">submariner/submariner-route-agent image</a> is on Quay.</li>
-<li>The <a href="https://quay.io/repository/submariner/submariner-globalnet?tab=tags">submariner/submariner-globalnet image</a> is on Quay.</li>
-<li>The <a href="https://quay.io/repository/submariner/submariner-networkplugin-syncer?tab=tags">submariner/submariner-networkplugin-syncer image</a>
+<li>The <a href="https://quay.io/repository/submariner/submariner-gateway?tab=tags"><code>submariner/submariner-gateway</code> image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner-route-agent?tab=tags"><code>submariner/submariner-route-agent</code> image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner-globalnet?tab=tags"><code>submariner/submariner-globalnet</code> image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner-networkplugin-syncer?tab=tags"><code>submariner/submariner-networkplugin-syncer</code> image</a>
 is on Quay.</li>
-<li>The <a href="https://quay.io/repository/submariner/lighthouse-agent?tab=tags">submariner/lighthouse-agent image</a> is on Quay.</li>
-<li>The <a href="https://quay.io/repository/submariner/lighthouse-coredns?tab=tags">submariner/lighthouse-coredns image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/lighthouse-agent?tab=tags"><code>submariner/lighthouse-agent</code> image</a> is on Quay.</li>
+<li>The <a href="https://quay.io/repository/submariner/lighthouse-coredns?tab=tags"><code>submariner/lighthouse-coredns</code> image</a> is on Quay.</li>
 </ul>
 </li>
 <li>
-<p>Automation will create a pull request to pin submariner-operator to the released versions. Make sure that PRs is merged and the release
+<p>Automation will create a pull request to pin <code>submariner-operator</code> to the released versions. Make sure that the PR is merged and the release
 job passes.</p>
 </li>
 </ol>
 <h3 id="step-4-create-operator-and-charts-releases">Step 4: Create Operator and Charts Releases</h3>
-<p>Once the pull request to pin submariner-operator has been merged, we can create the final release:</p>
+<p>Once the pull request to pin <code>submariner-operator</code> has been merged, we can create the final release:</p>
 <ol>
 <li>
 <p>Update the release YAML file <code>status</code> field to <code>released</code>. Add the <code>submariner-operator</code> and <code>submariner-charts</code> components with their
@@ -2159,14 +2159,14 @@ latest commit ID hashes.</p>
 <li>
 <p><strong>Verify</strong>:</p>
 <ul>
-<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml">releases/release job</a> passed.</li>
+<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml"><code>releases/release</code> job</a> passed.</li>
 <li>The <a href="https://github.com/submariner-io/releases/releases"><code>subctl</code> artifacts</a> were released</li>
-<li>The <a href="https://github.com/submariner-io/submariner-operator/releases">submariner-operator release</a> was created.</li>
-<li>The <a href="https://quay.io/repository/submariner/submariner-operator?tab=tags">submariner/submariner-operator image</a> is on Quay.</li>
+<li>The <a href="https://github.com/submariner-io/submariner-operator/releases"><code>submariner-operator</code> release</a> was created.</li>
+<li>The <a href="https://quay.io/repository/submariner/submariner-operator?tab=tags"><code>submariner/submariner-operator</code> image</a> is on Quay.</li>
 </ul>
 </li>
 <li>
-<p>If the release wasn&rsquo;t marked as a <code>pre-release</code>, the releases/release job will also create pull requests in each consuming project to
+<p>If the release wasn&rsquo;t marked as a <code>pre-release</code>, the <code>releases/release</code> job will also create pull requests in each consuming project to
 unpin the Shipyard Dapper base image version, that is set it back to <code>devel</code>. For ongoing development we want each project to
 automatically pick up the latest changes to the base image.</p>
 </li>
@@ -2179,7 +2179,7 @@ is a source for sharing Kubernetes Operators with the broader community via <a h
 OpenShift users will find Submariner&rsquo;s Operator in the official <a href="https://catalog.redhat.com/software/operators/explore">Red Hat catalog</a>.</p>
 <ol>
 <li>
-<p>Clone the <a href="https://github.com/submariner-io/submariner-operator">submariner-operator</a> repository.</p>
+<p>Clone the <a href="https://github.com/submariner-io/submariner-operator"><code>submariner-operator</code></a> repository.</p>
 </li>
 <li>
 <p>Make sure you have <a href="https://v1-0-x.sdk.operatorframework.io/docs/installation/install-operator-sdk/"><code>operator-sdk</code> v1 installed</a>.</p>
@@ -2227,8 +2227,8 @@ and create a new PR on <a href="https://github.com/k8s-operatorhub/community-ope
 <h4 id="e-mail">E-Mail</h4>
 <p>Once the release and release notes are published, make an announcement to both Submariner mailing lists.</p>
 <ul>
-<li><a href="https://groups.google.com/g/submariner-dev">submariner-dev</a></li>
-<li><a href="https://groups.google.com/g/submariner-users">submariner-users</a></li>
+<li><a href="https://groups.google.com/g/submariner-dev"><code>submariner-dev</code></a></li>
+<li><a href="https://groups.google.com/g/submariner-users"><code>submariner-users</code></a></li>
 </ul>
 <p>See the <a href="https://groups.google.com/g/submariner-users/c/2F8Fzvi4mS4">v0.8.0 email example</a>.</p>
 <h4 id="twitter">Twitter</h4>
@@ -3197,19 +3197,19 @@ and create a new PR on <a href="https://github.com/k8s-operatorhub/community-ope
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1647355086"></script>
-    <script src="/js/jquery.sticky.js?1647355086"></script>
-    <script src="/js/featherlight.min.js?1647355086"></script>
-    <script src="/js/highlight.pack.js?1647355086"></script>
+    <script src="/js/clipboard.min.js?1647358541"></script>
+    <script src="/js/perfect-scrollbar.min.js?1647358541"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1647358541"></script>
+    <script src="/js/jquery.sticky.js?1647358541"></script>
+    <script src="/js/featherlight.min.js?1647358541"></script>
+    <script src="/js/highlight.pack.js?1647358541"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1647355086"></script>
-    <script src="/js/learn.js?1647355086"></script>
-    <script src="/js/hugo-learn.js?1647355086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1647358541"></script>
+    <script src="/js/learn.js?1647358541"></script>
+    <script src="/js/hugo-learn.js?1647358541"></script>
 
-    <link href="/mermaid/mermaid.css?1647355086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1647355086"></script>
+    <link href="/mermaid/mermaid.css?1647358541" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1647358541"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

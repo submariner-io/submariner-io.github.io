@@ -12,20 +12,20 @@
     <title>Uninstalling Submariner :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1647355086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1647355086" rel="stylesheet">
-    <link href="/css/hybrid.css?1647355086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1647355086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1647355086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1647355086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1647355086" rel="stylesheet">
-    <link href="/css/theme.css?1647355086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1647355086" rel="stylesheet">
+    <link href="/css/nucleus.css?1647358542" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1647358542" rel="stylesheet">
+    <link href="/css/hybrid.css?1647358542" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1647358542" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1647358542" rel="stylesheet">
+    <link href="/css/auto-complete.css?1647358542" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1647358542" rel="stylesheet">
+    <link href="/css/theme.css?1647358542" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1647358542" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1647355086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1647358542" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1647355086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1647358542"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1647355086" rel="stylesheet">
+<link href="/css/fixes.css?1647358542" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/cleanup/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1647355086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1647355086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1647358542"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1647358542"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1647355086"></script>
+<script type="text/javascript" src="/js/search.js?1647358542"></script>
 
     
   </div>
@@ -1995,21 +1995,21 @@ kubectl delete clusterrole,clusterrolebinding $roles --ignore-not-found
 </span><span style="color:#e6db74">spec:
 </span><span style="color:#e6db74">  servers: []
 </span><span style="color:#e6db74">EOF</span>
-</code></pre></div><p>This deletes the lighthouse entry from the <code>Data</code> section in <code>Corefile</code> of the configmap.</p>
+</code></pre></div><p>This deletes the Lighthouse entry from the <code>Data</code> section in <code>Corefile</code> of the configmap.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#lighthouse-start AUTO-GENERATED SECTION. DO NOT EDIT</span>
 clusterset.local:53 <span style="color:#f92672">{</span>
     forward . 100.3.185.93
 <span style="color:#f92672">}</span>
 <span style="color:#75715e">#lighthouse-end</span>
-</code></pre></div><p>Verify that the lighthouse entry is deleted from <code>Corefile</code> of <code>dns-default</code> configmap by running
+</code></pre></div><p>Verify that the Lighthouse entry is deleted from <code>Corefile</code> of <code>dns-default</code> configmap by running
 following command on an OpenShift cluster</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl describe configmap dns-default -n openshift-dns
 </code></pre></div><p>For Kubernetes deployments, manually edit the <code>Corefile</code> of <code>coredns</code> configmap and delete the
-lighthouse entry by issuing below commands</p>
+Lighthouse entry by issuing below commands</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl edit cm coredns -n kube-system
 </code></pre></div><p>This will also restart the <code>coredns</code>. Below command can also be issued to manually restart <code>coredns</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl rollout restart -n kube-system deployment/coredns
-</code></pre></div><p>Verify that the lighthouse entry is deleted from <code>Data</code> section in <code>Corefile</code> of <code>dns-default</code>
+</code></pre></div><p>Verify that the Lighthouse entry is deleted from <code>Data</code> section in <code>Corefile</code> of <code>dns-default</code>
 config map by running following command on a Kubernetes cluster</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl describe configmap coredns -n kube-system
 </code></pre></div>
@@ -3020,19 +3020,19 @@ annotations from all the Pods and Services.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1647355086"></script>
-    <script src="/js/jquery.sticky.js?1647355086"></script>
-    <script src="/js/featherlight.min.js?1647355086"></script>
-    <script src="/js/highlight.pack.js?1647355086"></script>
+    <script src="/js/clipboard.min.js?1647358542"></script>
+    <script src="/js/perfect-scrollbar.min.js?1647358542"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1647358542"></script>
+    <script src="/js/jquery.sticky.js?1647358542"></script>
+    <script src="/js/featherlight.min.js?1647358542"></script>
+    <script src="/js/highlight.pack.js?1647358542"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1647355086"></script>
-    <script src="/js/learn.js?1647355086"></script>
-    <script src="/js/hugo-learn.js?1647355086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1647358542"></script>
+    <script src="/js/learn.js?1647358542"></script>
+    <script src="/js/hugo-learn.js?1647358542"></script>
 
-    <link href="/mermaid/mermaid.css?1647355086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1647355086"></script>
+    <link href="/mermaid/mermaid.css?1647358542" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1647358542"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

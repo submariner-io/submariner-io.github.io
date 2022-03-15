@@ -12,20 +12,20 @@
     <title>Globalnet Controller :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1647355086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1647355086" rel="stylesheet">
-    <link href="/css/hybrid.css?1647355086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1647355086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1647355086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1647355086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1647355086" rel="stylesheet">
-    <link href="/css/theme.css?1647355086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1647355086" rel="stylesheet">
+    <link href="/css/nucleus.css?1647358541" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1647358541" rel="stylesheet">
+    <link href="/css/hybrid.css?1647358541" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1647358541" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1647358541" rel="stylesheet">
+    <link href="/css/auto-complete.css?1647358541" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1647358541" rel="stylesheet">
+    <link href="/css/theme.css?1647358541" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1647358541" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1647355086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1647358541" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1647355086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1647358541"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1647355086" rel="stylesheet">
+<link href="/css/fixes.css?1647358541" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/architecture/globalnet/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1647355086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1647355086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1647358541"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1647358541"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1647355086"></script>
+<script type="text/javascript" src="/js/search.js?1647358541"></script>
 
     
   </div>
@@ -1898,7 +1898,7 @@
         <li><a href="#cluster-scope-global-egress-ips">Cluster-scope global egress IPs</a></li>
         <li><a href="#namespace-scope-global-egress-ips">Namespace-scope global egress IPs</a></li>
         <li><a href="#service-global-ingress-ips">Service global ingress IPs</a></li>
-        <li><a href="#submariner-globalnet">submariner-globalnet</a></li>
+        <li><a href="#submariner-globalnet"><code>submariner-globalnet</code></a></li>
         <li><a href="#service-discovery---lighthouse">Service Discovery - Lighthouse</a></li>
       </ul>
     </li>
@@ -1952,7 +1952,7 @@ Globalnet is a virtual network specifically to support Submariner&rsquo;s multi-
 subnet from this virtual Global Private Network, configured as new cluster parameter <code>GlobalCIDR</code> (e.g. 242.0.0.0/8) which is
 configurable at time of deployment. User can also manually specify GlobalCIDR for each cluster that is joined to the Broker using the flag
 <code>globalnet-cidr</code> passed to <code>subctl join</code> command. If Globalnet is not enabled in the Broker or if a GlobalCIDR is preconfigured in
-the cluster, the supplied globalnet-cidr will be ignored.</p>
+the cluster, the supplied Globalnet CIDR will be ignored.</p>
 <h3 id="cluster-scope-global-egress-ips">Cluster-scope global egress IPs</h3>
 <p>By default, every cluster is assigned a configurable number of global IPs, represented by a <code>ClusterGlobalEgressIP</code> resource, which are
 used as egress IPs for cross-cluster communication. Multiple IPs are supported to avoid ephemeral port exhaustion issues. The default is 8.
@@ -1972,7 +1972,7 @@ Gateway node of the cluster.</p>
 <p><img src="/images/globalnet/overlappingcidr-solution.png" alt="Figure 1 - Proposed solution"></p>
 <p><img src="/images/globalnet/globalnet-priority.png" alt="Figure 2 - Globalnet priority"></p>
 <!-- Image Source: https://docs.google.com/presentation/d/180CtHZnr9PP5Rh98VEmkQz3ovc5AGXG9wosoHMLhgaY/edit -->
-<h3 id="submariner-globalnet">submariner-globalnet</h3>
+<h3 id="submariner-globalnet"><code>submariner-globalnet</code></h3>
 <p>Submariner Globalnet is a component that provides cross-cluster connectivity from pods to remote services using their global IPs. Compiled as
 binary <code>submariner-globalnet</code>, it is responsible for maintaining a pool of global IPs, allocating IPs from the global IP pool to pods and
 services, and configuring the required rules on the gateway node to provide cross-cluster connectivity using global IPs.
@@ -1997,7 +1997,7 @@ global IP(s) allocated to the <code>GlobalEgressIP</code> object.</li>
 <p>Globalnet currently relies on <code>kube-proxy</code> and thus will only work with deployments that use <code>kube-proxy</code>.</p>
 <h3 id="service-discovery---lighthouse">Service Discovery - Lighthouse</h3>
 <p>Connectivity is only part of the solution as pods still need to know the IPs of services on remote clusters.</p>
-<p>This is achieved by enhancing <a href="https://github.com/submariner-io/lighthouse">lighthouse</a> with support for Globalnet. The Lighthouse
+<p>This is achieved by enhancing <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> with support for Globalnet. The Lighthouse
 controller uses a service&rsquo;s global IP when creating the <code>ServiceImport</code> for services of type <code>ClusterIP</code>. For headless services,
 backing pod&rsquo;s global IP is used when creating the <code>EndpointSlice</code> resources to be distributed to other clusters.
 The <a href="https://github.com/submariner-io/lighthouse/tree/devel/plugin/lighthouse">Lighthouse plugin</a> then uses the global IPs when
@@ -3038,19 +3038,19 @@ namespace with the <code>podSelector</code> field set:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1647355086"></script>
-    <script src="/js/jquery.sticky.js?1647355086"></script>
-    <script src="/js/featherlight.min.js?1647355086"></script>
-    <script src="/js/highlight.pack.js?1647355086"></script>
+    <script src="/js/clipboard.min.js?1647358541"></script>
+    <script src="/js/perfect-scrollbar.min.js?1647358541"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1647358541"></script>
+    <script src="/js/jquery.sticky.js?1647358541"></script>
+    <script src="/js/featherlight.min.js?1647358541"></script>
+    <script src="/js/highlight.pack.js?1647358541"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1647355086"></script>
-    <script src="/js/learn.js?1647355086"></script>
-    <script src="/js/hugo-learn.js?1647355086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1647358541"></script>
+    <script src="/js/learn.js?1647358541"></script>
+    <script src="/js/hugo-learn.js?1647358541"></script>
 
-    <link href="/mermaid/mermaid.css?1647355086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1647355086"></script>
+    <link href="/mermaid/mermaid.css?1647358541" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1647358541"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

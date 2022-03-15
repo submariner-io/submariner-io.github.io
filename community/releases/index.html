@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1647355086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1647355086" rel="stylesheet">
-    <link href="/css/hybrid.css?1647355086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1647355086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1647355086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1647355086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1647355086" rel="stylesheet">
-    <link href="/css/theme.css?1647355086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1647355086" rel="stylesheet">
+    <link href="/css/nucleus.css?1647358541" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1647358541" rel="stylesheet">
+    <link href="/css/hybrid.css?1647358541" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1647358541" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1647358541" rel="stylesheet">
+    <link href="/css/auto-complete.css?1647358541" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1647358541" rel="stylesheet">
+    <link href="/css/theme.css?1647358541" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1647358541" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1647355086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1647358541" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1647355086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1647358541"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1647355086" rel="stylesheet">
+<link href="/css/fixes.css?1647358541" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1647355086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1647355086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1647358541"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1647358541"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1647355086"></script>
+<script type="text/javascript" src="/js/search.js?1647358541"></script>
 
     
   </div>
@@ -1941,7 +1941,8 @@
 <li><code>subctl gather</code> no longer panics when retrieving some Pod container status information (<a href="https://github.com/submariner-io/submariner-operator/issues/1684">#1684</a>).</li>
 </ul>
 <h2 id="v0110">v0.11.0</h2>
-<p>This release mainly focused on stability, bug fixes, and improving the integration between Submariner and Open Cluster Management via the <a href="https://github.com/open-cluster-management/submariner-addon">submariner-addon</a>.</p>
+<p>This release mainly focused on stability, bug fixes, and improving the integration between Submariner and Open Cluster Management
+via the <a href="https://github.com/open-cluster-management/submariner-addon">Submariner addon</a>.</p>
 <ul>
 <li><code>subctl cloud prepare</code> command now supports Google Cloud Platform as well as generic Kubernetes clusters.</li>
 <li><code>--ignore-requirements</code> flag was added to <code>subctl join</code> command which ignores Submariner requirements checks.</li>
@@ -2186,15 +2187,15 @@ parallelism.</li>
 <p>This release is focused on stability for Lighthouse.</p>
 </blockquote>
 <ul>
-<li>Cleaner logging for submariner-engine.</li>
-<li>Cleaner logging for submariner-route-agent.</li>
-<li>Fixed issue with wrong token stored in <code>.subm</code> file (<a href="https://github.com/submariner-io/submariner-operator/issues/244">submariner-operator#244</a>).</li>
-<li>Added flag to disable the OpenShift CVO (<a href="https://github.com/submariner-io/submariner-operator/issues/235">submariner-operator#235</a>).</li>
-<li>Fixed several service discovery bugs (<a href="https://github.com/submariner-io/submariner-operator/issues/194">submariner-operator#194</a>, <a href="https://github.com/submariner-io/submariner-operator/issues/167">submariner-operator#167</a>).</li>
+<li>Cleaner logging for <code>submariner-engine</code>.</li>
+<li>Cleaner logging for <code>submariner-route-agent</code>.</li>
+<li>Fixed issue with wrong token stored in <code>.subm</code> file (<a href="https://github.com/submariner-io/submariner-operator/issues/244">#244</a>).</li>
+<li>Added flag to disable the OpenShift CVO (<a href="https://github.com/submariner-io/submariner-operator/issues/235">#235</a>).</li>
+<li>Fixed several service discovery bugs (<a href="https://github.com/submariner-io/submariner-operator/issues/194">#194</a>, <a href="https://github.com/submariner-io/submariner-operator/issues/167">#167</a>).</li>
 <li>Fixed several panics on nil network discovery.</li>
 <li>Added checks to ensure the CIDRs for joining cluster don&rsquo;t overlap with existing ones.</li>
 <li>Fix context handling related to service discovery/KubeFed
-(<a href="https://github.com/submariner-io/submariner-operator/issues/180">submariner-operator#180</a>).</li>
+(<a href="https://github.com/submariner-io/submariner-operator/issues/180">#180</a>).</li>
 <li>Use the correct CoreDNS image for OpenShift.</li>
 </ul>
 <h2 id="v010-submariner-with-some-light">v0.1.0 Submariner with some light</h2>
@@ -2203,15 +2204,15 @@ parallelism.</li>
 developer preview via <code>subctl</code> deployments.</p>
 </blockquote>
 <ul>
-<li>Several bugfixes and enhancements around HA failover (<a href="https://github.com/submariner-io/submariner/issues/346">submariner#346</a>,
-<a href="https://github.com/submariner-io/submariner/pull/348">submariner#348</a>,
-<a href="https://github.com/submariner-io/submariner/pull/332">submariner#332</a>).</li>
+<li>Several bugfixes and enhancements around HA failover (<a href="https://github.com/submariner-io/submariner/issues/346">#346</a>,
+<a href="https://github.com/submariner-io/submariner/pull/348">#348</a>,
+<a href="https://github.com/submariner-io/submariner/pull/332">#332</a>).</li>
 <li>Migrated to DaemonSets for Submariner gateway deployment.</li>
-<li>Added support for hostNetwork to remote Pod/Service connectivity (<a href="https://github.com/submariner-io/submariner/issues/298">submariner#298</a>).</li>
-<li>Auto detection and configuration of MTU for vx-submariner, jumbo frames support
-(<a href="https://github.com/submariner-io/submariner/issues/301">submariner#301</a>).</li>
-<li>Support for updated strongSwan (<a href="https://github.com/submariner-io/submariner/issues/288">submariner#288</a>).</li>
-<li>Better iptables detection for some hosts (<a href="https://github.com/submariner-io/submariner/pull/227">submariner#227</a>).</li>
+<li>Added support for hostNetwork to remote Pod/Service connectivity (<a href="https://github.com/submariner-io/submariner/issues/298">#298</a>).</li>
+<li>Auto detection and configuration of MTU for <code>vx-submariner</code>, jumbo frames support
+(<a href="https://github.com/submariner-io/submariner/issues/301">#301</a>).</li>
+<li>Support for updated strongSwan (<a href="https://github.com/submariner-io/submariner/issues/288">#288</a>).</li>
+<li>Better iptables detection for some hosts (<a href="https://github.com/submariner-io/submariner/pull/227">#227</a>).</li>
 </ul>
 <blockquote>
 <p><code>subctl</code> and the Submariner Operator have the following improvements:</p>
@@ -3191,19 +3192,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1647355086"></script>
-    <script src="/js/jquery.sticky.js?1647355086"></script>
-    <script src="/js/featherlight.min.js?1647355086"></script>
-    <script src="/js/highlight.pack.js?1647355086"></script>
+    <script src="/js/clipboard.min.js?1647358541"></script>
+    <script src="/js/perfect-scrollbar.min.js?1647358541"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1647358541"></script>
+    <script src="/js/jquery.sticky.js?1647358541"></script>
+    <script src="/js/featherlight.min.js?1647358541"></script>
+    <script src="/js/highlight.pack.js?1647358541"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1647355086"></script>
-    <script src="/js/learn.js?1647355086"></script>
-    <script src="/js/hugo-learn.js?1647355086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1647358541"></script>
+    <script src="/js/learn.js?1647358541"></script>
+    <script src="/js/hugo-learn.js?1647358541"></script>
 
-    <link href="/mermaid/mermaid.css?1647355086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1647355086"></script>
+    <link href="/mermaid/mermaid.css?1647358541" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1647358541"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

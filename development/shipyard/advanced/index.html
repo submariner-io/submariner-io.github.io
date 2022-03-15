@@ -12,20 +12,20 @@
     <title>Advanced Features :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1647355086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1647355086" rel="stylesheet">
-    <link href="/css/hybrid.css?1647355086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1647355086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1647355086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1647355086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1647355086" rel="stylesheet">
-    <link href="/css/theme.css?1647355086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1647355086" rel="stylesheet">
+    <link href="/css/nucleus.css?1647358541" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1647358541" rel="stylesheet">
+    <link href="/css/hybrid.css?1647358541" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1647358541" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1647358541" rel="stylesheet">
+    <link href="/css/auto-complete.css?1647358541" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1647358541" rel="stylesheet">
+    <link href="/css/theme.css?1647358541" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1647358541" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1647355086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1647358541" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1647355086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1647358541"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1647355086" rel="stylesheet">
+<link href="/css/fixes.css?1647358541" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/shipyard/advanced/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1647355086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1647355086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1647358541"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1647358541"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1647355086"></script>
+<script type="text/javascript" src="/js/search.js?1647358541"></script>
 
     
   </div>
@@ -1934,13 +1934,13 @@ logic that is always needed. Any variable functionality can then be passed as de
 caching capabilities to speed up local and pull request CI builds, by utilizing docker&rsquo;s ability to reuse layers from a cached image.</p>
 <p>The script accepts several flags:</p>
 <ul>
-<li><strong>tag:</strong> The tag to set for the local image (defaults to <em>dev</em>).</li>
-<li><strong>repo:</strong> The repo portion to use for the image name.</li>
-<li><strong>image (-i):</strong> The image name itself.</li>
-<li><strong>dockerfile (-f):</strong> The Dockerfile to build the image from.</li>
-<li><strong>[no]cache:</strong> Turns the caching on (or off).</li>
+<li><strong><code>tag</code></strong>: The tag to set for the local image (defaults to <em>dev</em>).</li>
+<li><strong><code>repo</code></strong>: The repo portion to use for the image name.</li>
+<li><strong><code>image</code> (<code>-i</code>)</strong>: The image name itself.</li>
+<li><strong><code>dockerfile</code> (<code>-f</code>)</strong>: The Dockerfile to build the image from.</li>
+<li><strong><code>[no]cache</code></strong>: Turns the caching on (or off).</li>
 </ul>
-<p>For example, to build the submariner image use:</p>
+<p>For example, to build the <code>submariner</code> image use:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">${</span>SCRIPTS_DIR<span style="color:#e6db74">}</span>/build_image.sh -i submariner -f package/Dockerfile
 </code></pre></div><h2 id="deployment-scripts-features">Deployment Scripts Features</h2>
 <h3 id="per-cluster-settings">Per Cluster Settings</h3>
@@ -1951,10 +1951,10 @@ caching capabilities to speed up local and pull request CI builds, by utilizing 
 on the root of the settings file to determine defaults.</p>
 <p>The possible settings are:</p>
 <ul>
-<li><strong>broker</strong>: Special key to mark the broker, set to anything to select a broker. By default, the first cluster is selected.</li>
-<li><strong>cni</strong>: Which CNI to deploy on the cluster, currently supports <code>weave</code> and <code>ovn</code> (leave empty or unset for <code>kindnet</code>).</li>
-<li><strong>nodes</strong>: A space separated list of nodes to deploy, supported types are <code>control-plane</code> and <code>worker</code>.</li>
-<li><strong>submariner</strong>: If Submariner should be deployed, set to <code>true</code>. Otherwise, leave unset (or set to <code>false</code> explicitly).</li>
+<li><strong><code>broker</code></strong>: Special key to mark the broker, set to anything to select a broker. By default, the first cluster is selected.</li>
+<li><strong><code>cni</code></strong>: Which CNI to deploy on the cluster, currently supports <code>weave</code> and <code>ovn</code> (leave empty or unset for <code>kindnet</code>).</li>
+<li><strong><code>nodes</code></strong>: A space separated list of nodes to deploy, supported types are <code>control-plane</code> and <code>worker</code>.</li>
+<li><strong><code>submariner</code></strong>: If Submariner should be deployed, set to <code>true</code>. Otherwise, leave unset (or set to <code>false</code> explicitly).</li>
 </ul>
 <p>For example, a basic settings file that deploys a couple of clusters with weave CNI:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">cni</span>: weave
@@ -1982,12 +1982,12 @@ same name). These flags affect how the clusters are deployed (and possibly influ
 <p>Flags of note:</p>
 <ul>
 <li>
-<p><strong>k8s_version:</strong> Allows to specify the Kubernetes version that <a href="https://kind.sigs.k8s.io/">kind</a> will deploy. Available versions can be
+<p><strong><code>k8s_version</code></strong>: Allows to specify the Kubernetes version that <a href="https://kind.sigs.k8s.io/">kind</a> will deploy. Available versions can be
 found <a href="https://hub.docker.com/r/kindest/node/tags">here</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make clusters CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--k8s_version 1.18.0&#39;</span>
 </code></pre></div></li>
 <li>
-<p><strong>globalnet:</strong> When set, deploys the clusters with overlapping Pod &amp; Service CIDRs to simulate this scenario.</p>
+<p><strong><code>globalnet</code></strong>: When set, deploys the clusters with overlapping Pod &amp; Service CIDRs to simulate this scenario.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make clusters CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--globalnet&#39;</span>
 </code></pre></div></li>
 </ul>
@@ -2000,15 +2000,15 @@ cluster hasn&rsquo;t been deployed yet).</p>
 for the full list):</p>
 <ul>
 <li>
-<p><strong>deploytool:</strong> Specifies the deployment tool to use: <code>operator</code> (default), <code>helm</code>, <code>bundle</code> or <code>ocm</code>.</p>
+<p><strong><code>deploytool</code></strong>: Specifies the deployment tool to use: <code>operator</code> (default), <code>helm</code>, <code>bundle</code> or <code>ocm</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator&#39;</span>
 </code></pre></div></li>
 <li>
-<p><strong>deploytool_broker_args:</strong> Any extra arguments to pass to the deploy tool when deploying the broker.</p>
+<p><strong><code>deploytool_broker_args</code></strong>: Any extra arguments to pass to the deploy tool when deploying the broker.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator --deploytool_broker_args &#34;--components service-discovery,connectivity&#34;&#39;</span>
 </code></pre></div></li>
 <li>
-<p><strong>deploytool_submariner_args:</strong> Any extra arguments to pass to the deploy tool when deploying Submariner.</p>
+<p><strong><code>deploytool_submariner_args</code></strong>: Any extra arguments to pass to the deploy tool when deploying Submariner.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator --deploytool_submariner_args &#34;--cable-driver wireguard&#34;&#39;</span>
 </code></pre></div></li>
 </ul>
@@ -2018,11 +2018,11 @@ For example, the <a href="https://github.com/submariner-io/shipyard/blob/devel/s
 will handle the <code>--components service-discovery,connectivity</code> flags mentioned above. Other examples:</p>
 <ul>
 <li>
-<p><strong>globalnet:</strong> When set, deploys Submariner with the globalnet controller, and assigns a unique Global CIDR to each cluster.</p>
+<p><strong><code>globalnet</code></strong>: When set, deploys Submariner with the Globalnet controller, and assigns a unique Global CIDR to each cluster.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--globalnet&#39;</span>
 </code></pre></div></li>
 <li>
-<p><strong>cable_driver:</strong> Override the default cable driver to configure the tunneling method for connections between clusters.</p>
+<p><strong><code>cable_driver</code></strong>: Override the default cable driver to configure the tunneling method for connections between clusters.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--cable_driver wireguard&#39;</span>
 </code></pre></div></li>
 </ul>
@@ -3000,19 +3000,19 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool helm --deploytool
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1647355086"></script>
-    <script src="/js/jquery.sticky.js?1647355086"></script>
-    <script src="/js/featherlight.min.js?1647355086"></script>
-    <script src="/js/highlight.pack.js?1647355086"></script>
+    <script src="/js/clipboard.min.js?1647358541"></script>
+    <script src="/js/perfect-scrollbar.min.js?1647358541"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1647358541"></script>
+    <script src="/js/jquery.sticky.js?1647358541"></script>
+    <script src="/js/featherlight.min.js?1647358541"></script>
+    <script src="/js/highlight.pack.js?1647358541"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1647355086"></script>
-    <script src="/js/learn.js?1647355086"></script>
-    <script src="/js/hugo-learn.js?1647355086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1647358541"></script>
+    <script src="/js/learn.js?1647358541"></script>
+    <script src="/js/hugo-learn.js?1647358541"></script>
 
-    <link href="/mermaid/mermaid.css?1647355086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1647355086"></script>
+    <link href="/mermaid/mermaid.css?1647358541" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1647358541"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

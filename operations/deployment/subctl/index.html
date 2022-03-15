@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1647355086" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1647355086" rel="stylesheet">
-    <link href="/css/hybrid.css?1647355086" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1647355086" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1647355086" rel="stylesheet">
-    <link href="/css/auto-complete.css?1647355086" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1647355086" rel="stylesheet">
-    <link href="/css/theme.css?1647355086" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1647355086" rel="stylesheet">
+    <link href="/css/nucleus.css?1647358542" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1647358542" rel="stylesheet">
+    <link href="/css/hybrid.css?1647358542" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1647358542" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1647358542" rel="stylesheet">
+    <link href="/css/auto-complete.css?1647358542" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1647358542" rel="stylesheet">
+    <link href="/css/theme.css?1647358542" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1647358542" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1647355086" rel="stylesheet">
+      <link href="/css/theme-blue.css?1647358542" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1647355086"></script>
+    <script src="/js/jquery-3.3.1.min.js?1647358542"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1647355086" rel="stylesheet">
+<link href="/css/fixes.css?1647358542" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1647355086"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1647355086"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1647358542"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1647358542"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1647355086"></script>
+<script type="text/javascript" src="/js/search.js?1647358542"></script>
 
     
   </div>
@@ -1997,7 +1997,7 @@ contains the following details:</p>
 </tr>
 <tr>
 <td align="left"><code>--repository</code> <code>&lt;string&gt;</code></td>
-<td align="left">The repository from where the various Submariner images will be sourced (default &ldquo;quay.io/submariner&rdquo;)</td>
+<td align="left">The repository from where the various Submariner images will be sourced (default <code>quay.io/submariner</code>)</td>
 </tr>
 <tr>
 <td align="left"><code>--version</code> <code>&lt;string&gt;</code></td>
@@ -2196,7 +2196,7 @@ deployment.</p>
 <tbody>
 <tr>
 <td align="left"><code>--repository</code> <code>&lt;string&gt;</code></td>
-<td align="left">The repository from where the various Submariner images will be sourced (default &ldquo;quay.io/submariner&rdquo;)</td>
+<td align="left">The repository from where the various Submariner images will be sourced (default <code>quay.io/submariner</code>)</td>
 </tr>
 <tr>
 <td align="left"><code>--version</code> <code>&lt;string&gt;</code></td>
@@ -2204,7 +2204,7 @@ deployment.</p>
 </tr>
 <tr>
 <td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
-<td align="left">Component image override. This flag can be used more than once (example: &ndash;image-override=submariner=quay.io/myUser/submariner:latest)</td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner=quay.io/myUser/submariner:latest</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -2783,7 +2783,7 @@ firewall ports opened and will only label the required number of gateway nodes f
 <p>The following steps are performed:</p>
 <ul>
 <li>Delete Submariner ClusterRoles and ClusterRoleBindings.</li>
-<li>Delete the submariner.io CRDs.</li>
+<li>Delete the <code>submariner.io</code> CRDs.</li>
 <li>Delete the routing entries (iptables/routes/ipsets) programmed on the nodes.</li>
 <li>Delete the tunnel interfaces created for internal/external communication.</li>
 <li>Delete the Submariner namespace.</li>
@@ -2805,7 +2805,7 @@ firewall ports opened and will only label the required number of gateway nodes f
 </tr>
 <tr>
 <td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
-<td align="left">Namespace in which Submariner is installed (default &ldquo;submariner-operator&rdquo;)</td>
+<td align="left">Namespace in which Submariner is installed (default <code>submariner-operator</code>)</td>
 </tr>
 <tr>
 <td align="left"><code>--yes</code></td>
@@ -3771,19 +3771,19 @@ firewall ports opened and will only label the required number of gateway nodes f
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.min.js?1647355086"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1647355086"></script>
-    <script src="/js/jquery.sticky.js?1647355086"></script>
-    <script src="/js/featherlight.min.js?1647355086"></script>
-    <script src="/js/highlight.pack.js?1647355086"></script>
+    <script src="/js/clipboard.min.js?1647358542"></script>
+    <script src="/js/perfect-scrollbar.min.js?1647358542"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1647358542"></script>
+    <script src="/js/jquery.sticky.js?1647358542"></script>
+    <script src="/js/featherlight.min.js?1647358542"></script>
+    <script src="/js/highlight.pack.js?1647358542"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1647355086"></script>
-    <script src="/js/learn.js?1647355086"></script>
-    <script src="/js/hugo-learn.js?1647355086"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1647358542"></script>
+    <script src="/js/learn.js?1647358542"></script>
+    <script src="/js/hugo-learn.js?1647358542"></script>
 
-    <link href="/mermaid/mermaid.css?1647355086" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1647355086"></script>
+    <link href="/mermaid/mermaid.css?1647358542" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1647358542"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
