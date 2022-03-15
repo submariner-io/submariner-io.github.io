@@ -12,20 +12,20 @@
     <title>Globalnet Controller :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1647246354" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1647246354" rel="stylesheet">
-    <link href="/css/hybrid.css?1647246354" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1647246354" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1647246354" rel="stylesheet">
-    <link href="/css/auto-complete.css?1647246354" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1647246354" rel="stylesheet">
-    <link href="/css/theme.css?1647246354" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1647246354" rel="stylesheet">
+    <link href="/css/nucleus.css?1647338053" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1647338053" rel="stylesheet">
+    <link href="/css/hybrid.css?1647338053" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1647338053" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1647338053" rel="stylesheet">
+    <link href="/css/auto-complete.css?1647338053" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1647338053" rel="stylesheet">
+    <link href="/css/theme.css?1647338053" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1647338053" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1647246354" rel="stylesheet">
+      <link href="/css/theme-blue.css?1647338053" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1647246354"></script>
+    <script src="/js/jquery-3.3.1.min.js?1647338053"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1647246354" rel="stylesheet">
+<link href="/css/fixes.css?1647338053" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/architecture/globalnet/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1647246354"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1647246354"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1647338053"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1647338053"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1647246354"></script>
+<script type="text/javascript" src="/js/search.js?1647338053"></script>
 
     
   </div>
@@ -1903,6 +1903,7 @@
       </ul>
     </li>
     <li><a href="#building">Building</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
     <li><a href="#usage">Usage</a>
       <ul>
         <li><a href="#ephemeral-port-exhaustion">Ephemeral Port Exhaustion</a></li>
@@ -2003,6 +2004,34 @@ The <a href="https://github.com/submariner-io/lighthouse/tree/devel/plugin/light
 replying to DNS queries.</p>
 <h2 id="building">Building</h2>
 <p>Nothing extra needs to be done to build <code>submariner-globalnet</code> as it is built with the standard Submariner build.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Allow Globalnet controller to create/update/delete the <code>Service</code> with <code>externalIPs</code> by below steps:</p>
+<ol>
+<li>Disable <a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#denyserviceexternalips">DenyServiceExternalIPs</a>,
+if enabled.</li>
+<li>Restrict the use of the <code>Service</code> with <code>externalIPs</code>:
+<ul>
+<li>OpenShift: No extra configuration is needed.
+The default
+<a href="https://docs.openshift.com/container-platform/4.9/architecture/admission-plug-ins.html">network.openshift.io/ExternalIPRanger</a>
+validating admission plug-in allows the use of the <code>Service</code> with <code>externalIPs</code> only for users with permission to handle
+the <code>service/externalips</code> resource in the <code>network.openshift.io</code> group.
+By default, <code>submariner-globalnet</code>'s <code>ServiceAccount</code> has such an RBAC rule.</li>
+<li>Other Kubernetes distributions:
+Enable <a href="https://github.com/kubernetes-sigs/externalip-webhook">externalip-webhook</a> while specifying <code>allowed-external-ip-cidrs</code> to
+include the <code>GlobalCIDR</code> allocated to the cluster and <code>allowed-usernames</code> to include
+<code>system:serviceaccount:submariner-operator:submariner-globalnet</code>.</li>
+</ul>
+</li>
+</ol>
+
+<div class="notices note" ><p>The steps above are necessary because for every exported <code>Service</code>, Submariner
+Globalnet internally creates a <code>Service</code> with <code>externalIPs</code> and sets the <code>externalIPs</code>
+to the globalIP assigned to the respective <code>Service</code>.
+Some deployments of Kubernetes do not allow the <code>Service</code> with <code>externalIPs</code> to be created
+for <a href="https://github.com/kubernetes/kubernetes/issues/97076">security reasons</a>.</p>
+</div>
+
 <h2 id="usage">Usage</h2>
 <p>Refer to the <a href="../../quickstart/">Quickstart Guides</a> on how to deploy Submariner with Globalnet enabled. For most deployments users will not
 need to do anything else once deployed. However, users can create <code>GlobalEgressIP</code>s or edit the <code>ClusterGlobalEgressIP</code> for specific
@@ -3009,19 +3038,19 @@ namespace with the <code>podSelector</code> field set:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1647246354"></script>
-    <script src="/js/perfect-scrollbar.min.js?1647246354"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1647246354"></script>
-    <script src="/js/jquery.sticky.js?1647246354"></script>
-    <script src="/js/featherlight.min.js?1647246354"></script>
-    <script src="/js/highlight.pack.js?1647246354"></script>
+    <script src="/js/clipboard.min.js?1647338053"></script>
+    <script src="/js/perfect-scrollbar.min.js?1647338053"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1647338053"></script>
+    <script src="/js/jquery.sticky.js?1647338053"></script>
+    <script src="/js/featherlight.min.js?1647338053"></script>
+    <script src="/js/highlight.pack.js?1647338053"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1647246354"></script>
-    <script src="/js/learn.js?1647246354"></script>
-    <script src="/js/hugo-learn.js?1647246354"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1647338053"></script>
+    <script src="/js/learn.js?1647338053"></script>
+    <script src="/js/hugo-learn.js?1647338053"></script>
 
-    <link href="/mermaid/mermaid.css?1647246354" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1647246354"></script>
+    <link href="/mermaid/mermaid.css?1647338053" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1647338053"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
