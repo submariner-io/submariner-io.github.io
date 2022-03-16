@@ -12,20 +12,20 @@
     <title>On AWS :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1647358541" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1647358541" rel="stylesheet">
-    <link href="/css/hybrid.css?1647358541" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1647358541" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1647358541" rel="stylesheet">
-    <link href="/css/auto-complete.css?1647358541" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1647358541" rel="stylesheet">
-    <link href="/css/theme.css?1647358541" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1647358541" rel="stylesheet">
+    <link href="/css/nucleus.css?1647410914" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1647410914" rel="stylesheet">
+    <link href="/css/hybrid.css?1647410914" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1647410914" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1647410914" rel="stylesheet">
+    <link href="/css/auto-complete.css?1647410914" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1647410914" rel="stylesheet">
+    <link href="/css/theme.css?1647410914" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1647410914" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1647358541" rel="stylesheet">
+      <link href="/css/theme-blue.css?1647410914" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1647358541"></script>
+    <script src="/js/jquery-3.3.1.min.js?1647410914"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1647358541" rel="stylesheet">
+<link href="/css/fixes.css?1647410914" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/quickstart/openshift/aws/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1647358541"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1647358541"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1647410914"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1647410914"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1647358541"></script>
+<script type="text/javascript" src="/js/search.js?1647410914"></script>
 
     
   </div>
@@ -2135,8 +2135,13 @@ curl nginx-ss.default.svc.clusterset.local:8080
 <p>The contexts on both config files are named <code>admin</code> and need to be modified before running the <code>verify</code> command.
 Here is how this can be done using <a href="http://mikefarah.github.io/yq/">yq</a>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yq e -i <span style="color:#e6db74">&#39;.contexts[0].name = &#34;cluster-a&#34; | .current-context = &#34;cluster-a&#34;&#39;</span> cluster-a/auth/kubeconfig
+yq e -i <span style="color:#e6db74">&#39;.contexts[0].context.user = &#34;admin-a&#34; | .users[0].name = &#34;admin-a&#34;&#39;</span> cluster-a/auth/kubeconfig
 yq e -i <span style="color:#e6db74">&#39;.contexts[0].name = &#34;cluster-b&#34; | .current-context = &#34;cluster-a&#34;&#39;</span> cluster-b/auth/kubeconfig
-</code></pre></div><p>This will perform automated verifications between the clusters.</p>
+yq e -i <span style="color:#e6db74">&#39;.contexts[0].context.user = &#34;admin-b&#34; | .users[0].name = &#34;admin-b&#34;&#39;</span> cluster-b/auth/kubeconfig
+</code></pre></div><p>(if you’re using <code>yq</code> 4.18.1 or later, you can use <code>yq -i</code> instead of <code>yq e -i</code>).</p>
+<p>More generally, see
+<a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">the Kubernetes documentation on accessing multiple clusters using configuration files</a>.</p>
+<p>This will perform automated verifications between the clusters.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig:cluster-b/auth/kubeconfig
 subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connectivity --verbose
 </code></pre></div>
@@ -3104,19 +3109,19 @@ subctl verify --kubecontexts cluster-a,cluster-b --only service-discovery,connec
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1647358542"></script>
-    <script src="/js/perfect-scrollbar.min.js?1647358542"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1647358542"></script>
-    <script src="/js/jquery.sticky.js?1647358542"></script>
-    <script src="/js/featherlight.min.js?1647358542"></script>
-    <script src="/js/highlight.pack.js?1647358542"></script>
+    <script src="/js/clipboard.min.js?1647410914"></script>
+    <script src="/js/perfect-scrollbar.min.js?1647410914"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1647410914"></script>
+    <script src="/js/jquery.sticky.js?1647410914"></script>
+    <script src="/js/featherlight.min.js?1647410914"></script>
+    <script src="/js/highlight.pack.js?1647410914"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1647358542"></script>
-    <script src="/js/learn.js?1647358542"></script>
-    <script src="/js/hugo-learn.js?1647358542"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1647410914"></script>
+    <script src="/js/learn.js?1647410914"></script>
+    <script src="/js/hugo-learn.js?1647410914"></script>
 
-    <link href="/mermaid/mermaid.css?1647358542" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1647358542"></script>
+    <link href="/mermaid/mermaid.css?1647410914" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1647410914"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
