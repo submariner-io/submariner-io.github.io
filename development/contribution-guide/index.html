@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Monitoring :: Submariner k8s project documentation website</title>
+    <title>Contributing to the Project :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1647523609" rel="stylesheet">
@@ -37,7 +37,7 @@
 <link href="/css/fixes.css?1647523609" rel="stylesheet">
 
   </head>
-  <body class="" data-url="/operations/monitoring/">
+  <body class="" data-url="/development/contribution-guide/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -742,7 +742,7 @@
   
     
     <li data-nav-id="/operations/" title="Operations" class="dd-item 
-        parent
+        
         
         
         ">
@@ -925,8 +925,8 @@
   
     
     <li data-nav-id="/operations/monitoring/" title="Monitoring" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/operations/monitoring/">
@@ -1250,7 +1250,7 @@
   
     
     <li data-nav-id="/development/" title="Development" class="dd-item 
-        
+        parent
         
         
         ">
@@ -1405,8 +1405,8 @@
   
     
     <li data-nav-id="/development/contribution-guide/" title="Contributing to the Project" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/development/contribution-guide/">
@@ -1868,7 +1868,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/operations/monitoring/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/development/contribution-guide/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1899,7 +1899,7 @@
             
           
           
-            <a href='/'></a> > <a href='/operations/'>Operations</a> > Monitoring
+            <a href='/'></a> > <a href='/development/'>Development</a> > Contributing to the Project
           
          
           
@@ -1914,18 +1914,27 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#basic-overview">Basic Overview</a>
+    <li><a href="#project-resources">Project Resources</a>
       <ul>
-        <li><a href="#prometheus-operator">Prometheus Operator</a></li>
-        <li><a href="#openshift-setup">OpenShift Setup</a></li>
+        <li><a href="#backlog-board">Backlog Board</a></li>
+        <li><a href="#current-release-board">Current Release Board</a></li>
+        <li><a href="#enhancements-repository">Enhancements Repository</a></li>
+        <li><a href="#releases-repository">Releases Repository</a></li>
       </ul>
     </li>
-    <li><a href="#metrics-reference">Metrics Reference</a>
+    <li><a href="#bugs-tasks-and-epics">Bugs, Tasks and Epics</a>
       <ul>
-        <li><a href="#submariner-gateway">Submariner Gateway</a></li>
-        <li><a href="#submariner-connections">Submariner Connections</a></li>
-        <li><a href="#globalnet">Globalnet</a></li>
-        <li><a href="#service-discovery">Service Discovery</a></li>
+        <li><a href="#bugs">Bugs</a></li>
+        <li><a href="#tasks">Tasks</a></li>
+        <li><a href="#epics">Epics</a></li>
+      </ul>
+    </li>
+    <li><a href="#release-cycles">Release Cycles</a>
+      <ul>
+        <li><a href="#sprints">Sprints</a></li>
+        <li><a href="#release-timeline">Release Timeline</a></li>
+        <li><a href="#unplanned-work">Unplanned Work</a></li>
+        <li><a href="#test-days">Test Days</a></li>
       </ul>
     </li>
   </ul>
@@ -1945,7 +1954,7 @@
           
             <h1>
               
-              Monitoring
+              Contributing to the Project
             </h1>
           
 
@@ -1954,179 +1963,51 @@
 
 
 
-	<h2 id="basic-overview">Basic Overview</h2>
-<p>Submariner provides a number of <a href="https://prometheus.io/">Prometheus</a> metrics, and sets up <code>ServiceMonitor</code> instances which allow these
-metrics to be scraped by an in-cluster Prometheus deployment. Prometheus is a pluggable metrics collection and storage system and can act as
-a data source for <a href="https://grafana.com/">Grafana</a>, a metrics visualization frontend. Unlike some metrics collectors, Prometheus requires the
-collectors to pull metrics from each source.</p>
-<h3 id="prometheus-operator">Prometheus Operator</h3>
-<p>To start monitoring Submariner using the Prometheus Operator, Prometheus needs to be configured to scrape the Submariner Operator’s
-namespace (<code>submariner-operator</code> by default). The specifics depend on your Prometheus deployment, but typically, this will require
-you to:</p>
-<ul>
-<li>
-<p>Add the Submariner Operator’s namespace to Prometheus’ <code>ClusterRoleBinding</code>.</p>
-</li>
-<li>
-<p>Ensure that Prometheus’ configuration doesn’t prevent it from scraping this namespace.</p>
-</li>
-</ul>
-<p>A minimal <code>Prometheus</code> object providing access to the Submariner metrics is as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: monitoring.coreos.com/v1
-<span style="color:#66d9ef">kind</span>: Prometheus
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: prometheus
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">prometheus</span>: prometheus
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
-  <span style="color:#66d9ef">serviceAccountName</span>: prometheus
-  <span style="color:#66d9ef">serviceMonitorNamespaceSelector</span>: {}
-  <span style="color:#66d9ef">serviceMonitorSelector</span>:
-    <span style="color:#66d9ef">matchLabels</span>:
-      <span style="color:#66d9ef">name</span>: submariner-operator
-</code></pre></div><h3 id="openshift-setup">OpenShift Setup</h3>
-<p>OpenShift 4.5 or later will automatically discover the Submariner metrics with service monitors in the
-<code>openshift-monitoring</code> namespace.</p>
-<h2 id="metrics-reference">Metrics Reference</h2>
-<p>Submariner metrics provide insights into both the state of Submariner itself, as well as the inter-cluster network behavior of your
-cluster set. All Submariner metrics are exported within the <code>submariner-operator</code> namespace by default.</p>
-<p>The following metrics are exposed currently:</p>
-<h3 id="submariner-gateway">Submariner Gateway</h3>
-<!-- markdownlint-disable line-length -->
-<!-- markdownlint-disable no-trailing-spaces -->
-<table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>submariner_gateways</code></td>
-<td align="left"></td>
-<td align="left">The number of gateways in the cluster</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_gateway_creation_timestamp</code></td>
-<td align="left"><code>local_cluster</code>, <code>local_hostname</code></td>
-<td align="left">Timestamp of gateway creation time</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_gateway_sync_iterations</code></td>
-<td align="left"></td>
-<td align="left">Gateway synchronization iterations</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_gateway_rx_bytes</code></td>
-<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
-<td align="left">Count of bytes received by cable driver and cable</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_gateway_tx_bytes</code></td>
-<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
-<td align="left">Count of bytes transmitted by cable driver and cable</td>
-</tr>
-</tbody>
-</table>
-<h3 id="submariner-connections">Submariner Connections</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>submariner_requested_connections</code></td>
-<td align="left"><code>local_cluster</code>, <code>local_hostname</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>status</code>: “connecting”, “connected”, or “error”</td>
-<td align="left">The number of connections by endpoint and status</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_connections</code></td>
-<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>, <code>status</code>: “connecting”, “connected”, or “error”</td>
-<td align="left">The number of connections and corresponding status by cable driver and cable</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_connection_established_timestamp</code></td>
-<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
-<td align="left">Timestamp of last successful connection established by cable driver and cable</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_connection_latency_seconds</code></td>
-<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
-<td align="left">Connection latency in seconds; last RTT, by cable driver and cable</td>
-</tr>
-</tbody>
-</table>
-<h3 id="globalnet">Globalnet</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>submariner_global_IP_availability</code></td>
-<td align="left"><code>cidr</code></td>
-<td align="left">Count of available global IPs per CIDR</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_global_IP_allocated</code></td>
-<td align="left"><code>cidr</code></td>
-<td align="left">Count of all global IPs allocated for Pods/Services per CIDR</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_global_egress_IP_allocated</code></td>
-<td align="left"><code>cidr</code></td>
-<td align="left">Count of global Egress IPs allocated for Pods/Services per CIDR</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_cluster_global_egress_IP_allocated</code></td>
-<td align="left"><code>cidr</code></td>
-<td align="left">Count of global Egress IPs allocated for clusters per CIDR</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_global_ingress_IP_allocated</code></td>
-<td align="left"><code>cidr</code></td>
-<td align="left">Count of global Ingress IPs allocated for Pods/Services per CIDR</td>
-</tr>
-</tbody>
-</table>
-<h3 id="service-discovery">Service Discovery</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>submariner_service_import</code></td>
-<td align="left"><code>direction</code>, <code>operation</code>, <code>syncer_name</code></td>
-<td align="left">Count of imported Services</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_service_export</code></td>
-<td align="left"><code>direction</code>, <code>operation</code>, <code>syncer_name</code></td>
-<td align="left">Count of exported Services</td>
-</tr>
-<tr>
-<td align="left"><code>submariner_service_discovery_query</code></td>
-<td align="left"><code>source_cluster</code>, <code>destination_cluster</code>, <code>destination_service_name</code>, <code>destination_service_ip</code>, <code>destination_service_namespace</code></td>
-<td align="left">Count DNS queries handled by Lighthouse plugin</td>
-</tr>
-</tbody>
-</table>
+	<p>This guide outlines the process which developers need to follow when contributing to the Submariner project.
+Developers are expected to read and follow the guidelines outlined in this guide and in the other contribution guides,
+in order for their contributions to the project to be addressed in a timely manner.</p>
+<h2 id="project-resources">Project Resources</h2>
+<p>To be expanded</p>
+<h3 id="backlog-board">Backlog Board</h3>
+<p>To be expanded</p>
+<h3 id="current-release-board">Current Release Board</h3>
+<p>To be expanded</p>
+<h3 id="enhancements-repository">Enhancements Repository</h3>
+<p>To be expanded</p>
+<h3 id="releases-repository">Releases Repository</h3>
+<p>To be expanded</p>
+<h2 id="bugs-tasks-and-epics">Bugs, Tasks and Epics</h2>
+<p>To be expanded</p>
+<h3 id="bugs">Bugs</h3>
+<p>To be expanded</p>
+<h3 id="tasks">Tasks</h3>
+<p>To be expanded</p>
+<h3 id="epics">Epics</h3>
+<p>To be expanded</p>
+<h2 id="release-cycles">Release Cycles</h2>
+<p>To be expanded</p>
+<h3 id="sprints">Sprints</h3>
+<p>To be expanded</p>
+<h3 id="release-timeline">Release Timeline</h3>
+<p>To be expanded</p>
+<h4 id="pre-planning">Pre-Planning</h4>
+<p>To be expanded</p>
+<h4 id="feature-design">Feature Design</h4>
+<p>To be expanded</p>
+<h4 id="development-milestones">Development Milestones</h4>
+<p>To be expanded</p>
+<h4 id="release-candidates">Release Candidates</h4>
+<p>To be expanded</p>
+<h4 id="general-availability">General Availability</h4>
+<p>To be expanded</p>
+<h3 id="unplanned-work">Unplanned Work</h3>
+<p>To be expanded</p>
+<h4 id="ongoing-maintenance">Ongoing Maintenance</h4>
+<p>To be expanded</p>
+<h4 id="exception-process">Exception Process</h4>
+<p>To be expanded</p>
+<h3 id="test-days">Test Days</h3>
+<p>To be expanded</p>
 
 
 
@@ -2518,7 +2399,6 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
             
                 
                     
-                    
                 
                 
 
@@ -2533,9 +2413,6 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -2619,7 +2496,6 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
             
                 
                     
-                    
                 
                 
 
@@ -2635,9 +2511,6 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -2804,6 +2677,7 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
             
                 
                     
+                    
                 
                 
 
@@ -2818,6 +2692,9 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -2885,6 +2762,7 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
             
                 
                     
+                    
                 
                 
 
@@ -2900,6 +2778,9 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -3090,10 +2971,10 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
 	 
 	 
 		
-			<a class="nav nav-prev" href="/operations/usage/" title="User Guide"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/development/code-review/" title="Code Review Guide"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/operations/nat-traversal/" title="NAT Traversal" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/development/website/" title="Contributing to the Website" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

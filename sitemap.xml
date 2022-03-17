@@ -140,6 +140,11 @@
   </url>
   
   <url>
+    <loc>/development/contribution-guide/</loc>
+    <lastmod>2022-03-15T10:31:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/community/</loc>
     <lastmod>2020-08-24T11:35:16+02:00</lastmod>
   </url>
@@ -251,7 +256,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2022-01-05T16:03:26+01:00</lastmod>
+    <lastmod>2022-03-15T10:31:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
