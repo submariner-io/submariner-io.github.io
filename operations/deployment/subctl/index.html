@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1650983179" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1650983179" rel="stylesheet">
-    <link href="/css/hybrid.css?1650983179" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1650983179" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1650983179" rel="stylesheet">
-    <link href="/css/auto-complete.css?1650983179" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1650983179" rel="stylesheet">
-    <link href="/css/theme.css?1650983179" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1650983179" rel="stylesheet">
+    <link href="/css/nucleus.css?1651471087" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1651471087" rel="stylesheet">
+    <link href="/css/hybrid.css?1651471087" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1651471087" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1651471087" rel="stylesheet">
+    <link href="/css/auto-complete.css?1651471087" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1651471087" rel="stylesheet">
+    <link href="/css/theme.css?1651471087" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1651471087" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1650983179" rel="stylesheet">
+      <link href="/css/theme-blue.css?1651471087" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1650983179"></script>
+    <script src="/js/jquery-3.3.1.min.js?1651471087"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1650983179" rel="stylesheet">
+<link href="/css/fixes.css?1651471087" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1650983179"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1650983179"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1651471087"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1651471087"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1650983179"></script>
+<script type="text/javascript" src="/js/search.js?1651471087"></script>
 
     
   </div>
@@ -1940,6 +1940,7 @@
         <li><a href="#cloud"><code>cloud</code></a></li>
         <li><a href="#version"><code>version</code></a></li>
         <li><a href="#uninstall"><code>uninstall</code></a></li>
+        <li><a href="#running-subctl-diagnose-from-a-pod-in-cluster">Running <code>subctl diagnose</code> from a Pod in cluster</a></li>
       </ul>
     </li>
   </ul>
@@ -2503,6 +2504,10 @@ in the cluster that may prevent Submariner from working properly.</p>
 <td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
 <td align="left">Kubeconfig context to use</td>
 </tr>
+<tr>
+<td align="left"><code>--in-cluster</code></td>
+<td align="left">Use the in-cluster configuration to connect to Kubernetes.</td>
+</tr>
 </tbody>
 </table>
 <h3 id="gather"><code>gather</code></h3>
@@ -2935,6 +2940,29 @@ firewall ports opened and will only label the required number of gateway nodes f
 </tr>
 </tbody>
 </table>
+<h3 id="running-subctl-diagnose-from-a-pod-in-cluster">Running <code>subctl diagnose</code> from a Pod in cluster</h3>
+<p>As of 0.12.0, a <a href="quay.io/submariner/subctl">subctl</a> image is provided for running the <code>subctl</code> binary from a Pod within a cluster.
+The output of the <code>subctl diagnose</code> command output can be accessed from the Pod&rsquo;s logs. The <code>--in-cluster</code> flag was added to
+<code>subctl diagnose</code> to support this use case.</p>
+<h4 id="example-running-subctl-diagnose-using-a-job">Example running <code>subctl diagnose</code> using a Job</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: batch/v1
+<span style="color:#66d9ef">kind</span>: Job
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: submariner-diagnose
+  <span style="color:#66d9ef">namespace</span>: submariner-operator
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: submariner-diagnose
+        <span style="color:#66d9ef">image</span>: quay.io/submariner/subctl:latest
+        <span style="color:#66d9ef">command</span>: [<span style="color:#e6db74">&#34;subctl&#34;</span>,  <span style="color:#e6db74">&#34;diagnose&#34;</span>, <span style="color:#e6db74">&#34;all&#34;</span>, <span style="color:#e6db74">&#34;--in-cluster&#34;</span>]
+      <span style="color:#66d9ef">restartPolicy</span>: Never
+      <span style="color:#66d9ef">serviceAccount</span>: submariner-diagnose
+      <span style="color:#66d9ef">serviceAccountName</span>: submariner-diagnose
+  <span style="color:#66d9ef">backoffLimit</span>: <span style="color:#ae81ff">0</span>
+</code></pre></div><p>The resulting Pod with <code>subctl diagnose all --in-cluster</code> logs can be accessed with the label <code>job-name=submariner-diagnose</code>.
+A similar template can also be used to create a <code>CronJob</code> that runs <code>subctl diagnose</code> periodically.</p>
 
 
 
@@ -3909,19 +3937,19 @@ firewall ports opened and will only label the required number of gateway nodes f
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1650983179"></script>
-    <script src="/js/perfect-scrollbar.min.js?1650983179"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1650983179"></script>
-    <script src="/js/jquery.sticky.js?1650983179"></script>
-    <script src="/js/featherlight.min.js?1650983179"></script>
-    <script src="/js/highlight.pack.js?1650983179"></script>
+    <script src="/js/clipboard.min.js?1651471087"></script>
+    <script src="/js/perfect-scrollbar.min.js?1651471087"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1651471087"></script>
+    <script src="/js/jquery.sticky.js?1651471087"></script>
+    <script src="/js/featherlight.min.js?1651471087"></script>
+    <script src="/js/highlight.pack.js?1651471087"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1650983179"></script>
-    <script src="/js/learn.js?1650983179"></script>
-    <script src="/js/hugo-learn.js?1650983179"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1651471087"></script>
+    <script src="/js/learn.js?1651471087"></script>
+    <script src="/js/hugo-learn.js?1651471087"></script>
 
-    <link href="/mermaid/mermaid.css?1650983179" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1650983179"></script>
+    <link href="/mermaid/mermaid.css?1651471087" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1651471087"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
