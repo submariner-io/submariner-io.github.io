@@ -255,6 +255,10 @@
   </url>
   
   <url>
+    <loc>/development/security/secrets/</loc>
+  </url>
+  
+  <url>
     <loc>/</loc>
     <lastmod>2022-03-15T10:31:00+02:00</lastmod>
     <priority>0</priority>
