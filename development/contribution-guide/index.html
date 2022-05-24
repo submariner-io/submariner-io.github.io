@@ -12,20 +12,20 @@
     <title>Contributing to the Project :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1653290565" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1653290565" rel="stylesheet">
-    <link href="/css/hybrid.css?1653290565" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1653290565" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1653290565" rel="stylesheet">
-    <link href="/css/auto-complete.css?1653290565" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1653290565" rel="stylesheet">
-    <link href="/css/theme.css?1653290565" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1653290565" rel="stylesheet">
+    <link href="/css/nucleus.css?1653374925" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1653374925" rel="stylesheet">
+    <link href="/css/hybrid.css?1653374925" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1653374925" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1653374925" rel="stylesheet">
+    <link href="/css/auto-complete.css?1653374925" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1653374925" rel="stylesheet">
+    <link href="/css/theme.css?1653374925" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1653374925" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1653290565" rel="stylesheet">
+      <link href="/css/theme-blue.css?1653374925" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1653290565"></script>
+    <script src="/js/jquery-3.3.1.min.js?1653374925"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1653290565" rel="stylesheet">
+<link href="/css/fixes.css?1653374925" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/contribution-guide/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1653290565"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1653290565"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1653374925"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1653374925"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1653290565"></script>
+<script type="text/javascript" src="/js/search.js?1653374925"></script>
 
     
   </div>
@@ -2005,13 +2005,35 @@ in order for their contributions to the project to be addressed in a timely mann
 <h3 id="releases-repository">Releases Repository</h3>
 <p>To be expanded</p>
 <h2 id="bugs-tasks-and-epics">Bugs, Tasks and Epics</h2>
-<p>To be expanded</p>
+<p>In order to have more structure and clarity, we expand upon the standard GitHub issue and define 3 types of issues:
+Bugs, Tasks and Epics.</p>
 <h3 id="bugs">Bugs</h3>
-<p>To be expanded</p>
+<p>A bug is an issue which captures an error or fault in the project.
+If a bug meets the criteria of a blocker, it is considered a blocker bug.</p>
+<h4 id="blocker-criteria">Blocker Criteria</h4>
+<p>If an issue prevents a feature (either new or existing) from operating correctly and there&rsquo;s no sufficient workaround, it may be deemed as
+a blocker for a release such that the release cannot proceed until it is addressed.</p>
 <h3 id="tasks">Tasks</h3>
-<p>To be expanded</p>
+<p>A task defines a specific unit of work that can be stand-alone or part of an epic. Work on a bug is not a task. A task should be relatively
+small and fit within the scope of a single sprint otherwise it should be broken down into smaller tasks or perhaps be defined as an epic.</p>
 <h3 id="epics">Epics</h3>
-<p>To be expanded</p>
+<p>An epic is a collection of tasks which are required to accomplish a feature.</p>
+<h4 id="epic-guidelines">Epic Guidelines</h4>
+<ul>
+<li>Epics should be issues in the <a href="https://github.com/submariner-io/enhancements/issues">enhancements</a> repository and created using the <a href="https://github.com/submariner-io/enhancements/blob/devel/.github/ISSUE_TEMPLATE/epic.md">epic template</a>.</li>
+<li>Only include work that is a part of the <a href="https://github.com/submariner-io">Submariner project</a>.</li>
+<li>The design should be completed before starting working on an epic.</li>
+<li>An epic should not be added to a release after the planning is complete.</li>
+<li>Provide clear and agreed-upon acceptance criteria.</li>
+<li>An epic should be split into smaller tasks (implementation, testing, documentation etc) using the design, acceptance criteria and
+epic template checklist as guidelines:
+<ul>
+<li>Open a GitHub issue for each task in the appropriate repository.</li>
+<li>Each task should be listed under the Work Items section in the epic template.</li>
+<li>Tasks should be small to medium in size and fit within the scope of a single sprint.</li>
+</ul>
+</li>
+</ul>
 <h2 id="release-cycles">Release Cycles</h2>
 <p>The Submariner project follows time based release cycles where each cycle is 16 weeks long.
 While blocking bugs may delay the <a href="#general-availability">general availability</a> release date, new features will not.</p>
@@ -3181,19 +3203,19 @@ Any bugs opened on a test day will be triaged soon after.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1653290565"></script>
-    <script src="/js/perfect-scrollbar.min.js?1653290565"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1653290565"></script>
-    <script src="/js/jquery.sticky.js?1653290565"></script>
-    <script src="/js/featherlight.min.js?1653290565"></script>
-    <script src="/js/highlight.pack.js?1653290565"></script>
+    <script src="/js/clipboard.min.js?1653374925"></script>
+    <script src="/js/perfect-scrollbar.min.js?1653374925"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1653374925"></script>
+    <script src="/js/jquery.sticky.js?1653374925"></script>
+    <script src="/js/featherlight.min.js?1653374925"></script>
+    <script src="/js/highlight.pack.js?1653374925"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1653290565"></script>
-    <script src="/js/learn.js?1653290565"></script>
-    <script src="/js/hugo-learn.js?1653290565"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1653374925"></script>
+    <script src="/js/learn.js?1653374925"></script>
+    <script src="/js/hugo-learn.js?1653374925"></script>
 
-    <link href="/mermaid/mermaid.css?1653290565" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1653290565"></script>
+    <link href="/mermaid/mermaid.css?1653374925" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1653374925"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
