@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1653390492" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1653390492" rel="stylesheet">
-    <link href="/css/hybrid.css?1653390492" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1653390492" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1653390492" rel="stylesheet">
-    <link href="/css/auto-complete.css?1653390492" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1653390492" rel="stylesheet">
-    <link href="/css/theme.css?1653390492" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1653390492" rel="stylesheet">
+    <link href="/css/nucleus.css?1654121991" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1654121991" rel="stylesheet">
+    <link href="/css/hybrid.css?1654121991" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1654121991" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1654121991" rel="stylesheet">
+    <link href="/css/auto-complete.css?1654121991" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1654121991" rel="stylesheet">
+    <link href="/css/theme.css?1654121991" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1654121991" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1653390492" rel="stylesheet">
+      <link href="/css/theme-blue.css?1654121991" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1653390492"></script>
+    <script src="/js/jquery-3.3.1.min.js?1654121991"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1653390492" rel="stylesheet">
+<link href="/css/fixes.css?1654121991" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/release-process/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1653390492"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1653390492"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1654121991"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1654121991"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1653390492"></script>
+<script type="text/javascript" src="/js/search.js?1654121991"></script>
 
     
   </div>
@@ -1959,6 +1959,7 @@
         <li><a href="#step-2-create-admiral-release">Step 2: Create Admiral Release</a></li>
         <li><a href="#step-3-create-cloud-prepare-lighthouse-and-submariner-releases">Step 3: Create cloud-prepare, Lighthouse, and Submariner Releases</a></li>
         <li><a href="#step-4-create-operator-and-charts-releases">Step 4: Create Operator and Charts Releases</a></li>
+        <li><a href="#step-5-create-subctl-release">Step 5: Create subctl Release</a></li>
         <li><a href="#verify">Step 5: Verify Release</a></li>
         <li><a href="#step-6-update-operatorhubio">Step 6: Update OperatorHub.io</a></li>
         <li><a href="#step-7-announce-release">Step 7: Announce Release</a></li>
@@ -1995,7 +1996,7 @@
 <h3 id="project-release-order">Project Release Order</h3>
 <p>Submariner&rsquo;s projects have a dependency hierarchy among their Go libraries and container images, which drives their release order.</p>
 <p>The Go dependency hierarchy is:</p>
-<p><code>shipyard</code> &lt;- <code>admiral</code> &lt;- [<code>submariner</code>, <code>lighthouse</code>, <code>cloud-prepare</code>] &lt;- <code>submariner-operator</code></p>
+<p><code>shipyard</code> &lt;- <code>admiral</code> &lt;- [<code>submariner</code>, <code>lighthouse</code>, <code>cloud-prepare</code>] &lt;- <code>submariner-operator</code> &lt;- <code>subctl</code></p>
 <p>The container image dependency hierarchy is:</p>
 <p><code>subctl</code> binary &lt;- <code>shipyard-dapper-base</code> image &lt;- [<code>admiral</code>, <code>cloud-prepare</code>, <code>submariner</code>, <code>lighthouse</code>, <code>submariner-operator</code>]</p>
 <p>Projects in brackets are siblings and do not depend on each other. Dependencies of siblings require all siblings to have aligned versions.</p>
@@ -2193,13 +2194,13 @@ job passes.</p>
 </li>
 </ol>
 <h3 id="step-4-create-operator-and-charts-releases">Step 4: Create Operator and Charts Releases</h3>
-<p>Once the pull request to pin <code>submariner-operator</code> has been merged, we can create the final release:</p>
+<p>Once the pull request to pin <code>submariner-operator</code> has been merged, we can create the <code>submariner-operator</code> and <code>submariner-charts</code> releases:</p>
 <ol>
 <li>
-<p>Update the release YAML file <code>status</code> field to <code>released</code>. Add the <code>submariner-operator</code> and <code>submariner-charts</code> components with their
+<p>Update the release YAML file <code>status</code> field to <code>installers</code>. Add the <code>submariner-operator</code> and <code>submariner-charts</code> components with their
 latest commit ID hashes.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">-status: projects
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+status: released
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+status: installers
 </span><span style="color:#a6e22e"></span> components:
    shipyard: &lt;hash goes here&gt;
    admiral: &lt;hash goes here&gt;
@@ -2215,10 +2216,36 @@ latest commit ID hashes.</p>
 <li>
 <p><strong>Verify</strong>:</p>
 <ul>
-<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml"><code>releases/release</code> job</a> passed.</li>
-<li>The <a href="https://github.com/submariner-io/releases/releases"><code>subctl</code> artifacts</a> were released</li>
 <li>The <a href="https://github.com/submariner-io/submariner-operator/releases"><code>submariner-operator</code> release</a> was created.</li>
 <li>The <a href="https://quay.io/repository/submariner/submariner-operator?tab=tags"><code>submariner/submariner-operator</code> image</a> is on Quay.</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-5-create-subctl-release">Step 5: Create subctl Release</h3>
+<p>Once the <code>submariner-operator</code> and <code>submariner-charts</code> releases are complete, we can create the final release:</p>
+<ol>
+<li>
+<p>Update the release YAML file <code>status</code> field to <code>released</code>. Add the <code>subctl</code> component with its latest commit ID hash.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">-status: installers
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+status: released
+</span><span style="color:#a6e22e"></span> components:
+   shipyard: &lt;hash goes here&gt;
+   admiral: &lt;hash goes here&gt;
+   cloud-prepare: &lt;hash goes here&gt;
+   lighthouse: &lt;hash goes here&gt;
+   submariner: &lt;hash goes here&gt;
+   submariner-charts: &lt;hash goes here&gt;
+   submariner-operator: &lt;hash goes here&gt;
+<span style="color:#a6e22e">+  subctl: &lt;hash goes here&gt;
+</span></code></pre></div></li>
+<li>
+<p>Commit your changes, create a pull request, and have it reviewed.</p>
+</li>
+<li>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>The <a href="https://github.com/submariner-io/releases/actions/workflows/release.yml"><code>releases/release</code> job</a> passed.</li>
+<li>The <a href="https://github.com/submariner-io/releases/releases"><code>subctl</code> artifacts</a> were released</li>
 </ul>
 </li>
 <li>
@@ -3285,19 +3312,19 @@ and create a new PR on <a href="https://github.com/k8s-operatorhub/community-ope
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1653390492"></script>
-    <script src="/js/perfect-scrollbar.min.js?1653390492"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1653390492"></script>
-    <script src="/js/jquery.sticky.js?1653390492"></script>
-    <script src="/js/featherlight.min.js?1653390492"></script>
-    <script src="/js/highlight.pack.js?1653390492"></script>
+    <script src="/js/clipboard.min.js?1654121991"></script>
+    <script src="/js/perfect-scrollbar.min.js?1654121991"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1654121991"></script>
+    <script src="/js/jquery.sticky.js?1654121991"></script>
+    <script src="/js/featherlight.min.js?1654121991"></script>
+    <script src="/js/highlight.pack.js?1654121991"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1653390492"></script>
-    <script src="/js/learn.js?1653390492"></script>
-    <script src="/js/hugo-learn.js?1653390492"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1654121991"></script>
+    <script src="/js/learn.js?1654121991"></script>
+    <script src="/js/hugo-learn.js?1654121991"></script>
 
-    <link href="/mermaid/mermaid.css?1653390492" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1653390492"></script>
+    <link href="/mermaid/mermaid.css?1654121991" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1654121991"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
