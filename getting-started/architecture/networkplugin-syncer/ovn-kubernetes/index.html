@@ -12,20 +12,20 @@
     <title>OVN Kubernetes :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1655827700" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1655827700" rel="stylesheet">
-    <link href="/css/hybrid.css?1655827700" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1655827700" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1655827700" rel="stylesheet">
-    <link href="/css/auto-complete.css?1655827700" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1655827700" rel="stylesheet">
-    <link href="/css/theme.css?1655827700" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1655827700" rel="stylesheet">
+    <link href="/css/nucleus.css?1655837099" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1655837099" rel="stylesheet">
+    <link href="/css/hybrid.css?1655837099" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1655837099" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1655837099" rel="stylesheet">
+    <link href="/css/auto-complete.css?1655837099" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1655837099" rel="stylesheet">
+    <link href="/css/theme.css?1655837099" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1655837099" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1655827700" rel="stylesheet">
+      <link href="/css/theme-blue.css?1655837099" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1655827700"></script>
+    <script src="/js/jquery-3.3.1.min.js?1655837099"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1655827700" rel="stylesheet">
+<link href="/css/fixes.css?1655837099" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/architecture/networkplugin-syncer/ovn-kubernetes/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1655827700"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1655827700"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1655837099"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1655837099"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1655827700"></script>
+<script type="text/javascript" src="/js/search.js?1655837099"></script>
 
     
   </div>
@@ -1986,20 +1986,30 @@
 <p><a href="https://www.ovn.org/en/architecture/">OVN</a> is a project that builds on top
 of Open vSwitch providing a rich high level API for describing virtual
 network components like Logical Routers, Logical Switches, Load balancers,
-Logical Ports. OVN Kubernetes is a Cloud Management System Plugin (CMS plugin)
-in terms of the OVN project.</p>
+Logical Ports. <a href="https://github.com/ovn-org/ovn-kubernetes">OVN Kubernetes</a> is a Cloud Management System Plugin (CMS plugin)
+which manages OVN resources to setup networking for Kubernetes clusters.</p>
 <p>The OVN Kubernetes handler watches for Submariner <code>Endpoints</code> and Kubernetes
 <code>Nodes</code> and interfaces with the OVN databases (OVN NorthDB and SouthDB) to store and
-maintain information necessary for Submariner, including:</p>
+create OVN resources necessary for Submariner, including:</p>
 <ul>
 <li>
 <p>A logical router named <code>submariner_router</code> that handles the communication
 to remote clusters and has a leg on the network which can talk to the
-<code>ovn-k8s-gw0</code> interface on the Gateway node. This router is pinned to
+<code>ovn-k8s-sub0</code> interface on the Gateway node. This router is pinned to
 the active Gateway chassis.</p>
 </li>
 <li>
-<p>Routing policies added to the existing <code>ovn_cluster_router</code> which redirect
+<p>The Ovn-Kubernetes Specific OVN Load Balancer Group (which contains all of the
+cluster&rsquo;s service VIPs) is added to the <code>submariner_router</code>in order to ensure
+total service connectivity.</p>
+</li>
+<li>
+<p>OVN Logical Router Static Routes added to the <code>submariner_router</code> to ensure
+local traffic destined for remote clusters and remote traffic destined for local
+resources is routed correctly.</p>
+</li>
+<li>
+<p>OVN Logical Router Policies added to the existing <code>ovn_cluster_router</code> which redirect
 traffic targeted for remote routers through the <code>submariner_router</code>.</p>
 </li>
 <li>
@@ -2008,10 +2018,11 @@ with the <code>ovn_cluster_router</code>.</p>
 </li>
 </ul>
 <h2 id="the-handler-architecture">The handler architecture</h2>
-<p>The following diagram illustrates the OVN Kubernetes handler architecture where the
-blue elements represent the OVN Kubernetes native network elements and the yellow
-elements are introduced by Submariner.</p>
-<p><img src="/images/ovn-kubernetes/submariner-on-ovn-v2.svg" alt="Submariner with OVNKubernetes architecture"></p>
+<p>The following diagram illustrates the required Submariner OVN architecture transposed
+on the native OVN-Kubernetes managed OVN architecture and components. The specific
+<code>networkpluginsyncer</code> managed OVN components are boxed in green.</p>
+<p><img src="/images/ovn-kubernetes/ovn-submariner-architecture.svg" alt="Submariner with OVNKubernetes architecture"></p>
+<!-- Image Source: https://docs.google.com/presentation/d/180CtHZnr9PP5Rh98VEmkQz3ovc5AGXG9wosoHMLhgaY/edit#slide=id.g135fd365b7e_0_5 -->
 
 
 
@@ -3003,19 +3014,19 @@ elements are introduced by Submariner.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1655827700"></script>
-    <script src="/js/perfect-scrollbar.min.js?1655827700"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1655827700"></script>
-    <script src="/js/jquery.sticky.js?1655827700"></script>
-    <script src="/js/featherlight.min.js?1655827700"></script>
-    <script src="/js/highlight.pack.js?1655827700"></script>
+    <script src="/js/clipboard.min.js?1655837099"></script>
+    <script src="/js/perfect-scrollbar.min.js?1655837099"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1655837099"></script>
+    <script src="/js/jquery.sticky.js?1655837099"></script>
+    <script src="/js/featherlight.min.js?1655837099"></script>
+    <script src="/js/highlight.pack.js?1655837099"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1655827700"></script>
-    <script src="/js/learn.js?1655827700"></script>
-    <script src="/js/hugo-learn.js?1655827700"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1655837099"></script>
+    <script src="/js/learn.js?1655837099"></script>
+    <script src="/js/hugo-learn.js?1655837099"></script>
 
-    <link href="/mermaid/mermaid.css?1655827700" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1655827700"></script>
+    <link href="/mermaid/mermaid.css?1655837099" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1655837099"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
