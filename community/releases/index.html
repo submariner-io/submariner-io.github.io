@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1658422352" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1658422352" rel="stylesheet">
-    <link href="/css/hybrid.css?1658422352" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1658422352" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1658422352" rel="stylesheet">
-    <link href="/css/auto-complete.css?1658422352" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1658422352" rel="stylesheet">
-    <link href="/css/theme.css?1658422352" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1658422352" rel="stylesheet">
+    <link href="/css/nucleus.css?1658767032" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1658767032" rel="stylesheet">
+    <link href="/css/hybrid.css?1658767032" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1658767032" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1658767032" rel="stylesheet">
+    <link href="/css/auto-complete.css?1658767032" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1658767032" rel="stylesheet">
+    <link href="/css/theme.css?1658767032" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1658767032" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1658422352" rel="stylesheet">
+      <link href="/css/theme-blue.css?1658767032" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1658422352"></script>
+    <script src="/js/jquery-3.3.1.min.js?1658767032"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1658422352" rel="stylesheet">
+<link href="/css/fixes.css?1658767032" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1658422352"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1658422352"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1658767032"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1658767032"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1658422352"></script>
+<script type="text/javascript" src="/js/search.js?1658767032"></script>
 
     
   </div>
@@ -1970,13 +1970,19 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0130">v0.13.0</a>
+      <ul>
+        <li><a href="#new-features">New features</a></li>
+        <li><a href="#other-changes">Other changes</a></li>
+      </ul>
+    </li>
     <li><a href="#v0122">v0.12.2</a></li>
     <li><a href="#v0121">v0.12.1</a></li>
     <li><a href="#v0120">v0.12.0</a>
       <ul>
-        <li><a href="#new-features">New features</a></li>
+        <li><a href="#new-features-1">New features</a></li>
         <li><a href="#bug-fixes">Bug fixes</a></li>
-        <li><a href="#other-changes">Other changes</a></li>
+        <li><a href="#other-changes-1">Other changes</a></li>
         <li><a href="#known-issues">Known Issues</a></li>
       </ul>
     </li>
@@ -2025,7 +2031,35 @@
 
 
 
-	<h2 id="v0122">v0.12.2</h2>
+	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0130">v0.13.0</h2>
+<h3 id="new-features">New features</h3>
+<ul>
+<li>All Submariner container images are now available for x86-64 and ARM64 architectures.</li>
+<li>Support was added in <code>subctl cloud prepare</code> to deploy Submariner on OpenShift on Microsoft Azure. This automatically configures the
+underlying Azure cloud infrastructure to meet Submariner&rsquo;s prerequisites.</li>
+<li>Added more robust support for connecting clusters that use the OVNKubernetes CNI plugin in non-Globalnet deployments. Note that
+OVNKubernetes requires the OVN NorthBound DB version to be 6.1.0 or above and older versions are not supported. Also note that the minimum
+supported OpenShift Container Platform (OCP) version is 4.11.</li>
+<li>Added support for connecting to Kubernetes headless Services without Pod label selectors in Globalnet deployments. This is useful when you
+want to point a Service to another Service in a different namespace or external network. When endpoints are manually defined by the user,
+Submariner automatically routes the traffic and provides DNS resolution.</li>
+<li>Added a new <code>subctl show brokers</code> command that displays information about the Submariner Brokers installed.</li>
+<li>The <code>subctl diagnose</code> command was extended to verify inter-cluster connectivity when Submariner is deployed using a LoadBalancer Service.</li>
+</ul>
+<h3 id="other-changes">Other changes</h3>
+<ul>
+<li>The <code>submariner-operator</code> namespace is labeled in accordance with <em>KEP-2579: Pod Security Admission Control</em> (default in Kubernetes 1.24)
+to allow the Pods to be privileged.</li>
+<li>The default namespace in which <code>subctl diagnose kubeproxy</code> and <code>subctl diagnose firewall</code> (and subcommands) spawn a Pod has been changed
+from <code>default</code> to <code>submariner-operator</code> as the latter has all necessary labels needed by the Pod Security Admission Controller. If the
+user-specified namespace is missing any of these labels, <code>subctl</code> will inform the user about the warnings in the <code>subctl diagnose</code> logs.</li>
+<li>The Globalnet metrics port will now be opened by default when Globalnet is deployed using <code>subctl cloud prepare</code>.</li>
+<li>It is now possible to customize the default TCP MSS clamping value set by Submariner in Globalnet deployments. This could be useful in
+network topologies where MTU issues are seen. To force a particular MSS clamping value use the <code>submariner.io/tcp-clamp-mss</code> node annotation
+on Gateway nodes, for e.g <code>kubectl annotate node &lt;node_name&gt; submariner.io/tcp-clamp-mss=&lt;value&gt;</code>.</li>
+</ul>
+<h2 id="v0122">v0.12.2</h2>
 <p>This is a bugfix release:</p>
 <ul>
 <li>The Globalnet metrics port will now be opened by default when Globalnet is deployed using <code>subctl cloud prepare</code>.</li>
@@ -2053,7 +2087,7 @@ clamping the TCP MSS to a fixed value derived from the default interface MTU sub
 <li>As part of <code>subctl uninstall</code> operation, we now remove the <code>submariner.io/globalIp</code> annotation that is added on the gateway node.</li>
 </ul>
 <h2 id="v0120">v0.12.0</h2>
-<h3 id="new-features">New features</h3>
+<h3 id="new-features-1">New features</h3>
 <ul>
 <li>Added a new <code>subctl uninstall</code> command that removes all Submariner components and dataplane artifacts, such as iptables rules and routing
 table entries, from a cluster.</li>
@@ -2081,7 +2115,7 @@ table entries, from a cluster.</li>
 <li>Services without selectors can now be resolved across the ClusterSet.</li>
 <li><code>subctl diagnose firewall inter-cluster</code> now works correctly for the VXLAN cable driver.</li>
 </ul>
-<h3 id="other-changes">Other changes</h3>
+<h3 id="other-changes-1">Other changes</h3>
 <ul>
 <li>The broker token and IPsec PSK are now stored in secrets which are used in preference to the corresponding fields in the Submariner CR,
 which are now deprecated. For backwards compatibility and to simplify upgrades, the deprecated fields are still populated but will be
@@ -3410,19 +3444,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1658422353"></script>
-    <script src="/js/perfect-scrollbar.min.js?1658422353"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1658422353"></script>
-    <script src="/js/jquery.sticky.js?1658422353"></script>
-    <script src="/js/featherlight.min.js?1658422353"></script>
-    <script src="/js/highlight.pack.js?1658422353"></script>
+    <script src="/js/clipboard.min.js?1658767032"></script>
+    <script src="/js/perfect-scrollbar.min.js?1658767032"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1658767032"></script>
+    <script src="/js/jquery.sticky.js?1658767032"></script>
+    <script src="/js/featherlight.min.js?1658767032"></script>
+    <script src="/js/highlight.pack.js?1658767032"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1658422353"></script>
-    <script src="/js/learn.js?1658422353"></script>
-    <script src="/js/hugo-learn.js?1658422353"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1658767032"></script>
+    <script src="/js/learn.js?1658767032"></script>
+    <script src="/js/hugo-learn.js?1658767032"></script>
 
-    <link href="/mermaid/mermaid.css?1658422353" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1658422353"></script>
+    <link href="/mermaid/mermaid.css?1658767032" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1658767032"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
