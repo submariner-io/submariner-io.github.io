@@ -12,20 +12,20 @@
     <title>Helm :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1661540591" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1661540591" rel="stylesheet">
-    <link href="/css/hybrid.css?1661540591" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1661540591" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1661540591" rel="stylesheet">
-    <link href="/css/auto-complete.css?1661540591" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1661540591" rel="stylesheet">
-    <link href="/css/theme.css?1661540591" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1661540591" rel="stylesheet">
+    <link href="/css/nucleus.css?1662494149" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1662494149" rel="stylesheet">
+    <link href="/css/hybrid.css?1662494149" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1662494149" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1662494149" rel="stylesheet">
+    <link href="/css/auto-complete.css?1662494149" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1662494149" rel="stylesheet">
+    <link href="/css/theme.css?1662494149" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1662494149" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1661540591" rel="stylesheet">
+      <link href="/css/theme-blue.css?1662494149" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1661540591"></script>
+    <script src="/js/jquery-3.3.1.min.js?1662494149"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1661540591" rel="stylesheet">
+<link href="/css/fixes.css?1662494149" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/helm/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1661540591"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1661540591"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1662494149"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1662494149"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1661540591"></script>
+<script type="text/javascript" src="/js/search.js?1662494149"></script>
 
     
   </div>
@@ -2095,11 +2095,19 @@ export GLOBAL_CIDR<span style="color:#f92672">=</span>242.x.x.x/x <span style="c
         --set serviceAccounts.globalnet.create<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>GLOBALNET<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set serviceAccounts.lighthouseAgent.create<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set serviceAccounts.lighthouseCoreDns.create<span style="color:#f92672">=</span>true
-</code></pre></div><p>Some image override settings you could use</p>
+</code></pre></div><h4 id="overriding-submariner-images">Overriding Submariner Images</h4>
+<p>The examples below demonstrate how to use images from a local registry. It&rsquo;s also possible to use an online registry.</p>
+<p>To override the operator image:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">        --set operator.image.repository<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost:5000/submariner-operator&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set operator.image.tag<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>        --set operator.image.pullPolicy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;IfNotPresent&#34;</span>
-</code></pre></div><p>If installing on OpenShift, please also add the Submariner service accounts (SAs) to the
+</code></pre></div><p>To override all Submariner images:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">        --set submariner.images.repository<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost:5000&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --set submariner.image.tag<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local&#34;</span>
+</code></pre></div><p>To override a specific image, set <code>images.&lt;image-name&gt;</code> to the full URL, e.g.:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">        --set images.submariner-gateway<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost:5000/submariner-gateway:local&#34;</span>
+</code></pre></div><h4 id="openshift-requirements">OpenShift Requirements</h4>
+<p>If installing on OpenShift, please also add the Submariner service accounts (SAs) to the
 privileged Security Context Constraint.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc adm policy add-scc-to-user privileged system:serviceaccount:submariner:submariner-routeagent
 oc adm policy add-scc-to-user privileged system:serviceaccount:submariner:submariner-engine
@@ -3144,19 +3152,19 @@ then run</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1661540591"></script>
-    <script src="/js/perfect-scrollbar.min.js?1661540591"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1661540591"></script>
-    <script src="/js/jquery.sticky.js?1661540591"></script>
-    <script src="/js/featherlight.min.js?1661540591"></script>
-    <script src="/js/highlight.pack.js?1661540591"></script>
+    <script src="/js/clipboard.min.js?1662494149"></script>
+    <script src="/js/perfect-scrollbar.min.js?1662494149"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1662494149"></script>
+    <script src="/js/jquery.sticky.js?1662494149"></script>
+    <script src="/js/featherlight.min.js?1662494149"></script>
+    <script src="/js/highlight.pack.js?1662494149"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1661540591"></script>
-    <script src="/js/learn.js?1661540591"></script>
-    <script src="/js/hugo-learn.js?1661540591"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1662494149"></script>
+    <script src="/js/learn.js?1662494149"></script>
+    <script src="/js/hugo-learn.js?1662494149"></script>
 
-    <link href="/mermaid/mermaid.css?1661540591" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1661540591"></script>
+    <link href="/mermaid/mermaid.css?1662494149" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1662494149"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
