@@ -12,20 +12,20 @@
     <title>Contributing to the Project :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1662494149" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1662494149" rel="stylesheet">
-    <link href="/css/hybrid.css?1662494149" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1662494149" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1662494149" rel="stylesheet">
-    <link href="/css/auto-complete.css?1662494149" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1662494149" rel="stylesheet">
-    <link href="/css/theme.css?1662494149" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1662494149" rel="stylesheet">
+    <link href="/css/nucleus.css?1663165921" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1663165921" rel="stylesheet">
+    <link href="/css/hybrid.css?1663165921" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1663165921" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1663165921" rel="stylesheet">
+    <link href="/css/auto-complete.css?1663165921" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1663165921" rel="stylesheet">
+    <link href="/css/theme.css?1663165921" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1663165921" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1662494149" rel="stylesheet">
+      <link href="/css/theme-blue.css?1663165921" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1662494149"></script>
+    <script src="/js/jquery-3.3.1.min.js?1663165921"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1662494149" rel="stylesheet">
+<link href="/css/fixes.css?1663165921" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/contribution-guide/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1662494149"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1662494149"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1663165921"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1663165921"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1662494149"></script>
+<script type="text/javascript" src="/js/search.js?1663165921"></script>
 
     
   </div>
@@ -2235,13 +2235,28 @@ Releasing <code>rc2</code> and beyond will delay the general availability releas
 <p>Once a release candidate is deemed stable and has no blocker bugs it will be released for general availability.
 Prior to releasing, the release manager will verify that there were no changes on the stable branches since the last release candidate.
 This ensures that no bugs could have been introduced to possibly affect the stability of the released version.</p>
-<p>The new version will be announced per the <a href="../release-process/#step-7-announce-release">announcement guidelines</a> in the release process documentation.</p>
+<p>The new version will be announced per the <a href="../release-process/#step-7-announce-release">announcement guidelines</a> in the release process documentation, and
+<a href="#release-notes">release notes</a> for the new release will need to be published.</p>
 <p>The <a href="#current-release-board">current release board</a> will be closed, and all remaining items will be moved back to the
 <a href="#backlog-board">backlog board</a>.
 The items can then be considered for the next version, based on the <a href="#pre-planning">planning</a> guidelines.</p>
 <p>During the week when the general availability release is performed, the next version will be planned.
 Additionally, a retrospective meeting for the last release cycle will be held.
 There will be no dedicated <a href="#test-days">test day</a>, as the release candidate has been tested and no changes have occurred since.</p>
+<h5 id="release-notes">Release Notes</h5>
+<p><a href="../../community/releases/">Release notes</a> should be published for each GA version.
+All new features and bug fixes of the release should be labeled with <code>release-note-needed</code> and have a relevant release note
+documented as part of the PR. Release notes submitted with PRs should be written in individual files in the <code>/release-notes</code> directory
+of the relevant repository.</p>
+<p>The release note file name should contain a short description about the release note subject, prefixed with a date in the format
+<code>YYYYMMDD</code> and end with a <code>.md</code> suffix. The date part is the date the PR was first pushed.
+The content of the file should be Markdown snippets, starting with <code>&lt;!-- markdownlint-disable MD041 --&gt;</code> in the first line
+to avoid failing over missing main header by the <code>markdownlint</code>.</p>
+<p>Once a week, as part of the tasks and bugs triage meeting, the team will make sure that new bugs / tasks / PRs are properly
+labeled and have the release notes documentation. When the version is ready for GA, all the notes can then be gathered
+from issues / PRs using the <code>release-note-needed</code> label and a <a href="https://github.com/submariner-io/submariner-website/pulls">pull request to the website repository</a> should be opened.
+After that point, the <code>release-note-handled</code> label should be added to the issues / PRs. The <a href="https://github.com/pulls?q=user%3Asubmariner-io+label%3Arelease-note-needed+-label%3Arelease-note-handled">following query</a> can be use to identify
+pending issues / PRs.</p>
 <h3 id="unplanned-work">Unplanned Work</h3>
 <p>During a release, new work that was unknown during the planning phase will emerge.
 This work is typically one of three types:</p>
@@ -3322,19 +3337,19 @@ Any bugs opened on a test day will be triaged soon after.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1662494149"></script>
-    <script src="/js/perfect-scrollbar.min.js?1662494149"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1662494149"></script>
-    <script src="/js/jquery.sticky.js?1662494149"></script>
-    <script src="/js/featherlight.min.js?1662494149"></script>
-    <script src="/js/highlight.pack.js?1662494149"></script>
+    <script src="/js/clipboard.min.js?1663165921"></script>
+    <script src="/js/perfect-scrollbar.min.js?1663165921"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1663165921"></script>
+    <script src="/js/jquery.sticky.js?1663165921"></script>
+    <script src="/js/featherlight.min.js?1663165921"></script>
+    <script src="/js/highlight.pack.js?1663165921"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1662494149"></script>
-    <script src="/js/learn.js?1662494149"></script>
-    <script src="/js/hugo-learn.js?1662494149"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1663165921"></script>
+    <script src="/js/learn.js?1663165921"></script>
+    <script src="/js/hugo-learn.js?1663165921"></script>
 
-    <link href="/mermaid/mermaid.css?1662494149" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1662494149"></script>
+    <link href="/mermaid/mermaid.css?1663165921" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1663165921"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
