@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Adding Shipyard to a Project :: Submariner k8s project documentation website</title>
+    <title>Customizing Deployments :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1663581560" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1663581560" rel="stylesheet">
-    <link href="/css/hybrid.css?1663581560" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1663581560" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1663581560" rel="stylesheet">
-    <link href="/css/auto-complete.css?1663581560" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1663581560" rel="stylesheet">
-    <link href="/css/theme.css?1663581560" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1663581560" rel="stylesheet">
+    <link href="/css/nucleus.css?1663598194" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1663598194" rel="stylesheet">
+    <link href="/css/hybrid.css?1663598194" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1663598194" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1663598194" rel="stylesheet">
+    <link href="/css/auto-complete.css?1663598194" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1663598194" rel="stylesheet">
+    <link href="/css/theme.css?1663598194" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1663598194" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1663581560" rel="stylesheet">
+      <link href="/css/theme-blue.css?1663598194" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1663581560"></script>
+    <script src="/js/jquery-3.3.1.min.js?1663598194"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,10 +34,10 @@
       
     </style>
     
-<link href="/css/fixes.css?1663581560" rel="stylesheet">
+<link href="/css/fixes.css?1663598194" rel="stylesheet">
 
   </head>
-  <body class="" data-url="/development/shipyard/first-time/">
+  <body class="" data-url="/development/shipyard/settings/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1663581560"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1663581560"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1663598194"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1663598194"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1663581560"></script>
+<script type="text/javascript" src="/js/search.js?1663598194"></script>
 
     
   </div>
@@ -1767,13 +1767,13 @@
  
   
     
-    <li data-nav-id="/development/shipyard/first-time/" title="Adding Shipyard to a Project" class="dd-item 
+    <li data-nav-id="/development/shipyard/settings/" title="Customizing Deployments" class="dd-item 
         parent
         active
         
         ">
-      <a href="/development/shipyard/first-time/">
-          Adding Shipyard to a Project
+      <a href="/development/shipyard/settings/">
+          Customizing Deployments
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1795,13 +1795,41 @@
  
   
     
-    <li data-nav-id="/development/shipyard/advanced/" title="Advanced Features" class="dd-item 
+    <li data-nav-id="/development/shipyard/targets/" title="Shared Targets" class="dd-item 
         
         
         
         ">
-      <a href="/development/shipyard/advanced/">
-          Advanced Features
+      <a href="/development/shipyard/targets/">
+          Shared Targets
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/shipyard/images/" title="Image Related Targets" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/shipyard/images/">
+          Image Related Targets
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1952,7 +1980,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/development/shipyard/first-time/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/development/shipyard/settings/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1987,7 +2015,7 @@
             
           
           
-            <a href='/'></a> > <a href='/development/'>Development</a> > <a href='/development/shipyard/'>Working with Shipyard</a> > Adding Shipyard to a Project
+            <a href='/'></a> > <a href='/development/'>Development</a> > <a href='/development/shipyard/'>Working with Shipyard</a> > Customizing Deployments
           
          
           
@@ -2004,12 +2032,9 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#dockerfiledapper">Dockerfile.dapper</a>
-      <ul>
-        <li><a href="#building-the-base-image">Building The Base Image</a></li>
-      </ul>
-    </li>
-    <li><a href="#makefile">Makefile</a></li>
+    <li><a href="#using-custom-settings">Using Custom Settings</a></li>
+    <li><a href="#deployment-settings-file">Deployment Settings File</a></li>
+    <li><a href="#settings-file-examples">Settings File Examples</a></li>
   </ul>
 </nav>
     </div>
@@ -2027,7 +2052,7 @@
           
             <h1>
               
-              Adding Shipyard to a Project
+              Customizing Deployments
             </h1>
           
 
@@ -2036,53 +2061,54 @@
 
 
 
-	<p>To use Shipyard in your project, it&rsquo;s easiest to use <em><a href="https://github.com/rancher/dapper">Dapper</a></em> and <em>Make</em>.
-To use Dapper you&rsquo;ll need a specific Dockerfile that Dapper consumes to create a consistent environment based upon Shipyard&rsquo;s base image.
-To use Make you&rsquo;ll need some commands to enable Dapper and also include the targets which ship in the base image.</p>
-<h2 id="dockerfiledapper">Dockerfile.dapper</h2>
-<p>The project should have a <code>Dockerfile.dapper</code> Dockerfile which builds upon <code>quay.io/submariner/shipyard-dapper-base</code>.</p>
-<p>For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> quay.io/submariner/shipyard-dapper-base</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> DAPPER_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;REPO TAG QUAY_USERNAME QUAY_PASSWORD TRAVIS_COMMIT&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    DAPPER_SOURCE<span style="color:#f92672">=</span>&lt;your source directory&gt; DAPPER_DOCKER_SOCKET<span style="color:#f92672">=</span>true<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> DAPPER_OUTPUT<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>DAPPER_SOURCE<span style="color:#e6db74">}</span>/output<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> ${DAPPER_SOURCE}</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;./scripts/entry&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;ci&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/devel/Dockerfile.dapper">Dockerfile.dapper</a> as an
-example.</p>
-<h3 id="building-the-base-image">Building The Base Image</h3>
-<p>To build the base container image used in the shared developer and CI enviroment, simply run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
-</code></pre></div><h2 id="makefile">Makefile</h2>
-<p>The project&rsquo;s Makefile should include targets to run everything in Dapper. These are defined in Shipyard&rsquo;s
-<a href="https://github.com/submariner-io/shipyard/blob/devel/Makefile.dapper">Makefile.dapper</a> which can be copied as is into your project and
-included in the Makefile.
-To use Shipyard&rsquo;s built-in targets available in the base Dapper image, include the
-<a href="https://github.com/submariner-io/shipyard/blob/devel/Makefile.inc">Makefile.inc</a> file in the project&rsquo;s Makefile within the section where
-the Dapper environment is detected.</p>
-<p>The simplest Makefile would look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#960050;background-color:#1e0010">ifneq</span> <span style="color:#960050;background-color:#1e0010">(,</span><span style="color:#66d9ef">$(</span>DAPPER_HOST_ARCH<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">)</span>
-
-<span style="color:#75715e"># Running in Dapper
-</span><span style="color:#75715e"></span>
-<span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#66d9ef">$(</span>SHIPYARD_DIR<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">/Makefile.inc</span>
-
-<span style="color:#960050;background-color:#1e0010">else</span>
-
-<span style="color:#75715e"># Not running in Dapper
-</span><span style="color:#75715e"></span>
-<span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#960050;background-color:#1e0010">Makefile.dapper</span>
-
-<span style="color:#960050;background-color:#1e0010">endif</span>
-
-<span style="color:#75715e"># Disable rebuilding Makefile
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">Makefile Makefile.dapper Makefile.inc</span><span style="color:#f92672">:</span> ;
-</code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/devel/Makefile">Makefile</a> as an example.</p>
-
+	<p>Shipyard supports specifying different settings for each deployed cluster.
+The settings are specified using a <strong><code>SETTINGS</code></strong> variable, which must be set in the <code>Makefile</code> of each consuming project.</p>
+<h2 id="using-custom-settings">Using Custom Settings</h2>
+<p>Set the <strong><code>SETTINGS</code></strong> variable to deploy with your custom settings file (must be inside the project&rsquo;s directory structure), e.g.:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy SETTINGS<span style="color:#f92672">=</span>&lt;path/to/settings&gt;.yaml
+</code></pre></div><h2 id="deployment-settings-file">Deployment Settings File</h2>
+<p>The settings are specified in a YAML file, where default and per cluster settings can be provided.
+All clusters are listed under the <strong><code>clusters</code></strong> key, and each cluster can have specific deployment settings.
+All cluster specific settings can be specified on the root of the settings file to determine defaults.</p>
+<p>The possible settings are:</p>
+<ul>
+<li>Global settings:
+<ul>
+<li><strong><code>broker</code></strong>: Special key to mark the broker, set to anything to select a broker (defaults to the first cluster).</li>
+<li><strong><code>cluster_count</code></strong>: Can be used to quickly deploy multiple clusters with an identical topology.</li>
+<li><strong><code>clusters</code></strong>: Map of clusters to deploy. Each key is the cluster name and the values are cluster specific settings.</li>
+</ul>
+</li>
+<li>Global and/or cluster specific:
+<ul>
+<li><strong><code>cni</code></strong>: Which CNI to deploy on the cluster, currently supports <strong><code>weave</code></strong> and <strong><code>ovn</code></strong>.</li>
+<li><strong><code>nodes</code></strong>: A space separated list of nodes to deploy, supported types are <strong><code>control-plane</code></strong> and <strong><code>worker</code></strong>.</li>
+<li><strong><code>submariner</code></strong>: If Submariner should be deployed, set to <strong><code>true</code></strong>. Otherwise, leave unset (or set to <strong><code>false</code></strong> explicitly).</li>
+</ul>
+</li>
+</ul>
+<h2 id="settings-file-examples">Settings File Examples</h2>
+<p>For example, a basic settings file that deploys a couple of clusters with weave CNI:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">cni</span>: weave
+<span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">nodes</span>: control-plane worker worker
+<span style="color:#66d9ef">clusters</span>:
+  <span style="color:#66d9ef">cluster1</span>:
+  <span style="color:#66d9ef">cluster2</span>:
+</code></pre></div><p>The following settings file deploys two clusters with one control node and two workers, with weave and Submariner.
+The third cluster will host the broker and as such needs no CNI, only a worker node, and no Submariner deployment:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">cni</span>: weave
+<span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">nodes</span>: control-plane worker worker
+<span style="color:#66d9ef">clusters</span>:
+  <span style="color:#66d9ef">cluster1</span>:
+  <span style="color:#66d9ef">cluster2</span>:
+  <span style="color:#66d9ef">cluster3</span>:
+    <span style="color:#66d9ef">broker</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">cni</span>:
+    <span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">false</span>
+    <span style="color:#66d9ef">nodes</span>: control-plane
+</code></pre></div>
 
 
 
@@ -3063,6 +3089,22 @@ the Dapper environment is detected.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -3097,7 +3139,7 @@ the Dapper environment is detected.</p>
 			<a class="nav nav-prev" href="/development/shipyard/" title="Working with Shipyard"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/development/shipyard/advanced/" title="Advanced Features" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/development/shipyard/targets/" title="Shared Targets" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -3107,19 +3149,19 @@ the Dapper environment is detected.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1663581560"></script>
-    <script src="/js/perfect-scrollbar.min.js?1663581560"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1663581560"></script>
-    <script src="/js/jquery.sticky.js?1663581560"></script>
-    <script src="/js/featherlight.min.js?1663581560"></script>
-    <script src="/js/highlight.pack.js?1663581560"></script>
+    <script src="/js/clipboard.min.js?1663598194"></script>
+    <script src="/js/perfect-scrollbar.min.js?1663598194"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1663598194"></script>
+    <script src="/js/jquery.sticky.js?1663598194"></script>
+    <script src="/js/featherlight.min.js?1663598194"></script>
+    <script src="/js/highlight.pack.js?1663598194"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1663581560"></script>
-    <script src="/js/learn.js?1663581560"></script>
-    <script src="/js/hugo-learn.js?1663581560"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1663598194"></script>
+    <script src="/js/learn.js?1663598194"></script>
+    <script src="/js/hugo-learn.js?1663598194"></script>
 
-    <link href="/mermaid/mermaid.css?1663581560" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1663581560"></script>
+    <link href="/mermaid/mermaid.css?1663598194" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1663598194"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

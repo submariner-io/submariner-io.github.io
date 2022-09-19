@@ -12,20 +12,20 @@
     <title>Working with Shipyard :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1663581560" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1663581560" rel="stylesheet">
-    <link href="/css/hybrid.css?1663581560" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1663581560" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1663581560" rel="stylesheet">
-    <link href="/css/auto-complete.css?1663581560" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1663581560" rel="stylesheet">
-    <link href="/css/theme.css?1663581560" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1663581560" rel="stylesheet">
+    <link href="/css/nucleus.css?1663598194" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1663598194" rel="stylesheet">
+    <link href="/css/hybrid.css?1663598194" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1663598194" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1663598194" rel="stylesheet">
+    <link href="/css/auto-complete.css?1663598194" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1663598194" rel="stylesheet">
+    <link href="/css/theme.css?1663598194" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1663598194" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1663581560" rel="stylesheet">
+      <link href="/css/theme-blue.css?1663598194" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1663581560"></script>
+    <script src="/js/jquery-3.3.1.min.js?1663598194"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1663581560" rel="stylesheet">
+<link href="/css/fixes.css?1663598194" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/shipyard/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1663581560"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1663581560"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1663598194"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1663598194"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1663581560"></script>
+<script type="text/javascript" src="/js/search.js?1663598194"></script>
 
     
   </div>
@@ -1767,13 +1767,13 @@
  
   
     
-    <li data-nav-id="/development/shipyard/first-time/" title="Adding Shipyard to a Project" class="dd-item 
+    <li data-nav-id="/development/shipyard/settings/" title="Customizing Deployments" class="dd-item 
         
         
         
         ">
-      <a href="/development/shipyard/first-time/">
-          Adding Shipyard to a Project
+      <a href="/development/shipyard/settings/">
+          Customizing Deployments
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1795,13 +1795,41 @@
  
   
     
-    <li data-nav-id="/development/shipyard/advanced/" title="Advanced Features" class="dd-item 
+    <li data-nav-id="/development/shipyard/targets/" title="Shared Targets" class="dd-item 
         
         
         
         ">
-      <a href="/development/shipyard/advanced/">
-          Advanced Features
+      <a href="/development/shipyard/targets/">
+          Shared Targets
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/shipyard/images/" title="Image Related Targets" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/shipyard/images/">
+          Image Related Targets
           
             <i class="fas fa-check read-icon"></i>
           
@@ -2001,25 +2029,11 @@
     <li><a href="#overview">Overview</a></li>
     <li><a href="#usage">Usage</a>
       <ul>
-        <li><a href="#add-shipyard-to-a-project">Add Shipyard to a Project</a></li>
+        <li><a href="#simplified-usage-options">Simplified Usage Options</a></li>
+        <li><a href="#how-to-add-shipyard-to-a-project">How to Add Shipyard to a Project</a></li>
         <li><a href="#use-shipyard-in-your-project">Use Shipyard in Your Project</a></li>
         <li><a href="#have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</a></li>
-        <li><a href="#use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</a></li>
-      </ul>
-    </li>
-    <li><a href="#shared-makefile-targets">Shared Makefile Targets</a>
-      <ul>
-        <li><a href="#clusters">Clusters</a></li>
-        <li><a href="#deploy">Deploy</a></li>
-        <li><a href="#cleanclusters">Clean-clusters</a></li>
-        <li><a href="#cleangenerated">Clean-generated</a></li>
-        <li><a href="#clean">Clean</a></li>
-        <li><a href="#release">Release</a></li>
-      </ul>
-    </li>
-    <li><a href="#specific-makefile-targets">Specific Makefile Targets</a>
-      <ul>
-        <li><a href="#dapper-image">Dapper-Image</a></li>
+        <li><a href="#use-an-updated-images-in-your-project">Use an Updated Images in Your Project</a></li>
       </ul>
     </li>
   </ul>
@@ -2056,7 +2070,7 @@ Shipyard contains common functionality shared by other projects. Any project spe
 tests in a consistent environment.</p>
 <p>Shipyard has several folders at the root of the project:</p>
 <ul>
-<li><strong>package:</strong> Contains the ingredients to build the base image.</li>
+<li><strong>package:</strong> Contains the ingredients to build the base images.</li>
 <li><strong>scripts:</strong> Contains general scripts for Shipyard make targets.
 <ul>
 <li><strong>shared:</strong> Contains all the shared scripts that projects can consume. These are copied into the base image under <code>$SCRIPTS_DIR</code>.
@@ -2069,93 +2083,93 @@ tests in a consistent environment.</p>
 </li>
 <li><strong>test:</strong> Test library to be used by other projects.</li>
 </ul>
-<p>Shipyard ships with some <a href="#shared-makefile-targets">Makefile targets</a> which can be used by consuming projects and are used by Shipyard&rsquo;s CI
-to test and validate itself. It also has some <a href="#specific-makefile-targets">specific Makefile targets</a> which are used by the project itself.</p>
+<p>Shipyard ships with some <a href="targets">shared</a> and <a href="images">image related</a> Make targets which can be used by developers in
+consuming projects.</p>
 <h2 id="usage">Usage</h2>
-<h3 id="add-shipyard-to-a-project">Add Shipyard to a Project</h3>
-<p>To enable usage of Shipyard&rsquo;s functionality, please see <a href="first-time">Adding Shipyard to a Project</a>.</p>
+<p>A developer can use the <code>make</code> command to interact with a project (which in turn uses Shipyard).</p>
+<p>To see all targets defined in a project, run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make targets
+</code></pre></div><p>The most common targets would be <code>clusters</code>, <code>deploy</code> and <code>e2e</code> which are built as a &ldquo;dependency graph&rdquo; -
+<code>e2e</code> will <code>deploy</code> Submariner if its not deployed, which in turn calls <code>clusters</code> to create the deployment environment.
+Therefore, variables used in any &ldquo;dependent&rdquo; target will be propagated to it&rsquo;s dependencies.</p>
+<h3 id="simplified-usage-options">Simplified Usage Options</h3>
+<p>For ease of use and convenience, many of the shared targets support a simplified usage model using the special <strong><code>USING</code></strong> variable.
+The value is a space separated string of usage options.
+Specifying conflicting options (e.g. <strong><code>wireguard</code></strong> and <strong><code>libreswan</code></strong>) will work, but the outcome should not be considered predictable.
+Any non-existing options will be silently ignored.</p>
+<p>For example, to deploy an environment that uses Globalnet, Lighthouse and a WireGuard cable driver use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy USING<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;globalnet lighthouse wireguard&#39;</span>
+</code></pre></div><h4 id="highlighted-using-options">Highlighted <strong><code>USING</code></strong> Options</h4>
+<ul>
+<li>General deployment:
+<ul>
+<li><strong><code>aws-ocp</code></strong>: Deploy on top of AWS using OCP (OpenShift Container Platform).</li>
+<li><strong><code>globalnet</code></strong>: Deploy clusters with overlapping CIDRs, and Submariner in <em>Globalnet</em> mode.</li>
+<li><strong><code>lighthouse</code></strong>: Deploy service discovery (Lighthouse) in addition to the basic deployment.</li>
+<li><strong><code>ovn</code></strong>: Deploy the clusters with the OVN CNI.</li>
+</ul>
+</li>
+<li>Deployment tools.
+<ul>
+<li><strong><code>helm</code></strong>: Deploy clusters using Helm.</li>
+<li><strong><code>operator</code></strong>: Deploy clusters using the Submariner Operator.</li>
+</ul>
+</li>
+<li>Cable drivers:
+<ul>
+<li><strong><code>libreswan</code></strong>: Use the Libreswan cable driver when deploying the clusters.</li>
+<li><strong><code>vxlan</code></strong>: Use the VXLAN cable driver when deploying the clusters.</li>
+<li><strong><code>wireguard</code></strong>: Use the WireGuard cable driver when deploying the clusters.</li>
+</ul>
+</li>
+<li>Testing:
+<ul>
+<li><strong><code>subctl-verify</code></strong>: Force <a href="#e2e">end to end tests</a> to run with <code>subctl verify</code>, irrespective of any possible project specific tests.</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-to-add-shipyard-to-a-project">How to Add Shipyard to a Project</h3>
+<p>The project should have a <strong><code>Makefile</code></strong> that contains all the projects targets, and imports all the Shipyard targets.</p>
+<p>In case you&rsquo;re adding Shipyard to a project that doesn&rsquo;t have it yet, use the following skeleton:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile">BASE_BRANCH <span style="color:#f92672">?=</span> devel
+
+<span style="color:#75715e"># Running in Dapper
+</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">ifneq</span> <span style="color:#960050;background-color:#1e0010">(,</span><span style="color:#66d9ef">$(</span>DAPPER_HOST_ARCH<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">)</span>
+<span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#66d9ef">$(</span>SHIPYARD_DIR<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">/Makefile.inc</span>
+
+<span style="color:#75715e">### All your specific targets and settings go here. ###
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># Not running in Dapper
+</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">else</span>
+
+<span style="color:#a6e22e">Makefile.dapper</span><span style="color:#f92672">:</span>
+        @echo Downloading $@
+        @curl -sfLO https://raw.githubusercontent.com/submariner-io/shipyard/<span style="color:#66d9ef">$(</span>BASE_BRANCH<span style="color:#66d9ef">)</span>/$@
+
+<span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#960050;background-color:#1e0010">Makefile.dapper</span>
+
+<span style="color:#960050;background-color:#1e0010">endif</span>
+</code></pre></div><p>You can also refer to the project&rsquo;s own <a href="https://github.com/submariner-io/shipyard/blob/devel/Makefile">Makefile</a> as an example.</p>
 <h3 id="use-shipyard-in-your-project">Use Shipyard in Your Project</h3>
-<p>Once Shipyard has been added to a project, you can use any of the <a href="#shared-makefile-targets">Makefile targets</a> that it provides.</p>
-<p>Any variables that you need to pass to these targets should be specified in your Dockerfile.dapper so they&rsquo;re available in the Dapper
-environment. For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">ENV</span> DAPPER_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;REPO TAG QUAY_USERNAME QUAY_PASSWORD TRAVIS_COMMIT CLUSTERS_ARGS DEPLOY_ARGS&#34;</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><h3 id="have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</h3>
+<p>Once Shipyard has been added to a project, you can use any of the <a href="targets">shared targets</a> that it provides.</p>
+<h3 id="have-shipyard-targets-depend-on-your-projects-targets">Have Shipyard Targets Depend on Your Project&rsquo;s Targets</h3>
 <p>Having any of the Shipyard Makefile targets rely on your project&rsquo;s specific targets can be done easily by adding the dependency in your
 project&rsquo;s Makefile. For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#a6e22e">clusters</span><span style="color:#f92672">:</span> build images
-</code></pre></div><h3 id="use-an-updated-shipyard-image-in-your-project">Use an Updated Shipyard Image in Your Project</h3>
-<p>If you&rsquo;ve made changes to Shipyard&rsquo;s <a href="#dapper-image">base image</a> and need to test them in your project, run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
-</code></pre></div><p>in the Shipyard directory. This creates a local image with your changes available for consumption in other projects.</p>
-<h2 id="shared-makefile-targets">Shared Makefile Targets</h2>
-<p>Shipyard ships a <a href="https://github.com/submariner-io/shipyard/blob/devel/Makefile.inc">Makefile.inc</a> file which defines these basic targets:</p>
-<ul>
-<li><strong><a href="#clusters">clusters</a>:</strong> Creates the kind-based cluster environment.</li>
-<li><strong><a href="#deploy">deploy</a></strong> : Deploys Submariner components in the cluster environment (depends on clusters).</li>
-<li><strong><a href="#cleanclusters">clean-clusters</a>:</strong> Deletes the kind environment (if it exists) and any residual resources.</li>
-<li><strong><a href="#cleangenerated">clean-generated</a>:</strong> Deletes all generated files.</li>
-<li><strong><a href="#clean">clean</a>:</strong> Cleans everything up (running clusters and generated files).</li>
-<li><strong><a href="#release">release</a>:</strong> Uploads the requested image(s) to Quay.io.</li>
-<li><strong>vendor/modules.txt:</strong> Populates go modules (in case go.mod exists in the root directory).</li>
-</ul>
-<p>If your project uses Shipyard then it has all these targets and supports all the variables these targets support.</p>
-<p>Any variables supported by these targets can be either declared as environment variables or assigned on the <code>make</code> command line (takes
-precedence over environment variables).</p>
-<h3 id="clusters">Clusters</h3>
-<p>A Make target that creates a kind-based multi-cluster environment with just the default Kubernetes deployment:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clusters
-</code></pre></div><p>Respected variables:</p>
-<ul>
-<li><strong>CLUSTERS_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>clusters.sh</code> script. To get a list of available arguments, run:
-<code>scripts/shared/clusters.sh --help</code></li>
-</ul>
-<h3 id="deploy">Deploy</h3>
-<p>A Make target that deploys Submariner components in a kind-based cluster environment (if one isn&rsquo;t created yet, this target will first
-invoke the clusters target to do so):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy
-</code></pre></div><p>Respected variables:</p>
-<ul>
-<li>Any variable from <a href="#clusters">clusters</a> target (only if it wasn&rsquo;t created).</li>
-<li><strong>DEPLOY_ARGS:</strong> Any arguments (flags and/or values) to be sent to the <code>deploy.sh</code> script. To get a list of available arguments, run:
-<code>scripts/shared/deploy.sh --help</code></li>
-</ul>
-<h3 id="cleanclusters">Clean-clusters</h3>
-<p>To clean up all the kind clusters deployed in any of the previous steps, use:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clean-clusters
-</code></pre></div><p>This command will remove the clusters and any resources that might&rsquo;ve been left in docker that are not needed any more (images, volumes,
-etc).</p>
-<h3 id="cleangenerated">Clean-generated</h3>
-<p>To clean up all generated files, use:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clean-generated
-</code></pre></div><p>This will remove any file which can be re-generated and doesn’t need to be tracked.</p>
-<h3 id="clean">Clean</h3>
-<p>To clean everything up, use:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make clean
-</code></pre></div><p>This removes any running clusters and all generated files.</p>
-<h3 id="release">Release</h3>
-<p>Uploads the built images to Quay.io:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make release release_images<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;image name&gt;&#34;</span>
-</code></pre></div><p>Respected variables:</p>
-<ul>
-<li><strong>QUAY_USERNAME, QUAY_PASSWORD:</strong> Needed in order to log in to Quay.</li>
-<li><strong>release_images:</strong> One or more image names to release separated by spaces.</li>
-<li><strong>release_tag:</strong> A tag to use for the release (default is <em>latest</em>).</li>
-<li><strong>repo:</strong> The Quay repo to use (default is <em><code>quay.io/submariner</code></em>).</li>
-</ul>
-<h2 id="specific-makefile-targets">Specific Makefile Targets</h2>
-<p>Shipyard has some project-specific targets which are used to build parts of the projects:</p>
-<ul>
-<li><strong><a href="#dapper-image">dapper-image</a>:</strong> Builds the base image that can be used by other projects.</li>
-<li><strong>validate:</strong> Validates the go code that Shipyard provides, and the shared shell scripts.</li>
-</ul>
-<h3 id="dapper-image">Dapper-Image</h3>
-<p>Builds the basic image which is then used by other projects to build the code and run tests:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make dapper-image
-</code></pre></div><p>Respected variables:</p>
-<ul>
-<li><strong>dapper_image_flags:</strong> Any additional flags and values to be sent to the <code>build_image.sh</code> script.</li>
-</ul>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#a6e22e">clusters</span><span style="color:#f92672">:</span> &lt;pre-cluster-target&gt;
+</code></pre></div><h3 id="use-an-updated-images-in-your-project">Use an Updated Images in Your Project</h3>
+<h4 id="test-an-updated-shipyard-image">Test an Updated Shipyard Image</h4>
+<p>If you&rsquo;ve made changes to Shipyard&rsquo;s targets and need to test them in your project, run this command in the Shipyard directory:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make images
+</code></pre></div><p>This creates a local image with your changes available for consumption in other projects.</p>
+<h4 id="test-updated-images-from-sibling-projects">Test Updated Images from Sibling Project(s)</h4>
+<p>In case you made changes in a sibling project and wish to test with that project&rsquo;s images, first rebuild the images:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd &lt;path/to/sibling project&gt;
+make images
+</code></pre></div><p>These images will be available in the local docker image cache, but not necessarily used by the project when deploying.
+To use these images, set the <code>PRELOAD_IMAGES</code> variable to the projects images and any sibling images.</p>
+<p>For example, to use updated gateway images when deploying on the operator repository:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy PRELOAD_IMAGES<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;submariner-operator submariner-gateway&#39;</span>
+</code></pre></div>
 
 
 
@@ -3135,6 +3149,22 @@ etc).</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -3169,7 +3199,7 @@ etc).</p>
 			<a class="nav nav-prev" href="/development/security/secrets/" title="Secrets"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/development/shipyard/first-time/" title="Adding Shipyard to a Project" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/development/shipyard/settings/" title="Customizing Deployments" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -3179,19 +3209,19 @@ etc).</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1663581560"></script>
-    <script src="/js/perfect-scrollbar.min.js?1663581560"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1663581560"></script>
-    <script src="/js/jquery.sticky.js?1663581560"></script>
-    <script src="/js/featherlight.min.js?1663581560"></script>
-    <script src="/js/highlight.pack.js?1663581560"></script>
+    <script src="/js/clipboard.min.js?1663598194"></script>
+    <script src="/js/perfect-scrollbar.min.js?1663598194"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1663598194"></script>
+    <script src="/js/jquery.sticky.js?1663598194"></script>
+    <script src="/js/featherlight.min.js?1663598194"></script>
+    <script src="/js/highlight.pack.js?1663598194"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1663581560"></script>
-    <script src="/js/learn.js?1663581560"></script>
-    <script src="/js/hugo-learn.js?1663581560"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1663598194"></script>
+    <script src="/js/learn.js?1663598194"></script>
+    <script src="/js/hugo-learn.js?1663598194"></script>
 
-    <link href="/mermaid/mermaid.css?1663581560" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1663581560"></script>
+    <link href="/mermaid/mermaid.css?1663598194" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1663598194"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

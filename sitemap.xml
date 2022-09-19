@@ -23,8 +23,8 @@
   </url>
   
   <url>
-    <loc>/development/shipyard/first-time/</loc>
-    <lastmod>2020-04-20T17:12:52+03:00</lastmod>
+    <loc>/development/shipyard/settings/</loc>
+    <lastmod>2020-05-05T09:11:00+03:00</lastmod>
   </url>
   
   <url>
@@ -96,8 +96,8 @@
   </url>
   
   <url>
-    <loc>/development/shipyard/advanced/</loc>
-    <lastmod>2020-05-05T09:11:00+03:00</lastmod>
+    <loc>/development/shipyard/targets/</loc>
+    <lastmod>2020-04-20T17:12:52+03:00</lastmod>
   </url>
   
   <url>
@@ -147,6 +147,11 @@
   <url>
     <loc>/community/</loc>
     <lastmod>2020-08-24T11:35:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/development/shipyard/images/</loc>
+    <lastmod>2020-05-05T09:11:00+03:00</lastmod>
   </url>
   
   <url>

@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Advanced Features :: Submariner k8s project documentation website</title>
+    <title>Image Related Targets :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1663581560" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1663581560" rel="stylesheet">
-    <link href="/css/hybrid.css?1663581560" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1663581560" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1663581560" rel="stylesheet">
-    <link href="/css/auto-complete.css?1663581560" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1663581560" rel="stylesheet">
-    <link href="/css/theme.css?1663581560" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1663581560" rel="stylesheet">
+    <link href="/css/nucleus.css?1663598194" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1663598194" rel="stylesheet">
+    <link href="/css/hybrid.css?1663598194" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1663598194" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1663598194" rel="stylesheet">
+    <link href="/css/auto-complete.css?1663598194" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1663598194" rel="stylesheet">
+    <link href="/css/theme.css?1663598194" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1663598194" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1663581560" rel="stylesheet">
+      <link href="/css/theme-blue.css?1663598194" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1663581560"></script>
+    <script src="/js/jquery-3.3.1.min.js?1663598194"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,10 +34,10 @@
       
     </style>
     
-<link href="/css/fixes.css?1663581560" rel="stylesheet">
+<link href="/css/fixes.css?1663598194" rel="stylesheet">
 
   </head>
-  <body class="" data-url="/development/shipyard/advanced/">
+  <body class="" data-url="/development/shipyard/images/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1663581560"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1663581560"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1663598194"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1663598194"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1663581560"></script>
+<script type="text/javascript" src="/js/search.js?1663598194"></script>
 
     
   </div>
@@ -1767,13 +1767,13 @@
  
   
     
-    <li data-nav-id="/development/shipyard/first-time/" title="Adding Shipyard to a Project" class="dd-item 
+    <li data-nav-id="/development/shipyard/settings/" title="Customizing Deployments" class="dd-item 
         
         
         
         ">
-      <a href="/development/shipyard/first-time/">
-          Adding Shipyard to a Project
+      <a href="/development/shipyard/settings/">
+          Customizing Deployments
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1795,13 +1795,41 @@
  
   
     
-    <li data-nav-id="/development/shipyard/advanced/" title="Advanced Features" class="dd-item 
+    <li data-nav-id="/development/shipyard/targets/" title="Shared Targets" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/development/shipyard/targets/">
+          Shared Targets
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/development/shipyard/images/" title="Image Related Targets" class="dd-item 
         parent
         active
         
         ">
-      <a href="/development/shipyard/advanced/">
-          Advanced Features
+      <a href="/development/shipyard/images/">
+          Image Related Targets
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1952,7 +1980,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/development/shipyard/advanced/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/development/shipyard/images/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1987,7 +2015,7 @@
             
           
           
-            <a href='/'></a> > <a href='/development/'>Development</a> > <a href='/development/shipyard/'>Working with Shipyard</a> > Advanced Features
+            <a href='/'></a> > <a href='/development/'>Development</a> > <a href='/development/shipyard/'>Working with Shipyard</a> > Image Related Targets
           
          
           
@@ -2004,12 +2032,14 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#image-building-helper-script">Image Building Helper Script</a></li>
-    <li><a href="#deployment-scripts-features">Deployment Scripts Features</a>
+    <li><a href="#image-capabilities">Image Capabilities</a>
       <ul>
-        <li><a href="#per-cluster-settings">Per Cluster Settings</a></li>
-        <li><a href="#clusters-deployment-customization">Clusters Deployment Customization</a></li>
-        <li><a href="#submariner-deployment-customization">Submariner Deployment Customization</a></li>
+        <li><a href="#global-variables">Global Variables</a></li>
+        <li><a href="#images">Images</a></li>
+        <li><a href="#pre-load-images">Pre-load Images</a></li>
+        <li><a href="#reload-images">Reload Images</a></li>
+        <li><a href="#multi-arch-images">Multi-arch Images</a></li>
+        <li><a href="#release-images">Release Images</a></li>
       </ul>
     </li>
   </ul>
@@ -2029,7 +2059,7 @@
           
             <h1>
               
-              Advanced Features
+              Image Related Targets
             </h1>
           
 
@@ -2038,116 +2068,71 @@
 
 
 
-	<p>Shipyard has many advanced features to use in consuming projects.</p>
-<p>To utilize an advanced feature in a project consuming Shipyard, a good practice is to change the project&rsquo;s Makefile to have the advanced
-logic that is always needed. Any variable functionality can then be passed as desired in the command line.</p>
-<h2 id="image-building-helper-script">Image Building Helper Script</h2>
-<p>Shipyard ships an image building script <code>build_image.sh</code> which can be used to build the image(s) that you require. The script has built in
-caching capabilities to speed up local and pull request CI builds, by utilizing docker&rsquo;s ability to reuse layers from a cached image.</p>
-<p>The script accepts several flags:</p>
+	<h2 id="image-capabilities">Image Capabilities</h2>
+<p>Shipyard ships <a href="https://github.com/submariner-io/shipyard/blob/devel/Makefile.images">Makefile.images</a> which contains pre-packaged image capabilities that can be used to build and consume the image(s) that
+a project requires:</p>
 <ul>
-<li><strong><code>tag</code></strong>: The tag to set for the local image (defaults to <em>dev</em>).</li>
-<li><strong><code>repo</code></strong>: The repo portion to use for the image name.</li>
-<li><strong><code>image</code> (<code>-i</code>)</strong>: The image name itself.</li>
-<li><strong><code>dockerfile</code> (<code>-f</code>)</strong>: The Dockerfile to build the image from.</li>
-<li><strong><code>[no]cache</code></strong>: Turns the caching on (or off).</li>
+<li><strong><a href="#images">images</a>:</strong> Builds the images the project provides.</li>
+<li><strong><a href="#pre-load-images">preload-images</a></strong>: Pre-loads images into a local registry.</li>
+<li><strong><a href="#reload-images">reload-images</a></strong>: Reloads images into a local registry, and updates local deployment.</li>
+<li><strong><a href="#multi-arch-images">multiarch-images</a>:</strong> Builds the images the project provides for all platforms declared by the project.</li>
+<li><strong><a href="#release-images">release-images</a>:</strong> Uploads the requested image(s) to Quay.io.</li>
 </ul>
-<p>For example, to build the <code>submariner</code> image use:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">${</span>SCRIPTS_DIR<span style="color:#e6db74">}</span>/build_image.sh -i submariner -f package/Dockerfile
-</code></pre></div><h2 id="deployment-scripts-features">Deployment Scripts Features</h2>
-<h3 id="per-cluster-settings">Per Cluster Settings</h3>
-<p>Shipyard supports specifying different settings for each deployed cluster. The settings are sent to supporting scripts using a
-<code>--settings</code> flag.</p>
-<p>The settings are specified in a YAML file, where default and per cluster settings can be provided. All clusters are listed under the
-<code>clusters</code> key, and each cluster can have specific deployment settings. All cluster specific settings (except <code>broker</code>) can be specified
-on the root of the settings file to determine defaults.</p>
-<p>The possible settings are:</p>
+
+<div class="notices info" ><p>Any consuming project <strong>has to</strong> define the following variables <strong>in order for image targets to work</strong>.</p>
 <ul>
-<li><strong><code>broker</code></strong>: Special key to mark the broker, set to anything to select a broker. By default, the first cluster is selected.</li>
-<li><strong><code>cni</code></strong>: Which CNI to deploy on the cluster, currently supports <code>weave</code> and <code>ovn</code> (leave empty or unset for <code>kindnet</code>).</li>
-<li><strong><code>nodes</code></strong>: A space separated list of nodes to deploy, supported types are <code>control-plane</code> and <code>worker</code>.</li>
-<li><strong><code>submariner</code></strong>: If Submariner should be deployed, set to <code>true</code>. Otherwise, leave unset (or set to <code>false</code> explicitly).</li>
+<li><strong><code>IMAGES</code></strong>: A space separated list of images the project provides.</li>
+<li><strong><code>MULTIARCH_IMAGES</code></strong>: A space separated list of multi-arch images the project provides.</li>
 </ul>
-<p>For example, a basic settings file that deploys a couple of clusters with weave CNI:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">cni</span>: weave
-<span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">true</span>
-<span style="color:#66d9ef">nodes</span>: control-plane worker worker
-<span style="color:#66d9ef">clusters</span>:
-  <span style="color:#66d9ef">cluster1</span>:
-  <span style="color:#66d9ef">cluster2</span>:
-</code></pre></div><p>The following settings file deploys two clusters with one control node and two workers, with weave and Submariner. The third cluster
-will host the broker and as such needs no CNI, only a worker node, and no Submariner deployment:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">cni</span>: weave
-<span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">true</span>
-<span style="color:#66d9ef">nodes</span>: control-plane worker worker
-<span style="color:#66d9ef">clusters</span>:
-  <span style="color:#66d9ef">cluster1</span>:
-  <span style="color:#66d9ef">cluster2</span>:
-  <span style="color:#66d9ef">cluster3</span>:
-    <span style="color:#66d9ef">broker</span>: <span style="color:#66d9ef">true</span>
-    <span style="color:#66d9ef">cni</span>:
-    <span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">nodes</span>: control-plane
-</code></pre></div><h3 id="clusters-deployment-customization">Clusters Deployment Customization</h3>
-<p>It&rsquo;s possible to supply extra flags when calling <code>make clusters</code> via a make variable <code>CLUSTERS_ARGS</code> (or an environment variable with the
-same name). These flags affect how the clusters are deployed (and possibly influence how Submariner works).</p>
-<p>Flags of note:</p>
+</div>
+
+<h3 id="global-variables">Global Variables</h3>
+<p>These variables affect most or all of the targets mentioned below.</p>
 <ul>
-<li>
-<p><strong><code>k8s_version</code></strong>: Allows to specify the Kubernetes version that <a href="https://kind.sigs.k8s.io/">kind</a> will deploy. Available versions can be
-found <a href="https://hub.docker.com/r/kindest/node/tags">here</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make clusters CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--k8s_version 1.18.0&#39;</span>
-</code></pre></div></li>
-<li>
-<p><strong><code>globalnet</code></strong>: When set, deploys the clusters with overlapping Pod &amp; Service CIDRs to simulate this scenario.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make clusters CLUSTERS_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--globalnet&#39;</span>
-</code></pre></div></li>
+<li><strong><code>REPO</code></strong>: The repo prefix to use for images (defaults to <code>quay.io/submariner</code>).</li>
 </ul>
-<h3 id="submariner-deployment-customization">Submariner Deployment Customization</h3>
-<p>It&rsquo;s possible to supply extra flags when calling <code>make deploy</code> via a make variable <code>DEPLOY_ARGS</code> (or an environment variable with the same
-name). These flags affect how Submariner is deployed on the clusters.</p>
-<p>Since <code>deploy</code> relies on <code>clusters</code> then effectively you could also specify <code>CLUSTERS_ARGS</code> to control the cluster deployment (provided the
-cluster hasn&rsquo;t been deployed yet).</p>
-<p>Flags of note (see the flags defined in <a href="https://github.com/submariner-io/shipyard/blob/devel/scripts/shared/deploy.sh">deploy.sh</a>
-for the full list):</p>
+<h3 id="images">Images</h3>
+<p>Builds the images that the project provides, for the currently detected platform.
+These images can then be used when deploying a local environment.</p>
+<p>The target is automatically consumed by other Shipyard targets, so there&rsquo;s no need to explicitly specify it.
+Use this target when you want to purposefully rebuild a project&rsquo;s images.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make images
+</code></pre></div><h3 id="pre-load-images">Pre-load Images</h3>
+<p>Pre-loads all images (as defined by <code>IMAGES</code>) to a local registry, in case the <code>PROVIDER</code> is <code>kind</code> (default behavior).
+The target will rebuild all images first, to make sure they&rsquo;re up-to-date.</p>
+<p>The target is automatically consumed by other Shipyard targets, so there&rsquo;s no need to explicitly specify it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make preload-images
+</code></pre></div><h3 id="reload-images">Reload Images</h3>
+<p>Reloads all images (as defined by <code>IMAGES</code>) to a local registry.
+The target will rebuild all images first, to make sure they&rsquo;re up-to-date.</p>
+<p>Use this target when testing with a local deployment, and you wish to use updated images without re-deploying.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make reload-images
+</code></pre></div><h4 id="respected-variables-for-reload">Respected Variables for Reload</h4>
 <ul>
-<li>
-<p><strong><code>deploytool</code></strong>: Specifies the deployment tool to use: <code>operator</code> (default), <code>helm</code>, <code>bundle</code> or <code>ocm</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator&#39;</span>
-</code></pre></div></li>
-<li>
-<p><strong><code>deploytool_broker_args</code></strong>: Any extra arguments to pass to the deploy tool when deploying the broker.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator --deploytool_broker_args &#34;--components service-discovery,connectivity&#34;&#39;</span>
-</code></pre></div></li>
-<li>
-<p><strong><code>deploytool_submariner_args</code></strong>: Any extra arguments to pass to the deploy tool when deploying Submariner.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--deploytool operator --deploytool_submariner_args &#34;--cable-driver wireguard&#34;&#39;</span>
-</code></pre></div></li>
-</ul>
-<p>As shown above, arguments can be passed directly to the Broker and Submariner.
-The deploy script also has flags that group common options together for easier user experience.
-For example, the <a href="https://github.com/submariner-io/shipyard/blob/devel/scripts/shared/deploy.sh"><code>service_discovery</code> flag in <code>deploy.sh</code></a>
-will handle the <code>--components service-discovery,connectivity</code> flags mentioned above. Other examples:</p>
+<li><strong><code>RESTART</code></strong>: Specify which Submariner component to restart:
 <ul>
-<li>
-<p><strong><code>globalnet</code></strong>: When set, deploys Submariner with the Globalnet controller, and assigns a unique Global CIDR to each cluster.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--globalnet&#39;</span>
-</code></pre></div></li>
-<li>
-<p><strong><code>cable_driver</code></strong>: Override the default cable driver to configure the tunneling method for connections between clusters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make deploy DEPLOY_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--cable_driver wireguard&#39;</span>
-</code></pre></div></li>
+<li><strong><code>none</code></strong>: Don&rsquo;t restart anything (default behavior).</li>
+<li><strong><code>all</code></strong>: Restart all Submariner related components.</li>
+<li><strong><code>&lt;component name</code>&gt;</strong>: Restart just the given component (e.g. <code>gateway</code>).</li>
 </ul>
-<h4 id="example-passing-deployment-variables">Example: Passing Deployment Variables</h4>
-<p>As an example, in order to deploy with Lighthouse and support both Operator and Helm deployments, one can add this snippet to the Makefile:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#960050;background-color:#1e0010">ifeq</span> <span style="color:#960050;background-color:#1e0010">(</span><span style="color:#66d9ef">$(</span>deploytool<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">,operator)</span>
-DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool operator --deploytool_broker_args <span style="color:#e6db74">&#39;--components service-discovery,connectivity&#39;</span>
-<span style="color:#960050;background-color:#1e0010">else</span>
-DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool helm --deploytool_broker_args <span style="color:#e6db74">&#39;--set submariner.serviceDiscovery=true&#39;</span> --deploytool_submariner_args <span style="color:#e6db74">&#39;--set submariner.serviceDiscovery=true,lighthouse.image.repository=localhost:5000/lighthouse-agent,serviceAccounts.lighthouse.create=true&#39;</span>
-<span style="color:#960050;background-color:#1e0010">endif</span>
-</code></pre></div><p>In such a case, the call to deploy the environment would look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make deploy <span style="color:#f92672">[</span>deploytool<span style="color:#f92672">=</span>operator<span style="color:#f92672">]</span>
-</code></pre></div><p>Note that <code>deploytool</code> is a variable used to determine the tool to use, but isn&rsquo;t passed to or used by Shipyard.</p>
+</li>
+</ul>
+<h3 id="multi-arch-images">Multi-arch Images</h3>
+<p>Builds the images that the project provides for all platforms declared by the project.
+These images are packaged for release, and can&rsquo;t be used when deploying a local environment.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make multiarch-images
+</code></pre></div><p>Any project wishing to package such images should set the following variable in it&rsquo;s <code>Makefile</code>:</p>
+<ul>
+<li><strong><code>PLATFORMS</code></strong>: Comma separated list of platforms the image should be built for.</li>
+</ul>
+<h3 id="release-images">Release Images</h3>
+<p>Uploads the images built by the project to Quay.io:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make release-images
+</code></pre></div><h4 id="respected-variables-for-release">Respected Variables for Release</h4>
+<ul>
+<li><strong><code>QUAY_USERNAME</code>, <code>QUAY_PASSWORD</code></strong>: Needed in order to log in to Quay.</li>
+<li><strong><code>TAG</code></strong>: A tag to use for the release (default is the branch name).</li>
+</ul>
 
 
 
@@ -3117,6 +3102,22 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool helm --deploytool
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -3163,7 +3164,7 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool helm --deploytool
 	 
 	 
 		
-			<a class="nav nav-prev" href="/development/shipyard/first-time/" title="Adding Shipyard to a Project"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/development/shipyard/targets/" title="Shared Targets"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/other-resources/" title="Other Resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -3176,19 +3177,19 @@ DEPLOY_ARGS <span style="color:#f92672">+=</span> --deploytool helm --deploytool
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1663581560"></script>
-    <script src="/js/perfect-scrollbar.min.js?1663581560"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1663581560"></script>
-    <script src="/js/jquery.sticky.js?1663581560"></script>
-    <script src="/js/featherlight.min.js?1663581560"></script>
-    <script src="/js/highlight.pack.js?1663581560"></script>
+    <script src="/js/clipboard.min.js?1663598194"></script>
+    <script src="/js/perfect-scrollbar.min.js?1663598194"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1663598194"></script>
+    <script src="/js/jquery.sticky.js?1663598194"></script>
+    <script src="/js/featherlight.min.js?1663598194"></script>
+    <script src="/js/highlight.pack.js?1663598194"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1663581560"></script>
-    <script src="/js/learn.js?1663581560"></script>
-    <script src="/js/hugo-learn.js?1663581560"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1663598194"></script>
+    <script src="/js/learn.js?1663598194"></script>
+    <script src="/js/hugo-learn.js?1663598194"></script>
 
-    <link href="/mermaid/mermaid.css?1663581560" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1663581560"></script>
+    <link href="/mermaid/mermaid.css?1663598194" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1663598194"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
