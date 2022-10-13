@@ -12,20 +12,20 @@
     <title>User Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1665675088" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1665675088" rel="stylesheet">
-    <link href="/css/hybrid.css?1665675088" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1665675088" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1665675088" rel="stylesheet">
-    <link href="/css/auto-complete.css?1665675088" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1665675088" rel="stylesheet">
-    <link href="/css/theme.css?1665675088" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1665675088" rel="stylesheet">
+    <link href="/css/nucleus.css?1665676033" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1665676033" rel="stylesheet">
+    <link href="/css/hybrid.css?1665676033" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1665676033" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1665676033" rel="stylesheet">
+    <link href="/css/auto-complete.css?1665676033" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1665676033" rel="stylesheet">
+    <link href="/css/theme.css?1665676033" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1665676033" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1665675088" rel="stylesheet">
+      <link href="/css/theme-blue.css?1665676033" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1665675088"></script>
+    <script src="/js/jquery-3.3.1.min.js?1665676033"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1665675088" rel="stylesheet">
+<link href="/css/fixes.css?1665676033" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/usage/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1665675088"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1665675088"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1665676033"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1665676033"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1665675088"></script>
+<script type="text/javascript" src="/js/search.js?1665676033"></script>
 
     
   </div>
@@ -2087,6 +2087,7 @@ submariner-k8s-broker   Active   5m
 clusters.submariner.io                    2020-11-30T13:49:16Z
 endpoints.submariner.io                   2020-11-30T13:49:16Z
 gateways.submariner.io                    2020-11-30T13:49:16Z
+serviceexports.multicluster.x-k8s.io      2020-11-30T13:52:39Z
 serviceimports.multicluster.x-k8s.io      2020-11-30T13:52:39Z
 </code></pre></div><p>This command validates that the participating clusters have successfully joined the Broker:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n submariner-k8s-broker get clusters.submariner.io
@@ -2150,7 +2151,7 @@ Status:
       Hostname:         cluster3-worker
       nat_enabled:      false
       private_ip:       172.17.0.10
-      public_ip:        
+      public_ip:
       Subnets:
         100.3.0.0/16
         10.3.0.0/16
@@ -2171,11 +2172,11 @@ Status:
     Hostname:         cluster2-worker
     nat_enabled:      false
     private_ip:       172.17.0.7
-    public_ip:        
+    public_ip:
     Subnets:
       100.2.0.0/16
       10.2.0.0/16
-  Status Failure:  
+  Status Failure:
   Version:         v0.8.0-pre0-1-g5d7f163
 Events:            <none>
 </pre>
@@ -2308,7 +2309,7 @@ Status:
     Type:                  Valid
     Last Transition Time:  2020-12-01T12:35:32Z
     Message:               Service was successfully synced to the broker
-    Reason:                
+    Reason:
     Status:                True
     Type:                  Valid
 Events:                    &lt;none&gt;
@@ -2467,7 +2468,7 @@ Status:
     Type:                  Valid
     Last Transition Time:  2020-12-07T17:37:59Z
     Message:               Service was successfully synced to the broker
-    Reason:                
+    Reason:
     Status:                True
     Type:                  Valid
 Events:                    &lt;none&gt;
@@ -2711,7 +2712,7 @@ Status:
     Type:                  Valid
     Last Transition Time:  2020-11-30T19:59:44Z
     Message:               Service was successfully synced to the broker
-    Reason:                
+    Reason:
     Status:                True
     Type:                  Valid
 Events:                    &lt;none&gt;
@@ -3857,19 +3858,19 @@ namespace <span style="color:#e6db74">&#34;nginx-test&#34;</span> deleted
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1665675088"></script>
-    <script src="/js/perfect-scrollbar.min.js?1665675088"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1665675088"></script>
-    <script src="/js/jquery.sticky.js?1665675088"></script>
-    <script src="/js/featherlight.min.js?1665675088"></script>
-    <script src="/js/highlight.pack.js?1665675088"></script>
+    <script src="/js/clipboard.min.js?1665676033"></script>
+    <script src="/js/perfect-scrollbar.min.js?1665676033"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1665676033"></script>
+    <script src="/js/jquery.sticky.js?1665676033"></script>
+    <script src="/js/featherlight.min.js?1665676033"></script>
+    <script src="/js/highlight.pack.js?1665676033"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1665675088"></script>
-    <script src="/js/learn.js?1665675088"></script>
-    <script src="/js/hugo-learn.js?1665675088"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1665676033"></script>
+    <script src="/js/learn.js?1665676033"></script>
+    <script src="/js/hugo-learn.js?1665676033"></script>
 
-    <link href="/mermaid/mermaid.css?1665675088" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1665675088"></script>
+    <link href="/mermaid/mermaid.css?1665676033" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1665676033"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
