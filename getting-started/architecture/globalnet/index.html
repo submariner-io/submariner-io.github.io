@@ -12,20 +12,20 @@
     <title>Globalnet Controller :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1666895355" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1666895355" rel="stylesheet">
-    <link href="/css/hybrid.css?1666895355" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1666895355" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1666895355" rel="stylesheet">
-    <link href="/css/auto-complete.css?1666895355" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1666895355" rel="stylesheet">
-    <link href="/css/theme.css?1666895355" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1666895355" rel="stylesheet">
+    <link href="/css/nucleus.css?1666957053" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1666957053" rel="stylesheet">
+    <link href="/css/hybrid.css?1666957053" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1666957053" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1666957053" rel="stylesheet">
+    <link href="/css/auto-complete.css?1666957053" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1666957053" rel="stylesheet">
+    <link href="/css/theme.css?1666957053" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1666957053" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1666895355" rel="stylesheet">
+      <link href="/css/theme-blue.css?1666957053" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1666895355"></script>
+    <script src="/js/jquery-3.3.1.min.js?1666957053"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1666895355" rel="stylesheet">
+<link href="/css/fixes.css?1666957053" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/architecture/globalnet/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1666895355"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1666895355"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1666957053"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1666957053"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1666895355"></script>
+<script type="text/javascript" src="/js/search.js?1666957053"></script>
 
     
   </div>
@@ -2130,11 +2130,10 @@ It mainly consists of two key components: the IP Address Manager and Globalnet.<
 <li>Creates initial iptables chains for Globalnet rules.</li>
 <li>For each <code>GlobalEgressIP</code>, creates corresponding SNAT rules to convert the source IPs for all the matching pods to the corresponding
 global IP(s) allocated to the <code>GlobalEgressIP</code> object.</li>
-<li>For each exported service, creates an ingress rule to direct all traffic destined to the Service&rsquo;s global IP to the service&rsquo;s
-<code>kube-proxy</code> iptables chain which in turn directs traffic to service&rsquo;s backend pods.</li>
+<li>For each exported Service, it internally creates an additional Service with <code>externalIPs</code>, in the same namespace as
+the exported Service, and sets the <code>externalIPs</code> to the globalIP assigned to the respective Service.</li>
 <li>Clean up the rules from the gateway node on the deletion of a <code>Pod</code>, <code>Service</code>, or <code>ServiceExport</code>.</li>
 </ul>
-<p>Globalnet currently relies on <code>kube-proxy</code> and thus will only work with deployments that use <code>kube-proxy</code>.</p>
 <h3 id="service-discovery---lighthouse">Service Discovery - Lighthouse</h3>
 <p>Connectivity is only part of the solution as pods still need to know the IPs of services on remote clusters.</p>
 <p>This is achieved by enhancing <a href="https://github.com/submariner-io/lighthouse">Lighthouse</a> with support for Globalnet. The Lighthouse
@@ -3257,19 +3256,19 @@ namespace with the <code>podSelector</code> field set:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1666895355"></script>
-    <script src="/js/perfect-scrollbar.min.js?1666895355"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1666895355"></script>
-    <script src="/js/jquery.sticky.js?1666895355"></script>
-    <script src="/js/featherlight.min.js?1666895355"></script>
-    <script src="/js/highlight.pack.js?1666895355"></script>
+    <script src="/js/clipboard.min.js?1666957053"></script>
+    <script src="/js/perfect-scrollbar.min.js?1666957053"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1666957053"></script>
+    <script src="/js/jquery.sticky.js?1666957053"></script>
+    <script src="/js/featherlight.min.js?1666957053"></script>
+    <script src="/js/highlight.pack.js?1666957053"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1666895355"></script>
-    <script src="/js/learn.js?1666895355"></script>
-    <script src="/js/hugo-learn.js?1666895355"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1666957053"></script>
+    <script src="/js/learn.js?1666957053"></script>
+    <script src="/js/hugo-learn.js?1666957053"></script>
 
-    <link href="/mermaid/mermaid.css?1666895355" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1666895355"></script>
+    <link href="/mermaid/mermaid.css?1666957053" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1666957053"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
