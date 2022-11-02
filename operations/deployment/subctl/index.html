@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1667127405" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1667127405" rel="stylesheet">
-    <link href="/css/hybrid.css?1667127405" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1667127405" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1667127405" rel="stylesheet">
-    <link href="/css/auto-complete.css?1667127405" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1667127405" rel="stylesheet">
-    <link href="/css/theme.css?1667127405" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1667127405" rel="stylesheet">
+    <link href="/css/nucleus.css?1667409100" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1667409100" rel="stylesheet">
+    <link href="/css/hybrid.css?1667409100" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1667409100" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1667409100" rel="stylesheet">
+    <link href="/css/auto-complete.css?1667409100" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1667409100" rel="stylesheet">
+    <link href="/css/theme.css?1667409100" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1667409100" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1667127405" rel="stylesheet">
+      <link href="/css/theme-blue.css?1667409100" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1667127405"></script>
+    <script src="/js/jquery-3.3.1.min.js?1667409100"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1667127405" rel="stylesheet">
+<link href="/css/fixes.css?1667409100" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1667127405"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1667127405"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1667409100"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1667409100"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1667127405"></script>
+<script type="text/javascript" src="/js/search.js?1667409100"></script>
 
     
   </div>
@@ -2038,6 +2038,7 @@
         <li><a href="#installing-specific-versions">Installing specific versions</a></li>
       </ul>
     </li>
+    <li><a href="#common-options">Common options</a></li>
     <li><a href="#commands">Commands</a>
       <ul>
         <li><a href="#deploy-broker"><code>deploy-broker</code></a></li>
@@ -2107,11 +2108,28 @@ Specific versions can be requested by using the VERSION environment variable.</p
 </ul>
 <p>For example</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl https://get.submariner.io | VERSION<span style="color:#f92672">=</span>devel bash
-</code></pre></div><h2 id="commands">Commands</h2>
+</code></pre></div><h2 id="common-options">Common options</h2>
+<p><code>subctl</code> commands which need access to a Kubernetes cluster handle the same access mechanisms as <code>kubectl</code> (see <code>kubectl options</code>).
+One or more <code>kubeconfig</code> files can be listed in the <code>KUBECONFIG</code> environment variable, or using the <code>--kubeconfig</code> option.
+A specific context can be chosen using the <code>--context</code> option;
+by default, <code>subctl</code> commands use the chosen <code>kubeconfig</code>’s current context.</p>
+<p>Where appropriate, a namespace can be chosen using the <code>--namespace</code> (<code>-n</code>) option;
+by default, <code>subctl</code> commands use either the appropriate Submariner namespace, or the chosen context’s current namespace.</p>
+<p>Some commands support multiple contexts.
+The “reference” context is the context specified by <code>--context</code>;
+the “other” context is identified by a prefix, <em>e.g.</em> <code>--tocontext</code> or <code>--remotecontext</code>.
+All the options providing access to a cluster are available with the corresponding prefix:
+<code>--toconfig</code> (the <code>kubeconfig</code>), <code>--tousername</code> etc.
+It is possible to use mutually conflicting <code>kubeconfig</code> files (<em>e.g.</em> files using the same names for different values)
+by specifiying them using <code>--kubeconfig</code> and the prefixed <code>--…config</code>;
+corresponding settings will only use the information from the matching <code>kubeconfig</code>.</p>
+<p>References to the “selected context” and “selected namespace” in the documentation below refer to the context and namespace
+specified using the options described above.</p>
+<h2 id="commands">Commands</h2>
 <h3 id="deploy-broker"><code>deploy-broker</code></h3>
 <p><code>subctl deploy-broker [flags]</code></p>
-<p>The <code>deploy-broker</code> command configures the cluster specified by the <code>--kubeconfig</code> flag (or <code>KUBECONFIG</code> env var) and the <code>--kubecontext</code>
-flag as the Broker. It installs the necessary CRDs and the <code>submariner-k8s-broker</code> namespace.</p>
+<p>The <code>deploy-broker</code> command configures the cluster specified by the selected context as the Broker.
+It installs the necessary CRDs and the <code>submariner-k8s-broker</code> namespace.</p>
 <p>In addition, it generates a <code>broker-info.subm</code> file which can be used with the <code>join</code> command to connect clusters to the Broker. This file
 contains the following details:</p>
 <ul>
@@ -2134,7 +2152,7 @@ contains the following details:</p>
 <td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
 </tr>
 <tr>
-<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
 <td align="left">kubeconfig context to use</td>
 </tr>
 <tr>
@@ -2190,7 +2208,7 @@ discoverable from other clusters in the Submariner deployment.</p>
 <td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
 </tr>
 <tr>
-<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
 <td align="left">Kubeconfig context to use</td>
 </tr>
 <tr>
@@ -2218,7 +2236,7 @@ same name from being exported to other clusters.</p>
 <td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
 </tr>
 <tr>
-<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
 <td align="left">Kubeconfig context to use</td>
 </tr>
 <tr>
@@ -2416,13 +2434,13 @@ deployment.</p>
 <td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
 </tr>
 <tr>
-<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
 <td align="left">Kubeconfig context to use</td>
 </tr>
 </tbody>
 </table>
 <h3 id="verify"><code>verify</code></h3>
-<p><code>subctl verify --kubecontexts &lt;context1&gt;,&lt;context2&gt; [flags]</code></p>
+<p><code>subctl verify --context &lt;context1&gt; --tocontext &lt;context2&gt; [flags]</code></p>
 <p>The <code>verify</code> command verifies a Submariner deployment between two clusters is functioning properly. <code>&lt;context1&gt;</code> will be
 <code>ClusterA</code> in the reports, while <code>&lt;context2&gt;</code> will be <code>ClusterB</code> in the reports. The <code>--verbose</code> flag is recommended to see what&rsquo;s
 happening during the tests.</p>
@@ -2482,7 +2500,7 @@ that this verification is disruptive.</p>
 </table>
 <h3 id="benchmark"><code>benchmark</code></h3>
 <h4 id="benchmark-throughput"><code>benchmark throughput</code></h4>
-<p><code>subctl benchmark throughput --kubecontexts &lt;context1&gt;[,&lt;context2&gt;] [flags]</code></p>
+<p><code>subctl benchmark throughput --context &lt;context1&gt; [--tocontext &lt;context2&gt;] [flags]</code></p>
 <p>The <code>benchmark throughput</code> command runs a throughput benchmark test between two specified clusters or within a single cluster.
 It deploys a Pod to run the <a href="https://iperf.fr/">iperf</a> tool and logs the output to the console.
 When running <code>benchmark throughput</code>, two types of tests will be executed:</p>
@@ -2491,7 +2509,7 @@ When running <code>benchmark throughput</code>, two types of tests will be execu
 <li>Pod to Pod - where both Pods are scheduled on non-Gateway nodes</li>
 </ul>
 <h4 id="benchmark-latency"><code>benchmark latency</code></h4>
-<p><code>subctl benchmark latency --kubecontexts &lt;context1&gt;[,&lt;context2&gt;] [flags]</code></p>
+<p><code>subctl benchmark latency --context &lt;context1&gt; [--tocontext &lt;context2&gt;] [flags]</code></p>
 <p>The <code>benchmark latency</code> command runs a latency benchmark test between two specified clusters or within a single cluster.
 It deploys a Pod to run the <a href="https://hewlettpackard.github.io/netperf/doc/netperf.html">netperf</a> tool and logs the output to the console.
 When running <code>benchmark latency</code>, two types of tests will be executed:</p>
@@ -2509,10 +2527,6 @@ When running <code>benchmark latency</code>, two types of tests will be executed
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="left"><code>--intra-cluster</code></td>
-<td align="left">Performs the benchmark test within a single cluster between Pods from a Non-Gateway node to a Gateway node</td>
-</tr>
 <tr>
 <td align="left"><code>--verbose</code></td>
 <td align="left">Produce verbose logs during benchmark tests</td>
@@ -2562,10 +2576,10 @@ in the cluster that may prevent Submariner from working properly.</p>
 <tr>
 <td align="left"><code>firewall intra-cluster [flags]</code></td>
 <td align="left">checks if the firewall configuration allows traffic via intra-cluster Submariner VXLAN interface</td>
-<td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code> , <code>--verbose</code>, <code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code>, <code>--verbose</code>, <code>--namespace</code> <code>&lt;string&gt;</code></td>
 </tr>
 <tr>
-<td align="left"><code>firewall inter-cluster &lt;localkubeconfig&gt; &lt;remotekubeconfig&gt; [flags]</code></td>
+<td align="left"><code>firewall inter-cluster --context &lt;localcontext&gt; --remotecontext &lt;remotecontext&gt; [flags]</code></td>
 <td align="left">checks if the firewall configuration allows tunnels to be configured on the Gateway nodes</td>
 <td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code>, <code>--verbose</code>, <code>--namespace</code> <code>&lt;string&gt;</code></td>
 </tr>
@@ -2616,7 +2630,7 @@ in the cluster that may prevent Submariner from working properly.</p>
 <td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
 </tr>
 <tr>
-<td align="left"><code>--kubecontext</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
 <td align="left">Kubeconfig context to use</td>
 </tr>
 <tr>
@@ -2629,7 +2643,7 @@ in the cluster that may prevent Submariner from working properly.</p>
 <p>The <code>subctl gather</code> command is a tool that collects various information from clusters to aid in troubleshooting a
 Submariner deployment, including Kubernetes resources and Pod logs. Clusters from which information is gathered are provided
 via the <code>--kubeconfig</code> flag (or the <code>KUBECONFIG</code> environment variable). By default it will gather information from all the cluster contexts contained
-in the kubeconfig. To gather information from specific clusters, contexts can be passed using <code>kubecontexts</code> flag.</p>
+in the kubeconfig. To gather information from specific clusters, contexts can be passed using <code>--contexts</code> flag.</p>
 <p>The tool creates a UTC timestamped directory of the format <code>submariner-YYYYMMDDHHMMSS</code> containing various files.
 Kubernetes resources are written to YAML files with the naming format <code>&lt;cluster-name&gt;_&lt;resource-type&gt;_&lt;namespace&gt;_&lt;resource-name&gt;.yaml</code>.
 Pod logs are written to files with the format <code>&lt;cluster-name&gt;_&lt;pod-name&gt;.log</code></p>
@@ -2649,7 +2663,7 @@ to the CNI and Submariner cable driver in use from each node using file format <
 <td align="left">Absolute path(s) to the kubeconfig file(s)</td>
 </tr>
 <tr>
-<td align="left"><code>--kubecontexts</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>--contexts</code> <code>&lt;string&gt;</code></td>
 <td align="left">comma separated list of kube contexts to use. By default all contexts referenced by kubeconfig are used</td>
 </tr>
 <tr>
@@ -2669,9 +2683,9 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <p>It is recommended to use this when reporting any issue.</p>
 <p><code>subctl gather</code></p>
 <h5 id="gather-all-from-specific-clusters"><code>gather</code> all from specific clusters</h5>
-<p><code>subctl gather --kubecontexts cluster-east</code></p>
+<p><code>subctl gather --contexts cluster-east</code></p>
 <h5 id="gather-operator-and-connectivity-logs-from-specific-clusters"><code>gather</code> operator and connectivity logs from specific clusters</h5>
-<p><code>subctl gather --kubecontexts cluster-east,cluster-west --module operator,connectivity --type logs</code></p>
+<p><code>subctl gather --contexts cluster-east,cluster-west --module operator,connectivity --type logs</code></p>
 <h5 id="gather-broker-and-service-discovery-resources-from-all-clusters"><code>gather</code> broker and service-discovery resources from all clusters</h5>
 <p><code>subctl gather --module broker,service-discovery --type resources</code></p>
 <h3 id="cloud"><code>cloud</code></h3>
@@ -2876,8 +2890,8 @@ firewall ports opened and will only label the required number of gateway nodes f
 <td align="left">Absolute path(s) to the kubeconfig file(s)</td>
 </tr>
 <tr>
-<td align="left"><code>--kubecontexts</code> <code>&lt;string&gt;</code></td>
-<td align="left">Comma separated list of kube contexts to use. By default all contexts referenced by kubeconfig are used</td>
+<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
+<td align="left">Kubernetes context to use</td>
 </tr>
 </tbody>
 </table>
@@ -2999,8 +3013,8 @@ firewall ports opened and will only label the required number of gateway nodes f
 <td align="left">Absolute path(s) to the kubeconfig file(s)</td>
 </tr>
 <tr>
-<td align="left"><code>--kubecontexts</code> <code>&lt;string&gt;</code></td>
-<td align="left">kubeconfig context to use</td>
+<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
+<td align="left">Kubernetes context to use</td>
 </tr>
 </tbody>
 </table>
@@ -4107,19 +4121,19 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1667127405"></script>
-    <script src="/js/perfect-scrollbar.min.js?1667127405"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1667127405"></script>
-    <script src="/js/jquery.sticky.js?1667127405"></script>
-    <script src="/js/featherlight.min.js?1667127405"></script>
-    <script src="/js/highlight.pack.js?1667127405"></script>
+    <script src="/js/clipboard.min.js?1667409100"></script>
+    <script src="/js/perfect-scrollbar.min.js?1667409100"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1667409100"></script>
+    <script src="/js/jquery.sticky.js?1667409100"></script>
+    <script src="/js/featherlight.min.js?1667409100"></script>
+    <script src="/js/highlight.pack.js?1667409100"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1667127405"></script>
-    <script src="/js/learn.js?1667127405"></script>
-    <script src="/js/hugo-learn.js?1667127405"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1667409100"></script>
+    <script src="/js/learn.js?1667409100"></script>
+    <script src="/js/hugo-learn.js?1667409100"></script>
 
-    <link href="/mermaid/mermaid.css?1667127405" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1667127405"></script>
+    <link href="/mermaid/mermaid.css?1667409100" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1667409100"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
