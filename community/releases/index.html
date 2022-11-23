@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1667409099" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1667409099" rel="stylesheet">
-    <link href="/css/hybrid.css?1667409099" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1667409099" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1667409099" rel="stylesheet">
-    <link href="/css/auto-complete.css?1667409099" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1667409099" rel="stylesheet">
-    <link href="/css/theme.css?1667409099" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1667409099" rel="stylesheet">
+    <link href="/css/nucleus.css?1669213568" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1669213568" rel="stylesheet">
+    <link href="/css/hybrid.css?1669213568" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1669213568" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1669213568" rel="stylesheet">
+    <link href="/css/auto-complete.css?1669213568" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1669213568" rel="stylesheet">
+    <link href="/css/theme.css?1669213568" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1669213568" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1667409099" rel="stylesheet">
+      <link href="/css/theme-blue.css?1669213568" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1667409099"></script>
+    <script src="/js/jquery-3.3.1.min.js?1669213568"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1667409099" rel="stylesheet">
+<link href="/css/fixes.css?1669213568" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1667409099"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1667409099"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1669213568"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1669213568"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1667409099"></script>
+<script type="text/javascript" src="/js/search.js?1669213568"></script>
 
     
   </div>
@@ -2026,20 +2026,26 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#v0131">v0.13.1</a></li>
-    <li><a href="#v0130">v0.13.0</a>
+    <li><a href="#v0140">v0.14.0</a>
       <ul>
         <li><a href="#new-features">New features</a></li>
         <li><a href="#other-changes">Other changes</a></li>
+      </ul>
+    </li>
+    <li><a href="#v0131">v0.13.1</a></li>
+    <li><a href="#v0130">v0.13.0</a>
+      <ul>
+        <li><a href="#new-features-1">New features</a></li>
+        <li><a href="#other-changes-1">Other changes</a></li>
       </ul>
     </li>
     <li><a href="#v0122">v0.12.2</a></li>
     <li><a href="#v0121">v0.12.1</a></li>
     <li><a href="#v0120">v0.12.0</a>
       <ul>
-        <li><a href="#new-features-1">New features</a></li>
+        <li><a href="#new-features-2">New features</a></li>
         <li><a href="#bug-fixes">Bug fixes</a></li>
-        <li><a href="#other-changes-1">Other changes</a></li>
+        <li><a href="#other-changes-2">Other changes</a></li>
         <li><a href="#known-issues">Known Issues</a></li>
       </ul>
     </li>
@@ -2089,6 +2095,89 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0140">v0.14.0</h2>
+<h3 id="new-features">New features</h3>
+<ul>
+<li>Users no longer need to open ports 8080 and 8081 on the host for querying metrics. A new <code>submariner-metrics-proxy</code> DaemonSet
+runs pods on gateway nodes and forwards HTTP requests for metrics services to gateway and Globalnet pods running on the nodes.
+Gateway and Globalnet pods now listen on ports 32780 and 32781 instead of well-known ports 8080 and 8081 to avoid conflict with
+any other services that might be using those ports. Users will continue to query existing <code>submariner-gateway-metrics</code> and
+<code>submariner-globalnet-metrics</code> services to query the metrics.</li>
+<li>Added <code>subctl diagnose service-discovery</code> verifications for Service Discovery objects.</li>
+<li>The <code>subctl join</code> command now supports an <code>--air-gapped</code> option that instructs Submariner not to access any external servers for
+<code>public-ip</code> resolution.
+<ul>
+<li>Support for simulated &ldquo;air-gapped&rdquo; environments has been added to kind clusters.
+To use, deploy with <code>USING=air-gap</code> or <code>AIR_GAPPED=true</code>.</li>
+</ul>
+</li>
+<li>Support was added in the Shipyard project to easily deploy Submariner with a LoadBalancer type Service in front.
+To use, simply specify the target (e.g. <code>deploy</code>) with <code>USING=load-balancer</code> or <code>LOAD_BALANCER=true</code>.
+For kind-based deployments, <a href="https://metallb.universe.tf/">MetalLB</a> is deployed to provide the capability.
+The MetalLB version can be specified using <code>METALLB_VERSION=x.y.z</code>.</li>
+<li>Support was added to force running <code>subctl verify</code> when testing end-to-end, ignoring any local tests.
+To use this feature, run <code>make e2e using=subctl-verify</code>.
+Verifications can be now specified using the <code>SUBCTL_VERIFICATIONS</code> flag, instead of relying on the default behavior.
+e.g.: <code>make e2e using=subctl-verify SUBCTL_VERIFICATIONS=connectivity,service-discovery</code>.</li>
+<li>kubeconfig handling has been revamped to be consistent across all
+<code>subctl</code> commands and to match <code>kubectl</code>’s behaviour.
+<ul>
+<li>The single-context commands, <code>cloud-prepare</code>, <code>deploy-broker</code>, <code>export</code>,
+<code>join</code>, <code>unexport</code> and <code>uninstall</code>, now all support a <code>--context</code> argument
+to specify the kubeconfig context to use. kubeconfig files can be
+specified using either the <code>KUBECONFIG</code> environment variable or the
+<code>--kubeconfig</code> argument; <code>kubectl</code> defaults will be applied if
+configured. If no context is specified, the kubeconfig default context
+will be used.</li>
+<li>Multiple-context commands which operate on all contexts by default,
+<code>show</code> and <code>gather</code>, support a <code>--contexts</code> argument which can be used
+to select one or more contexts; they also support the <code>--context</code> argument
+to select a single context.</li>
+<li>Multiple-context commands which operate on specific contexts,
+<code>benchmark</code> and <code>verify</code>, support a <code>--context</code> argument to specify the
+originating context, and a <code>--tocontext</code> argument to specify the target
+context.</li>
+<li><code>diagnose</code> operates on all accessible contexts by default, except
+<code>diagnose firewall inter-cluster</code> and <code>diagnose firewall nat-traversal</code>
+which rely on an originating context specified by <code>--context</code> and a
+remote context specified by <code>--remotecontext</code>.</li>
+<li>Namespace-based commands such as <code>export</code> will use the namespace given
+using <code>--namespace</code> (<code>-n</code>), if any, or the current namespace in the
+selected context, if there is one, rather than the <code>default</code>
+namespace.</li>
+<li>These commands also support all connection options supported by
+<code>kubectl</code>, so connections can be configured using command arguments
+instead of kubeconfigs.</li>
+<li>Existing options (<code>--kubecontext</code> etc.) are preserved for backwards
+compatibility, but are deprecated and will be removed in the next
+release.</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-changes">Other changes</h3>
+<ul>
+<li>The Flannel CNI is now properly identified during join.</li>
+<li>A new ServiceExport status condition type named Synced was added that indicates whether or not the ServiceImport
+was successfully synced to the broker.</li>
+<li>Service Discovery now handles updates to an exported service and updates/deletes the corresponding ServiceImport accordingly.</li>
+<li>Service Discovery now returns a DNS error message in the response body when no matching records are found for the query to
+<code>clusterset.local</code>. This prevents unnecessary retries.</li>
+<li>Cloud cleanup for OpenStack now identifies and deletes failed MachineSets.</li>
+<li>Privileges of the Route Agent and Gateway pods were reduced as they don’t need to access PersistentVolumeClaims and Secrets.</li>
+<li>The privileged SCC permission for Submariner components in OCP is set now by creating separate <code>ClusterRole</code> and <code>ClusterRoleBinding</code>
+resources instead of manipulating the system privileged SCC resource.</li>
+<li>It is now possible to customize the default TCP MSS clamping value set by Submariner also for non-Globalnet deployments.</li>
+<li>The <code>subctl show</code> command now correctly reports component image versions when image overrides were specified on <code>join</code>.</li>
+<li>Updates to the <code>subctl gather</code> command:
+<ul>
+<li>The <code>subctl gather</code> command now creates one subdirectory per cluster instead of embedding the cluster name in each file name.</li>
+<li>If it’s not given a custom directory, <code>subctl gather</code> stores all its output in a directory
+named <code>submariner-</code> followed by the current date and time (in UTC) in &ldquo;YYYYMMDDHHmmss&rdquo; format.</li>
+<li>The <code>subctl gather</code> command now includes the output from <code>ovn-sbctl show</code> which has the <code>chassis-id</code> to <code>hostname</code> mapping that can
+be used to verify if <code>submariner_router</code> is pinned to the proper Gateway node.</li>
+</ul>
+</li>
+</ul>
 <h2 id="v0131">v0.13.1</h2>
 <p>This is a bugfix release:</p>
 <ul>
@@ -2107,7 +2196,7 @@
 <li>Set <code>ReadHeaderTimeout</code> (new in Go 1.18) to mitigate potential Slowloris attacks.</li>
 </ul>
 <h2 id="v0130">v0.13.0</h2>
-<h3 id="new-features">New features</h3>
+<h3 id="new-features-1">New features</h3>
 <ul>
 <li>All Submariner container images are now available for x86-64 and ARM64 architectures.</li>
 <li>Support was added in <code>subctl cloud prepare</code> to deploy Submariner on OpenShift on Microsoft Azure. This automatically configures the
@@ -2121,7 +2210,7 @@ Submariner automatically routes the traffic and provides DNS resolution.</li>
 <li>Added a new <code>subctl show brokers</code> command that displays information about the Submariner Brokers installed.</li>
 <li>The <code>subctl diagnose</code> command was extended to verify inter-cluster connectivity when Submariner is deployed using a LoadBalancer Service.</li>
 </ul>
-<h3 id="other-changes">Other changes</h3>
+<h3 id="other-changes-1">Other changes</h3>
 <ul>
 <li>The <code>submariner-operator</code> namespace is labeled in accordance with <em>KEP-2579: Pod Security Admission Control</em> (default in Kubernetes 1.24)
 to allow the Pods to be privileged.</li>
@@ -2161,7 +2250,7 @@ clamping the TCP MSS to a fixed value derived from the default interface MTU sub
 <li>As part of <code>subctl uninstall</code> operation, we now remove the <code>submariner.io/globalIp</code> annotation that is added on the gateway node.</li>
 </ul>
 <h2 id="v0120">v0.12.0</h2>
-<h3 id="new-features-1">New features</h3>
+<h3 id="new-features-2">New features</h3>
 <ul>
 <li>Added a new <code>subctl uninstall</code> command that removes all Submariner components and dataplane artifacts, such as iptables rules and routing
 table entries, from a cluster.</li>
@@ -2189,7 +2278,7 @@ table entries, from a cluster.</li>
 <li>Services without selectors can now be resolved across the ClusterSet.</li>
 <li><code>subctl diagnose firewall inter-cluster</code> now works correctly for the VXLAN cable driver.</li>
 </ul>
-<h3 id="other-changes-1">Other changes</h3>
+<h3 id="other-changes-2">Other changes</h3>
 <ul>
 <li>The broker token and IPsec PSK are now stored in secrets which are used in preference to the corresponding fields in the Submariner CR,
 which are now deprecated. For backwards compatibility and to simplify upgrades, the deprecated fields are still populated but will be
@@ -3550,19 +3639,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1667409099"></script>
-    <script src="/js/perfect-scrollbar.min.js?1667409099"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1667409099"></script>
-    <script src="/js/jquery.sticky.js?1667409099"></script>
-    <script src="/js/featherlight.min.js?1667409099"></script>
-    <script src="/js/highlight.pack.js?1667409099"></script>
+    <script src="/js/clipboard.min.js?1669213568"></script>
+    <script src="/js/perfect-scrollbar.min.js?1669213568"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1669213568"></script>
+    <script src="/js/jquery.sticky.js?1669213568"></script>
+    <script src="/js/featherlight.min.js?1669213568"></script>
+    <script src="/js/highlight.pack.js?1669213568"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1667409099"></script>
-    <script src="/js/learn.js?1667409099"></script>
-    <script src="/js/hugo-learn.js?1667409099"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1669213568"></script>
+    <script src="/js/learn.js?1669213568"></script>
+    <script src="/js/hugo-learn.js?1669213568"></script>
 
-    <link href="/mermaid/mermaid.css?1667409099" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1667409099"></script>
+    <link href="/mermaid/mermaid.css?1669213568" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1669213568"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
