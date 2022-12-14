@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1670427751" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1670427751" rel="stylesheet">
-    <link href="/css/hybrid.css?1670427751" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1670427751" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1670427751" rel="stylesheet">
-    <link href="/css/auto-complete.css?1670427751" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1670427751" rel="stylesheet">
-    <link href="/css/theme.css?1670427751" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1670427751" rel="stylesheet">
+    <link href="/css/nucleus.css?1671033702" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1671033702" rel="stylesheet">
+    <link href="/css/hybrid.css?1671033702" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1671033702" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1671033702" rel="stylesheet">
+    <link href="/css/auto-complete.css?1671033702" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1671033702" rel="stylesheet">
+    <link href="/css/theme.css?1671033702" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1671033702" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1670427751" rel="stylesheet">
+      <link href="/css/theme-blue.css?1671033702" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1670427751"></script>
+    <script src="/js/jquery-3.3.1.min.js?1671033702"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1670427751" rel="stylesheet">
+<link href="/css/fixes.css?1671033702" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1670427751"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1670427751"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1671033702"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1671033702"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1670427751"></script>
+<script type="text/javascript" src="/js/search.js?1671033702"></script>
 
     
   </div>
@@ -2040,6 +2040,7 @@
         <li><a href="#other-changes-1">Other changes</a></li>
       </ul>
     </li>
+    <li><a href="#v0123">v0.12.3</a></li>
     <li><a href="#v0122">v0.12.2</a></li>
     <li><a href="#v0121">v0.12.1</a></li>
     <li><a href="#v0120">v0.12.0</a>
@@ -2231,6 +2232,18 @@ user-specified namespace is missing any of these labels, <code>subctl</code> wil
 <li>It is now possible to customize the default TCP MSS clamping value set by Submariner in Globalnet deployments. This could be useful in
 network topologies where MTU issues are seen. To force a particular MSS clamping value use the <code>submariner.io/tcp-clamp-mss</code> node annotation
 on Gateway nodes, e.g. <code>kubectl annotate node &lt;node_name&gt; submariner.io/tcp-clamp-mss=&lt;value&gt;</code>.</li>
+</ul>
+<h2 id="v0123">v0.12.3</h2>
+<p>This is a bugfix release:</p>
+<ul>
+<li>Image version hashes are now 12 character long, avoiding possible collisions between images.</li>
+<li>Stop using cluster-owned tag for AWS cloud prepare, fixing problems with Submariner security groups left over after uninstallation.</li>
+<li>Support overriding the MTU value used in TCP MSS clamping, allowing fine tuning of MTU when necessary.</li>
+<li>CNI interface annotations created by Submariner are now removed during uninstallation.</li>
+<li>Bump x/text to address CVE-2021-38561 and CVE-2022-32149.</li>
+<li>Diagnose now validates if the <code>OVNKubernetes</code> CNI is supported by the deployed Submariner.</li>
+<li>Set <code>DNSPolicy</code> to <code>ClusterFirstWithHostNet</code> for pods that run with host networking.</li>
+<li>Service Discovery now writes the DNS message response body when it is not a <code>ServerFailure</code> to avoid unnecessary client retries.</li>
 </ul>
 <h2 id="v0122">v0.12.2</h2>
 <p>This is a bugfix release:</p>
@@ -3649,19 +3662,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1670427751"></script>
-    <script src="/js/perfect-scrollbar.min.js?1670427751"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1670427751"></script>
-    <script src="/js/jquery.sticky.js?1670427751"></script>
-    <script src="/js/featherlight.min.js?1670427751"></script>
-    <script src="/js/highlight.pack.js?1670427751"></script>
+    <script src="/js/clipboard.min.js?1671033702"></script>
+    <script src="/js/perfect-scrollbar.min.js?1671033702"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1671033702"></script>
+    <script src="/js/jquery.sticky.js?1671033702"></script>
+    <script src="/js/featherlight.min.js?1671033702"></script>
+    <script src="/js/highlight.pack.js?1671033702"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1670427751"></script>
-    <script src="/js/learn.js?1670427751"></script>
-    <script src="/js/hugo-learn.js?1670427751"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1671033702"></script>
+    <script src="/js/learn.js?1671033702"></script>
+    <script src="/js/hugo-learn.js?1671033702"></script>
 
-    <link href="/mermaid/mermaid.css?1670427751" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1670427751"></script>
+    <link href="/mermaid/mermaid.css?1671033702" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1671033702"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
