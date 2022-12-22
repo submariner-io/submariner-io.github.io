@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1671476628" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1671476628" rel="stylesheet">
-    <link href="/css/hybrid.css?1671476628" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1671476628" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1671476628" rel="stylesheet">
-    <link href="/css/auto-complete.css?1671476628" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1671476628" rel="stylesheet">
-    <link href="/css/theme.css?1671476628" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1671476628" rel="stylesheet">
+    <link href="/css/nucleus.css?1671703749" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1671703749" rel="stylesheet">
+    <link href="/css/hybrid.css?1671703749" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1671703749" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1671703749" rel="stylesheet">
+    <link href="/css/auto-complete.css?1671703749" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1671703749" rel="stylesheet">
+    <link href="/css/theme.css?1671703749" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1671703749" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1671476628" rel="stylesheet">
+      <link href="/css/theme-blue.css?1671703749" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1671476628"></script>
+    <script src="/js/jquery-3.3.1.min.js?1671703749"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1671476628" rel="stylesheet">
+<link href="/css/fixes.css?1671703749" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1671476628"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1671476628"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1671703749"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1671703749"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1671476628"></script>
+<script type="text/javascript" src="/js/search.js?1671703749"></script>
 
     
   </div>
@@ -2026,6 +2026,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0133">v0.13.3</a></li>
     <li><a href="#v0123">v0.12.3</a></li>
     <li><a href="#v0141">v0.14.1</a></li>
     <li><a href="#v0132">v0.13.2</a></li>
@@ -2098,6 +2099,17 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0133">v0.13.3</h2>
+<p>This is a bugfix release:</p>
+<ul>
+<li>The <code>subctl diagnose kube-proxy-mode</code> command now works with different versions of iproute packages.</li>
+<li>The following changes were made to pods running <code>subctl diagnose</code> commands in order to allow them to run commands like <code>tcpdump</code>:
+<ul>
+<li>Make the <code>diagnose</code> pod privileged.</li>
+<li>Run the <code>diagnose</code> pod with user ID 0.</li>
+</ul>
+</li>
+</ul>
 <h2 id="v0123">v0.12.3</h2>
 <p>This is a bugfix release:</p>
 <ul>
@@ -3678,19 +3690,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1671476628"></script>
-    <script src="/js/perfect-scrollbar.min.js?1671476628"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1671476628"></script>
-    <script src="/js/jquery.sticky.js?1671476628"></script>
-    <script src="/js/featherlight.min.js?1671476628"></script>
-    <script src="/js/highlight.pack.js?1671476628"></script>
+    <script src="/js/clipboard.min.js?1671703749"></script>
+    <script src="/js/perfect-scrollbar.min.js?1671703749"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1671703749"></script>
+    <script src="/js/jquery.sticky.js?1671703749"></script>
+    <script src="/js/featherlight.min.js?1671703749"></script>
+    <script src="/js/highlight.pack.js?1671703749"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1671476628"></script>
-    <script src="/js/learn.js?1671476628"></script>
-    <script src="/js/hugo-learn.js?1671476628"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1671703749"></script>
+    <script src="/js/learn.js?1671703749"></script>
+    <script src="/js/hugo-learn.js?1671703749"></script>
 
-    <link href="/mermaid/mermaid.css?1671476628" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1671476628"></script>
+    <link href="/mermaid/mermaid.css?1671703749" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1671703749"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
