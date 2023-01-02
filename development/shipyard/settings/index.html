@@ -12,20 +12,20 @@
     <title>Customizing Deployments :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1671703749" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1671703749" rel="stylesheet">
-    <link href="/css/hybrid.css?1671703749" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1671703749" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1671703749" rel="stylesheet">
-    <link href="/css/auto-complete.css?1671703749" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1671703749" rel="stylesheet">
-    <link href="/css/theme.css?1671703749" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1671703749" rel="stylesheet">
+    <link href="/css/nucleus.css?1672670618" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1672670618" rel="stylesheet">
+    <link href="/css/hybrid.css?1672670618" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1672670618" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1672670618" rel="stylesheet">
+    <link href="/css/auto-complete.css?1672670618" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1672670618" rel="stylesheet">
+    <link href="/css/theme.css?1672670618" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1672670618" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1671703749" rel="stylesheet">
+      <link href="/css/theme-blue.css?1672670618" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1671703749"></script>
+    <script src="/js/jquery-3.3.1.min.js?1672670618"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1671703749" rel="stylesheet">
+<link href="/css/fixes.css?1672670618" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/shipyard/settings/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1671703749"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1671703749"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1672670618"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1672670618"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1671703749"></script>
+<script type="text/javascript" src="/js/search.js?1672670618"></script>
 
     
   </div>
@@ -2086,6 +2086,7 @@ currently supports the default kind CNI (kindnet, used if no value is specified)
 and <strong><code>ovn</code></strong>.</li>
 <li><strong><code>nodes</code></strong>: A space separated list of nodes to deploy, supported types are <strong><code>control-plane</code></strong> and <strong><code>worker</code></strong>.</li>
 <li><strong><code>submariner</code></strong>: If Submariner should be deployed, set to <strong><code>true</code></strong>. Otherwise, leave unset (or set to <strong><code>false</code></strong> explicitly).</li>
+<li><strong><code>gateways</code></strong>: Number of gateway nodes to deploy.</li>
 </ul>
 </li>
 </ul>
@@ -2109,6 +2110,17 @@ The third cluster will host the broker and as such needs no CNI, only a worker n
     <span style="color:#66d9ef">cni</span>:
     <span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">false</span>
     <span style="color:#66d9ef">nodes</span>: control-plane
+</code></pre></div><p>The following settings file deploys two clusters.
+As no <strong><code>gateways</code></strong> setting is specified either globally or for the first cluster specifically,
+the first cluster will get have a single gateway node by default.
+The second cluster will be deployed with one control node and three worker nodes, with two of the nodes labeled as gateway nodes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">submariner</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">nodes</span>: control-plane worker
+<span style="color:#66d9ef">clusters</span>:
+  <span style="color:#66d9ef">cluster1</span>:
+  <span style="color:#66d9ef">cluster2</span>:
+    <span style="color:#66d9ef">nodes</span>: control-plane worker worker worker
+    <span style="color:#66d9ef">gateways</span>: <span style="color:#ae81ff">2</span>
 </code></pre></div>
 
 
@@ -3150,19 +3162,19 @@ The third cluster will host the broker and as such needs no CNI, only a worker n
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1671703749"></script>
-    <script src="/js/perfect-scrollbar.min.js?1671703749"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1671703749"></script>
-    <script src="/js/jquery.sticky.js?1671703749"></script>
-    <script src="/js/featherlight.min.js?1671703749"></script>
-    <script src="/js/highlight.pack.js?1671703749"></script>
+    <script src="/js/clipboard.min.js?1672670618"></script>
+    <script src="/js/perfect-scrollbar.min.js?1672670618"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1672670618"></script>
+    <script src="/js/jquery.sticky.js?1672670618"></script>
+    <script src="/js/featherlight.min.js?1672670618"></script>
+    <script src="/js/highlight.pack.js?1672670618"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1671703749"></script>
-    <script src="/js/learn.js?1671703749"></script>
-    <script src="/js/hugo-learn.js?1671703749"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1672670618"></script>
+    <script src="/js/learn.js?1672670618"></script>
+    <script src="/js/hugo-learn.js?1672670618"></script>
 
-    <link href="/mermaid/mermaid.css?1671703749" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1671703749"></script>
+    <link href="/mermaid/mermaid.css?1672670618" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1672670618"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
