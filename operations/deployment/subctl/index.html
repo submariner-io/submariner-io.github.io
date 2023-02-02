@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1675187270" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1675187270" rel="stylesheet">
-    <link href="/css/hybrid.css?1675187270" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1675187270" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1675187270" rel="stylesheet">
-    <link href="/css/auto-complete.css?1675187270" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1675187270" rel="stylesheet">
-    <link href="/css/theme.css?1675187270" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1675187270" rel="stylesheet">
+    <link href="/css/nucleus.css?1675374290" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1675374290" rel="stylesheet">
+    <link href="/css/hybrid.css?1675374290" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1675374290" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1675374290" rel="stylesheet">
+    <link href="/css/auto-complete.css?1675374290" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1675374290" rel="stylesheet">
+    <link href="/css/theme.css?1675374290" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1675374290" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1675187270" rel="stylesheet">
+      <link href="/css/theme-blue.css?1675374290" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1675187270"></script>
+    <script src="/js/jquery-3.3.1.min.js?1675374290"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1675187270" rel="stylesheet">
+<link href="/css/fixes.css?1675374290" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1675187270"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1675187270"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1675374290"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1675374290"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1675187270"></script>
+<script type="text/javascript" src="/js/search.js?1675374290"></script>
 
     
   </div>
@@ -2692,9 +2692,35 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <h4 id="cloud-prepare"><code>cloud prepare</code></h4>
 <p><code>subctl cloud prepare [flags]</code></p>
 <p>This command prepares the underlying cloud infrastructure for Submariner installation.</p>
+<h4 id="prepare-global-flags"><code>prepare</code> global flags</h4>
+<!-- markdownlint-disable line-length -->
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--nat-discovery-port</code> <code>&lt;uint16&gt;</code></td>
+<td align="left">NAT discovery port (default 4490)</td>
+</tr>
+<tr>
+<td align="left"><code>--natt-port</code> <code>&lt;uint16&gt;</code></td>
+<td align="left">IPsec NAT traversal port (default 4500)</td>
+</tr>
+<tr>
+<td align="left"><code>--vxlan-port</code> <code>&lt;uint16&gt;</code></td>
+<td align="left">Internal VXLAN port (default 4800)</td>
+</tr>
+</tbody>
+</table>
+<!-- markdownlint-enable line-length -->
 <h4 id="prepare-aws"><code>prepare aws</code></h4>
 <p><code>subctl cloud prepare aws [flags]</code></p>
 <p>This command prepares an OpenShift installer-provisioned infrastructure (IPI) on AWS cloud for Submariner installation.</p>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -2713,7 +2739,7 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 </tr>
 <tr>
 <td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
-<td align="left">Number of dedicated gateways to deploy (default 1)</td>
+<td align="left">Number of dedicated gateways to deploy (Set to 0 when using &ndash;load-balancer mode) (default 1)</td>
 </tr>
 <tr>
 <td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
@@ -2721,33 +2747,23 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 </tr>
 <tr>
 <td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td align="left">OCP metadata.json file (or directory containing it) to read AWS infra ID and region from</td>
+<td align="left">OCP metadata.json file (or directory containing it) to read AWS infra ID and region from (takes precedence over the specific flags)</td>
 </tr>
 <tr>
 <td align="left"><code>--profile</code> <code>&lt;string&gt;</code></td>
-<td align="left">AWS profile to use for credentials</td>
+<td align="left">AWS profile to use for credentials  (default &ldquo;default&rdquo;)</td>
 </tr>
 <tr>
 <td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
 <td align="left">AWS region</td>
 </tr>
-<tr>
-<td align="left"><code>--nat-discovery-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">NAT discovery port (default 4490)</td>
-</tr>
-<tr>
-<td align="left"><code>--natt-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">IPsec NAT Traversal port (default 4500)</td>
-</tr>
-<tr>
-<td align="left"><code>--vxlan-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">Internal VXLAN port (default 4800). Not required when using OVN-Kubernetes CNI</td>
-</tr>
 </tbody>
 </table>
+<!-- markdownlint-enable line-length -->
 <h4 id="prepare-gcp"><code>prepare gcp</code></h4>
 <p><code>subctl cloud prepare gcp [flags]</code></p>
 <p>This command prepares an OpenShift installer-provisioned infrastructure (IPI) on GCP cloud for Submariner installation.</p>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -2778,7 +2794,7 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 </tr>
 <tr>
 <td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td align="left">OCP metadata.json file (or directory containing it) to read GCP infra ID and region from</td>
+<td align="left">OCP metadata.json file (or directory containing it) to read GCP infra ID and region from (takes precedence over the specific flags)</td>
 </tr>
 <tr>
 <td align="left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
@@ -2788,23 +2804,13 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
 <td align="left">GCP region</td>
 </tr>
-<tr>
-<td align="left"><code>--nat-discovery-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">NAT discovery port (default 4490)</td>
-</tr>
-<tr>
-<td align="left"><code>--natt-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">IPsec NAT Traversal port (default 4500)</td>
-</tr>
-<tr>
-<td align="left"><code>--vxlan-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">Internal VXLAN port (default 4800). Not required when using OVN-Kubernetes CNI</td>
-</tr>
 </tbody>
 </table>
+<!-- markdownlint-enable line-length -->
 <h4 id="prepare-rhos"><code>prepare rhos</code></h4>
 <p><code>subctl cloud prepare rhos [flags]</code></p>
 <p>This command prepares an OpenShift installer-provisioned infrastructure (IPI) on OpenStack cloud for Submariner installation.</p>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -2815,7 +2821,7 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <tbody>
 <tr>
 <td align="left"><code>--cloud-entry</code> <code>&lt;string&gt;</code></td>
-<td align="left">the specific cloud configuration to use from the clouds.yaml (default <code>openstack</code>)</td>
+<td align="left">Specific cloud configuration to use from the clouds.yaml</td>
 </tr>
 <tr>
 <td align="left"><code>--dedicated-gateway</code></td>
@@ -2827,7 +2833,7 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 </tr>
 <tr>
 <td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
-<td align="left">Number of dedicated gateways to deploy (default 1)</td>
+<td align="left">Number of gateways to deploy (default 1)</td>
 </tr>
 <tr>
 <td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
@@ -2835,7 +2841,7 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 </tr>
 <tr>
 <td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td align="left">OCP metadata.json file (or directory containing it) to read OpenStack infra ID and region from</td>
+<td align="left">OCP metadata.json file (or directory containing it) to read OpenStack infra ID and region from (takes precedence over the specific flags)</td>
 </tr>
 <tr>
 <td align="left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
@@ -2845,20 +2851,9 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
 <td align="left">OpenStack region</td>
 </tr>
-<tr>
-<td align="left"><code>--nat-discovery-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">NAT discovery port (default 4490)</td>
-</tr>
-<tr>
-<td align="left"><code>--natt-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">IPsec NAT Traversal port (default 4500)</td>
-</tr>
-<tr>
-<td align="left"><code>--vxlan-port</code> <code>&lt;int&gt;</code></td>
-<td align="left">Internal VXLAN port (default 4800). Not required when using OVN-Kubernetes CNI</td>
-</tr>
 </tbody>
 </table>
+<!-- markdownlint-enable line-length -->
 <h4 id="prepare-generic-flags"><code>prepare generic</code> flags</h4>
 <p>This command prepares a generic cluster for Submariner installation. It assumes that the cloud already has the necessary
 firewall ports opened and will only label the required number of gateway nodes for Submariner installation.</p>
@@ -2872,26 +2867,7 @@ firewall ports opened and will only label the required number of gateway nodes f
 <tbody>
 <tr>
 <td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
-<td align="left">Number of dedicated gateways to deploy (default 1)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="prepare-global-flags"><code>prepare</code> global flags</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Flag</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s)</td>
-</tr>
-<tr>
-<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
-<td align="left">Kubernetes context to use</td>
+<td align="left">Number of gateways to deploy (default 1)</td>
 </tr>
 </tbody>
 </table>
@@ -4121,19 +4097,19 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1675187270"></script>
-    <script src="/js/perfect-scrollbar.min.js?1675187270"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1675187270"></script>
-    <script src="/js/jquery.sticky.js?1675187270"></script>
-    <script src="/js/featherlight.min.js?1675187270"></script>
-    <script src="/js/highlight.pack.js?1675187270"></script>
+    <script src="/js/clipboard.min.js?1675374290"></script>
+    <script src="/js/perfect-scrollbar.min.js?1675374290"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1675374290"></script>
+    <script src="/js/jquery.sticky.js?1675374290"></script>
+    <script src="/js/featherlight.min.js?1675374290"></script>
+    <script src="/js/highlight.pack.js?1675374290"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1675187270"></script>
-    <script src="/js/learn.js?1675187270"></script>
-    <script src="/js/hugo-learn.js?1675187270"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1675374290"></script>
+    <script src="/js/learn.js?1675374290"></script>
+    <script src="/js/hugo-learn.js?1675374290"></script>
 
-    <link href="/mermaid/mermaid.css?1675187270" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1675187270"></script>
+    <link href="/mermaid/mermaid.css?1675374290" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1675374290"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
