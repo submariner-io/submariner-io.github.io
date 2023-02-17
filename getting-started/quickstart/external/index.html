@@ -12,20 +12,20 @@
     <title>External Network (Experimental) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1675779056" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1675779056" rel="stylesheet">
-    <link href="/css/hybrid.css?1675779056" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1675779056" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1675779056" rel="stylesheet">
-    <link href="/css/auto-complete.css?1675779056" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1675779056" rel="stylesheet">
-    <link href="/css/theme.css?1675779056" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1675779056" rel="stylesheet">
+    <link href="/css/nucleus.css?1676638444" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1676638444" rel="stylesheet">
+    <link href="/css/hybrid.css?1676638444" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1676638444" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1676638444" rel="stylesheet">
+    <link href="/css/auto-complete.css?1676638444" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1676638444" rel="stylesheet">
+    <link href="/css/theme.css?1676638444" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1676638444" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1675779056" rel="stylesheet">
+      <link href="/css/theme-blue.css?1676638444" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1675779056"></script>
+    <script src="/js/jquery-3.3.1.min.js?1676638444"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1675779056" rel="stylesheet">
+<link href="/css/fixes.css?1676638444" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/quickstart/external/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1675779056"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1675779056"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1676638444"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1676638444"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1675779056"></script>
+<script type="text/javascript" src="/js/search.js?1676638444"></script>
 
     
   </div>
@@ -2347,7 +2347,7 @@ Note that there is a workaround to make it resolvable by manually creating endpo
 <h5 id="verify-access-to-deployment-from-non-cluster-hosts">Verify access to Deployment from non-cluster hosts</h5>
 <p>Create Deployment in cluster-b:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
-kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>k8s.gcr.io/nginx-slim:0.8
+kubectl -n default create deployment nginx --image<span style="color:#f92672">=</span>registry.k8s.io/nginx-slim:0.8
 kubectl -n default expose deployment nginx --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>
 subctl export service --namespace default nginx
 </code></pre></div><p>From test-vm, verify access:</p>
@@ -2391,7 +2391,7 @@ subctl export service --namespace default nginx
     <span style="color:#66d9ef">spec</span>:
       <span style="color:#66d9ef">containers</span>:
       - <span style="color:#66d9ef">name</span>: nginx-ss
-        <span style="color:#66d9ef">image</span>: k8s.gcr.io/nginx-slim:<span style="color:#ae81ff">0.8</span>
+        <span style="color:#66d9ef">image</span>: registry.k8s.io/nginx-slim:<span style="color:#ae81ff">0.8</span>
         <span style="color:#66d9ef">ports</span>:
         - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
           <span style="color:#66d9ef">name</span>: web
@@ -3491,19 +3491,19 @@ exit
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1675779056"></script>
-    <script src="/js/perfect-scrollbar.min.js?1675779056"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1675779056"></script>
-    <script src="/js/jquery.sticky.js?1675779056"></script>
-    <script src="/js/featherlight.min.js?1675779056"></script>
-    <script src="/js/highlight.pack.js?1675779056"></script>
+    <script src="/js/clipboard.min.js?1676638444"></script>
+    <script src="/js/perfect-scrollbar.min.js?1676638444"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1676638444"></script>
+    <script src="/js/jquery.sticky.js?1676638444"></script>
+    <script src="/js/featherlight.min.js?1676638444"></script>
+    <script src="/js/highlight.pack.js?1676638444"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1675779056"></script>
-    <script src="/js/learn.js?1675779056"></script>
-    <script src="/js/hugo-learn.js?1675779056"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1676638444"></script>
+    <script src="/js/learn.js?1676638444"></script>
+    <script src="/js/hugo-learn.js?1676638444"></script>
 
-    <link href="/mermaid/mermaid.css?1675779056" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1675779056"></script>
+    <link href="/mermaid/mermaid.css?1676638444" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1676638444"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
