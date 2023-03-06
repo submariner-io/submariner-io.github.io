@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1678087077" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1678087077" rel="stylesheet">
-    <link href="/css/hybrid.css?1678087077" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1678087077" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1678087077" rel="stylesheet">
-    <link href="/css/auto-complete.css?1678087077" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1678087077" rel="stylesheet">
-    <link href="/css/theme.css?1678087077" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1678087077" rel="stylesheet">
+    <link href="/css/nucleus.css?1678108392" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1678108392" rel="stylesheet">
+    <link href="/css/hybrid.css?1678108392" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1678108392" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1678108392" rel="stylesheet">
+    <link href="/css/auto-complete.css?1678108392" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1678108392" rel="stylesheet">
+    <link href="/css/theme.css?1678108392" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1678108392" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1678087077" rel="stylesheet">
+      <link href="/css/theme-blue.css?1678108392" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1678087077"></script>
+    <script src="/js/jquery-3.3.1.min.js?1678108392"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1678087077" rel="stylesheet">
+<link href="/css/fixes.css?1678108392" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1678087077"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1678087077"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1678108392"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1678108392"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1678087077"></script>
+<script type="text/javascript" src="/js/search.js?1678108392"></script>
 
     
   </div>
@@ -2026,6 +2026,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0134">v0.13.4</a></li>
     <li><a href="#v0142">v0.14.2</a></li>
     <li><a href="#v0133">v0.13.3</a></li>
     <li><a href="#v0123">v0.12.3</a></li>
@@ -2100,6 +2101,24 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0134">v0.13.4</h2>
+<p>This is a bugfix release:</p>
+<ul>
+<li>Fix issues in Azure cloud prepare:
+<ul>
+<li>Machine set names are now based on region + uuid and limited to 20 characters to prevent issues with long cluster names.</li>
+<li>Machine set creation and deletion logic was updated to prevent creation of multiple gateway nodes.</li>
+<li>Image names are now retrieved from existing machine sets.</li>
+</ul>
+</li>
+<li>The namespace is now included in <code>EndpointSlice</code> names to avoid conflicts between services with the same name in multiple namespaces.</li>
+<li>The <code>subctl gather</code> command will now gather iptables logs for Calico and kindnet CNIs.</li>
+<li>The <code>subctl cloud prepare</code> command no longer causes errors if the list of ports is empty.</li>
+<li>Cloud cleanup for OpenStack now identifies and deletes failed MachineSets.</li>
+<li>Bump k8s.io/client-go to 0.20.15 to fix CVE-2020-8565.</li>
+<li>Bump golang.org/x/crypto to 0.6.0 to fix CVE-2022-27191.</li>
+<li>Bump golang.org/x/net to 0.7.0 to fix a number of security issues.</li>
+</ul>
 <h2 id="v0142">v0.14.2</h2>
 <p>This is a bugfix release:</p>
 <ul>
@@ -2113,7 +2132,6 @@
 <li>Fix a socket permission denied error in external network end-to-end tests.</li>
 <li>The <code>subctl gather</code> command will now gather iptables logs for Calico and kindnet CNIs.</li>
 <li>The <code>subctl cloud prepare</code> command no longer causes errors if the list of ports is empty.</li>
-<li><code>subctl cloud</code> commands now always return the appropriate status.</li>
 <li><code>subctl</code> operations which deploy images now allow those images to be overridden. The overrides are specified using <code>--image-override</code>:
 <ul>
 <li><code>subctl benchmark</code>.</li>
@@ -2121,12 +2139,7 @@
 <li><code>subctl diagnose</code> sub-commands.</li>
 </ul>
 </li>
-<li>Fix issues in Service Discovery:
-<ul>
-<li>Namespace is now included in EndpointSlice name.</li>
-<li>EndpointSlice service lookup is now done using labels.</li>
-</ul>
-</li>
+<li>The namespace is now included in <code>EndpointSlice</code> names to avoid conflicts between services with the same name in multiple namespaces.</li>
 <li>Bump go-restful to 2.16.0 to address CVE-2022-1996.</li>
 </ul>
 <h2 id="v0133">v0.13.3</h2>
@@ -3720,19 +3733,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1678087077"></script>
-    <script src="/js/perfect-scrollbar.min.js?1678087077"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1678087077"></script>
-    <script src="/js/jquery.sticky.js?1678087077"></script>
-    <script src="/js/featherlight.min.js?1678087077"></script>
-    <script src="/js/highlight.pack.js?1678087077"></script>
+    <script src="/js/clipboard.min.js?1678108392"></script>
+    <script src="/js/perfect-scrollbar.min.js?1678108392"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1678108392"></script>
+    <script src="/js/jquery.sticky.js?1678108392"></script>
+    <script src="/js/featherlight.min.js?1678108392"></script>
+    <script src="/js/highlight.pack.js?1678108392"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1678087077"></script>
-    <script src="/js/learn.js?1678087077"></script>
-    <script src="/js/hugo-learn.js?1678087077"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1678108392"></script>
+    <script src="/js/learn.js?1678108392"></script>
+    <script src="/js/hugo-learn.js?1678108392"></script>
 
-    <link href="/mermaid/mermaid.css?1678087077" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1678087077"></script>
+    <link href="/mermaid/mermaid.css?1678108392" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1678108392"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
