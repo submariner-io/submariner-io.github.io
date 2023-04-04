@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1680551366" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1680551366" rel="stylesheet">
-    <link href="/css/hybrid.css?1680551366" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1680551366" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1680551366" rel="stylesheet">
-    <link href="/css/auto-complete.css?1680551366" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1680551366" rel="stylesheet">
-    <link href="/css/theme.css?1680551366" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1680551366" rel="stylesheet">
+    <link href="/css/nucleus.css?1680618471" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1680618471" rel="stylesheet">
+    <link href="/css/hybrid.css?1680618471" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1680618471" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1680618471" rel="stylesheet">
+    <link href="/css/auto-complete.css?1680618471" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1680618471" rel="stylesheet">
+    <link href="/css/theme.css?1680618471" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1680618471" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1680551366" rel="stylesheet">
+      <link href="/css/theme-blue.css?1680618471" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1680551366"></script>
+    <script src="/js/jquery-3.3.1.min.js?1680618471"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1680551366" rel="stylesheet">
+<link href="/css/fixes.css?1680618471" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1680551366"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1680551366"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1680618471"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1680618471"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1680551366"></script>
+<script type="text/javascript" src="/js/search.js?1680618471"></script>
 
     
   </div>
@@ -2368,7 +2368,7 @@ deployment.</p>
 </tr>
 <tr>
 <td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
-<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner=quay.io/myUser/submariner:latest</code>)</td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -2496,6 +2496,10 @@ that this verification is disruptive.</p>
 <td align="left"><code>--disruptive-tests</code></td>
 <td align="left">Enable verifications which are potentially disruptive to your deployment</td>
 </tr>
+<tr>
+<td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
+</tr>
 </tbody>
 </table>
 <h3 id="benchmark"><code>benchmark</code></h3>
@@ -2530,6 +2534,10 @@ When running <code>benchmark latency</code>, two types of tests will be executed
 <tr>
 <td align="left"><code>--verbose</code></td>
 <td align="left">Produce verbose logs during benchmark tests</td>
+</tr>
+<tr>
+<td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -2608,6 +2616,10 @@ in the cluster that may prevent Submariner from working properly.</p>
 <tr>
 <td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code></td>
 <td align="left">Timeout in seconds while validating the connection attempt</td>
+</tr>
+<tr>
+<td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
 </tr>
 <tr>
 <td align="left"><code>--verbose</code></td>
@@ -4097,19 +4109,19 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1680551366"></script>
-    <script src="/js/perfect-scrollbar.min.js?1680551366"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1680551366"></script>
-    <script src="/js/jquery.sticky.js?1680551366"></script>
-    <script src="/js/featherlight.min.js?1680551366"></script>
-    <script src="/js/highlight.pack.js?1680551366"></script>
+    <script src="/js/clipboard.min.js?1680618471"></script>
+    <script src="/js/perfect-scrollbar.min.js?1680618471"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1680618471"></script>
+    <script src="/js/jquery.sticky.js?1680618471"></script>
+    <script src="/js/featherlight.min.js?1680618471"></script>
+    <script src="/js/highlight.pack.js?1680618471"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1680551366"></script>
-    <script src="/js/learn.js?1680551366"></script>
-    <script src="/js/hugo-learn.js?1680551366"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1680618471"></script>
+    <script src="/js/learn.js?1680618471"></script>
+    <script src="/js/hugo-learn.js?1680618471"></script>
 
-    <link href="/mermaid/mermaid.css?1680551366" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1680551366"></script>
+    <link href="/mermaid/mermaid.css?1680618471" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1680618471"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
