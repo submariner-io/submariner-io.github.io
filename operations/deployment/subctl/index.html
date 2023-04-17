@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1681223279" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1681223279" rel="stylesheet">
-    <link href="/css/hybrid.css?1681223279" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1681223279" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1681223279" rel="stylesheet">
-    <link href="/css/auto-complete.css?1681223279" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1681223279" rel="stylesheet">
-    <link href="/css/theme.css?1681223279" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1681223279" rel="stylesheet">
+    <link href="/css/nucleus.css?1681715842" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1681715842" rel="stylesheet">
+    <link href="/css/hybrid.css?1681715842" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1681715842" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1681715842" rel="stylesheet">
+    <link href="/css/auto-complete.css?1681715842" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1681715842" rel="stylesheet">
+    <link href="/css/theme.css?1681715842" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1681715842" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1681223279" rel="stylesheet">
+      <link href="/css/theme-blue.css?1681715842" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1681223279"></script>
+    <script src="/js/jquery-3.3.1.min.js?1681715842"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1681223279" rel="stylesheet">
+<link href="/css/fixes.css?1681715842" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1681223279"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1681223279"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1681715842"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1681715842"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1681223279"></script>
+<script type="text/javascript" src="/js/search.js?1681715842"></script>
 
     
   </div>
@@ -2149,14 +2149,6 @@ contains the following details:</p>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
-</tr>
-<tr>
-<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
-<td align="left">kubeconfig context to use</td>
-</tr>
-<tr>
 <td align="left"><code>--repository</code> <code>&lt;string&gt;</code></td>
 <td align="left">The repository from where the various Submariner images will be sourced (default <code>quay.io/submariner</code>)</td>
 </tr>
@@ -2205,14 +2197,6 @@ discoverable from other clusters in the Submariner deployment.</p>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
-</tr>
-<tr>
-<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
-<td align="left">Kubeconfig context to use</td>
-</tr>
-<tr>
 <td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
 <td align="left">Namespace to use</td>
 </tr>
@@ -2232,14 +2216,6 @@ same name from being exported to other clusters.</p>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
-</tr>
-<tr>
-<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
-<td align="left">Kubeconfig context to use</td>
-</tr>
 <tr>
 <td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
 <td align="left">Namespace to use</td>
@@ -2421,25 +2397,6 @@ deployment.</p>
 <h4 id="show-all"><code>show all</code></h4>
 <p><code>subctl show all [flags]</code></p>
 <p>Shows the aggregated information from all the other show commands.</p>
-<h4 id="show-flags"><code>show</code> flags</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Flag</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
-</tr>
-<tr>
-<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
-<td align="left">Kubeconfig context to use</td>
-</tr>
-</tbody>
-</table>
 <h3 id="verify"><code>verify</code></h3>
 <p><code>subctl verify --context &lt;context1&gt; --tocontext &lt;context2&gt; [flags]</code></p>
 <p>The <code>verify</code> command verifies a Submariner deployment between two clusters is functioning properly. <code>&lt;context1&gt;</code> will be
@@ -2630,28 +2587,8 @@ in the cluster that may prevent Submariner from working properly.</p>
 </table>
 <!-- markdownlint-enable line-length -->
 <h4 id="diagnose-global-flags"><code>diagnose</code> global flags</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Flag</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s) (default <code>$HOME/.kube/config</code>)</td>
-</tr>
-<tr>
-<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
-<td align="left">Kubeconfig context to use</td>
-</tr>
-<tr>
-<td align="left"><code>--in-cluster</code></td>
-<td align="left">Use the in-cluster configuration to connect to Kubernetes.</td>
-</tr>
-</tbody>
-</table>
+<p>| Flag                         | Description
+| <code>--in-cluster</code>               | Use the in-cluster configuration to connect to Kubernetes.</p>
 <h3 id="gather"><code>gather</code></h3>
 <p>The <code>subctl gather</code> command is a tool that collects various information from clusters to aid in troubleshooting a
 Submariner deployment, including Kubernetes resources and Pod logs. Clusters from which information is gathered are provided
@@ -2671,14 +2608,6 @@ to the CNI and Submariner cable driver in use from each node using file format <
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s)</td>
-</tr>
-<tr>
-<td align="left"><code>--contexts</code> <code>&lt;string&gt;</code></td>
-<td align="left">comma separated list of kube contexts to use. By default all contexts referenced by kubeconfig are used</td>
-</tr>
 <tr>
 <td align="left"><code>--module</code> <code>&lt;string&gt;</code></td>
 <td align="left">Comma-separated list of components for which to gather data. Default is <code>operator,connectivity,service-discovery,broker</code></td>
@@ -2988,25 +2917,6 @@ firewall ports opened and will only label the required number of gateway nodes f
 <h4 id="cleanup-generic"><code>cleanup generic</code></h4>
 <p><code>subctl cloud cleanup generic [flags]</code></p>
 <p>This command removes the labels from gateway nodes after Submariner uninstallation.</p>
-<h4 id="cleanup-flags"><code>cleanup</code> flags</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Flag</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s)</td>
-</tr>
-<tr>
-<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
-<td align="left">Kubernetes context to use</td>
-</tr>
-</tbody>
-</table>
 <h3 id="version"><code>version</code></h3>
 <p><code>subctl version</code></p>
 <p>Prints the version details for the <code>subctl</code> binary.</p>
@@ -3033,10 +2943,6 @@ firewall ports opened and will only label the required number of gateway nodes f
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s)</td>
-</tr>
-<tr>
 <td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
 <td align="left">Namespace in which Submariner is installed (default <code>submariner-operator</code>)</td>
 </tr>
@@ -3049,25 +2955,6 @@ firewall ports opened and will only label the required number of gateway nodes f
 <h3 id="recover-broker-info"><code>recover-broker-info</code></h3>
 <p><code>subctl recover-broker-info [flags]</code></p>
 <p>This command recovers a lost <code>broker-info.subm</code> file.</p>
-<h4 id="recover-broker-info-flags"><code>recover-broker-info</code> flags</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Flag</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>--kubeconfig</code> <code>&lt;string&gt;</code></td>
-<td align="left">Absolute path(s) to the kubeconfig file(s)</td>
-</tr>
-<tr>
-<td align="left"><code>--context</code> <code>&lt;string&gt;</code></td>
-<td align="left">kubeconfig context of a cluster where Submariner is installed</td>
-</tr>
-</tbody>
-</table>
 <h3 id="running-subctl-diagnose-from-a-pod-in-cluster">Running <code>subctl diagnose</code> from a Pod in cluster</h3>
 <p>As of 0.12.0, a <a href="https://quay.io/repository/submariner/subctl?tab=tags&amp;tag=latest">subctl</a> image is provided for running the <code>subctl</code> binary
 from a Pod within a cluster.  The output of the <code>subctl diagnose</code> command output can be accessed from the Pod&rsquo;s logs. The <code>--in-cluster</code>
@@ -4132,19 +4019,19 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1681223279"></script>
-    <script src="/js/perfect-scrollbar.min.js?1681223279"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1681223279"></script>
-    <script src="/js/jquery.sticky.js?1681223279"></script>
-    <script src="/js/featherlight.min.js?1681223279"></script>
-    <script src="/js/highlight.pack.js?1681223279"></script>
+    <script src="/js/clipboard.min.js?1681715842"></script>
+    <script src="/js/perfect-scrollbar.min.js?1681715842"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1681715842"></script>
+    <script src="/js/jquery.sticky.js?1681715842"></script>
+    <script src="/js/featherlight.min.js?1681715842"></script>
+    <script src="/js/highlight.pack.js?1681715842"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1681223279"></script>
-    <script src="/js/learn.js?1681223279"></script>
-    <script src="/js/hugo-learn.js?1681223279"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1681715842"></script>
+    <script src="/js/learn.js?1681715842"></script>
+    <script src="/js/hugo-learn.js?1681715842"></script>
 
-    <link href="/mermaid/mermaid.css?1681223279" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1681223279"></script>
+    <link href="/mermaid/mermaid.css?1681715842" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1681715842"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
