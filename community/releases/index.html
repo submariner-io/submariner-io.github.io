@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1683671382" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1683671382" rel="stylesheet">
-    <link href="/css/hybrid.css?1683671382" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1683671382" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1683671382" rel="stylesheet">
-    <link href="/css/auto-complete.css?1683671382" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1683671382" rel="stylesheet">
-    <link href="/css/theme.css?1683671382" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1683671382" rel="stylesheet">
+    <link href="/css/nucleus.css?1683702859" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1683702859" rel="stylesheet">
+    <link href="/css/hybrid.css?1683702859" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1683702859" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1683702859" rel="stylesheet">
+    <link href="/css/auto-complete.css?1683702859" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1683702859" rel="stylesheet">
+    <link href="/css/theme.css?1683702859" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1683702859" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1683671382" rel="stylesheet">
+      <link href="/css/theme-blue.css?1683702859" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1683671382"></script>
+    <script src="/js/jquery-3.3.1.min.js?1683702859"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1683671382" rel="stylesheet">
+<link href="/css/fixes.css?1683702859" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1683671382"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1683671382"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1683702859"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1683702859"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1683671382"></script>
+<script type="text/javascript" src="/js/search.js?1683702859"></script>
 
     
   </div>
@@ -2026,6 +2026,12 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0150">v0.15.0</a>
+      <ul>
+        <li><a href="#new-features">New features</a></li>
+        <li><a href="#other-changes">Other changes</a></li>
+      </ul>
+    </li>
     <li><a href="#v0144">v0.14.4</a></li>
     <li><a href="#v0143">v0.14.3</a></li>
     <li><a href="#v0134">v0.13.4</a></li>
@@ -2036,24 +2042,24 @@
     <li><a href="#v0132">v0.13.2</a></li>
     <li><a href="#v0140">v0.14.0</a>
       <ul>
-        <li><a href="#new-features">New features</a></li>
-        <li><a href="#other-changes">Other changes</a></li>
+        <li><a href="#new-features-1">New features</a></li>
+        <li><a href="#other-changes-1">Other changes</a></li>
       </ul>
     </li>
     <li><a href="#v0131">v0.13.1</a></li>
     <li><a href="#v0130">v0.13.0</a>
       <ul>
-        <li><a href="#new-features-1">New features</a></li>
-        <li><a href="#other-changes-1">Other changes</a></li>
+        <li><a href="#new-features-2">New features</a></li>
+        <li><a href="#other-changes-2">Other changes</a></li>
       </ul>
     </li>
     <li><a href="#v0122">v0.12.2</a></li>
     <li><a href="#v0121">v0.12.1</a></li>
     <li><a href="#v0120">v0.12.0</a>
       <ul>
-        <li><a href="#new-features-2">New features</a></li>
+        <li><a href="#new-features-3">New features</a></li>
         <li><a href="#bug-fixes">Bug fixes</a></li>
-        <li><a href="#other-changes-2">Other changes</a></li>
+        <li><a href="#other-changes-3">Other changes</a></li>
         <li><a href="#known-issues">Known Issues</a></li>
       </ul>
     </li>
@@ -2103,13 +2109,67 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0150">v0.15.0</h2>
+<h3 id="new-features">New features</h3>
+<ul>
+<li>To be compliant with the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services specification</a>, service discovery now distributes a single aggregated
+ServiceImport to each cluster in the exported service&rsquo;s namespace. Previously each cluster distributed its own ServiceImport copy that was
+placed in the <code>submariner-operator</code> namespace.</li>
+<li>Submariner can now be installed on a dual-stack Kubernetes cluster although, currently, only IPv4 addresses are supported.</li>
+<li>Add a <code>subctl recover-broker-info</code> command to recover lost a <code>broker-info.subm</code> file.</li>
+<li>It is now possible to customize the default TCP MSS clamping value set by Submariner also for non-Globalnet deployments.</li>
+<li>The <code>subctl gather</code> command now gathers iptables logs for Calico and kindnet CNIs.</li>
+<li>The <code>subctl gather</code> command now collects the <code>ipset</code> information from all cluster nodes.</li>
+<li>The <code>subctl diagnose</code> command now validates that the Calico IPPool configuration matches Submariner&rsquo;s requirements.</li>
+<li>The <code>subctl verify</code> E2E tests now support setting the packet size used in TCP connectivity tests to troubleshoot MTU issues.</li>
+<li>The <code>subctl verify</code> command now runs FIPS verification tests.</li>
+<li>Allow overriding the image name of the metrics proxy component.</li>
+<li>Add endpoints to access profiling information for the gateway and Globalnet binaries.</li>
+<li>The following deprecated commands and variants have been removed:
+<ul>
+<li><code>subctl benchmark</code>’s <code>--kubecontexts</code> option (use <code>--context</code> and <code>--tocontext</code> instead)</li>
+<li><code>subctl benchmark</code>’s <code>--intra-cluster</code> option (specify a single context to run intra-cluster benchmarks)</li>
+<li><code>subctl benchmark</code> with two <code>kubeconfigs</code> as command-line arguments</li>
+<li><code>subctl cloud</code>’s <code>--metrics-ports</code> option</li>
+<li><code>subctl deploy-broker</code>’s <code>--broker-namespace</code> option (use <code>--namespace</code> instead)</li>
+<li><code>subctl diagnose firewall metrics</code> (this is checked during deployment)</li>
+<li><code>subctl diagnose firewall intra-cluster</code> with two <code>kubeconfigs</code> as command-line arguments</li>
+<li><code>subctl diagnose firewall inter-cluster</code> with two <code>kubeconfigs</code> as command-line arguments</li>
+<li><code>subctl gather</code>’s <code>--kubecontexts</code> option (use <code>--contexts</code> instead)</li>
+</ul>
+</li>
+<li>Deprecate the <code>subctl cloud prepare ... --dedicated-gateway</code> flag, as it&rsquo;s not actually used.</li>
+<li>Deprecate the <code>subctl cloud prepare generic</code> command, as it&rsquo;s not actually used.</li>
+</ul>
+<h3 id="other-changes">Other changes</h3>
+<ul>
+<li>Service Discovery-only deployments now works properly without the connectivity component deployed.</li>
+<li>The namespace is now included in <code>EndpointSlice</code> names to avoid conflicts between services with the same name in multiple namespaces.</li>
+<li>Changes in Azure cloud prepare:
+<ul>
+<li>Machine set names are now based on region + uuid and limited to 20 characters to prevent issues with long cluster names.</li>
+<li>Machine set creation and deletion logic was updated to prevent creation of multiple gateway nodes.</li>
+<li>Image names are now retrieved from existing machine sets.</li>
+</ul>
+</li>
+<li>Fix stale iptables rules and a global IP leak which can sometimes happen when a <code>GlobalEgressIP</code> is created and immediately deleted as
+part of stress testing.</li>
+<li>Label gateway nodes as infrastructure with <code>node-role.kubernetes.io/infra=&quot;&quot;</code> to prevent them from counting against OpenShift subscriptions.</li>
+<li>Submariner now handles out of order remote endpoint notifications properly in various handlers associated with the Route Agent component.</li>
+<li>Submariner now ensures that reverse path filtering setting is properly applied on the <code>vx-submariner</code> and <code>vxlan-tunnel</code> interfaces after
+they are created. This fix was necessary for RHEL 9 nodes where the setting was sometimes getting overwritten.</li>
+<li>Fix intermittent failure where gateway connections sometimes don&rsquo;t get established.</li>
+<li>Fix an issue whereby the flags for <code>subctl unexport service</code> were not recognized.</li>
+<li>The <code>subctl diagnose cni</code> command no longer fails for the Calico CNI when the <code>natOutgoing</code> IPPool status is missing.</li>
+<li>Fix CVE-2023-28840, CVE-2023-28841, and CVE-2023-28842, which don&rsquo;t affect Submariner but were flagged in deliverables.</li>
+</ul>
 <h2 id="v0144">v0.14.4</h2>
 <p>This is a bugfix release:</p>
 <ul>
-<li>Fixed stale IPtable rules along with globalIP leak which can sometimes happen as part of stress testing.</li>
+<li>Fixed stale IPtable rules along with global IP leak which can sometimes happen as part of stress testing.</li>
 <li>Handle out of order remote endpoint notifications properly in various Route Agent handlers.</li>
 <li>Ensure that reverse path filtering setting is properly applied on the <code>vx-submariner</code> and <code>vxlan-tunnel</code> interfaces after they are created.
-This fix was necessary for RHEL9 nodes where the setting was sometimes getting overwritten.</li>
+This fix was necessary for RHEL 9 nodes where the setting was sometimes getting overwritten.</li>
 <li>Fixed issues while spawning Gateway nodes during cloud prepare for clusters deployed on OpenStack environment running OVN-Kubernetes CNI.</li>
 <li>The <code>subctl gather</code> command now collects the <code>ipset</code> information from all cluster nodes.</li>
 </ul>
@@ -2123,7 +2183,7 @@ This fix was necessary for RHEL9 nodes where the setting was sometimes getting o
 <h2 id="v0134">v0.13.4</h2>
 <p>This is a bugfix release:</p>
 <ul>
-<li>Fix issues in Azure cloud prepare:
+<li>Changes in Azure cloud prepare:
 <ul>
 <li>Machine set names are now based on region + uuid and limited to 20 characters to prevent issues with long cluster names.</li>
 <li>Machine set creation and deletion logic was updated to prevent creation of multiple gateway nodes.</li>
@@ -2131,7 +2191,7 @@ This fix was necessary for RHEL9 nodes where the setting was sometimes getting o
 </ul>
 </li>
 <li>The namespace is now included in <code>EndpointSlice</code> names to avoid conflicts between services with the same name in multiple namespaces.</li>
-<li>The <code>subctl gather</code> command will now gather iptables logs for Calico and kindnet CNIs.</li>
+<li>The <code>subctl gather</code> command now gathers iptables logs for Calico and kindnet CNIs.</li>
 <li>The <code>subctl cloud prepare</code> command no longer causes errors if the list of ports is empty.</li>
 <li>Cloud cleanup for OpenStack now identifies and deletes failed MachineSets.</li>
 <li>Bump k8s.io/client-go to 0.20.15 to fix CVE-2020-8565.</li>
@@ -2141,7 +2201,7 @@ This fix was necessary for RHEL9 nodes where the setting was sometimes getting o
 <h2 id="v0142">v0.14.2</h2>
 <p>This is a bugfix release:</p>
 <ul>
-<li>Fix issues in Azure cloud prepare:
+<li>Changes in Azure cloud prepare:
 <ul>
 <li>Machine set names are now based on region + uuid and limited to 20 characters to prevent issues with long cluster names.</li>
 <li>Machine set creation and deletion logic was updated to prevent creation of multiple gateway nodes.</li>
@@ -2149,7 +2209,7 @@ This fix was necessary for RHEL9 nodes where the setting was sometimes getting o
 </ul>
 </li>
 <li>Fix a socket permission denied error in external network end-to-end tests.</li>
-<li>The <code>subctl gather</code> command will now gather iptables logs for Calico and kindnet CNIs.</li>
+<li>The <code>subctl gather</code> command now gathers iptables logs for Calico and kindnet CNIs.</li>
 <li>The <code>subctl cloud prepare</code> command no longer causes errors if the list of ports is empty.</li>
 <li><code>subctl</code> operations which deploy images now allow those images to be overridden. The overrides are specified using <code>--image-override</code>:
 <ul>
@@ -2212,7 +2272,7 @@ to avoid pod security errors.</li>
 <li>It is now possible to customize the default TCP MSS clamping value set by Submariner also for non-Globalnet deployments.</li>
 </ul>
 <h2 id="v0140">v0.14.0</h2>
-<h3 id="new-features">New features</h3>
+<h3 id="new-features-1">New features</h3>
 <ul>
 <li>Users no longer need to open ports 8080 and 8081 on the host for querying metrics. A new <code>submariner-metrics-proxy</code> DaemonSet
 runs pods on gateway nodes and forwards HTTP requests for metrics services to gateway and Globalnet pods running on the nodes.
@@ -2270,7 +2330,7 @@ release.</li>
 </ul>
 </li>
 </ul>
-<h3 id="other-changes">Other changes</h3>
+<h3 id="other-changes-1">Other changes</h3>
 <ul>
 <li>The Flannel CNI is now properly identified during join.</li>
 <li>A new ServiceExport status condition type named Synced was added that indicates whether or not the ServiceImport
@@ -2312,7 +2372,7 @@ be used to verify if <code>submariner_router</code> is pinned to the proper Gate
 <li>Set <code>ReadHeaderTimeout</code> (new in Go 1.18) to mitigate potential Slowloris attacks.</li>
 </ul>
 <h2 id="v0130">v0.13.0</h2>
-<h3 id="new-features-1">New features</h3>
+<h3 id="new-features-2">New features</h3>
 <ul>
 <li>All Submariner container images are now available for x86-64 and ARM64 architectures.</li>
 <li>Support was added in <code>subctl cloud prepare</code> to deploy Submariner on OpenShift on Microsoft Azure. This automatically configures the
@@ -2326,7 +2386,7 @@ Submariner automatically routes the traffic and provides DNS resolution.</li>
 <li>Added a new <code>subctl show brokers</code> command that displays information about the Submariner Brokers installed.</li>
 <li>The <code>subctl diagnose</code> command was extended to verify inter-cluster connectivity when Submariner is deployed using a LoadBalancer Service.</li>
 </ul>
-<h3 id="other-changes-1">Other changes</h3>
+<h3 id="other-changes-2">Other changes</h3>
 <ul>
 <li>The <code>submariner-operator</code> namespace is labeled in accordance with <em>KEP-2579: Pod Security Admission Control</em> (default in Kubernetes 1.24)
 to allow the Pods to be privileged.</li>
@@ -2366,7 +2426,7 @@ clamping the TCP MSS to a fixed value derived from the default interface MTU sub
 <li>As part of <code>subctl uninstall</code> operation, we now remove the <code>submariner.io/globalIp</code> annotation that is added on the gateway node.</li>
 </ul>
 <h2 id="v0120">v0.12.0</h2>
-<h3 id="new-features-2">New features</h3>
+<h3 id="new-features-3">New features</h3>
 <ul>
 <li>Added a new <code>subctl uninstall</code> command that removes all Submariner components and dataplane artifacts, such as iptables rules and routing
 table entries, from a cluster.</li>
@@ -2394,7 +2454,7 @@ table entries, from a cluster.</li>
 <li>Services without selectors can now be resolved across the ClusterSet.</li>
 <li><code>subctl diagnose firewall inter-cluster</code> now works correctly for the VXLAN cable driver.</li>
 </ul>
-<h3 id="other-changes-2">Other changes</h3>
+<h3 id="other-changes-3">Other changes</h3>
 <ul>
 <li>The broker token and IPsec PSK are now stored in secrets which are used in preference to the corresponding fields in the Submariner CR,
 which are now deprecated. For backwards compatibility and to simplify upgrades, the deprecated fields are still populated but will be
@@ -3755,19 +3815,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1683671382"></script>
-    <script src="/js/perfect-scrollbar.min.js?1683671382"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1683671382"></script>
-    <script src="/js/jquery.sticky.js?1683671382"></script>
-    <script src="/js/featherlight.min.js?1683671382"></script>
-    <script src="/js/highlight.pack.js?1683671382"></script>
+    <script src="/js/clipboard.min.js?1683702859"></script>
+    <script src="/js/perfect-scrollbar.min.js?1683702859"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1683702859"></script>
+    <script src="/js/jquery.sticky.js?1683702859"></script>
+    <script src="/js/featherlight.min.js?1683702859"></script>
+    <script src="/js/highlight.pack.js?1683702859"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1683671382"></script>
-    <script src="/js/learn.js?1683671382"></script>
-    <script src="/js/hugo-learn.js?1683671382"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1683702859"></script>
+    <script src="/js/learn.js?1683702859"></script>
+    <script src="/js/hugo-learn.js?1683702859"></script>
 
-    <link href="/mermaid/mermaid.css?1683671382" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1683671382"></script>
+    <link href="/mermaid/mermaid.css?1683702859" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1683702859"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
