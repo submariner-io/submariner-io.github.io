@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1685722614" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1685722614" rel="stylesheet">
-    <link href="/css/hybrid.css?1685722614" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1685722614" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1685722614" rel="stylesheet">
-    <link href="/css/auto-complete.css?1685722614" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1685722614" rel="stylesheet">
-    <link href="/css/theme.css?1685722614" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1685722614" rel="stylesheet">
+    <link href="/css/nucleus.css?1686052610" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1686052610" rel="stylesheet">
+    <link href="/css/hybrid.css?1686052610" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1686052610" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1686052610" rel="stylesheet">
+    <link href="/css/auto-complete.css?1686052610" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1686052610" rel="stylesheet">
+    <link href="/css/theme.css?1686052610" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1686052610" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1685722614" rel="stylesheet">
+      <link href="/css/theme-blue.css?1686052610" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1685722614"></script>
+    <script src="/js/jquery-3.3.1.min.js?1686052610"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1685722614" rel="stylesheet">
+<link href="/css/fixes.css?1686052610" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1685722614"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1685722614"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1686052610"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1686052610"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1685722614"></script>
+<script type="text/javascript" src="/js/search.js?1686052610"></script>
 
     
   </div>
@@ -2026,6 +2026,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0135">v0.13.5</a></li>
     <li><a href="#v0150">v0.15.0</a>
       <ul>
         <li><a href="#new-features">New features</a></li>
@@ -2109,6 +2110,19 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0135">v0.13.5</h2>
+<p>This is a bugfix release:</p>
+<ul>
+<li>Submariner now ensures that reverse path filtering setting is properly applied on the <code>vx-submariner</code> and <code>vxlan-tunnel</code> interfaces after
+they are created. This fix was necessary for RHEL 9 nodes where the setting was sometimes getting overwritten.</li>
+<li>Fixed intermittent failure where gateway connections sometimes don&rsquo;t get established.</li>
+<li>Submariner now handles out-of-order remote endpoint notifications properly in various handlers associated with the Route Agent component.</li>
+<li>Fixed stale iptables rules and a global IP leak which can sometimes happen when a <code>GlobalEgressIP</code> is created and immediately deleted as
+part of stress testing.</li>
+<li>Fixed issues while spawning Gateway nodes during cloud prepare for clusters deployed on OpenStack environment running OVN-Kubernetes CNI.</li>
+<li>Fixed issue with Service addresses being resolved before the service is ready.</li>
+<li>The <code>subctl gather</code> command now collects the <code>ipset</code> information from all cluster nodes.</li>
+</ul>
 <h2 id="v0150">v0.15.0</h2>
 <h3 id="new-features">New features</h3>
 <ul>
@@ -3815,19 +3829,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1685722614"></script>
-    <script src="/js/perfect-scrollbar.min.js?1685722614"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1685722614"></script>
-    <script src="/js/jquery.sticky.js?1685722614"></script>
-    <script src="/js/featherlight.min.js?1685722614"></script>
-    <script src="/js/highlight.pack.js?1685722614"></script>
+    <script src="/js/clipboard.min.js?1686052610"></script>
+    <script src="/js/perfect-scrollbar.min.js?1686052610"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1686052610"></script>
+    <script src="/js/jquery.sticky.js?1686052610"></script>
+    <script src="/js/featherlight.min.js?1686052610"></script>
+    <script src="/js/highlight.pack.js?1686052610"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1685722614"></script>
-    <script src="/js/learn.js?1685722614"></script>
-    <script src="/js/hugo-learn.js?1685722614"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1686052610"></script>
+    <script src="/js/learn.js?1686052610"></script>
+    <script src="/js/hugo-learn.js?1686052610"></script>
 
-    <link href="/mermaid/mermaid.css?1685722614" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1685722614"></script>
+    <link href="/mermaid/mermaid.css?1686052610" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1686052610"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
