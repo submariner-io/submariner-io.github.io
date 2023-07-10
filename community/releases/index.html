@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1689003412" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1689003412" rel="stylesheet">
-    <link href="/css/hybrid.css?1689003412" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1689003412" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1689003412" rel="stylesheet">
-    <link href="/css/auto-complete.css?1689003412" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1689003412" rel="stylesheet">
-    <link href="/css/theme.css?1689003412" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1689003412" rel="stylesheet">
+    <link href="/css/nucleus.css?1689003935" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1689003935" rel="stylesheet">
+    <link href="/css/hybrid.css?1689003935" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1689003935" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1689003935" rel="stylesheet">
+    <link href="/css/auto-complete.css?1689003935" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1689003935" rel="stylesheet">
+    <link href="/css/theme.css?1689003935" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1689003935" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1689003412" rel="stylesheet">
+      <link href="/css/theme-blue.css?1689003935" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1689003412"></script>
+    <script src="/js/jquery-3.3.1.min.js?1689003935"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1689003412" rel="stylesheet">
+<link href="/css/fixes.css?1689003935" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1689003412"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1689003412"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1689003935"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1689003935"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1689003412"></script>
+<script type="text/javascript" src="/js/search.js?1689003935"></script>
 
     
   </div>
@@ -2026,6 +2026,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0146-july-5-2023">v0.14.6 (July 5, 2023)</a></li>
     <li><a href="#v0152-july-4-2023">v0.15.2 (July 4, 2023)</a></li>
     <li><a href="#v0136-june-7-2023">v0.13.6 (June 7, 2023)</a></li>
     <li><a href="#v0151-june-6-2023">v0.15.1 (June 6, 2023)</a></li>
@@ -2115,6 +2116,17 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0146-july-5-2023">v0.14.6 (July 5, 2023)</h2>
+<ul>
+<li>The <code>subctl cloud prepare azure</code> command has a new flag, <code>air-gapped</code>, to indicate the cluster is in an air-gapped
+environment which may forbid certain configurations in a disconnected Azure installation.</li>
+<li>The Globalnet component now handles out-of-order remote endpoint notifications properly.</li>
+<li><code>subctl</code> is now built for ARM Macs (Darwin arm64).</li>
+<li>Fixed an issue with OVNKubernetes CNI where routes could be accidentally deleted during cluster restart, or
+upgrade scenarios.</li>
+<li>Submariner gateway pods now skip invoking cable engine cleanup during termination, as this is handled by the route agent
+during gateway migration.</li>
+</ul>
 <h2 id="v0152-july-4-2023">v0.15.2 (July 4, 2023)</h2>
 <ul>
 <li>The <code>subctl cloud prepare azure</code> command has a new flag, <code>air-gapped</code>, to indicate the cluster is in an air-gapped
@@ -3872,19 +3884,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1689003412"></script>
-    <script src="/js/perfect-scrollbar.min.js?1689003412"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1689003412"></script>
-    <script src="/js/jquery.sticky.js?1689003412"></script>
-    <script src="/js/featherlight.min.js?1689003412"></script>
-    <script src="/js/highlight.pack.js?1689003412"></script>
+    <script src="/js/clipboard.min.js?1689003935"></script>
+    <script src="/js/perfect-scrollbar.min.js?1689003935"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1689003935"></script>
+    <script src="/js/jquery.sticky.js?1689003935"></script>
+    <script src="/js/featherlight.min.js?1689003935"></script>
+    <script src="/js/highlight.pack.js?1689003935"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1689003412"></script>
-    <script src="/js/learn.js?1689003412"></script>
-    <script src="/js/hugo-learn.js?1689003412"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1689003935"></script>
+    <script src="/js/learn.js?1689003935"></script>
+    <script src="/js/hugo-learn.js?1689003935"></script>
 
-    <link href="/mermaid/mermaid.css?1689003412" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1689003412"></script>
+    <link href="/mermaid/mermaid.css?1689003935" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1689003935"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
