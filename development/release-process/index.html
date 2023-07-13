@@ -12,20 +12,20 @@
     <title>Release Process :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1689254634" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1689254634" rel="stylesheet">
-    <link href="/css/hybrid.css?1689254634" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1689254634" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1689254634" rel="stylesheet">
-    <link href="/css/auto-complete.css?1689254634" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1689254634" rel="stylesheet">
-    <link href="/css/theme.css?1689254634" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1689254634" rel="stylesheet">
+    <link href="/css/nucleus.css?1689254906" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1689254906" rel="stylesheet">
+    <link href="/css/hybrid.css?1689254906" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1689254906" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1689254906" rel="stylesheet">
+    <link href="/css/auto-complete.css?1689254906" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1689254906" rel="stylesheet">
+    <link href="/css/theme.css?1689254906" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1689254906" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1689254634" rel="stylesheet">
+      <link href="/css/theme-blue.css?1689254906" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1689254634"></script>
+    <script src="/js/jquery-3.3.1.min.js?1689254906"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1689254634" rel="stylesheet">
+<link href="/css/fixes.css?1689254906" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/release-process/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1689254634"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1689254634"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1689254906"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1689254906"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1689254634"></script>
+<script type="text/javascript" src="/js/search.js?1689254906"></script>
 
     
   </div>
@@ -2113,8 +2113,16 @@ which case select the failed check, inspect the logs, correct the issue and re-r
 <h3 id="release-notes-final-releases">Release Notes (Final Releases)</h3>
 <p>If you&rsquo;re creating a release meant for general consumption, not a milestone or release candidate, <a href="../../community/releases/">release notes</a>
 must also be created.</p>
-<p>It&rsquo;s best to start working with the broader community to create release notes well before the release. Create a PR to start the process, and
-work with contributors to get everything added and reviewed.</p>
+<p>It is expected that release notes for any given release will accumulate on the corresponding <code>release-notes-...</code> branch. Once
+the release is ready, a new branch should be pulled from this release note branch, named <code>merge-release-notes-...</code> with the full version
+(<em>e.g.</em> <code>merge-release-notes-0.15.2</code>); a PR can then be opened on <code>devel</code> using this branch. In most cases conflicts will need to be
+resolved before the branch can be merged.</p>
+<p>The release notes are maintained in reverse chronological order. Each version should have its release date added in the release note merge PR.</p>
+<p>See <a href="https://github.com/submariner-io/submariner-website/pull/991">the 0.15.2 merge PR</a> for an example of a release note merge PR: it
+contains all the commits which built up the release notes, and a final merge commit from <code>devel</code> to resolve conflicts. The result only
+contains changes to the release notes <code>_index.en.md</code> file, with the changes for the released version. If additional changes need to be
+added to a pending merge branch, they should be merged to the release notes branch and that branch then merged to the pending merge branch
+(which will result in a fast-forward merge). The updated pending merge branch can then be force-pushed to GitHub to update the PR.</p>
 <h3 id="updating-dependencies">Updating Dependencies</h3>
 <p>Verify that all dependencies are up to date before branch cutting at the first release candidate.
 See the <a href="../building-testing/ci-maintenance">CI Maintenance docs</a> for details about versions that must be manually maintained.</p>
@@ -3451,19 +3459,19 @@ and create a new PR on <a href="https://github.com/k8s-operatorhub/community-ope
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1689254634"></script>
-    <script src="/js/perfect-scrollbar.min.js?1689254634"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1689254634"></script>
-    <script src="/js/jquery.sticky.js?1689254634"></script>
-    <script src="/js/featherlight.min.js?1689254634"></script>
-    <script src="/js/highlight.pack.js?1689254634"></script>
+    <script src="/js/clipboard.min.js?1689254906"></script>
+    <script src="/js/perfect-scrollbar.min.js?1689254906"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1689254906"></script>
+    <script src="/js/jquery.sticky.js?1689254906"></script>
+    <script src="/js/featherlight.min.js?1689254906"></script>
+    <script src="/js/highlight.pack.js?1689254906"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1689254634"></script>
-    <script src="/js/learn.js?1689254634"></script>
-    <script src="/js/hugo-learn.js?1689254634"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1689254906"></script>
+    <script src="/js/learn.js?1689254906"></script>
+    <script src="/js/hugo-learn.js?1689254906"></script>
 
-    <link href="/mermaid/mermaid.css?1689254634" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1689254634"></script>
+    <link href="/mermaid/mermaid.css?1689254906" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1689254906"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
