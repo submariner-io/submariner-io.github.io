@@ -12,20 +12,20 @@
     <title>User Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1689776693" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1689776693" rel="stylesheet">
-    <link href="/css/hybrid.css?1689776693" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1689776693" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1689776693" rel="stylesheet">
-    <link href="/css/auto-complete.css?1689776693" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1689776693" rel="stylesheet">
-    <link href="/css/theme.css?1689776693" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1689776693" rel="stylesheet">
+    <link href="/css/nucleus.css?1689794016" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1689794016" rel="stylesheet">
+    <link href="/css/hybrid.css?1689794016" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1689794016" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1689794016" rel="stylesheet">
+    <link href="/css/auto-complete.css?1689794016" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1689794016" rel="stylesheet">
+    <link href="/css/theme.css?1689794016" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1689794016" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1689776693" rel="stylesheet">
+      <link href="/css/theme-blue.css?1689794016" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1689776693"></script>
+    <script src="/js/jquery-3.3.1.min.js?1689794016"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1689776693" rel="stylesheet">
+<link href="/css/fixes.css?1689794016" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/usage/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1689776693"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1689776693"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1689794016"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1689794016"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1689776693"></script>
+<script type="text/javascript" src="/js/search.js?1689794016"></script>
 
     
   </div>
@@ -2304,26 +2304,26 @@ Metadata:
 Status:
   Conditions:
     Last Transition Time:  2020-12-01T12:35:32Z
-    Message:               Awaiting sync of the ServiceImport to the broker
-    Reason:                AwaitingSync
-    Status:                False
+    Message:
+    Reason:
+    Status:                True
     Type:                  Valid
     Last Transition Time:  2020-12-01T12:35:32Z
     Message:               Service was successfully synced to the broker
     Reason:
     Status:                True
-    Type:                  Valid
+    Type:                  Synced
 Events:                    &lt;none&gt;
 </code></pre></div><p>Once exported, the Service can be discovered as <code>nginx.nginx-test.svc.clusterset.local</code> across the cluster set.</p>
 <h5 id="3-consume-the-service-on-cluster2">3. Consume the Service on <strong>cluster2</strong></h5>
 <p>Verify that the exported <code>nginx</code> Service was imported to <strong>cluster2</strong> as expected. Submariner (via Lighthouse) automatically creates a
-corresponding <code>ServiceImport</code>:</p>
+corresponding <code>ServiceImport</code> in the service namespace:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster2/auth/kubeconfig
 $ kubectl config use-context cluster2
 Switched to context <span style="color:#e6db74">&#34;cluster2&#34;</span>.
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get -n submariner-operator serviceimport
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get -n nginx-test serviceimport
 NAME                        TYPE           IP                AGE
-nginx-nginx-test-cluster3   ClusterSetIP   <span style="color:#f92672">[</span>100.3.220.176<span style="color:#f92672">]</span>   13m
+nginx                       ClusterSetIP                     13m
 </code></pre></div><p>Next, run a test Pod on <strong>cluster2</strong> and try to access the <code>nginx</code> Service from within the Pod:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create namespace nginx-test
 namespace/nginx-test created
@@ -2463,15 +2463,15 @@ Metadata:
 Status:
   Conditions:
     Last Transition Time:  2020-12-07T17:37:59Z
-    Message:               Awaiting sync of the ServiceImport to the broker
-    Reason:                AwaitingSync
-    Status:                False
+    Message:
+    Reason:
+    Status:                True
     Type:                  Valid
     Last Transition Time:  2020-12-07T17:37:59Z
     Message:               Service was successfully synced to the broker
     Reason:
     Status:                True
-    Type:                  Valid
+    Type:                  Synced
 Events:                    &lt;none&gt;
 </code></pre></div><h5 id="6-consume-the-service-from-cluster2">6. Consume the Service from <strong>cluster2</strong></h5>
 <p>Run a test Pod on <strong>cluster2</strong> and try to access the <code>nginx</code> Service from within the Pod:</p>
@@ -2707,29 +2707,28 @@ Metadata:
 Status:
   Conditions:
     Last Transition Time:  2020-11-30T19:59:44Z
-    Message:               Awaiting sync of the ServiceImport to the broker
-    Reason:                AwaitingSync
-    Status:                False
+    Message:
+    Reason:
+    Status:                True
     Type:                  Valid
     Last Transition Time:  2020-11-30T19:59:44Z
     Message:               Service was successfully synced to the broker
     Reason:
     Status:                True
-    Type:                  Valid
+    Type:                  Synced
 Events:                    &lt;none&gt;
 </code></pre></div><p>Once the Service is exported successfully, it can be discovered as <code>nginx-ss.nginx-test.svc.clusterset.local</code> across the cluster set.
 In addition, the individual Pods can be accessed as <code>web-0.cluster3.nginx-ss.nginx-test.svc.clusterset.local</code> and
 <code>web-1.cluster3.nginx-ss.nginx-test.svc.clusterset.local</code>.</p>
 <h5 id="3-consume-the-service-from-cluster2">3. Consume the Service from <strong>cluster2</strong></h5>
 <p>Verify that the exported <code>nginx-ss</code> Service was imported to <strong>cluster2</strong>. Submariner (via Lighthouse) automatically creates a
-corresponding <code>ServiceImport</code>:</p>
+corresponding <code>ServiceImport</code> in the service namespace:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export KUBECONFIG<span style="color:#f92672">=</span>cluster2/auth/kubeconfig
 $ kubectl config use-context cluster2
 Switched to context <span style="color:#e6db74">&#34;cluster2&#34;</span>.
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get -n submariner-operator serviceimport
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get -n nginx-test serviceimport
 NAME                           TYPE           IP                AGE
-nginx-nginx-test-cluster3      ClusterSetIP   <span style="color:#f92672">[</span>100.3.220.176<span style="color:#f92672">]</span>   166m
-nginx-ss-nginx-test-cluster3   Headless                         5m48s
+nginx-ss                       Headless                         5m48s
 </code></pre></div><p>Next, run a test Pod on <strong>cluster2</strong> and try to access the <code>nginx-ss</code> Service from within the Pod:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl run -n nginx-test tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- /bin/bash
 </code></pre></div><!-- markdownlint-disable no-hard-tabs -->
@@ -3859,19 +3858,19 @@ namespace <span style="color:#e6db74">&#34;nginx-test&#34;</span> deleted
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1689776693"></script>
-    <script src="/js/perfect-scrollbar.min.js?1689776693"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1689776693"></script>
-    <script src="/js/jquery.sticky.js?1689776693"></script>
-    <script src="/js/featherlight.min.js?1689776693"></script>
-    <script src="/js/highlight.pack.js?1689776693"></script>
+    <script src="/js/clipboard.min.js?1689794016"></script>
+    <script src="/js/perfect-scrollbar.min.js?1689794016"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1689794016"></script>
+    <script src="/js/jquery.sticky.js?1689794016"></script>
+    <script src="/js/featherlight.min.js?1689794016"></script>
+    <script src="/js/highlight.pack.js?1689794016"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1689776693"></script>
-    <script src="/js/learn.js?1689776693"></script>
-    <script src="/js/hugo-learn.js?1689776693"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1689794016"></script>
+    <script src="/js/learn.js?1689794016"></script>
+    <script src="/js/hugo-learn.js?1689794016"></script>
 
-    <link href="/mermaid/mermaid.css?1689776693" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1689776693"></script>
+    <link href="/mermaid/mermaid.css?1689794016" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1689794016"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

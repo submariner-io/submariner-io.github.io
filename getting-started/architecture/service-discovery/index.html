@@ -12,20 +12,20 @@
     <title>Service Discovery :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1689776693" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1689776693" rel="stylesheet">
-    <link href="/css/hybrid.css?1689776693" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1689776693" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1689776693" rel="stylesheet">
-    <link href="/css/auto-complete.css?1689776693" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1689776693" rel="stylesheet">
-    <link href="/css/theme.css?1689776693" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1689776693" rel="stylesheet">
+    <link href="/css/nucleus.css?1689794015" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1689794015" rel="stylesheet">
+    <link href="/css/hybrid.css?1689794015" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1689794015" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1689794015" rel="stylesheet">
+    <link href="/css/auto-complete.css?1689794015" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1689794015" rel="stylesheet">
+    <link href="/css/theme.css?1689794015" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1689794015" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1689776693" rel="stylesheet">
+      <link href="/css/theme-blue.css?1689794015" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1689776693"></script>
+    <script src="/js/jquery-3.3.1.min.js?1689794015"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1689776693" rel="stylesheet">
+<link href="/css/fixes.css?1689794015" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/architecture/service-discovery/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1689776693"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1689776693"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1689794015"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1689794015"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1689776693"></script>
+<script type="text/javascript" src="/js/search.js?1689794015"></script>
 
     
   </div>
@@ -2078,9 +2078,9 @@ information is exported to the Broker and Service information from other cluster
 <p>The workflow is as follows:</p>
 <ul>
 <li>Lighthouse Agent connects to the Broker&rsquo;s Kubernetes API server.</li>
-<li>For every Service in the local cluster for which a ServiceExport has been created, the Agent creates a corresponding
-ServiceImport resource and exports it to the Broker to be consumed by other clusters.</li>
-<li>For every ServiceImport resource in the Broker exported from another cluster,
+<li>For every Service in the local cluster for which a ServiceExport has been created, the Agent creates
+ServiceImport and EndpointSlice resources and exports them to the Broker to be consumed by other clusters.</li>
+<li>For every resource in the Broker exported from another cluster,
 it creates a copy of it in the local cluster.</li>
 </ul>
 <p><img src="/images/lighthouse/controllerWorkFlow.png" alt="Lighthouse Agent WorkFlow"></p>
@@ -2088,8 +2088,8 @@ it creates a copy of it in the local cluster.</li>
 <h3 id="lighthouse-dns-server">Lighthouse DNS Server</h3>
 <p>The Lighthouse DNS server runs as an external DNS server which owns the domain <code>clusterset.local</code>.
 CoreDNS is configured to forward any request sent to <code>clusterset.local</code> to the Lighthouse DNS server,
-which uses the ServiceImport resources that are distributed by the controller for DNS resolution. The
-Lighthouse DNS server supports queries using an A record and an SRV record.</p>
+which uses the ServiceImport and EndpointSlice resources that are distributed by the controller to build an address cache
+for DNS resolution. The Lighthouse DNS server supports queries using an A record and an SRV record.</p>
 
 <div class="notices note" ><p>When a single Service is deployed to multiple clusters, Lighthouse DNS server prefers the local cluster first before routing the traffic to
 other remote clusters in a round-robin fashion.</p>
@@ -2100,7 +2100,7 @@ other remote clusters in a round-robin fashion.</p>
 <ul>
 <li>A Pod tries to resolve a Service name using the domain name <code>clusterset.local</code>.</li>
 <li>CoreDNS forwards the request to the Lighthouse DNS server.</li>
-<li>The Lighthouse DNS server will use its ServiceImport cache to try to resolve the request.</li>
+<li>The Lighthouse DNS server will use its address cache to try to resolve the request.</li>
 <li>If a record exists it will be returned, else an NXDomain error will be returned.</li>
 </ul>
 <p><img src="/images/lighthouse/coreDNSWorkFlow.png" alt="Lighthouse CoreDNS WorkFlow"></p>
@@ -3143,19 +3143,19 @@ other remote clusters in a round-robin fashion.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1689776693"></script>
-    <script src="/js/perfect-scrollbar.min.js?1689776693"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1689776693"></script>
-    <script src="/js/jquery.sticky.js?1689776693"></script>
-    <script src="/js/featherlight.min.js?1689776693"></script>
-    <script src="/js/highlight.pack.js?1689776693"></script>
+    <script src="/js/clipboard.min.js?1689794015"></script>
+    <script src="/js/perfect-scrollbar.min.js?1689794015"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1689794015"></script>
+    <script src="/js/jquery.sticky.js?1689794015"></script>
+    <script src="/js/featherlight.min.js?1689794015"></script>
+    <script src="/js/highlight.pack.js?1689794015"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1689776693"></script>
-    <script src="/js/learn.js?1689776693"></script>
-    <script src="/js/hugo-learn.js?1689776693"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1689794015"></script>
+    <script src="/js/learn.js?1689794015"></script>
+    <script src="/js/hugo-learn.js?1689794015"></script>
 
-    <link href="/mermaid/mermaid.css?1689776693" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1689776693"></script>
+    <link href="/mermaid/mermaid.css?1689794015" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1689794015"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
