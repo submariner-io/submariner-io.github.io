@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Security :: Submariner k8s project documentation website</title>
+    <title>Upgrading :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1697936446" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1697936446" rel="stylesheet">
-    <link href="/css/hybrid.css?1697936446" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1697936446" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1697936446" rel="stylesheet">
-    <link href="/css/auto-complete.css?1697936446" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1697936446" rel="stylesheet">
-    <link href="/css/theme.css?1697936446" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1697936446" rel="stylesheet">
+    <link href="/css/nucleus.css?1697936447" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1697936447" rel="stylesheet">
+    <link href="/css/hybrid.css?1697936447" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1697936447" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1697936447" rel="stylesheet">
+    <link href="/css/auto-complete.css?1697936447" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1697936447" rel="stylesheet">
+    <link href="/css/theme.css?1697936447" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1697936447" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1697936446" rel="stylesheet">
+      <link href="/css/theme-blue.css?1697936447" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1697936446"></script>
+    <script src="/js/jquery-3.3.1.min.js?1697936447"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,10 +34,10 @@
       
     </style>
     
-<link href="/css/fixes.css?1697936446" rel="stylesheet">
+<link href="/css/fixes.css?1697936447" rel="stylesheet">
 
   </head>
-  <body class="" data-url="/development/security/">
+  <body class="" data-url="/operations/upgrading/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1697936446"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1697936446"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1697936447"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1697936447"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1697936446"></script>
+<script type="text/javascript" src="/js/search.js?1697936447"></script>
 
     
   </div>
@@ -798,7 +798,7 @@
   
     
     <li data-nav-id="/operations/" title="Operations" class="dd-item 
-        
+        parent
         
         
         ">
@@ -953,8 +953,8 @@
   
     
     <li data-nav-id="/operations/upgrading/" title="Upgrading" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/operations/upgrading/">
@@ -1334,7 +1334,7 @@
   
     
     <li data-nav-id="/development/" title="Development" class="dd-item 
-        parent
+        
         
         
         ">
@@ -1641,8 +1641,8 @@
   
     
     <li data-nav-id="/development/security/" title="Security" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/development/security/">
@@ -2008,7 +2008,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/development/security/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/operations/upgrading/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -2039,7 +2039,7 @@
             
           
           
-            <a href='/'></a> > <a href='/development/'>Development</a> > Security
+            <a href='/'></a> > <a href='/operations/'>Operations</a> > Upgrading
           
          
           
@@ -2052,7 +2052,12 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#automated-upgrade">Automated Upgrade</a></li>
+    <li><a href="#manual-upgrade">Manual Upgrade</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -2068,7 +2073,7 @@
           
             <h1>
               
-              Security
+              Upgrading
             </h1>
           
 
@@ -2077,11 +2082,42 @@
 
 
 
-	<ul>
-<li><a href="reporting">Security Reporting</a></li>
-<li><a href="containers">Container Requirements</a></li>
-<li><a href="secrets">Secrets</a></li>
-</ul>
+	<p>Starting with Submariner 0.16, the recommended way to upgrade Submariner is via the <a href="#automated-upgrade"><code>subctl upgrade</code></a> command.
+This can be used to upgrade clusters to Submariner 0.16 or later.
+To upgrade older clusters to a version of Submariner before 0.16, follow the <a href="#manual-upgrade">manual upgrade process</a>.</p>
+<h2 id="automated-upgrade">Automated Upgrade</h2>
+<p>If your current version of <code>subctl</code> (as indicated by <code>subctl version</code>) is older than 0.16,
+start by <a href="../deployment/subctl/#install">installing the desired version of <code>subctl</code></a>.
+If your current version of <code>subctl</code> is 0.16 or later, it will upgrade itself during the upgrade process.</p>
+<p>Once you have <code>subctl</code> 0.16 or later, run it with a kubeconfig pointing to the cluster(s) you wish to upgrade:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl upgrade --kubeconfig /path/to/kubeconfig
+</code></pre></div><p>(The <code>--kubeconfig</code> parameter is optional; <code>subctl</code> will use any configuration that <code>kubectl</code> would find.)</p>
+<p><code>subctl upgrade</code> will start by upgrading <code>subctl</code> to the latest released version,
+and then upgrade all the Submariner components in accessible clusters to match,
+<em>i.e.</em> all Submariner components present in any cluster accessible through a context in the configured kubeconfig.</p>
+<p>A specific target version can be specified using the <code>--to-version</code> parameter:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl upgrade --to-version v0.16.0
+</code></pre></div><h2 id="manual-upgrade">Manual Upgrade</h2>
+<p>To manually upgrade Submariner in a set of clusters, follow the steps below:</p>
+
+<div class="notices note" ><p>Make sure KUBECONFIG for all participating clusters is exported and all participating clusters are accessible via kubectl.</p>
+</div>
+
+<ol>
+<li>
+<p>Download the appropriate version of <code>subctl</code></p>
+</li>
+<li>
+<p>Re-deploy the broker in the broker context, pointing to the previous broker-info.subm file to preserve the PSK:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl deploy-broker --context cluster1 --ipsec-psk-from broker-info.subm
+</code></pre></div></li>
+<li>
+<p>Join the connected clusters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">subctl join --context cluster1
+subctl join --context cluster2
+</code></pre></div><p>This will restart the operator and all Submariner pods, using the version of Submariner matching the version of <code>subctl</code>.</p>
+</li>
+</ol>
 
 
 
@@ -2505,6 +2541,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -2519,6 +2556,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -2586,21 +2626,6 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -2618,21 +2643,8 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -2644,72 +2656,6 @@
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
                     
                         
             
@@ -2799,7 +2745,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -2815,8 +2760,103 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -2966,7 +3006,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -2981,9 +3020,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -3125,10 +3161,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/development/release-process/" title="Release Process"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/operations/deployment/calico/" title="Calico CNI"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/development/security/reporting/" title="Security Reporting" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/operations/usage/" title="User Guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -3138,19 +3174,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1697936446"></script>
-    <script src="/js/perfect-scrollbar.min.js?1697936446"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1697936446"></script>
-    <script src="/js/jquery.sticky.js?1697936446"></script>
-    <script src="/js/featherlight.min.js?1697936446"></script>
-    <script src="/js/highlight.pack.js?1697936446"></script>
+    <script src="/js/clipboard.min.js?1697936447"></script>
+    <script src="/js/perfect-scrollbar.min.js?1697936447"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1697936447"></script>
+    <script src="/js/jquery.sticky.js?1697936447"></script>
+    <script src="/js/featherlight.min.js?1697936447"></script>
+    <script src="/js/highlight.pack.js?1697936447"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1697936446"></script>
-    <script src="/js/learn.js?1697936446"></script>
-    <script src="/js/hugo-learn.js?1697936446"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1697936447"></script>
+    <script src="/js/learn.js?1697936447"></script>
+    <script src="/js/hugo-learn.js?1697936447"></script>
 
-    <link href="/mermaid/mermaid.css?1697936446" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1697936446"></script>
+    <link href="/mermaid/mermaid.css?1697936447" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1697936447"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

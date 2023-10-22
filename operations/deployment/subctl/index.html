@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1697735885" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1697735885" rel="stylesheet">
-    <link href="/css/hybrid.css?1697735885" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1697735885" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1697735885" rel="stylesheet">
-    <link href="/css/auto-complete.css?1697735885" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1697735885" rel="stylesheet">
-    <link href="/css/theme.css?1697735885" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1697735885" rel="stylesheet">
+    <link href="/css/nucleus.css?1697936447" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1697936447" rel="stylesheet">
+    <link href="/css/hybrid.css?1697936447" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1697936447" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1697936447" rel="stylesheet">
+    <link href="/css/auto-complete.css?1697936447" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1697936447" rel="stylesheet">
+    <link href="/css/theme.css?1697936447" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1697936447" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1697735885" rel="stylesheet">
+      <link href="/css/theme-blue.css?1697936447" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1697735885"></script>
+    <script src="/js/jquery-3.3.1.min.js?1697936447"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1697735885" rel="stylesheet">
+<link href="/css/fixes.css?1697936447" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1697735885"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1697735885"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1697936447"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1697936447"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1697735885"></script>
+<script type="text/javascript" src="/js/search.js?1697936447"></script>
 
     
   </div>
@@ -936,6 +936,34 @@
           
         
         </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/operations/upgrading/" title="Upgrading" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/operations/upgrading/">
+          Upgrading
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
               
     </li>
   
@@ -2045,6 +2073,7 @@
         <li><a href="#export"><code>export</code></a></li>
         <li><a href="#unexport"><code>unexport</code></a></li>
         <li><a href="#join"><code>join</code></a></li>
+        <li><a href="#upgrade"><code>upgrade</code></a></li>
         <li><a href="#show"><code>show</code></a></li>
         <li><a href="#show-brokers"><code>show brokers</code></a></li>
         <li><a href="#verify"><code>verify</code></a></li>
@@ -2371,6 +2400,26 @@ deployment.</p>
 <tr>
 <td align="left"><code>--health-check-max-packet-loss-count</code> <code>&lt;uint&gt;</code></td>
 <td align="left">The maximum number of packets lost at which the health checker will mark the connection as down (default 5)</td>
+</tr>
+</tbody>
+</table>
+<!-- markdownlint-enable line-length -->
+<h3 id="upgrade"><code>upgrade</code></h3>
+<p><code>subctl upgrade [flags]</code></p>
+<p>Upgrades <code>subctl</code> to the latest released version and upgrades Submariner components in any accessible clusters to match.</p>
+<h4 id="upgrade-flags"><code>upgrade</code> flags</h4>
+<!-- markdownlint-disable line-length -->
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>--to-version</code> <code>&lt;string&gt;</code></td>
+<td align="left">The version of subctl and Submariner to which to upgrade</td>
 </tr>
 </tbody>
 </table>
@@ -3582,6 +3631,22 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -4019,19 +4084,19 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1697735885"></script>
-    <script src="/js/perfect-scrollbar.min.js?1697735885"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1697735885"></script>
-    <script src="/js/jquery.sticky.js?1697735885"></script>
-    <script src="/js/featherlight.min.js?1697735885"></script>
-    <script src="/js/highlight.pack.js?1697735885"></script>
+    <script src="/js/clipboard.min.js?1697936447"></script>
+    <script src="/js/perfect-scrollbar.min.js?1697936447"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1697936447"></script>
+    <script src="/js/jquery.sticky.js?1697936447"></script>
+    <script src="/js/featherlight.min.js?1697936447"></script>
+    <script src="/js/highlight.pack.js?1697936447"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1697735885"></script>
-    <script src="/js/learn.js?1697735885"></script>
-    <script src="/js/hugo-learn.js?1697735885"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1697936447"></script>
+    <script src="/js/learn.js?1697936447"></script>
+    <script src="/js/hugo-learn.js?1697936447"></script>
 
-    <link href="/mermaid/mermaid.css?1697735885" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1697735885"></script>
+    <link href="/mermaid/mermaid.css?1697936447" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1697936447"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -66,6 +66,11 @@
   </url>
   
   <url>
+    <loc>/operations/upgrading/</loc>
+    <lastmod>2023-09-06T14:06:11+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/getting-started/quickstart/k3s/</loc>
     <lastmod>2021-02-24T13:36:18+01:00</lastmod>
   </url>
@@ -77,7 +82,7 @@
   
   <url>
     <loc>/operations/</loc>
-    <lastmod>2020-12-23T21:25:11+01:00</lastmod>
+    <lastmod>2023-09-06T14:06:11+02:00</lastmod>
   </url>
   
   <url>
@@ -274,7 +279,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2022-03-15T10:31:00+02:00</lastmod>
+    <lastmod>2023-09-06T14:06:11+02:00</lastmod>
     <priority>0</priority>
   </url>
   
