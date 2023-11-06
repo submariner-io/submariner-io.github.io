@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1699229713" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1699229713" rel="stylesheet">
-    <link href="/css/hybrid.css?1699229713" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1699229713" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1699229713" rel="stylesheet">
-    <link href="/css/auto-complete.css?1699229713" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1699229713" rel="stylesheet">
-    <link href="/css/theme.css?1699229713" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1699229713" rel="stylesheet">
+    <link href="/css/nucleus.css?1699230048" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1699230048" rel="stylesheet">
+    <link href="/css/hybrid.css?1699230048" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1699230048" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1699230048" rel="stylesheet">
+    <link href="/css/auto-complete.css?1699230048" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1699230048" rel="stylesheet">
+    <link href="/css/theme.css?1699230048" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1699230048" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1699229713" rel="stylesheet">
+      <link href="/css/theme-blue.css?1699230048" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1699229713"></script>
+    <script src="/js/jquery-3.3.1.min.js?1699230048"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1699229713" rel="stylesheet">
+<link href="/css/fixes.css?1699230048" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1699229713"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1699229713"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1699230048"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1699230048"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1699229713"></script>
+<script type="text/javascript" src="/js/search.js?1699230048"></script>
 
     
   </div>
@@ -2026,6 +2026,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0153-november-3-2023">v0.15.3 (November 3, 2023)</a></li>
     <li><a href="#v0147-october-17-2023">v0.14.7 (October 17, 2023)</a></li>
     <li><a href="#v0160-october-2-2023">v0.16.0 (October 2, 2023)</a>
       <ul>
@@ -2124,6 +2125,27 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0153-november-3-2023">v0.15.3 (November 3, 2023)</h2>
+<ul>
+<li>The <code>subctl diagnose</code> command has been enhanced to check for potential firewall issues that may be blocking ESP traffic
+and will provide an appropriate error message.</li>
+<li>Submariner now explicitly enables forwarding on the interfaces that it creates to support forwarding even when
+global forwarding on the node is turned off.</li>
+<li>Enhanced Calico CNI detection now includes searching for calico-node CNI pods when the calico-config map is
+not detected.</li>
+<li>Submariner now explicitly configures dpddelay when initiating IPsec connections to prevent excessively frequent
+liveness probes.</li>
+<li>Service Discovery will now publish DNS records for pods that are not ready based on the setting of the <code>publishNotReadyAddresses</code>
+flag on the service.</li>
+<li>The CNI detection method in Submariner Operator is now improved to detect the Flannel CNI, even when the Flannel configMap
+is missing from the cluster.</li>
+<li>Submariner now ensures that the IPsec control socket is created before initiating connection requests, and also
+automatically retries connections in response to errors reported by the &lsquo;whack&rsquo; command.</li>
+<li>The pod CIDR detection logic now ensures that the node&rsquo;s <code>podCIDR</code> is exclusively used for single-node deployments.</li>
+<li>The Submariner gateway now retries reading local node information on startup to reduce pod restarts if the Kubernetes API server is
+temporarily unavailable.</li>
+<li>Reduced data path downtime with Libreswan cable driver when gateway pod restarts.</li>
+</ul>
 <h2 id="v0147-october-17-2023">v0.14.7 (October 17, 2023)</h2>
 <ul>
 <li>Submariner now explicitly enables forwarding on the interfaces that it creates to support forwarding even
@@ -3963,19 +3985,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1699229713"></script>
-    <script src="/js/perfect-scrollbar.min.js?1699229713"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1699229713"></script>
-    <script src="/js/jquery.sticky.js?1699229713"></script>
-    <script src="/js/featherlight.min.js?1699229713"></script>
-    <script src="/js/highlight.pack.js?1699229713"></script>
+    <script src="/js/clipboard.min.js?1699230048"></script>
+    <script src="/js/perfect-scrollbar.min.js?1699230048"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1699230048"></script>
+    <script src="/js/jquery.sticky.js?1699230048"></script>
+    <script src="/js/featherlight.min.js?1699230048"></script>
+    <script src="/js/highlight.pack.js?1699230048"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1699229713"></script>
-    <script src="/js/learn.js?1699229713"></script>
-    <script src="/js/hugo-learn.js?1699229713"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1699230048"></script>
+    <script src="/js/learn.js?1699230048"></script>
+    <script src="/js/hugo-learn.js?1699230048"></script>
 
-    <link href="/mermaid/mermaid.css?1699229713" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1699229713"></script>
+    <link href="/mermaid/mermaid.css?1699230048" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1699230048"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
