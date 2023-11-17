@@ -12,20 +12,20 @@
     <title>Route Agent :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1699595089" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1699595089" rel="stylesheet">
-    <link href="/css/hybrid.css?1699595089" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1699595089" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1699595089" rel="stylesheet">
-    <link href="/css/auto-complete.css?1699595089" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1699595089" rel="stylesheet">
-    <link href="/css/theme.css?1699595089" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1699595089" rel="stylesheet">
+    <link href="/css/nucleus.css?1700245291" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1700245291" rel="stylesheet">
+    <link href="/css/hybrid.css?1700245291" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1700245291" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1700245291" rel="stylesheet">
+    <link href="/css/auto-complete.css?1700245291" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1700245291" rel="stylesheet">
+    <link href="/css/theme.css?1700245291" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1700245291" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1699595089" rel="stylesheet">
+      <link href="/css/theme-blue.css?1700245291" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1699595089"></script>
+    <script src="/js/jquery-3.3.1.min.js?1700245291"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1699595089" rel="stylesheet">
+<link href="/css/fixes.css?1700245291" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/architecture/route-agent/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1699595089"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1699595089"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1700245291"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1700245291"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1699595089"></script>
+<script type="text/javascript" src="/js/search.js?1700245291"></script>
 
     
   </div>
@@ -2033,7 +2033,12 @@
 <nav id="TableOfContents">
   <ul>
     <li><a href="#kube-proxy-iptables">kube-proxy iptables</a></li>
-    <li><a href="#ovn-kubernetes">OVN Kubernetes</a></li>
+    <li><a href="#ovn-kubernetes">OVN Kubernetes</a>
+      <ul>
+        <li><a href="#single-zone">Single Zone</a></li>
+        <li><a href="#multiple-zone">Multiple Zone</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -2083,9 +2088,42 @@ connectivity.</p>
 Route Agents will automatically update the route tables on each node to point to
 the new active Gateway Engine node.</p>
 <h2 id="ovn-kubernetes">OVN Kubernetes</h2>
-<p>For the OVN Kubernetes CNI plugin, host network routing is configured on all nodes and,
-on the active Gateway node, IP forwarding is configured between the <code>ovn-k8s-gw0</code>
-and cable interfaces.</p>
+<p>With OVN Kubernetes we reuse the GENEVE tunnels created by OVNKubernetes CNI to reach the
+gateway nodes from non-gateway nodes and a separate VXLAN tunnel is not created.</p>
+
+<div class="notices info" ><p>For Submariner 0.15 and below refer  <a href="../networkplugin-syncer/">network plugin syncer</a></p>
+</div>
+
+<p>With OVN we can have two deployment models,</p>
+
+<div class="notices info" ><p>Submariner automatically discovers the OVN mode and uses the appropriate implementation and this is
+not a configuration option in Submariner</p>
+</div>
+
+<h3 id="single-zone">Single Zone</h3>
+<p>A single-zone deployment involves a single OVN database and a set of master nodes that
+program it.</p>
+<p>Here, Submariner configures the <code>ovn_cluster_router</code> to route traffic to other clusters through the
+<code>ovn-k8s-mp0</code> interface of the gateway node, effectively bridging it to the host networking
+stack of the gateway node. Since <code>ovn_cluster_router</code>  is distributed, this route also ensures
+that traffic from non-gateway node is directed to local gateway node.</p>
+<p>The traffic that comes through Submariner tunnel from remote cluster to gateway node will be
+directed to <code>ovn-k8s-mp0</code> interface through host routes and will be handled by <code>ovn_cluster_router</code>.</p>
+<p><img src="/images/ovn-kubernetes/ovn-without-ic.svg" alt="Single Zone"></p>
+<h3 id="multiple-zone">Multiple Zone</h3>
+<p>In a multi-zone configuration, each zone operates with its dedicated OVN database and OVN master pod.
+These zones are interconnected via transit switches, and OVN-Kubernetes orchestrates the essential
+routing for enabling pod and service communication across nodes situated in different zones.</p>
+<p>Within this framework, the Submariner route agent plays a pivotal role. It ensures that the same
+routing configurations employed in a single zone are replicated in the OVN cluster router and the
+host stack of the gateway node. For nodes outside the zone where the gateway node is located,
+Submariner takes action by adding a route that directs traffic to remote clusters, channeling
+it through the transit switch IP of the gateway node.</p>
+<p>The host networking rules remain consistent across all nodes. They guide traffic towards the
+<code>ovn_cluster_router</code> specific to that zone, leveraging <code>ovn-k8s-mp0</code>. The <code>ovn_cluster_router</code>, in
+turn, guarantees that the traffic is directed through the Submariner tunnel via the gateway
+node.</p>
+<p><img src="/images/ovn-kubernetes/ovn-with-ic.svg" alt="Multiple Zone"></p>
 
 
 
@@ -3124,19 +3162,19 @@ and cable interfaces.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1699595089"></script>
-    <script src="/js/perfect-scrollbar.min.js?1699595089"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1699595089"></script>
-    <script src="/js/jquery.sticky.js?1699595089"></script>
-    <script src="/js/featherlight.min.js?1699595089"></script>
-    <script src="/js/highlight.pack.js?1699595089"></script>
+    <script src="/js/clipboard.min.js?1700245291"></script>
+    <script src="/js/perfect-scrollbar.min.js?1700245291"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1700245291"></script>
+    <script src="/js/jquery.sticky.js?1700245291"></script>
+    <script src="/js/featherlight.min.js?1700245291"></script>
+    <script src="/js/highlight.pack.js?1700245291"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1699595089"></script>
-    <script src="/js/learn.js?1699595089"></script>
-    <script src="/js/hugo-learn.js?1699595089"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1700245291"></script>
+    <script src="/js/learn.js?1700245291"></script>
+    <script src="/js/hugo-learn.js?1700245291"></script>
 
-    <link href="/mermaid/mermaid.css?1699595089" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1699595089"></script>
+    <link href="/mermaid/mermaid.css?1700245291" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1700245291"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
