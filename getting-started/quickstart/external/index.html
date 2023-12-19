@@ -12,20 +12,20 @@
     <title>External Network (Experimental) :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1702567887" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1702567887" rel="stylesheet">
-    <link href="/css/hybrid.css?1702567887" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1702567887" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1702567887" rel="stylesheet">
-    <link href="/css/auto-complete.css?1702567887" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1702567887" rel="stylesheet">
-    <link href="/css/theme.css?1702567887" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1702567887" rel="stylesheet">
+    <link href="/css/nucleus.css?1702996140" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1702996140" rel="stylesheet">
+    <link href="/css/hybrid.css?1702996140" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1702996140" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1702996140" rel="stylesheet">
+    <link href="/css/auto-complete.css?1702996140" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1702996140" rel="stylesheet">
+    <link href="/css/theme.css?1702996140" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1702996140" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1702567887" rel="stylesheet">
+      <link href="/css/theme-blue.css?1702996140" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1702567887"></script>
+    <script src="/js/jquery-3.3.1.min.js?1702996140"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1702567887" rel="stylesheet">
+<link href="/css/fixes.css?1702996140" rel="stylesheet">
 
   </head>
   <body class="" data-url="/getting-started/quickstart/external/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1702567887"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1702567887"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1702996140"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1702996140"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1702567887"></script>
+<script type="text/javascript" src="/js/search.js?1702996140"></script>
 
     
   </div>
@@ -2066,14 +2066,10 @@
 
 
 
-	<p>This guide covers experimenting with the external network use case.
+	<p>This guide covers how to set up Submariner for the external network use case.
 In this use case, pods running in a Kubernetes cluster can access external applications outside of the cluster and vice versa
 by using DNS resolution supported by Lighthouse or manually using the Globalnet ingress IPs.
 In addition to providing connectivity, the source IP of traffic is also preserved.</p>
-
-<div class="notices warning" ><p><strong>This feature is experimental.</strong> The configuration mechanism and observed behavior may change.</p>
-</div>
-
 <h3 id="prerequisites">Prerequisites</h3>
 <ol>
 <li>
@@ -2288,7 +2284,7 @@ python -m SimpleHTTPServer <span style="color:#ae81ff">80</span>
 <span style="color:#75715e"># Python 3.x:</span>
 python -m http.server <span style="color:#ae81ff">80</span>
 </code></pre></div><h5 id="verify-access-to-external-hosts-from-clusters">Verify access to External hosts from clusters</h5>
-<p>Create Service, Endpoints, ServiceExport to access the test-vm from cluster-a:</p>
+<p>Create headless Service without selector, Endpoints, ServiceExport to access the test-vm from cluster-a:</p>
 <p>Note that <code>Endpoints.subsets.addresses</code> needs to be modified to IP of test-vm.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-a
 cat <span style="color:#e6db74">&lt;&lt; EOF | kubectl apply -f -
@@ -2301,6 +2297,7 @@ cat <span style="color:#e6db74">&lt;&lt; EOF | kubectl apply -f -
 </span><span style="color:#e6db74">    - protocol: TCP
 </span><span style="color:#e6db74">      port: 80
 </span><span style="color:#e6db74">      targetPort: 80
+</span><span style="color:#e6db74">  clusterIP: None
 </span><span style="color:#e6db74">EOF</span>
 
 cat <span style="color:#e6db74">&lt;&lt; EOF | kubectl apply -f -
@@ -2311,23 +2308,33 @@ cat <span style="color:#e6db74">&lt;&lt; EOF | kubectl apply -f -
 </span><span style="color:#e6db74">subsets:
 </span><span style="color:#e6db74">  - addresses:
 </span><span style="color:#e6db74">      - ip: 192.168.122.142
+</span><span style="color:#e6db74">        hostname: &#34;web0&#34;
 </span><span style="color:#e6db74">    ports:
 </span><span style="color:#e6db74">      - port: 80
+</span><span style="color:#e6db74">        name: &#34;web&#34;
 </span><span style="color:#e6db74">EOF</span>
 
 subctl export service -n default test-vm
-</code></pre></div><p>Check global ingress IP for test-vm, on cluster-a:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get globalingressip test-vm
-NAME      IP
-test-vm   242.0.255.253
+</code></pre></div>
+<div class="notices note" ><p><code>subsets.addresses[*].hostname</code> and <code>subsets.ports[*].name</code> in <code>Endpoints</code> must be specified.
+Otherwise, corresponding <code>globalingressip</code> and <code>endpointslice</code> won&rsquo;t be created.</p>
+</div>
+
+<p>Check global ingress IP for test-vm, on cluster-a:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get globalingressip
+NAME                         IP
+ep-test-vm-192.168.122.142   242.0.255.253
 </code></pre></div><p>Verify access to test-vm from clusters:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-a
 kubectl -n default run tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- bash
+curl web0.cluster-a.test-vm.default.svc.clusterset.local
 curl 242.0.255.253
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
 kubectl -n default run tmp-shell --rm -i --tty --image quay.io/submariner/nettest -- bash
+curl web0.cluster-a.test-vm.default.svc.clusterset.local
 curl 242.0.255.253
-</code></pre></div><p>On test-vm, check the console log of HTTP server that there are accesses from pods</p>
+</code></pre></div><p>On test-vm, check the console log of HTTP server that there are accesses from pods.
+Source IPs for these accesses will be one of the global egress IPs for the cluster.</p>
 <h5 id="verify-access-to-deployment-from-non-cluster-hosts">Verify access to Deployment from non-cluster hosts</h5>
 <p>Create Deployment in cluster-b:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
@@ -2338,7 +2345,8 @@ subctl export service --namespace default nginx
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl nginx.default.svc.clusterset.local
 </code></pre></div><p>Check the console log of HTTP server that there is access from test-vm:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl logs -l app<span style="color:#f92672">=</span>nginx
-</code></pre></div><h5 id="verify-access-to-statefulset-from-non-cluster-hosts">Verify access to Statefulset from non-cluster hosts</h5>
+</code></pre></div><p>Source IP for the access will be the global ingress IP of the endpoint for the test-vm.</p>
+<h5 id="verify-access-to-statefulset-from-non-cluster-hosts">Verify access to Statefulset from non-cluster hosts</h5>
 <p>A <code>StatefulSet</code> uses a headless <code>Service</code>. Create a <code>web.yaml</code> file as follows:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
 <span style="color:#66d9ef">kind</span>: Service
@@ -2422,6 +2430,7 @@ Address: 242.1.255.250
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
 kubectl exec -it web-0 -- bash
+curl web0.cluster-a.test-vm.default.svc.clusterset.local
 curl 242.0.255.253
 exit
 </code></pre></div><ul>
@@ -2429,6 +2438,7 @@ exit
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>kubeconfig.cluster-b
 kubectl exec -it web-1 -- bash
+curl web0.cluster-a.test-vm.default.svc.clusterset.local
 curl 242.0.255.253
 exit
 </code></pre></div><ul>
@@ -3475,19 +3485,19 @@ exit
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1702567887"></script>
-    <script src="/js/perfect-scrollbar.min.js?1702567887"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1702567887"></script>
-    <script src="/js/jquery.sticky.js?1702567887"></script>
-    <script src="/js/featherlight.min.js?1702567887"></script>
-    <script src="/js/highlight.pack.js?1702567887"></script>
+    <script src="/js/clipboard.min.js?1702996140"></script>
+    <script src="/js/perfect-scrollbar.min.js?1702996140"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1702996140"></script>
+    <script src="/js/jquery.sticky.js?1702996140"></script>
+    <script src="/js/featherlight.min.js?1702996140"></script>
+    <script src="/js/highlight.pack.js?1702996140"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1702567887"></script>
-    <script src="/js/learn.js?1702567887"></script>
-    <script src="/js/hugo-learn.js?1702567887"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1702996140"></script>
+    <script src="/js/learn.js?1702996140"></script>
+    <script src="/js/hugo-learn.js?1702996140"></script>
 
-    <link href="/mermaid/mermaid.css?1702567887" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1702567887"></script>
+    <link href="/mermaid/mermaid.css?1702996140" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1702996140"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
