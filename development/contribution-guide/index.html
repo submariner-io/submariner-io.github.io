@@ -12,20 +12,20 @@
     <title>Contributing to the Project :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1703069952" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1703069952" rel="stylesheet">
-    <link href="/css/hybrid.css?1703069952" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1703069952" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1703069952" rel="stylesheet">
-    <link href="/css/auto-complete.css?1703069952" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1703069952" rel="stylesheet">
-    <link href="/css/theme.css?1703069952" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1703069952" rel="stylesheet">
+    <link href="/css/nucleus.css?1703079680" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1703079680" rel="stylesheet">
+    <link href="/css/hybrid.css?1703079680" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1703079680" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1703079680" rel="stylesheet">
+    <link href="/css/auto-complete.css?1703079680" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1703079680" rel="stylesheet">
+    <link href="/css/theme.css?1703079680" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1703079680" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1703069952" rel="stylesheet">
+      <link href="/css/theme-blue.css?1703079680" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1703069952"></script>
+    <script src="/js/jquery-3.3.1.min.js?1703079680"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1703069952" rel="stylesheet">
+<link href="/css/fixes.css?1703079680" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/contribution-guide/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1703069952"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1703069952"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1703079680"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1703079680"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1703069952"></script>
+<script type="text/javascript" src="/js/search.js?1703079680"></script>
 
     
   </div>
@@ -2102,7 +2102,8 @@ as <a href="https://github.com/submariner-io/enhancements/pulls">pull requests t
 or as a general <a href="https://github.com/submariner-io/enhancements/issues/new?assignees=&amp;labels=enhancement&amp;template=enhancement.md">Enhancement Request issue</a>.</p>
 <h3 id="releases-repository">Releases Repository</h3>
 <p>Submariner&rsquo;s release is automated to a great extent. <a href="https://submariner.io/development/release-process/">The release process documentation</a> explains the details of a release. The release
-automation is maintained in the <a href="https://github.com/submariner-io/releases">releases repository</a>. It also hosts <code>subctl</code> binaries for all released versions.</p>
+automation is maintained in the <a href="https://github.com/submariner-io/releases">releases repository</a>. It also hosts <code>subctl</code> binaries for all released versions.
+Code is frozen during releases: no PRs unrelated to the release can be merged to the branch being released.</p>
 <h2 id="bugs-tasks-and-epics">Bugs, Tasks and Epics</h2>
 <p>In order to have more structure and clarity, we expand upon the standard GitHub issue and define 3 types of issues:
 Bugs, Tasks and Epics.</p>
@@ -2142,7 +2143,7 @@ While blocking bugs may delay the <a href="#general-availability">general availa
 <p>Each cycle will result in either a minor version bump or a major version bump in case backwards compatibility can&rsquo;t be maintained.</p>
 <h3 id="sprints">Sprints</h3>
 <p>Sprints are 3 week periods which encapsulate work on the release.
-Most sprints focus on active development of the current version, while some focus on additional aspects such as design and stabilization.
+Most sprints focus on active development of the current version, while the last one focuses on stabilization.
 Specific sprints and their contents are detailed in the following sections.</p>
 <p>Most sprints will end with a milestone pre-release as detailed in the following sections.
 This allows the community and project members to verify the project is stable and test any fixes or features that were added during the
@@ -2230,25 +2231,20 @@ Unassigned tasks will be left on the backlog board and
 worked on based on their priority.</p>
 <h4 id="feature-design">Feature Design</h4>
 <p>Project members are expected to work on the design for any <a href="#epics">epic</a> features assigned to them.
-During this sprint, project members will update their respective epics with any work identified during the design phase.
+Project members will update their respective epics with any work identified during the design phase.
 Project members are encouraged to perform proof of concept investigations in order to validate the design and clarify specific work items.</p>
 <p>In case additional work items are identified during the design, they should be opened as <a href="#tasks">tasks</a> and tracked under the respective epic.
 Such tasks are expected to follow the sizing guidelines from the <a href="#planning">Planning</a> stage.
 Specifically, tasks that are themselves epics due to their size should be identified and treated as such.</p>
 <p>Design proposals for epics should be submitted as <a href="https://github.com/submariner-io/enhancements/pulls">pull requests to the enhancements repository</a>, detailing the proposed design, any
 alternatives, and any changes necessary to the Submariner projects and APIs.</p>
-<p>The <a href="https://github.com/submariner-io/enhancements/pulls">pull requests to the enhancements repository</a> will be reviewed during the sprint, discussing any necessary changes or reservations.
+<p>The <a href="https://github.com/submariner-io/enhancements/pulls">pull requests to the enhancements repository</a> will be reviewed, discussing any necessary changes or reservations.
 Any pull request will need approval from at least 50% of the <a href="https://github.com/submariner-io/enhancements/blob/devel/CODEOWNERS">code owners of the enhancements repository</a>.
 The code owners list is an aggregate list of the code owners of all Sumbariner repositories.
 As soon as the pull request is reviewed and merged, work on the epic can begin.</p>
 <p>Project members are expected to review proposals from other members in addition to drafting their own proposals.
 If a project member has finished work on their proposal, they&rsquo;re encouraged to help with the other ongoing proposals.</p>
-<p>Only epics which were planned for the release will be reviewed at this stage.
-Any epic that was unplanned but seeks inclusion in the release should follow the <a href="#exception-process">exception process</a>.
-The same process will have to be followed for any epic that was planned but has not been agreed upon by the end of this sprint.
-Any such epics will be moved back to the <a href="#backlog-board">Backlog board</a> and reconsidered for the next release.</p>
-<p>In lieu of demos, the project will host a design review at the end of the sprint.
-All the approved epics and their designs will be presented.</p>
+<p>Project members are encouraged to host a design review for their enhancement proposal design.</p>
 <h4 id="development-milestones">Development Milestones</h4>
 <p>The milestone sprints are focused on development work for various <a href="#tasks">tasks</a> and <a href="#bugs">bugs</a>.
 Project members will work on any planned tasks and bugs, and will also work on unplanned bugs should they arise.
@@ -2256,7 +2252,7 @@ Any <a href="#unplanned-work">unplanned work</a> should follow the defined guide
 <p>Each sprint will end with a release to allow the community to test new features and fixed bugs.
 In total, three milestone sprints are planned:</p>
 <ul>
-<li>Two milestones ending with releases of milestone <code>m1</code> and milestone <code>m2</code>.</li>
+<li>Three sprints ending with the release of each milestone <code>m1</code>, <code>m2</code>, and <code>m3</code>.</li>
 <li>The last sprint ending with the release of the <a href="#release-candidates">release candidate</a> <code>rc0</code>.</li>
 </ul>
 <p>As detailed in the <a href="#sprints">sprints</a> section, each milestone release will be followed by a test day and the sprint meetings.</p>
@@ -2310,22 +2306,6 @@ This work is typically one of three types:</p>
 </ul>
 <p>The team <a href="https://docs.google.com/document/d/1ICvOBOUpIEI45Yqcjf26Z1e5mZNzYsEN-H7_3xx54jI">triages tasks and bugs as part of a weekly meeting</a>.
 The bugs can be worked on immediately, while other types of issues are described below.</p>
-<h4 id="exception-process">Exception Process</h4>
-<p>In some cases, a task or an epic will be reported in the middle of a release cycle.
-Small and medium sized tasks will be triaged and prioritized in the same manner as other issues.
-Once triaged and prioritized, small and medium tasks can be worked on according to their priority.</p>
-<p>Epics would need to undergo an exception process.
-The epic&rsquo;s proponent would need to bring it up to discussion in the weekly community meeting.
-It&rsquo;s up to the proponent to show why the new issue should take precedence over other pre-planned and triaged issues.
-A 50% approval from the <a href="https://submariner.io/community/contributor-roles/#member">Project Members</a> in attendance at the meeting or having voted before the meeting is required for an epic to be
-accepted in the middle of the release.
-If the epic is approved during the exception process:</p>
-<ul>
-<li>The team might de-scope other tasks or epics.</li>
-<li>A label <code>unplanned</code> should be added to it.</li>
-<li>It would require an enhancement proposal to be drafted and reviewed in the same manner as all other epics.</li>
-<li>If the enhancement proposal is accepted and merged, work on the epic can begin.</li>
-</ul>
 <h3 id="test-days">Test Days</h3>
 <p>Test days are held in order to validate pre-released versions by the project members and the wider community.
 Any bugs opened on a test day will be triaged soon after.</p>
@@ -3396,19 +3376,19 @@ Any bugs opened on a test day will be triaged soon after.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1703069952"></script>
-    <script src="/js/perfect-scrollbar.min.js?1703069952"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1703069952"></script>
-    <script src="/js/jquery.sticky.js?1703069952"></script>
-    <script src="/js/featherlight.min.js?1703069952"></script>
-    <script src="/js/highlight.pack.js?1703069952"></script>
+    <script src="/js/clipboard.min.js?1703079680"></script>
+    <script src="/js/perfect-scrollbar.min.js?1703079680"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1703079680"></script>
+    <script src="/js/jquery.sticky.js?1703079680"></script>
+    <script src="/js/featherlight.min.js?1703079680"></script>
+    <script src="/js/highlight.pack.js?1703079680"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1703069952"></script>
-    <script src="/js/learn.js?1703069952"></script>
-    <script src="/js/hugo-learn.js?1703069952"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1703079680"></script>
+    <script src="/js/learn.js?1703079680"></script>
+    <script src="/js/hugo-learn.js?1703079680"></script>
 
-    <link href="/mermaid/mermaid.css?1703069952" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1703069952"></script>
+    <link href="/mermaid/mermaid.css?1703079680" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1703079680"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
