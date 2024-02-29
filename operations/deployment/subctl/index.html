@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1707219466" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1707219466" rel="stylesheet">
-    <link href="/css/hybrid.css?1707219466" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1707219466" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1707219466" rel="stylesheet">
-    <link href="/css/auto-complete.css?1707219466" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1707219466" rel="stylesheet">
-    <link href="/css/theme.css?1707219466" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1707219466" rel="stylesheet">
+    <link href="/css/nucleus.css?1709223577" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1709223577" rel="stylesheet">
+    <link href="/css/hybrid.css?1709223577" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1709223577" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1709223577" rel="stylesheet">
+    <link href="/css/auto-complete.css?1709223577" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1709223577" rel="stylesheet">
+    <link href="/css/theme.css?1709223577" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1709223577" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1707219466" rel="stylesheet">
+      <link href="/css/theme-blue.css?1709223577" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1707219466"></script>
+    <script src="/js/jquery-3.3.1.min.js?1709223577"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1707219466" rel="stylesheet">
+<link href="/css/fixes.css?1709223577" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1707219466"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1707219466"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1709223577"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1709223577"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1707219466"></script>
+<script type="text/javascript" src="/js/search.js?1709223577"></script>
 
     
   </div>
@@ -2419,11 +2419,13 @@ deployment.</p>
 <p><code>subctl show all [flags]</code></p>
 <p>Shows the aggregated information from all the other show commands.</p>
 <h3 id="verify"><code>verify</code></h3>
-<p><code>subctl verify --context &lt;context1&gt; --tocontext &lt;context2&gt; [flags]</code></p>
+<p><code>subctl verify --context &lt;context1&gt; --tocontext &lt;context2&gt; [--extracontext &lt;context3&gt;] [flags]</code></p>
 <p>The <code>verify</code> command verifies a Submariner deployment between two clusters is functioning properly. <code>&lt;context1&gt;</code> will be
 <code>ClusterA</code> in the reports, while <code>&lt;context2&gt;</code> will be <code>ClusterB</code> in the reports. The <code>--verbose</code> flag is recommended to see what&rsquo;s
 happening during the tests.</p>
-<p>There are several suites of verifications that can be performed. By default all verifications are performed.  Some verifications are deemed
+<p>Some Service Discovery tests require a third cluster, specified via the <code>--extracontext</code> arg, to verify additional functionality. If the
+third cluster is not specified, those tests are skipped.</p>
+<p>There are several suites of verifications that can be performed. By default, all verifications are performed. Some verifications are deemed
 disruptive in that they change some state of the clusters as a side effect.  If running the command interactively, you will be prompted for
 confirmation to perform disruptive verifications unless the <code>--disruptive-tests</code> flag is also specified. If running non-interactively (that
 is with no stdin), <code>--disruptive-tests</code> must be specified otherwise disruptive verifications are skipped.</p>
@@ -4040,19 +4042,19 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1707219466"></script>
-    <script src="/js/perfect-scrollbar.min.js?1707219466"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1707219466"></script>
-    <script src="/js/jquery.sticky.js?1707219466"></script>
-    <script src="/js/featherlight.min.js?1707219466"></script>
-    <script src="/js/highlight.pack.js?1707219466"></script>
+    <script src="/js/clipboard.min.js?1709223577"></script>
+    <script src="/js/perfect-scrollbar.min.js?1709223577"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1709223577"></script>
+    <script src="/js/jquery.sticky.js?1709223577"></script>
+    <script src="/js/featherlight.min.js?1709223577"></script>
+    <script src="/js/highlight.pack.js?1709223577"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1707219466"></script>
-    <script src="/js/learn.js?1707219466"></script>
-    <script src="/js/hugo-learn.js?1707219466"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1709223577"></script>
+    <script src="/js/learn.js?1709223577"></script>
+    <script src="/js/hugo-learn.js?1709223577"></script>
 
-    <link href="/mermaid/mermaid.css?1707219466" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1707219466"></script>
+    <link href="/mermaid/mermaid.css?1709223577" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1709223577"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
