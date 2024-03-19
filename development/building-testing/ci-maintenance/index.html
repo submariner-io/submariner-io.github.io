@@ -12,20 +12,20 @@
     <title>CI/CD Maintenance :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1710744515" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1710744515" rel="stylesheet">
-    <link href="/css/hybrid.css?1710744515" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1710744515" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1710744515" rel="stylesheet">
-    <link href="/css/auto-complete.css?1710744515" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1710744515" rel="stylesheet">
-    <link href="/css/theme.css?1710744515" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1710744515" rel="stylesheet">
+    <link href="/css/nucleus.css?1710862800" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1710862800" rel="stylesheet">
+    <link href="/css/hybrid.css?1710862800" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1710862800" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1710862800" rel="stylesheet">
+    <link href="/css/auto-complete.css?1710862800" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1710862800" rel="stylesheet">
+    <link href="/css/theme.css?1710862800" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1710862800" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1710744515" rel="stylesheet">
+      <link href="/css/theme-blue.css?1710862800" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1710744515"></script>
+    <script src="/js/jquery-3.3.1.min.js?1710862800"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1710744515" rel="stylesheet">
+<link href="/css/fixes.css?1710862800" rel="stylesheet">
 
   </head>
   <body class="" data-url="/development/building-testing/ci-maintenance/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1710744515"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1710744515"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1710862800"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1710862800"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1710744515"></script>
+<script type="text/javascript" src="/js/search.js?1710862800"></script>
 
     
   </div>
@@ -2118,19 +2118,19 @@ Again, we should always use SHA-based versions, not moveable references like tag
 <td align="left">CI should run against the latest Kubernetes version by default.</td>
 </tr>
 <tr>
-<td align="left">Basic Kubernetes Support</td>
-<td align="left">All non-latest supported versions</td>
-<td align="left">One defaults-only E2E for each non-latest supported Kubernetes version.</td>
+<td align="left">Full E2E</td>
+<td align="left">Top/bottom of supported range</td>
+<td align="left">Full E2E CI matrix should use the latest Kubernetes version and the oldest non-EOL Kubernetes version.</td>
 </tr>
 <tr>
 <td align="left">Full Kubernetes Support</td>
-<td align="left">All non-latest supported versions</td>
-<td align="left">Workflow to run all CI for all of the currently-supported, non-latest Kubernetes versions. Run periodically, on releases, or manually by adding the <code>e2e-all-k8s</code> label.</td>
+<td align="left">All other non-latest supported versions</td>
+<td align="left">Full E2E CI matrix with all non-EOL Kubernetes versions not tested in E2E-Full. Run periodically, on releases, or manually by adding the <code>e2e-all-k8s</code> label.</td>
 </tr>
 <tr>
 <td align="left">Unsupported Kubernetes Cut-off</td>
 <td align="left">Oldest working version</td>
-<td align="left">One defaults-only E2E for the oldest Kubernetes version known to work with Submariner. This tests the cut-off version used by <code>subctl</code> to prevent installing Submariner in environments that are known to be unsupported.</td>
+<td align="left">E2E for the oldest Kubernetes version known to work with Submariner. This tests the cut-off version used by <code>subctl</code> to prevent installing Submariner in environments that are known to be unsupported.</td>
 </tr>
 </tbody>
 </table>
@@ -3191,19 +3191,19 @@ These versions should be periodically updated.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1710744515"></script>
-    <script src="/js/perfect-scrollbar.min.js?1710744515"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1710744515"></script>
-    <script src="/js/jquery.sticky.js?1710744515"></script>
-    <script src="/js/featherlight.min.js?1710744515"></script>
-    <script src="/js/highlight.pack.js?1710744515"></script>
+    <script src="/js/clipboard.min.js?1710862800"></script>
+    <script src="/js/perfect-scrollbar.min.js?1710862800"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1710862800"></script>
+    <script src="/js/jquery.sticky.js?1710862800"></script>
+    <script src="/js/featherlight.min.js?1710862800"></script>
+    <script src="/js/highlight.pack.js?1710862800"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1710744515"></script>
-    <script src="/js/learn.js?1710744515"></script>
-    <script src="/js/hugo-learn.js?1710744515"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1710862800"></script>
+    <script src="/js/learn.js?1710862800"></script>
+    <script src="/js/hugo-learn.js?1710862800"></script>
 
-    <link href="/mermaid/mermaid.css?1710744515" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1710744515"></script>
+    <link href="/mermaid/mermaid.css?1710862800" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1710862800"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
