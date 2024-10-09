@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1728484242" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1728484242" rel="stylesheet">
-    <link href="/css/hybrid.css?1728484242" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1728484242" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1728484242" rel="stylesheet">
-    <link href="/css/auto-complete.css?1728484242" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1728484242" rel="stylesheet">
-    <link href="/css/theme.css?1728484242" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1728484242" rel="stylesheet">
+    <link href="/css/nucleus.css?1728487374" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1728487374" rel="stylesheet">
+    <link href="/css/hybrid.css?1728487374" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1728487374" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1728487374" rel="stylesheet">
+    <link href="/css/auto-complete.css?1728487374" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1728487374" rel="stylesheet">
+    <link href="/css/theme.css?1728487374" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1728487374" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1728484242" rel="stylesheet">
+      <link href="/css/theme-blue.css?1728487374" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1728484242"></script>
+    <script src="/js/jquery-3.3.1.min.js?1728487374"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1728484242" rel="stylesheet">
+<link href="/css/fixes.css?1728487374" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1728484242"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1728484242"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1728487374"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1728487374"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1728484242"></script>
+<script type="text/javascript" src="/js/search.js?1728487374"></script>
 
     
   </div>
@@ -2054,6 +2054,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0173-october-9-2024">v0.17.3 (October 9, 2024)</a></li>
     <li><a href="#v0181-october-7-2024">v0.18.1 (October 7, 2024)</a></li>
     <li><a href="#v0149-july-26-2024">v0.14.9 (July 26, 2024)</a></li>
     <li><a href="#v0155-july-23-2024">v0.15.5 (July 23, 2024)</a></li>
@@ -2173,6 +2174,17 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0173-october-9-2024">v0.17.3 (October 9, 2024)</h2>
+<ul>
+<li>Fixed an issue with Service Discovery that caused significant latencies when exporting a large number of service.</li>
+<li>Fixed an issue with Calico wrongly overwriting static routes added by RouteAgent.</li>
+<li>Fixed an issue with detecting Calico CNI interface after node reboot.</li>
+<li>The Service Discovery CoreDNS ClusterIP service now also defines a TCP port to support TCP retries after truncation per
+RFC1035 and RFC2181.</li>
+<li>Fixed an issue with Service Discovery that caused a new <code>EndpointSlice</code> to be created when the labels on the exporting <code>Service</code>
+were updated.</li>
+<li>New options were added to <code>subctl cloud prepare</code> to support a custom vpc for AWS.</li>
+</ul>
 <h2 id="v0181-october-7-2024">v0.18.1 (October 7, 2024)</h2>
 <ul>
 <li>Fixed an issue with Service Discovery that caused significant latencies when exporting a large number of service.</li>
@@ -4165,19 +4177,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1728484242"></script>
-    <script src="/js/perfect-scrollbar.min.js?1728484242"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1728484242"></script>
-    <script src="/js/jquery.sticky.js?1728484242"></script>
-    <script src="/js/featherlight.min.js?1728484242"></script>
-    <script src="/js/highlight.pack.js?1728484242"></script>
+    <script src="/js/clipboard.min.js?1728487374"></script>
+    <script src="/js/perfect-scrollbar.min.js?1728487374"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1728487374"></script>
+    <script src="/js/jquery.sticky.js?1728487374"></script>
+    <script src="/js/featherlight.min.js?1728487374"></script>
+    <script src="/js/highlight.pack.js?1728487374"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1728484242"></script>
-    <script src="/js/learn.js?1728484242"></script>
-    <script src="/js/hugo-learn.js?1728484242"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1728487374"></script>
+    <script src="/js/learn.js?1728487374"></script>
+    <script src="/js/hugo-learn.js?1728487374"></script>
 
-    <link href="/mermaid/mermaid.css?1728484242" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1728484242"></script>
+    <link href="/mermaid/mermaid.css?1728487374" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1728487374"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
