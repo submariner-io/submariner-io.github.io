@@ -12,20 +12,20 @@
     <title>Releases :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1729174728" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1729174728" rel="stylesheet">
-    <link href="/css/hybrid.css?1729174728" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1729174728" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1729174728" rel="stylesheet">
-    <link href="/css/auto-complete.css?1729174728" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1729174728" rel="stylesheet">
-    <link href="/css/theme.css?1729174728" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1729174728" rel="stylesheet">
+    <link href="/css/nucleus.css?1729867136" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1729867136" rel="stylesheet">
+    <link href="/css/hybrid.css?1729867136" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1729867136" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1729867136" rel="stylesheet">
+    <link href="/css/auto-complete.css?1729867136" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1729867136" rel="stylesheet">
+    <link href="/css/theme.css?1729867136" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1729867136" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1729174728" rel="stylesheet">
+      <link href="/css/theme-blue.css?1729867136" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1729174728"></script>
+    <script src="/js/jquery-3.3.1.min.js?1729867136"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1729174728" rel="stylesheet">
+<link href="/css/fixes.css?1729867136" rel="stylesheet">
 
   </head>
   <body class="" data-url="/community/releases/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1729174728"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1729174728"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1729867136"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1729867136"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1729174728"></script>
+<script type="text/javascript" src="/js/search.js?1729867136"></script>
 
     
   </div>
@@ -2054,14 +2054,20 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#v0190-october-25-2024">v0.19.0 (October 25, 2024)</a>
+      <ul>
+        <li><a href="#new-features">New features</a></li>
+        <li><a href="#other-changes">Other changes</a></li>
+      </ul>
+    </li>
     <li><a href="#v0173-october-9-2024">v0.17.3 (October 9, 2024)</a></li>
     <li><a href="#v0181-october-7-2024">v0.18.1 (October 7, 2024)</a></li>
     <li><a href="#v0149-july-26-2024">v0.14.9 (July 26, 2024)</a></li>
     <li><a href="#v0155-july-23-2024">v0.15.5 (July 23, 2024)</a></li>
     <li><a href="#v0180-july-4-2024">v0.18.0 (July 4, 2024)</a>
       <ul>
-        <li><a href="#new-features">New features</a></li>
-        <li><a href="#other-changes">Other changes</a></li>
+        <li><a href="#new-features-1">New features</a></li>
+        <li><a href="#other-changes-1">Other changes</a></li>
       </ul>
     </li>
     <li><a href="#v0172-june-26-2024">v0.17.2 (June 26, 2024)</a></li>
@@ -2069,8 +2075,8 @@
     <li><a href="#v0171-april-17-2024">v0.17.1 (April 17, 2024)</a></li>
     <li><a href="#v0170-february-26-2024">v0.17.0 (February 26, 2024)</a>
       <ul>
-        <li><a href="#new-features-1">New features</a></li>
-        <li><a href="#other-changes-1">Other changes</a></li>
+        <li><a href="#new-features-2">New features</a></li>
+        <li><a href="#other-changes-2">Other changes</a></li>
       </ul>
     </li>
     <li><a href="#v0163-january-11-2024">v0.16.3 (January 11, 2024)</a></li>
@@ -2079,8 +2085,8 @@
     <li><a href="#v0147-october-17-2023">v0.14.7 (October 17, 2023)</a></li>
     <li><a href="#v0160-october-2-2023">v0.16.0 (October 2, 2023)</a>
       <ul>
-        <li><a href="#new-features-2">New features</a></li>
-        <li><a href="#other-changes-2">Other changes</a></li>
+        <li><a href="#new-features-3">New features</a></li>
+        <li><a href="#other-changes-3">Other changes</a></li>
         <li><a href="#known-issues">Known issues</a></li>
       </ul>
     </li>
@@ -2094,8 +2100,8 @@
     <li><a href="#v0144-may-4-2023">v0.14.4 (May 4, 2023)</a></li>
     <li><a href="#v0150-may-2-2023">v0.15.0 (May 2, 2023)</a>
       <ul>
-        <li><a href="#new-features-3">New features</a></li>
-        <li><a href="#other-changes-3">Other changes</a></li>
+        <li><a href="#new-features-4">New features</a></li>
+        <li><a href="#other-changes-4">Other changes</a></li>
       </ul>
     </li>
     <li><a href="#v0143-march-16-2023">v0.14.3 (March 16, 2023)</a></li>
@@ -2107,24 +2113,24 @@
     <li><a href="#v0132-november-30-2022">v0.13.2 (November 30, 2022)</a></li>
     <li><a href="#v0140-november-21-2022">v0.14.0 (November 21, 2022)</a>
       <ul>
-        <li><a href="#new-features-4">New features</a></li>
-        <li><a href="#other-changes-4">Other changes</a></li>
+        <li><a href="#new-features-5">New features</a></li>
+        <li><a href="#other-changes-5">Other changes</a></li>
       </ul>
     </li>
     <li><a href="#v0131-september-22-2022">v0.13.1 (September 22, 2022)</a></li>
     <li><a href="#v0130-july-18-2022">v0.13.0 (July 18, 2022)</a>
       <ul>
-        <li><a href="#new-features-5">New features</a></li>
-        <li><a href="#other-changes-5">Other changes</a></li>
+        <li><a href="#new-features-6">New features</a></li>
+        <li><a href="#other-changes-6">Other changes</a></li>
       </ul>
     </li>
     <li><a href="#v0122-july-7-2022">v0.12.2 (July 7, 2022)</a></li>
     <li><a href="#v0121-may-10-2022">v0.12.1 (May 10, 2022)</a></li>
     <li><a href="#v0120-march-21-2022">v0.12.0 (March 21, 2022)</a>
       <ul>
-        <li><a href="#new-features-6">New features</a></li>
+        <li><a href="#new-features-7">New features</a></li>
         <li><a href="#bug-fixes">Bug fixes</a></li>
-        <li><a href="#other-changes-6">Other changes</a></li>
+        <li><a href="#other-changes-7">Other changes</a></li>
         <li><a href="#known-issues-1">Known Issues</a></li>
       </ul>
     </li>
@@ -2174,6 +2180,29 @@
 
 
 	<!-- markdownlint-disable no-duplicate-header -->
+<h2 id="v0190-october-25-2024">v0.19.0 (October 25, 2024)</h2>
+<h3 id="new-features">New features</h3>
+<ul>
+<li>Service Discovery now propagates the session affinity information from the exported service to the aggregated <code>ServiceImport</code>.</li>
+<li>Service Discovery can now allocate a cluster set virtual IP for exported services. This is an opt-in feature that can be enabled
+per service via the <code>lighthouse.submariner.io/use-clusterset-ip</code> annotation on the <code>ServiceExport</code> or automatically for all services via
+the <code>enable-clusterset-ip</code> option on <code>subctl deploy-broker</code>. Note that while DNS queries will return the cluster set virtual IP,
+Service Discovery does not route this virtual IP and relies on some external component to do so.</li>
+<li>Each Route Agent now monitors the connectivity to each remote cluster&rsquo;s gateway using ICMP and the health of each connection is
+reported by <code>subctl diagnose</code>.</li>
+<li>New options were added to <code>subctl cloud prepare</code> to support a custom vpc for AWS.</li>
+</ul>
+<h3 id="other-changes">Other changes</h3>
+<ul>
+<li>Fixed an issue with Service Discovery that caused significant latencies when exporting a large number of service.</li>
+<li>Fixed an issue which could cause the wrong pod CIDR to be discovered on join.</li>
+<li>The Service Discovery CoreDNS ClusterIP service now also defines a TCP port to support TCP retries after truncation per
+RFC1035 and RFC2181.</li>
+<li>Fixed an issue with Calico wrongly overwriting static routes added by RouteAgent.</li>
+<li>Fixed an issue with detecting Calico CNI interface after node reboot.</li>
+<li>Fixed an issue with Service Discovery that caused a new <code>EndpointSlice</code> to be created when the labels on the exporting <code>Service</code>
+were updated.</li>
+</ul>
 <h2 id="v0173-october-9-2024">v0.17.3 (October 9, 2024)</h2>
 <ul>
 <li>Fixed an issue with Service Discovery that caused significant latencies when exporting a large number of service.</li>
@@ -2207,13 +2236,13 @@ potential attack surface.</li>
 </ul>
 <p><strong>Note</strong>: this version replaces v0.15.4.</p>
 <h2 id="v0180-july-4-2024">v0.18.0 (July 4, 2024)</h2>
-<h3 id="new-features">New features</h3>
+<h3 id="new-features-1">New features</h3>
 <ul>
 <li><code>subctl join</code> and other commands now support HTTP proxy arguments corresponding to the HTTP proxy environment variables
 that are propagated to the various pods.</li>
 <li><code>subctl verify</code> now outputs a short description of each test that is run.</li>
 </ul>
-<h3 id="other-changes">Other changes</h3>
+<h3 id="other-changes-1">Other changes</h3>
 <ul>
 <li>Fixed an issue in Service Discovery where un-exporting a Service on one cluster and then quickly exporting it on another cluster could
 result in a missing <code>ServiceImport</code> resource and cause name resolution failures.</li>
@@ -2250,7 +2279,7 @@ potential attack surface.</li>
 result in a missing <code>ServiceImport</code> resource and cause name resolution failures.</li>
 </ul>
 <h2 id="v0170-february-26-2024">v0.17.0 (February 26, 2024)</h2>
-<h3 id="new-features-1">New features</h3>
+<h3 id="new-features-2">New features</h3>
 <ul>
 <li>The new <code>--only basic-connectivity</code> option on <code>subctl verify</code> runs a smaller set of connectivity tests as a quick sanity check when
 time is a constraint.</li>
@@ -2260,7 +2289,7 @@ broker URL (which is usually derived from the context used to access the broker,
 <li><code>subctl verify</code> has a new flag, <code>--extracontext</code>, to specify the context for a third cluster that is required for some Service Discovery
 tests.</li>
 </ul>
-<h3 id="other-changes-1">Other changes</h3>
+<h3 id="other-changes-2">Other changes</h3>
 <ul>
 <li>The Globalnet controller now employs Kubernetes leader election to ensure proper continuity during fail-over and avoid potential race
 conditions.</li>
@@ -2333,7 +2362,7 @@ temporarily unavailable.</li>
 <li>Reduced data path downtime with Libreswan cable driver when gateway pod restarts.</li>
 </ul>
 <h2 id="v0160-october-2-2023">v0.16.0 (October 2, 2023)</h2>
-<h3 id="new-features-2">New features</h3>
+<h3 id="new-features-3">New features</h3>
 <ul>
 <li>The <code>subctl cloud prepare azure</code> command has a new flag, <code>air-gapped</code>, to indicate the cluster is in an air-gapped
 environment which may forbid certain configurations in a disconnected Azure installation.</li>
@@ -2354,7 +2383,7 @@ and will provide an appropriate error message.</li>
 <li>Submariner now explicitly enables forwarding on the interfaces that it creates to support forwarding even when
 global forwarding on the node is turned off.</li>
 </ul>
-<h3 id="other-changes-2">Other changes</h3>
+<h3 id="other-changes-3">Other changes</h3>
 <ul>
 <li>Reduced data path downtime with Libreswan cable driver when gateway pod restarts.</li>
 <li>Fixed an issue with OVNKubernetes CNI where routes could be accidentally deleted during cluster restart, or
@@ -2466,7 +2495,7 @@ This fix was necessary for RHEL 9 nodes where the setting was sometimes getting 
 <li>The <code>subctl gather</code> command now collects the <code>ipset</code> information from all cluster nodes.</li>
 </ul>
 <h2 id="v0150-may-2-2023">v0.15.0 (May 2, 2023)</h2>
-<h3 id="new-features-3">New features</h3>
+<h3 id="new-features-4">New features</h3>
 <ul>
 <li>To be compliant with the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api">Kubernetes Multicluster Services specification</a>, Service Discovery now distributes a single aggregated
 ServiceImport to each cluster in the exported service&rsquo;s namespace. Previously, each cluster distributed its own ServiceImport copy that
@@ -2497,7 +2526,7 @@ was placed in the <code>submariner-operator</code> namespace.</li>
 <li>Deprecated the <code>subctl cloud prepare ... --dedicated-gateway</code> flag, as it&rsquo;s not actually used.</li>
 <li>Deprecated the <code>subctl cloud prepare generic</code> command, as it&rsquo;s not actually used.</li>
 </ul>
-<h3 id="other-changes-3">Other changes</h3>
+<h3 id="other-changes-4">Other changes</h3>
 <ul>
 <li>Service Discovery-only deployments now work properly without the connectivity component deployed.</li>
 <li>Names of <code>EndpointSlice</code> objects now include their namespace to avoid conflicts between services with the same name in multiple namespaces.</li>
@@ -2618,7 +2647,7 @@ to avoid pod security errors.</li>
 <li>Extended the ability to customize the default TCP MSS clamping value set by Submariner to non-Globalnet deployments.</li>
 </ul>
 <h2 id="v0140-november-21-2022">v0.14.0 (November 21, 2022)</h2>
-<h3 id="new-features-4">New features</h3>
+<h3 id="new-features-5">New features</h3>
 <ul>
 <li>Users no longer need to open ports 8080 and 8081 on the host for querying metrics. A new <code>submariner-metrics-proxy</code> DaemonSet
 runs pods on gateway nodes and forwards HTTP requests for metrics services to gateway and Globalnet pods running on the nodes.
@@ -2676,7 +2705,7 @@ release.</li>
 </ul>
 </li>
 </ul>
-<h3 id="other-changes-4">Other changes</h3>
+<h3 id="other-changes-5">Other changes</h3>
 <ul>
 <li>The Flannel CNI is now properly identified during join.</li>
 <li>A new ServiceExport status condition type named Synced was added that indicates whether or not the ServiceImport
@@ -2718,7 +2747,7 @@ be used to verify if <code>submariner_router</code> is pinned to the proper Gate
 <li>Set <code>ReadHeaderTimeout</code> (new in Go 1.18) to mitigate potential Slowloris attacks.</li>
 </ul>
 <h2 id="v0130-july-18-2022">v0.13.0 (July 18, 2022)</h2>
-<h3 id="new-features-5">New features</h3>
+<h3 id="new-features-6">New features</h3>
 <ul>
 <li>All Submariner container images are now available for x86-64 and ARM64 architectures.</li>
 <li>Support was added in <code>subctl cloud prepare</code> to deploy Submariner on OpenShift on Microsoft Azure. This automatically configures the
@@ -2732,7 +2761,7 @@ Submariner automatically routes the traffic and provides DNS resolution.</li>
 <li>Added a new <code>subctl show brokers</code> command that displays information about the Submariner Brokers installed.</li>
 <li>The <code>subctl diagnose</code> command was extended to verify inter-cluster connectivity when Submariner is deployed using a LoadBalancer Service.</li>
 </ul>
-<h3 id="other-changes-5">Other changes</h3>
+<h3 id="other-changes-6">Other changes</h3>
 <ul>
 <li>The <code>submariner-operator</code> namespace is labeled in accordance with <em>KEP-2579: Pod Security Admission Control</em> (default in Kubernetes 1.24)
 to allow the Pods to be privileged.</li>
@@ -2772,7 +2801,7 @@ clamping the TCP MSS to a fixed value derived from the default interface MTU sub
 <li>As part of <code>subctl uninstall</code> operation, we now remove the <code>submariner.io/globalIp</code> annotation that is added on the gateway node.</li>
 </ul>
 <h2 id="v0120-march-21-2022">v0.12.0 (March 21, 2022)</h2>
-<h3 id="new-features-6">New features</h3>
+<h3 id="new-features-7">New features</h3>
 <ul>
 <li>Added a new <code>subctl uninstall</code> command that removes all Submariner components and dataplane artifacts, such as iptables rules and routing
 table entries, from a cluster.</li>
@@ -2800,7 +2829,7 @@ table entries, from a cluster.</li>
 <li>Services without selectors can now be resolved across the ClusterSet.</li>
 <li><code>subctl diagnose firewall inter-cluster</code> now works correctly for the VXLAN cable driver.</li>
 </ul>
-<h3 id="other-changes-6">Other changes</h3>
+<h3 id="other-changes-7">Other changes</h3>
 <ul>
 <li>The broker token and IPsec PSK are now stored in secrets which are used in preference to the corresponding fields in the Submariner CR,
 which are now deprecated. For backwards compatibility and to simplify upgrades, the deprecated fields are still populated but will be
@@ -4177,19 +4206,19 @@ deployment of Submariner easier.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1729174728"></script>
-    <script src="/js/perfect-scrollbar.min.js?1729174728"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1729174728"></script>
-    <script src="/js/jquery.sticky.js?1729174728"></script>
-    <script src="/js/featherlight.min.js?1729174728"></script>
-    <script src="/js/highlight.pack.js?1729174728"></script>
+    <script src="/js/clipboard.min.js?1729867136"></script>
+    <script src="/js/perfect-scrollbar.min.js?1729867136"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1729867136"></script>
+    <script src="/js/jquery.sticky.js?1729867136"></script>
+    <script src="/js/featherlight.min.js?1729867136"></script>
+    <script src="/js/highlight.pack.js?1729867136"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1729174728"></script>
-    <script src="/js/learn.js?1729174728"></script>
-    <script src="/js/hugo-learn.js?1729174728"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1729867136"></script>
+    <script src="/js/learn.js?1729867136"></script>
+    <script src="/js/hugo-learn.js?1729867136"></script>
 
-    <link href="/mermaid/mermaid.css?1729174728" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1729174728"></script>
+    <link href="/mermaid/mermaid.css?1729867136" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1729867136"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
