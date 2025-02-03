@@ -12,20 +12,20 @@
     <title>subctl :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1738575678" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1738575678" rel="stylesheet">
-    <link href="/css/hybrid.css?1738575678" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1738575678" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1738575678" rel="stylesheet">
-    <link href="/css/auto-complete.css?1738575678" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1738575678" rel="stylesheet">
-    <link href="/css/theme.css?1738575678" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1738575678" rel="stylesheet">
+    <link href="/css/nucleus.css?1738602680" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1738602680" rel="stylesheet">
+    <link href="/css/hybrid.css?1738602680" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1738602680" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1738602680" rel="stylesheet">
+    <link href="/css/auto-complete.css?1738602680" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1738602680" rel="stylesheet">
+    <link href="/css/theme.css?1738602680" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1738602680" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1738575678" rel="stylesheet">
+      <link href="/css/theme-blue.css?1738602680" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1738575678"></script>
+    <script src="/js/jquery-3.3.1.min.js?1738602680"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1738575678" rel="stylesheet">
+<link href="/css/fixes.css?1738602680" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/deployment/subctl/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1738575678"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1738575678"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1738602680"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1738602680"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1738575678"></script>
+<script type="text/javascript" src="/js/search.js?1738602680"></script>
 
     
   </div>
@@ -2517,6 +2517,7 @@ is with no stdin), <code>--disruptive-tests</code> must be specified otherwise d
 This suite requires a single gateway configured on <code>ClusterA</code> and other available Worker nodes capable of serving as gateways. Please note
 that this verification is disruptive.</p>
 <h4 id="verify-flags"><code>verify</code> flags</h4>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -2559,6 +2560,7 @@ that this verification is disruptive.</p>
 </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable line-length -->
 <h3 id="benchmark"><code>benchmark</code></h3>
 <h4 id="benchmark-throughput"><code>benchmark throughput</code></h4>
 <p><code>subctl benchmark throughput --context &lt;context1&gt; [--tocontext &lt;context2&gt;] [flags]</code></p>
@@ -2616,17 +2618,17 @@ in the cluster that may prevent Submariner from working properly.</p>
 <tr>
 <td align="left"><code>deployment</code></td>
 <td align="left">checks that the Submariner components are properly deployed and running with no overlapping CIDRs</td>
-<td></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"><code>connections</code></td>
 <td align="left">checks that the Gateway connections to other clusters are all established</td>
-<td></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"><code>k8s-version</code></td>
 <td align="left">checks if Submariner can be deployed on the Kubernetes version</td>
-<td></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"><code>kube-proxy-mode [flags]</code></td>
@@ -2636,7 +2638,7 @@ in the cluster that may prevent Submariner from working properly.</p>
 <tr>
 <td align="left"><code>cni</code></td>
 <td align="left">checks if the detected CNI network plugin is supported by Submariner</td>
-<td></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"><code>firewall intra-cluster [flags]</code></td>
@@ -2651,7 +2653,7 @@ in the cluster that may prevent Submariner from working properly.</p>
 <tr>
 <td align="left"><code>all</code></td>
 <td align="left">runs all diagnostic checks (except those requiring two kubecontexts)</td>
-<td></td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
@@ -2699,6 +2701,7 @@ Pod logs are written to files with the format <code>&lt;cluster-name&gt;_&lt;pod
 <p>The specific information collected is configurable. As part of gathering <code>connectivity</code> resources, it also collects information specific
 to the CNI and Submariner cable driver in use from each node using file format <code>&lt;cluster-name&gt;_&lt;node-name&gt;_&lt;command&gt;.yaml</code></p>
 <h4 id="gather-flags"><code>gather</code> flags</h4>
+<!-- markdownlint-disable line-length -->
 <table>
 <thead>
 <tr>
@@ -2717,6 +2720,7 @@ to the CNI and Submariner cable driver in use from each node using file format <
 </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable line-length -->
 <h4 id="gather-examples"><code>gather</code> examples</h4>
 <p>These examples assume that kubeconfigs have been passed using the <code>KUBECONFIG</code> environment variable. Alternately,
 add the <code>--kubeconfig</code> flag if the environment variable is not set.</p>
@@ -4134,19 +4138,19 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1738575678"></script>
-    <script src="/js/perfect-scrollbar.min.js?1738575678"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1738575678"></script>
-    <script src="/js/jquery.sticky.js?1738575678"></script>
-    <script src="/js/featherlight.min.js?1738575678"></script>
-    <script src="/js/highlight.pack.js?1738575678"></script>
+    <script src="/js/clipboard.min.js?1738602680"></script>
+    <script src="/js/perfect-scrollbar.min.js?1738602680"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1738602680"></script>
+    <script src="/js/jquery.sticky.js?1738602680"></script>
+    <script src="/js/featherlight.min.js?1738602680"></script>
+    <script src="/js/highlight.pack.js?1738602680"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1738575678"></script>
-    <script src="/js/learn.js?1738575678"></script>
-    <script src="/js/hugo-learn.js?1738575678"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1738602680"></script>
+    <script src="/js/learn.js?1738602680"></script>
+    <script src="/js/hugo-learn.js?1738602680"></script>
 
-    <link href="/mermaid/mermaid.css?1738575678" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1738575678"></script>
+    <link href="/mermaid/mermaid.css?1738602680" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1738602680"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
