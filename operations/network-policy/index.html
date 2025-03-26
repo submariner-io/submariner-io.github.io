@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Secrets :: Submariner k8s project documentation website</title>
+    <title>Network Policy :: Submariner k8s project documentation website</title>
 
     
     <link href="/css/nucleus.css?1742998113" rel="stylesheet">
@@ -37,7 +37,7 @@
 <link href="/css/fixes.css?1742998113" rel="stylesheet">
 
   </head>
-  <body class="" data-url="/development/security/secrets/">
+  <body class="" data-url="/operations/network-policy/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -770,7 +770,7 @@
   
     
     <li data-nav-id="/operations/" title="Operations" class="dd-item 
-        
+        parent
         
         
         ">
@@ -1037,8 +1037,8 @@
   
     
     <li data-nav-id="/operations/network-policy/" title="Network Policy" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/operations/network-policy/">
@@ -1362,7 +1362,7 @@
   
     
     <li data-nav-id="/development/" title="Development" class="dd-item 
-        parent
+        
         
         
         ">
@@ -1669,7 +1669,7 @@
   
     
     <li data-nav-id="/development/security/" title="Security" class="dd-item 
-        parent
+        
         
         
         ">
@@ -1756,8 +1756,8 @@
   
     
     <li data-nav-id="/development/security/secrets/" title="Secrets" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/development/security/secrets/">
@@ -2036,7 +2036,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/development/security/secrets/_index.en.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/submariner-io/website/edit/devel/src/content/operations/network-policy/_index.en.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -2067,13 +2067,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/'></a> > <a href='/development/'>Development</a> > <a href='/development/security/'>Security</a> > Secrets
-          
-         
+            <a href='/'></a> > <a href='/operations/'>Operations</a> > Network Policy
           
          
           
@@ -2086,7 +2080,12 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#local-operation">Local operation</a></li>
+    <li><a href="#remote-operation">Remote operation</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -2102,7 +2101,7 @@
           
             <h1>
               
-              Secrets
+              Network Policy
             </h1>
           
 
@@ -2111,25 +2110,70 @@
 
 
 
-	<p>The following Kubernetes Secrets are used to store sensitive information
-(with the usual caveat that
-<a href="https://kubernetes.io/docs/concepts/configuration/secret/#information-security-for-secrets">Secrets don&rsquo;t protect sensitive information</a>):</p>
-<ul>
-<li><code>broker-secret-</code> with a Kubernetes-generated suffix, which stores the
-credentials used to connect to the Broker.</li>
-<li><code>submariner-ipsec-psk</code>, which stores the PSK used for IPsec connections.</li>
-</ul>
-<p>These secrets are stored in the operator’s namespace, <code>submariner-operator</code>.</p>
-<p>The following fields in the Submariner specification store the names to
-use:</p>
-<ul>
-<li><code>BrokerK8sSecret</code> gives the name of the Broker Secret.</li>
-<li><code>CeIPSecPSKSecret</code> gives the name of the IPsec Secret.</li>
-</ul>
-<p>The ServiceDiscovery specification also has a <code>BrokerK8sSecret</code> since it
-needs access to the Broker.</p>
-<p>The Operator presents the Secrets as corresponding volumes in the appropriate
-deployments to make them available to the relevant Submariner components.</p>
+	<p>Submariner can be used with <code>NetworkPolicy</code> objects, with some caveats.</p>
+<h2 id="local-operation">Local operation</h2>
+<p>Since Submariner doesn’t modify the cluster-local network, network policies apply as-is.
+This includes <code>.clusterset.local</code> access to local services: this obeys local network policies.
+Thus a deny-all, allow-specific policy will only allow pods to access exported services
+that are available locally if their local service is accessible.</p>
+<h2 id="remote-operation">Remote operation</h2>
+<p>Network policies also affect access to remote resources: pods that aren’t allowed to access
+resources other than those granted by a network policy won’t be able to access remote resources
+(either pods or exported services).</p>
+<p>Submariner currently doesn’t provide any explicit support for <code>NetworkPolicy</code> objects,
+which means that access to remote pods and services can only be controlled using locally-relevant
+information.
+That effectively means that the only way to specify network policies controlling access to remote
+pods or services is by referring to the pods’ or services’ IP addresses in the target clusters.
+Submariner preserves source IP addresses in packets entering the clusters,
+so remote IP addresses can be used unchanged.
+If you’re using Globalnet, the addresses used in policies need to be Globalnet addresses.</p>
+<p>The gateway is transparent and doesn’t need to be referenced in network policies.</p>
+<p>For example for egress:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#66d9ef">apiVersion</span>: networking.k8s.io/v1
+<span style="color:#66d9ef">kind</span>: NetworkPolicy
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: allow-netshoot-to-nginx
+  <span style="color:#66d9ef">namespace</span>: default
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">podSelector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+      <span style="color:#66d9ef">app</span>: netshoot
+  <span style="color:#66d9ef">policyTypes</span>:
+  - Egress
+  <span style="color:#66d9ef">egress</span>:
+  - <span style="color:#66d9ef">to</span>:
+    - <span style="color:#66d9ef">ipBlock</span>:
+        <span style="color:#66d9ef">cidr</span>: <span style="color:#ae81ff">100.66.213.87</span>/<span style="color:#ae81ff">32</span>
+    - <span style="color:#66d9ef">podSelector</span>:
+        <span style="color:#66d9ef">matchLabels</span>:
+          <span style="color:#66d9ef">app</span>: nginx-demo
+</code></pre></div><p>allows “netshoot” pods to access local pods providing the “nginx-demo” app,
+and a specific pod service IP address in the remote cluster.</p>
+<p>For ingress:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#66d9ef">apiVersion</span>: networking.k8s.io/v1
+<span style="color:#66d9ef">kind</span>: NetworkPolicy
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: allow-nginx-from-netshoot
+  <span style="color:#66d9ef">namespace</span>: default
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">podSelector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+      <span style="color:#66d9ef">app</span>: nginx-demo
+  <span style="color:#66d9ef">policyTypes</span>:
+  - Ingress
+  <span style="color:#66d9ef">ingress</span>:
+  - <span style="color:#66d9ef">from</span>:
+    - <span style="color:#66d9ef">ipBlock</span>:
+        <span style="color:#66d9ef">cidr</span>: <span style="color:#ae81ff">10.131.0.0</span>/<span style="color:#ae81ff">16</span>
+    - <span style="color:#66d9ef">podSelector</span>:
+        <span style="color:#66d9ef">matchLabels</span>:
+          <span style="color:#66d9ef">app</span>: netshoot
+</code></pre></div><p>implements the same access as above on the receiving side,
+without the same level of control for the remote end —
+access is granted to any pod in the given CIDR (an entire cluster’s pod CIDR).</p>
 
 
 
@@ -2537,6 +2581,7 @@ deployments to make them available to the relevant Submariner components.</p>
             
                 
                     
+                    
                 
                 
 
@@ -2551,6 +2596,9 @@ deployments to make them available to the relevant Submariner components.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -2609,54 +2657,6 @@ deployments to make them available to the relevant Submariner components.</p>
                     
             
         
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
             
         
@@ -2730,39 +2730,6 @@ deployments to make them available to the relevant Submariner components.</p>
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -2780,37 +2747,8 @@ deployments to make them available to the relevant Submariner components.</p>
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
                     
                 
                 
@@ -2863,41 +2801,6 @@ deployments to make them available to the relevant Submariner components.</p>
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -2924,6 +2827,19 @@ deployments to make them available to the relevant Submariner components.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -2942,6 +2858,72 @@ deployments to make them available to the relevant Submariner components.</p>
                     
             
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
                     
                         
             
@@ -3030,7 +3012,6 @@ deployments to make them available to the relevant Submariner components.</p>
             
                 
                     
-                    
                 
                 
 
@@ -3046,8 +3027,24 @@ deployments to make them available to the relevant Submariner components.</p>
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
                         
-                        
+            
+            
+                
                     
                 
                 
@@ -3081,6 +3078,52 @@ deployments to make them available to the relevant Submariner components.</p>
             
                 
                     
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -3100,9 +3143,6 @@ deployments to make them available to the relevant Submariner components.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -3193,10 +3233,10 @@ deployments to make them available to the relevant Submariner components.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/development/security/containers/" title="Container Requirements"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/operations/nat-traversal/" title="NAT Traversal"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/development/shipyard/" title="Working with Shipyard" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/operations/troubleshooting/" title="Troubleshooting" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
