@@ -12,20 +12,20 @@
     <title>User Guide :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1743523199" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1743523199" rel="stylesheet">
-    <link href="/css/hybrid.css?1743523199" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1743523199" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1743523199" rel="stylesheet">
-    <link href="/css/auto-complete.css?1743523199" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1743523199" rel="stylesheet">
-    <link href="/css/theme.css?1743523199" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1743523199" rel="stylesheet">
+    <link href="/css/nucleus.css?1744035390" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1744035390" rel="stylesheet">
+    <link href="/css/hybrid.css?1744035390" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1744035390" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1744035390" rel="stylesheet">
+    <link href="/css/auto-complete.css?1744035390" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1744035390" rel="stylesheet">
+    <link href="/css/theme.css?1744035390" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1744035390" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1743523199" rel="stylesheet">
+      <link href="/css/theme-blue.css?1744035390" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1743523199"></script>
+    <script src="/js/jquery-3.3.1.min.js?1744035390"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1743523199" rel="stylesheet">
+<link href="/css/fixes.css?1744035390" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/usage/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1743523199"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1743523199"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1744035390"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1744035390"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1743523199"></script>
+<script type="text/javascript" src="/js/search.js?1744035390"></script>
 
     
   </div>
@@ -2086,6 +2086,7 @@
       <ul>
         <li><a href="#1-validate-the-installation">1. Validate the Installation</a></li>
         <li><a href="#2-export-services-across-clusters">2. Export Services Across Clusters</a></li>
+        <li><a href="#migrating-existing-applications-to-use-multi-cluster-services">Migrating existing applications to use multi-cluster Services</a></li>
       </ul>
     </li>
   </ul>
@@ -2882,7 +2883,64 @@ Switched to context <span style="color:#e6db74">&#34;cluster3&#34;</span>.
 
 $ kubectl delete namespace nginx-test
 namespace <span style="color:#e6db74">&#34;nginx-test&#34;</span> deleted
-</code></pre></div>
+</code></pre></div><h3 id="migrating-existing-applications-to-use-multi-cluster-services">Migrating existing applications to use multi-cluster Services</h3>
+<p>To use multi-cluster Services, applications need to use the <code>clusterset.local</code> suffix.</p>
+<p>There are two main ways to achieve this without needing to rewrite the applications.</p>
+<h4 id="use-dnsconfig">Use DnsConfig</h4>
+<p>The first option is to use the <a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config">dnsConfig</a> field in the <code>Deployment</code> or <code>Pod</code> spec of the applications
+to add <code>clusterset.local</code> to the search path in applications&rsquo; <code>/etc/hosts/</code> file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: v1
+kind: Pod
+metadata:
+  namespace: default
+  name: dns-example
+spec:
+  containers:
+    - name: test
+      image: nginx
+  dnsPolicy: <span style="color:#e6db74">&#34;None&#34;</span>
+  dnsConfig:
+    nameservers:
+      - 192.0.2.1 <span style="color:#75715e"># this is an example</span>
+    searches:
+      - default.svc.cluserset.local
+      - ns1.svc.cluserset.local <span style="color:#75715e"># example namespace</span>
+      - svc.clusterset.local
+      - clusterset.local
+</code></pre></div><h5 id="pros-of-dnsconfig">Pros of DnsConfig</h5>
+<ul>
+<li>Useful when specific applications want to use multiple multi-cluster Services.</li>
+<li>Preferred if some applications want to continue using the local version of the Service explicitly.</li>
+</ul>
+<h5 id="cons-of-dnsconfig">Cons of DnsConfig</h5>
+<ul>
+<li>It is necessary to modify the <code>Deployment</code> or <code>Pod</code> spec of all applications that need to use multi-cluster Services.</li>
+</ul>
+<h4 id="use-externalname-service">Use ExternalName Service</h4>
+<p>The second option is to create a Service of type <code>ExternalName</code> that points to a multi-cluster Service.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: v1
+kind: Service
+metadata:
+  name: mcs-sample
+  namespace: demo
+spec:
+  type: ExternalName
+  sessionAffinity: None
+  externalName: mcs-sample.demo.svc.clusterset.local
+</code></pre></div><p>This will make DNS replace any queries to the local <code>mcs-sample.demo.cluster.local</code> service with the multi-cluster
+<code>mcs-sample.demo.svc.clusterset.local</code> service.</p>
+<p>This can be also used to redirect to a multi-cluster Service in a different namespace.</p>
+<h5 id="pros-of-externalname">Pros of ExternalName</h5>
+<ul>
+<li>Useful if all applications need to use a specific multi-cluster Service</li>
+<li>No changes to <code>Deployment</code> or <code>Pod</code> spec</li>
+</ul>
+<h5 id="cons-of-externalname">Cons of ExternalName</h5>
+<ul>
+<li>Such services can’t be deployed locally since the <code>ExternalName</code> type Service will replace the existing local
+ClusterIP Service. This can be mitigated by using a different namespace for the multi-cluster Service.</li>
+</ul>
+
 
 
 
@@ -3954,19 +4012,19 @@ namespace <span style="color:#e6db74">&#34;nginx-test&#34;</span> deleted
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1743523199"></script>
-    <script src="/js/perfect-scrollbar.min.js?1743523199"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1743523199"></script>
-    <script src="/js/jquery.sticky.js?1743523199"></script>
-    <script src="/js/featherlight.min.js?1743523199"></script>
-    <script src="/js/highlight.pack.js?1743523199"></script>
+    <script src="/js/clipboard.min.js?1744035390"></script>
+    <script src="/js/perfect-scrollbar.min.js?1744035390"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1744035390"></script>
+    <script src="/js/jquery.sticky.js?1744035390"></script>
+    <script src="/js/featherlight.min.js?1744035390"></script>
+    <script src="/js/highlight.pack.js?1744035390"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1743523199"></script>
-    <script src="/js/learn.js?1743523199"></script>
-    <script src="/js/hugo-learn.js?1743523199"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1744035390"></script>
+    <script src="/js/learn.js?1744035390"></script>
+    <script src="/js/hugo-learn.js?1744035390"></script>
 
-    <link href="/mermaid/mermaid.css?1743523199" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1743523199"></script>
+    <link href="/mermaid/mermaid.css?1744035390" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1744035390"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
