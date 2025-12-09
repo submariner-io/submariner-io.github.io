@@ -12,20 +12,20 @@
     <title>Troubleshooting :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1765286704" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1765286704" rel="stylesheet">
-    <link href="/css/hybrid.css?1765286704" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1765286704" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1765286704" rel="stylesheet">
-    <link href="/css/auto-complete.css?1765286704" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1765286704" rel="stylesheet">
-    <link href="/css/theme.css?1765286704" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1765286704" rel="stylesheet">
+    <link href="/css/nucleus.css?1765303107" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1765303107" rel="stylesheet">
+    <link href="/css/hybrid.css?1765303107" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1765303107" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1765303107" rel="stylesheet">
+    <link href="/css/auto-complete.css?1765303107" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1765303107" rel="stylesheet">
+    <link href="/css/theme.css?1765303107" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1765303107" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1765286704" rel="stylesheet">
+      <link href="/css/theme-blue.css?1765303107" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1765286704"></script>
+    <script src="/js/jquery-3.3.1.min.js?1765303107"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1765286704" rel="stylesheet">
+<link href="/css/fixes.css?1765303107" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/troubleshooting/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1765286704"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1765286704"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1765303107"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1765303107"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1765286704"></script>
+<script type="text/javascript" src="/js/search.js?1765303107"></script>
 
     
   </div>
@@ -2358,7 +2358,18 @@ using <a href="../deployment/subctl/_index.en.md#show-endpoints"><code>subctl sh
 from connected clusters.</p>
 <p>For errors querying specific Pods of a StatefulSet, check that the <code>Hostname</code> is correct for the endpoint.</p>
 <p>If still not working, file an <a href="https://github.com/submariner-io/lighthouse/issues">issue</a> with relevant log entries.</p>
-
+<h4 id="configuring-ttl">Configuring TTL</h4>
+<p>The default TTL for Lighthouse DNS requests is 5 seconds. This can be customized via a <code>dns.ttl</code> setting in a <code>ConfigMap</code> named
+<code>submariner-lighthouse-coredns</code> in the <code>submariner-operator</code> namespace. This <code>ConfigMap</code> does not exist by default and must be manually
+created:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: submariner-lighthouse-coredns
+  namespace: submariner-operator
+data:
+  dns.ttl: &#34;2&#34; # Specify value in seconds
+</code></pre></div>
 
 
 
@@ -3430,19 +3441,19 @@ from connected clusters.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1765286704"></script>
-    <script src="/js/perfect-scrollbar.min.js?1765286704"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1765286704"></script>
-    <script src="/js/jquery.sticky.js?1765286704"></script>
-    <script src="/js/featherlight.min.js?1765286704"></script>
-    <script src="/js/highlight.pack.js?1765286704"></script>
+    <script src="/js/clipboard.min.js?1765303107"></script>
+    <script src="/js/perfect-scrollbar.min.js?1765303107"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1765303107"></script>
+    <script src="/js/jquery.sticky.js?1765303107"></script>
+    <script src="/js/featherlight.min.js?1765303107"></script>
+    <script src="/js/highlight.pack.js?1765303107"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1765286704"></script>
-    <script src="/js/learn.js?1765286704"></script>
-    <script src="/js/hugo-learn.js?1765286704"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1765303107"></script>
+    <script src="/js/learn.js?1765303107"></script>
+    <script src="/js/hugo-learn.js?1765303107"></script>
 
-    <link href="/mermaid/mermaid.css?1765286704" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1765286704"></script>
+    <link href="/mermaid/mermaid.css?1765303107" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1765303107"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
