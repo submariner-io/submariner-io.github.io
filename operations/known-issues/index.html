@@ -12,20 +12,20 @@
     <title>Known Issues :: Submariner k8s project documentation website</title>
 
     
-    <link href="/css/nucleus.css?1772439676" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1772439676" rel="stylesheet">
-    <link href="/css/hybrid.css?1772439676" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1772439676" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1772439676" rel="stylesheet">
-    <link href="/css/auto-complete.css?1772439676" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1772439676" rel="stylesheet">
-    <link href="/css/theme.css?1772439676" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1772439676" rel="stylesheet">
+    <link href="/css/nucleus.css?1772552736" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1772552736" rel="stylesheet">
+    <link href="/css/hybrid.css?1772552736" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1772552736" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1772552736" rel="stylesheet">
+    <link href="/css/auto-complete.css?1772552736" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1772552736" rel="stylesheet">
+    <link href="/css/theme.css?1772552736" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1772552736" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1772439676" rel="stylesheet">
+      <link href="/css/theme-blue.css?1772552736" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1772439676"></script>
+    <script src="/js/jquery-3.3.1.min.js?1772552736"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -34,7 +34,7 @@
       
     </style>
     
-<link href="/css/fixes.css?1772439676" rel="stylesheet">
+<link href="/css/fixes.css?1772552736" rel="stylesheet">
 
   </head>
   <body class="" data-url="/operations/known-issues/">
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1772439676"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1772439676"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1772552736"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1772552736"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1772439676"></script>
+<script type="text/javascript" src="/js/search.js?1772552736"></script>
 
     
   </div>
@@ -2085,6 +2085,7 @@
     <li><a href="#general">General</a></li>
     <li><a href="#globalnet">Globalnet</a></li>
     <li><a href="#deploying-with-helm-on-openshift">Deploying with Helm on OpenShift</a></li>
+    <li><a href="#aws-eks-with-aws-vpc-cni-intermittent-connectivity-on-secondary-enis">AWS EKS with AWS VPC CNI: Intermittent Connectivity on Secondary ENIs</a></li>
   </ul>
 </nav>
     </div>
@@ -2136,7 +2137,17 @@ This may affect applications relying on source IP, like NetworkPolicy.</li>
 oc adm policy add-scc-to-user privileged system:serviceaccount:submariner:submariner-gateway
 oc adm policy add-scc-to-user privileged system:serviceaccount:submariner:submariner-globalnet
 </code></pre></div><p>This is handled automatically in <code>subctl</code> and the Submariner addon.</p>
-
+<h2 id="aws-eks-with-aws-vpc-cni-intermittent-connectivity-on-secondary-enis">AWS EKS with AWS VPC CNI: Intermittent Connectivity on Secondary ENIs</h2>
+<p>When using Submariner on AWS EKS with the default AWS VPC CNI configuration, pods assigned to secondary Elastic Network Interfaces (ENIs)
+may experience cross-cluster connectivity loss.</p>
+<p>The AWS VPC CNI for pods on secondary ENIs creates IP rules that force traffic into a custom routing table instead of the main table.
+Currently, the Submariner route-agent only populates the main routing table. Consequently, these custom tables lack the routes to the
+<code>vx-submariner</code> interface, and traffic is instead sent to the default VPC gateway (black-holed).</p>
+<p>You can manually replicate the Submariner routes from the main table into the custom tables created by the CNI. For example,
+if your pod is using table 2:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ip route add &lt;remote-cluster-cidr&gt; via &lt;submariner-gw-ip&gt; dev vx-submariner table <span style="color:#ae81ff">2</span>
+sudo ip route add &lt;submariner-internal-cidr&gt; dev vx-submariner table <span style="color:#ae81ff">2</span>
+</code></pre></div>
 
 
 
@@ -3208,19 +3219,19 @@ oc adm policy add-scc-to-user privileged system:serviceaccount:submariner:submar
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1772439676"></script>
-    <script src="/js/perfect-scrollbar.min.js?1772439676"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1772439676"></script>
-    <script src="/js/jquery.sticky.js?1772439676"></script>
-    <script src="/js/featherlight.min.js?1772439676"></script>
-    <script src="/js/highlight.pack.js?1772439676"></script>
+    <script src="/js/clipboard.min.js?1772552736"></script>
+    <script src="/js/perfect-scrollbar.min.js?1772552736"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1772552736"></script>
+    <script src="/js/jquery.sticky.js?1772552736"></script>
+    <script src="/js/featherlight.min.js?1772552736"></script>
+    <script src="/js/highlight.pack.js?1772552736"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1772439676"></script>
-    <script src="/js/learn.js?1772439676"></script>
-    <script src="/js/hugo-learn.js?1772439676"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1772552736"></script>
+    <script src="/js/learn.js?1772552736"></script>
+    <script src="/js/hugo-learn.js?1772552736"></script>
 
-    <link href="/mermaid/mermaid.css?1772439676" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1772439676"></script>
+    <link href="/mermaid/mermaid.css?1772552736" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1772552736"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
