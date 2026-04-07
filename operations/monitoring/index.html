@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.81.0" />
+    <meta name="generator" content="Hugo 0.71.0" />
     <meta name="description" content="Documentation website for the Submariner project">
     <meta name="author" content="The Submariner community">
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <title>Monitoring :: Submariner k8s project documentation website</title>
-    <link href="/css/nucleus.css?1774639342" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1774639342" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1774639342" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1774639342" rel="stylesheet">
-    <link href="/css/auto-complete.css?1774639342" rel="stylesheet">
-    <link href="/css/theme.css?1774639342" rel="stylesheet">
-    <link href="/css/tabs.css?1774639342" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1774639342" rel="stylesheet">
-    <link href="/css/theme-blue.css?1774639342" rel="stylesheet">
-    <link href="/css/fixes.css?1774639342" rel="stylesheet">
-    <script src="/js/jquery.min.js?1774639342"></script>
+    <link href="/css/nucleus.css?1775580959" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1775580959" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1775580959" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1775580959" rel="stylesheet">
+    <link href="/css/auto-complete.css?1775580959" rel="stylesheet">
+    <link href="/css/theme.css?1775580959" rel="stylesheet">
+    <link href="/css/tabs.css?1775580959" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1775580959" rel="stylesheet">
+    <link href="/css/theme-blue.css?1775580959" rel="stylesheet">
+    <link href="/css/fixes.css?1775580959" rel="stylesheet">
+    <script src="/js/jquery.min.js?1775580959"></script>
     <style>
       :root #header + #content > #left > #rlblock_left{
         display:none !important;
@@ -44,8 +44,8 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/js/lunr.min.js?1774639342"></script>
-        <script src="/js/auto-complete.js?1774639342"></script>
+        <script src="/js/lunr.min.js?1775580959"></script>
+        <script src="/js/auto-complete.js?1775580959"></script>
         <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
         <!-- https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72 -->
         <script>
@@ -53,7 +53,7 @@
           var root_url="/";
           var baseUri=root_url.replace(/\/$/, '');
         </script>
-        <script src="/js/search.js?1774639342"></script>
+        <script src="/js/search.js?1775580959"></script>
       </div>
       <div id="homelinks">
         <ul>
@@ -242,19 +242,19 @@ you to:</p>
 </li>
 </ul>
 <p>A minimal <code>Prometheus</code> object providing access to the Submariner metrics is as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">monitoring.coreos.com/v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Prometheus</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">prometheus</span>
-  <span style="color:#f92672">labels</span>:
-    <span style="color:#f92672">prometheus</span>: <span style="color:#ae81ff">prometheus</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
-  <span style="color:#f92672">serviceAccountName</span>: <span style="color:#ae81ff">prometheus</span>
-  <span style="color:#f92672">serviceMonitorNamespaceSelector</span>: {}
-  <span style="color:#f92672">serviceMonitorSelector</span>:
-    <span style="color:#f92672">matchLabels</span>:
-      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">submariner-operator</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: monitoring.coreos.com/v1
+<span style="color:#66d9ef">kind</span>: Prometheus
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: prometheus
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">prometheus</span>: prometheus
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">serviceAccountName</span>: prometheus
+  <span style="color:#66d9ef">serviceMonitorNamespaceSelector</span>: {}
+  <span style="color:#66d9ef">serviceMonitorSelector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+      <span style="color:#66d9ef">name</span>: submariner-operator
 </code></pre></div><h3 id="openshift-setup">OpenShift Setup</h3>
 <p>OpenShift 4.5 or later will automatically discover the Submariner metrics with service monitors in the
 <code>openshift-monitoring</code> namespace.</p>
@@ -268,36 +268,36 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Label</th>
-<th style="text-align:left">Description</th>
+<th align="left">Name</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>submariner_gateways</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">The number of gateways in the cluster</td>
+<td align="left"><code>submariner_gateways</code></td>
+<td align="left"></td>
+<td align="left">The number of gateways in the cluster</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_gateway_creation_timestamp</code></td>
-<td style="text-align:left"><code>local_cluster</code>, <code>local_hostname</code></td>
-<td style="text-align:left">Timestamp of gateway creation time</td>
+<td align="left"><code>submariner_gateway_creation_timestamp</code></td>
+<td align="left"><code>local_cluster</code>, <code>local_hostname</code></td>
+<td align="left">Timestamp of gateway creation time</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_gateway_sync_iterations</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">Gateway synchronization iterations</td>
+<td align="left"><code>submariner_gateway_sync_iterations</code></td>
+<td align="left"></td>
+<td align="left">Gateway synchronization iterations</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_gateway_rx_bytes</code></td>
-<td style="text-align:left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
-<td style="text-align:left">Count of bytes received by cable driver and cable</td>
+<td align="left"><code>submariner_gateway_rx_bytes</code></td>
+<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
+<td align="left">Count of bytes received by cable driver and cable</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_gateway_tx_bytes</code></td>
-<td style="text-align:left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
-<td style="text-align:left">Count of bytes transmitted by cable driver and cable</td>
+<td align="left"><code>submariner_gateway_tx_bytes</code></td>
+<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
+<td align="left">Count of bytes transmitted by cable driver and cable</td>
 </tr>
 </tbody>
 </table>
@@ -305,31 +305,31 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Label</th>
-<th style="text-align:left">Description</th>
+<th align="left">Name</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>submariner_requested_connections</code></td>
-<td style="text-align:left"><code>local_cluster</code>, <code>local_hostname</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>status</code>: “connecting”, “connected”, or “error”</td>
-<td style="text-align:left">The number of connections by endpoint and status</td>
+<td align="left"><code>submariner_requested_connections</code></td>
+<td align="left"><code>local_cluster</code>, <code>local_hostname</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>status</code>: “connecting”, “connected”, or “error”</td>
+<td align="left">The number of connections by endpoint and status</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_connections</code></td>
-<td style="text-align:left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>, <code>status</code>: “connecting”, “connected”, or “error”</td>
-<td style="text-align:left">The number of connections and corresponding status by cable driver and cable</td>
+<td align="left"><code>submariner_connections</code></td>
+<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code>, <code>status</code>: “connecting”, “connected”, or “error”</td>
+<td align="left">The number of connections and corresponding status by cable driver and cable</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_connection_established_timestamp</code></td>
-<td style="text-align:left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
-<td style="text-align:left">Timestamp of last successful connection established by cable driver and cable</td>
+<td align="left"><code>submariner_connection_established_timestamp</code></td>
+<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
+<td align="left">Timestamp of last successful connection established by cable driver and cable</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_connection_latency_seconds</code></td>
-<td style="text-align:left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
-<td style="text-align:left">Connection latency in seconds; last RTT, by cable driver and cable</td>
+<td align="left"><code>submariner_connection_latency_seconds</code></td>
+<td align="left"><code>cable_driver</code>, <code>local_cluster</code>, <code>local_hostname</code>, <code>local_endpoint_ip</code>, <code>remote_cluster</code>, <code>remote_hostname</code>, <code>remote_endpoint_ip</code></td>
+<td align="left">Connection latency in seconds; last RTT, by cable driver and cable</td>
 </tr>
 </tbody>
 </table>
@@ -337,36 +337,36 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Label</th>
-<th style="text-align:left">Description</th>
+<th align="left">Name</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>submariner_global_IP_availability</code></td>
-<td style="text-align:left"><code>cidr</code></td>
-<td style="text-align:left">Count of available global IPs per CIDR</td>
+<td align="left"><code>submariner_global_IP_availability</code></td>
+<td align="left"><code>cidr</code></td>
+<td align="left">Count of available global IPs per CIDR</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_global_IP_allocated</code></td>
-<td style="text-align:left"><code>cidr</code></td>
-<td style="text-align:left">Count of all global IPs allocated for Pods/Services per CIDR</td>
+<td align="left"><code>submariner_global_IP_allocated</code></td>
+<td align="left"><code>cidr</code></td>
+<td align="left">Count of all global IPs allocated for Pods/Services per CIDR</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_global_egress_IP_allocated</code></td>
-<td style="text-align:left"><code>cidr</code></td>
-<td style="text-align:left">Count of global Egress IPs allocated for Pods/Services per CIDR</td>
+<td align="left"><code>submariner_global_egress_IP_allocated</code></td>
+<td align="left"><code>cidr</code></td>
+<td align="left">Count of global Egress IPs allocated for Pods/Services per CIDR</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_cluster_global_egress_IP_allocated</code></td>
-<td style="text-align:left"><code>cidr</code></td>
-<td style="text-align:left">Count of global Egress IPs allocated for clusters per CIDR</td>
+<td align="left"><code>submariner_cluster_global_egress_IP_allocated</code></td>
+<td align="left"><code>cidr</code></td>
+<td align="left">Count of global Egress IPs allocated for clusters per CIDR</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_global_ingress_IP_allocated</code></td>
-<td style="text-align:left"><code>cidr</code></td>
-<td style="text-align:left">Count of global Ingress IPs allocated for Pods/Services per CIDR</td>
+<td align="left"><code>submariner_global_ingress_IP_allocated</code></td>
+<td align="left"><code>cidr</code></td>
+<td align="left">Count of global Ingress IPs allocated for Pods/Services per CIDR</td>
 </tr>
 </tbody>
 </table>
@@ -374,26 +374,26 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Label</th>
-<th style="text-align:left">Description</th>
+<th align="left">Name</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>submariner_service_import</code></td>
-<td style="text-align:left"><code>direction</code>, <code>operation</code>, <code>syncer_name</code></td>
-<td style="text-align:left">Count of imported Services</td>
+<td align="left"><code>submariner_service_import</code></td>
+<td align="left"><code>direction</code>, <code>operation</code>, <code>syncer_name</code></td>
+<td align="left">Count of imported Services</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_service_export</code></td>
-<td style="text-align:left"><code>direction</code>, <code>operation</code>, <code>syncer_name</code></td>
-<td style="text-align:left">Count of exported Services</td>
+<td align="left"><code>submariner_service_export</code></td>
+<td align="left"><code>direction</code>, <code>operation</code>, <code>syncer_name</code></td>
+<td align="left">Count of exported Services</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>submariner_service_discovery_query</code></td>
-<td style="text-align:left"><code>source_cluster</code>, <code>destination_cluster</code>, <code>destination_service_name</code>, <code>destination_service_ip</code>, <code>destination_service_namespace</code></td>
-<td style="text-align:left">Count DNS queries handled by Lighthouse plugin</td>
+<td align="left"><code>submariner_service_discovery_query</code></td>
+<td align="left"><code>source_cluster</code>, <code>destination_cluster</code>, <code>destination_service_name</code>, <code>destination_service_ip</code>, <code>destination_service_namespace</code></td>
+<td align="left">Count DNS queries handled by Lighthouse plugin</td>
 </tr>
 </tbody>
 </table>
@@ -410,19 +410,19 @@ cluster set. All Submariner metrics are exported within the <code>submariner-ope
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1774639342"></script>
-    <script src="/js/perfect-scrollbar.min.js?1774639342"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1774639342"></script>
-    <script src="/js/jquery.sticky.js?1774639342"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1774639342"></script>
-    <script src="/js/featherlight.min.js?1774639342"></script>
-    <script src="/js/modernizr.custom-3.6.0.js?1774639342"></script>
-    <script src="/js/mermaid.min.js?1774639342"></script>
+    <script src="/js/clipboard.min.js?1775580959"></script>
+    <script src="/js/perfect-scrollbar.min.js?1775580959"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1775580959"></script>
+    <script src="/js/jquery.sticky.js?1775580959"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1775580959"></script>
+    <script src="/js/featherlight.min.js?1775580959"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1775580959"></script>
+    <script src="/js/mermaid.min.js?1775580959"></script>
     <script>
       if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
       }
     </script>
-    <script src="/js/relearn.js?1774639342"></script>
+    <script src="/js/relearn.js?1775580959"></script>
   </body>
 </html>

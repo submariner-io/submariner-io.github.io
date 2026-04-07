@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.81.0" />
+    <meta name="generator" content="Hugo 0.71.0" />
     <meta name="description" content="Documentation website for the Submariner project">
     <meta name="author" content="The Submariner community">
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <title>subctl :: Submariner k8s project documentation website</title>
-    <link href="/css/nucleus.css?1774639342" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1774639342" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1774639342" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1774639342" rel="stylesheet">
-    <link href="/css/auto-complete.css?1774639342" rel="stylesheet">
-    <link href="/css/theme.css?1774639342" rel="stylesheet">
-    <link href="/css/tabs.css?1774639342" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1774639342" rel="stylesheet">
-    <link href="/css/theme-blue.css?1774639342" rel="stylesheet">
-    <link href="/css/fixes.css?1774639342" rel="stylesheet">
-    <script src="/js/jquery.min.js?1774639342"></script>
+    <link href="/css/nucleus.css?1775580959" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1775580959" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1775580959" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1775580959" rel="stylesheet">
+    <link href="/css/auto-complete.css?1775580959" rel="stylesheet">
+    <link href="/css/theme.css?1775580959" rel="stylesheet">
+    <link href="/css/tabs.css?1775580959" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1775580959" rel="stylesheet">
+    <link href="/css/theme-blue.css?1775580959" rel="stylesheet">
+    <link href="/css/fixes.css?1775580959" rel="stylesheet">
+    <script src="/js/jquery.min.js?1775580959"></script>
     <style>
       :root #header + #content > #left > #rlblock_left{
         display:none !important;
@@ -44,8 +44,8 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/js/lunr.min.js?1774639342"></script>
-        <script src="/js/auto-complete.js?1774639342"></script>
+        <script src="/js/lunr.min.js?1775580959"></script>
+        <script src="/js/auto-complete.js?1775580959"></script>
         <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
         <!-- https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72 -->
         <script>
@@ -53,7 +53,7 @@
           var root_url="/";
           var baseUri=root_url.replace(/\/$/, '');
         </script>
-        <script src="/js/search.js?1774639342"></script>
+        <script src="/js/search.js?1775580959"></script>
       </div>
       <div id="homelinks">
         <ul>
@@ -297,50 +297,50 @@ contains the following details:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--repository</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">The repository from where the various Submariner images will be sourced (default <code>quay.io/submariner</code>)</td>
+<td align="left"><code>--repository</code> <code>&lt;string&gt;</code></td>
+<td align="left">The repository from where the various Submariner images will be sourced (default <code>quay.io/submariner</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--version</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Image version (defaults to the subctl version)</td>
+<td align="left"><code>--version</code> <code>&lt;string&gt;</code></td>
+<td align="left">Image version (defaults to the subctl version)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--components &lt;strings&gt;</code></td>
-<td style="text-align:left">Comma-separated list of components to be installed - any of <code>service-discovery</code>,<code>connectivity</code>. The default is: <code>service-discovery</code>,<code>connectivity</code></td>
+<td align="left"><code>--components &lt;strings&gt;</code></td>
+<td align="left">Comma-separated list of components to be installed - any of <code>service-discovery</code>,<code>connectivity</code>. The default is: <code>service-discovery</code>,<code>connectivity</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--globalnet</code></td>
-<td style="text-align:left">Enable support for overlapping Cluster/Service CIDRs in connecting clusters (default disabled)</td>
+<td align="left"><code>--globalnet</code></td>
+<td align="left">Enable support for overlapping Cluster/Service CIDRs in connecting clusters (default disabled)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--globalnet-cidr-range</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Global CIDR supernet range for allocating GlobalCIDRs to each cluster (default &ldquo;242.0.0.0/8&rdquo;)</td>
+<td align="left"><code>--globalnet-cidr-range</code> <code>&lt;string&gt;</code></td>
+<td align="left">Global CIDR supernet range for allocating GlobalCIDRs to each cluster (default &ldquo;242.0.0.0/8&rdquo;)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--globalnet-cluster-size</code> <code>&lt;value&gt;</code></td>
-<td style="text-align:left">Default cluster size for GlobalCIDR allocated to each cluster (amount of global IPs) (default 65536)</td>
+<td align="left"><code>--globalnet-cluster-size</code> <code>&lt;value&gt;</code></td>
+<td align="left">Default cluster size for GlobalCIDR allocated to each cluster (amount of global IPs) (default 65536)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ipsec-psk-from</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Import IPsec PSK from existing Submariner broker file, like broker-info.subm (default <code>broker-info.subm</code>)</td>
+<td align="left"><code>--ipsec-psk-from</code> <code>&lt;string&gt;</code></td>
+<td align="left">Import IPsec PSK from existing Submariner broker file, like broker-info.subm (default <code>broker-info.subm</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--broker-namespace</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Namespace on the Broker used for synchronizing resources between clusters (default <code>submariner-k8s-broker</code>)</td>
+<td align="left"><code>--broker-namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left">Namespace on the Broker used for synchronizing resources between clusters (default <code>submariner-k8s-broker</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--enable-clusterset-ip</code></td>
-<td style="text-align:left">Set default support for use of cluster set IP for exported services in connecting clusters (default disabled)</td>
+<td align="left"><code>--enable-clusterset-ip</code></td>
+<td align="left">Set default support for use of cluster set IP for exported services in connecting clusters (default disabled)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--clusterset-ip-cidr-range</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Cluster set IP CIDR supernet range for allocating cluster set IP CIDRs to each cluster</td>
+<td align="left"><code>--clusterset-ip-cidr-range</code> <code>&lt;string&gt;</code></td>
+<td align="left">Cluster set IP CIDR supernet range for allocating cluster set IP CIDRs to each cluster</td>
 </tr>
 </tbody>
 </table>
@@ -353,18 +353,18 @@ discoverable from other clusters in the Submariner deployment.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Namespace to use</td>
+<td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left">Namespace to use</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--use-clusterset-ip</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Use cluster set IP for this service (true or false)</td>
+<td align="left"><code>--use-clusterset-ip</code> <code>&lt;string&gt;</code></td>
+<td align="left">Use cluster set IP for this service (true or false)</td>
 </tr>
 </tbody>
 </table>
@@ -377,14 +377,14 @@ same name from being exported to other clusters.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Namespace to use</td>
+<td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left">Namespace to use</td>
 </tr>
 </tbody>
 </table>
@@ -399,78 +399,78 @@ deployment.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--air-gapped</code></td>
-<td style="text-align:left">Specifies that the cluster is in an air-gapped environment without access to external servers.</td>
+<td align="left"><code>--air-gapped</code></td>
+<td align="left">Specifies that the cluster is in an air-gapped environment without access to external servers.</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--broker-url</code></td>
-<td style="text-align:left">The URL of the broker API endpoint (overrides the URL stored in the broker information file).</td>
+<td align="left"><code>--broker-url</code></td>
+<td align="left">The URL of the broker API endpoint (overrides the URL stored in the broker information file).</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--cable-driver</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Cable driver implementation. Available options are <code>libreswan</code> (default), <code>wireguard</code> and <code>vxlan</code></td>
+<td align="left"><code>--cable-driver</code> <code>&lt;string&gt;</code></td>
+<td align="left">Cable driver implementation. Available options are <code>libreswan</code> (default), <code>wireguard</code> and <code>vxlan</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--check-broker-certificate</code></td>
-<td style="text-align:left">Check the broker certificate (disable this to allow &ldquo;insecure&rdquo; connections) (default true).</td>
+<td align="left"><code>--check-broker-certificate</code></td>
+<td align="left">Check the broker certificate (disable this to allow &ldquo;insecure&rdquo; connections) (default true).</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--clustercidr</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Specifies the cluster&rsquo;s CIDR used to generate Pod IP addresses. If not specified, <code>subctl</code> will try to discover it and if unable to do so, it will prompt the user</td>
+<td align="left"><code>--clustercidr</code> <code>&lt;string&gt;</code></td>
+<td align="left">Specifies the cluster&rsquo;s CIDR used to generate Pod IP addresses. If not specified, <code>subctl</code> will try to discover it and if unable to do so, it will prompt the user</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--clusterid</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Cluster ID used to identify the tunnels. Every cluster needs to have a unique cluster ID. If not provided, one will be generated by default based on the cluster name in the <code>kubeconfig</code> file; if the cluster name is not a <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names">valid cluster ID</a>, the user will be prompted for one</td>
+<td align="left"><code>--clusterid</code> <code>&lt;string&gt;</code></td>
+<td align="left">Cluster ID used to identify the tunnels. Every cluster needs to have a unique cluster ID. If not provided, one will be generated by default based on the cluster name in the <code>kubeconfig</code> file; if the cluster name is not a <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names">valid cluster ID</a>, the user will be prompted for one</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--coredns-custom-configmap</code></td>
-<td style="text-align:left">The name of the custom CoreDNS configmap used to configure forwarding to Lighthouse. It should be in <code>&lt;namespace&gt;/&lt;name&gt;</code> format where <code>&lt;namespace&gt;</code> is optional and defaults to kube-system.</td>
+<td align="left"><code>--coredns-custom-configmap</code></td>
+<td align="left">The name of the custom CoreDNS configmap used to configure forwarding to Lighthouse. It should be in <code>&lt;namespace&gt;/&lt;name&gt;</code> format where <code>&lt;namespace&gt;</code> is optional and defaults to kube-system.</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--custom-domains</code></td>
-<td style="text-align:left">The list of domains to use for multicluster service discovery.</td>
+<td align="left"><code>--custom-domains</code></td>
+<td align="left">The list of domains to use for multicluster service discovery.</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ignore-requirements</code></td>
-<td style="text-align:left">Ignore requirement failures (unsupported).</td>
+<td align="left"><code>--ignore-requirements</code></td>
+<td align="left">Ignore requirement failures (unsupported).</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--label-gateway</code></td>
-<td style="text-align:left">Label getways (enabled by default). <code>--label-gateway=false</code> disables the prompt for a Worker node to use as gateway</td>
+<td align="left"><code>--label-gateway</code></td>
+<td align="left">Label getways (enabled by default). <code>--label-gateway=false</code> disables the prompt for a Worker node to use as gateway</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--load-balancer</code></td>
-<td style="text-align:left">Enable a cloud loadbalancer in front of the gateways. This removes the need for dedicated nodes with a public IP address</td>
+<td align="left"><code>--load-balancer</code></td>
+<td align="left">Enable a cloud loadbalancer in front of the gateways. This removes the need for dedicated nodes with a public IP address</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--operator-debug</code></td>
-<td style="text-align:left">Enable verbose operator debugging.</td>
+<td align="left"><code>--operator-debug</code></td>
+<td align="left">Enable verbose operator debugging.</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--preferred-server</code></td>
-<td style="text-align:left">Enable this cluster as a preferred IPsec server for dataplane connections (only available with libreswan cable driver)</td>
+<td align="left"><code>--preferred-server</code></td>
+<td align="left">Enable this cluster as a preferred IPsec server for dataplane connections (only available with libreswan cable driver)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--pod-debug</code></td>
-<td style="text-align:left">Enable Submariner pod debugging (verbose logging in the deployed pods)</td>
+<td align="left"><code>--pod-debug</code></td>
+<td align="left">Enable Submariner pod debugging (verbose logging in the deployed pods)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--servicecidr</code></td>
-<td style="text-align:left">Specifies the cluster&rsquo;s CIDR used to generate Service IP addresses. If not specified, <code>subctl</code> will try to discover it and if unable to do so, it will prompt the user</td>
+<td align="left"><code>--servicecidr</code></td>
+<td align="left">Specifies the cluster&rsquo;s CIDR used to generate Service IP addresses. If not specified, <code>subctl</code> will try to discover it and if unable to do so, it will prompt the user</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--enable-clusterset-ip</code></td>
-<td style="text-align:left">Set default support for use of cluster set IP for exported services in connecting clusters (default disabled)</td>
+<td align="left"><code>--enable-clusterset-ip</code></td>
+<td align="left">Set default support for use of cluster set IP for exported services in connecting clusters (default disabled)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--clusterset-ip-cidr</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Cluster set IP CIDR to be allocated to the cluster</td>
+<td align="left"><code>--clusterset-ip-cidr</code> <code>&lt;string&gt;</code></td>
+<td align="left">Cluster set IP CIDR to be allocated to the cluster</td>
 </tr>
 </tbody>
 </table>
@@ -480,22 +480,22 @@ deployment.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--globalnet</code></td>
-<td style="text-align:left">Enable/disable Globalnet for this cluster (default true). This has no effect if Globalnet is not enabled globally via the Broker</td>
+<td align="left"><code>--globalnet</code></td>
+<td align="left">Enable/disable Globalnet for this cluster (default true). This has no effect if Globalnet is not enabled globally via the Broker</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--globalnet-cidr</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">If Globalnet is enabled, the specific Globalnet CIDR to use for this cluster. This setting is exclusive with <code>--globalnet-cluster-size</code></td>
+<td align="left"><code>--globalnet-cidr</code> <code>&lt;string&gt;</code></td>
+<td align="left">If Globalnet is enabled, the specific Globalnet CIDR to use for this cluster. This setting is exclusive with <code>--globalnet-cluster-size</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--globalnet-cluster-size</code> <code>&lt;value&gt;</code></td>
-<td style="text-align:left">If Globalnet is enabled, the cluster size for the GlobalCIDR allocated to this cluster (amount of global IPs)</td>
+<td align="left"><code>--globalnet-cluster-size</code> <code>&lt;value&gt;</code></td>
+<td align="left">If Globalnet is enabled, the cluster size for the GlobalCIDR allocated to this cluster (amount of global IPs)</td>
 </tr>
 </tbody>
 </table>
@@ -504,26 +504,26 @@ deployment.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--natt</code></td>
-<td style="text-align:left">Enable NAT for IPsec (default enabled)</td>
+<td align="left"><code>--natt</code></td>
+<td align="left">Enable NAT for IPsec (default enabled)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ipsec-debug</code></td>
-<td style="text-align:left">Enable IPsec debugging (verbose logging)</td>
+<td align="left"><code>--ipsec-debug</code></td>
+<td align="left">Enable IPsec debugging (verbose logging)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--force-udp-encaps</code></td>
-<td style="text-align:left">Force UDP encapsulation</td>
+<td align="left"><code>--force-udp-encaps</code></td>
+<td align="left">Force UDP encapsulation</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--nattport</code> <code>&lt;value&gt;</code></td>
-<td style="text-align:left">IPsec NAT-T port (default 4500)</td>
+<td align="left"><code>--nattport</code> <code>&lt;value&gt;</code></td>
+<td align="left">IPsec NAT-T port (default 4500)</td>
 </tr>
 </tbody>
 </table>
@@ -532,22 +532,22 @@ deployment.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--repository</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">The repository from where the various Submariner images will be sourced (default <code>quay.io/submariner</code>)</td>
+<td align="left"><code>--repository</code> <code>&lt;string&gt;</code></td>
+<td align="left">The repository from where the various Submariner images will be sourced (default <code>quay.io/submariner</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--version</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Image version (defaults to the subctl version)</td>
+<td align="left"><code>--version</code> <code>&lt;string&gt;</code></td>
+<td align="left">Image version (defaults to the subctl version)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
-<td style="text-align:left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
+<td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -557,22 +557,22 @@ deployment.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--health-check</code></td>
-<td style="text-align:left">Enable/disable Gateway health check (default true)</td>
+<td align="left"><code>--health-check</code></td>
+<td align="left">Enable/disable Gateway health check (default true)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--health-check-interval</code> <code>&lt;uint&gt;</code></td>
-<td style="text-align:left">The interval in seconds at which health check packets will be sent (default 1)</td>
+<td align="left"><code>--health-check-interval</code> <code>&lt;uint&gt;</code></td>
+<td align="left">The interval in seconds at which health check packets will be sent (default 1)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--health-check-max-packet-loss-count</code> <code>&lt;uint&gt;</code></td>
-<td style="text-align:left">The maximum number of packets lost at which the health checker will mark the connection as down (default 5)</td>
+<td align="left"><code>--health-check-max-packet-loss-count</code> <code>&lt;uint&gt;</code></td>
+<td align="left">The maximum number of packets lost at which the health checker will mark the connection as down (default 5)</td>
 </tr>
 </tbody>
 </table>
@@ -585,14 +585,14 @@ deployment.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--to-version</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">The version of subctl and Submariner to which to upgrade</td>
+<td align="left"><code>--to-version</code> <code>&lt;string&gt;</code></td>
+<td align="left">The version of subctl and Submariner to which to upgrade</td>
 </tr>
 </tbody>
 </table>
@@ -646,42 +646,42 @@ that this verification is disruptive.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--connection-attempts</code> <code>&lt;value&gt;</code></td>
-<td style="text-align:left">The maximum number of connection attempts (default 2)</td>
+<td align="left"><code>--connection-attempts</code> <code>&lt;value&gt;</code></td>
+<td align="left">The maximum number of connection attempts (default 2)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--connection-timeout</code> <code>&lt;value&gt;</code></td>
-<td style="text-align:left">The timeout in seconds per connection attempt  (default 60)</td>
+<td align="left"><code>--connection-timeout</code> <code>&lt;value&gt;</code></td>
+<td align="left">The timeout in seconds per connection attempt  (default 60)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--operation-timeout</code> <code>&lt;value&gt;</code></td>
-<td style="text-align:left">Operation timeout for Kubernetes API calls (default 240)</td>
+<td align="left"><code>--operation-timeout</code> <code>&lt;value&gt;</code></td>
+<td align="left">Operation timeout for Kubernetes API calls (default 240)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--junit-report</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">XML report path and name (default &ldquo;&quot;)</td>
+<td align="left"><code>--junit-report</code> <code>&lt;string&gt;</code></td>
+<td align="left">XML report path and name (default &ldquo;&quot;)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--verbose</code></td>
-<td style="text-align:left">Produce verbose logs during connectivity verification</td>
+<td align="left"><code>--verbose</code></td>
+<td align="left">Produce verbose logs during connectivity verification</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--only</code></td>
-<td style="text-align:left">Comma separated list of specific verifications to perform</td>
+<td align="left"><code>--only</code></td>
+<td align="left">Comma separated list of specific verifications to perform</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--disruptive-tests</code></td>
-<td style="text-align:left">Enable verifications which are potentially disruptive to your deployment</td>
+<td align="left"><code>--disruptive-tests</code></td>
+<td align="left">Enable verifications which are potentially disruptive to your deployment</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
-<td style="text-align:left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
+<td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -710,18 +710,18 @@ When running <code>benchmark latency</code>, two types of tests will be executed
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--verbose</code></td>
-<td style="text-align:left">Produce verbose logs during benchmark tests</td>
+<td align="left"><code>--verbose</code></td>
+<td align="left">Produce verbose logs during benchmark tests</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
-<td style="text-align:left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
+<td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -734,51 +734,51 @@ in the cluster that may prevent Submariner from working properly.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Diagnose command</th>
-<th style="text-align:left">Description</th>
-<th style="text-align:left">Flags</th>
+<th align="left">Diagnose command</th>
+<th align="left">Description</th>
+<th align="left">Flags</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>deployment</code></td>
-<td style="text-align:left">checks that the Submariner components are properly deployed and running with no overlapping CIDRs</td>
-<td style="text-align:left"></td>
+<td align="left"><code>deployment</code></td>
+<td align="left">checks that the Submariner components are properly deployed and running with no overlapping CIDRs</td>
+<td align="left"></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>connections</code></td>
-<td style="text-align:left">checks that the Gateway connections to other clusters are all established</td>
-<td style="text-align:left"></td>
+<td align="left"><code>connections</code></td>
+<td align="left">checks that the Gateway connections to other clusters are all established</td>
+<td align="left"></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>k8s-version</code></td>
-<td style="text-align:left">checks if Submariner can be deployed on the Kubernetes version</td>
-<td style="text-align:left"></td>
+<td align="left"><code>k8s-version</code></td>
+<td align="left">checks if Submariner can be deployed on the Kubernetes version</td>
+<td align="left"></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>kube-proxy-mode [flags]</code></td>
-<td style="text-align:left">checks if the kube-proxy mode is supported by Submariner</td>
-<td style="text-align:left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>kube-proxy-mode [flags]</code></td>
+<td align="left">checks if the kube-proxy mode is supported by Submariner</td>
+<td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>cni</code></td>
-<td style="text-align:left">checks if the detected CNI network plugin is supported by Submariner</td>
-<td style="text-align:left"></td>
+<td align="left"><code>cni</code></td>
+<td align="left">checks if the detected CNI network plugin is supported by Submariner</td>
+<td align="left"></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>firewall intra-cluster [flags]</code></td>
-<td style="text-align:left">checks if the firewall configuration allows traffic via intra-cluster Submariner VXLAN interface</td>
-<td style="text-align:left"><code>--validation-timeout</code> <code>&lt;value&gt;</code>, <code>--verbose</code>, <code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>firewall intra-cluster [flags]</code></td>
+<td align="left">checks if the firewall configuration allows traffic via intra-cluster Submariner VXLAN interface</td>
+<td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code>, <code>--verbose</code>, <code>--namespace</code> <code>&lt;string&gt;</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>firewall inter-cluster --context &lt;localcontext&gt; --remotecontext &lt;remotecontext&gt; [flags]</code></td>
-<td style="text-align:left">checks if the firewall configuration allows tunnels to be configured on the Gateway nodes</td>
-<td style="text-align:left"><code>--validation-timeout</code> <code>&lt;value&gt;</code>, <code>--verbose</code>, <code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left"><code>firewall inter-cluster --context &lt;localcontext&gt; --remotecontext &lt;remotecontext&gt; [flags]</code></td>
+<td align="left">checks if the firewall configuration allows tunnels to be configured on the Gateway nodes</td>
+<td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code>, <code>--verbose</code>, <code>--namespace</code> <code>&lt;string&gt;</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>all</code></td>
-<td style="text-align:left">runs all diagnostic checks (except those requiring two kubecontexts)</td>
-<td style="text-align:left"></td>
+<td align="left"><code>all</code></td>
+<td align="left">runs all diagnostic checks (except those requiring two kubecontexts)</td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
@@ -788,26 +788,26 @@ in the cluster that may prevent Submariner from working properly.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Namespace in which validation pods should be deployed. If not specified, the <code>default</code> namespace is used</td>
+<td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left">Namespace in which validation pods should be deployed. If not specified, the <code>default</code> namespace is used</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--validation-timeout</code> <code>&lt;value&gt;</code></td>
-<td style="text-align:left">Timeout in seconds while validating the connection attempt</td>
+<td align="left"><code>--validation-timeout</code> <code>&lt;value&gt;</code></td>
+<td align="left">Timeout in seconds while validating the connection attempt</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
-<td style="text-align:left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
+<td align="left"><code>--image-override</code> <code>&lt;string&gt;=&lt;string&gt;</code></td>
+<td align="left">Component image override. This flag can be used more than once (example: <code>--image-override=submariner-gateway=quay.io/myUser/submariner-gateway:latest</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--verbose</code></td>
-<td style="text-align:left">Produce verbose logs during validation</td>
+<td align="left"><code>--verbose</code></td>
+<td align="left">Produce verbose logs during validation</td>
 </tr>
 </tbody>
 </table>
@@ -830,18 +830,18 @@ to the CNI and Submariner cable driver in use from each node using file format <
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--module</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Comma-separated list of components for which to gather data. Default is <code>operator,connectivity,service-discovery,broker</code></td>
+<td align="left"><code>--module</code> <code>&lt;string&gt;</code></td>
+<td align="left">Comma-separated list of components for which to gather data. Default is <code>operator,connectivity,service-discovery,broker</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--type</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Comma-separated list of data types to gather. Default is <code>logs,resources</code></td>
+<td align="left"><code>--type</code> <code>&lt;string&gt;</code></td>
+<td align="left">Comma-separated list of data types to gather. Default is <code>logs,resources</code></td>
 </tr>
 </tbody>
 </table>
@@ -867,22 +867,22 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--nat-discovery-port</code> <code>&lt;uint16&gt;</code></td>
-<td style="text-align:left">NAT discovery port (default 4490)</td>
+<td align="left"><code>--nat-discovery-port</code> <code>&lt;uint16&gt;</code></td>
+<td align="left">NAT discovery port (default 4490)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--natt-port</code> <code>&lt;uint16&gt;</code></td>
-<td style="text-align:left">IPsec NAT traversal port (default 4500)</td>
+<td align="left"><code>--natt-port</code> <code>&lt;uint16&gt;</code></td>
+<td align="left">IPsec NAT traversal port (default 4500)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--vxlan-port</code> <code>&lt;uint16&gt;</code></td>
-<td style="text-align:left">Internal VXLAN port (default 4800)</td>
+<td align="left"><code>--vxlan-port</code> <code>&lt;uint16&gt;</code></td>
+<td align="left">Internal VXLAN port (default 4800)</td>
 </tr>
 </tbody>
 </table>
@@ -894,38 +894,38 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">AWS credentials configuration file (default <code>$HOME/.aws/credentials</code>)</td>
+<td align="left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS credentials configuration file (default <code>$HOME/.aws/credentials</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--gateway-instance</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Type of gateway instance machine (default <code>c5d.large</code>)</td>
+<td align="left"><code>--gateway-instance</code> <code>&lt;string&gt;</code></td>
+<td align="left">Type of gateway instance machine (default <code>c5d.large</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
-<td style="text-align:left">Number of dedicated gateways to deploy (Set to 0 when using &ndash;load-balancer mode) (default 1)</td>
+<td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
+<td align="left">Number of dedicated gateways to deploy (Set to 0 when using &ndash;load-balancer mode) (default 1)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">AWS infra ID</td>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS infra ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OCP metadata.json file (or directory containing it) to read AWS infra ID and region from (takes precedence over the specific flags)</td>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read AWS infra ID and region from (takes precedence over the specific flags)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--profile</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">AWS profile to use for credentials  (default &ldquo;default&rdquo;)</td>
+<td align="left"><code>--profile</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS profile to use for credentials  (default &ldquo;default&rdquo;)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--region</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">AWS region</td>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS region</td>
 </tr>
 </tbody>
 </table>
@@ -937,42 +937,42 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">GCP credentials configuration file (default <code>$HOME/.gcp/osServiceAccount.json</code>)</td>
+<td align="left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP credentials configuration file (default <code>$HOME/.gcp/osServiceAccount.json</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--dedicated-gateway</code></td>
-<td style="text-align:left">Whether a dedicated gateway node has to be deployed (default true)</td>
+<td align="left"><code>--dedicated-gateway</code></td>
+<td align="left">Whether a dedicated gateway node has to be deployed (default true)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--gateway-instance</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Type of gateway instance machine (default <code>n1-standard-4</code>)</td>
+<td align="left"><code>--gateway-instance</code> <code>&lt;string&gt;</code></td>
+<td align="left">Type of gateway instance machine (default <code>n1-standard-4</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
-<td style="text-align:left">Number of dedicated gateways to deploy (default 1)</td>
+<td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
+<td align="left">Number of dedicated gateways to deploy (default 1)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">GCP infra ID</td>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP infra ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OCP metadata.json file (or directory containing it) to read GCP infra ID and region from (takes precedence over the specific flags)</td>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read GCP infra ID and region from (takes precedence over the specific flags)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">GCP project ID</td>
+<td align="left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP project ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--region</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">GCP region</td>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP region</td>
 </tr>
 </tbody>
 </table>
@@ -984,42 +984,42 @@ add the <code>--kubeconfig</code> flag if the environment variable is not set.</
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--cloud-entry</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Specific cloud configuration to use from the clouds.yaml</td>
+<td align="left"><code>--cloud-entry</code> <code>&lt;string&gt;</code></td>
+<td align="left">Specific cloud configuration to use from the clouds.yaml</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--dedicated-gateway</code></td>
-<td style="text-align:left">Whether a dedicated gateway node has to be deployed (default true)</td>
+<td align="left"><code>--dedicated-gateway</code></td>
+<td align="left">Whether a dedicated gateway node has to be deployed (default true)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--gateway-instance</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Type of gateway instance machine (default <code>PnTAE.CPU_4_Memory_8192_Disk_50</code>)</td>
+<td align="left"><code>--gateway-instance</code> <code>&lt;string&gt;</code></td>
+<td align="left">Type of gateway instance machine (default <code>PnTAE.CPU_4_Memory_8192_Disk_50</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
-<td style="text-align:left">Number of gateways to deploy (default 1)</td>
+<td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
+<td align="left">Number of gateways to deploy (default 1)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OpenStack infra ID</td>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">OpenStack infra ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OCP metadata.json file (or directory containing it) to read OpenStack infra ID and region from (takes precedence over the specific flags)</td>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read OpenStack infra ID and region from (takes precedence over the specific flags)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OpenStack project ID</td>
+<td align="left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">OpenStack project ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--region</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OpenStack region</td>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">OpenStack region</td>
 </tr>
 </tbody>
 </table>
@@ -1030,14 +1030,14 @@ firewall ports opened and will only label the required number of gateway nodes f
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
-<td style="text-align:left">Number of gateways to deploy (default 1)</td>
+<td align="left"><code>--gateways</code> <code>&lt;int&gt;</code></td>
+<td align="left">Number of gateways to deploy (default 1)</td>
 </tr>
 </tbody>
 </table>
@@ -1049,30 +1049,30 @@ firewall ports opened and will only label the required number of gateway nodes f
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">AWS credentials configuration file (default <code>$HOME/.aws/credentials</code>)</td>
+<td align="left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS credentials configuration file (default <code>$HOME/.aws/credentials</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">AWS infra ID</td>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS infra ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OCP metadata.json file (or directory containing it) to read AWS infra ID and region from</td>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read AWS infra ID and region from</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--profile</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">AWS profile to use for credentials</td>
+<td align="left"><code>--profile</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS profile to use for credentials</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--region</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">AWS region</td>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">AWS region</td>
 </tr>
 </tbody>
 </table>
@@ -1082,30 +1082,30 @@ firewall ports opened and will only label the required number of gateway nodes f
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">GCP Credentials configuration file (default <code>$HOME/.gcp/osServiceAccount.json</code>)</td>
+<td align="left"><code>--credentials</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP Credentials configuration file (default <code>$HOME/.gcp/osServiceAccount.json</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">GCP infra ID</td>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP infra ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OCP metadata.json file (or directory containing it) to read GCP infra ID and region from</td>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read GCP infra ID and region from</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">GCP project ID</td>
+<td align="left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP project ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--region</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">GCP region</td>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">GCP region</td>
 </tr>
 </tbody>
 </table>
@@ -1115,30 +1115,30 @@ firewall ports opened and will only label the required number of gateway nodes f
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--cloud-entry</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">the cloud entry to use (default <code>openstack</code>)</td>
+<td align="left"><code>--cloud-entry</code> <code>&lt;string&gt;</code></td>
+<td align="left">the cloud entry to use (default <code>openstack</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OpenStack infra ID</td>
+<td align="left"><code>--infra-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">OpenStack infra ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OCP metadata.json file (or directory containing it) to read OpenStack infra ID and region from</td>
+<td align="left"><code>--ocp-metadata</code> <code>&lt;string&gt;</code></td>
+<td align="left">OCP metadata.json file (or directory containing it) to read OpenStack infra ID and region from</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OpenStack project ID</td>
+<td align="left"><code>--project-id</code> <code>&lt;string&gt;</code></td>
+<td align="left">OpenStack project ID</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--region</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">OpenStack region</td>
+<td align="left"><code>--region</code> <code>&lt;string&gt;</code></td>
+<td align="left">OpenStack region</td>
 </tr>
 </tbody>
 </table>
@@ -1165,18 +1165,18 @@ firewall ports opened and will only label the required number of gateway nodes f
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Flag</th>
-<th style="text-align:left">Description</th>
+<th align="left">Flag</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
-<td style="text-align:left">Namespace in which Submariner is installed (default <code>submariner-operator</code>)</td>
+<td align="left"><code>--namespace</code> <code>&lt;string&gt;</code></td>
+<td align="left">Namespace in which Submariner is installed (default <code>submariner-operator</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--yes</code></td>
-<td style="text-align:left">Automatically answer yes to confirmation prompt</td>
+<td align="left"><code>--yes</code></td>
+<td align="left">Automatically answer yes to confirmation prompt</td>
 </tr>
 </tbody>
 </table>
@@ -1188,25 +1188,25 @@ firewall ports opened and will only label the required number of gateway nodes f
 from a Pod within a cluster.  The output of the <code>subctl diagnose</code> command output can be accessed from the Pod&rsquo;s logs. The <code>--in-cluster</code>
 flag was added to <code>subctl diagnose</code> to support this use case.</p>
 <h4 id="example-running-subctl-diagnose-using-a-job">Example running <code>subctl diagnose</code> using a Job</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">submariner-diagnose</span>
-  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">submariner-operator</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">template</span>:
-    <span style="color:#f92672">metadata</span>:
-      <span style="color:#f92672">labels</span>:
-        <span style="color:#f92672">submariner.io/transient</span>: <span style="color:#e6db74">&#34;true&#34;</span>
-    <span style="color:#f92672">spec</span>:
-      <span style="color:#f92672">containers</span>:
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">submariner-diagnose</span>
-        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">quay.io/submariner/subctl:devel</span>
-        <span style="color:#f92672">command</span>: [<span style="color:#e6db74">&#34;subctl&#34;</span>,  <span style="color:#e6db74">&#34;diagnose&#34;</span>, <span style="color:#e6db74">&#34;all&#34;</span>, <span style="color:#e6db74">&#34;--in-cluster&#34;</span>]
-      <span style="color:#f92672">restartPolicy</span>: <span style="color:#ae81ff">Never</span>
-      <span style="color:#f92672">serviceAccount</span>: <span style="color:#ae81ff">submariner-diagnose</span>
-      <span style="color:#f92672">serviceAccountName</span>: <span style="color:#ae81ff">submariner-diagnose</span>
-  <span style="color:#f92672">backoffLimit</span>: <span style="color:#ae81ff">0</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: batch/v1
+<span style="color:#66d9ef">kind</span>: Job
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: submariner-diagnose
+  <span style="color:#66d9ef">namespace</span>: submariner-operator
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">submariner.io/transient</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: submariner-diagnose
+        <span style="color:#66d9ef">image</span>: quay.io/submariner/subctl:devel
+        <span style="color:#66d9ef">command</span>: [<span style="color:#e6db74">&#34;subctl&#34;</span>,  <span style="color:#e6db74">&#34;diagnose&#34;</span>, <span style="color:#e6db74">&#34;all&#34;</span>, <span style="color:#e6db74">&#34;--in-cluster&#34;</span>]
+      <span style="color:#66d9ef">restartPolicy</span>: Never
+      <span style="color:#66d9ef">serviceAccount</span>: submariner-diagnose
+      <span style="color:#66d9ef">serviceAccountName</span>: submariner-diagnose
+  <span style="color:#66d9ef">backoffLimit</span>: <span style="color:#ae81ff">0</span>
 </code></pre></div><p>The resulting Pod with <code>subctl diagnose all --in-cluster</code> logs can be accessed with the label <code>job-name=submariner-diagnose</code>.
 A similar template can also be used to create a <code>CronJob</code> that runs <code>subctl diagnose</code> periodically.</p>
 
@@ -1222,19 +1222,19 @@ A similar template can also be used to create a <code>CronJob</code> that runs <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1774639342"></script>
-    <script src="/js/perfect-scrollbar.min.js?1774639342"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1774639342"></script>
-    <script src="/js/jquery.sticky.js?1774639342"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1774639342"></script>
-    <script src="/js/featherlight.min.js?1774639342"></script>
-    <script src="/js/modernizr.custom-3.6.0.js?1774639342"></script>
-    <script src="/js/mermaid.min.js?1774639342"></script>
+    <script src="/js/clipboard.min.js?1775580959"></script>
+    <script src="/js/perfect-scrollbar.min.js?1775580959"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1775580959"></script>
+    <script src="/js/jquery.sticky.js?1775580959"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1775580959"></script>
+    <script src="/js/featherlight.min.js?1775580959"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1775580959"></script>
+    <script src="/js/mermaid.min.js?1775580959"></script>
     <script>
       if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
       }
     </script>
-    <script src="/js/relearn.js?1774639342"></script>
+    <script src="/js/relearn.js?1775580959"></script>
   </body>
 </html>

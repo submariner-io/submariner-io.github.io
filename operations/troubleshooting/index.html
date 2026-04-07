@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.81.0" />
+    <meta name="generator" content="Hugo 0.71.0" />
     <meta name="description" content="Documentation website for the Submariner project">
     <meta name="author" content="The Submariner community">
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <title>Troubleshooting :: Submariner k8s project documentation website</title>
-    <link href="/css/nucleus.css?1774639342" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1774639342" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1774639342" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1774639342" rel="stylesheet">
-    <link href="/css/auto-complete.css?1774639342" rel="stylesheet">
-    <link href="/css/theme.css?1774639342" rel="stylesheet">
-    <link href="/css/tabs.css?1774639342" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1774639342" rel="stylesheet">
-    <link href="/css/theme-blue.css?1774639342" rel="stylesheet">
-    <link href="/css/fixes.css?1774639342" rel="stylesheet">
-    <script src="/js/jquery.min.js?1774639342"></script>
+    <link href="/css/nucleus.css?1775580959" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1775580959" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1775580959" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1775580959" rel="stylesheet">
+    <link href="/css/auto-complete.css?1775580959" rel="stylesheet">
+    <link href="/css/theme.css?1775580959" rel="stylesheet">
+    <link href="/css/tabs.css?1775580959" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1775580959" rel="stylesheet">
+    <link href="/css/theme-blue.css?1775580959" rel="stylesheet">
+    <link href="/css/fixes.css?1775580959" rel="stylesheet">
+    <script src="/js/jquery.min.js?1775580959"></script>
     <style>
       :root #header + #content > #left > #rlblock_left{
         display:none !important;
@@ -44,8 +44,8 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/js/lunr.min.js?1774639342"></script>
-        <script src="/js/auto-complete.js?1774639342"></script>
+        <script src="/js/lunr.min.js?1775580959"></script>
+        <script src="/js/auto-complete.js?1775580959"></script>
         <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
         <!-- https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72 -->
         <script>
@@ -53,7 +53,7 @@
           var root_url="/";
           var baseUri=root_url.replace(/\/$/, '');
         </script>
-        <script src="/js/search.js?1774639342"></script>
+        <script src="/js/search.js?1775580959"></script>
       </div>
       <div id="homelinks">
         <ul>
@@ -265,27 +265,27 @@ be due to multiple factors outlined below.</p>
 <p>If you are unable to connect to a remote cluster, check its connection status in the Gateway resource.</p>
 <p><code>kubectl describe Gateway -n submariner-operator</code></p>
 <p>Sample output:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   - <span style="color:#f92672">endpoint</span>:
-        <span style="color:#f92672">backend</span>: <span style="color:#ae81ff">libreswan</span>
-        <span style="color:#f92672">cable_name</span>: <span style="color:#ae81ff">submariner-cable-cluster1-172-17-0-7</span>
-        <span style="color:#f92672">cluster_id</span>: <span style="color:#ae81ff">cluster1</span>
-        <span style="color:#f92672">healthCheckIP</span>: <span style="color:#ae81ff">10.1.128.0</span>
-        <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">cluster1-worker</span>
-        <span style="color:#f92672">nat_enabled</span>: <span style="color:#66d9ef">false</span>
-        <span style="color:#f92672">private_ip</span>: <span style="color:#ae81ff">172.17.0.7</span>
-        <span style="color:#f92672">public_ip</span>: <span style="color:#e6db74">&#34;&#34;</span>
-        <span style="color:#f92672">subnets</span>:
-        - <span style="color:#ae81ff">100.1.0.0</span><span style="color:#ae81ff">/16</span>
-        - <span style="color:#ae81ff">10.1.0.0</span><span style="color:#ae81ff">/16</span>
-      <span style="color:#f92672">latencyRTT</span>:
-        <span style="color:#f92672">average</span>: <span style="color:#ae81ff">447.</span><span style="color:#ae81ff">358µs</span>
-        <span style="color:#f92672">last</span>: <span style="color:#ae81ff">281.</span><span style="color:#ae81ff">577µs</span>
-        <span style="color:#f92672">max</span>: <span style="color:#ae81ff">5.</span><span style="color:#ae81ff">80437ms</span>
-        <span style="color:#f92672">min</span>: <span style="color:#ae81ff">158.</span><span style="color:#ae81ff">725µs</span>
-        <span style="color:#f92672">stdDev</span>: <span style="color:#ae81ff">364.</span><span style="color:#ae81ff">154µs</span>
-      <span style="color:#f92672">status</span>: <span style="color:#ae81ff">connected</span>
-      <span style="color:#f92672">statusMessage</span>: <span style="color:#ae81ff">Connected to 172.17.0.7:4500 - encryption alg=AES_GCM_16, keysize=128</span>
-        <span style="color:#ae81ff">rekey-time=13444</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   - <span style="color:#66d9ef">endpoint</span>:
+        <span style="color:#66d9ef">backend</span>: libreswan
+        <span style="color:#66d9ef">cable_name</span>: submariner-cable-cluster1<span style="color:#ae81ff">-172-17-0-7</span>
+        <span style="color:#66d9ef">cluster_id</span>: cluster1
+        <span style="color:#66d9ef">healthCheckIP</span>: <span style="color:#ae81ff">10.1.128.0</span>
+        <span style="color:#66d9ef">hostname</span>: cluster1-worker
+        <span style="color:#66d9ef">nat_enabled</span>: <span style="color:#66d9ef">false</span>
+        <span style="color:#66d9ef">private_ip</span>: <span style="color:#ae81ff">172.17.0.7</span>
+        <span style="color:#66d9ef">public_ip</span>: <span style="color:#e6db74">&#34;&#34;</span>
+        <span style="color:#66d9ef">subnets</span>:
+        - <span style="color:#ae81ff">100.1.0.0</span>/<span style="color:#ae81ff">16</span>
+        - <span style="color:#ae81ff">10.1.0.0</span>/<span style="color:#ae81ff">16</span>
+      <span style="color:#66d9ef">latencyRTT</span>:
+        <span style="color:#66d9ef">average</span>: <span style="color:#ae81ff">447.</span>358µs
+        <span style="color:#66d9ef">last</span>: <span style="color:#ae81ff">281.</span>577µs
+        <span style="color:#66d9ef">max</span>: <span style="color:#ae81ff">5.</span>80437ms
+        <span style="color:#66d9ef">min</span>: <span style="color:#ae81ff">158.</span>725µs
+        <span style="color:#66d9ef">stdDev</span>: <span style="color:#ae81ff">364.</span>154µs
+      <span style="color:#66d9ef">status</span>: connected
+      <span style="color:#66d9ef">statusMessage</span>: Connected to <span style="color:#ae81ff">172.17.0.7</span>:<span style="color:#ae81ff">4500</span> - encryption alg=AES_GCM_16, keysize=<span style="color:#ae81ff">128</span>
+        rekey-time=<span style="color:#ae81ff">13444</span>
 </code></pre></div><p>The Gateway Engine uses the <code>Health Check IP</code> of the endpoint to verify connectivity.
 The connection <code>Status</code> will be marked as <code>error</code>, if it cannot reach this IP,
 and the <code>Status Message</code> will provide more information about the possible failure reason.
@@ -331,36 +331,36 @@ TBD
 you haven&rsquo;t already.</p>
 <h5 id="check-serviceexport-for-your-service">Check ServiceExport for your Service</h5>
 <p>For a Service to be accessible across clusters, you must first export the Service via <code>subctl</code> which creates a <code>ServiceExport</code> resource.
-Ensure the <code>ServiceExport</code> resource exists and check if its status condition indicates `Exported'. Otherwise, its status condition will
+Ensure the <code>ServiceExport</code> resource exists and check if its status condition indicates `Exported&rsquo;. Otherwise, its status condition will
 indicate the reason it wasn&rsquo;t exported.</p>
 <p><code>kubectl describe serviceexport -n &lt;service-namespace&gt; &lt;service-name&gt;</code></p>
 <p>Note that you can also use shorthand <code>svcex</code> for <code>serviceexport</code> and <code>svcim</code> for <code>serviceimport</code>.</p>
 <p>Sample output:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">Name</span>:         <span style="color:#ae81ff">nginx-demo</span>
-<span style="color:#f92672">Namespace</span>:    <span style="color:#ae81ff">default</span>
-<span style="color:#f92672">Labels</span>:       <span style="color:#ae81ff">&lt;none&gt;</span>
-<span style="color:#f92672">Annotations</span>:  <span style="color:#ae81ff">&lt;none&gt;</span>
-<span style="color:#f92672">API Version</span>:  <span style="color:#ae81ff">multicluster.x-k8s.io/v1alpha1</span>
-<span style="color:#f92672">Kind</span>:         <span style="color:#ae81ff">ServiceExport</span>
-<span style="color:#f92672">Metadata</span>:
-  <span style="color:#f92672">Creation Timestamp</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
-  <span style="color:#f92672">Generation</span>:          <span style="color:#ae81ff">1</span>
-  <span style="color:#f92672">Resource Version</span>:    <span style="color:#ae81ff">5254</span>
-  <span style="color:#f92672">Self Link</span>:           <span style="color:#ae81ff">/apis/multicluster.x-k8s.io/v1alpha1/namespaces/default/serviceexports/nginx-demo</span>
-  <span style="color:#f92672">UID</span>:                 <span style="color:#ae81ff">77509e43</span>-<span style="color:#ae81ff">8fd1-4173-805c-e03c4581ebbf</span>
-<span style="color:#f92672">Status</span>:
-  <span style="color:#f92672">Conditions</span>:
-    <span style="color:#f92672">Last Transition Time</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
-    <span style="color:#f92672">Message</span>:
-    <span style="color:#f92672">Reason</span>:
-    <span style="color:#f92672">Status</span>:                <span style="color:#66d9ef">True</span>
-    <span style="color:#f92672">Type</span>:                  <span style="color:#ae81ff">Valid</span>
-    <span style="color:#f92672">Last Transition Time</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
-    <span style="color:#f92672">Message</span>:               <span style="color:#ae81ff">Service was successfully synced to the broker</span>
-    <span style="color:#f92672">Reason</span>:
-    <span style="color:#f92672">Status</span>:                <span style="color:#66d9ef">True</span>
-    <span style="color:#f92672">Type</span>:                  <span style="color:#ae81ff">Synced</span>
-<span style="color:#f92672">Events</span>:                    <span style="color:#ae81ff">&lt;none&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">Name</span>:         nginx-demo
+<span style="color:#66d9ef">Namespace</span>:    default
+<span style="color:#66d9ef">Labels</span>:       &lt;none&gt;
+<span style="color:#66d9ef">Annotations</span>:  &lt;none&gt;
+<span style="color:#66d9ef">API Version</span>:  multicluster.x-k8s.io/v1alpha1
+<span style="color:#66d9ef">Kind</span>:         ServiceExport
+<span style="color:#66d9ef">Metadata</span>:
+  <span style="color:#66d9ef">Creation Timestamp</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
+  <span style="color:#66d9ef">Generation</span>:          <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">Resource Version</span>:    <span style="color:#ae81ff">5254</span>
+  <span style="color:#66d9ef">Self Link</span>:           /apis/multicluster.x-k8s.io/v1alpha1/namespaces/default/serviceexports/nginx-demo
+  <span style="color:#66d9ef">UID</span>:                 <span style="color:#ae81ff">77509e43</span>-8fd1<span style="color:#ae81ff">-4173</span>-805c-e03c4581ebbf
+<span style="color:#66d9ef">Status</span>:
+  <span style="color:#66d9ef">Conditions</span>:
+    <span style="color:#66d9ef">Last Transition Time</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
+    <span style="color:#66d9ef">Message</span>:
+    <span style="color:#66d9ef">Reason</span>:
+    <span style="color:#66d9ef">Status</span>:                True
+    <span style="color:#66d9ef">Type</span>:                  Valid
+    <span style="color:#66d9ef">Last Transition Time</span>:  <span style="color:#e6db74">2020-11-25T06:21:01Z</span>
+    <span style="color:#66d9ef">Message</span>:               Service was successfully synced to the broker
+    <span style="color:#66d9ef">Reason</span>:
+    <span style="color:#66d9ef">Status</span>:                True
+    <span style="color:#66d9ef">Type</span>:                  Synced
+<span style="color:#66d9ef">Events</span>:                    &lt;none&gt;
 </code></pre></div><h5 id="check-lighthouse-coredns-service">Check Lighthouse CoreDNS Service</h5>
 <p>All cross-cluster service queries are handled by Lighthouse CoreDNS server. First we check if the Lighthouse CoreDNS Service is running
 properly.</p>
@@ -484,19 +484,19 @@ data:
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1774639342"></script>
-    <script src="/js/perfect-scrollbar.min.js?1774639342"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1774639342"></script>
-    <script src="/js/jquery.sticky.js?1774639342"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1774639342"></script>
-    <script src="/js/featherlight.min.js?1774639342"></script>
-    <script src="/js/modernizr.custom-3.6.0.js?1774639342"></script>
-    <script src="/js/mermaid.min.js?1774639342"></script>
+    <script src="/js/clipboard.min.js?1775580959"></script>
+    <script src="/js/perfect-scrollbar.min.js?1775580959"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1775580959"></script>
+    <script src="/js/jquery.sticky.js?1775580959"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1775580959"></script>
+    <script src="/js/featherlight.min.js?1775580959"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1775580959"></script>
+    <script src="/js/mermaid.min.js?1775580959"></script>
     <script>
       if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
       }
     </script>
-    <script src="/js/relearn.js?1774639342"></script>
+    <script src="/js/relearn.js?1775580959"></script>
   </body>
 </html>

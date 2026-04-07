@@ -5,6 +5,10 @@
     <link>/development/security/reporting/</link>
     <description>Recent content in Security Reporting on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language><atom:link href="/development/security/reporting/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-US</language>
+    
+	<atom:link href="/development/security/reporting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
   </channel>
 </rss>

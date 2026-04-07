@@ -6,6 +6,10 @@
     <description>Recent content in Docs Style Guide on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 29 Apr 2020 19:09:55 +0200</lastBuildDate><atom:link href="/development/website/style-guide/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Apr 2020 19:09:55 +0200</lastBuildDate>
+    
+	<atom:link href="/development/website/style-guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
   </channel>
 </rss>
