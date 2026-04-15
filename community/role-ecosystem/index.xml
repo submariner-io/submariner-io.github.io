@@ -5,10 +5,6 @@
     <link>/community/role-ecosystem/</link>
     <description>Recent content in Role in the Ecosystem on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    
-	<atom:link href="/community/role-ecosystem/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-US</language><atom:link href="/community/role-ecosystem/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

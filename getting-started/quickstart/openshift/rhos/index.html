@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="generator" content="Hugo 0.81.0" />
     <meta name="description" content="Documentation website for the Submariner project">
     <meta name="author" content="The Submariner community">
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <title>Hybrid OpenStack and AWS :: Submariner k8s project documentation website</title>
-    <link href="/css/nucleus.css?1776271266" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1776271266" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1776271266" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1776271266" rel="stylesheet">
-    <link href="/css/auto-complete.css?1776271266" rel="stylesheet">
-    <link href="/css/theme.css?1776271266" rel="stylesheet">
-    <link href="/css/tabs.css?1776271266" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1776271266" rel="stylesheet">
-    <link href="/css/theme-blue.css?1776271266" rel="stylesheet">
-    <link href="/css/fixes.css?1776271266" rel="stylesheet">
-    <script src="/js/jquery.min.js?1776271266"></script>
+    <link href="/css/nucleus.css?1776271856" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1776271856" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1776271856" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1776271856" rel="stylesheet">
+    <link href="/css/auto-complete.css?1776271856" rel="stylesheet">
+    <link href="/css/theme.css?1776271856" rel="stylesheet">
+    <link href="/css/tabs.css?1776271856" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1776271856" rel="stylesheet">
+    <link href="/css/theme-blue.css?1776271856" rel="stylesheet">
+    <link href="/css/fixes.css?1776271856" rel="stylesheet">
+    <script src="/js/jquery.min.js?1776271856"></script>
     <style>
       :root #header + #content > #left > #rlblock_left{
         display:none !important;
@@ -44,8 +44,8 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/js/lunr.min.js?1776271266"></script>
-        <script src="/js/auto-complete.js?1776271266"></script>
+        <script src="/js/lunr.min.js?1776271856"></script>
+        <script src="/js/auto-complete.js?1776271856"></script>
         <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
         <!-- https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72 -->
         <script>
@@ -53,7 +53,7 @@
           var root_url="/";
           var baseUri=root_url.replace(/\/$/, '');
         </script>
-        <script src="/js/search.js?1776271266"></script>
+        <script src="/js/search.js?1776271856"></script>
       </div>
       <div id="homelinks">
         <ul>
@@ -379,45 +379,45 @@ curl nginx.default.svc.clusterset.local:8080
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl cluster-b.nginx.default.svc.clusterset.local:8080
 </code></pre></div><h4 id="verify-statefulsets">Verify StatefulSets</h4>
 <p>A StatefulSet uses a headless Service. Create a <code>web.yaml</code> as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Service
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: nginx-ss
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">ports</span>:
-  - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
-    <span style="color:#66d9ef">name</span>: web
-  <span style="color:#66d9ef">clusterIP</span>: None
-  <span style="color:#66d9ef">selector</span>:
-    <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-    <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-ss</span>
+  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">app.kubernetes.io/instance</span>: <span style="color:#ae81ff">nginx-ss</span>
+    <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">nginx-ss</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">ports</span>:
+  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">web</span>
+  <span style="color:#f92672">clusterIP</span>: <span style="color:#ae81ff">None</span>
+  <span style="color:#f92672">selector</span>:
+    <span style="color:#f92672">app.kubernetes.io/instance</span>: <span style="color:#ae81ff">nginx-ss</span>
+    <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">nginx-ss</span>
 ---
-<span style="color:#66d9ef">apiVersion</span>: apps/v1
-<span style="color:#66d9ef">kind</span>: StatefulSet
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: web
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">serviceName</span>: <span style="color:#e6db74">&#34;nginx-ss&#34;</span>
-  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
-  <span style="color:#66d9ef">selector</span>:
-    <span style="color:#66d9ef">matchLabels</span>:
-        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-  <span style="color:#66d9ef">template</span>:
-    <span style="color:#66d9ef">metadata</span>:
-      <span style="color:#66d9ef">labels</span>:
-        <span style="color:#66d9ef">app.kubernetes.io/instance</span>: nginx-ss
-        <span style="color:#66d9ef">app.kubernetes.io/name</span>: nginx-ss
-    <span style="color:#66d9ef">spec</span>:
-      <span style="color:#66d9ef">containers</span>:
-      - <span style="color:#66d9ef">name</span>: nginx-ss
-        <span style="color:#66d9ef">image</span>: nginxinc/nginx-unprivileged:stable-alpine
-        <span style="color:#66d9ef">ports</span>:
-        - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
-          <span style="color:#66d9ef">name</span>: web
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">StatefulSet</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">web</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">serviceName</span>: <span style="color:#e6db74">&#34;nginx-ss&#34;</span>
+  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">2</span>
+  <span style="color:#f92672">selector</span>:
+    <span style="color:#f92672">matchLabels</span>:
+        <span style="color:#f92672">app.kubernetes.io/instance</span>: <span style="color:#ae81ff">nginx-ss</span>
+        <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">nginx-ss</span>
+  <span style="color:#f92672">template</span>:
+    <span style="color:#f92672">metadata</span>:
+      <span style="color:#f92672">labels</span>:
+        <span style="color:#f92672">app.kubernetes.io/instance</span>: <span style="color:#ae81ff">nginx-ss</span>
+        <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">nginx-ss</span>
+    <span style="color:#f92672">spec</span>:
+      <span style="color:#f92672">containers</span>:
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-ss</span>
+        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginxinc/nginx-unprivileged:stable-alpine</span>
+        <span style="color:#f92672">ports</span>:
+        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">80</span>
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">web</span>
 </code></pre></div><p>Use this yaml to create a StatefulSet <code>web</code> with <code>nginx-ss</code> as the Headless Service.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KUBECONFIG<span style="color:#f92672">=</span>cluster-a/auth/kubeconfig
 kubectl -n default apply -f web.yaml
@@ -456,19 +456,19 @@ subctl verify --context cluster-a --tocontext cluster-b --only service-discovery
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1776271266"></script>
-    <script src="/js/perfect-scrollbar.min.js?1776271266"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1776271266"></script>
-    <script src="/js/jquery.sticky.js?1776271266"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1776271266"></script>
-    <script src="/js/featherlight.min.js?1776271266"></script>
-    <script src="/js/modernizr.custom-3.6.0.js?1776271266"></script>
-    <script src="/js/mermaid.min.js?1776271266"></script>
+    <script src="/js/clipboard.min.js?1776271856"></script>
+    <script src="/js/perfect-scrollbar.min.js?1776271856"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1776271856"></script>
+    <script src="/js/jquery.sticky.js?1776271856"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1776271856"></script>
+    <script src="/js/featherlight.min.js?1776271856"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1776271856"></script>
+    <script src="/js/mermaid.min.js?1776271856"></script>
     <script>
       if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
       }
     </script>
-    <script src="/js/relearn.js?1776271266"></script>
+    <script src="/js/relearn.js?1776271856"></script>
   </body>
 </html>

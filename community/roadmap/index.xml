@@ -6,10 +6,6 @@
     <description>Recent content in Roadmap on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 19 Feb 2020 20:24:34 +0100</lastBuildDate>
-    
-	<atom:link href="/community/roadmap/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 19 Feb 2020 20:24:34 +0100</lastBuildDate><atom:link href="/community/roadmap/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

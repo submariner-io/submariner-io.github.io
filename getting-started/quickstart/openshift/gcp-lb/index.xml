@@ -6,10 +6,6 @@
     <description>Recent content in On GCP (LoadBalancer mode) on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 21 Feb 2020 13:36:18 +0100</lastBuildDate>
-    
-	<atom:link href="/getting-started/quickstart/openshift/gcp-lb/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 21 Feb 2020 13:36:18 +0100</lastBuildDate><atom:link href="/getting-started/quickstart/openshift/gcp-lb/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
