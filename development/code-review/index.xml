@@ -6,6 +6,10 @@
     <description>Recent content in Code Review Guide on Submariner k8s project documentation website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 06 May 2020 08:19:26 +0200</lastBuildDate><atom:link href="/development/code-review/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 May 2020 08:19:26 +0200</lastBuildDate>
+    
+	<atom:link href="/development/code-review/index.xml" rel="self" type="application/rss+xml" />
+    
+    
   </channel>
 </rss>

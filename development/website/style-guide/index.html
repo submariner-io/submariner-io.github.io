@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.81.0" />
+    <meta name="generator" content="Hugo 0.71.0" />
     <meta name="description" content="Documentation website for the Submariner project">
     <meta name="author" content="The Submariner community">
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <title>Docs Style Guide :: Submariner k8s project documentation website</title>
-    <link href="/css/nucleus.css?1776271856" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1776271856" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1776271856" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1776271856" rel="stylesheet">
-    <link href="/css/auto-complete.css?1776271856" rel="stylesheet">
-    <link href="/css/theme.css?1776271856" rel="stylesheet">
-    <link href="/css/tabs.css?1776271856" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1776271856" rel="stylesheet">
-    <link href="/css/theme-blue.css?1776271856" rel="stylesheet">
-    <link href="/css/fixes.css?1776271856" rel="stylesheet">
-    <script src="/js/jquery.min.js?1776271856"></script>
+    <link href="/css/nucleus.css?1776955024" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1776955024" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1776955024" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1776955024" rel="stylesheet">
+    <link href="/css/auto-complete.css?1776955024" rel="stylesheet">
+    <link href="/css/theme.css?1776955024" rel="stylesheet">
+    <link href="/css/tabs.css?1776955024" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1776955024" rel="stylesheet">
+    <link href="/css/theme-blue.css?1776955024" rel="stylesheet">
+    <link href="/css/fixes.css?1776955024" rel="stylesheet">
+    <script src="/js/jquery.min.js?1776955024"></script>
     <style>
       :root #header + #content > #left > #rlblock_left{
         display:none !important;
@@ -44,8 +44,8 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/js/lunr.min.js?1776271856"></script>
-        <script src="/js/auto-complete.js?1776271856"></script>
+        <script src="/js/lunr.min.js?1776955024"></script>
+        <script src="/js/auto-complete.js?1776955024"></script>
         <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
         <!-- https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72 -->
         <script>
@@ -53,7 +53,7 @@
           var root_url="/";
           var baseUri=root_url.replace(/\/$/, '');
         </script>
-        <script src="/js/search.js?1776271856"></script>
+        <script src="/js/search.js?1776955024"></script>
       </div>
       <div id="homelinks">
         <ul>
@@ -233,78 +233,78 @@ the site.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Term</th>
-<th style="text-align:left">Usage</th>
+<th align="left">Term</th>
+<th align="left">Usage</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Admiral</td>
-<td style="text-align:left">The project name <em>Admiral</em> should always be capitalized.</td>
+<td align="left">Admiral</td>
+<td align="left">The project name <em>Admiral</em> should always be capitalized.</td>
 </tr>
 <tr>
-<td style="text-align:left">Broker</td>
-<td style="text-align:left">The design pattern component <em>Broker</em> should always be capitalized.</td>
+<td align="left">Broker</td>
+<td align="left">The design pattern component <em>Broker</em> should always be capitalized.</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>ClusterSet</code></td>
-<td style="text-align:left">The Kubernetes object <em>ClusterSet</em> proposed in KEP1645 should always be CamelCase and formatted in code style.</td>
+<td align="left"><code>ClusterSet</code></td>
+<td align="left">The Kubernetes object <em>ClusterSet</em> proposed in KEP1645 should always be CamelCase and formatted in code style.</td>
 </tr>
 <tr>
-<td style="text-align:left">Cluster set</td>
-<td style="text-align:left">The words &ldquo;cluster set&rdquo; should be used as a term for a group of clusters, but not the proposed Kubernetes object.</td>
+<td align="left">Cluster set</td>
+<td align="left">The words &ldquo;cluster set&rdquo; should be used as a term for a group of clusters, but not the proposed Kubernetes object.</td>
 </tr>
 <tr>
-<td style="text-align:left">Coastguard</td>
-<td style="text-align:left">The project name <em>Coastguard</em> should always be capitalized.</td>
+<td align="left">Coastguard</td>
+<td align="left">The project name <em>Coastguard</em> should always be capitalized.</td>
 </tr>
 <tr>
-<td style="text-align:left">Globalnet</td>
-<td style="text-align:left">The feature name <em>Globalnet</em> is one word, and so should always be capitalized and should have a lowercase &ldquo;n&rdquo;.</td>
+<td align="left">Globalnet</td>
+<td align="left">The feature name <em>Globalnet</em> is one word, and so should always be capitalized and should have a lowercase &ldquo;n&rdquo;.</td>
 </tr>
 <tr>
-<td style="text-align:left">IPsec</td>
-<td style="text-align:left">The protocol <em>IPsec</em> should follow the capitalization used by <a href="https://datatracker.ietf.org/doc/html/rfc6071">RFCs</a> and <a href="https://en.wikipedia.org/wiki/IPsec">popular sources</a>.</td>
+<td align="left">IPsec</td>
+<td align="left">The protocol <em>IPsec</em> should follow the capitalization used by <a href="https://datatracker.ietf.org/doc/html/rfc6071">RFCs</a> and <a href="https://en.wikipedia.org/wiki/IPsec">popular sources</a>.</td>
 </tr>
 <tr>
-<td style="text-align:left">iptables</td>
-<td style="text-align:left">The application <em>iptables</em> consistently uses all-lowercase. Follow their convention, but avoid starting a sentence with &ldquo;iptables&rdquo;.</td>
+<td align="left">iptables</td>
+<td align="left">The application <em>iptables</em> consistently uses all-lowercase. Follow their convention, but avoid starting a sentence with &ldquo;iptables&rdquo;.</td>
 </tr>
 <tr>
-<td style="text-align:left">K8s</td>
-<td style="text-align:left">The project nickname <em>K8s</em> should typically be expanded to &ldquo;Kubernetes&rdquo;.</td>
+<td align="left">K8s</td>
+<td align="left">The project nickname <em>K8s</em> should typically be expanded to &ldquo;Kubernetes&rdquo;.</td>
 </tr>
 <tr>
-<td style="text-align:left">kind</td>
-<td style="text-align:left">The tool <em>kind</em> consistently uses all-lowercase. Follow their convention, but avoid starting a sentence with &ldquo;kind&rdquo;.</td>
+<td align="left">kind</td>
+<td align="left">The tool <em>kind</em> consistently uses all-lowercase. Follow their convention, but avoid starting a sentence with &ldquo;kind&rdquo;.</td>
 </tr>
 <tr>
-<td style="text-align:left">Lighthouse</td>
-<td style="text-align:left">The project name <em>Lighthouse</em> should always be capitalized.</td>
+<td align="left">Lighthouse</td>
+<td align="left">The project name <em>Lighthouse</em> should always be capitalized.</td>
 </tr>
 <tr>
-<td style="text-align:left">Operator</td>
-<td style="text-align:left">The design pattern <em>Operator</em> should always be capitalized.</td>
+<td align="left">Operator</td>
+<td align="left">The design pattern <em>Operator</em> should always be capitalized.</td>
 </tr>
 <tr>
-<td style="text-align:left">OpenStack</td>
-<td style="text-align:left">The project name <em>OpenStack</em> should always be capitalized and camel-cased.</td>
+<td align="left">OpenStack</td>
+<td align="left">The project name <em>OpenStack</em> should always be capitalized and camel-cased.</td>
 </tr>
 <tr>
-<td style="text-align:left">Shipyard</td>
-<td style="text-align:left">The project name <em>Shipyard</em> should always be capitalized.</td>
+<td align="left">Shipyard</td>
+<td align="left">The project name <em>Shipyard</em> should always be capitalized.</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>subctl</code></td>
-<td style="text-align:left">The artifact <code>subctl</code> should not be capitalized and should be formatted in code style.</td>
+<td align="left"><code>subctl</code></td>
+<td align="left">The artifact <code>subctl</code> should not be capitalized and should be formatted in code style.</td>
 </tr>
 <tr>
-<td style="text-align:left">Submariner</td>
-<td style="text-align:left">The project name <em>Submariner</em> should always be capitalized.</td>
+<td align="left">Submariner</td>
+<td align="left">The project name <em>Submariner</em> should always be capitalized.</td>
 </tr>
 <tr>
-<td style="text-align:left">VXLAN</td>
-<td style="text-align:left">The protocol <em>VXLAN</em> should always be all-capitalized.</td>
+<td align="left">VXLAN</td>
+<td align="left">The protocol <em>VXLAN</em> should always be all-capitalized.</td>
 </tr>
 </tbody>
 </table>
@@ -337,19 +337,19 @@ Instead, document the versions that introduce or remove features:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1776271856"></script>
-    <script src="/js/perfect-scrollbar.min.js?1776271856"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1776271856"></script>
-    <script src="/js/jquery.sticky.js?1776271856"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1776271856"></script>
-    <script src="/js/featherlight.min.js?1776271856"></script>
-    <script src="/js/modernizr.custom-3.6.0.js?1776271856"></script>
-    <script src="/js/mermaid.min.js?1776271856"></script>
+    <script src="/js/clipboard.min.js?1776955024"></script>
+    <script src="/js/perfect-scrollbar.min.js?1776955024"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1776955024"></script>
+    <script src="/js/jquery.sticky.js?1776955024"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1776955024"></script>
+    <script src="/js/featherlight.min.js?1776955024"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1776955024"></script>
+    <script src="/js/mermaid.min.js?1776955024"></script>
     <script>
       if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
       }
     </script>
-    <script src="/js/relearn.js?1776271856"></script>
+    <script src="/js/relearn.js?1776955024"></script>
   </body>
 </html>
