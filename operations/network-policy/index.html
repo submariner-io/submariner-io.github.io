@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="generator" content="Hugo 0.81.0" />
     <meta name="description" content="Documentation website for the Submariner project">
     <meta name="author" content="The Submariner community">
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <title>Network Policy :: Submariner k8s project documentation website</title>
-    <link href="/css/nucleus.css?1776956160" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1776956160" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1776956160" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1776956160" rel="stylesheet">
-    <link href="/css/auto-complete.css?1776956160" rel="stylesheet">
-    <link href="/css/theme.css?1776956160" rel="stylesheet">
-    <link href="/css/tabs.css?1776956160" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1776956160" rel="stylesheet">
-    <link href="/css/theme-blue.css?1776956160" rel="stylesheet">
-    <link href="/css/fixes.css?1776956160" rel="stylesheet">
-    <script src="/js/jquery.min.js?1776956160"></script>
+    <link href="/css/nucleus.css?1777879405" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1777879405" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1777879405" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1777879405" rel="stylesheet">
+    <link href="/css/auto-complete.css?1777879405" rel="stylesheet">
+    <link href="/css/theme.css?1777879405" rel="stylesheet">
+    <link href="/css/tabs.css?1777879405" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1777879405" rel="stylesheet">
+    <link href="/css/theme-blue.css?1777879405" rel="stylesheet">
+    <link href="/css/fixes.css?1777879405" rel="stylesheet">
+    <script src="/js/jquery.min.js?1777879405"></script>
     <style>
       :root #header + #content > #left > #rlblock_left{
         display:none !important;
@@ -44,8 +44,8 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/js/lunr.min.js?1776956160"></script>
-        <script src="/js/auto-complete.js?1776956160"></script>
+        <script src="/js/lunr.min.js?1777879405"></script>
+        <script src="/js/auto-complete.js?1777879405"></script>
         <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
         <!-- https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72 -->
         <script>
@@ -53,7 +53,7 @@
           var root_url="/";
           var baseUri=root_url.replace(/\/$/, '');
         </script>
-        <script src="/js/search.js?1776956160"></script>
+        <script src="/js/search.js?1777879405"></script>
       </div>
       <div id="homelinks">
         <ul>
@@ -233,46 +233,46 @@ If you’re using Globalnet, the addresses used in policies need to be Globalnet
 <p>The gateway is transparent and doesn’t need to be referenced in network policies.</p>
 <p>For example for egress:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
-<span style="color:#66d9ef">apiVersion</span>: networking.k8s.io/v1
-<span style="color:#66d9ef">kind</span>: NetworkPolicy
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: allow-netshoot-to-nginx
-  <span style="color:#66d9ef">namespace</span>: default
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">podSelector</span>:
-    <span style="color:#66d9ef">matchLabels</span>:
-      <span style="color:#66d9ef">app</span>: netshoot
-  <span style="color:#66d9ef">policyTypes</span>:
-  - Egress
-  <span style="color:#66d9ef">egress</span>:
-  - <span style="color:#66d9ef">to</span>:
-    - <span style="color:#66d9ef">ipBlock</span>:
-        <span style="color:#66d9ef">cidr</span>: <span style="color:#ae81ff">100.66.213.87</span>/<span style="color:#ae81ff">32</span>
-    - <span style="color:#66d9ef">podSelector</span>:
-        <span style="color:#66d9ef">matchLabels</span>:
-          <span style="color:#66d9ef">app</span>: nginx-demo
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">networking.k8s.io/v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">NetworkPolicy</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">allow-netshoot-to-nginx</span>
+  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">podSelector</span>:
+    <span style="color:#f92672">matchLabels</span>:
+      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">netshoot</span>
+  <span style="color:#f92672">policyTypes</span>:
+  - <span style="color:#ae81ff">Egress</span>
+  <span style="color:#f92672">egress</span>:
+  - <span style="color:#f92672">to</span>:
+    - <span style="color:#f92672">ipBlock</span>:
+        <span style="color:#f92672">cidr</span>: <span style="color:#ae81ff">100.66.213.87</span><span style="color:#ae81ff">/32</span>
+    - <span style="color:#f92672">podSelector</span>:
+        <span style="color:#f92672">matchLabels</span>:
+          <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx-demo</span>
 </code></pre></div><p>allows “netshoot” pods to access local pods providing the “nginx-demo” app,
 and a specific pod service IP address in the remote cluster.</p>
 <p>For ingress:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
-<span style="color:#66d9ef">apiVersion</span>: networking.k8s.io/v1
-<span style="color:#66d9ef">kind</span>: NetworkPolicy
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: allow-nginx-from-netshoot
-  <span style="color:#66d9ef">namespace</span>: default
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">podSelector</span>:
-    <span style="color:#66d9ef">matchLabels</span>:
-      <span style="color:#66d9ef">app</span>: nginx-demo
-  <span style="color:#66d9ef">policyTypes</span>:
-  - Ingress
-  <span style="color:#66d9ef">ingress</span>:
-  - <span style="color:#66d9ef">from</span>:
-    - <span style="color:#66d9ef">ipBlock</span>:
-        <span style="color:#66d9ef">cidr</span>: <span style="color:#ae81ff">10.131.0.0</span>/<span style="color:#ae81ff">16</span>
-    - <span style="color:#66d9ef">podSelector</span>:
-        <span style="color:#66d9ef">matchLabels</span>:
-          <span style="color:#66d9ef">app</span>: netshoot
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">networking.k8s.io/v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">NetworkPolicy</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">allow-nginx-from-netshoot</span>
+  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">podSelector</span>:
+    <span style="color:#f92672">matchLabels</span>:
+      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx-demo</span>
+  <span style="color:#f92672">policyTypes</span>:
+  - <span style="color:#ae81ff">Ingress</span>
+  <span style="color:#f92672">ingress</span>:
+  - <span style="color:#f92672">from</span>:
+    - <span style="color:#f92672">ipBlock</span>:
+        <span style="color:#f92672">cidr</span>: <span style="color:#ae81ff">10.131.0.0</span><span style="color:#ae81ff">/16</span>
+    - <span style="color:#f92672">podSelector</span>:
+        <span style="color:#f92672">matchLabels</span>:
+          <span style="color:#f92672">app</span>: <span style="color:#ae81ff">netshoot</span>
 </code></pre></div><p>implements the same access as above on the receiving side,
 without the same level of control for the remote end —
 access is granted to any pod in the given CIDR (an entire cluster’s pod CIDR).</p>
@@ -289,19 +289,19 @@ access is granted to any pod in the given CIDR (an entire cluster’s pod CIDR).
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1776956160"></script>
-    <script src="/js/perfect-scrollbar.min.js?1776956160"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1776956160"></script>
-    <script src="/js/jquery.sticky.js?1776956160"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1776956160"></script>
-    <script src="/js/featherlight.min.js?1776956160"></script>
-    <script src="/js/modernizr.custom-3.6.0.js?1776956160"></script>
-    <script src="/js/mermaid.min.js?1776956160"></script>
+    <script src="/js/clipboard.min.js?1777879405"></script>
+    <script src="/js/perfect-scrollbar.min.js?1777879405"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1777879405"></script>
+    <script src="/js/jquery.sticky.js?1777879405"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1777879405"></script>
+    <script src="/js/featherlight.min.js?1777879405"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1777879405"></script>
+    <script src="/js/mermaid.min.js?1777879405"></script>
     <script>
       if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
       }
     </script>
-    <script src="/js/relearn.js?1776956160"></script>
+    <script src="/js/relearn.js?1777879405"></script>
   </body>
 </html>

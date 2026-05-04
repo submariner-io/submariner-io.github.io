@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="generator" content="Hugo 0.81.0" />
     <meta name="description" content="Documentation website for the Submariner project">
     <meta name="author" content="The Submariner community">
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <title>Globalnet Controller :: Submariner k8s project documentation website</title>
-    <link href="/css/nucleus.css?1776956160" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1776956160" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1776956160" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1776956160" rel="stylesheet">
-    <link href="/css/auto-complete.css?1776956160" rel="stylesheet">
-    <link href="/css/theme.css?1776956160" rel="stylesheet">
-    <link href="/css/tabs.css?1776956160" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1776956160" rel="stylesheet">
-    <link href="/css/theme-blue.css?1776956160" rel="stylesheet">
-    <link href="/css/fixes.css?1776956160" rel="stylesheet">
-    <script src="/js/jquery.min.js?1776956160"></script>
+    <link href="/css/nucleus.css?1777879405" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1777879405" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1777879405" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1777879405" rel="stylesheet">
+    <link href="/css/auto-complete.css?1777879405" rel="stylesheet">
+    <link href="/css/theme.css?1777879405" rel="stylesheet">
+    <link href="/css/tabs.css?1777879405" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1777879405" rel="stylesheet">
+    <link href="/css/theme-blue.css?1777879405" rel="stylesheet">
+    <link href="/css/fixes.css?1777879405" rel="stylesheet">
+    <script src="/js/jquery.min.js?1777879405"></script>
     <style>
       :root #header + #content > #left > #rlblock_left{
         display:none !important;
@@ -44,8 +44,8 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/js/lunr.min.js?1776956160"></script>
-        <script src="/js/auto-complete.js?1776956160"></script>
+        <script src="/js/lunr.min.js?1777879405"></script>
+        <script src="/js/auto-complete.js?1777879405"></script>
         <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
         <!-- https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72 -->
         <script>
@@ -53,7 +53,7 @@
           var root_url="/";
           var baseUri=root_url.replace(/\/$/, '');
         </script>
-        <script src="/js/search.js?1776956160"></script>
+        <script src="/js/search.js?1777879405"></script>
       </div>
       <div id="homelinks">
         <ul>
@@ -307,7 +307,7 @@ The default
 <a href="https://docs.openshift.com/container-platform/4.9/architecture/admission-plug-ins.html">network.openshift.io/ExternalIPRanger</a>
 validating admission plug-in allows the use of the <code>Service</code> with <code>externalIPs</code> only for users with permission to handle
 the <code>service/externalips</code> resource in the <code>network.openshift.io</code> group.
-By default, <code>submariner-globalnet</code>'s <code>ServiceAccount</code> has such an RBAC rule.</li>
+By default, <code>submariner-globalnet</code>&rsquo;s <code>ServiceAccount</code> has such an RBAC rule.</li>
 <li>Other Kubernetes distributions:
 Enable <a href="https://github.com/kubernetes-sigs/externalip-webhook">externalip-webhook</a> while specifying <code>allowed-external-ip-cidrs</code> to
 include the <code>GlobalCIDR</code> allocated to the cluster and <code>allowed-usernames</code> to include
@@ -332,12 +332,12 @@ use cases.</p>
 <p>By default, 8 cluster-scoped global IPs are allocated which allows for ~8x64k active ephemeral ports. If those are still
 not enough for a cluster, this number can be increased by setting the <code>NumberOfIPs</code> field in the <code>ClusterGlobalEgressIP</code> with the
 well-known name <code>cluster-egress.submariner.io</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   <span style="color:#66d9ef">apiVersion</span>: submariner.io/v1
-   <span style="color:#66d9ef">kind</span>: ClusterGlobalEgressIP
-   <span style="color:#66d9ef">metadata</span>:
-     <span style="color:#66d9ef">name</span>: cluster-egress.submariner.io
-   <span style="color:#66d9ef">spec</span>:
-     <span style="color:#66d9ef">numberOfIPs</span>: <span style="color:#ae81ff">9</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">submariner.io/v1</span>
+   <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterGlobalEgressIP</span>
+   <span style="color:#f92672">metadata</span>:
+     <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-egress.submariner.io</span>
+   <span style="color:#f92672">spec</span>:
+     <span style="color:#f92672">numberOfIPs</span>: <span style="color:#ae81ff">9</span>
 </code></pre></div>
 <div class="notices note">
     <div class="label">Note</div><p>Only the <code>ClusterGlobalEgressIP</code> resource with the name <code>cluster-egress.submariner.io</code> is recognized by Globalnet. This resource is automatically
@@ -347,13 +347,13 @@ created with the default number of IPs.</p>
 <h3 id="global-ips-for-a-namespace">Global IPs for a Namespace</h3>
 <p>If it&rsquo;s desired for all pods in a namespace to use a unique global IP instead of one of the cluster-scoped IPs, a user can create a
 <code>GlobalEgressIP</code> resource in that namespace:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   <span style="color:#66d9ef">apiVersion</span>: submariner.io/v1
-   <span style="color:#66d9ef">kind</span>: GlobalEgressIP
-   <span style="color:#66d9ef">metadata</span>:
-     <span style="color:#66d9ef">name</span>: ns-egressip
-     <span style="color:#66d9ef">namespace</span>: ns1
-   <span style="color:#66d9ef">spec</span>:
-     <span style="color:#66d9ef">numberOfIPs</span>: <span style="color:#ae81ff">1</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">submariner.io/v1</span>
+   <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">GlobalEgressIP</span>
+   <span style="color:#f92672">metadata</span>:
+     <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ns-egressip</span>
+     <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">ns1</span>
+   <span style="color:#f92672">spec</span>:
+     <span style="color:#f92672">numberOfIPs</span>: <span style="color:#ae81ff">1</span>
 </code></pre></div><p>The example above will allocate 1 global IP which will be used as egress IP for all pods in namespace <code>ns1</code>.</p>
 
 <div class="notices note">
@@ -363,16 +363,16 @@ created with the default number of IPs.</p>
 <h3 id="global-ips-for-a-set-of-pods">Global IPs for a set of pods</h3>
 <p>If it&rsquo;s desired for a set of pods in a namespace to use unique global IP(s), a user can create a <code>GlobalEgressIP</code> resource in that
 namespace with the <code>podSelector</code> field set:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   <span style="color:#66d9ef">apiVersion</span>: submariner.io/v1
-   <span style="color:#66d9ef">kind</span>: GlobalEgressIP
-   <span style="color:#66d9ef">metadata</span>:
-     <span style="color:#66d9ef">name</span>: db-pods
-     <span style="color:#66d9ef">namespace</span>: ns1
-   <span style="color:#66d9ef">spec</span>:
-     <span style="color:#66d9ef">podSelector</span>:
-         <span style="color:#66d9ef">matchLabels</span>:
-           <span style="color:#66d9ef">role</span>: db
-     <span style="color:#66d9ef">numberOfIPs</span>: <span style="color:#ae81ff">1</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">   <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">submariner.io/v1</span>
+   <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">GlobalEgressIP</span>
+   <span style="color:#f92672">metadata</span>:
+     <span style="color:#f92672">name</span>: <span style="color:#ae81ff">db-pods</span>
+     <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">ns1</span>
+   <span style="color:#f92672">spec</span>:
+     <span style="color:#f92672">podSelector</span>:
+         <span style="color:#f92672">matchLabels</span>:
+           <span style="color:#f92672">role</span>: <span style="color:#ae81ff">db</span>
+     <span style="color:#f92672">numberOfIPs</span>: <span style="color:#ae81ff">1</span>
 </code></pre></div><p>The example above will allocate 1 global IP which will be used as egress IP for all pods matching label <code>role=db</code> in namespace <code>ns1</code>.</p>
 
           <footer class=" footline">
@@ -387,19 +387,19 @@ namespace with the <code>podSelector</code> field set:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1776956160"></script>
-    <script src="/js/perfect-scrollbar.min.js?1776956160"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1776956160"></script>
-    <script src="/js/jquery.sticky.js?1776956160"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1776956160"></script>
-    <script src="/js/featherlight.min.js?1776956160"></script>
-    <script src="/js/modernizr.custom-3.6.0.js?1776956160"></script>
-    <script src="/js/mermaid.min.js?1776956160"></script>
+    <script src="/js/clipboard.min.js?1777879405"></script>
+    <script src="/js/perfect-scrollbar.min.js?1777879405"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1777879405"></script>
+    <script src="/js/jquery.sticky.js?1777879405"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1777879405"></script>
+    <script src="/js/featherlight.min.js?1777879405"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1777879405"></script>
+    <script src="/js/mermaid.min.js?1777879405"></script>
     <script>
       if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
       }
     </script>
-    <script src="/js/relearn.js?1776956160"></script>
+    <script src="/js/relearn.js?1777879405"></script>
   </body>
 </html>
