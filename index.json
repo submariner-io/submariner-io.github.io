@@ -252,7 +252,7 @@
     "uri": "/operations/deployment/calico/"
   },
   {
-    "content": "Talk to Us We would love to hear from you, how you are using Submariner, and what we can do to make it better.\nGitHub Check out Submariner’s GitHub and consider contributing. Pick up an issue to work on or propose an enhancement by reporting a new issue; once your code is ready to be reviewed, you can propose a pull request. You can find a good guide about the GitHub workflow here.\nSlack Share your ideas in the #submariner channel in Kubernetes' Slack. If you need it, you can request an invite to Kubernetes' Slack instance.\nCommunity Calendar Submariner’s meetings are open to everyone. All meetings are documented on Submariner’s Community Calendar. The bi-weekly Submariner Dev, Users \u0026 Community Meeting (Mondays at 3:00pm CET) is a good place to start.\nMailing List Join the submariner-dev or submariner-users mailing lists.\n",
+    "content": "Talk to Us We would love to hear from you, how you are using Submariner, and what we can do to make it better.\nGitHub Check out Submariner’s GitHub and consider contributing. Pick up an issue to work on or propose an enhancement by reporting a new issue; once your code is ready to be reviewed, you can propose a pull request. You can find a good guide about the GitHub workflow here.\nSlack Share your ideas in the #submariner channel in Kubernetes' Slack. If you need it, you can request an invite to Kubernetes' Slack instance.\nCommunity Calendar Submariner’s meetings are open to everyone. All meetings are documented on Submariner’s Community Calendar.\nMailing List Join the submariner-dev or submariner-users mailing lists.\n",
     "description": "",
     "tags": null,
     "title": "Getting Help",
